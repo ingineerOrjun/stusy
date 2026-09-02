@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept of OOP using C++ — DS &amp; OOP with C++ | RGSC Study Board</title>
+<meta name="description" content="Concept of OOP using C++ explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small>सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small>कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small>इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small>वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small>डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small>कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small>डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small>डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small>गृहपृष्ठ</small></a><h4>Grade 9 · कक्षा ९</h4><a href="../../grade9/index.html">All Grade 9 subjects <small>सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small>सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small>कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small>इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small>वेबसाइट डिजाइन</small></a><h4>Grade 10 · कक्षा १०</h4><a href="../../grade10/index.html">All Grade 10 subjects <small>सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small>डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small>कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small>डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small>डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><h4>Grade 11 · कक्षा ११</h4><a class="dis" href="#" onclick="return false">Coming in the next phase <small>अर्को चरणमा आउँदैछ</small></a><h4>Grade 12 · कक्षा १२</h4><a class="dis" href="#" onclick="return false">Coming in the next phase <small>अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DS &amp; OOP with C++</a> <span class="sep">/</span> <span>Concept of OOP using C++</span></nav>
+<main id="main">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Data Structure</a><a href="unit2.html" style="color:var(--yellow);border-color:var(--yellow)">2 · OOP + C++</a><a href="unit3.html">3 · Class and Object</a><a href="unit4.html">4 · Abstraction / Encapsulation</a><a href="unit5.html">5 · Inheritance</a><a href="unit6.html">6 · Polymorphism</a><a href="trace.html">▶ · Trace a Program</a><a href="tables.html">≠ · Tables & Terms</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="u2">
+  <div class="sec-head">
+    <div class="sec-num">2</div>
+    <div>
+      <h2>Concept of Object Oriented Programming (OOP) using C++</h2>
+      <p class="sec-sub">C++ प्रयोग गरी अब्जेक्ट ओरिएन्टेड प्रोग्रामिङको अवधारणा</p>
+    </div>
+    <span class="marks">10 hrs · 14 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h4>By the end of this unit you can…</h4>
+    <ol>
+      <li>Define OOP and explain why it was invented.</li>
+      <li>Name and explain all seven features of OOP.</li>
+      <li>Compare structured (procedural) programming with OOP in a table.</li>
+      <li>List the six kinds of C++ tokens with examples.</li>
+      <li>Write and label the basic structure of a C++ program.</li>
+      <li>Use <span class="term">cin</span>, <span class="term">cout</span> and every control statement correctly.</li>
+    </ol>
+    <p class="np-cell"><b>यो युनिट सकिँदा:</b> OOP को परिभाषा, सातै विशेषता, POP सँगको तुलना,
+    छ प्रकारका token, प्रोग्रामको आधारभूत ढाँचा, र सबै control statement प्रयोग गर्न सक्नुहुनेछ।</p>
+  </div>
+
+  <!-- ============ 2.1 ============ -->
+  <h3 class="topic" id="t21">2.1 &nbsp;What is Object Oriented Programming?</h3>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Definition — learn this wording</span>
+      <p><b>Object Oriented Programming (OOP)</b> is a programming method that solves a big problem
+      by breaking it into small parts called <b>objects</b>. Each object keeps its own <b>data</b>
+      and the <b>functions</b> that work on that data <b>bound together</b>, so that no other part
+      of the program can access that data directly.</p>
+      <p>The key phrase examiners look for is <b>"binds together data and the functions that operate
+      on that data"</b>.</p>
+    </div>
+    <div class="np">
+      <span class="tag">परिभाषा — यही शब्द कण्ठ पार्नुहोस्</span>
+      <p><b>OOP</b> भनेको ठूलो समस्यालाई <b>अब्जेक्ट</b> भनिने साना–साना भागमा बाँडेर समाधान गर्ने
+      प्रोग्रामिङ तरिका हो। हरेक अब्जेक्टले आफ्नो <b>डाटा</b> र त्यही डाटामाथि काम गर्ने
+      <b>फङ्सन</b> लाई <b>सँगै बाँधेर</b> राख्छ, ताकि प्रोग्रामको अरू भागले त्यो डाटा सिधै छुन नसकोस्।</p>
+      <p>परीक्षकले खोज्ने मुख्य वाक्यांश: <b>"डाटा र त्यसमाथि काम गर्ने फङ्सनलाई सँगै बाँध्छ"</b>।</p>
+    </div>
+  </div>
+
+  <h4 class="sub">Why OOP was invented — the problem it solves</h4>
+  <figure class="fig">
+    
+<svg viewBox="0 0 720 320" role="img" aria-labelledby="t-pvo">
+  <title id="t-pvo">Procedural programming with global data compared with objects that hide their data</title>
+  <defs><marker id="a-pvo" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ff8f7a"/></marker></defs>
+  <defs><marker id="a-pvo2" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#9ae6a0"/></marker></defs>
+
+  <text class="f-ttl" x="10" y="18">Why OOP was invented — the data-security problem</text>
+
+  <text class="f-lbl-y" x="20" y="46" text-anchor="start">PROCEDURAL (C) — data is GLOBAL, every function can change it</text>
+  <rect class="f-box-c" x="110" y="128" width="150" height="52" rx="8"/>
+  <text class="f-val" x="185" y="152" font-size="13">GLOBAL DATA</text>
+  <text class="f-lbl" x="185" y="170">unprotected</text>
+
+  <rect class="f-box" x="20"  y="60" width="90" height="34" rx="5"/><text class="f-val" x="65"  y="82" font-size="11">func1()</text>
+  <rect class="f-box" x="140" y="60" width="90" height="34" rx="5"/><text class="f-val" x="185" y="82" font-size="11">func2()</text>
+  <rect class="f-box" x="260" y="60" width="90" height="34" rx="5"/><text class="f-val" x="305" y="82" font-size="11">func3()</text>
+  <rect class="f-box" x="20"  y="212" width="90" height="34" rx="5"/><text class="f-val" x="65"  y="234" font-size="11">func4()</text>
+  <rect class="f-box" x="260" y="212" width="90" height="34" rx="5"/><text class="f-val" x="305" y="234" font-size="11">func5()</text>
+
+  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:#ff8f7a" d="M75,96 L140,126"/>
+  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:#ff8f7a" d="M185,96 L185,124"/>
+  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:#ff8f7a" d="M295,96 L230,126"/>
+  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:#ff8f7a" d="M75,210 L140,182"/>
+  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:#ff8f7a" d="M295,210 L230,182"/>
+  <text class="f-lbl" x="185" y="272" fill="#ff8f7a">Any function can spoil the data. Hard to find who broke it.</text>
+
+  <line class="f-ln" x1="380" y1="34" x2="380" y2="300" stroke-dasharray="5 5"/>
+
+  <text class="f-lbl-y" x="410" y="46" text-anchor="start">OBJECT-ORIENTED (C++) — data is PRIVATE inside each object</text>
+
+  <rect class="f-box-d" x="410" y="62" width="130" height="130" rx="10"/>
+  <text class="f-lbl-y" x="475" y="80">Object: acc1</text>
+  <rect class="f-box-c" x="432" y="112" width="86" height="40" rx="6"/>
+  <text class="f-val" x="475" y="130" font-size="11">balance</text>
+  <text class="f-lbl" x="475" y="145">private</text>
+  <rect class="f-box-g" x="424" y="160" width="102" height="24" rx="12"/>
+  <text class="f-val" x="475" y="176" font-size="10">deposit() public</text>
+
+  <rect class="f-box-d" x="560" y="62" width="130" height="130" rx="10"/>
+  <text class="f-lbl-y" x="625" y="80">Object: acc2</text>
+  <rect class="f-box-c" x="582" y="112" width="86" height="40" rx="6"/>
+  <text class="f-val" x="625" y="130" font-size="11">balance</text>
+  <text class="f-lbl" x="625" y="145">private</text>
+  <rect class="f-box-g" x="574" y="160" width="102" height="24" rx="12"/>
+  <text class="f-val" x="625" y="176" font-size="10">deposit() public</text>
+
+  <rect class="f-box" x="470" y="220" width="160" height="34" rx="5"/>
+  <text class="f-val" x="550" y="242" font-size="11">outside code</text>
+  <path class="f-arr" marker-end="url(#a-pvo2)" style="stroke:#9ae6a0" d="M510,218 L480,190"/>
+  <path class="f-arr" marker-end="url(#a-pvo2)" style="stroke:#9ae6a0" d="M590,218 L622,190"/>
+  <text class="f-lbl" x="550" y="278" fill="#9ae6a0">Outside code can only knock on the public door.</text>
+  <text class="f-lbl" x="550" y="296" fill="#9ae6a0">It can never touch balance directly.</text>
+</svg>
+    <figcaption>In C, global data can be changed by any function. In C++, each object locks its own
+      data away and offers only public functions.
+      <span class="np-cell">C मा global डाटालाई जुनसुकै फङ्सनले बदल्न सक्छ। C++ मा हरेक अब्जेक्टले
+      आफ्नो डाटा बन्द राख्छ र public फङ्सन मात्र दिन्छ।</span>
+    </figcaption>
+  </figure>
+
+  <div class="callout an">
+    <div class="h">Real-world analogy — a TV remote</div>
+    <p>You press a button and the channel changes. You do <b>not</b> know what circuit is inside,
+    and you <b>cannot</b> reach in and touch it. The remote keeps its parts (the <b>data</b>) hidden
+    and gives you only buttons (the <b>functions</b>).</p>
+    <p>That is exactly what an <b>object</b> does — and it is why an object is safer than a global
+    variable that any function can change.</p>
+    <span class="np-cell"><b>उदाहरण — TV को रिमोट।</b> बटन थिच्दा च्यानल फेरिन्छ। भित्रको सर्किट
+    थाहा हुँदैन र छुन पनि पाइँदैन। रिमोटले भित्री भाग (डाटा) लुकाएर बटन (फङ्सन) मात्र दिन्छ।
+    <b>अब्जेक्ट</b> ले पनि ठ्याक्कै यही गर्छ।</span>
+  </div>
+
+  <!-- ============ 2.2 ============ -->
+  <h3 class="topic" id="t22">2.2 &nbsp;Features of OOP</h3>
+  <p class="lead-sub">These are the standard exam-listed features. Learn all seven English names —
+  a question often just says "explain any four features of OOP".</p>
+
+  <div class="cards">
+    <div class="card"><h4>1. Object</h4>
+      <p>A <b>real-world entity</b> that has <b>data</b> (its state) and <b>functions</b> (its
+      behaviour). An object is an <b>instance of a class</b> and it <b>takes memory</b>.</p>
+      <span class="np-cell">डाटा र व्यवहार भएको वास्तविक वस्तु। क्लासको एउटा instance, जसले मेमोरी लिन्छ।</span></div>
+    <div class="card"><h4>2. Class</h4>
+      <p>A <b>blueprint or template</b> that describes what data and functions its objects will
+      have. A class <b>takes no memory</b> by itself.</p>
+      <span class="np-cell">अब्जेक्ट बनाउने नक्सा वा टेम्प्लेट। यसले आफैंले मेमोरी लिँदैन।</span></div>
+    <div class="card"><h4>3. Encapsulation</h4>
+      <p><b>Binding data and functions together</b> in one unit and <b>hiding the data</b> from
+      outside access by marking it <span class="term">private</span>.</p>
+      <span class="np-cell">डाटा र फङ्सनलाई एउटै एकाइमा बाँध्ने र डाटालाई बाहिरबाट लुकाउने।</span></div>
+    <div class="card"><h4>4. Abstraction</h4>
+      <p>Showing only the <b>necessary features</b> to the user and hiding the <b>internal
+      details</b> of how the work is actually done.</p>
+      <span class="np-cell">आवश्यक कुरा मात्र देखाउने र भित्री जटिलता लुकाउने।</span></div>
+    <div class="card"><h4>5. Inheritance</h4>
+      <p>One class <b>acquires the properties and functions</b> of another class, so that code can
+      be <b>reused</b> instead of rewritten.</p>
+      <span class="np-cell">एउटा क्लासले अर्को क्लासका गुण र फङ्सन प्राप्त गर्ने — कोड पुनः प्रयोग हुन्छ।</span></div>
+    <div class="card"><h4>6. Polymorphism</h4>
+      <p><b>One name, many forms.</b> The same function name or operator behaves differently in
+      different situations.</p>
+      <span class="np-cell">एउटै नाम, धेरै रूप। उही फङ्सनको नामले फरक अवस्थामा फरक काम गर्छ।</span></div>
+    <div class="card"><h4>7. Message Passing</h4>
+      <p>Objects <b>communicate</b> with each other by calling one another's member functions —
+      this is called sending a message.</p>
+      <span class="np-cell">अब्जेक्टहरूले एकअर्काको फङ्सन बोलाएर सञ्चार गर्ने।</span></div>
+    <div class="card"><h4>+ Dynamic Binding</h4>
+      <p>The code that will run for a function call is decided <b>at run time</b>, not while
+      compiling. This is what makes virtual functions work.</p>
+      <span class="np-cell">कुन कोड चल्ने हो भन्ने कुरा कम्पाइल गर्दा होइन, चल्दै गर्दा निर्णय हुने।</span></div>
+  </div>
+
+  <!-- ============ 2.3 ============ -->
+  <h3 class="topic" id="t23">2.3 &nbsp;Applications of OOP</h3>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Where OOP is used</span>
+      <ul class="tick">
+        <li>Real-time systems, simulation and modelling</li>
+        <li>Object-oriented databases</li>
+        <li>Graphical User Interface (GUI) design</li>
+        <li>Computer games and animation</li>
+        <li>Artificial Intelligence and expert systems</li>
+        <li>CAD/CAM and office automation systems</li>
+        <li>Mobile and web application development</li>
+        <li>Neural networks and parallel programming</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">OOP कहाँ प्रयोग हुन्छ</span>
+      <ul class="tick">
+        <li>रियल–टाइम सिस्टम, सिमुलेसन र मोडलिङ</li>
+        <li>अब्जेक्ट ओरिएन्टेड डाटाबेस</li>
+        <li>ग्राफिकल युजर इन्टरफेस (GUI) डिजाइन</li>
+        <li>कम्प्युटर गेम र एनिमेसन</li>
+        <li>आर्टिफिसियल इन्टेलिजेन्स र एक्सपर्ट सिस्टम</li>
+        <li>CAD/CAM र अफिस अटोमेसन</li>
+        <li>मोबाइल र वेब एप्लिकेसन विकास</li>
+        <li>न्युरल नेटवर्क र प्यारलल प्रोग्रामिङ</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ 2.4 ============ -->
+  <h3 class="topic" id="t24">2.4 &nbsp;Structured vs Object-Oriented Programming</h3>
+  <p class="lead-sub">This comparison is one of the most frequently asked long questions in the
+  whole subject. Learn at least six rows.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Structured / Procedural (POP)</th><th>Object-Oriented (OOP)</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Basic unit</td><td>The <b>function</b> is the basic unit.</td><td>The <b>object</b> is the basic unit.</td></tr>
+        <tr><td class="k">Approach</td><td><b>Top-down</b> — the big problem is broken into functions.</td><td><b>Bottom-up</b> — objects are built first, then combined.</td></tr>
+        <tr><td class="k">Focus</td><td>Focus is on <b>the procedure — how to do it</b>.</td><td>Focus is on <b>the data and the object</b>.</td></tr>
+        <tr><td class="k">Data security</td><td>Data is mostly <b>global</b>, so any function can change it — <b>less secure</b>.</td><td>Data is <b>private and hidden</b> inside the object — <b>more secure</b>.</td></tr>
+        <tr><td class="k">Data + function</td><td>Data and functions are kept <b>separate</b>.</td><td>Data and functions are <b>bound together</b>.</td></tr>
+        <tr><td class="k">Reusability</td><td><b>Difficult</b> — there is no inheritance.</td><td><b>Easy</b> — inheritance is supported.</td></tr>
+        <tr><td class="k">Overloading</td><td><b>Not supported.</b></td><td><b>Supported</b> — function and operator overloading.</td></tr>
+        <tr><td class="k">Suitable for</td><td><b>Small</b>, simple programs.</td><td><b>Large</b>, complex programs.</td></tr>
+        <tr><td class="k">Example languages</td><td>C, Pascal, FORTRAN, BASIC</td><td>C++, Java, Python, C#</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="np">
+    <span class="tag">छोटो सार</span>
+    <p>POP मा <b>फङ्सन</b> मुख्य हुन्छ, डाटा प्रायः <b>global</b> हुने भएकाले कम सुरक्षित हुन्छ, र
+    यसले <b>माथिबाट तल (top-down)</b> सोच्छ। OOP मा <b>अब्जेक्ट</b> मुख्य हुन्छ, डाटा
+    <b>private</b> राखेर लुकाइन्छ, र <b>तलबाट माथि (bottom-up)</b> सोच्छ। ठूलो प्रोग्रामका लागि
+    OOP राम्रो।</p>
+  </div>
+
+  <!-- ============ 2.5 ============ -->
+  <h3 class="topic" id="t25">2.5 &nbsp;Tokens and Character Set</h3>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Token</span>
+      <p>A <b>token</b> is the <b>smallest individual unit</b> of a C++ program that has meaning to
+      the compiler. When the compiler reads your program it first breaks it into tokens.</p>
+      <p>The <b>character set</b> is every character C++ understands: letters A–Z and a–z, digits
+      0–9, special symbols such as <span class="term">+ - * / = &lt; &gt; ( ) { } ; ,</span>, and
+      white space (space, tab, newline).</p>
+    </div>
+    <div class="np">
+      <span class="tag">टोकन</span>
+      <p><b>टोकन</b> भनेको C++ प्रोग्रामको <b>सबैभन्दा सानो अर्थपूर्ण एकाइ</b> हो, जुन कम्पाइलरले
+      बुझ्छ। कम्पाइलरले प्रोग्राम पढ्दा पहिले यसलाई टोकनमा टुक्र्याउँछ।</p>
+      <p><b>Character set</b> भनेको C++ ले बुझ्ने सबै अक्षर हो: A–Z, a–z, ०–९, विशेष चिन्ह
+      <span class="term">+ - * / = ( ) { } ;</span>, र खाली ठाउँ।</p>
+    </div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:190px">Type of token</th><th>Meaning</th><th style="width:200px">Examples</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Keywords</td><td><b>Reserved words</b> with a fixed meaning. You cannot use them as your own names.
+          <span class="np-cell">पहिल्यै अर्थ तोकिएका शब्द — आफ्नो नामका रूपमा प्रयोग गर्न मिल्दैन।</span></td>
+          <td class="k">int, class, if, else, return, void, public</td></tr>
+        <tr><td class="k">Identifiers</td><td>Names the <b>programmer creates</b> for variables, functions and classes.
+          <span class="np-cell">प्रोग्रामरले भेरिएबल, फङ्सन र क्लासलाई राखेको नाम।</span></td>
+          <td class="k">roll, sum, Student, display</td></tr>
+        <tr><td class="k">Constants / Literals</td><td><b>Fixed values</b> that never change while the program runs.
+          <span class="np-cell">प्रोग्राम चल्दा नबदलिने मान।</span></td>
+          <td class="k">25, 3.14, 'A', "Ram", true</td></tr>
+        <tr><td class="k">Operators</td><td>Symbols that <b>perform an operation</b> on values.
+          <span class="np-cell">मानमाथि काम गर्ने चिन्ह।</span></td>
+          <td class="k">+ - * / % = == &lt; &gt; &amp;&amp; &lt;&lt;</td></tr>
+        <tr><td class="k">Punctuators / Separators</td><td>Symbols that <b>separate or group</b> parts of the program.
+          <span class="np-cell">प्रोग्रामका भाग छुट्याउने वा समूह बनाउने चिन्ह।</span></td>
+          <td class="k">; , ( ) { } [ ] #</td></tr>
+        <tr><td class="k">Strings</td><td>A <b>sequence of characters</b> written inside double quotes.
+          <span class="np-cell">डबल कोट भित्रका अक्षरहरूको शृंखला।</span></td>
+          <td class="k">"Hello RGSC"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Find the tokens in one line of code</div>
+    <pre class="cpp" data-nonum>int sum = a + 25;</pre>
+    <p class="wex-note">This single line contains <b>eight tokens</b>:
+      <span class="term">int</span> (keyword), <span class="term">sum</span> (identifier),
+      <span class="term">=</span> (operator), <span class="term">a</span> (identifier),
+      <span class="term">+</span> (operator), <span class="term">25</span> (constant),
+      <span class="term">;</span> (punctuator). Questions like "identify the tokens in the given
+      statement" are common — count carefully.
+      <span class="np-cell">यो एउटै लाइनमा <b>आठ टोकन</b> छन्। "दिइएको कथनमा token पहिचान
+      गर्नुहोस्" भन्ने प्रश्न बारम्बार आउँछ — ध्यान दिएर गन्नुहोस्।</span></p>
+  </div>
+
+  <!-- ============ 2.6 ============ -->
+  <h3 class="topic" id="t26">2.6 &nbsp;Data Types and Format</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:110px">Data type</th><th style="width:90px">Size</th><th>What it stores</th><th style="width:170px">Example</th></tr></thead>
+      <tbody>
+        <tr><td class="k">int</td><td>4 bytes</td><td>Whole numbers, no decimal point <span class="np-cell">दशमलव नभएको पूर्ण संख्या</span></td><td class="k">int roll = 15;</td></tr>
+        <tr><td class="k">float</td><td>4 bytes</td><td>Decimal numbers, about 6 digits of precision <span class="np-cell">दशमलव भएको संख्या</span></td><td class="k">float m = 78.5;</td></tr>
+        <tr><td class="k">double</td><td>8 bytes</td><td>Decimal numbers with higher precision <span class="np-cell">अझ शुद्ध दशमलव संख्या</span></td><td class="k">double p = 3.14159;</td></tr>
+        <tr><td class="k">char</td><td>1 byte</td><td>A single character in single quotes <span class="np-cell">सिंगल कोटमा एउटा अक्षर</span></td><td class="k">char g = 'A';</td></tr>
+        <tr><td class="k">bool</td><td>1 byte</td><td>Only <span class="term">true</span> (1) or <span class="term">false</span> (0) <span class="np-cell">true वा false मात्र</span></td><td class="k">bool pass = true;</td></tr>
+        <tr><td class="k">void</td><td>—</td><td>"No value" — used when a function returns nothing <span class="np-cell">कुनै मान नहुने</span></td><td class="k">void show()</td></tr>
+        <tr><td class="k">string</td><td>varies</td><td>A sequence of characters; needs <span class="term">&lt;string&gt;</span> <span class="np-cell">अक्षरहरूको शृंखला</span></td><td class="k">string n = "Ram";</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ 2.7 ============ -->
+  <h3 class="topic" id="t27">2.7 &nbsp;Basic Input and Output</h3>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">cout and cin</span>
+      <p><span class="term">cout &lt;&lt;</span> sends data <b>out</b> to the screen.
+      <span class="term">&lt;&lt;</span> is called the <b>insertion operator</b>.</p>
+      <p><span class="term">cin &gt;&gt;</span> takes data <b>in</b> from the keyboard.
+      <span class="term">&gt;&gt;</span> is called the <b>extraction operator</b>.</p>
+      <p>Both are <b>objects</b> defined in the header file <span class="term">&lt;iostream&gt;</span>
+      and both live inside the namespace <span class="term">std</span>.
+      <span class="term">endl</span> moves the cursor to a new line.</p>
+      <p><b>Memory trick:</b> the arrows point in the direction the data travels.
+      <span class="term">cout &lt;&lt; x</span> — data flows <i>out of</i> x <i>into</i> cout.
+      <span class="term">cin &gt;&gt; x</span> — data flows <i>from</i> cin <i>into</i> x.</p>
+    </div>
+    <div class="np">
+      <span class="tag">cout र cin</span>
+      <p><span class="term">cout &lt;&lt;</span> ले डाटा स्क्रिनमा <b>बाहिर</b> पठाउँछ।
+      <span class="term">&lt;&lt;</span> लाई <b>insertion operator</b> भनिन्छ।</p>
+      <p><span class="term">cin &gt;&gt;</span> ले किबोर्डबाट डाटा <b>भित्र</b> लिन्छ।
+      <span class="term">&gt;&gt;</span> लाई <b>extraction operator</b> भनिन्छ।</p>
+      <p>दुवै <span class="term">&lt;iostream&gt;</span> हेडर फाइलमा भएका <b>अब्जेक्ट</b> हुन् र
+      <span class="term">std</span> नेमस्पेस भित्र बस्छन्। <span class="term">endl</span> ले नयाँ
+      लाइनमा लैजान्छ।</p>
+      <p><b>सम्झने तरिका:</b> तीर जता फर्किएको छ, डाटा त्यतै जान्छ।</p>
+    </div>
+  </div>
+
+  <!-- ============ 2.8 ============ -->
+  <h3 class="topic" id="t28">2.8 &nbsp;Basic Program Structure</h3>
+  <figure class="fig">
+    
+<svg viewBox="0 0 720 290" role="img" aria-labelledby="t-anat">
+  <title id="t-anat">The parts of a basic C++ program labelled</title>
+  <defs><marker id="a-anat" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ffd76e"/></marker></defs>
+  <text class="f-ttl" x="10" y="18">Anatomy of every C++ program you will ever write</text>
+
+  <rect class="f-box-d" x="20" y="34" width="380" height="212" rx="8"/>
+  <text class="f-code" x="40" y="62">#include &lt;iostream&gt;</text>
+  <text class="f-code" x="40" y="92">using namespace std;</text>
+  <text class="f-code" x="40" y="130">int main() {</text>
+  <text class="f-code" x="60" y="158">cout &lt;&lt; "Hello RGSC";</text>
+  <text class="f-code" x="60" y="186">return 0;</text>
+  <text class="f-code" x="40" y="214">}</text>
+
+  <path class="f-arr" marker-end="url(#a-anat)" d="M470,58 L410,58"/>
+  <text class="f-lbl-y" x="480" y="54" text-anchor="start">Preprocessor directive</text>
+  <text class="f-lbl"   x="480" y="70" text-anchor="start">brings in cout and cin</text>
+
+  <path class="f-arr" marker-end="url(#a-anat)" d="M470,88 L410,88"/>
+  <text class="f-lbl-y" x="480" y="84" text-anchor="start">Namespace</text>
+  <text class="f-lbl"   x="480" y="100" text-anchor="start">lets you write cout, not std::cout</text>
+
+  <path class="f-arr" marker-end="url(#a-anat)" d="M470,126 L410,126"/>
+  <text class="f-lbl-y" x="480" y="122" text-anchor="start">main() — the starting point</text>
+  <text class="f-lbl"   x="480" y="138" text-anchor="start">execution ALWAYS begins here</text>
+
+  <path class="f-arr" marker-end="url(#a-anat)" d="M470,156 L410,156"/>
+  <text class="f-lbl-y" x="480" y="152" text-anchor="start">Statement — ends with ;</text>
+
+  <path class="f-arr" marker-end="url(#a-anat)" d="M470,184 L410,184"/>
+  <text class="f-lbl-y" x="480" y="180" text-anchor="start">return 0 — tells the OS</text>
+  <text class="f-lbl"   x="480" y="196" text-anchor="start">the program ended successfully</text>
+
+  <text class="f-lbl" x="360" y="272">The braces { } mark the body of the function. Every opening brace needs a closing brace.</text>
+</svg>
+    <figcaption>Every C++ program has these same parts. Learn to label them.
+      <span class="np-cell">हरेक C++ प्रोग्राममा यीनै भाग हुन्छन्। नाम दिन सिक्नुहोस्।</span>
+    </figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> A complete program that reads input</div>
+    <pre class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a, b, sum;
+
+    cout &lt;&lt; "Enter two numbers: ";
+    cin &gt;&gt; a &gt;&gt; b;              // read both values
+
+    sum = a + b;
+    cout &lt;&lt; "Sum = " &lt;&lt; sum &lt;&lt; endl;
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output (if the user types 12 and 8)</span>
+      <pre class="out">Enter two numbers: 12 8
+Sum = 20</pre>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <div class="h">Common mistakes in program structure</div>
+    <ul class="tick" style="margin:6px 0 0">
+      <li>Forgetting <span class="term">using namespace std;</span> — then <span class="term">cout</span>
+        is undefined and you must write <span class="term">std::cout</span>.</li>
+      <li>Writing <span class="term">cin &lt;&lt; a;</span> instead of <span class="term">cin &gt;&gt; a;</span>
+        — the arrows are the wrong way round.</li>
+      <li>Missing the semicolon <span class="term">;</span> at the end of a statement.</li>
+      <li>Writing <span class="term">Main()</span> or <span class="term">MAIN()</span> — C++ is
+        <b>case sensitive</b>, it must be <span class="term">main()</span>.</li>
+    </ul>
+    <span class="np-cell">यी चार गल्ती सबैभन्दा बढी हुन्छन्: namespace बिर्सने, cin मा तीर उल्टो
+    लेख्ने, सेमीकोलन छुटाउने, र <span class="term">main</span> लाई ठूलो अक्षरमा लेख्ने। C++ मा
+    सानो–ठूलो अक्षरले फरक पार्छ।</span>
+  </div>
+
+  <!-- ============ 2.9 ============ -->
+  <h3 class="topic" id="t29">2.9 &nbsp;Control Statements</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Statement</th><th>What it does</th><th style="width:240px">Syntax</th></tr></thead>
+      <tbody>
+        <tr><td class="k">if</td><td>Runs a block <b>only when</b> the condition is true.<span class="np-cell">सर्त सही भएमा मात्र चल्छ।</span></td><td class="k">if(cond){ ... }</td></tr>
+        <tr><td class="k">if…else</td><td>One block if true, <b>another block</b> if false.<span class="np-cell">सही भए एउटा, गलत भए अर्को ब्लक।</span></td><td class="k">if(cond){}else{}</td></tr>
+        <tr><td class="k">if…else ladder</td><td>Checks <b>many conditions one by one</b> from the top down.<span class="np-cell">माथिबाट धेरै सर्त क्रमशः जाँच्छ।</span></td><td class="k">if(){}else if(){}else{}</td></tr>
+        <tr><td class="k">Nested if</td><td>An <b>if inside another if</b>.<span class="np-cell">एउटा if भित्र अर्को if।</span></td><td class="k">if(a){ if(b){} }</td></tr>
+        <tr><td class="k">switch</td><td>Chooses <b>one case</b> out of many by matching a value. Each case needs <span class="term">break</span>.<span class="np-cell">मान मिलाएर धेरैमध्ये एउटा case छान्छ।</span></td><td class="k">switch(x){ case 1: ... }</td></tr>
+        <tr><td class="k">for</td><td>Repeats a block a <b>known number of times</b>.<span class="np-cell">कति पटक दोहोरिने थाहा हुँदा।</span></td><td class="k">for(i=0;i&lt;n;i++){}</td></tr>
+        <tr><td class="k">while</td><td>Repeats <b>while a condition is true</b>. The condition is checked <b>first</b> — <b>entry controlled</b>. May run zero times.<span class="np-cell">सर्त पहिले जाँच्छ, त्यसैले ० पटक पनि चल्न सक्छ।</span></td><td class="k">while(cond){}</td></tr>
+        <tr><td class="k">do…while</td><td>Runs the block <b>at least once</b>, then checks the condition — <b>exit controlled</b>.<span class="np-cell">कम्तीमा एक पटक चल्छ, अनि मात्र सर्त जाँच्छ।</span></td><td class="k">do{ }while(cond);</td></tr>
+        <tr><td class="k">break</td><td><b>Exits</b> the loop or switch immediately.<span class="np-cell">तुरुन्तै लुप वा switch बाट बाहिर निस्कन्छ।</span></td><td class="k">break;</td></tr>
+        <tr><td class="k">continue</td><td><b>Skips</b> the rest of this round and jumps to the next round.<span class="np-cell">यो चक्र छोडेर अर्को चक्रमा जान्छ।</span></td><td class="k">continue;</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 3</span> if…else ladder — printing a grade</div>
+    <pre class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int marks = 78;
+
+    if (marks &gt;= 90)
+        cout &lt;&lt; "Grade A+";
+    else if (marks &gt;= 75)
+        cout &lt;&lt; "Grade A";
+    else if (marks &gt;= 60)
+        cout &lt;&lt; "Grade B";
+    else
+        cout &lt;&lt; "Grade C";
+
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">Grade A</pre>
+    </div>
+    <p class="wex-note">The ladder is checked from the top. 78 fails the first test
+    (78 &gt;= 90 is false) but passes the second (78 &gt;= 75 is true), so it prints Grade A and
+    <b>stops</b> — the remaining conditions are never checked.
+    <span class="np-cell">माथिबाट क्रमशः जाँचिन्छ। ७८ पहिलो सर्तमा असफल भयो तर दोस्रोमा सफल भयो,
+    त्यसैले "Grade A" छापेर <b>रोकियो</b> — बाँकी सर्त जाँचिँदैनन्।</span></p>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 4</span> while vs do…while — the difference that gets tested</div>
+    <pre class="cpp">
+int i = 10;
+while (i &lt; 5) {          // condition is FALSE at the start
+    cout &lt;&lt; "while runs";
+}                        // body runs ZERO times
+
+int j = 10;
+do {
+    cout &lt;&lt; "do-while runs";   // body runs ONCE first
+} while (j &lt; 5);               // then the condition fails</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">do-while runs</pre>
+    </div>
+    <p class="wex-note">Same condition, same starting value — but <span class="term">while</span>
+    printed nothing and <span class="term">do…while</span> printed once. That is the whole
+    difference: <b>while checks first, do…while acts first</b>.
+    <span class="np-cell">उही सर्त, उही सुरुको मान — तर <span class="term">while</span> ले केही
+    छापेन र <span class="term">do…while</span> ले एक पटक छाप्यो। फरक यही हो: <b>while ले पहिले
+    जाँच्छ, do…while ले पहिले काम गर्छ</b>।</span></p>
+  </div>
+
+  <!-- ---------- EXAM FOCUS ---------- -->
+  <h3 class="topic" id="exam2">Exam focus — questions asked from this unit</h3>
+
+  <div class="examq">
+    <div class="q-h">Q1 · Define OOP. Explain any four features of OOP. <span class="mk">[6 marks]</span></div>
+    <button class="btn-ans" data-answer="b1">Show the answer</button>
+    <div class="ans" id="b1">
+      <p>OOP is a programming method that solves a big problem by breaking it into small parts
+      called objects, binding together the data and the functions that operate on that data so that
+      no other part of the code can access the data directly.</p>
+      <p>Any four of: <b>Object</b> — a real-world entity with data and behaviour;
+      <b>Class</b> — a blueprint from which objects are created;
+      <b>Encapsulation</b> — binding data and functions in one unit and hiding the data;
+      <b>Abstraction</b> — showing only essential features and hiding internal details;
+      <b>Inheritance</b> — one class acquiring the properties of another;
+      <b>Polymorphism</b> — one name behaving in many forms.</p>
+      <span class="np-cell">परिभाषा + कुनै चार विशेषताको एक–एक लाइन व्याख्या लेख्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q2 · Differentiate between procedural and object-oriented programming. <span class="mk">[5 marks]</span></div>
+    <button class="btn-ans" data-answer="b2">Show the answer</button>
+    <div class="ans" id="b2">
+      <p>Write it as a table with at least five rows: basic unit (function vs object),
+      approach (top-down vs bottom-up), focus (procedure vs data), data security (global and less
+      secure vs private and more secure), reusability (difficult vs easy through inheritance), and
+      examples (C vs C++).</p>
+      <span class="np-cell">तालिकाको रूपमा कम्तीमा पाँच हरफ लेख्नुहोस् — तालिकाले पूरा अंक ल्याउँछ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q3 · What is a token? Name the six types of tokens in C++ with one example each. <span class="mk">[4 marks]</span></div>
+    <button class="btn-ans" data-answer="b3">Show the answer</button>
+    <div class="ans" id="b3">
+      <p>A token is the smallest individual unit of a C++ program that has meaning to the compiler.</p>
+      <p>The six types are: keywords (<span class="term">int</span>), identifiers
+      (<span class="term">sum</span>), constants (<span class="term">25</span>), operators
+      (<span class="term">+</span>), punctuators (<span class="term">;</span>) and strings
+      (<span class="term">"Ram"</span>).</p>
+      <span class="np-cell">परिभाषा + छवटै प्रकार + एक–एक उदाहरण दिनुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q4 · Differentiate between <span class="term">while</span> and <span class="term">do…while</span> loops. <span class="mk">[3 marks]</span></div>
+    <button class="btn-ans" data-answer="b4">Show the answer</button>
+    <div class="ans" id="b4">
+      <p><span class="term">while</span> is <b>entry controlled</b> — the condition is tested before
+      the body runs, so the body may run <b>zero</b> times.
+      <span class="term">do…while</span> is <b>exit controlled</b> — the body runs first and the
+      condition is tested afterwards, so the body always runs <b>at least once</b>.
+      Also, <span class="term">do…while</span> ends with a semicolon after the condition.</p>
+      <span class="np-cell">entry vs exit controlled, ० पटक vs कम्तीमा एक पटक, र अन्त्यको सेमीकोलन —
+      यी तीन बुँदा लेखे पुग्छ।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h4>Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h4>
+    <ul>
+      <li>OOP definition must contain the phrase <b>"binds data and functions together"</b>.</li>
+      <li>Seven features: <b>object, class, encapsulation, abstraction, inheritance, polymorphism, message passing</b>.</li>
+      <li>POP = function-based, global data, top-down. OOP = object-based, private data, bottom-up.</li>
+      <li>Six tokens: <b>keyword, identifier, constant, operator, punctuator, string</b>.</li>
+      <li><span class="term">cout &lt;&lt;</span> is insertion (out); <span class="term">cin &gt;&gt;</span> is extraction (in). Both are in <span class="term">&lt;iostream&gt;</span>.</li>
+      <li>Program structure: <b>header → namespace → main() → statements → return 0</b>.</li>
+      <li><span class="term">while</span> = entry controlled (may run 0 times); <span class="term">do…while</span> = exit controlled (runs at least once).</li>
+      <li>C++ is <b>case sensitive</b>, and every statement ends with a semicolon.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit1.html"><span class="lab">◂ Previous</span><span class="ttl">Basic Introduction to Data Structure</span></a><a class="nx" href="unit3.html"><span class="lab">Next ▸</span><span class="ttl">Class and Object</span></a></div>
+<footer>
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  <span class="np-cell">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/snippets.js"></script>
+</body>
+</html>

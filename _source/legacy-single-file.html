@@ -1,0 +1,2777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 — Data Structure &amp; OOP using C++ | RGSC Study Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RGSC STUDY BOARD — SHARED CHALKBOARD PALETTE
+   Reuse these exact tokens in every topic simulation so the
+   whole set looks and feels like one book.
+   ============================================================ */
+:root{
+  --bg:#0e1a16;
+  --board:#13241f;
+  --board-2:#172b25;
+  --panel:#19302a;
+  --line:#2c4a41;
+  --line-soft:#24403a;
+
+  --chalk-white:#eef5f2;
+  --chalk-dim:#a1b8b1;
+  --chalk-faint:#7e948e;
+
+  --yellow:#ffd76e;
+  --blue:#7fd1ff;
+  --coral:#ff8f7a;
+  --green:#9ae6a0;
+  --violet:#c9a9ff;
+
+  --mono:"JetBrains Mono","Consolas","Courier New",monospace;
+  --sans:"Noto Sans","Segoe UI",Arial,sans-serif;
+  --deva:"Noto Sans Devanagari","Noto Sans","Mangal","Segoe UI",sans-serif;
+
+  --r:14px;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 600px at 15% -10%, #1c332c 0%, transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, #16302f 0%, transparent 55%),
+    var(--bg);
+  color:var(--chalk-white);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+/* faint chalk dust texture */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,.02) 1px, transparent 1px);
+  background-size:38px 38px, 17px 17px;
+  background-position:0 0, 9px 9px;
+}
+.wrap{position:relative;z-index:1;max-width:1140px;margin:0 auto;padding:0 18px 90px}
+
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em}
+h2{font-size:1.65rem;letter-spacing:.2px}
+h3{font-size:1.18rem}
+p{margin:0 0 .8em}
+code,pre,.mono{font-family:var(--mono)}
+a{color:var(--blue)}
+
+/* ---------- section shell ---------- */
+section{margin:56px 0 0}
+.sec-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.sec-num{
+  flex:none;width:46px;height:46px;border-radius:12px;
+  display:grid;place-items:center;font-family:var(--mono);font-weight:700;font-size:1.05rem;
+  background:linear-gradient(160deg,#25453c,#1a322c);
+  border:1px solid var(--line);color:var(--yellow);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+}
+.sec-head h2{margin:0;color:var(--chalk-white)}
+.sec-sub{color:var(--chalk-dim);font-size:.92rem;margin:0}
+.marks{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.5px;
+  padding:4px 9px;border-radius:999px;border:1px dashed var(--line);
+  color:var(--chalk-dim);background:rgba(255,255,255,.02);
+}
+.rule{height:1px;background:linear-gradient(90deg,var(--line),transparent);margin:14px 0 22px}
+
+/* ---------- ENGLISH panel = SOLID border ---------- */
+.en{
+  background:var(--panel);
+  border:1.5px solid var(--line);
+  border-radius:var(--r);
+  padding:16px 18px;
+  box-shadow:var(--shadow);
+}
+.en .tag,.np .tag{
+  display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:1.4px;
+  text-transform:uppercase;margin-bottom:8px;
+}
+.en .tag{color:var(--blue)}
+.np .tag{color:var(--yellow)}
+
+/* ---------- NEPALI note = DASHED chalk box ---------- */
+.np{
+  background:rgba(255,215,110,.05);
+  border:2px dashed rgba(255,215,110,.42);
+  border-radius:var(--r);
+  padding:16px 18px;
+  font-family:var(--deva);
+  color:#f6ecd2;
+  transform:rotate(-.25deg);
+}
+.np p{margin:0 0 .6em}
+.np p:last-child{margin-bottom:0}
+.np b,.np strong{color:var(--yellow)}
+
+/* bilingual pair: both visible together, never a toggle */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+@media (max-width:820px){.pair{grid-template-columns:1fr}}
+
+.en b,.en strong{color:var(--yellow)}
+.term{color:var(--blue);font-family:var(--mono);font-size:.95em}
+.kw{color:var(--coral)}
+
+ul.tick{margin:.2em 0 .4em;padding-left:1.1em}
+ul.tick li{margin:.28em 0}
+
+/* ---------- code block ---------- */
+.code{
+  background:#0c1714;border:1.5px solid var(--line);border-radius:12px;
+  font-family:var(--mono);font-size:.86rem;line-height:1.75;
+  overflow:auto;padding:12px 0;margin:12px 0;
+}
+.code .ln{display:flex;padding:0 14px;white-space:pre;border-left:3px solid transparent}
+.code .ln .n{
+  flex:none;width:30px;text-align:right;margin-right:14px;color:#4f6b64;user-select:none;
+}
+.code .ln.on{background:rgba(255,215,110,.13);border-left-color:var(--yellow)}
+.code .ln.on .n{color:var(--yellow)}
+.c-key{color:#ff8f7a}.c-typ{color:#7fd1ff}.c-str{color:#9ae6a0}
+.c-com{color:#5f7a73;font-style:italic}.c-fn{color:#ffd76e}.c-num{color:#c9a9ff}
+
+/* ---------- console ---------- */
+.console{
+  background:#08110f;border:1.5px solid var(--line);border-radius:12px;
+  font-family:var(--mono);font-size:.84rem;padding:12px 14px;min-height:92px;
+  white-space:pre-wrap;color:var(--green);overflow:auto;max-height:260px;
+}
+.console .cline{margin:2px 0;animation:fade .28s ease both}
+.console .muted{color:#5f7a73}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* ---------- buttons ---------- */
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+button{
+  font-family:var(--sans);font-size:.9rem;font-weight:600;cursor:pointer;
+  background:linear-gradient(160deg,#27493f,#1b352e);
+  color:var(--chalk-white);border:1.5px solid var(--line);
+  border-radius:10px;padding:9px 16px;transition:.15s;
+}
+button:hover:not(:disabled){border-color:var(--yellow);color:var(--yellow);transform:translateY(-1px)}
+button:disabled{opacity:.38;cursor:not-allowed}
+button.primary{background:linear-gradient(160deg,#3b3320,#2a2617);border-color:rgba(255,215,110,.5);color:var(--yellow)}
+button.blue{border-color:rgba(127,209,255,.45);color:var(--blue)}
+button.coral{border-color:rgba(255,143,122,.45);color:var(--coral)}
+
+/* ---------- caption strip (bilingual, per step) ---------- */
+.cap{
+  border:1.5px solid var(--line);border-left:4px solid var(--blue);
+  border-radius:10px;background:rgba(127,209,255,.06);
+  padding:10px 14px;margin:10px 0 0;font-size:.92rem;
+}
+.cap .np-line{
+  font-family:var(--deva);color:#f6ecd2;margin-top:6px;padding-top:6px;
+  border-top:1px dashed rgba(255,215,110,.35);
+}
+.stepbar{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.78rem;color:var(--chalk-dim);flex-wrap:wrap}
+.track{flex:1;min-width:120px;height:6px;background:#0c1714;border-radius:99px;border:1px solid var(--line);overflow:hidden}
+.track i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--yellow));width:0;transition:width .25s}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto;border:1.5px solid var(--line);border-radius:12px;margin:14px 0;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.9rem}
+th,td{padding:10px 13px;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:top}
+thead th{background:#1d372f;color:var(--yellow);font-size:.78rem;letter-spacing:.7px;text-transform:uppercase}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(127,209,255,.05)}
+td .np-cell{font-family:var(--deva);color:#e7d9b4;font-size:.86rem;display:block;margin-top:4px}
+td.k{color:var(--blue);font-family:var(--mono);font-size:.85rem;white-space:nowrap}
+
+/* ---------- grid of small cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;margin:14px 0}
+.card{
+  background:var(--board-2);border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;
+}
+.card h4{margin:0 0 6px;color:var(--yellow);font-size:1rem}
+.card .np-cell{font-family:var(--deva);color:#e7d9b4;font-size:.88rem;display:block;margin-top:8px;
+  border-top:1px dashed rgba(255,215,110,.3);padding-top:8px}
+.card p{font-size:.9rem;margin:0}
+
+/* ---------- nav chips ---------- */
+.nav{
+  position:sticky;top:0;z-index:20;margin:0 -18px 0;padding:10px 18px;
+  background:rgba(14,26,22,.93);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);display:flex;gap:8px;overflow-x:auto;
+}
+.nav a{
+  flex:none;font-family:var(--mono);font-size:.75rem;text-decoration:none;color:var(--chalk-dim);
+  border:1px solid var(--line);border-radius:99px;padding:5px 12px;white-space:nowrap;
+}
+.nav a:hover{color:var(--yellow);border-color:var(--yellow)}
+
+/* ---------- hero ---------- */
+.hero{
+  margin-top:26px;border:1.5px solid var(--line);border-radius:20px;
+  background:linear-gradient(165deg,#1a322b 0%,#122421 100%);
+  padding:30px 28px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.hero .eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:2.2px;color:var(--coral);text-transform:uppercase}
+.hero h1{font-size:2.15rem;margin:.25em 0 .35em}
+.hero h1 .hl{color:var(--yellow)}
+.hero .lead{font-size:1.05rem;max-width:62ch;color:var(--chalk-white)}
+.hero .lead-np{font-family:var(--deva);color:#f6ecd2;max-width:62ch;
+  border-left:3px dashed rgba(255,215,110,.5);padding-left:12px;margin-top:10px}
+.herogrid{display:grid;grid-template-columns:1.25fr .9fr;gap:26px;align-items:center}
+@media (max-width:900px){.herogrid{grid-template-columns:1fr}}
+
+/* hero animation: raw data -> array -> linked list -> object */
+.viz{border:1.5px dashed var(--line);border-radius:16px;padding:16px;background:rgba(0,0,0,.18)}
+.viz .row{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px 0;min-height:42px}
+.viz .lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:1.4px;color:var(--chalk-faint);text-align:center;text-transform:uppercase}
+.cell{
+  width:38px;height:34px;display:grid;place-items:center;border-radius:7px;
+  font-family:var(--mono);font-size:.8rem;font-weight:700;
+  border:1.5px solid var(--blue);color:var(--blue);background:rgba(127,209,255,.08);
+  animation:pop .5s ease both;
+}
+.cell.f{border-color:var(--coral);color:var(--coral);background:rgba(255,143,122,.08)}
+.node{
+  display:flex;align-items:center;gap:0;animation:pop .5s ease both;
+}
+.node .v{width:32px;height:32px;display:grid;place-items:center;border:1.5px solid var(--green);
+  border-radius:7px 0 0 7px;color:var(--green);font-family:var(--mono);font-size:.78rem;background:rgba(154,230,160,.08)}
+.node .p{width:16px;height:32px;display:grid;place-items:center;border:1.5px solid var(--green);border-left:none;
+  border-radius:0 7px 7px 0;color:var(--chalk-faint);font-size:.6rem;background:rgba(154,230,160,.04)}
+.arrow{color:var(--chalk-faint);font-family:var(--mono);font-size:.8rem}
+.objbox{
+  border:2px solid var(--yellow);border-radius:12px;padding:8px 14px;background:rgba(255,215,110,.07);
+  font-family:var(--mono);font-size:.76rem;color:var(--yellow);text-align:center;animation:pop .6s ease both;
+}
+.objbox small{display:block;color:var(--chalk-dim);font-size:.68rem;margin-top:3px}
+@keyframes pop{from{opacity:0;transform:scale(.7) translateY(6px)}to{opacity:1;transform:none}}
+.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}
+.d5{animation-delay:.45s}.d6{animation-delay:.55s}.d7{animation-delay:.65s}.d8{animation-delay:.75s}
+
+/* ---------- misc ---------- */
+.callout{
+  border:1.5px solid rgba(255,143,122,.45);background:rgba(255,143,122,.07);
+  border-radius:12px;padding:12px 16px;margin:14px 0;
+}
+.callout .h{color:var(--coral);font-weight:700;font-size:.9rem;letter-spacing:.4px}
+.callout .np-cell{font-family:var(--deva);color:#f7e0d8;display:block;margin-top:6px;font-size:.9rem}
+
+.pill{display:inline-block;font-family:var(--mono);font-size:.7rem;padding:2px 8px;border-radius:99px;
+  border:1px solid var(--line);color:var(--chalk-dim);margin:0 4px 4px 0}
+.pill.y{border-color:rgba(255,215,110,.5);color:var(--yellow)}
+.pill.b{border-color:rgba(127,209,255,.5);color:var(--blue)}
+.pill.c{border-color:rgba(255,143,122,.5);color:var(--coral)}
+
+/* stack / queue visual */
+.vizbox{background:#0c1714;border:1.5px solid var(--line);border-radius:12px;padding:16px;min-height:210px;
+  display:flex;align-items:flex-end;justify-content:center;gap:8px;position:relative}
+.vizbox.q{align-items:center}
+.sbox{
+  width:82px;padding:9px 0;text-align:center;font-family:var(--mono);font-weight:700;
+  border:1.5px solid var(--blue);color:var(--blue);background:rgba(127,209,255,.1);border-radius:8px;
+  animation:slidein .3s ease both;
+}
+.sbox.top{border-color:var(--yellow);color:var(--yellow);background:rgba(255,215,110,.13)}
+.sbox.out{animation:slideout .3s ease both}
+@keyframes slidein{from{opacity:0;transform:translateY(-22px)}to{opacity:1;transform:none}}
+@keyframes slideout{to{opacity:0;transform:translateY(-22px)}}
+.stackcol{display:flex;flex-direction:column-reverse;gap:6px;align-items:center}
+.emptynote{color:var(--chalk-faint);font-family:var(--mono);font-size:.8rem}
+.ptr{font-family:var(--mono);font-size:.7rem;color:var(--yellow);text-align:center;margin-top:6px}
+
+footer{margin-top:70px;border-top:1px dashed var(--line);padding-top:20px;color:var(--chalk-faint);font-size:.85rem}
+footer .np-cell{font-family:var(--deva);display:block;margin-top:6px}
+
+/* quiz */
+.q{border:1.5px solid var(--line);border-radius:12px;background:var(--panel);padding:16px 18px;margin:14px 0}
+.q .qn{font-family:var(--mono);font-size:.72rem;color:var(--coral);letter-spacing:1.2px}
+.q h4{margin:6px 0 12px;font-size:1.02rem;color:var(--chalk-white)}
+.opt{
+  display:block;width:100%;text-align:left;margin:7px 0;background:#12241f;border:1.5px solid var(--line);
+  border-radius:10px;padding:10px 14px;font-size:.92rem;font-weight:400;color:var(--chalk-white);
+}
+.opt:hover:not(:disabled){border-color:var(--blue);color:var(--blue)}
+.opt.right{border-color:var(--green);background:rgba(154,230,160,.12);color:var(--green)}
+.opt.wrong{border-color:var(--coral);background:rgba(255,143,122,.12);color:var(--coral)}
+.expl{display:none;margin-top:10px;border-left:3px solid var(--yellow);padding:8px 12px;
+  background:rgba(255,215,110,.06);border-radius:0 8px 8px 0;font-size:.9rem}
+.expl.show{display:block}
+.expl .np-cell{font-family:var(--deva);color:#f6ecd2;display:block;margin-top:5px}
+.score{
+  text-align:center;border:2px dashed rgba(255,215,110,.5);border-radius:14px;padding:20px;margin-top:18px;
+  background:rgba(255,215,110,.05);
+}
+.score .big{font-family:var(--mono);font-size:2.4rem;color:var(--yellow);font-weight:700}
+.score .np-cell{font-family:var(--deva);color:#f6ecd2;display:block;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="nav">
+  <a href="#u1">1 · Data Structure</a>
+  <a href="#u2">2 · OOP + C++</a>
+  <a href="#u3">3 · Class &amp; Object</a>
+  <a href="#u4">4 · Abstraction / Encapsulation</a>
+  <a href="#u5">5 · Inheritance</a>
+  <a href="#u6">6 · Polymorphism</a>
+  <a href="#trace">▶ Trace a Program</a>
+  <a href="#tables">Comparison Tables</a>
+  <a href="#terms">Exam Terms</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<!-- ============================ HERO ============================ -->
+<header class="hero">
+  <div class="herogrid">
+    <div>
+      <div class="eyebrow">Grade 10 · Computer Engineering · CDC Nepal 2078</div>
+      <h1>Data Structure &amp; <span class="hl">OOP</span> using C++</h1>
+      <p class="lead">
+        A <b>data structure</b> is a way of organising data in memory so a program can use it quickly.
+        <b>Object-Oriented Programming (OOP)</b> is a way of writing a program by binding data and the
+        functions that work on that data together inside an <b>object</b>.
+      </p>
+      <p class="lead-np">
+        <b>डाटा स्ट्रक्चर</b> भनेको मेमोरीमा डाटा मिलाएर राख्ने तरिका हो, जसले गर्दा प्रोग्रामले
+        छिटो काम गर्न सक्छ। <b>OOP</b> भनेको डाटा र त्यो डाटामाथि काम गर्ने फङ्सनलाई एउटै
+        <b>अब्जेक्ट</b> भित्र बाँधेर प्रोग्राम लेख्ने तरिका हो।
+      </p>
+      <div style="margin-top:14px">
+        <span class="pill y">6 Units</span>
+        <span class="pill b">64 theory hrs</span>
+        <span class="pill c">50 external marks</span>
+        <span class="pill">Exam in English</span>
+      </div>
+    </div>
+
+    <div class="viz">
+      <div class="lbl">Raw data — बिनामिलाएको डाटा</div>
+      <div class="row">
+        <div class="cell f d1">7</div><div class="cell f d2">3</div>
+        <div class="cell f d3">9</div><div class="cell f d4">1</div>
+      </div>
+      <div class="lbl">Array — क्रम मिलाएर</div>
+      <div class="row">
+        <div class="cell d5">1</div><div class="cell d5">3</div>
+        <div class="cell d6">7</div><div class="cell d6">9</div>
+      </div>
+      <div class="lbl">Linked list — जोडिएर</div>
+      <div class="row">
+        <div class="node d7"><span class="v">1</span><span class="p">•</span></div>
+        <span class="arrow">→</span>
+        <div class="node d7"><span class="v">3</span><span class="p">•</span></div>
+        <span class="arrow">→</span>
+        <div class="node d8"><span class="v">7</span><span class="p">∅</span></div>
+      </div>
+      <div class="lbl">Object — डाटा + फङ्सन सँगै</div>
+      <div class="row">
+        <div class="objbox d8">
+          Student s1;
+          <small>data: name, roll &nbsp;·&nbsp; functions: input(), show()</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="pair">
+  <div class="en">
+    <span class="tag">How to use this page</span>
+    <p>Read the <b>solid box</b> first — that is the exact English wording the exam uses.
+    Then read the <b>dashed yellow box</b> — that is the same idea in Nepali. Both are always
+    on screen together, so you can match the Nepali meaning to the English exam word.</p>
+    <p>The most important part is <b>▶ Trace a Program</b>. Exams ask
+    <i>"what is the output of this program?"</i> — that section teaches you to walk a program line by line.</p>
+  </div>
+  <div class="np">
+    <span class="tag">यो पेज कसरी प्रयोग गर्ने</span>
+    <p>पहिले <b>सलिड बाकस</b> पढ्नुहोस् — त्यही अंग्रेजी शब्द नै परीक्षामा आउँछ।
+    त्यसपछि <b>पहेँलो डटेड बाकस</b> पढ्नुहोस् — त्यहाँ त्यही कुरा नेपालीमा छ।
+    दुवै सँगै देखिन्छन्, ताकि नेपाली अर्थलाई अंग्रेजी शब्दसँग जोड्न सकियोस्।</p>
+    <p>सबैभन्दा महत्त्वपूर्ण भाग <b>▶ Trace a Program</b> हो। परीक्षामा
+    <i>"यो प्रोग्रामको आउटपुट के हो?"</i> भनेर सोधिन्छ — त्यो सेक्सनले लाइन–लाइन पढ्न सिकाउँछ।</p>
+  </div>
+</div>
+
+<!-- ============================ UNIT 1 ============================ -->
+<section id="u1">
+  <div class="sec-head">
+    <div class="sec-num">1</div>
+    <div>
+      <h2>Basic Introduction to Data Structure</h2>
+      <p class="sec-sub">डाटा स्ट्रक्चरको आधारभूत परिचय</p>
+    </div>
+    <span class="marks">20 hrs · 15 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Definition</span>
+      <p>A <b>data structure</b> is a particular way of <b>organising, storing and managing data</b>
+      in a computer's memory so that it can be <b>accessed and modified efficiently</b>.</p>
+      <p>It is not the data itself. It is the <i>arrangement</i> of the data, plus the rules for
+      putting data in and taking data out.</p>
+    </div>
+    <div class="np">
+      <span class="tag">परिभाषा</span>
+      <p><b>डाटा स्ट्रक्चर</b> भनेको कम्प्युटरको मेमोरीमा डाटालाई <b>मिलाएर, राखेर र व्यवस्थापन गर्ने</b>
+      एउटा खास तरिका हो, ताकि त्यो डाटा <b>छिटो र सजिलै</b> प्रयोग र परिवर्तन गर्न सकियोस्।</p>
+      <p>यो डाटा आफैं होइन। यो डाटा <i>कसरी मिलाइएको छ</i> भन्ने कुरा र डाटा राख्ने–झिक्ने नियम हो।</p>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Why it exists — real-world analogy</span>
+      <p>Think of a <b>school library</b>. The books are the <i>data</i>. If books are thrown on the
+      floor, finding one takes very long. If books are kept on numbered shelves by subject, you find
+      one in seconds.</p>
+      <p>The shelf system is the <b>data structure</b>. Same books, same room — but the
+      <b>arrangement decides the speed</b>. A computer works the same way.</p>
+    </div>
+    <div class="np">
+      <span class="tag">किन चाहिन्छ — व्यवहारिक उदाहरण</span>
+      <p>एउटा <b>स्कुलको पुस्तकालय</b> सम्झनुहोस्। किताबहरू <i>डाटा</i> हुन्। किताब भुइँमा जथाभावी
+      फालिएको छ भने एउटा किताब खोज्न धेरै समय लाग्छ। तर विषय अनुसार नम्बर हालेको र्‍याकमा
+      राखिएको छ भने सेकेन्डमै भेटिन्छ।</p>
+      <p>त्यो र्‍याकको व्यवस्था नै <b>डाटा स्ट्रक्चर</b> हो। किताब उही, कोठा उही — तर
+      <b>मिलाउने तरिकाले गति निर्धारण गर्छ</b>। कम्प्युटरमा पनि ठ्याक्कै यस्तै हुन्छ।</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">1.2 Advantages of Data Structures</h3>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Advantages</span>
+      <ul class="tick">
+        <li><b>Efficiency</b> — the right structure makes searching and sorting much faster.</li>
+        <li><b>Reusability</b> — one structure (e.g. a stack) can be used in many programs.</li>
+        <li><b>Abstraction</b> — the user uses <span class="term">push()</span> without knowing how it works inside.</li>
+        <li><b>Better memory use</b> — memory is allocated only as needed.</li>
+        <li><b>Easy maintenance</b> — organised data means clearer, shorter code.</li>
+        <li><b>Handles large data</b> — millions of records stay manageable.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">फाइदाहरू</span>
+      <ul class="tick">
+        <li><b>Efficiency (दक्षता)</b> — सही स्ट्रक्चरले खोज्ने र क्रम मिलाउने काम धेरै छिटो बनाउँछ।</li>
+        <li><b>Reusability (पुनः प्रयोग)</b> — एउटै स्ट्रक्चर धेरै प्रोग्राममा प्रयोग गर्न सकिन्छ।</li>
+        <li><b>Abstraction</b> — भित्र कसरी चल्छ थाहा नपाई पनि <span class="term">push()</span> प्रयोग गर्न सकिन्छ।</li>
+        <li><b>मेमोरीको राम्रो प्रयोग</b> — जति चाहिन्छ त्यति मात्र मेमोरी लिन्छ।</li>
+        <li><b>सजिलो मर्मत</b> — मिलेको डाटाले कोड छोटो र स्पष्ट बनाउँछ।</li>
+        <li><b>ठूलो डाटा</b> — लाखौं रेकर्ड पनि व्यवस्थित रहन्छ।</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">1.3 Terms Used in Data Structures</h3>
+  <p class="sec-sub">These six words are asked directly as short questions. Learn the English word + one example.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Term</th><th>Meaning (English)</th><th style="width:170px">Example</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="k">Data</td>
+          <td>The raw facts and figures that a computer stores or processes. Data alone has no meaning until it is organised.
+            <span class="np-cell">डाटा भनेको कच्चा तथ्य र अंक हो। मिलाएर नराखेसम्म यसको अर्थ हुँदैन।</span></td>
+          <td class="k">Ram, 15, 78</td>
+        </tr>
+        <tr>
+          <td class="k">Group Item</td>
+          <td>A data item that <b>can be divided</b> into smaller sub-items.
+            <span class="np-cell">फेरि साना टुक्रामा <b>भाग गर्न मिल्ने</b> डाटा आइटम।</span></td>
+          <td class="k">Name → First, Last</td>
+        </tr>
+        <tr>
+          <td class="k">Elementary Item</td>
+          <td>A data item that <b>cannot be divided</b> further. Also called an atomic item.
+            <span class="np-cell">अब <b>भाग गर्न नमिल्ने</b> डाटा आइटम।</span></td>
+          <td class="k">Roll No = 15</td>
+        </tr>
+        <tr>
+          <td class="k">Record</td>
+          <td>A collection of related data items (fields) that describe <b>one thing</b>.
+            <span class="np-cell">एउटै वस्तुलाई जनाउने सम्बन्धित फिल्डहरूको समूह — एउटा हरफ।</span></td>
+          <td class="k">Ram | 15 | 78 | Class 10</td>
+        </tr>
+        <tr>
+          <td class="k">Entity</td>
+          <td>Any real-world <b>thing, person or object</b> about which we store data.
+            <span class="np-cell">जुन वास्तविक वस्तु/व्यक्तिको बारेमा डाटा राखिन्छ, त्यो नै एन्टिटी हो।</span></td>
+          <td class="k">Student</td>
+        </tr>
+        <tr>
+          <td class="k">Attribute / Field</td>
+          <td>One <b>property or characteristic</b> of an entity. One column of a record.
+            <span class="np-cell">एन्टिटीको एउटा <b>गुण वा विशेषता</b> — रेकर्डको एउटा कोलम।</span></td>
+          <td class="k">Name, Roll, Marks</td>
+        </tr>
+        <tr>
+          <td class="k">File</td>
+          <td>A collection of <b>related records</b> of the same entity, stored together.
+            <span class="np-cell">एउटै एन्टिटीका <b>धेरै रेकर्डहरूको संग्रह</b>।</span></td>
+          <td class="k">All 40 students</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="h">Exam tip — remember the ladder</div>
+    Field → Record → File. One <b>field</b> is one value, many fields make one <b>record</b>,
+    many records make one <b>file</b>. The <b>entity</b> is the real thing being described.
+    <span class="np-cell">फिल्ड → रेकर्ड → फाइल। एउटा फिल्ड = एउटा मान, धेरै फिल्ड = एउटा रेकर्ड,
+    धेरै रेकर्ड = एउटा फाइल। <b>एन्टिटी</b> चाहिँ जुन वास्तविक वस्तुको वर्णन गरिँदैछ त्यो हो।</span>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">1.4 Need of Data Structures</h3>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Why we need them</span>
+      <ul class="tick">
+        <li><b>Data is growing</b> — programs must handle huge amounts of data.</li>
+        <li><b>Processor speed is limited</b> — a faster CPU cannot fix a bad arrangement.</li>
+        <li><b>Search must be fast</b> — searching 1,00,000 unsorted names is very slow.</li>
+        <li><b>Many users at once</b> — data must be reached quickly by many requests.</li>
+        <li><b>Memory is limited</b> — data must be stored without waste.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">किन आवश्यक छ</span>
+      <ul class="tick">
+        <li><b>डाटा बढ्दै छ</b> — प्रोग्रामले धेरै ठूलो डाटा सम्हाल्नुपर्छ।</li>
+        <li><b>प्रोसेसरको गति सीमित छ</b> — छिटो CPU ले पनि बिग्रेको मिलानलाई सुधार्न सक्दैन।</li>
+        <li><b>खोजी छिटो हुनुपर्छ</b> — नमिलेको १ लाख नाम खोज्न धेरै ढिलो हुन्छ।</li>
+        <li><b>एकैचोटि धेरै प्रयोगकर्ता</b> — डाटा छिटो पुग्नुपर्छ।</li>
+        <li><b>मेमोरी सीमित छ</b> — खेर नफाली राख्नुपर्छ।</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">1.5 Classification of Data Structures</h3>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Two main groups</span>
+      <p><b>Linear data structure:</b> elements are arranged in a <b>sequence</b>, one after another.
+      Each element has one previous and one next element. It can be traversed in a single run.</p>
+      <p><b>Non-linear data structure:</b> elements are <b>not in a sequence</b>. One element may
+      connect to many elements. It cannot be traversed in a single straight run.</p>
+    </div>
+    <div class="np">
+      <span class="tag">दुई मुख्य समूह</span>
+      <p><b>Linear (रेखीय):</b> तत्त्वहरू <b>एउटा पछि अर्को</b> गरी क्रमैसँग राखिन्छन्। प्रत्येकको एउटा
+      अघिल्लो र एउटा पछिल्लो हुन्छ। एकै पटकमा सबै घुम्न सकिन्छ।</p>
+      <p><b>Non-linear (अरेखीय):</b> तत्त्वहरू <b>क्रममा हुँदैनन्</b>। एउटा तत्त्व धेरैसँग जोडिन सक्छ।
+      सिधा एकै पटकमा सबै घुम्न सकिँदैन।</p>
+    </div>
+  </div>
+
+  <h4 style="color:var(--yellow);margin-top:20px">1.5.1 Linear Data Structures — रेखीय</h4>
+  <div class="cards">
+    <div class="card">
+      <h4>Array</h4>
+      <p>A collection of elements of the <b>same data type</b> stored in <b>continuous memory</b>
+      locations, accessed by an <b>index</b> that starts at 0. Size is fixed.</p>
+      <div style="display:flex;gap:4px;margin-top:10px">
+        <div class="cell" style="width:32px;height:28px;font-size:.7rem">10</div>
+        <div class="cell" style="width:32px;height:28px;font-size:.7rem">20</div>
+        <div class="cell" style="width:32px;height:28px;font-size:.7rem">30</div>
+      </div>
+      <span class="np-cell">एउटै प्रकारका डाटा लगातार मेमोरीमा राखिने संग्रह। index ० बाट सुरु हुन्छ। साइज फिक्स हुन्छ।</span>
+    </div>
+    <div class="card">
+      <h4>Linked List</h4>
+      <p>A chain of <b>nodes</b>. Each node has two parts: the <b>data</b> and a <b>pointer</b>
+      (link) to the next node. Memory is not continuous, and size can grow or shrink.</p>
+      <div style="display:flex;align-items:center;gap:3px;margin-top:10px">
+        <div class="node"><span class="v" style="width:26px;height:26px;font-size:.7rem">A</span><span class="p" style="height:26px">•</span></div>
+        <span class="arrow">→</span>
+        <div class="node"><span class="v" style="width:26px;height:26px;font-size:.7rem">B</span><span class="p" style="height:26px">∅</span></div>
+      </div>
+      <span class="np-cell">नोडहरूको शृंखला। हरेक नोडमा डाटा र अर्को नोडको ठेगाना (pointer) हुन्छ। साइज घटबढ हुन सक्छ।</span>
+    </div>
+    <div class="card">
+      <h4>Stack</h4>
+      <p>A list where insertion and deletion happen at <b>only one end</b>, called the <b>top</b>.
+      It follows <b>LIFO</b> — Last In, First Out. Operations: <span class="term">push()</span>,
+      <span class="term">pop()</span>, <span class="term">peek()</span>.</p>
+      <span class="np-cell">एउटै छेउ (top) बाट मात्र राख्ने र झिक्ने लिस्ट। <b>LIFO</b> — पछिल्लो राखेको पहिले निस्कन्छ। थाकिएको प्लेट जस्तै।</span>
+    </div>
+    <div class="card">
+      <h4>Queue</h4>
+      <p>A list where insertion happens at the <b>rear</b> and deletion at the <b>front</b>.
+      It follows <b>FIFO</b> — First In, First Out. Operations: <span class="term">enqueue()</span>,
+      <span class="term">dequeue()</span>.</p>
+      <span class="np-cell">पछाडि (rear) बाट राख्ने र अगाडि (front) बाट झिक्ने लिस्ट। <b>FIFO</b> — पहिले आएको पहिले जान्छ। लाइनमा बस्नु जस्तै।</span>
+    </div>
+  </div>
+
+  <h4 style="color:var(--yellow);margin-top:20px">1.5.2 Non-Linear Data Structures — अरेखीय</h4>
+  <div class="cards">
+    <div class="card">
+      <h4>Tree</h4>
+      <p>A <b>hierarchical</b> structure of nodes. It has one <b>root</b> node at the top, and every
+      other node has exactly <b>one parent</b>. Nodes below a node are its <b>children</b>; a node
+      with no child is a <b>leaf</b>. There is no cycle (loop).</p>
+      <span class="np-cell">तह–तह मिलेको नोडको संरचना। माथि एउटा <b>root</b> हुन्छ, हरेक नोडको एउटा मात्र <b>parent</b> हुन्छ। सन्तान नभएको नोड <b>leaf</b> हो। परिवारको वंशवृक्ष जस्तै।</span>
+    </div>
+    <div class="card">
+      <h4>Graph</h4>
+      <p>A set of <b>vertices</b> (nodes) joined by <b>edges</b> (lines). Any vertex can connect to
+      any other vertex, and <b>cycles are allowed</b>. There is no parent–child rule and no root.</p>
+      <span class="np-cell">बिन्दु (vertex) हरूलाई रेखा (edge) ले जोडेको संरचना। जुनसुकै बिन्दु जुनसुकैसँग जोडिन सक्छ, <b>चक्र पनि हुन सक्छ</b>। सडक नक्सा जस्तै।</span>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">1.5.3 Operations on Data Structures</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:140px">Operation</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Traversing</td><td>Visiting <b>each element exactly once</b> to read or process it.
+          <span class="np-cell">हरेक तत्त्वलाई एक–एक पटक भेटेर पढ्ने वा प्रयोग गर्ने।</span></td></tr>
+        <tr><td class="k">Searching</td><td>Finding the <b>location of an element</b> that matches a given value.
+          <span class="np-cell">दिइएको मानसँग मिल्ने तत्त्व कहाँ छ भनेर पत्ता लगाउने।</span></td></tr>
+        <tr><td class="k">Insertion</td><td>Adding a <b>new element</b> into the structure.
+          <span class="np-cell">संरचनामा नयाँ तत्त्व थप्ने।</span></td></tr>
+        <tr><td class="k">Deletion</td><td>Removing an <b>existing element</b> from the structure.
+          <span class="np-cell">भइरहेको तत्त्व हटाउने।</span></td></tr>
+        <tr><td class="k">Sorting</td><td>Arranging elements in a <b>particular order</b> — ascending or descending.
+          <span class="np-cell">तत्त्वहरूलाई सानोदेखि ठूलो वा ठूलोदेखि सानो क्रममा मिलाउने।</span></td></tr>
+        <tr><td class="k">Merging</td><td>Joining <b>two sorted lists</b> into one single sorted list.
+          <span class="np-cell">दुईवटा मिलेका लिस्टलाई जोडेर एउटै मिलेको लिस्ट बनाउने।</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ---------- SIMULATOR 1 : STACK & QUEUE ---------- -->
+  <h3 style="margin-top:34px;color:var(--coral)">▶ Simulator 1 — Stack (LIFO) vs Queue (FIFO)</h3>
+  <p class="sec-sub">Click the buttons. Watch the code line light up, the boxes move, and the console explain each step.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px" class="simgrid">
+    <!-- STACK -->
+    <div class="en">
+      <span class="tag">Stack — LIFO</span>
+      <div class="code" id="stackCode"></div>
+      <div class="btns">
+        <button class="primary" onclick="stkPush()">push()</button>
+        <button class="coral" onclick="stkPop()">pop()</button>
+        <button class="blue" onclick="stkPeek()">peek()</button>
+        <button onclick="stkReset()">Reset</button>
+      </div>
+      <div class="vizbox">
+        <div style="text-align:center">
+          <div class="stackcol" id="stackViz"></div>
+          <div class="ptr" id="stackPtr">top = -1 (empty)</div>
+        </div>
+      </div>
+      <div class="console" id="stackCon"></div>
+    </div>
+
+    <!-- QUEUE -->
+    <div class="en">
+      <span class="tag">Queue — FIFO</span>
+      <div class="code" id="queueCode"></div>
+      <div class="btns">
+        <button class="primary" onclick="qEnq()">enqueue()</button>
+        <button class="coral" onclick="qDeq()">dequeue()</button>
+        <button class="blue" onclick="qFront()">front()</button>
+        <button onclick="qReset()">Reset</button>
+      </div>
+      <div class="vizbox q">
+        <div style="text-align:center;width:100%">
+          <div style="display:flex;gap:6px;justify-content:center;min-height:44px;align-items:center" id="queueViz"></div>
+          <div class="ptr" id="queuePtr">front = 0 · rear = -1 (empty)</div>
+        </div>
+      </div>
+      <div class="console" id="queueCon"></div>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">What you just saw</span>
+      <p>In the <b>stack</b>, the value you pushed <b>last</b> came out <b>first</b>. Only
+      <span class="term">top</span> moves. This is <b>LIFO</b>.</p>
+      <p>In the <b>queue</b>, the value you inserted <b>first</b> came out <b>first</b>.
+      <span class="term">rear</span> moves when inserting, <span class="term">front</span> moves when deleting.
+      This is <b>FIFO</b>.</p>
+    </div>
+    <div class="np">
+      <span class="tag">तपाईंले के देख्नुभयो</span>
+      <p><b>Stack</b> मा <b>अन्तिममा</b> हालेको मान <b>पहिले</b> निस्कियो। <span class="term">top</span> मात्र
+      सर्छ। यसैलाई <b>LIFO</b> भनिन्छ।</p>
+      <p><b>Queue</b> मा <b>पहिले</b> हालेको मान <b>पहिले</b> निस्कियो। हाल्दा <span class="term">rear</span>
+      सर्छ, झिक्दा <span class="term">front</span> सर्छ। यसैलाई <b>FIFO</b> भनिन्छ।</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ UNIT 2 ============================ -->
+<section id="u2">
+  <div class="sec-head">
+    <div class="sec-num">2</div>
+    <div>
+      <h2>Concept of Object Oriented Programming (OOP) using C++</h2>
+      <p class="sec-sub">C++ प्रयोग गरी अब्जेक्ट ओरिएन्टेड प्रोग्रामिङको अवधारणा</p>
+    </div>
+    <span class="marks">10 hrs · 14 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Definition</span>
+      <p><b>Object Oriented Programming (OOP)</b> is a programming method that solves a big problem
+      by breaking it into small parts called <b>objects</b>. Each object keeps its own
+      <b>data</b> and the <b>functions</b> that work on that data <b>bound together</b>, so that no
+      other part of the program can touch that data directly.</p>
+    </div>
+    <div class="np">
+      <span class="tag">परिभाषा</span>
+      <p><b>OOP</b> भनेको ठूलो समस्यालाई <b>अब्जेक्ट</b> भनिने साना–साना भागमा बाँडेर समाधान गर्ने
+      प्रोग्रामिङ तरिका हो। हरेक अब्जेक्टले आफ्नो <b>डाटा</b> र त्यही डाटामाथि काम गर्ने
+      <b>फङ्सन</b> लाई <b>सँगै बाँधेर</b> राख्छ, ताकि प्रोग्रामको अरू भागले त्यो डाटा सिधै छुन नसकोस्।</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="h">Real-world analogy — a TV remote</div>
+    You press a button to change the channel. You do <b>not</b> know the circuit inside, and you
+    <b>cannot</b> touch it. The remote keeps its parts (data) hidden and gives you only buttons
+    (functions). That is exactly what an <b>object</b> does.
+    <span class="np-cell">TV को रिमोट सम्झनुहोस्। बटन थिच्दा च्यानल फेरिन्छ। भित्रको सर्किट तपाईंलाई
+    थाहा हुँदैन र छुन पनि पाइँदैन। रिमोटले भित्री भाग (डाटा) लुकाएर बटन (फङ्सन) मात्र दिन्छ —
+    <b>अब्जेक्ट</b> ले पनि ठ्याक्कै यही गर्छ।</span>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">2.2 Features of OOP</h3>
+  <p class="sec-sub">These are the standard exam-listed features. Learn all seven names in English.</p>
+  <div class="cards">
+    <div class="card"><h4>1. Object</h4><p>A <b>real-world entity</b> that has data (state) and functions (behaviour). It is an <b>instance of a class</b>.</p>
+      <span class="np-cell">डाटा र व्यवहार भएको वास्तविक वस्तु। क्लासको एउटा उदाहरण (instance)।</span></div>
+    <div class="card"><h4>2. Class</h4><p>A <b>blueprint or template</b> that describes what data and functions its objects will have. It takes no memory by itself.</p>
+      <span class="np-cell">अब्जेक्ट बनाउने नक्सा वा टेम्प्लेट। यसले आफैंले मेमोरी लिँदैन।</span></div>
+    <div class="card"><h4>3. Encapsulation</h4><p><b>Binding data and functions together</b> in one unit and <b>hiding the data</b> from outside access.</p>
+      <span class="np-cell">डाटा र फङ्सनलाई एउटै एकाइमा बाँध्ने र डाटालाई बाहिरबाट लुकाउने।</span></div>
+    <div class="card"><h4>4. Abstraction</h4><p>Showing only the <b>necessary features</b> and hiding the <b>internal details</b> of how it works.</p>
+      <span class="np-cell">आवश्यक कुरा मात्र देखाउने र भित्री जटिलता लुकाउने।</span></div>
+    <div class="card"><h4>5. Inheritance</h4><p>One class <b>acquires the properties and functions</b> of another class, so code can be reused.</p>
+      <span class="np-cell">एउटा क्लासले अर्को क्लासका गुण र फङ्सन प्राप्त गर्ने — कोड पुनः प्रयोग हुन्छ।</span></div>
+    <div class="card"><h4>6. Polymorphism</h4><p><b>One name, many forms</b>. The same function name behaves differently in different situations.</p>
+      <span class="np-cell">एउटै नाम, धेरै रूप। उही फङ्सनको नामले फरक अवस्थामा फरक काम गर्छ।</span></div>
+    <div class="card"><h4>7. Message Passing</h4><p>Objects <b>communicate</b> with each other by calling one another's member functions.</p>
+      <span class="np-cell">अब्जेक्टहरूले एकअर्काको फङ्सन बोलाएर सञ्चार गर्ने।</span></div>
+    <div class="card"><h4>+ Dynamic Binding</h4><p>The code to run for a function call is decided <b>at run time</b>, not at compile time.</p>
+      <span class="np-cell">कुन कोड चल्ने हो भन्ने कुरा कम्पाइल गर्दा होइन, <b>चल्दै गर्दा</b> निर्णय हुने।</span></div>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">2.3 Applications of OOP</h3>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Where OOP is used</span>
+      <ul class="tick">
+        <li>Real-time systems and simulations / modelling</li>
+        <li>Object-oriented databases</li>
+        <li>Graphical User Interface (GUI) design</li>
+        <li>Computer games and animation</li>
+        <li>Artificial Intelligence and expert systems</li>
+        <li>CAD/CAM and office automation systems</li>
+        <li>Mobile and web application development</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">OOP कहाँ प्रयोग हुन्छ</span>
+      <ul class="tick">
+        <li>रियल–टाइम सिस्टम र सिमुलेसन/मोडलिङ</li>
+        <li>अब्जेक्ट ओरिएन्टेड डाटाबेस</li>
+        <li>ग्राफिकल युजर इन्टरफेस (GUI) डिजाइन</li>
+        <li>कम्प्युटर गेम र एनिमेसन</li>
+        <li>आर्टिफिसियल इन्टेलिजेन्स र एक्सपर्ट सिस्टम</li>
+        <li>CAD/CAM र अफिस अटोमेसन</li>
+        <li>मोबाइल र वेब एप्लिकेसन विकास</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">2.5 Tokens and Character Set</h3>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Token</span>
+      <p>A <b>token</b> is the <b>smallest individual unit</b> of a C++ program that has meaning to
+      the compiler. C++ has six kinds of tokens:</p>
+      <ul class="tick">
+        <li><b>Keywords</b> — reserved words with a fixed meaning: <span class="term">int, class, if, return</span></li>
+        <li><b>Identifiers</b> — names given by the programmer: <span class="term">roll, sum, Student</span></li>
+        <li><b>Constants / Literals</b> — fixed values: <span class="term">25, 3.14, 'A', "Ram"</span></li>
+        <li><b>Operators</b> — symbols that do an operation: <span class="term">+ - * / % = &lt;&lt;</span></li>
+        <li><b>Punctuators / Separators</b> — <span class="term">; , ( ) { } [ ]</span></li>
+        <li><b>Strings</b> — a sequence of characters in double quotes</li>
+      </ul>
+      <p><b>Character set</b> = all the characters C++ understands: letters A–Z a–z, digits 0–9,
+      special symbols, and white space.</p>
+    </div>
+    <div class="np">
+      <span class="tag">टोकन</span>
+      <p><b>टोकन</b> भनेको C++ प्रोग्रामको <b>सबैभन्दा सानो अर्थपूर्ण एकाइ</b> हो, जुन कम्पाइलरले
+      बुझ्छ। C++ मा ६ प्रकारका टोकन हुन्छन्:</p>
+      <ul class="tick">
+        <li><b>Keywords</b> — पहिल्यै अर्थ तोकिएका शब्द: <span class="term">int, class, if</span></li>
+        <li><b>Identifiers</b> — प्रोग्रामरले राखेको नाम: <span class="term">roll, sum</span></li>
+        <li><b>Constants</b> — नबदलिने मान: <span class="term">25, 3.14, 'A'</span></li>
+        <li><b>Operators</b> — काम गर्ने चिन्ह: <span class="term">+ - * /</span></li>
+        <li><b>Punctuators</b> — <span class="term">; , ( ) { }</span></li>
+        <li><b>Strings</b> — डबल कोट भित्रका अक्षरहरू</li>
+      </ul>
+      <p><b>Character set</b> = C++ ले बुझ्ने सबै अक्षर: A–Z, a–z, ०–९, विशेष चिन्ह र खाली ठाउँ।</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">2.6 Data Types &amp; 2.7 Basic Input / Output</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:110px">Data type</th><th style="width:90px">Size</th><th>Stores</th><th style="width:150px">Example</th></tr></thead>
+      <tbody>
+        <tr><td class="k">int</td><td>4 bytes</td><td>Whole numbers (no decimal point) <span class="np-cell">दशमलव नभएको पूर्ण संख्या</span></td><td class="k">int roll = 15;</td></tr>
+        <tr><td class="k">float</td><td>4 bytes</td><td>Decimal numbers, about 6 digits precision <span class="np-cell">दशमलव भएको संख्या</span></td><td class="k">float m = 78.5;</td></tr>
+        <tr><td class="k">double</td><td>8 bytes</td><td>Decimal numbers with higher precision <span class="np-cell">अझ शुद्ध दशमलव संख्या</span></td><td class="k">double p = 3.14159;</td></tr>
+        <tr><td class="k">char</td><td>1 byte</td><td>A single character in single quotes <span class="np-cell">एउटा अक्षर, सिंगल कोटमा</span></td><td class="k">char g = 'A';</td></tr>
+        <tr><td class="k">bool</td><td>1 byte</td><td>Only true (1) or false (0) <span class="np-cell">true वा false मात्र</span></td><td class="k">bool pass = true;</td></tr>
+        <tr><td class="k">void</td><td>0</td><td>"No value" — used when a function returns nothing <span class="np-cell">कुनै मान नहुने — फङ्सनले केही नफर्काउँदा</span></td><td class="k">void show()</td></tr>
+        <tr><td class="k">string</td><td>varies</td><td>A sequence of characters (needs <span class="term">&lt;string&gt;</span>) <span class="np-cell">अक्षरहरूको शृंखला</span></td><td class="k">string n = "Ram";</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Input / Output in C++</span>
+      <p><span class="term">cout &lt;&lt;</span> sends data <b>out</b> to the screen. <span class="term">&lt;&lt;</span>
+      is the <b>insertion operator</b>.</p>
+      <p><span class="term">cin &gt;&gt;</span> takes data <b>in</b> from the keyboard. <span class="term">&gt;&gt;</span>
+      is the <b>extraction operator</b>.</p>
+      <p>Both are objects defined in the header file <span class="term">&lt;iostream&gt;</span> and live
+      inside the namespace <span class="term">std</span>.
+      <span class="term">endl</span> moves the cursor to a new line.</p>
+    </div>
+    <div class="np">
+      <span class="tag">C++ मा इनपुट/आउटपुट</span>
+      <p><span class="term">cout &lt;&lt;</span> ले डाटा स्क्रिनमा <b>बाहिर</b> पठाउँछ।
+      <span class="term">&lt;&lt;</span> लाई <b>insertion operator</b> भनिन्छ।</p>
+      <p><span class="term">cin &gt;&gt;</span> ले किबोर्डबाट डाटा <b>भित्र</b> लिन्छ।
+      <span class="term">&gt;&gt;</span> लाई <b>extraction operator</b> भनिन्छ।</p>
+      <p>दुवै <span class="term">&lt;iostream&gt;</span> हेडर फाइलमा भएका अब्जेक्ट हुन् र
+      <span class="term">std</span> नेमस्पेस भित्र बस्छन्। <span class="term">endl</span> ले नयाँ लाइनमा लैजान्छ।</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">2.8 Basic Program Structure</h3>
+  <div class="code" id="basicStruct"></div>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Line by line</span>
+      <ul class="tick">
+        <li><span class="term">#include &lt;iostream&gt;</span> — a <b>preprocessor directive</b> that adds the input/output library.</li>
+        <li><span class="term">using namespace std;</span> — lets you write <span class="term">cout</span> instead of <span class="term">std::cout</span>.</li>
+        <li><span class="term">int main()</span> — the <b>starting point</b>. Execution always begins here.</li>
+        <li><span class="term">{ }</span> — the body of the function.</li>
+        <li><span class="term">return 0;</span> — tells the operating system the program ended successfully.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">लाइन अनुसार</span>
+      <ul class="tick">
+        <li><span class="term">#include &lt;iostream&gt;</span> — इनपुट/आउटपुट लाइब्रेरी थप्ने <b>प्रिप्रोसेसर निर्देशन</b>।</li>
+        <li><span class="term">using namespace std;</span> — <span class="term">std::cout</span> नलेखी <span class="term">cout</span> मात्र लेख्न मिल्ने बनाउँछ।</li>
+        <li><span class="term">int main()</span> — प्रोग्राम <b>सुरु हुने ठाउँ</b>। सधैं यहीँबाट चल्न थाल्छ।</li>
+        <li><span class="term">{ }</span> — फङ्सनको मुख्य भाग।</li>
+        <li><span class="term">return 0;</span> — प्रोग्राम सफलतापूर्वक सकियो भन्ने जनाउँछ।</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">2.9 Control Statements</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Statement</th><th>Use</th><th style="width:230px">Syntax</th></tr></thead>
+      <tbody>
+        <tr><td class="k">if</td><td>Runs a block <b>only when</b> the condition is true.<span class="np-cell">सर्त सही भएमा मात्र चल्छ।</span></td><td class="k">if(cond){ ... }</td></tr>
+        <tr><td class="k">if…else</td><td>One block if true, <b>another block</b> if false.<span class="np-cell">सही भए एउटा, गलत भए अर्को ब्लक।</span></td><td class="k">if(cond){}else{}</td></tr>
+        <tr><td class="k">if…else ladder</td><td>Checks <b>many conditions one by one</b> from top.<span class="np-cell">माथिबाट धेरै सर्त क्रमशः जाँच्छ।</span></td><td class="k">if(){}else if(){}else{}</td></tr>
+        <tr><td class="k">Nested if</td><td>An <b>if inside another if</b>.<span class="np-cell">एउटा if भित्र अर्को if।</span></td><td class="k">if(a){ if(b){} }</td></tr>
+        <tr><td class="k">switch</td><td>Chooses <b>one case</b> out of many by matching a value. Needs <span class="term">break</span>.<span class="np-cell">मान मिलाएर धेरैमध्ये एउटा case छान्छ।</span></td><td class="k">switch(x){case 1: ... }</td></tr>
+        <tr><td class="k">for</td><td>Repeats a block a <b>known number of times</b>.<span class="np-cell">कति पटक दोहोरिने थाहा हुँदा।</span></td><td class="k">for(i=0;i&lt;n;i++){}</td></tr>
+        <tr><td class="k">while</td><td>Repeats <b>while a condition is true</b>. Condition is checked <b>first</b> (entry-controlled).<span class="np-cell">सर्त पहिले जाँच्छ, त्यसैले ० पटक पनि चल्न सक्छ।</span></td><td class="k">while(cond){}</td></tr>
+        <tr><td class="k">do…while</td><td>Runs the block <b>at least once</b>, then checks the condition (exit-controlled).<span class="np-cell">कम्तीमा एक पटक चल्छ, अनि मात्र सर्त जाँच्छ।</span></td><td class="k">do{}while(cond);</td></tr>
+        <tr><td class="k">break</td><td><b>Exits</b> the loop or switch immediately.<span class="np-cell">तुरुन्तै लुप वा switch बाट बाहिर निस्कन्छ।</span></td><td class="k">break;</td></tr>
+        <tr><td class="k">continue</td><td><b>Skips</b> the rest of this round and goes to the next round.<span class="np-cell">यो चक्र छोडेर अर्को चक्रमा जान्छ।</span></td><td class="k">continue;</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================ UNIT 3 ============================ -->
+<section id="u3">
+  <div class="sec-head">
+    <div class="sec-num">3</div>
+    <div>
+      <h2>Class and Object</h2>
+      <p class="sec-sub">क्लास र अब्जेक्ट</p>
+    </div>
+    <span class="marks">7 hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Class</span>
+      <p>A <b>class</b> is a user-defined data type that acts as a <b>blueprint</b>. It groups
+      <b>data members</b> (variables) and <b>member functions</b> (methods) together.
+      A class <b>does not take memory</b> — it is only a design.</p>
+    </div>
+    <div class="np">
+      <span class="tag">क्लास</span>
+      <p><b>क्लास</b> भनेको प्रयोगकर्ताले बनाएको डाटा टाइप हो, जुन <b>नक्सा (blueprint)</b> जस्तै काम गर्छ।
+      यसले <b>डाटा मेम्बर</b> (भेरिएबल) र <b>मेम्बर फङ्सन</b> लाई एकैठाउँ राख्छ।
+      क्लासले आफैंले <b>मेमोरी लिँदैन</b> — यो डिजाइन मात्र हो।</p>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Object</span>
+      <p>An <b>object</b> is a <b>variable of a class</b> — one real copy made from the blueprint.
+      An object <b>takes memory</b>. Each object has its own separate copy of the data members.
+      Creating an object is called <b>instantiation</b>.</p>
+    </div>
+    <div class="np">
+      <span class="tag">अब्जेक्ट</span>
+      <p><b>अब्जेक्ट</b> भनेको क्लासको <b>भेरिएबल</b> हो — नक्सा हेरेर बनाइएको वास्तविक प्रति।
+      अब्जेक्टले <b>मेमोरी लिन्छ</b>। हरेक अब्जेक्टसँग आफ्नै छुट्टै डाटाको प्रति हुन्छ।
+      अब्जेक्ट बनाउने कामलाई <b>instantiation</b> भनिन्छ।</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="h">One-line memory hook</div>
+    A class is the <b>house design on paper</b>. An object is the <b>real house built from it</b>.
+    One design → many houses. You cannot live in the design.
+    <span class="np-cell">क्लास = कागजमा कोरेको <b>घरको नक्सा</b>। अब्जेक्ट = त्यो नक्साबाट बनेको
+    <b>साँच्चिकै घर</b>। एउटा नक्साबाट धेरै घर बन्छ। नक्सामा बस्न मिल्दैन।</span>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">3.2 Access Specifiers</h3>
+  <p class="sec-sub">This table is asked almost every year. <span class="term">private</span> is the default in a class.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:120px">Specifier</th><th>Who can access it</th><th style="width:150px">Normally used for</th></tr></thead>
+      <tbody>
+        <tr><td class="k">private</td>
+          <td>Accessible <b>only inside the same class</b>. Not from outside, not from a derived class.
+            <b>Default</b> for a class.
+            <span class="np-cell">उही क्लास भित्रबाट मात्र पहुँच। बाहिरबाट वा derived क्लासबाट पनि हुँदैन। क्लासमा यही default हो।</span></td>
+          <td>Data members</td></tr>
+        <tr><td class="k">public</td>
+          <td>Accessible <b>from anywhere</b> — inside the class, from an object, and from derived classes.
+            <b>Default</b> for a struct.
+            <span class="np-cell">जताबाट पनि पहुँच — क्लास भित्र, अब्जेक्टबाट र derived क्लासबाट पनि।</span></td>
+          <td>Member functions</td></tr>
+        <tr><td class="k">protected</td>
+          <td>Accessible <b>inside the class and inside its derived classes</b>, but <b>not</b> from
+            an object outside.
+            <span class="np-cell">क्लास भित्र र त्यसका derived क्लास भित्र पहुँच हुन्छ, तर बाहिरको अब्जेक्टबाट हुँदैन।</span></td>
+          <td>Members shared with child classes</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">3.3–3.4 Declaring a class, its data members and methods</h3>
+  <div class="code" id="classDecl"></div>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Reading the code</span>
+      <ul class="tick">
+        <li><span class="term">class Student { … };</span> — note the <b>semicolon after the closing brace</b>. Forgetting it is the most common error.</li>
+        <li><span class="term">name, roll</span> are <b>data members</b> (private, so hidden).</li>
+        <li><span class="term">setData(), display()</span> are <b>member functions</b> (public, so usable).</li>
+        <li><span class="term">Student s1;</span> creates an <b>object</b> named s1.</li>
+        <li><span class="term">s1.display();</span> — the <b>dot operator</b> (.) calls a member on an object.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">कोड पढ्ने तरिका</span>
+      <ul class="tick">
+        <li><span class="term">class Student { … };</span> — बन्द ब्रेस पछि <b>सेमीकोलन</b> अनिवार्य छ। यही बिर्सने गल्ती सबैभन्दा बढी हुन्छ।</li>
+        <li><span class="term">name, roll</span> = <b>डाटा मेम्बर</b> (private भएकाले लुकेका)।</li>
+        <li><span class="term">setData(), display()</span> = <b>मेम्बर फङ्सन</b> (public भएकाले प्रयोग गर्न मिल्ने)।</li>
+        <li><span class="term">Student s1;</span> ले s1 नामको <b>अब्जेक्ट</b> बनाउँछ।</li>
+        <li><span class="term">s1.display();</span> — <b>डट अपरेटर</b> (.) ले अब्जेक्टको मेम्बर बोलाउँछ।</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">3.5 Constructor and Destructor</h3>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Constructor</span>
+      <p>A <b>constructor</b> is a special member function that is called <b>automatically when an
+      object is created</b>. Its job is to <b>initialise</b> the object's data.</p>
+      <ul class="tick">
+        <li>Its name is <b>exactly the same as the class name</b>.</li>
+        <li>It has <b>no return type</b> — not even <span class="term">void</span>.</li>
+        <li>It <b>can take parameters</b> and <b>can be overloaded</b>.</li>
+        <li>Types: <b>default</b>, <b>parameterized</b>, <b>copy</b> constructor.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">कन्स्ट्रक्टर</span>
+      <p><b>कन्स्ट्रक्टर</b> एउटा विशेष मेम्बर फङ्सन हो, जुन <b>अब्जेक्ट बन्ने बित्तिकै आफैं</b> बोलिन्छ।
+      यसको काम अब्जेक्टको डाटालाई <b>सुरुवाती मान दिनु</b> हो।</p>
+      <ul class="tick">
+        <li>यसको नाम <b>क्लासको नामसँग ठ्याक्कै मिल्नुपर्छ</b>।</li>
+        <li>यसको <b>return type हुँदैन</b> — <span class="term">void</span> पनि होइन।</li>
+        <li>यसले <b>प्यारामिटर लिन सक्छ</b> र <b>overload पनि हुन सक्छ</b>।</li>
+        <li>प्रकार: <b>default</b>, <b>parameterized</b>, <b>copy</b>।</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Destructor</span>
+      <p>A <b>destructor</b> is a special member function that is called <b>automatically when an
+      object is destroyed</b> (when it goes out of scope). Its job is to <b>free the memory</b>.</p>
+      <ul class="tick">
+        <li>Its name is the class name with a <b>tilde <span class="term">~</span></b> in front.</li>
+        <li>It has <b>no return type</b> and takes <b>no parameters</b>.</li>
+        <li>It <b>cannot be overloaded</b> — there is only <b>one destructor</b> per class.</li>
+        <li>Objects are destroyed in the <b>reverse order</b> of their creation.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">डिस्ट्रक्टर</span>
+      <p><b>डिस्ट्रक्टर</b> एउटा विशेष मेम्बर फङ्सन हो, जुन <b>अब्जेक्ट नष्ट हुँदा आफैं</b> बोलिन्छ।
+      यसको काम <b>मेमोरी खाली गर्नु</b> हो।</p>
+      <ul class="tick">
+        <li>नाम अगाडि <b>टिल्ड <span class="term">~</span></b> राखेर क्लासकै नाम लेखिन्छ।</li>
+        <li><b>return type हुँदैन</b> र <b>प्यारामिटर पनि लिँदैन</b>।</li>
+        <li><b>overload गर्न मिल्दैन</b> — क्लासमा <b>एउटा मात्र</b> डिस्ट्रक्टर हुन्छ।</li>
+        <li>अब्जेक्टहरू बनेको <b>उल्टो क्रममा</b> नष्ट हुन्छन्।</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout">
+    <div class="h">Exam favourite</div>
+    Constructor and destructor are both called <b>automatically</b> — you never write
+    <span class="term">s1.Student();</span> yourself. Destruction order is always the
+    <b>reverse</b> of creation order (like plates in a stack).
+    <span class="np-cell">दुवै <b>आफैं</b> बोलिन्छन् — तपाईंले हातले बोलाउनु पर्दैन।
+    नष्ट हुने क्रम सधैं बनेको <b>उल्टो</b> हुन्छ (स्ट्याकमा थुपारेको प्लेट जस्तै)।</span>
+  </div>
+</section>
+
+<!-- ============================ UNIT 4 ============================ -->
+<section id="u4">
+  <div class="sec-head">
+    <div class="sec-num">4</div>
+    <div>
+      <h2>Abstraction and Encapsulation</h2>
+      <p class="sec-sub">एब्स्ट्र्याक्सन र इनक्याप्सुलेसन</p>
+    </div>
+    <span class="marks">7 hrs · 5 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Abstraction — definition</span>
+      <p><b>Abstraction</b> means showing only the <b>essential features</b> of an object to the
+      user and <b>hiding the internal implementation details</b> — that is, hiding <i>how</i> the
+      work is done.</p>
+      <p>In C++ it is achieved using <b>classes with access specifiers</b> and, at a higher level,
+      using <b>abstract classes</b> (a class with a <b>pure virtual function</b>,
+      written <span class="term">= 0</span>).</p>
+    </div>
+    <div class="np">
+      <span class="tag">एब्स्ट्र्याक्सन — परिभाषा</span>
+      <p><b>एब्स्ट्र्याक्सन</b> भनेको प्रयोगकर्तालाई <b>आवश्यक कुरा मात्र</b> देखाउने र
+      <b>भित्री काम कसरी हुन्छ भन्ने लुकाउने</b> हो।</p>
+      <p>C++ मा यो <b>access specifier सहितको क्लास</b> र <b>abstract class</b>
+      (<span class="term">= 0</span> लेखिएको pure virtual function भएको क्लास) मार्फत हासिल गरिन्छ।</p>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Encapsulation — definition</span>
+      <p><b>Encapsulation</b> means <b>binding data members and member functions together</b> into a
+      single unit (the class), and <b>hiding the data</b> from direct outside access by declaring it
+      <span class="term">private</span>.</p>
+      <p>Outside code must then use <b>public functions</b> (often called <b>getter</b> and
+      <b>setter</b> functions) to read or change that data. This is also called
+      <b>data hiding</b>.</p>
+    </div>
+    <div class="np">
+      <span class="tag">इनक्याप्सुलेसन — परिभाषा</span>
+      <p><b>इनक्याप्सुलेसन</b> भनेको डाटा मेम्बर र मेम्बर फङ्सनलाई <b>एउटै एकाइ (क्लास) मा बाँध्ने</b>
+      र डाटालाई <span class="term">private</span> बनाएर <b>बाहिरबाट सिधै छुन नदिने</b> हो।</p>
+      <p>त्यसपछि बाहिरको कोडले डाटा पढ्न वा बदल्न <b>public फङ्सन</b> (getter/setter) प्रयोग गर्नै पर्छ।
+      यसैलाई <b>data hiding</b> पनि भनिन्छ।</p>
+    </div>
+  </div>
+
+  <div class="code" id="encapCode"></div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Advantages</span>
+      <p><b>Abstraction:</b> reduces complexity, the user sees a simple interface, internal code can
+      be changed later without breaking user code, and it increases security and reusability.</p>
+      <p><b>Encapsulation:</b> protects data from accidental change, gives full control (you can
+      validate inside the setter), makes the class easier to maintain and test, and supports
+      data hiding.</p>
+    </div>
+    <div class="np">
+      <span class="tag">फाइदाहरू</span>
+      <p><b>Abstraction:</b> जटिलता घटाउँछ, प्रयोगकर्ताले सजिलो इन्टरफेस मात्र देख्छ, भित्री कोड
+      पछि बदल्दा पनि प्रयोगकर्ताको कोड बिग्रँदैन, सुरक्षा र पुनः प्रयोग बढ्छ।</p>
+      <p><b>Encapsulation:</b> डाटा गल्तीले बदलिनबाट जोगिन्छ, setter भित्र जाँच राख्न सकिन्छ,
+      क्लास मर्मत र परीक्षण गर्न सजिलो हुन्छ, र data hiding हुन्छ।</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="h">The difference students always mix up</div>
+    <b>Abstraction hides the complexity (the "how").</b>
+    <b>Encapsulation hides the data (the "what").</b>
+    Abstraction is about <b>design</b>; encapsulation is about <b>implementation / protection</b>.
+    <span class="np-cell"><b>Abstraction</b> ले जटिलता ("कसरी" गर्ने) लुकाउँछ।
+    <b>Encapsulation</b> ले डाटा ("के" छ) लुकाउँछ। एउटा <b>डिजाइनको</b> कुरा, अर्को
+    <b>सुरक्षाको</b> कुरा।</span>
+  </div>
+</section>
+
+<!-- ============================ UNIT 5 ============================ -->
+<section id="u5">
+  <div class="sec-head">
+    <div class="sec-num">5</div>
+    <div>
+      <h2>Inheritance</h2>
+      <p class="sec-sub">इनहेरिटेन्स — गुण सर्ने प्रक्रिया</p>
+    </div>
+    <span class="marks">10 hrs · 7 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Definition</span>
+      <p><b>Inheritance</b> is the process by which one class <b>acquires (gets) the properties and
+      member functions of another class</b>.</p>
+      <p>The class that <b>gives</b> its features is called the <b>base class</b> (or parent /
+      super class). The class that <b>receives</b> them is called the <b>derived class</b>
+      (or child / sub class).</p>
+      <p>The main purpose is <b>reusability of code</b> — you write common code once in the base
+      class and reuse it in every derived class.</p>
+    </div>
+    <div class="np">
+      <span class="tag">परिभाषा</span>
+      <p><b>इनहेरिटेन्स</b> भनेको एउटा क्लासले अर्को क्लासका <b>गुण र मेम्बर फङ्सन प्राप्त गर्ने</b>
+      प्रक्रिया हो।</p>
+      <p>गुण <b>दिने</b> क्लासलाई <b>base class</b> (बाबु/parent) भनिन्छ। गुण <b>पाउने</b> क्लासलाई
+      <b>derived class</b> (छोरा/child) भनिन्छ।</p>
+      <p>मुख्य उद्देश्य <b>कोडको पुनः प्रयोग</b> हो — साझा कोड एक पटक base मा लेख्ने र सबै
+      derived क्लासमा प्रयोग गर्ने।</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="h">Real-world analogy</div>
+    A <b>child</b> inherits eye colour and surname from a <b>parent</b>, and also has some qualities
+    of their own. The child does <b>not</b> get everything — <b>private</b> members are like the
+    parent's personal diary: they exist, but the child cannot open them directly.
+    <span class="np-cell"><b>छोराले</b> बाबुबाट आँखाको रङ र थर पाउँछ, र आफ्नै छुट्टै गुण पनि राख्छ।
+    तर सबै कुरा पाउँदैन — <b>private</b> मेम्बर बाबुको व्यक्तिगत डायरी जस्तै हो: छ त, तर छोराले
+    सिधै खोल्न पाउँदैन।</span>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">5.4 Syntax of Inheritance</h3>
+  <div class="code" id="inhSyntax"></div>
+  <p class="sec-sub">The word after the colon (<span class="term">:</span>) is the <b>mode of inheritance</b> —
+  <span class="term">public</span>, <span class="term">protected</span> or <span class="term">private</span>.
+  If you write nothing, a <span class="term">class</span> defaults to <b>private</b> inheritance.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr>
+        <th style="width:150px">Base member is…</th><th>public inheritance</th><th>protected inheritance</th><th>private inheritance</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="k">public</td><td>stays <b>public</b></td><td>becomes <b>protected</b></td><td>becomes <b>private</b></td></tr>
+        <tr><td class="k">protected</td><td>stays <b>protected</b></td><td>stays <b>protected</b></td><td>becomes <b>private</b></td></tr>
+        <tr><td class="k">private</td><td colspan="3"><b>Never inherited / not accessible</b> in the derived class, in any mode.
+          <span class="np-cell">कुनै पनि mode मा derived क्लासले base को private मेम्बर सिधै प्रयोग गर्न पाउँदैन।</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">5.5 Types of Inheritance</h3>
+  <p class="sec-sub">Five types. Learn the shape of each diagram — the exam often asks you to draw it.</p>
+  <div class="cards">
+    <div class="card">
+      <h4>1. Single Inheritance</h4>
+      <p><b>One base class → one derived class.</b> The simplest form.</p>
+      <div class="code" style="font-size:.78rem;margin:8px 0"><div class="ln"><span class="n"></span>class B : public A { };</div></div>
+      <div class="mono" style="color:var(--yellow);font-size:.8rem;text-align:center;line-height:1.5">A<br>│<br>B</div>
+      <span class="np-cell">एउटा base बाट एउटा derived क्लास। सबैभन्दा सरल रूप।</span>
+    </div>
+    <div class="card">
+      <h4>2. Multilevel Inheritance</h4>
+      <p><b>A chain:</b> a derived class itself becomes the base of another class. Grandparent → parent → child.</p>
+      <div class="code" style="font-size:.78rem;margin:8px 0"><div class="ln"><span class="n"></span>class B : public A { };
+class C : public B { };</div></div>
+      <div class="mono" style="color:var(--yellow);font-size:.8rem;text-align:center;line-height:1.5">A<br>│<br>B<br>│<br>C</div>
+      <span class="np-cell">शृंखला — derived क्लास आफैं अर्कोको base बन्छ। हजुरबुबा → बुबा → छोरा।</span>
+    </div>
+    <div class="card">
+      <h4>3. Multiple Inheritance</h4>
+      <p><b>Two or more base classes → one derived class.</b> Write the bases separated by a comma.</p>
+      <div class="code" style="font-size:.78rem;margin:8px 0"><div class="ln"><span class="n"></span>class C : public A, public B { };</div></div>
+      <div class="mono" style="color:var(--yellow);font-size:.8rem;text-align:center;line-height:1.5">A &nbsp; B<br>╲ ╱<br>C</div>
+      <span class="np-cell">दुई वा बढी base क्लासबाट एउटा derived क्लास। कमाले छुट्याएर लेख्ने।</span>
+    </div>
+    <div class="card">
+      <h4>4. Hierarchical Inheritance</h4>
+      <p><b>One base class → many derived classes.</b> Several children share one parent.</p>
+      <div class="code" style="font-size:.78rem;margin:8px 0"><div class="ln"><span class="n"></span>class B : public A { };
+class C : public A { };</div></div>
+      <div class="mono" style="color:var(--yellow);font-size:.8rem;text-align:center;line-height:1.5">A<br>╱ ╲<br>B &nbsp; C</div>
+      <span class="np-cell">एउटा base बाट धेरै derived क्लास। एउटै बुबाका धेरै सन्तान।</span>
+    </div>
+    <div class="card">
+      <h4>5. Hybrid Inheritance</h4>
+      <p>A <b>combination of two or more types</b> above (for example hierarchical + multiple).
+      This can create the <b>diamond problem</b>, solved using a <b>virtual base class</b>.</p>
+      <div class="mono" style="color:var(--yellow);font-size:.8rem;text-align:center;line-height:1.5">A<br>╱ ╲<br>B &nbsp; C<br>╲ ╱<br>D</div>
+      <span class="np-cell">माथिका दुई वा बढी प्रकारको मिश्रण। यसले <b>diamond problem</b> ल्याउन सक्छ,
+      जसलाई <b>virtual base class</b> ले समाधान गर्छ।</span>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Advantages of Inheritance</span>
+      <ul class="tick">
+        <li><b>Reusability</b> — common code is written once and reused.</li>
+        <li><b>Saves time and code size</b> — less duplication.</li>
+        <li><b>Easy to extend</b> — new features are added in a derived class without touching the base.</li>
+        <li><b>Supports polymorphism</b> — overriding needs inheritance to work.</li>
+        <li><b>Better structure</b> — shows a clear parent-child relationship.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">इनहेरिटेन्सका फाइदा</span>
+      <ul class="tick">
+        <li><b>पुनः प्रयोग</b> — साझा कोड एक पटक लेखेर पटक–पटक चलाउन सकिन्छ।</li>
+        <li><b>समय र कोड बचत</b> — दोहोरो लेख्नु पर्दैन।</li>
+        <li><b>सजिलो विस्तार</b> — base नछोई derived मा नयाँ सुविधा थप्न सकिन्छ।</li>
+        <li><b>Polymorphism सम्भव बनाउँछ</b> — overriding का लागि inheritance चाहिन्छ।</li>
+        <li><b>राम्रो संरचना</b> — बाबु–छोराको सम्बन्ध स्पष्ट देखिन्छ।</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="h">Constructor order in inheritance — asked very often</div>
+    When a derived object is created, the <b>base class constructor runs FIRST</b>, then the
+    derived constructor. Destructors run in the <b>exact reverse</b>: derived destructor first,
+    then base destructor.
+    <span class="np-cell">derived अब्जेक्ट बन्दा <b>पहिले base को कन्स्ट्रक्टर</b> चल्छ, अनि derived को।
+    डिस्ट्रक्टर <b>ठ्याक्कै उल्टो</b> — पहिले derived, अनि base।</span>
+  </div>
+</section>
+
+<!-- ============================ UNIT 6 ============================ -->
+<section id="u6">
+  <div class="sec-head">
+    <div class="sec-num">6</div>
+    <div>
+      <h2>Polymorphism</h2>
+      <p class="sec-sub">पोलिमर्फिज्म — एउटै नाम, धेरै रूप</p>
+    </div>
+    <span class="marks">10 hrs · 7 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Definition</span>
+      <p>The word <b>polymorphism</b> comes from Greek: <b>poly</b> = many, <b>morph</b> = forms.
+      So it means <b>"many forms"</b>.</p>
+      <p>In C++, <b>polymorphism</b> is the ability of the <b>same function name or same operator</b>
+      to behave <b>differently</b> in different situations, depending on the object or the arguments
+      used.</p>
+    </div>
+    <div class="np">
+      <span class="tag">परिभाषा</span>
+      <p><b>Polymorphism</b> ग्रीक शब्दबाट आएको हो: <b>poly</b> = धेरै, <b>morph</b> = रूप।
+      अर्थात् <b>"धेरै रूप"</b>।</p>
+      <p>C++ मा <b>एउटै फङ्सनको नाम वा एउटै अपरेटर</b> ले फरक अवस्थामा <b>फरक व्यवहार</b> गर्ने
+      क्षमतालाई polymorphism भनिन्छ — कुन अब्जेक्ट वा कस्तो आर्गुमेन्ट प्रयोग भयो त्यसमा भर पर्छ।</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="h">Real-world analogy</div>
+    One person is a <b>son</b> at home, a <b>student</b> at school, and a <b>customer</b> in a shop.
+    <b>Same person, different behaviour in different places.</b> That is polymorphism.
+    <span class="np-cell">एउटै मान्छे घरमा <b>छोरा</b>, स्कुलमा <b>विद्यार्थी</b>, पसलमा <b>ग्राहक</b> हुन्छ।
+    <b>व्यक्ति उही, ठाउँ अनुसार व्यवहार फरक।</b> यही नै polymorphism हो।</span>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">6.4 Types of Polymorphism</h3>
+  <div class="cards">
+    <div class="card">
+      <h4>A. Compile-time Polymorphism</h4>
+      <p>Also called <b>static polymorphism</b> or <b>early binding</b>. The compiler decides
+      <b>which function to call while compiling</b>, by looking at the function's arguments.</p>
+      <p style="margin-top:8px">Achieved by:<br>
+        <span class="pill b">Function Overloading</span>
+        <span class="pill b">Operator Overloading</span></p>
+      <span class="np-cell">यसलाई <b>static polymorphism</b> वा <b>early binding</b> भनिन्छ।
+      कुन फङ्सन बोलाउने भन्ने कुरा <b>कम्पाइल गर्दै</b> आर्गुमेन्ट हेरेर निर्णय हुन्छ।</span>
+    </div>
+    <div class="card">
+      <h4>B. Run-time Polymorphism</h4>
+      <p>Also called <b>dynamic polymorphism</b> or <b>late binding</b>. The decision is made
+      <b>while the program is running</b>, by looking at which object the base pointer is
+      actually pointing to.</p>
+      <p style="margin-top:8px">Achieved by:<br>
+        <span class="pill c">Function Overriding</span>
+        <span class="pill c">Virtual Functions</span></p>
+      <span class="np-cell">यसलाई <b>dynamic polymorphism</b> वा <b>late binding</b> भनिन्छ।
+      निर्णय <b>प्रोग्राम चल्दै गर्दा</b> हुन्छ — base पोइन्टरले वास्तवमा कुन अब्जेक्ट देखाइरहेको छ त्यो हेरेर।</span>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">6.3 Syntax</h3>
+  <div class="code" id="polySyntax"></div>
+
+  <h3 style="margin-top:26px;color:var(--blue)">6.5 Function Overriding</h3>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Function Overriding</span>
+      <p><b>Function overriding</b> means the <b>derived class defines a function with exactly the
+      same name, same return type and same parameters</b> as a function in its base class.</p>
+      <p>The derived version <b>replaces</b> the base version for objects of the derived class.
+      Overriding <b>requires inheritance</b>.</p>
+      <p>If the base function is marked <span class="term">virtual</span> and you call it through a
+      <b>base class pointer</b>, C++ calls the <b>derived</b> version at run time. That is
+      <b>run-time polymorphism</b>. Without <span class="term">virtual</span>, the <b>base</b>
+      version is called instead.</p>
+    </div>
+    <div class="np">
+      <span class="tag">फङ्सन ओभरराइडिङ</span>
+      <p><b>Function overriding</b> भनेको derived क्लासमा base क्लासकै फङ्सन जस्तै <b>उही नाम, उही
+      return type र उही प्यारामिटर</b> भएको फङ्सन लेख्नु हो।</p>
+      <p>derived अब्जेक्टका लागि derived को संस्करणले base को संस्करणलाई <b>प्रतिस्थापन</b> गर्छ।
+      Overriding का लागि <b>inheritance अनिवार्य</b> छ।</p>
+      <p>base फङ्सनमा <span class="term">virtual</span> लेखिएको छ र <b>base पोइन्टर</b> बाट बोलाइयो भने
+      C++ ले चल्दै गर्दा <b>derived</b> संस्करण बोलाउँछ — यही <b>run-time polymorphism</b> हो।
+      <span class="term">virtual</span> नलेखे <b>base</b> कै संस्करण चल्छ।</p>
+    </div>
+  </div>
+
+  <!-- ---------- SIMULATOR 2 : DISPATCH ---------- -->
+  <h3 style="margin-top:34px;color:var(--coral)">▶ Simulator 2 — Which function actually runs?</h3>
+  <p class="sec-sub">Pick a call. Watch the matching line light up and the console explain how C++ decides.
+  This is the single most-tested idea in Unit 6.</p>
+
+  <div class="en" style="margin-top:12px">
+    <div class="btns">
+      <button class="blue" onclick="dispatch('ol1')">area(5)</button>
+      <button class="blue" onclick="dispatch('ol2')">area(4, 6)</button>
+      <button class="coral" onclick="dispatch('rt1')">p = &amp;s; p-&gt;show()</button>
+      <button class="coral" onclick="dispatch('rt2')">p = &amp;c; p-&gt;show()</button>
+      <button onclick="dispatch(null)">Reset</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px" class="simgrid">
+      <div>
+        <div class="code" id="dispCode"></div>
+      </div>
+      <div>
+        <div class="console" id="dispCon"></div>
+        <div class="cap" id="dispCap" style="display:none">
+          <div class="en-line" id="dispCapEn"></div>
+          <div class="np-line" id="dispCapNp"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">The rule to memorise</span>
+      <p><b>Overloading</b> → the compiler chooses by looking at the <b>number and type of
+      arguments</b>. Decided <b>before</b> the program runs. <b>Compile-time.</b></p>
+      <p><b>Overriding + virtual</b> → the computer chooses by looking at the <b>object the pointer
+      points to</b>. Decided <b>while</b> the program runs. <b>Run-time.</b></p>
+    </div>
+    <div class="np">
+      <span class="tag">कण्ठ पार्नुपर्ने नियम</span>
+      <p><b>Overloading</b> → कम्पाइलरले <b>आर्गुमेन्टको संख्या र प्रकार</b> हेरेर छान्छ।
+      प्रोग्राम चल्नु <b>अघि नै</b> निर्णय हुन्छ। <b>Compile-time.</b></p>
+      <p><b>Overriding + virtual</b> → पोइन्टरले <b>कुन अब्जेक्ट देखाएको छ</b> त्यो हेरेर छानिन्छ।
+      प्रोग्राम <b>चल्दै गर्दा</b> निर्णय हुन्छ। <b>Run-time.</b></p>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Advantages of Polymorphism</span>
+      <ul class="tick">
+        <li><b>One interface, many implementations</b> — easier to read and remember.</li>
+        <li><b>Code reusability</b> and shorter programs.</li>
+        <li><b>Flexibility</b> — new derived classes can be added without changing existing code.</li>
+        <li>Supports <b>dynamic binding</b> and cleaner design.</li>
+        <li>Reduces the number of different function names to remember.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">पोलिमर्फिज्मका फाइदा</span>
+      <ul class="tick">
+        <li><b>एउटै इन्टरफेस, धेरै काम</b> — पढ्न र सम्झन सजिलो।</li>
+        <li><b>कोड पुनः प्रयोग</b> र छोटो प्रोग्राम।</li>
+        <li><b>लचकता</b> — पुरानो कोड नछोई नयाँ derived क्लास थप्न सकिन्छ।</li>
+        <li><b>Dynamic binding</b> सम्भव बनाउँछ।</li>
+        <li>फरक–फरक नाम सम्झिरहनु पर्दैन।</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TRACE ============================ -->
+<section id="trace">
+  <div class="sec-head">
+    <div class="sec-num">▶</div>
+    <div>
+      <h2>Trace a Full Program</h2>
+      <p class="sec-sub">पूरा प्रोग्राम लाइन–लाइन हेर्नुहोस् — परीक्षामा "आउटपुट के हुन्छ?" यहीँबाट सिकिन्छ</p>
+    </div>
+    <span class="marks">most important section</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">How to use this</span>
+      <p>Pick a program. Press <b>Next</b> one step at a time. The <b>yellow line</b> is the line the
+      computer is running <b>right now</b>. Output appears in the black console only when
+      a <span class="term">cout</span> line actually runs.</p>
+      <p>Before pressing Next, <b>guess in your head</b> what will happen. Then press it and check.
+      That guessing habit is exactly what the exam tests.</p>
+    </div>
+    <div class="np">
+      <span class="tag">कसरी प्रयोग गर्ने</span>
+      <p>एउटा प्रोग्राम छान्नुहोस्। एक–एक पटक <b>Next</b> थिच्नुहोस्। <b>पहेँलो लाइन</b> भनेको
+      कम्प्युटरले <b>अहिले चलाइरहेको</b> लाइन हो। <span class="term">cout</span> लाइन चलेपछि मात्र
+      कालो कन्सोलमा आउटपुट देखिन्छ।</p>
+      <p>Next थिच्नु अघि <b>मनमै अनुमान गर्नुहोस्</b> — के हुन्छ होला? अनि थिचेर मिलायो कि मिलेन हेर्नुहोस्।
+      परीक्षाले जाँच्ने ठ्याक्कै यही बानी हो।</p>
+    </div>
+  </div>
+
+  <div class="btns" style="margin-top:18px">
+    <button class="primary" id="pgBtn0" onclick="loadProg(0)">Program 1 · Class + Constructor + Destructor</button>
+    <button id="pgBtn1" onclick="loadProg(1)">Program 2 · Multilevel Inheritance</button>
+    <button id="pgBtn2" onclick="loadProg(2)">Program 3 · Polymorphism (virtual)</button>
+  </div>
+
+  <div class="en">
+    <h3 id="progTitle" style="margin-top:0;color:var(--yellow)"></h3>
+    <p id="progDesc" style="font-size:.92rem;margin-bottom:4px"></p>
+    <p id="progDescNp" style="font-family:var(--deva);color:#f6ecd2;font-size:.92rem;
+       border-left:3px dashed rgba(255,215,110,.5);padding-left:12px"></p>
+
+    <div style="display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-top:14px" class="simgrid">
+      <div>
+        <div class="code" id="traceCode"></div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:.7rem;letter-spacing:1.4px;color:var(--green);
+             text-transform:uppercase;margin-bottom:6px">Console output</div>
+        <div class="console" id="traceCon"></div>
+
+        <div class="cap" style="margin-top:12px">
+          <div id="traceCapEn">Press <b>Next ▸</b> to start.</div>
+          <div class="np-line" id="traceCapNp">सुरु गर्न <b>Next ▸</b> थिच्नुहोस्।</div>
+        </div>
+
+        <div class="btns">
+          <button id="btnPrev" onclick="stepTrace(-1)">◂ Prev</button>
+          <button class="primary" id="btnNext" onclick="stepTrace(1)">Next ▸</button>
+          <button class="coral" onclick="resetTrace()">Reset</button>
+        </div>
+        <div class="stepbar">
+          <span id="stepLbl">step 0 / 0</span>
+          <span class="track"><i id="stepFill"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TABLES ============================ -->
+<section id="tables">
+  <div class="sec-head">
+    <div class="sec-num">≠</div>
+    <div>
+      <h2>Comparison Tables</h2>
+      <p class="sec-sub">तुलनात्मक तालिका — परीक्षामा सबैभन्दा बढी सोधिने भाग</p>
+    </div>
+    <span class="marks">high-scoring</span>
+  </div>
+  <div class="rule"></div>
+
+  <h3 style="color:var(--blue)">A. Structured (Procedural) vs Object-Oriented Programming</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Structured / Procedural (POP)</th><th>Object-Oriented (OOP)</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Basic unit</td><td>The <b>function</b> is the basic unit.</td><td>The <b>object</b> is the basic unit.</td></tr>
+        <tr><td class="k">Approach</td><td><b>Top-down</b> — big problem broken into functions.</td><td><b>Bottom-up</b> — objects built first, then combined.</td></tr>
+        <tr><td class="k">Focus</td><td>Focus is on <b>the procedure / how to do it</b>.</td><td>Focus is on <b>the data and the object</b>.</td></tr>
+        <tr><td class="k">Data security</td><td>Data is mostly <b>global</b>, so it can be changed by any function — <b>less secure</b>.</td><td>Data is <b>private/hidden</b> inside the object — <b>more secure</b>.</td></tr>
+        <tr><td class="k">Data + function</td><td>Data and functions are <b>separate</b>.</td><td>Data and functions are <b>bound together</b>.</td></tr>
+        <tr><td class="k">Reusability</td><td><b>Difficult</b> — no inheritance.</td><td><b>Easy</b> — supports inheritance.</td></tr>
+        <tr><td class="k">Overloading</td><td><b>Not supported.</b></td><td><b>Supported</b> (function and operator overloading).</td></tr>
+        <tr><td class="k">Suitable for</td><td><b>Small</b> and simple programs.</td><td><b>Large</b> and complex programs.</td></tr>
+        <tr><td class="k">Example language</td><td>C, Pascal, FORTRAN</td><td>C++, Java, Python, C#</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="np" style="margin-top:-4px">
+    <span class="tag">छोटो सार</span>
+    <p>POP मा <b>फङ्सन</b> मुख्य हुन्छ, डाटा प्रायः <b>global</b> हुने भएकाले कम सुरक्षित हुन्छ,
+    र यसले माथिबाट तलतिर (<b>top-down</b>) सोच्छ। OOP मा <b>अब्जेक्ट</b> मुख्य हुन्छ, डाटा
+    <b>private</b> राखेर लुकाइन्छ, र तलबाट माथितिर (<b>bottom-up</b>) सोच्छ। ठूलो प्रोग्रामका लागि OOP राम्रो।</p>
+  </div>
+
+  <h3 style="margin-top:30px;color:var(--blue)">B. Function Overloading vs Function Overriding</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Function Overloading</th><th>Function Overriding</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Meaning</td><td>Same function name with <b>different parameters</b> in the <b>same class</b>.</td><td>Same function name with the <b>same parameters</b> redefined in a <b>derived class</b>.</td></tr>
+        <tr><td class="k">Inheritance</td><td><b>Not required.</b></td><td><b>Required</b> — there must be a base and a derived class.</td></tr>
+        <tr><td class="k">Parameters</td><td>Must be <b>different</b> (number, type or order).</td><td>Must be <b>exactly the same</b>.</td></tr>
+        <tr><td class="k">Return type</td><td>May be same or different (return type alone is not enough).</td><td>Must be the <b>same</b>.</td></tr>
+        <tr><td class="k">Binding</td><td><b>Early / static</b> binding.</td><td><b>Late / dynamic</b> binding (when <span class="term">virtual</span> is used).</td></tr>
+        <tr><td class="k">Type</td><td><b>Compile-time</b> polymorphism.</td><td><b>Run-time</b> polymorphism.</td></tr>
+        <tr><td class="k">virtual keyword</td><td>Not used.</td><td><span class="term">virtual</span> is used in the base class.</td></tr>
+        <tr><td class="k">Purpose</td><td>To give <b>one name to similar jobs</b>.</td><td>To give the child a <b>different version</b> of the parent's job.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="np" style="margin-top:-4px">
+    <span class="tag">छोटो सार</span>
+    <p><b>Overloading</b> = उही क्लासमा उही नाम तर <b>फरक प्यारामिटर</b>; inheritance चाहिँदैन;
+    <b>compile-time</b>। <b>Overriding</b> = derived क्लासमा उही नाम र <b>उही प्यारामिटर</b>;
+    inheritance <b>चाहिन्छ</b>; <span class="term">virtual</span> राखे <b>run-time</b>।</p>
+  </div>
+
+  <h3 style="margin-top:30px;color:var(--blue)">C. Compile-time vs Run-time Polymorphism</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Compile-time (Static)</th><th>Run-time (Dynamic)</th></tr></thead>
+      <tbody>
+        <tr><td class="k">When decided</td><td>While the program is being <b>compiled</b>.</td><td>While the program is <b>running</b>.</td></tr>
+        <tr><td class="k">Also called</td><td>Early binding / static binding.</td><td>Late binding / dynamic binding.</td></tr>
+        <tr><td class="k">Achieved by</td><td>Function overloading, operator overloading.</td><td>Function overriding with <span class="term">virtual</span> functions.</td></tr>
+        <tr><td class="k">Speed</td><td><b>Faster</b> (decision already made).</td><td><b>Slower</b> (decision made during execution).</td></tr>
+        <tr><td class="k">Flexibility</td><td><b>Less</b> flexible.</td><td><b>More</b> flexible.</td></tr>
+        <tr><td class="k">Pointers</td><td>Base class pointer not needed.</td><td>Usually uses a <b>base class pointer or reference</b>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:30px;color:var(--blue)">D. Array vs Linked List</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Array</th><th>Linked List</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Memory</td><td><b>Continuous</b> (contiguous) memory.</td><td><b>Scattered</b> memory joined by pointers.</td></tr>
+        <tr><td class="k">Size</td><td><b>Fixed</b> at declaration time.</td><td><b>Dynamic</b> — grows and shrinks while running.</td></tr>
+        <tr><td class="k">Access</td><td><b>Direct / random</b> access using index — fast.</td><td><b>Sequential</b> access from the first node — slower.</td></tr>
+        <tr><td class="k">Insert / delete</td><td><b>Slow</b> — other elements must be shifted.</td><td><b>Fast</b> — only pointers are changed.</td></tr>
+        <tr><td class="k">Extra memory</td><td>No extra memory needed.</td><td>Extra memory needed for the <b>pointer</b> in each node.</td></tr>
+        <tr><td class="k">Memory waste</td><td>Unused declared space is <b>wasted</b>.</td><td><b>No waste</b> — memory taken only when needed.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="np" style="margin-top:-4px">
+    <span class="tag">छोटो सार</span>
+    <p><b>Array</b>: लगातार मेमोरी, साइज फिक्स, index ले <b>सिधै</b> पुगिन्छ (छिटो), तर थप्न/हटाउन
+    सार्नुपर्ने भएकाले <b>ढिलो</b>। <b>Linked list</b>: छरिएको मेमोरी, साइज घटबढ, पहिलो नोडबाट
+    <b>क्रमशः</b> जानुपर्छ (ढिलो), तर थप्न/हटाउन पोइन्टर मात्र फेरे पुग्छ (<b>छिटो</b>)।</p>
+  </div>
+
+  <h3 style="margin-top:30px;color:var(--blue)">E. Stack vs Queue</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Stack</th><th>Queue</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Principle</td><td><b>LIFO</b> — Last In, First Out.</td><td><b>FIFO</b> — First In, First Out.</td></tr>
+        <tr><td class="k">Ends used</td><td><b>One end</b> only, called <b>top</b>.</td><td><b>Two ends</b> — insert at <b>rear</b>, delete at <b>front</b>.</td></tr>
+        <tr><td class="k">Operations</td><td><span class="term">push()</span>, <span class="term">pop()</span>, <span class="term">peek()</span></td><td><span class="term">enqueue()</span>, <span class="term">dequeue()</span>, <span class="term">front()</span></td></tr>
+        <tr><td class="k">Pointers</td><td>One pointer: <span class="term">top</span>.</td><td>Two pointers: <span class="term">front</span> and <span class="term">rear</span>.</td></tr>
+        <tr><td class="k">Real example</td><td>Pile of plates; browser Back button; undo.</td><td>Queue at a ticket counter; printer job queue.</td></tr>
+        <tr><td class="k">Empty condition</td><td><span class="term">top == -1</span></td><td><span class="term">front &gt; rear</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:30px;color:var(--blue)">F. Linear vs Non-Linear Data Structure</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Linear</th><th>Non-Linear</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Arrangement</td><td>Elements are in a <b>sequence</b>, one after another.</td><td>Elements are <b>not in a sequence</b>; one connects to many.</td></tr>
+        <tr><td class="k">Levels</td><td><b>Single level.</b></td><td><b>Multiple levels</b> (hierarchical).</td></tr>
+        <tr><td class="k">Traversal</td><td>Can be traversed <b>completely in one run</b>.</td><td><b>Cannot</b> be traversed in one straight run.</td></tr>
+        <tr><td class="k">Memory use</td><td>Often <b>less efficient</b> for large data.</td><td>Usually <b>more efficient</b> for large data.</td></tr>
+        <tr><td class="k">Examples</td><td>Array, Linked List, Stack, Queue</td><td>Tree, Graph</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:30px;color:var(--blue)">G. Class vs Object &nbsp;·&nbsp; Constructor vs Destructor &nbsp;·&nbsp; Abstraction vs Encapsulation</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Class</th><th>Object</th></tr></thead>
+      <tbody>
+        <tr><td class="k">What it is</td><td>A <b>blueprint / template</b>.</td><td>An <b>instance</b> of a class.</td></tr>
+        <tr><td class="k">Memory</td><td><b>Does not</b> take memory.</td><td><b>Takes</b> memory when created.</td></tr>
+        <tr><td class="k">How many</td><td>Declared <b>once</b>.</td><td><b>Many</b> objects from one class.</td></tr>
+        <tr><td class="k">Created by</td><td><span class="term">class Student { … };</span></td><td><span class="term">Student s1;</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Constructor</th><th>Destructor</th></tr></thead>
+      <tbody>
+        <tr><td class="k">When called</td><td>Automatically when the object is <b>created</b>.</td><td>Automatically when the object is <b>destroyed</b>.</td></tr>
+        <tr><td class="k">Name</td><td>Same as the class name.</td><td>Class name with <span class="term">~</span> in front.</td></tr>
+        <tr><td class="k">Parameters</td><td><b>Can</b> take parameters.</td><td><b>Cannot</b> take parameters.</td></tr>
+        <tr><td class="k">Overloading</td><td><b>Can</b> be overloaded.</td><td><b>Cannot</b> be overloaded — only one.</td></tr>
+        <tr><td class="k">Purpose</td><td><b>Initialise</b> data / allocate memory.</td><td><b>Clean up</b> / free memory.</td></tr>
+        <tr><td class="k">Order</td><td>Base first, then derived.</td><td>Derived first, then base (reverse).</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Abstraction</th><th>Encapsulation</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Hides</td><td>Hides the <b>complexity / implementation</b> — the "how".</td><td>Hides the <b>data</b> — the "what".</td></tr>
+        <tr><td class="k">Level</td><td>A <b>design-level</b> idea.</td><td>An <b>implementation-level</b> idea.</td></tr>
+        <tr><td class="k">Achieved by</td><td>Abstract classes and <b>pure virtual functions</b>.</td><td><b>private</b> data + <b>public</b> getter/setter functions.</td></tr>
+        <tr><td class="k">Focus</td><td><b>What</b> an object does.</td><td><b>How</b> the data is protected.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================ EXTRA TERMS ============================ -->
+<section id="terms">
+  <div class="sec-head">
+    <div class="sec-num">+</div>
+    <div>
+      <h2>Extra Exam Terms</h2>
+      <p class="sec-sub">छोटा तर सोधिन सक्ने शब्दहरू</p>
+    </div>
+    <span class="marks">1-mark answers</span>
+  </div>
+  <div class="rule"></div>
+  <p class="sec-sub">These appear in one-mark or fill-in questions. Learn one line for each — do not go deeper than this.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:190px">Term</th><th>One-line meaning</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Instantiation</td><td>The act of <b>creating an object</b> from a class.<span class="np-cell">क्लासबाट अब्जेक्ट बनाउने काम।</span></td></tr>
+        <tr><td class="k">Member function</td><td>A function <b>declared inside a class</b>; also called a <b>method</b>.<span class="np-cell">क्लास भित्र घोषित फङ्सन — मेथड।</span></td></tr>
+        <tr><td class="k">Data member</td><td>A <b>variable declared inside a class</b>.<span class="np-cell">क्लास भित्रको भेरिएबल।</span></td></tr>
+        <tr><td class="k">Scope resolution operator <span class="term">::</span></td><td>Used to define a member function <b>outside the class</b>, e.g. <span class="term">void Student::show()</span>.<span class="np-cell">क्लास बाहिर फङ्सन परिभाषित गर्न प्रयोग हुन्छ।</span></td></tr>
+        <tr><td class="k">Dot operator <span class="term">.</span></td><td>Used to access a member <b>through an object</b>: <span class="term">s1.show();</span><span class="np-cell">अब्जेक्ट मार्फत मेम्बर पुग्न।</span></td></tr>
+        <tr><td class="k">Arrow operator <span class="term">-&gt;</span></td><td>Used to access a member <b>through a pointer</b>: <span class="term">p-&gt;show();</span><span class="np-cell">पोइन्टर मार्फत मेम्बर पुग्न।</span></td></tr>
+        <tr><td class="k"><span class="term">this</span> pointer</td><td>A hidden pointer inside every member function that points to <b>the current object</b>.<span class="np-cell">हरेक मेम्बर फङ्सन भित्र लुकेको पोइन्टर, जसले <b>हालको अब्जेक्ट</b> देखाउँछ।</span></td></tr>
+        <tr><td class="k">Friend function</td><td>A <b>non-member</b> function that is allowed to access the <b>private</b> members of a class.<span class="np-cell">क्लासको मेम्बर नभई पनि private डाटा छुन पाउने फङ्सन।</span></td></tr>
+        <tr><td class="k">Static member</td><td>A member <b>shared by all objects</b> of the class — only <b>one copy</b> exists.<span class="np-cell">सबै अब्जेक्टले साझा गर्ने मेम्बर — एउटै मात्र प्रति हुन्छ।</span></td></tr>
+        <tr><td class="k">Inline function</td><td>A small function whose code the compiler <b>copies at the call place</b> to save call time.<span class="np-cell">बोलाइएकै ठाउँमा कोड सारिने सानो फङ्सन।</span></td></tr>
+        <tr><td class="k">Virtual function</td><td>A base-class function declared with <span class="term">virtual</span> so the <b>derived</b> version runs through a base pointer.<span class="np-cell"><span class="term">virtual</span> लेखिएको base फङ्सन — base पोइन्टरबाट derived कै संस्करण चल्छ।</span></td></tr>
+        <tr><td class="k">Pure virtual function</td><td>A virtual function with <b>no body</b>, written <span class="term">= 0</span>. It <b>must</b> be overridden.<span class="np-cell">शरीर नभएको virtual फङ्सन (<span class="term">= 0</span>) — override गर्नै पर्छ।</span></td></tr>
+        <tr><td class="k">Abstract class</td><td>A class containing <b>at least one pure virtual function</b>. <b>No object can be created</b> from it.<span class="np-cell">कम्तीमा एउटा pure virtual फङ्सन भएको क्लास — यसको अब्जेक्ट बन्दैन।</span></td></tr>
+        <tr><td class="k">Operator overloading</td><td>Giving an <b>extra meaning</b> to an existing operator (like <span class="term">+</span>) for objects.<span class="np-cell">भइरहेको अपरेटरलाई अब्जेक्टका लागि थप अर्थ दिने।</span></td></tr>
+        <tr><td class="k">Virtual base class</td><td>Used in <b>hybrid inheritance</b> to solve the <b>diamond problem</b> (duplicate copies of a base).<span class="np-cell">hybrid inheritance मा diamond problem हटाउन प्रयोग हुन्छ।</span></td></tr>
+        <tr><td class="k">Namespace</td><td>A named region that groups names to avoid clashes — e.g. <span class="term">std</span>.<span class="np-cell">नाम नबाझियोस् भनेर नामहरू समूहमा राख्ने ठाउँ।</span></td></tr>
+        <tr><td class="k">Header file</td><td>A file (like <span class="term">&lt;iostream&gt;</span>) added by <span class="term">#include</span> that holds ready-made declarations.<span class="np-cell"><span class="term">#include</span> ले थप्ने, पहिल्यै बनेका घोषणा भएको फाइल।</span></td></tr>
+        <tr><td class="k">Overflow / Underflow</td><td><b>Overflow</b> = pushing into a <b>full</b> stack. <b>Underflow</b> = popping from an <b>empty</b> stack.<span class="np-cell">भरिएको स्ट्याकमा push = overflow; खाली स्ट्याकबाट pop = underflow।</span></td></tr>
+        <tr><td class="k">Linear search</td><td>Checks elements <b>one by one</b> from the start. Works on unsorted data.<span class="np-cell">सुरुदेखि एक–एक गरी जाँच्ने। नमिलेको डाटामा पनि चल्छ।</span></td></tr>
+        <tr><td class="k">Binary search</td><td>Repeatedly cuts a <b>sorted</b> list in half. Much faster, but the data <b>must be sorted</b>.<span class="np-cell">मिलेको लिस्टलाई पटक–पटक आधा काट्ने। धेरै छिटो, तर डाटा मिलेको हुनुपर्छ।</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================ QUIZ ============================ -->
+<section id="quiz">
+  <div class="sec-head">
+    <div class="sec-num">?</div>
+    <div>
+      <h2>Self-Check Quiz</h2>
+      <p class="sec-sub">आफैं जाँच्नुहोस् — प्रश्न अंग्रेजीमै छन्, किनकि परीक्षा अंग्रेजीमै हुन्छ</p>
+    </div>
+    <span class="marks">15 questions</span>
+  </div>
+  <div class="rule"></div>
+  <p class="sec-sub">Questions are in English because the exam is in English. The explanation after each
+  answer is given in both English and Nepali.</p>
+
+  <div id="quizBox"></div>
+  <div class="score" id="scoreBox" style="display:none">
+    <div class="big" id="scoreNum">0 / 15</div>
+    <div id="scoreMsg"></div>
+    <div class="np-cell" id="scoreMsgNp"></div>
+    <div class="btns" style="justify-content:center;margin-top:12px">
+      <button class="primary" onclick="resetQuiz()">Try again</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b style="color:var(--chalk-dim)">RGSC Study Board · Grade 10 Computer Engineering (CDC Nepal, 2078)</b><br>
+  Subject 1 of 4: <b>Data Structure &amp; OOP concept using C++</b> — all 6 units.
+  Works fully offline. No login, no internet needed (fonts are optional).
+  <span class="np-cell">कक्षा १० कम्प्युटर इन्जिनियरिङको पहिलो विषय — सबै ६ वटा युनिट।
+  इन्टरनेट नभए पनि पूरै चल्छ।</span>
+</footer>
+
+</div><!-- /wrap -->
+
+<style>
+@media (max-width:820px){ .simgrid{grid-template-columns:1fr !important} }
+.console .np{font-family:var(--deva);color:#cbb98c}
+#traceCode{max-height:540px}
+#stackCode,#queueCode,#dispCode{max-height:300px}
+</style>
+
+<script>
+/* =========================================================
+   1. TINY C++ SYNTAX HIGHLIGHTER  (single pass, safe)
+   ========================================================= */
+var KW = /^(int|float|double|char|bool|void|class|struct|public|private|protected|virtual|return|if|else|for|while|do|switch|case|break|continue|new|delete|using|namespace|const|static|friend|inline|this|true|false|string)$/;
+var TY = /^(cout|cin|endl|std|main)$/;
+
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function hl(src){
+  var re = /(\/\/[^\n]*)|("(?:[^"\\]|\\.)*")|('(?:[^'\\]|\\.)*')|(#\w+)|([A-Za-z_]\w*)|(\d+\.?\d*)|([\s\S])/g;
+  var out = '', m;
+  while ((m = re.exec(src)) !== null) {
+    if (m[1])       out += '<span class="c-com">' + esc(m[1]) + '</span>';
+    else if (m[2])  out += '<span class="c-str">' + esc(m[2]) + '</span>';
+    else if (m[3])  out += '<span class="c-str">' + esc(m[3]) + '</span>';
+    else if (m[4])  out += '<span class="c-key">' + esc(m[4]) + '</span>';
+    else if (m[5]) {
+      var w = m[5];
+      if (KW.test(w))      out += '<span class="c-key">' + w + '</span>';
+      else if (TY.test(w)) out += '<span class="c-typ">' + w + '</span>';
+      else                 out += esc(w);
+    }
+    else if (m[6])  out += '<span class="c-num">' + m[6] + '</span>';
+    else            out += esc(m[7]);
+  }
+  return out;
+}
+
+function renderCode(el, lines, active){
+  if (!el) return;
+  var html = '';
+  for (var i = 0; i < lines.length; i++){
+    var n = i + 1;
+    var body = lines[i].length ? hl(lines[i]) : '&nbsp;';
+    html += '<div class="ln' + (active === n ? ' on' : '') + '"><span class="n">' + n + '</span><span>' + body + '</span></div>';
+  }
+  el.innerHTML = html;
+  scrollToActive(el);
+}
+
+function scrollToActive(el){
+  var on = el.querySelector('.ln.on');
+  if (!on) return;
+  var t = on.offsetTop, h = el.clientHeight, sh = on.offsetHeight;
+  if (t < el.scrollTop || t + sh > el.scrollTop + h) el.scrollTop = t - h / 2 + sh / 2;
+}
+
+function conLine(el, text, cls){
+  var d = document.createElement('div');
+  d.className = 'cline' + (cls ? ' ' + cls : '');
+  d.textContent = text;
+  el.appendChild(d);
+  el.scrollTop = el.scrollHeight;
+}
+function conClear(el){ el.innerHTML = ''; }
+
+/* generic animated step player */
+function runSteps(codeElId, codeLines, steps, conEl, guard, onDone){
+  if (guard.busy) return;
+  guard.busy = true;
+  var i = 0;
+  function tick(){
+    if (i >= steps.length){ guard.busy = false; if (onDone) onDone(); return; }
+    var s = steps[i++];
+    renderCode(document.getElementById(codeElId), codeLines, s.line);
+    if (s.en) conLine(conEl, s.en);
+    if (s.np) conLine(conEl, s.np, 'np');
+    if (s.out) conLine(conEl, '  >> ' + s.out, '');
+    if (s.act) s.act();
+    setTimeout(tick, 760);
+  }
+  tick();
+}
+
+/* =========================================================
+   2. BASIC STRUCTURE / DECLARATION SNIPPETS (static)
+   ========================================================= */
+var BASIC_STRUCT = [
+'#include <iostream>          // preprocessor directive',
+'using namespace std;         // use the standard namespace',
+'',
+'int main() {                 // execution starts here',
+'    cout << "Hello RGSC" << endl;',
+'    return 0;                // 0 means success',
+'}'
+];
+
+var CLASS_DECL = [
+'class Student {              // class = blueprint',
+'private:                     // hidden from outside',
+'    string name;             // data member',
+'    int roll;                // data member',
+'public:                      // usable from outside',
+'    void setData(string n, int r) {   // member function',
+'        name = n;',
+'        roll = r;',
+'    }',
+'    void display() {         // member function',
+'        cout << name << " - " << roll << endl;',
+'    }',
+'};                           // semicolon is compulsory',
+'',
+'int main() {',
+'    Student s1;              // s1 is an OBJECT',
+'    s1.setData("Ram", 15);   // dot operator',
+'    s1.display();            // output: Ram - 15',
+'    return 0;',
+'}'
+];
+
+var ENCAP_CODE = [
+'class Account {',
+'private:',
+'    double balance;                 // hidden data (encapsulation)',
+'public:',
+'    void setBalance(double b) {     // setter - can check the value',
+'        if (b >= 0) balance = b;',
+'    }',
+'    double getBalance() {           // getter - safe read only',
+'        return balance;',
+'    }',
+'};',
+'',
+'int main() {',
+'    Account a;',
+'    // a.balance = -500;            // ERROR: balance is private',
+'    a.setBalance(5000);             // allowed, and checked',
+'    cout << a.getBalance();         // output: 5000',
+'    return 0;',
+'}'
+];
+
+var INH_SYNTAX = [
+'class Base {                 // base / parent class',
+'public:',
+'    void greet() { cout << "Hello from Base"; }',
+'};',
+'',
+'class Derived : public Base {   // <-- mode : base class name',
+'public:',
+'    void hi() { cout << "Hello from Derived"; }',
+'};',
+'',
+'int main() {',
+'    Derived d;',
+'    d.greet();               // inherited from Base',
+'    d.hi();                  // its own function',
+'    return 0;',
+'}'
+];
+
+var POLY_SYNTAX = [
+'// (a) COMPILE-TIME : function overloading',
+'int add(int a, int b) { return a + b; }',
+'int add(int a, int b, int c) { return a + b + c; }',
+'',
+'// (b) RUN-TIME : function overriding with virtual',
+'class Base {',
+'public:',
+'    virtual void show() { cout << "Base show" << endl; }',
+'};',
+'class Derived : public Base {',
+'public:',
+'    void show() { cout << "Derived show" << endl; }   // overriding',
+'};',
+'',
+'int main() {',
+'    Base *p;  Derived d;',
+'    p = &d;',
+'    p->show();               // run-time: prints "Derived show"',
+'    return 0;',
+'}'
+];
+
+renderCode(document.getElementById('basicStruct'), BASIC_STRUCT, 0);
+renderCode(document.getElementById('classDecl'),   CLASS_DECL,   0);
+renderCode(document.getElementById('encapCode'),   ENCAP_CODE,   0);
+renderCode(document.getElementById('inhSyntax'),   INH_SYNTAX,   0);
+renderCode(document.getElementById('polySyntax'),  POLY_SYNTAX,  0);
+
+/* =========================================================
+   3. SIMULATOR 1a — STACK
+   ========================================================= */
+var STACK_CODE = [
+'int arr[5];',
+'int top = -1;',
+'',
+'void push(int x) {',
+'    if (top == 4)',
+'        cout << "Overflow";',
+'    else {',
+'        top = top + 1;      // move top up',
+'        arr[top] = x;       // store the value',
+'    }',
+'}',
+'',
+'int pop() {',
+'    if (top == -1)',
+'        cout << "Underflow";',
+'    else {',
+'        int v = arr[top];   // read the top value',
+'        top = top - 1;      // move top down',
+'        return v;',
+'    }',
+'}'
+];
+
+var stkArr = [], stkGuard = { busy:false }, stkNext = 10;
+
+function stkRender(){
+  var v = document.getElementById('stackViz');
+  if (!stkArr.length){ v.innerHTML = '<div class="emptynote">stack is empty</div>'; }
+  else {
+    var h = '';
+    for (var i = 0; i < stkArr.length; i++)
+      h += '<div class="sbox' + (i === stkArr.length - 1 ? ' top' : '') + '">' + stkArr[i] + '</div>';
+    v.innerHTML = h;
+  }
+  document.getElementById('stackPtr').textContent =
+    stkArr.length ? 'top = ' + (stkArr.length - 1) + '  →  value ' + stkArr[stkArr.length - 1]
+                  : 'top = -1 (empty)';
+}
+
+function stkPush(){
+  var con = document.getElementById('stackCon');
+  if (stkGuard.busy) return;
+  if (stkArr.length >= 5){
+    conClear(con);
+    runSteps('stackCode', STACK_CODE, [
+      {line:5,  en:'Check: is top == 4 ? YES, the stack is full.', np:'जाँच: top == 4 ? हो, स्ट्याक भरियो।'},
+      {line:6,  en:'OVERFLOW — cannot push into a full stack.',    np:'OVERFLOW — भरिएको स्ट्याकमा push गर्न मिल्दैन।'}
+    ], con, stkGuard);
+    return;
+  }
+  var x = stkNext; stkNext += 10;
+  conClear(con);
+  runSteps('stackCode', STACK_CODE, [
+    {line:4, en:'push(' + x + ') is called.',                     np:'push(' + x + ') बोलाइयो।'},
+    {line:5, en:'Check: is the stack full (top == 4)? No.',       np:'जाँच: स्ट्याक भरिएको छ? छैन।'},
+    {line:8, en:'top moves up: top becomes ' + stkArr.length + '.', np:'top माथि सर्‍यो: top = ' + stkArr.length + '।'},
+    {line:9, en:'Value ' + x + ' is stored at arr[' + stkArr.length + '] — the new TOP.',
+             np:'मान ' + x + ' arr[' + stkArr.length + '] मा राखियो — यही नयाँ TOP हो।',
+             act:function(){ stkArr.push(x); stkRender(); }},
+    {line:11, en:'push() finished. LIFO: this value will come out FIRST.',
+              np:'push() सकियो। LIFO: यही मान सबैभन्दा पहिले निस्कन्छ।'}
+  ], con, stkGuard);
+}
+
+function stkPop(){
+  var con = document.getElementById('stackCon');
+  if (stkGuard.busy) return;
+  conClear(con);
+  if (!stkArr.length){
+    runSteps('stackCode', STACK_CODE, [
+      {line:13, en:'pop() is called.',                          np:'pop() बोलाइयो।'},
+      {line:14, en:'Check: is top == -1 ? YES, the stack is empty.', np:'जाँच: top == -1 ? हो, स्ट्याक खाली छ।'},
+      {line:15, en:'UNDERFLOW — nothing to remove.',            np:'UNDERFLOW — हटाउने केही छैन।'}
+    ], con, stkGuard);
+    return;
+  }
+  var v = stkArr[stkArr.length - 1];
+  runSteps('stackCode', STACK_CODE, [
+    {line:13, en:'pop() is called.',                                  np:'pop() बोलाइयो।'},
+    {line:14, en:'Check: is the stack empty? No.',                    np:'जाँच: स्ट्याक खाली छ? छैन।'},
+    {line:17, en:'Read the TOP value: ' + v + '.',                    np:'TOP को मान पढियो: ' + v + '।'},
+    {line:18, en:'top moves down: top becomes ' + (stkArr.length - 2) + '.',
+              np:'top तल सर्‍यो: top = ' + (stkArr.length - 2) + '।',
+              act:function(){ stkArr.pop(); stkRender(); }},
+    {line:19, en:'Return ' + v + '. The LAST value pushed came out FIRST — that is LIFO.',
+              np:v + ' फर्कियो। अन्तिममा हालेको पहिले निस्कियो — यही LIFO हो।', out:'popped ' + v}
+  ], con, stkGuard);
+}
+
+function stkPeek(){
+  var con = document.getElementById('stackCon');
+  if (stkGuard.busy) return;
+  conClear(con);
+  if (!stkArr.length){
+    conLine(con, 'peek(): the stack is empty, there is no top value.');
+    conLine(con, 'peek(): स्ट्याक खाली छ, top मान छैन।', 'np');
+    return;
+  }
+  var v = stkArr[stkArr.length - 1];
+  runSteps('stackCode', STACK_CODE, [
+    {line:17, en:'peek() only READS the top value: ' + v + '.', np:'peek() ले top को मान ' + v + ' पढ्छ मात्र।'},
+    {line:2,  en:'top does NOT change. Nothing is removed.',    np:'top बदलिँदैन। केही हट्दैन।', out:'top = ' + v}
+  ], con, stkGuard);
+}
+
+function stkReset(){
+  if (stkGuard.busy) return;
+  stkArr = []; stkNext = 10; stkRender();
+  conClear(document.getElementById('stackCon'));
+  renderCode(document.getElementById('stackCode'), STACK_CODE, 0);
+  conLine(document.getElementById('stackCon'), 'Stack reset. top = -1 (empty).');
+  conLine(document.getElementById('stackCon'), 'स्ट्याक रिसेट भयो। top = -1 (खाली)।', 'np');
+}
+
+/* =========================================================
+   3b. SIMULATOR 1b — QUEUE
+   ========================================================= */
+var QUEUE_CODE = [
+'int arr[5];',
+'int front = 0, rear = -1;',
+'',
+'void enqueue(int x) {',
+'    if (rear == 4)',
+'        cout << "Queue is full";',
+'    else {',
+'        rear = rear + 1;    // rear moves right',
+'        arr[rear] = x;      // insert at the REAR',
+'    }',
+'}',
+'',
+'int dequeue() {',
+'    if (front > rear)',
+'        cout << "Queue is empty";',
+'    else {',
+'        int v = arr[front]; // read from the FRONT',
+'        front = front + 1;  // front moves right',
+'        return v;',
+'    }',
+'}'
+];
+
+var qArr = [], qGuard = { busy:false }, qNext = 11, qFrontIdx = 0, qRearIdx = -1;
+
+function qRender(){
+  var v = document.getElementById('queueViz');
+  if (!qArr.length){ v.innerHTML = '<div class="emptynote">queue is empty</div>'; }
+  else {
+    var h = '';
+    for (var i = 0; i < qArr.length; i++)
+      h += '<div class="sbox' + (i === 0 ? ' top' : '') + '">' + qArr[i] + '</div>';
+    v.innerHTML = h;
+  }
+  document.getElementById('queuePtr').textContent =
+    qArr.length ? 'front → ' + qArr[0] + '   ·   rear → ' + qArr[qArr.length - 1]
+                : 'front = 0 · rear = -1 (empty)';
+}
+
+function qEnq(){
+  var con = document.getElementById('queueCon');
+  if (qGuard.busy) return;
+  conClear(con);
+  if (qArr.length >= 5){
+    runSteps('queueCode', QUEUE_CODE, [
+      {line:5, en:'Check: is rear == 4 ? YES, the queue is full.', np:'जाँच: rear == 4 ? हो, लाइन भरियो।'},
+      {line:6, en:'Cannot insert any more elements.',             np:'अब थप्न मिल्दैन।'}
+    ], con, qGuard);
+    return;
+  }
+  var x = qNext; qNext += 11;
+  runSteps('queueCode', QUEUE_CODE, [
+    {line:4, en:'enqueue(' + x + ') is called.',                np:'enqueue(' + x + ') बोलाइयो।'},
+    {line:5, en:'Check: is the queue full? No.',                np:'जाँच: लाइन भरिएको छ? छैन।'},
+    {line:8, en:'rear moves right to ' + qArr.length + '.',     np:'rear दायाँ सर्‍यो: ' + qArr.length + '।'},
+    {line:9, en:'Value ' + x + ' joins at the REAR (the back of the line).',
+             np:'मान ' + x + ' REAR (लाइनको पछाडि) मा थपियो।',
+             act:function(){ qArr.push(x); qRender(); }},
+    {line:11, en:'enqueue() finished. FIFO: it must wait for everyone in front.',
+              np:'enqueue() सकियो। FIFO: अगाडिका सबै नसकिँदासम्म पर्खनुपर्छ।'}
+  ], con, qGuard);
+}
+
+function qDeq(){
+  var con = document.getElementById('queueCon');
+  if (qGuard.busy) return;
+  conClear(con);
+  if (!qArr.length){
+    runSteps('queueCode', QUEUE_CODE, [
+      {line:13, en:'dequeue() is called.',                              np:'dequeue() बोलाइयो।'},
+      {line:14, en:'Check: is front > rear ? YES, the queue is empty.', np:'जाँच: front > rear ? हो, लाइन खाली छ।'},
+      {line:15, en:'Nothing to remove.',                                np:'हटाउने केही छैन।'}
+    ], con, qGuard);
+    return;
+  }
+  var v = qArr[0];
+  runSteps('queueCode', QUEUE_CODE, [
+    {line:13, en:'dequeue() is called.',                        np:'dequeue() बोलाइयो।'},
+    {line:14, en:'Check: is the queue empty? No.',              np:'जाँच: लाइन खाली छ? छैन।'},
+    {line:17, en:'Read the FRONT value: ' + v + '.',            np:'FRONT को मान पढियो: ' + v + '।'},
+    {line:18, en:'front moves right — the next person is now first.',
+              np:'front दायाँ सर्‍यो — अब पछिल्लो व्यक्ति पहिलो भयो।',
+              act:function(){ qArr.shift(); qRender(); }},
+    {line:19, en:'Return ' + v + '. The FIRST value inserted came out FIRST — that is FIFO.',
+              np:v + ' फर्कियो। पहिले हालेको पहिले निस्कियो — यही FIFO हो।', out:'dequeued ' + v}
+  ], con, qGuard);
+}
+
+function qFront(){
+  var con = document.getElementById('queueCon');
+  if (qGuard.busy) return;
+  conClear(con);
+  if (!qArr.length){
+    conLine(con, 'front(): the queue is empty.');
+    conLine(con, 'front(): लाइन खाली छ।', 'np');
+    return;
+  }
+  runSteps('queueCode', QUEUE_CODE, [
+    {line:17, en:'front() only READS the first value: ' + qArr[0] + '.', np:'front() ले पहिलो मान ' + qArr[0] + ' पढ्छ मात्र।'},
+    {line:2,  en:'Nothing is removed, front does not move.',             np:'केही हट्दैन, front सर्दैन।', out:'front = ' + qArr[0]}
+  ], con, qGuard);
+}
+
+function qReset(){
+  if (qGuard.busy) return;
+  qArr = []; qNext = 11; qRender();
+  conClear(document.getElementById('queueCon'));
+  renderCode(document.getElementById('queueCode'), QUEUE_CODE, 0);
+  conLine(document.getElementById('queueCon'), 'Queue reset. front = 0, rear = -1 (empty).');
+  conLine(document.getElementById('queueCon'), 'लाइन रिसेट भयो। front = 0, rear = -1 (खाली)।', 'np');
+}
+
+renderCode(document.getElementById('stackCode'), STACK_CODE, 0);
+renderCode(document.getElementById('queueCode'), QUEUE_CODE, 0);
+stkRender(); qRender();
+
+/* =========================================================
+   4. SIMULATOR 2 — WHICH FUNCTION RUNS?
+   ========================================================= */
+var DISP_CODE = [
+'class Shape {',
+'public:',
+'    void area(int s) {                  // version A - 1 argument',
+'        cout << "Square area = " << s*s << endl;',
+'    }',
+'    void area(int l, int b) {           // version B - 2 arguments',
+'        cout << "Rect area = " << l*b << endl;',
+'    }',
+'    virtual void show() {               // virtual = decide at RUN time',
+'        cout << "I am a Shape" << endl;',
+'    }',
+'};',
+'',
+'class Circle : public Shape {',
+'public:',
+'    void show() {                       // overriding',
+'        cout << "I am a Circle" << endl;',
+'    }',
+'};',
+'',
+'int main() {',
+'    Shape s;   Circle c;',
+'    Shape *p;                           // base class pointer',
+'    // press a button above',
+'}'
+];
+
+var dispGuard = { busy:false };
+
+var DISP = {
+  ol1: {
+    steps: [
+      {line:22, en:'The call s.area(5) has ONE argument.',                np:'s.area(5) मा एउटा मात्र आर्गुमेन्ट छ।'},
+      {line:3,  en:'Compiler compares: version A takes 1 int. It MATCHES.', np:'कम्पाइलरले तुलना गर्‍यो: version A ले १ int लिन्छ। मिल्यो।'},
+      {line:6,  en:'Version B takes 2 ints. It does not match — rejected.', np:'version B ले २ int लिन्छ। मिलेन — छाडियो।'},
+      {line:4,  en:'Version A runs: 5 * 5 = 25.',                          np:'version A चल्यो: ५ × ५ = २५।', out:'Square area = 25'}
+    ],
+    en:'This is FUNCTION OVERLOADING. The compiler chose by counting the arguments, before the program ran. This is COMPILE-TIME (static) polymorphism.',
+    np:'यो FUNCTION OVERLOADING हो। कम्पाइलरले आर्गुमेन्ट गनेर, प्रोग्राम चल्नु अघि नै छान्यो। यसैलाई COMPILE-TIME polymorphism भनिन्छ।'
+  },
+  ol2: {
+    steps: [
+      {line:22, en:'The call s.area(4, 6) has TWO arguments.',             np:'s.area(4, 6) मा दुई आर्गुमेन्ट छन्।'},
+      {line:3,  en:'Version A takes 1 int. Does not match — rejected.',    np:'version A ले १ int लिन्छ। मिलेन — छाडियो।'},
+      {line:6,  en:'Version B takes 2 ints. It MATCHES.',                  np:'version B ले २ int लिन्छ। मिल्यो।'},
+      {line:7,  en:'Version B runs: 4 * 6 = 24.',                          np:'version B चल्यो: ४ × ६ = २४।', out:'Rect area = 24'}
+    ],
+    en:'Same function NAME area(), different WORK — chosen only by the arguments. Overloading needs no inheritance and no pointer.',
+    np:'फङ्सनको नाम उही area(), तर काम फरक — आर्गुमेन्टले मात्र छान्छ। Overloading लाई inheritance वा pointer चाहिँदैन।'
+  },
+  rt1: {
+    steps: [
+      {line:23, en:'p is a Shape pointer.',                                       np:'p एउटा Shape पोइन्टर हो।'},
+      {line:22, en:'p = &s;  →  p now holds the address of the Shape object s.',  np:'p = &s;  →  अब p सँग Shape अब्जेक्ट s को ठेगाना छ।'},
+      {line:9,  en:'show() is VIRTUAL, so C++ waits until run time to decide.',   np:'show() virtual भएकाले C++ ले चल्दै गर्दा मात्र निर्णय गर्छ।'},
+      {line:10, en:'p points to a Shape, so Shape::show() runs.',                 np:'p ले Shape देखाएकाले Shape::show() चल्यो।', out:'I am a Shape'}
+    ],
+    en:'The pointer type is Shape and the object is also a Shape, so the base version runs.',
+    np:'पोइन्टर पनि Shape, अब्जेक्ट पनि Shape — त्यसैले base कै संस्करण चल्यो।'
+  },
+  rt2: {
+    steps: [
+      {line:22, en:'p = &c;  →  the SAME pointer now holds the address of the Circle object c.', np:'p = &c;  →  उही पोइन्टरसँग अब Circle अब्जेक्ट c को ठेगाना छ।'},
+      {line:9,  en:'show() is VIRTUAL. C++ looks at the OBJECT, not the pointer type.',          np:'show() virtual छ। C++ ले पोइन्टरको प्रकार होइन, अब्जेक्ट हेर्छ।'},
+      {line:16, en:'The object is a Circle, so the OVERRIDDEN Circle::show() is chosen.',        np:'अब्जेक्ट Circle भएकाले override गरिएको Circle::show() छानियो।'},
+      {line:17, en:'Circle::show() runs.',                                                       np:'Circle::show() चल्यो।', out:'I am a Circle'}
+    ],
+    en:'This is RUN-TIME polymorphism. Same pointer, same call p->show(), different output — because virtual makes C++ look at the actual object. Remove "virtual" from line 9 and this would print "I am a Shape" instead.',
+    np:'यो RUN-TIME polymorphism हो। पोइन्टर उही, कल उही p->show(), तर आउटपुट फरक — किनकि virtual ले C++ लाई वास्तविक अब्जेक्ट हेर्न लगाउँछ। लाइन ९ बाट "virtual" हटाए यसले "I am a Shape" छाप्थ्यो।'
+  }
+};
+
+function dispatch(key){
+  var con = document.getElementById('dispCon');
+  var cap = document.getElementById('dispCap');
+  if (dispGuard.busy) return;
+  conClear(con); cap.style.display = 'none';
+  if (!key){
+    renderCode(document.getElementById('dispCode'), DISP_CODE, 0);
+    conLine(con, 'Reset. Click a call above to see how C++ decides which function runs.');
+    conLine(con, 'रिसेट भयो। माथिको कुनै बटन थिच्नुहोस् — C++ ले कुन फङ्सन छान्छ हेर्न।', 'np');
+    return;
+  }
+  var d = DISP[key];
+  runSteps('dispCode', DISP_CODE, d.steps, con, dispGuard, function(){
+    document.getElementById('dispCapEn').innerHTML = d.en;
+    document.getElementById('dispCapNp').innerHTML = d.np;
+    cap.style.display = 'block';
+  });
+}
+dispatch(null);
+
+/* =========================================================
+   5. TRACE A FULL PROGRAM
+   ========================================================= */
+var PROGS = [
+{
+  title: 'Program 1 — Class, Object, Constructor and Destructor',
+  desc: 'Two Student objects are created. Watch when the constructor runs, when display() runs, and the ORDER in which the destructors run at the end.',
+  descNp: 'दुईवटा Student अब्जेक्ट बन्छन्। कन्स्ट्रक्टर कहिले चल्छ, display() कहिले चल्छ, र अन्त्यमा डिस्ट्रक्टर कुन क्रममा चल्छ — ध्यान दिनुहोस्।',
+  code: [
+'#include <iostream>',
+'#include <string>',
+'using namespace std;',
+'',
+'class Student {',
+'private:',
+'    string name;',
+'    int roll;',
+'public:',
+'    Student(string n, int r) {          // constructor',
+'        name = n;',
+'        roll = r;',
+'        cout << "Constructor called for " << name << endl;',
+'    }',
+'    void display() {',
+'        cout << "Name: " << name << ", Roll: " << roll << endl;',
+'    }',
+'    ~Student() {                        // destructor',
+'        cout << "Destructor called for " << name << endl;',
+'    }',
+'};',
+'',
+'int main() {',
+'    Student s1("Ram", 15);',
+'    Student s2("Sita", 16);',
+'    s1.display();',
+'    s2.display();',
+'    return 0;',
+'}'
+  ],
+  steps: [
+{line:23, en:'The program starts. Execution always begins at main().',
+          np:'प्रोग्राम सुरु भयो। सधैं main() बाटै चल्न थाल्छ।'},
+{line:24, en:'Object s1 is being created with "Ram" and 15. Creating an object automatically calls the constructor.',
+          np:'"Ram" र 15 सहित अब्जेक्ट s1 बन्दैछ। अब्जेक्ट बन्ने बित्तिकै कन्स्ट्रक्टर आफैं बोलिन्छ।'},
+{line:10, en:'Jump into the constructor. Here n = "Ram" and r = 15.',
+          np:'कन्स्ट्रक्टर भित्र पस्यो। यहाँ n = "Ram" र r = 15 छ।'},
+{line:11, en:'The data member name gets the value "Ram".',
+          np:'डाटा मेम्बर name ले "Ram" मान पायो।'},
+{line:12, en:'The data member roll gets the value 15.',
+          np:'डाटा मेम्बर roll ले 15 मान पायो।'},
+{line:13, en:'This cout runs, so the first line of output appears now.',
+          np:'यो cout चल्यो, त्यसैले पहिलो आउटपुट अहिले देखियो।',
+          out:'Constructor called for Ram'},
+{line:14, en:'The constructor is finished. Object s1 is now ready in memory. Control returns to main().',
+          np:'कन्स्ट्रक्टर सकियो। अब्जेक्ट s1 मेमोरीमा तयार भयो। नियन्त्रण main() मा फर्कियो।'},
+{line:25, en:'Object s2 is being created with "Sita" and 16. The constructor is called again.',
+          np:'"Sita" र 16 सहित अब्जेक्ट s2 बन्दैछ। कन्स्ट्रक्टर फेरि बोलियो।'},
+{line:10, en:'Inside the constructor again. This time n = "Sita" and r = 16.',
+          np:'फेरि कन्स्ट्रक्टर भित्र। यस पटक n = "Sita" र r = 16।'},
+{line:11, en:'s2 has its OWN separate copy of name. It becomes "Sita". s1 is not affected.',
+          np:'s2 सँग आफ्नै छुट्टै name छ। यो "Sita" भयो। s1 मा कुनै असर पर्दैन।'},
+{line:12, en:'roll of s2 becomes 16.',
+          np:'s2 को roll 16 भयो।'},
+{line:13, en:'The second line of output is printed.',
+          np:'दोस्रो आउटपुट लाइन छापियो।',
+          out:'Constructor called for Sita'},
+{line:14, en:'Constructor finished. Both objects now exist.',
+          np:'कन्स्ट्रक्टर सकियो। अब दुवै अब्जेक्ट अस्तित्वमा छन्।'},
+{line:26, en:'s1.display() is called. The dot operator picks the object s1.',
+          np:'s1.display() बोलाइयो। डट अपरेटरले s1 अब्जेक्ट छान्यो।'},
+{line:16, en:'display() runs using s1 data, so it prints Ram and 15.',
+          np:'display() ले s1 कै डाटा प्रयोग गर्‍यो, त्यसैले Ram र 15 छाप्यो।',
+          out:'Name: Ram, Roll: 15'},
+{line:17, en:'display() ends. Back in main().',
+          np:'display() सकियो। फेरि main() मा।'},
+{line:27, en:'s2.display() is called. The SAME function, but a different object.',
+          np:'s2.display() बोलाइयो। उही फङ्सन, तर फरक अब्जेक्ट।'},
+{line:16, en:'Now display() uses s2 data, so it prints Sita and 16.',
+          np:'अब display() ले s2 को डाटा प्रयोग गर्‍यो, त्यसैले Sita र 16 छाप्यो।',
+          out:'Name: Sita, Roll: 16'},
+{line:17, en:'display() ends again.',
+          np:'display() फेरि सकियो।'},
+{line:28, en:'return 0; main() is ending, so every local object must now be destroyed.',
+          np:'return 0; main() सकिँदैछ, त्यसैले सबै लोकल अब्जेक्ट अब नष्ट हुनुपर्छ।'},
+{line:18, en:'IMPORTANT: objects are destroyed in REVERSE order of creation. s2 was made last, so s2 is destroyed FIRST.',
+          np:'महत्त्वपूर्ण: अब्जेक्ट बनेको उल्टो क्रममा नष्ट हुन्छन्। s2 पछि बनेको थियो, त्यसैले s2 नै पहिले नष्ट हुन्छ।'},
+{line:19, en:'The destructor of s2 prints its message.',
+          np:'s2 को डिस्ट्रक्टरले आफ्नो सन्देश छाप्यो।',
+          out:'Destructor called for Sita'},
+{line:18, en:'Now the destructor of s1 runs — the object created first is destroyed last.',
+          np:'अब s1 को डिस्ट्रक्टर चल्यो — पहिले बनेको अब्जेक्ट अन्तिममा नष्ट हुन्छ।'},
+{line:19, en:'The destructor of s1 prints its message.',
+          np:'s1 को डिस्ट्रक्टरले आफ्नो सन्देश छाप्यो।',
+          out:'Destructor called for Ram'},
+{line:29, en:'The program ends. Notice: you never called the constructor or destructor yourself — C++ called both automatically.',
+          np:'प्रोग्राम सकियो। हेर्नुहोस्: तपाईंले कन्स्ट्रक्टर वा डिस्ट्रक्टर हातले बोलाउनु परेन — C++ ले आफैं बोलायो।'}
+  ]
+},
+{
+  title: 'Program 2 — Multilevel Inheritance (Animal → Dog → Puppy)',
+  desc: 'Only ONE object is created, but THREE constructors run. Watch the order carefully — this exact question is asked very often.',
+  descNp: 'एउटा मात्र अब्जेक्ट बन्छ, तर तीनवटा कन्स्ट्रक्टर चल्छन्। क्रम राम्ररी हेर्नुहोस् — यही प्रश्न परीक्षामा बारम्बार सोधिन्छ।',
+  code: [
+'#include <iostream>',
+'using namespace std;',
+'',
+'class Animal {                      // base class',
+'public:',
+'    Animal() {',
+'        cout << "Animal constructor" << endl;',
+'    }',
+'    void eat() {',
+'        cout << "I can eat" << endl;',
+'    }',
+'};',
+'',
+'class Dog : public Animal {         // derived from Animal',
+'public:',
+'    Dog() {',
+'        cout << "Dog constructor" << endl;',
+'    }',
+'    void bark() {',
+'        cout << "I can bark" << endl;',
+'    }',
+'};',
+'',
+'class Puppy : public Dog {          // derived from Dog',
+'public:',
+'    Puppy() {',
+'        cout << "Puppy constructor" << endl;',
+'    }',
+'    void weep() {',
+'        cout << "I can weep" << endl;',
+'    }',
+'};',
+'',
+'int main() {',
+'    Puppy p;',
+'    p.eat();',
+'    p.bark();',
+'    p.weep();',
+'    return 0;',
+'}'
+  ],
+  steps: [
+{line:34, en:'The program starts at main().',
+          np:'प्रोग्राम main() बाट सुरु भयो।'},
+{line:35, en:'ONE object p of class Puppy is created. But Puppy is built on top of Dog, and Dog is built on top of Animal.',
+          np:'Puppy क्लासको एउटा अब्जेक्ट p बन्यो। तर Puppy, Dog माथि बनेको छ र Dog, Animal माथि बनेको छ।'},
+{line:6,  en:'RULE: the constructor of the TOP-MOST base class runs first. So Animal() runs first.',
+          np:'नियम: सबैभन्दा माथिको base क्लासको कन्स्ट्रक्टर पहिले चल्छ। त्यसैले Animal() पहिले चल्यो।'},
+{line:7,  en:'Animal constructor prints its line.',
+          np:'Animal कन्स्ट्रक्टरले आफ्नो लाइन छाप्यो।',
+          out:'Animal constructor'},
+{line:16, en:'Next the middle class constructor Dog() runs.',
+          np:'त्यसपछि बीचको क्लास Dog() को कन्स्ट्रक्टर चल्यो।'},
+{line:17, en:'Dog constructor prints its line.',
+          np:'Dog कन्स्ट्रक्टरले आफ्नो लाइन छाप्यो।',
+          out:'Dog constructor'},
+{line:26, en:'Last of all, the constructor of the class we actually created — Puppy() — runs.',
+          np:'सबैभन्दा अन्त्यमा, हामीले साँच्चै बनाएको क्लास Puppy() को कन्स्ट्रक्टर चल्यो।'},
+{line:27, en:'Puppy constructor prints its line. The object p is now fully built.',
+          np:'Puppy कन्स्ट्रक्टरले आफ्नो लाइन छाप्यो। अब अब्जेक्ट p पूरै तयार भयो।',
+          out:'Puppy constructor'},
+{line:36, en:'p.eat() is called. Puppy has no eat() of its own, so C++ looks up to Dog, then up to Animal.',
+          np:'p.eat() बोलाइयो। Puppy सँग आफ्नै eat() छैन, त्यसैले C++ माथि Dog मा, अनि Animal मा खोज्छ।'},
+{line:10, en:'eat() is found in Animal and runs. This is inheritance working — code reused without rewriting.',
+          np:'eat() Animal मा भेटियो र चल्यो। यही इनहेरिटेन्सको काम हो — नलेखीकनै कोड पुनः प्रयोग।',
+          out:'I can eat'},
+{line:37, en:'p.bark() is called. It is not in Puppy, so C++ looks up to Dog.',
+          np:'p.bark() बोलाइयो। Puppy मा छैन, त्यसैले C++ माथि Dog मा हेर्छ।'},
+{line:20, en:'bark() is found in Dog and runs.',
+          np:'bark() Dog मा भेटियो र चल्यो।',
+          out:'I can bark'},
+{line:38, en:'p.weep() is called. This one belongs to Puppy itself.',
+          np:'p.weep() बोलाइयो। यो चाहिँ Puppy कै आफ्नो हो।'},
+{line:30, en:'weep() runs from Puppy.',
+          np:'Puppy बाट weep() चल्यो।',
+          out:'I can weep'},
+{line:39, en:'return 0; the program is ending. (Destructors, if written, would run in the reverse order: Puppy, then Dog, then Animal.)',
+          np:'return 0; प्रोग्राम सकिँदैछ। (डिस्ट्रक्टर लेखिएको भए उल्टो क्रममा चल्थ्यो: Puppy, अनि Dog, अनि Animal।)'},
+{line:40, en:'Program ends. One object, three constructors, and three functions coming from three different classes.',
+          np:'प्रोग्राम सकियो। एउटा अब्जेक्ट, तीन कन्स्ट्रक्टर, र तीन फरक क्लासबाट आएका तीन फङ्सन।'}
+  ]
+},
+{
+  title: 'Program 3 — Run-time Polymorphism using a virtual function',
+  desc: 'The SAME pointer and the SAME call p->draw() give two different outputs. Watch how C++ decides at run time by looking at the object, not the pointer.',
+  descNp: 'उही पोइन्टर र उही कल p->draw() ले दुई फरक आउटपुट दिन्छ। C++ ले पोइन्टर होइन, अब्जेक्ट हेरेर चल्दै गर्दा कसरी निर्णय गर्छ — हेर्नुहोस्।',
+  code: [
+'#include <iostream>',
+'using namespace std;',
+'',
+'class Shape {',
+'public:',
+'    virtual void draw() {           // virtual = late binding',
+'        cout << "Drawing a Shape" << endl;',
+'    }',
+'};',
+'',
+'class Circle : public Shape {',
+'public:',
+'    void draw() {                   // overriding',
+'        cout << "Drawing a Circle" << endl;',
+'    }',
+'};',
+'',
+'class Square : public Shape {',
+'public:',
+'    void draw() {                   // overriding',
+'        cout << "Drawing a Square" << endl;',
+'    }',
+'};',
+'',
+'int main() {',
+'    Shape *p;                       // base class pointer',
+'    Circle c;',
+'    Square s;',
+'',
+'    p = &c;',
+'    p->draw();',
+'',
+'    p = &s;',
+'    p->draw();',
+'',
+'    return 0;',
+'}'
+  ],
+  steps: [
+{line:25, en:'The program starts at main().',
+          np:'प्रोग्राम main() बाट सुरु भयो।'},
+{line:26, en:'p is declared as a pointer to Shape. It is empty right now — it points to nothing.',
+          np:'p लाई Shape को पोइन्टरका रूपमा घोषणा गरियो। अहिले यो खाली छ — कतै देखाउँदैन।'},
+{line:27, en:'A Circle object c is created in memory.',
+          np:'मेमोरीमा Circle अब्जेक्ट c बन्यो।'},
+{line:28, en:'A Square object s is created in memory.',
+          np:'मेमोरीमा Square अब्जेक्ट s बन्यो।'},
+{line:30, en:'p = &c;  The Shape pointer now stores the ADDRESS of the Circle object. This is allowed because Circle IS-A Shape.',
+          np:'p = &c;  अब Shape पोइन्टरसँग Circle अब्जेक्टको ठेगाना छ। Circle पनि एक प्रकारको Shape भएकाले यो मिल्छ।'},
+{line:31, en:'p->draw() is called. The arrow operator is used because p is a pointer.',
+          np:'p->draw() बोलाइयो। p पोइन्टर भएकाले एरो अपरेटर प्रयोग गरियो।'},
+{line:6,  en:'draw() is marked VIRTUAL in the base class. So C++ does NOT decide now — it waits and checks the real object at run time.',
+          np:'base क्लासमा draw() लाई VIRTUAL लेखिएको छ। त्यसैले C++ ले अहिले निर्णय गर्दैन — चल्दै गर्दा वास्तविक अब्जेक्ट हेर्छ।'},
+{line:13, en:'The real object is a Circle, so the OVERRIDDEN Circle::draw() is chosen — not the base one.',
+          np:'वास्तविक अब्जेक्ट Circle हो, त्यसैले override गरिएको Circle::draw() छानियो — base को होइन।'},
+{line:14, en:'Circle::draw() runs and prints its line.',
+          np:'Circle::draw() चल्यो र आफ्नो लाइन छाप्यो।',
+          out:'Drawing a Circle'},
+{line:33, en:'p = &s;  The SAME pointer p now stores the address of the Square object instead.',
+          np:'p = &s;  उही पोइन्टर p सँग अब Square अब्जेक्टको ठेगाना छ।'},
+{line:34, en:'p->draw() is called again — exactly the same line of code as before.',
+          np:'p->draw() फेरि बोलाइयो — ठ्याक्कै पहिलेकै लाइन।'},
+{line:6,  en:'Again C++ checks at run time which object p is really pointing to.',
+          np:'फेरि C++ ले चल्दै गर्दा p ले वास्तवमा कुन अब्जेक्ट देखाएको छ भनेर जाँच्यो।'},
+{line:20, en:'This time the object is a Square, so Square::draw() is chosen.',
+          np:'यस पटक अब्जेक्ट Square हो, त्यसैले Square::draw() छानियो।'},
+{line:21, en:'Square::draw() runs and prints a DIFFERENT line — from the same call.',
+          np:'Square::draw() चल्यो र उही कलबाट फरक लाइन छाप्यो।',
+          out:'Drawing a Square'},
+{line:35, en:'return 0; the program is ending.',
+          np:'return 0; प्रोग्राम सकिँदैछ।'},
+{line:6,  en:'EXAM POINT: if you delete the word "virtual" on this line, BOTH calls would print "Drawing a Shape", because C++ would then decide by the POINTER TYPE at compile time instead.',
+          np:'परीक्षा बुँदा: यो लाइनबाट "virtual" शब्द हटाए दुवै कलले "Drawing a Shape" छाप्थ्यो, किनकि तब C++ ले पोइन्टरको प्रकार हेरेर कम्पाइल गर्दै निर्णय गर्थ्यो।'},
+{line:36, en:'Program ends. One call, two outputs — that is run-time polymorphism.',
+          np:'प्रोग्राम सकियो। एउटै कल, दुई आउटपुट — यही run-time polymorphism हो।'}
+  ]
+}
+];
+
+var curProg = 0, curStep = 0;
+
+function loadProg(i){
+  curProg = i; curStep = 0;
+  for (var k = 0; k < PROGS.length; k++){
+    var b = document.getElementById('pgBtn' + k);
+    if (b) b.className = (k === i ? 'primary' : '');
+  }
+  var P = PROGS[i];
+  document.getElementById('progTitle').textContent  = P.title;
+  document.getElementById('progDesc').textContent   = P.desc;
+  document.getElementById('progDescNp').textContent = P.descNp;
+  resetTrace();
+}
+
+function resetTrace(){
+  curStep = 0;
+  var P = PROGS[curProg];
+  renderCode(document.getElementById('traceCode'), P.code, 0);
+  conClear(document.getElementById('traceCon'));
+  conLine(document.getElementById('traceCon'), '(console is empty — nothing has been printed yet)', 'muted');
+  document.getElementById('traceCapEn').innerHTML = 'Press <b>Next &#9656;</b> to run the first line.';
+  document.getElementById('traceCapNp').innerHTML = 'पहिलो लाइन चलाउन <b>Next &#9656;</b> थिच्नुहोस्।';
+  updateBar();
+}
+
+function stepTrace(dir){
+  var P = PROGS[curProg];
+  var n = curStep + dir;
+  if (n < 0 || n > P.steps.length) return;
+  curStep = n;
+  if (curStep === 0){ resetTrace(); return; }
+
+  renderCode(document.getElementById('traceCode'), P.code, P.steps[curStep - 1].line);
+
+  /* rebuild console from step 1 up to the current step (so Prev works correctly) */
+  var con = document.getElementById('traceCon');
+  conClear(con);
+  var any = false;
+  for (var i = 0; i < curStep; i++){
+    if (P.steps[i].out){ conLine(con, P.steps[i].out); any = true; }
+  }
+  if (!any) conLine(con, '(console is empty — nothing has been printed yet)', 'muted');
+
+  var s = P.steps[curStep - 1];
+  document.getElementById('traceCapEn').innerHTML =
+    '<b>Line ' + s.line + ':</b> ' + s.en + (s.out ? ' <span style="color:var(--green)">Output: ' + s.out + '</span>' : '');
+  document.getElementById('traceCapNp').innerHTML =
+    '<b>लाइन ' + s.line + ':</b> ' + s.np;
+  updateBar();
+}
+
+function updateBar(){
+  var P = PROGS[curProg];
+  document.getElementById('stepLbl').textContent = 'step ' + curStep + ' / ' + P.steps.length;
+  document.getElementById('stepFill').style.width = (curStep / P.steps.length * 100) + '%';
+  document.getElementById('btnPrev').disabled = (curStep === 0);
+  document.getElementById('btnNext').disabled = (curStep === P.steps.length);
+}
+
+loadProg(0);
+
+/* =========================================================
+   6. QUIZ
+   ========================================================= */
+var QUIZ = [
+{q:'Which data structure follows the LIFO (Last In, First Out) principle?',
+ o:['Queue','Stack','Tree','Graph'], a:1,
+ e:'A stack inserts and deletes at only one end called the top, so the last value pushed is the first one popped.',
+ n:'स्ट्याकले एउटै छेउ (top) बाट राख्छ र झिक्छ, त्यसैले अन्तिममा हालेको पहिले निस्कन्छ।'},
+
+{q:'If no access specifier is written inside a C++ class, the members are by default:',
+ o:['public','protected','private','static'], a:2,
+ e:'Members of a class are private by default. (In a struct they are public by default.)',
+ n:'क्लासका मेम्बर पूर्वनिर्धारित रूपमा private हुन्छन्। (struct मा चाहिँ public हुन्छन्।)'},
+
+{q:'Which of the following is NOT a linear data structure?',
+ o:['Array','Stack','Queue','Tree'], a:3,
+ e:'A tree is non-linear because it is hierarchical — one node can connect to many child nodes.',
+ n:'ट्री अरेखीय हो किनकि यो तह–तह मिलेको हुन्छ — एउटा नोड धेरै सन्तानसँग जोडिन सक्छ।'},
+
+{q:'A constructor in C++ has:',
+ o:['return type void','the same return type as the class','no return type at all','int as its return type'], a:2,
+ e:'A constructor has no return type — not even void. Its name must exactly match the class name.',
+ n:'कन्स्ट्रक्टरको return type हुँदैन — void पनि होइन। नाम क्लासकै नामसँग ठ्याक्कै मिल्नुपर्छ।'},
+
+{q:'Which symbol is written before a destructor name?',
+ o:['#','&','~','::'], a:2,
+ e:'A destructor is written as ~ClassName(). The tilde (~) marks it as a destructor.',
+ n:'डिस्ट्रक्टर ~ClassName() भनेर लेखिन्छ। टिल्ड (~) ले यो डिस्ट्रक्टर हो भन्ने जनाउँछ।'},
+
+{q:'Function overloading is an example of which type of polymorphism?',
+ o:['Run-time polymorphism','Compile-time polymorphism','Dynamic binding','Late binding'], a:1,
+ e:'In overloading the compiler picks the correct function from the arguments before the program runs, so it is compile-time (static) polymorphism.',
+ n:'Overloading मा कम्पाइलरले आर्गुमेन्ट हेरेर प्रोग्राम चल्नु अघि नै सही फङ्सन छान्छ, त्यसैले यो compile-time polymorphism हो।'},
+
+{q:'Function overriding is possible only when there is:',
+ o:['operator overloading','inheritance','a friend function','a static member'], a:1,
+ e:'Overriding means a derived class redefines a base class function, so a base and derived class — that is, inheritance — must exist.',
+ n:'Overriding मा derived क्लासले base क्लासको फङ्सन पुनः लेख्छ, त्यसैले base र derived क्लास — अर्थात् inheritance — हुनैपर्छ।'},
+
+{q:'In multilevel inheritance Animal → Dog → Puppy, when a Puppy object is created, which constructor runs FIRST?',
+ o:['Puppy constructor','Dog constructor','Animal constructor','All three run at the same time'], a:2,
+ e:'Base class constructors always run before derived ones, starting from the top-most base. So the order is Animal, then Dog, then Puppy.',
+ n:'Base क्लासको कन्स्ट्रक्टर सधैं derived भन्दा पहिले चल्छ, सबैभन्दा माथिबाट सुरु हुँदै। क्रम: Animal → Dog → Puppy।'},
+
+{q:'Which operator is used to define a member function outside its class?',
+ o:['Dot operator (.)','Arrow operator (->)','Scope resolution operator (::)','Insertion operator (<<)'], a:2,
+ e:'The scope resolution operator :: tells the compiler which class the function belongs to, e.g. void Student::display().',
+ n:'Scope resolution operator :: ले फङ्सन कुन क्लासको हो भनेर कम्पाइलरलाई बताउँछ, जस्तै void Student::display()।'},
+
+{q:'A collection of related records of the same entity is called a:',
+ o:['Field','Record','File','Attribute'], a:2,
+ e:'Fields make a record, and many related records together make a file.',
+ n:'फिल्डहरू मिलेर रेकर्ड बन्छ, र धेरै रेकर्ड मिलेर फाइल बन्छ।'},
+
+{q:'Which keyword makes run-time polymorphism possible in C++?',
+ o:['static','friend','virtual','inline'], a:2,
+ e:'A virtual function tells C++ to decide at run time, by looking at the actual object the base pointer points to.',
+ n:'virtual फङ्सनले C++ लाई चल्दै गर्दा, base पोइन्टरले देखाएको वास्तविक अब्जेक्ट हेरेर निर्णय गर्न लगाउँछ।'},
+
+{q:'Which statement about a class and an object is TRUE?',
+ o:['A class takes memory, an object does not','An object takes memory, a class does not','Both take memory','Neither takes memory'], a:1,
+ e:'A class is only a blueprint and takes no memory. Memory is allocated when an object is created from it.',
+ n:'क्लास केवल नक्सा हो, यसले मेमोरी लिँदैन। अब्जेक्ट बनेपछि मात्र मेमोरी छुट्याइन्छ।'},
+
+{q:'In a queue, insertion and deletion are done at which ends?',
+ o:['Insert at front, delete at rear','Insert at rear, delete at front','Both at the front','Both at the rear'], a:1,
+ e:'A queue follows FIFO: new elements join at the rear and elements leave from the front, like a line at a counter.',
+ n:'Queue ले FIFO मान्छ: नयाँ तत्त्व rear मा थपिन्छ र front बाट निस्कन्छ — काउन्टरको लाइन जस्तै।'},
+
+{q:'Binding data members and member functions together in one unit and hiding the data from outside is called:',
+ o:['Abstraction','Inheritance','Encapsulation','Polymorphism'], a:2,
+ e:'That is encapsulation (data hiding). Abstraction instead hides the complexity of HOW the work is done.',
+ n:'यो encapsulation (data hiding) हो। Abstraction ले चाहिँ काम "कसरी" हुन्छ भन्ने जटिलता लुकाउँछ।'},
+
+{q:'What is the output of this program?<br><span class="mono" style="color:var(--blue);font-size:.85rem">class A { public: A(){cout&lt;&lt;"A";} ~A(){cout&lt;&lt;"X";} };<br>int main(){ A a1; A a2; return 0; }</span>',
+ o:['AXAX','AAXX','AAX','XXAA'], a:1,
+ e:'Both constructors run first in creation order, printing AA. Then the destructors run in reverse order, printing XX. So the output is AAXX.',
+ n:'दुवै कन्स्ट्रक्टर बनेको क्रममा पहिले चल्छन् — AA छाप्छन्। अनि डिस्ट्रक्टर उल्टो क्रममा चल्छन् — XX छाप्छन्। त्यसैले आउटपुट AAXX हो।'}
+];
+
+var answered = [], score = 0;
+
+function buildQuiz(){
+  var box = document.getElementById('quizBox');
+  var h = '';
+  for (var i = 0; i < QUIZ.length; i++){
+    var Q = QUIZ[i];
+    h += '<div class="q" id="q' + i + '">';
+    h += '<div class="qn">QUESTION ' + (i + 1) + ' OF ' + QUIZ.length + '</div>';
+    h += '<h4>' + Q.q + '</h4>';
+    for (var j = 0; j < Q.o.length; j++){
+      h += '<button class="opt" id="o' + i + '_' + j + '" onclick="answer(' + i + ',' + j + ')">' +
+           String.fromCharCode(65 + j) + '. ' + Q.o[j] + '</button>';
+    }
+    h += '<div class="expl" id="e' + i + '"></div>';
+    h += '</div>';
+  }
+  box.innerHTML = h;
+  answered = []; score = 0;
+  document.getElementById('scoreBox').style.display = 'none';
+}
+
+function answer(i, j){
+  if (answered[i] !== undefined) return;
+  answered[i] = j;
+  var Q = QUIZ[i];
+  var correct = Q.a;
+  for (var k = 0; k < Q.o.length; k++){
+    var b = document.getElementById('o' + i + '_' + k);
+    b.disabled = true;
+    if (k === correct) b.className = 'opt right';
+    else if (k === j)  b.className = 'opt wrong';
+  }
+  if (j === correct) score++;
+  var e = document.getElementById('e' + i);
+  e.innerHTML = '<b style="color:' + (j === correct ? 'var(--green)' : 'var(--coral)') + '">' +
+                (j === correct ? 'Correct. ' : 'Not correct. The answer is ' + String.fromCharCode(65 + correct) + '. ') +
+                '</b>' + Q.e + '<span class="np-cell">' + Q.n + '</span>';
+  e.className = 'expl show';
+
+  var done = 0;
+  for (var m = 0; m < QUIZ.length; m++) if (answered[m] !== undefined) done++;
+  if (done === QUIZ.length) showScore();
+}
+
+function showScore(){
+  var box = document.getElementById('scoreBox');
+  document.getElementById('scoreNum').textContent = score + ' / ' + QUIZ.length;
+  var msg, msgNp;
+  var pct = score / QUIZ.length;
+  if (pct === 1)        { msg = 'Perfect. You are ready for this subject.';            msgNp = 'पूर्ण अंक! यो विषयका लागि तपाईं तयार हुनुहुन्छ।'; }
+  else if (pct >= 0.8)  { msg = 'Very good. Revise only the ones you missed.';          msgNp = 'धेरै राम्रो। गलत भएका मात्र फेरि हेर्नुहोस्।'; }
+  else if (pct >= 0.6)  { msg = 'Good start. Read the comparison tables once more.';    msgNp = 'राम्रो सुरुवात। तुलनात्मक तालिका फेरि एक पटक पढ्नुहोस्।'; }
+  else if (pct >= 0.4)  { msg = 'Keep going. Re-read Units 3, 5 and 6, then try again.';msgNp = 'हार नमान्नुहोस्। युनिट ३, ५ र ६ फेरि पढेर पुनः प्रयास गर्नुहोस्।'; }
+  else                  { msg = 'Start again from Unit 1 and use the Trace section slowly.'; msgNp = 'युनिट १ बाट फेरि सुरु गर्नुहोस् र Trace सेक्सन बिस्तारै चलाउनुहोस्।'; }
+  document.getElementById('scoreMsg').textContent   = msg;
+  document.getElementById('scoreMsgNp').textContent = msgNp;
+  box.style.display = 'block';
+  box.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function resetQuiz(){
+  buildQuiz();
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth'});
+}
+
+buildQuiz();
+</script>
+</body>
+</html>

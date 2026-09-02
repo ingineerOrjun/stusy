@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abstraction and Encapsulation — DS &amp; OOP with C++ | RGSC Study Board</title>
+<meta name="description" content="Abstraction and Encapsulation explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small>सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small>कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small>इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small>वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small>डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small>कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small>डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small>डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small>गृहपृष्ठ</small></a><h4>Grade 9 · कक्षा ९</h4><a href="../../grade9/index.html">All Grade 9 subjects <small>सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small>सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small>कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small>इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small>वेबसाइट डिजाइन</small></a><h4>Grade 10 · कक्षा १०</h4><a href="../../grade10/index.html">All Grade 10 subjects <small>सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small>डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small>कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small>डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small>डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><h4>Grade 11 · कक्षा ११</h4><a class="dis" href="#" onclick="return false">Coming in the next phase <small>अर्को चरणमा आउँदैछ</small></a><h4>Grade 12 · कक्षा १२</h4><a class="dis" href="#" onclick="return false">Coming in the next phase <small>अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DS &amp; OOP with C++</a> <span class="sep">/</span> <span>Abstraction and Encapsulation</span></nav>
+<main id="main">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Data Structure</a><a href="unit2.html">2 · OOP + C++</a><a href="unit3.html">3 · Class and Object</a><a href="unit4.html" style="color:var(--yellow);border-color:var(--yellow)">4 · Abstraction / Encapsulation</a><a href="unit5.html">5 · Inheritance</a><a href="unit6.html">6 · Polymorphism</a><a href="trace.html">▶ · Trace a Program</a><a href="tables.html">≠ · Tables & Terms</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="u4">
+  <div class="sec-head">
+    <div class="sec-num">4</div>
+    <div>
+      <h2>Abstraction and Encapsulation</h2>
+      <p class="sec-sub">एब्स्ट्र्याक्सन र इनक्याप्सुलेसन</p>
+    </div>
+    <span class="marks">7 hrs · 5 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h4>By the end of this unit you can…</h4>
+    <ol>
+      <li>Define abstraction and list its advantages.</li>
+      <li>Define encapsulation and list its advantages.</li>
+      <li>Write a C++ program that demonstrates each of them.</li>
+      <li>Explain clearly how the two differ — the question students most often get wrong.</li>
+      <li>Explain what an abstract class and a pure virtual function are.</li>
+    </ol>
+    <p class="np-cell"><b>यो युनिट सकिँदा:</b> दुवैको परिभाषा, फाइदा, C++ प्रोग्राम, दुईबीचको फरक,
+    र abstract class के हो भन्न सक्नुहुनेछ।</p>
+  </div>
+
+  <!-- ============ 4.1 ============ -->
+  <h3 class="topic" id="t41">4.1 &nbsp;Abstraction</h3>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Definition — learn this wording</span>
+      <p><b>Abstraction</b> means showing only the <b>essential features</b> of an object to the
+      user and <b>hiding the internal implementation details</b> — that is, hiding <i>how</i> the
+      work is actually done.</p>
+      <p>In C++ abstraction is achieved in two ways: using <b>classes with access specifiers</b>
+      (data and helper functions kept <span class="term">private</span>, only the useful functions
+      made <span class="term">public</span>), and at a higher level using <b>abstract classes</b>.</p>
+    </div>
+    <div class="np">
+      <span class="tag">परिभाषा — यही शब्द कण्ठ पार्नुहोस्</span>
+      <p><b>एब्स्ट्र्याक्सन</b> भनेको प्रयोगकर्तालाई <b>आवश्यक कुरा मात्र</b> देखाउने र
+      <b>भित्री काम कसरी हुन्छ भन्ने लुकाउने</b> हो।</p>
+      <p>C++ मा यो दुई तरिकाले हासिल गरिन्छ: <b>access specifier सहितको क्लास</b> (डाटा र सहायक
+      फङ्सन <span class="term">private</span>, काम लाग्ने फङ्सन मात्र
+      <span class="term">public</span>), र माथिल्लो तहमा <b>abstract class</b> मार्फत।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 720 270" role="img" aria-labelledby="t-abs">
+  <title id="t-abs">Abstraction hides how something works behind a simple interface</title>
+  <defs><marker id="a-abs" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ffd76e"/></marker></defs>
+  <text class="f-ttl" x="10" y="18">ABSTRACTION — you see the buttons, not the circuit</text>
+
+  <rect class="f-box" x="40" y="60" width="150" height="150" rx="10"/>
+  <text class="f-lbl-y" x="115" y="86">YOU (the user)</text>
+  <rect class="f-box-g" x="62" y="104" width="106" height="30" rx="15"/>
+  <text class="f-val" x="115" y="124" font-size="11">start()</text>
+  <rect class="f-box-g" x="62" y="144" width="106" height="30" rx="15"/>
+  <text class="f-val" x="115" y="164" font-size="11">stop()</text>
+  <text class="f-lbl" x="115" y="196" font-size="10">simple, safe buttons</text>
+
+  <path class="f-arr" marker-end="url(#a-abs)" d="M200,135 L268,135"/>
+  <text class="f-lbl-y" x="234" y="126" font-size="10">calls</text>
+
+  <rect class="f-box-d" x="280" y="52" width="200" height="166" rx="10"/>
+  <text class="f-lbl-y" x="380" y="76">THE WALL</text>
+  <text class="f-lbl" x="380" y="94" font-size="10">interface / abstraction layer</text>
+  <line class="f-ln" x1="300" y1="106" x2="460" y2="106" stroke-dasharray="4 3"/>
+  <text class="f-lbl" x="380" y="132" font-size="10">you cannot see past this</text>
+  <text class="f-lbl" x="380" y="160" font-size="26" fill="#ffd76e">🔒</text>
+
+  <rect class="f-box-c" x="500" y="60" width="190" height="150" rx="10"/>
+  <text class="f-lbl-y" x="595" y="86">HIDDEN INSIDE</text>
+  <text class="f-lbl" x="595" y="112" font-size="10">fuel injection logic</text>
+  <text class="f-lbl" x="595" y="132" font-size="10">spark timing</text>
+  <text class="f-lbl" x="595" y="152" font-size="10">temperature control</text>
+  <text class="f-lbl" x="595" y="172" font-size="10">400 lines of code</text>
+  <text class="f-lbl" x="595" y="196" font-size="10" fill="#ff8f7a">can change any time</text>
+
+  <text class="f-lbl-y" x="360" y="246">Because the buttons never change, the hidden code CAN be rewritten without breaking your program.</text>
+</svg>
+    <figcaption>You get simple, safe buttons. The complicated part stays behind a wall you cannot
+      see past — and because the buttons never change, the hidden part can be rewritten freely.
+      <span class="np-cell">तपाईंलाई सजिलो र सुरक्षित बटन मात्र दिइन्छ। जटिल भाग नदेखिने पर्खाल
+      पछाडि रहन्छ — बटन नफेरिने भएकाले भित्रको कोड जहिले पनि बदल्न सकिन्छ।</span>
+    </figcaption>
+  </figure>
+
+  <div class="callout an">
+    <div class="h">Real-world analogy — driving a car</div>
+    <p>To drive, you use the <b>steering wheel, accelerator and brake</b>. You do not need to know
+    about fuel injection, spark timing or the gearbox ratios.</p>
+    <p>The car <b>abstracts</b> all of that away. If the manufacturer redesigns the entire engine
+    next year, <b>you still drive it the same way</b> — because the interface (the controls) did
+    not change. That is the real benefit of abstraction in programming too.</p>
+    <span class="np-cell"><b>उदाहरण — गाडी चलाउनु।</b> तपाईंलाई स्टेरिङ, एक्सिलेटर र ब्रेक मात्र
+    चाहिन्छ; इन्जिन भित्र के हुन्छ थाहा पाउनु पर्दैन। भोलि कम्पनीले पूरै इन्जिन फेरे पनि
+    <b>तपाईंले उसैगरी चलाउनुहुन्छ</b> — किनकि नियन्त्रण (interface) फेरिएन। प्रोग्रामिङमा पनि
+    abstraction को साँचो फाइदा यही हो।</span>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Advantages of abstraction</span>
+      <ul class="tick">
+        <li><b>Reduces complexity</b> — the user sees a small, simple interface instead of thousands of lines.</li>
+        <li><b>Increases security</b> — internal data and helper functions cannot be misused.</li>
+        <li><b>Easy to change later</b> — the hidden code can be rewritten without breaking any program that uses it.</li>
+        <li><b>Improves reusability</b> — the same class can be used in many programs.</li>
+        <li><b>Avoids code duplication</b> and makes maintenance easier.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">एब्स्ट्र्याक्सनका फाइदा</span>
+      <ul class="tick">
+        <li><b>जटिलता घटाउँछ</b> — हजारौं लाइनको सट्टा सानो, सजिलो interface मात्र देखिन्छ।</li>
+        <li><b>सुरक्षा बढाउँछ</b> — भित्री डाटा र सहायक फङ्सनको दुरुपयोग हुँदैन।</li>
+        <li><b>पछि बदल्न सजिलो</b> — लुकेको कोड बदल्दा प्रयोग गर्ने प्रोग्राम बिग्रँदैन।</li>
+        <li><b>पुनः प्रयोग</b> — उही क्लास धेरै प्रोग्राममा चल्छ।</li>
+        <li>दोहोरो कोड हट्छ र मर्मत सजिलो हुन्छ।</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Achieving abstraction with a class</div>
+    <pre class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Calculator {
+private:
+    // hidden helper - the user never sees or calls this
+    int square(int x) {
+        return x * x;
+    }
+public:
+    // the only thing the user is given
+    int sumOfSquares(int a, int b) {
+        return square(a) + square(b);
+    }
+};
+
+int main() {
+    Calculator c;
+    cout &lt;&lt; c.sumOfSquares(3, 4);   // user just calls this
+    // c.square(3);   &lt;-- ERROR: square() is private
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">25</pre>
+    </div>
+    <p class="wex-note">The user calls one simple function and gets the answer. <i>How</i> it is
+    calculated — the private <span class="term">square()</span> helper — is completely hidden.
+    That is abstraction.
+    <span class="np-cell">प्रयोगकर्ताले एउटा सजिलो फङ्सन बोलाएर जवाफ पाउँछ। <i>कसरी</i> गणना भयो —
+    private <span class="term">square()</span> — पूरै लुकेको छ। यही abstraction हो।</span></p>
+  </div>
+
+  <h4 class="sub">Abstract class and pure virtual function</h4>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">The higher level of abstraction</span>
+      <p>A <b>pure virtual function</b> is a virtual function with <b>no body</b>, written by
+      putting <span class="term">= 0</span> after it. It is a promise that says "every child class
+      <b>must</b> provide this function".</p>
+      <p>A class that contains <b>at least one pure virtual function</b> is called an
+      <b>abstract class</b>. You <b>cannot create an object</b> of an abstract class — it exists
+      only to be inherited.</p>
+    </div>
+    <div class="np">
+      <span class="tag">माथिल्लो तहको abstraction</span>
+      <p><b>Pure virtual function</b> भनेको <b>शरीर नभएको</b> virtual फङ्सन हो, जसमा पछाडि
+      <span class="term">= 0</span> लेखिन्छ। यसले "हरेक सन्तान क्लासले यो फङ्सन <b>दिनैपर्छ</b>"
+      भन्ने वाचा गर्छ।</p>
+      <p><b>कम्तीमा एउटा</b> pure virtual function भएको क्लासलाई <b>abstract class</b> भनिन्छ।
+      यसको <b>अब्जेक्ट बनाउन मिल्दैन</b> — यो इनहेरिट गर्नकै लागि मात्र हुन्छ।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> An abstract class</div>
+    <pre class="cpp">
+class Shape {                     // ABSTRACT class
+public:
+    virtual void area() = 0;      // pure virtual function
+};
+
+class Circle : public Shape {
+public:
+    void area() {                 // MUST be provided
+        cout &lt;&lt; "Area of circle";
+    }
+};
+
+int main() {
+    // Shape s;      &lt;-- ERROR: cannot create an object of an abstract class
+    Circle c;        // this is fine
+    c.area();
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">Area of circle</pre>
+    </div>
+  </div>
+
+  <!-- ============ 4.4 ============ -->
+  <h3 class="topic" id="t44">4.4 &nbsp;Encapsulation</h3>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Definition — learn this wording</span>
+      <p><b>Encapsulation</b> means <b>binding data members and member functions together</b> into a
+      single unit (the class), and <b>hiding the data</b> from direct outside access by declaring it
+      <span class="term">private</span>.</p>
+      <p>Outside code must then go through <b>public functions</b> — usually called <b>setter</b>
+      and <b>getter</b> functions — to change or read that data. For this reason encapsulation is
+      also called <b>data hiding</b>.</p>
+    </div>
+    <div class="np">
+      <span class="tag">परिभाषा — यही शब्द कण्ठ पार्नुहोस्</span>
+      <p><b>इनक्याप्सुलेसन</b> भनेको डाटा मेम्बर र मेम्बर फङ्सनलाई <b>एउटै एकाइ (क्लास) मा बाँध्ने</b>
+      र डाटालाई <span class="term">private</span> बनाएर <b>बाहिरबाट सिधै छुन नदिने</b> हो।</p>
+      <p>त्यसपछि बाहिरको कोडले डाटा बदल्न वा पढ्न <b>public फङ्सन</b> (setter/getter) प्रयोग गर्नै
+      पर्छ। त्यसैले यसलाई <b>data hiding</b> पनि भनिन्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 720 280" role="img" aria-labelledby="t-enc">
+  <title id="t-enc">Encapsulation puts private data inside a capsule guarded by public functions</title>
+  <defs><marker id="a-enc" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#9ae6a0"/></marker></defs>
+  <defs><marker id="a-encx" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ff8f7a"/></marker></defs>
+  <text class="f-ttl" x="10" y="18">ENCAPSULATION — private data wrapped in a capsule of public functions</text>
+
+  <rect x="200" y="52" width="320" height="180" rx="90" fill="rgba(154,230,160,.05)" style="stroke:#9ae6a0;stroke-width:1.8"/>
+  <text class="f-lbl-y" x="360" y="78">class Account</text>
+
+  <rect class="f-box-c" x="290" y="112" width="140" height="58" rx="8"/>
+  <text class="f-val" x="360" y="136" font-size="12">balance</text>
+  <text class="f-lbl" x="360" y="156" font-size="10">PRIVATE — hidden</text>
+
+  <rect class="f-box-g" x="212" y="186" width="130" height="30" rx="15"/>
+  <text class="f-val" x="277" y="206" font-size="10">setBalance()</text>
+  <rect class="f-box-g" x="378" y="186" width="130" height="30" rx="15"/>
+  <text class="f-val" x="443" y="206" font-size="10">getBalance()</text>
+
+  <path class="f-arr" marker-end="url(#a-enc)" style="stroke:#9ae6a0" d="M110,200 L206,200"/>
+  <text class="f-lbl" x="70" y="196" fill="#9ae6a0">allowed</text>
+  <text class="f-lbl" x="70" y="212" font-size="10" fill="#9ae6a0">a.setBalance(5000)</text>
+
+  <path class="f-arr" marker-end="url(#a-encx)" style="stroke:#ff8f7a" d="M110,140 L284,140"/>
+  <text class="f-lbl" x="66" y="128" fill="#ff8f7a">BLOCKED</text>
+  <text class="f-lbl" x="60" y="112" font-size="10" fill="#ff8f7a">a.balance = -500</text>
+
+  <text class="f-lbl-y" x="360" y="256">The setter can REFUSE bad values (like a negative balance). That is why data hiding protects the program.</text>
+</svg>
+    <figcaption>The private data sits in a capsule. The only way in is through a public function
+      that can refuse a bad value.
+      <span class="np-cell">private डाटा क्याप्सुल भित्र हुन्छ। भित्र पस्ने एक मात्र बाटो public
+      फङ्सन हो, जसले गलत मान अस्वीकार गर्न सक्छ।</span>
+    </figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 3</span> Encapsulation with a setter that validates</div>
+    <pre class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Account {
+private:
+    double balance;                    // hidden data
+
+public:
+    void setBalance(double b) {        // setter - it can CHECK the value
+        if (b &gt;= 0)
+            balance = b;
+        else
+            cout &lt;&lt; "Invalid amount rejected" &lt;&lt; endl;
+    }
+    double getBalance() {              // getter - safe read only
+        return balance;
+    }
+};
+
+int main() {
+    Account a;
+    // a.balance = -500;    &lt;-- ERROR: balance is private
+    a.setBalance(-500);      // rejected by the setter
+    a.setBalance(5000);      // accepted
+    cout &lt;&lt; "Balance = " &lt;&lt; a.getBalance() &lt;&lt; endl;
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">Invalid amount rejected
+Balance = 5000</pre>
+    </div>
+    <p class="wex-note">This is the whole point of encapsulation. If
+    <span class="term">balance</span> were public, <span class="term">a.balance = -500;</span> would
+    have silently corrupted the account. The setter is a <b>guard</b> at the only door.
+    <span class="np-cell">encapsulation को मुख्य उद्देश्य यही हो। <span class="term">balance</span>
+    public भएको भए <span class="term">a.balance = -500;</span> ले चुपचाप खाता बिगार्थ्यो। setter
+    एउटै ढोकामा उभिएको <b>पहरेदार</b> हो।</span></p>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Advantages of encapsulation</span>
+      <ul class="tick">
+        <li><b>Data security</b> — data cannot be changed accidentally or wrongly from outside.</li>
+        <li><b>Full control</b> — the setter can validate the value before storing it.</li>
+        <li><b>Read-only or write-only access</b> — provide only a getter, or only a setter, as needed.</li>
+        <li><b>Easier maintenance and testing</b> — the class can be changed inside without affecting other code.</li>
+        <li><b>Achieves data hiding</b>, which is one of the main goals of OOP.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">इनक्याप्सुलेसनका फाइदा</span>
+      <ul class="tick">
+        <li><b>डाटा सुरक्षा</b> — बाहिरबाट गल्तीले डाटा बदलिन सक्दैन।</li>
+        <li><b>पूर्ण नियन्त्रण</b> — setter ले मान राख्नु अघि जाँच्न सक्छ।</li>
+        <li><b>पढ्ने मात्र वा लेख्ने मात्र</b> पहुँच दिन सकिन्छ।</li>
+        <li><b>मर्मत र परीक्षण सजिलो</b> — भित्र बदल्दा अरू कोडमा असर पर्दैन।</li>
+        <li><b>Data hiding</b> हासिल हुन्छ, जुन OOP कै मुख्य लक्ष्य हो।</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ COMPARISON ============ -->
+  <h3 class="topic" id="t4c">The difference students always get wrong</h3>
+
+  <div class="callout">
+    <div class="h">Say it in one line each</div>
+    <p><b>Abstraction hides the complexity — the "how".</b><br>
+    <b>Encapsulation hides the data — the "what".</b></p>
+    <p>Abstraction is a <b>design</b> idea: decide what to show. Encapsulation is an
+    <b>implementation</b> idea: actually protect the data using
+    <span class="term">private</span> plus getters and setters.</p>
+    <span class="np-cell"><b>Abstraction</b> ले जटिलता ("कसरी" गर्ने) लुकाउँछ।
+    <b>Encapsulation</b> ले डाटा ("के" छ) लुकाउँछ। एउटा <b>डिजाइन</b> को कुरा, अर्को
+    <b>कार्यान्वयन/सुरक्षा</b> को कुरा।</span>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Abstraction</th><th>Encapsulation</th></tr></thead>
+      <tbody>
+        <tr><td class="k">What it hides</td><td>Hides the <b>complexity / implementation</b> — the "how".</td><td>Hides the <b>data</b> — the "what".</td></tr>
+        <tr><td class="k">Level</td><td>A <b>design-level</b> idea.</td><td>An <b>implementation-level</b> idea.</td></tr>
+        <tr><td class="k">Achieved by</td><td>Abstract classes and <b>pure virtual functions</b>; access specifiers.</td><td><b>private</b> data with <b>public</b> getter and setter functions.</td></tr>
+        <tr><td class="k">Focus</td><td>Focuses on <b>what</b> an object does.</td><td>Focuses on <b>how</b> the data is protected.</td></tr>
+        <tr><td class="k">Purpose</td><td>To reduce complexity for the user.</td><td>To secure the data from misuse.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mistake">
+    <div class="h">Common mistake</div>
+    Writing "both hide something, so they are the same". They are <b>not</b>. In the
+    <span class="term">Account</span> example above, <b>encapsulation</b> is
+    <span class="term">balance</span> being private. <b>Abstraction</b> is the user being given only
+    <span class="term">setBalance()</span> and <span class="term">getBalance()</span> and never
+    needing to know what happens inside them.
+    <span class="np-cell">"दुवैले केही लुकाउँछन्, त्यसैले उस्तै हुन्" भन्नु गलत।
+    माथिको <span class="term">Account</span> उदाहरणमा — <span class="term">balance</span> private
+    हुनु <b>encapsulation</b> हो; प्रयोगकर्तालाई <span class="term">setBalance()</span> र
+    <span class="term">getBalance()</span> मात्र दिनु र भित्र के हुन्छ थाहा नदिनु
+    <b>abstraction</b> हो।</span>
+  </div>
+
+  <!-- ---------- EXAM FOCUS ---------- -->
+  <h3 class="topic" id="exam4">Exam focus — questions asked from this unit</h3>
+
+  <div class="examq">
+    <div class="q-h">Q1 · Define abstraction. Write any three advantages. <span class="mk">[4 marks]</span></div>
+    <button class="btn-ans" data-answer="d1">Show the answer</button>
+    <div class="ans" id="d1">
+      <p>Abstraction is the process of showing only the essential features of an object to the user
+      while hiding the internal implementation details of how the work is done.</p>
+      <p>Advantages: it reduces complexity for the user; it increases security because internal
+      details cannot be misused; and the internal code can be changed later without affecting the
+      programs that use the class.</p>
+      <span class="np-cell">परिभाषा + कुनै तीन फाइदा। गाडीको उदाहरण दिए झन् राम्रो।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q2 · What is encapsulation? Write a C++ program to demonstrate it. <span class="mk">[5 marks]</span></div>
+    <button class="btn-ans" data-answer="d2">Show the answer</button>
+    <div class="ans" id="d2">
+      <p>Encapsulation is the process of binding data members and member functions together into a
+      single unit called a class, and hiding the data from direct outside access by declaring it
+      private. It is also known as data hiding.</p>
+      <p>For the program, write the <span class="term">Account</span> class from Example 3 above:
+      a private <span class="term">balance</span>, a public
+      <span class="term">setBalance()</span> and a public <span class="term">getBalance()</span>,
+      with <span class="term">main()</span> creating an object and using the two functions.</p>
+      <span class="np-cell">परिभाषा + माथिको Example 3 कै प्रोग्राम लेख्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q3 · Differentiate between abstraction and encapsulation. <span class="mk">[4 marks]</span></div>
+    <button class="btn-ans" data-answer="d3">Show the answer</button>
+    <div class="ans" id="d3">
+      <p>Abstraction hides the complexity or implementation — the "how" — and is a design-level
+      concept achieved through abstract classes and access specifiers; it focuses on what an object
+      does. Encapsulation hides the data — the "what" — and is an implementation-level concept
+      achieved by making data private and providing public getters and setters; it focuses on
+      protecting the data.</p>
+      <span class="np-cell">तालिकाको रूपमा चार हरफ लेख्नुहोस्: के लुकाउँछ, कुन तह, कसरी हासिल हुन्छ, केमा ध्यान।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q4 · What is an abstract class? <span class="mk">[2 marks]</span></div>
+    <button class="btn-ans" data-answer="d4">Show the answer</button>
+    <div class="ans" id="d4">
+      <p>An abstract class is a class that contains at least one pure virtual function — a virtual
+      function with no body, declared using <span class="term">= 0</span>. An object of an abstract
+      class cannot be created; it exists only to be inherited, and every derived class must provide
+      a definition for the pure virtual function.</p>
+      <span class="np-cell">pure virtual function भएको क्लास; यसको अब्जेक्ट बन्दैन।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h4>Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h4>
+    <ul>
+      <li><b>Abstraction</b> = show essential features, hide implementation (<b>the "how"</b>).</li>
+      <li><b>Encapsulation</b> = bind data + functions together and hide the data (<b>the "what"</b>).</li>
+      <li>Encapsulation is achieved by <b>private data + public getter/setter</b>.</li>
+      <li>Encapsulation is also called <b>data hiding</b>.</li>
+      <li>A <b>pure virtual function</b> has no body and is written <span class="term">= 0</span>.</li>
+      <li>A class with at least one pure virtual function is an <b>abstract class</b> — <b>no object can be created</b> from it.</li>
+      <li>Abstraction = design level. Encapsulation = implementation level.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit3.html"><span class="lab">◂ Previous</span><span class="ttl">Class and Object</span></a><a class="nx" href="unit5.html"><span class="lab">Next ▸</span><span class="ttl">Inheritance</span></a></div>
+<footer>
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  <span class="np-cell">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/snippets.js"></script>
+</body>
+</html>

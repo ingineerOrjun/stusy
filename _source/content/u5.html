@@ -1,0 +1,430 @@
+<section id="u5">
+  <div class="sec-head">
+    <div class="sec-num">5</div>
+    <div>
+      <h2>Inheritance</h2>
+      <p class="sec-sub">इनहेरिटेन्स — गुण सर्ने प्रक्रिया</p>
+    </div>
+    <span class="marks">10 hrs · 7 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h4>By the end of this unit you can…</h4>
+    <ol>
+      <li>Define inheritance and explain base class and derived class.</li>
+      <li>Write the syntax of inheritance and name the three modes.</li>
+      <li>Draw and explain all <b>five</b> types of inheritance.</li>
+      <li>Say what happens to public, protected and private members under each mode.</li>
+      <li>Predict the order in which constructors and destructors run.</li>
+      <li>Explain the diamond problem and how a virtual base class solves it.</li>
+    </ol>
+    <p class="np-cell"><b>यो युनिट सकिँदा:</b> परिभाषा, syntax, पाँचै प्रकारको चित्र, access मोडको
+    असर, कन्स्ट्रक्टरको क्रम, र diamond problem भन्न सक्नुहुनेछ।</p>
+  </div>
+
+  <!-- ============ 5.1 ============ -->
+  <h3 class="topic" id="t51">5.1 &nbsp;What is Inheritance?</h3>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Definition — learn this wording</span>
+      <p><b>Inheritance</b> is the process by which one class <b>acquires (gets) the properties and
+      member functions of another class</b>.</p>
+      <p>The class that <b>gives</b> its features is the <b>base class</b> (also called parent or
+      super class). The class that <b>receives</b> them is the <b>derived class</b> (also called
+      child or sub class).</p>
+      <p>The main purpose is <b>reusability of code</b> — common code is written once in the base
+      class and reused by every derived class.</p>
+      <p>Inheritance represents an <b>"IS-A" relationship</b>: a Dog IS-A Animal, a Circle IS-A
+      Shape. If you cannot say "IS-A", inheritance is probably the wrong tool.</p>
+    </div>
+    <div class="np">
+      <span class="tag">परिभाषा — यही शब्द कण्ठ पार्नुहोस्</span>
+      <p><b>इनहेरिटेन्स</b> भनेको एउटा क्लासले अर्को क्लासका <b>गुण र मेम्बर फङ्सन प्राप्त गर्ने</b>
+      प्रक्रिया हो।</p>
+      <p>गुण <b>दिने</b> क्लास <b>base class</b> (बाबु/parent) हो। गुण <b>पाउने</b> क्लास
+      <b>derived class</b> (छोरा/child) हो।</p>
+      <p>मुख्य उद्देश्य <b>कोडको पुनः प्रयोग</b> हो — साझा कोड एक पटक base मा लेख्ने र सबै derived
+      क्लासमा चलाउने।</p>
+      <p>इनहेरिटेन्सले <b>"IS-A" सम्बन्ध</b> जनाउँछ: Dog एक प्रकारको Animal हो, Circle एक प्रकारको
+      Shape हो।</p>
+    </div>
+  </div>
+
+  <div class="callout an">
+    <div class="h">Real-world analogy — a family</div>
+    <p>A <b>child</b> inherits eye colour, surname and blood group from a <b>parent</b>, and also
+    has qualities of their own.</p>
+    <p>But the child does <b>not</b> get everything. The parent's <b>private</b> members are like a
+    personal diary — it exists inside the parent, but the child cannot open it directly. That is
+    exactly how <span class="term">private</span> behaves in inheritance.</p>
+    <span class="np-cell"><b>उदाहरण — परिवार।</b> <b>छोराले</b> बाबुबाट आँखाको रङ, थर र रगतको समूह
+    पाउँछ, र आफ्नै छुट्टै गुण पनि राख्छ। तर सबै कुरा पाउँदैन — बाबुको <b>private</b> मेम्बर
+    व्यक्तिगत डायरी जस्तै हो: छ त, तर छोराले सिधै खोल्न पाउँदैन।</span>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Advantages of inheritance</span>
+      <ul class="tick">
+        <li><b>Reusability</b> — common code is written once and reused by every child class.</li>
+        <li><b>Saves time and reduces code size</b> — no duplication.</li>
+        <li><b>Easy to extend</b> — new features go in a derived class without touching the tested base class.</li>
+        <li><b>Supports polymorphism</b> — function overriding is impossible without inheritance.</li>
+        <li><b>Better structure</b> — the parent–child relationship models the real world clearly.</li>
+        <li><b>Easier maintenance</b> — fixing a bug in the base class fixes it for every derived class at once.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">इनहेरिटेन्सका फाइदा</span>
+      <ul class="tick">
+        <li><b>पुनः प्रयोग</b> — साझा कोड एक पटक लेखेर सबै सन्तान क्लासमा चलाइन्छ।</li>
+        <li><b>समय र कोड बचत</b> — दोहोरो लेख्नु पर्दैन।</li>
+        <li><b>सजिलो विस्तार</b> — परीक्षण भइसकेको base नछोई derived मा नयाँ सुविधा थपिन्छ।</li>
+        <li><b>Polymorphism सम्भव बनाउँछ</b> — inheritance बिना overriding हुँदैन।</li>
+        <li><b>राम्रो संरचना</b> — बाबु–छोराको सम्बन्धले वास्तविक संसार प्रस्ट देखाउँछ।</li>
+        <li><b>सजिलो मर्मत</b> — base मा गल्ती सुधार्दा सबै derived क्लासमा एकैचोटि सुधार हुन्छ।</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ 5.4 ============ -->
+  <h3 class="topic" id="t54">5.4 &nbsp;Syntax of Inheritance</h3>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> The basic syntax, with output</div>
+    <pre class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Base {              // base / parent class
+public:
+    void greet() { cout &lt;&lt; "Hello from Base" &lt;&lt; endl; }
+};
+
+class Derived : public Base {     // &lt;-- mode : base class name
+public:
+    void hi() { cout &lt;&lt; "Hello from Derived" &lt;&lt; endl; }
+};
+
+int main() {
+    Derived d;
+    d.greet();      // inherited from Base
+    d.hi();         // its own function
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">Hello from Base
+Hello from Derived</pre>
+    </div>
+    <p class="wex-note">Object <span class="term">d</span> is a <span class="term">Derived</span>,
+    yet it can call <span class="term">greet()</span> which was never written inside
+    <span class="term">Derived</span>. That is inheritance doing its job.
+    <span class="np-cell">अब्जेक्ट <span class="term">d</span> चाहिँ
+    <span class="term">Derived</span> हो, तर <span class="term">Derived</span> भित्र कहिल्यै
+    नलेखिएको <span class="term">greet()</span> बोलाउन सक्छ। यही इनहेरिटेन्सको काम हो।</span></p>
+  </div>
+
+  <p class="lead-sub">The word after the colon (<span class="term">:</span>) is the <b>mode of
+  inheritance</b> — <span class="term">public</span>, <span class="term">protected</span> or
+  <span class="term">private</span>. If you write nothing, a <span class="term">class</span>
+  defaults to <b>private</b> inheritance (a <span class="term">struct</span> defaults to public).
+  In practice, <span class="term">public</span> is used almost always.</p>
+
+  <h4 class="sub">What the derived class actually receives</h4>
+  <figure class="fig">
+    {{dia:inhAccess}}
+    <figcaption>The one rule that never changes: private members are never inherited, in any mode.
+      <span class="np-cell">कहिल्यै नफेरिने नियम: private मेम्बर कुनै पनि मोडमा इनहेरिट हुँदैन।</span>
+    </figcaption>
+  </figure>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr>
+        <th style="width:150px">Base member is…</th><th>public inheritance</th><th>protected inheritance</th><th>private inheritance</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="k">public</td><td>stays <b>public</b></td><td>becomes <b>protected</b></td><td>becomes <b>private</b></td></tr>
+        <tr><td class="k">protected</td><td>stays <b>protected</b></td><td>stays <b>protected</b></td><td>becomes <b>private</b></td></tr>
+        <tr><td class="k">private</td><td colspan="3"><b>Never inherited / not accessible</b> in the derived class, in any mode.
+          <span class="np-cell">कुनै पनि मोडमा derived क्लासले base को private मेम्बर सिधै प्रयोग गर्न पाउँदैन।</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mistake">
+    <div class="h">Common mistake</div>
+    Trying to use a base class <span class="term">private</span> member inside the derived class:
+    <pre class="cpp" data-nonum>class A { private: int x; };
+class B : public A {
+public:
+    void show() { cout &lt;&lt; x; }   // ERROR: x is private in A
+};</pre>
+    If a child class needs it, the base must declare it <span class="term">protected</span>, not
+    <span class="term">private</span>.
+    <span class="np-cell">base को <span class="term">private</span> मेम्बर derived भित्र प्रयोग
+    गर्न खोज्नु गल्ती हो। सन्तानलाई चाहिन्छ भने base मा <span class="term">protected</span>
+    लेख्नुपर्छ, <span class="term">private</span> होइन।</span>
+  </div>
+
+  <!-- ============ 5.5 ============ -->
+  <h3 class="topic" id="t55">5.5 &nbsp;Types of Inheritance</h3>
+  <p class="lead-sub">Five types. The exam very often says "explain the types of inheritance with
+  diagrams" — so learn to draw each shape as well as write its syntax.</p>
+
+  <figure class="fig">
+    {{dia:inhTypes}}
+    <figcaption>All five types, plus the diamond problem that hybrid inheritance can create.
+      <span class="np-cell">पाँचै प्रकार, र hybrid inheritance ले ल्याउन सक्ने diamond problem।</span>
+    </figcaption>
+  </figure>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:170px">Type</th><th>Meaning</th><th style="width:250px">Syntax</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Single</td>
+          <td><b>One base class → one derived class.</b> The simplest form.
+            <span class="np-cell">एउटा base बाट एउटा derived क्लास।</span></td>
+          <td class="k">class B : public A { };</td></tr>
+        <tr><td class="k">Multilevel</td>
+          <td>A <b>chain</b> — a derived class itself becomes the base of another class.
+            Grandparent → parent → child.
+            <span class="np-cell">शृंखला — derived क्लास आफैं अर्कोको base बन्छ।</span></td>
+          <td class="k">class B : public A { };<br>class C : public B { };</td></tr>
+        <tr><td class="k">Multiple</td>
+          <td><b>Two or more base classes → one derived class.</b> The bases are separated by commas.
+            <span class="np-cell">दुई वा बढी base बाट एउटा derived क्लास।</span></td>
+          <td class="k">class C : public A, public B { };</td></tr>
+        <tr><td class="k">Hierarchical</td>
+          <td><b>One base class → many derived classes.</b> Several children share one parent.
+            <span class="np-cell">एउटा base बाट धेरै derived क्लास।</span></td>
+          <td class="k">class B : public A { };<br>class C : public A { };</td></tr>
+        <tr><td class="k">Hybrid</td>
+          <td>A <b>combination of two or more</b> of the above types — for example hierarchical
+            plus multiple. This can create the <b>diamond problem</b>.
+            <span class="np-cell">माथिका दुई वा बढी प्रकारको मिश्रण।</span></td>
+          <td class="k">combination of the above</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Multiple inheritance — two bases, one derived</div>
+    <pre class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Father {
+public:
+    void height() { cout &lt;&lt; "Tall from father" &lt;&lt; endl; }
+};
+
+class Mother {
+public:
+    void colour() { cout &lt;&lt; "Fair from mother" &lt;&lt; endl; }
+};
+
+class Child : public Father, public Mother {   // TWO bases
+public:
+    void own() { cout &lt;&lt; "Smart on my own" &lt;&lt; endl; }
+};
+
+int main() {
+    Child c;
+    c.height();     // from Father
+    c.colour();     // from Mother
+    c.own();        // its own
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">Tall from father
+Fair from mother
+Smart on my own</pre>
+    </div>
+  </div>
+
+  <h4 class="sub">The diamond problem and virtual base class</h4>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">The problem</span>
+      <p>In hybrid inheritance, suppose <b>B</b> and <b>C</b> both inherit from <b>A</b>, and
+      <b>D</b> inherits from both B and C.</p>
+      <p>D then receives <b>two copies</b> of everything in A — one through B and one through C.
+      When you write <span class="term">d.show()</span> the compiler cannot decide which copy to
+      use, and reports an <b>ambiguity error</b>. Because the diagram is diamond-shaped, this is
+      called the <b>diamond problem</b>.</p>
+    </div>
+    <div class="np">
+      <span class="tag">समस्या</span>
+      <p>Hybrid inheritance मा मानौं <b>B</b> र <b>C</b> दुवैले <b>A</b> बाट इनहेरिट गर्छन्, र
+      <b>D</b> ले B र C दुवैबाट।</p>
+      <p>तब D ले A का सबै कुराको <b>दुई प्रति</b> पाउँछ — एउटा B बाट, अर्को C बाट।
+      <span class="term">d.show()</span> लेख्दा कम्पाइलरले कुन प्रति चलाउने भन्ने निर्णय गर्न
+      सक्दैन र <b>ambiguity error</b> देखाउँछ। चित्र हीरा जस्तो देखिने भएकाले यसलाई
+      <b>diamond problem</b> भनिन्छ।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 3</span> Solving it with a virtual base class</div>
+    <pre class="cpp">
+class A {
+public:
+    void show() { cout &lt;&lt; "From A"; }
+};
+
+class B : virtual public A { };    // &lt;-- virtual
+class C : virtual public A { };    // &lt;-- virtual
+
+class D : public B, public C { };
+
+int main() {
+    D d;
+    d.show();     // now unambiguous - only ONE copy of A exists
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">From A</pre>
+    </div>
+    <p class="wex-note">The keyword <span class="term">virtual</span> tells C++ to keep only
+    <b>one shared copy</b> of A, so the ambiguity disappears. A base class declared this way is
+    called a <b>virtual base class</b>.
+    <span class="np-cell"><span class="term">virtual</span> शब्दले C++ लाई A को <b>एउटै साझा
+    प्रति</b> राख्न भन्छ, त्यसैले अलमल हट्छ। यसरी घोषित base क्लासलाई <b>virtual base class</b>
+    भनिन्छ।</span></p>
+  </div>
+
+  <!-- ============ CONSTRUCTOR ORDER ============ -->
+  <h3 class="topic" id="t5c">Constructor and destructor order — asked very often</h3>
+
+  <figure class="fig">
+    {{dia:ctorOrder}}
+    <figcaption>One object, three constructors. Base first going down, derived first coming back up.
+      <span class="np-cell">एउटा अब्जेक्ट, तीन कन्स्ट्रक्टर। बन्दा base पहिले, नष्ट हुँदा derived पहिले।</span>
+    </figcaption>
+  </figure>
+
+  <div class="callout">
+    <div class="h">The rule in one line</div>
+    When a derived object is created, the <b>base class constructor runs FIRST</b>, then the
+    derived constructor. Destructors run in the <b>exact reverse</b>: derived destructor first,
+    then base destructor.
+    <span class="np-cell">derived अब्जेक्ट बन्दा <b>पहिले base को कन्स्ट्रक्टर</b> चल्छ, अनि derived को।
+    डिस्ट्रक्टर <b>ठ्याक्कै उल्टो</b> — पहिले derived, अनि base।</span>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 4</span> Proving the order — predict this output before you read it</div>
+    <pre class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class A {
+public:
+    A() { cout &lt;&lt; "A constructor" &lt;&lt; endl; }
+    ~A() { cout &lt;&lt; "A destructor" &lt;&lt; endl; }
+};
+
+class B : public A {
+public:
+    B() { cout &lt;&lt; "B constructor" &lt;&lt; endl; }
+    ~B() { cout &lt;&lt; "B destructor" &lt;&lt; endl; }
+};
+
+int main() {
+    B obj;          // only ONE object is created
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">A constructor
+B constructor
+B destructor
+A destructor</pre>
+    </div>
+    <p class="wex-note">Four lines from one object. The base is built first (you cannot build the
+    first floor before the ground floor) and destroyed last.
+    <span class="np-cell">एउटै अब्जेक्टबाट चार लाइन। base पहिले बन्छ (भुइँतला नबनाई पहिलो तला
+    बन्दैन) र अन्तिममा भत्किन्छ।</span></p>
+  </div>
+
+  <!-- ---------- EXAM FOCUS ---------- -->
+  <h3 class="topic" id="exam5">Exam focus — questions asked from this unit</h3>
+
+  <div class="examq">
+    <div class="q-h">Q1 · Define inheritance. Explain base class and derived class with syntax. <span class="mk">[4 marks]</span></div>
+    <button class="btn-ans" data-answer="e1">Show the answer</button>
+    <div class="ans" id="e1">
+      <p>Inheritance is the process by which one class acquires the properties and member functions
+      of another class. The class whose features are inherited is called the base class (parent),
+      and the class that inherits them is called the derived class (child). The main purpose is
+      reusability of code.</p>
+      <p>Syntax: <span class="term">class Derived : access_mode Base { … };</span> for example
+      <span class="term">class Dog : public Animal { };</span></p>
+      <span class="np-cell">परिभाषा + base/derived + syntax — तीनै लेख्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q2 · Explain the types of inheritance with suitable diagrams. <span class="mk">[6 marks]</span></div>
+    <button class="btn-ans" data-answer="e2">Show the answer</button>
+    <div class="ans" id="e2">
+      <p>Draw all five diagrams and give one line each:</p>
+      <p><b>Single</b> — one base, one derived (A → B).<br>
+      <b>Multilevel</b> — a chain where a derived class becomes a base (A → B → C).<br>
+      <b>Multiple</b> — two or more bases, one derived (A and B → C).<br>
+      <b>Hierarchical</b> — one base, many derived (A → B and A → C).<br>
+      <b>Hybrid</b> — a combination of two or more of the above; may cause the diamond problem,
+      solved with a virtual base class.</p>
+      <span class="np-cell">पाँचै चित्र कोर्नुहोस् र एक–एक लाइन व्याख्या दिनुहोस्। चित्र बिना पूरा अंक आउँदैन।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q3 · What is the output of the given program? (base and derived constructors) <span class="mk">[3 marks]</span></div>
+    <button class="btn-ans" data-answer="e3">Show the answer</button>
+    <div class="ans" id="e3">
+      <p>Apply the rule: base class constructor first, then derived; destructors in exact reverse
+      order. For a two-level program the answer is: A constructor, B constructor, B destructor,
+      A destructor.</p>
+      <p>For a three-level chain (Animal → Dog → Puppy) it is: Animal, Dog, Puppy going in and
+      ~Puppy, ~Dog, ~Animal coming out.</p>
+      <span class="np-cell">नियम लगाउनुहोस्: बन्दा माथिबाट तल, नष्ट हुँदा तलबाट माथि।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q4 · What is the diamond problem? How is it solved? <span class="mk">[3 marks]</span></div>
+    <button class="btn-ans" data-answer="e4">Show the answer</button>
+    <div class="ans" id="e4">
+      <p>In hybrid inheritance, when two classes B and C both inherit from the same base A, and a
+      fourth class D inherits from both B and C, class D receives two copies of A's members. The
+      compiler cannot decide which copy to use, causing an ambiguity error. This is called the
+      diamond problem.</p>
+      <p>It is solved by declaring A as a <b>virtual base class</b>:
+      <span class="term">class B : virtual public A { };</span> — then only one shared copy of A
+      exists.</p>
+      <span class="np-cell">समस्या + <span class="term">virtual</span> कीवर्डको समाधान — दुवै लेख्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h4>Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h4>
+    <ul>
+      <li>Inheritance = one class <b>acquires the properties and functions</b> of another. Purpose: <b>reusability</b>.</li>
+      <li>Base = parent = gives. Derived = child = receives. Relationship is <b>IS-A</b>.</li>
+      <li>Syntax: <span class="term">class Derived : public Base { };</span> — the word after <span class="term">:</span> is the mode.</li>
+      <li>Five types: <b>single, multilevel, multiple, hierarchical, hybrid</b> — be able to draw all five.</li>
+      <li><b>private members are NEVER inherited</b>, in any mode. Use <span class="term">protected</span> if the child needs access.</li>
+      <li>Default inheritance mode for a <span class="term">class</span> is <b>private</b>.</li>
+      <li>Constructors: <b>base first, then derived</b>. Destructors: <b>exact reverse</b>.</li>
+      <li><b>Diamond problem</b> comes from hybrid inheritance; solved by a <b>virtual base class</b>.</li>
+    </ul>
+  </div>
+</section>

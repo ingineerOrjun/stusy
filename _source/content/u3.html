@@ -1,0 +1,415 @@
+<section id="u3">
+  <div class="sec-head">
+    <div class="sec-num">3</div>
+    <div>
+      <h2>Class and Object</h2>
+      <p class="sec-sub">क्लास र अब्जेक्ट</p>
+    </div>
+    <span class="marks">7 hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h4>By the end of this unit you can…</h4>
+    <ol>
+      <li>Define a class and an object, and explain the difference between them.</li>
+      <li>Explain <span class="term">private</span>, <span class="term">public</span> and <span class="term">protected</span>, and say which is the default.</li>
+      <li>Declare a class with data members and member functions, and create objects from it.</li>
+      <li>Define a member function outside the class using the scope resolution operator.</li>
+      <li>Explain constructors and destructors, and predict the order in which they run.</li>
+    </ol>
+    <p class="np-cell"><b>यो युनिट सकिँदा:</b> क्लास र अब्जेक्टको फरक, तीन access specifier,
+    क्लास घोषणा, <span class="term">::</span> को प्रयोग, र कन्स्ट्रक्टर–डिस्ट्रक्टरको क्रम
+    भन्न सक्नुहुनेछ।</p>
+  </div>
+
+  <!-- ============ 3.1 ============ -->
+  <h3 class="topic" id="t31">3.1 &nbsp;Class and Object</h3>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Class</span>
+      <p>A <b>class</b> is a <b>user-defined data type</b> that acts as a <b>blueprint</b> or
+      template. It groups <b>data members</b> (the variables) and <b>member functions</b> (the
+      methods) together into one unit.</p>
+      <p>A class <b>does not take any memory</b> — it is only a design. Memory is allocated only
+      when an object is created from it.</p>
+    </div>
+    <div class="np">
+      <span class="tag">क्लास</span>
+      <p><b>क्लास</b> भनेको प्रयोगकर्ताले बनाएको डाटा टाइप हो, जुन <b>नक्सा (blueprint)</b> जस्तै
+      काम गर्छ। यसले <b>डाटा मेम्बर</b> (भेरिएबल) र <b>मेम्बर फङ्सन</b> (मेथड) लाई एउटै एकाइमा राख्छ।</p>
+      <p>क्लासले <b>मेमोरी लिँदैन</b> — यो डिजाइन मात्र हो। अब्जेक्ट बनेपछि मात्र मेमोरी छुट्याइन्छ।</p>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Object</span>
+      <p>An <b>object</b> is a <b>variable of a class</b> — one real copy built from the blueprint.
+      An object <b>does take memory</b>, and each object has its <b>own separate copy of the data
+      members</b>.</p>
+      <p>The act of creating an object from a class is called <b>instantiation</b>.</p>
+    </div>
+    <div class="np">
+      <span class="tag">अब्जेक्ट</span>
+      <p><b>अब्जेक्ट</b> भनेको क्लासको <b>भेरिएबल</b> हो — नक्सा हेरेर बनाइएको वास्तविक प्रति।
+      अब्जेक्टले <b>मेमोरी लिन्छ</b>, र हरेक अब्जेक्टसँग <b>आफ्नै छुट्टै डाटा</b> हुन्छ।</p>
+      <p>क्लासबाट अब्जेक्ट बनाउने कामलाई <b>instantiation</b> भनिन्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:classObject}}
+    <figcaption>One blueprint, three objects. Each object owns its data; the functions are shared.
+      <span class="np-cell">एउटा नक्सा, तीन अब्जेक्ट। डाटा हरेकको आफ्नै, फङ्सन साझा।</span>
+    </figcaption>
+  </figure>
+
+  <div class="callout an">
+    <div class="h">One-line memory hook</div>
+    A class is the <b>house design on paper</b>. An object is the <b>real house built from it</b>.
+    One design can produce many houses — and <b>you cannot live inside the design</b>.
+    That is exactly why a class takes no memory but an object does.
+    <span class="np-cell">क्लास = कागजमा कोरेको <b>घरको नक्सा</b>। अब्जेक्ट = त्यसबाट बनेको
+    <b>साँच्चिकै घर</b>। एउटा नक्साबाट धेरै घर बन्छ — र <b>नक्सामा बस्न मिल्दैन</b>। त्यसैले
+    क्लासले मेमोरी लिँदैन, अब्जेक्टले लिन्छ।</span>
+  </div>
+
+  <!-- ============ 3.2 ============ -->
+  <h3 class="topic" id="t32">3.2 &nbsp;Access Specifiers</h3>
+  <p class="lead-sub">This is asked almost every year, usually as "explain the access specifiers in
+  C++" or as a one-mark question on the default.</p>
+
+  <figure class="fig">
+    {{dia:accessSpecifiers}}
+    <figcaption>Three rings of access. Outside code can only reach the public ring.
+      <span class="np-cell">पहुँचका तीन घेरा। बाहिरको कोडले public घेरासम्म मात्र पुग्न सक्छ।</span>
+    </figcaption>
+  </figure>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:120px">Specifier</th><th>Who can access it</th><th style="width:170px">Normally used for</th></tr></thead>
+      <tbody>
+        <tr><td class="k">private</td>
+          <td>Accessible <b>only inside the same class</b>. Not from outside the class, and
+            <b>not even from a derived class</b>. This is the <b>default</b> for a class.
+            <span class="np-cell">उही क्लास भित्रबाट मात्र। बाहिरबाट वा derived क्लासबाट पनि हुँदैन।
+            क्लासमा यही default हो।</span></td>
+          <td>Data members</td></tr>
+        <tr><td class="k">public</td>
+          <td>Accessible <b>from anywhere</b> — inside the class, through an object, and from
+            derived classes. This is the <b>default for a struct</b>.
+            <span class="np-cell">जताबाट पनि — क्लास भित्र, अब्जेक्टबाट, र derived क्लासबाट।</span></td>
+          <td>Member functions</td></tr>
+        <tr><td class="k">protected</td>
+          <td>Accessible <b>inside the class and inside its derived classes</b>, but
+            <b>not</b> through an object from outside.
+            <span class="np-cell">क्लास भित्र र त्यसका derived क्लास भित्र मात्र; बाहिरको
+            अब्जेक्टबाट हुँदैन।</span></td>
+          <td>Members shared with child classes</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mistake">
+    <div class="h">Common mistake</div>
+    Thinking <span class="term">protected</span> behaves like <span class="term">public</span> from
+    outside. It does <b>not</b>. From outside the class, <span class="term">protected</span> behaves
+    exactly like <span class="term">private</span> — <span class="term">obj.protectedMember</span>
+    is an error. The <i>only</i> extra thing <span class="term">protected</span> gives you is access
+    from a <b>derived class</b>.
+    <span class="np-cell"><span class="term">protected</span> लाई बाहिरबाट public जस्तो ठान्नु गलत।
+    बाहिरबाट यो <span class="term">private</span> जस्तै हो। यसले दिने एक मात्र थप सुविधा भनेको
+    <b>derived क्लास</b> बाट पहुँच हो।</span>
+  </div>
+
+  <!-- ============ 3.3 ============ -->
+  <h3 class="topic" id="t33">3.3 &nbsp;Declaring a Class and its Objects</h3>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> A complete class with data members and member functions</div>
+    <pre class="cpp">
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+class Student {           // class = blueprint
+private:                  // hidden from outside
+    string name;          // data member
+    int roll;             // data member
+
+public:                   // usable from outside
+    void setData(string n, int r) {    // member function
+        name = n;
+        roll = r;
+    }
+    void display() {                   // member function
+        cout &lt;&lt; name &lt;&lt; " - " &lt;&lt; roll &lt;&lt; endl;
+    }
+};                        // &lt;-- this semicolon is compulsory
+
+int main() {
+    Student s1, s2;               // s1 and s2 are OBJECTS
+    s1.setData("Ram", 15);        // dot operator
+    s2.setData("Sita", 16);
+    s1.display();
+    s2.display();
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">Ram - 15
+Sita - 16</pre>
+    </div>
+    <p class="wex-note">Notice that <span class="term">s1</span> and <span class="term">s2</span>
+    used the <b>same</b> <span class="term">display()</span> function but printed <b>different</b>
+    values — because each object carries its own copy of <span class="term">name</span> and
+    <span class="term">roll</span>.
+    <span class="np-cell"><span class="term">s1</span> र <span class="term">s2</span> ले
+    <b>उही</b> <span class="term">display()</span> प्रयोग गरे तर <b>फरक</b> मान छापे — किनकि हरेक
+    अब्जेक्टसँग आफ्नै <span class="term">name</span> र <span class="term">roll</span> छ।</span></p>
+  </div>
+
+  <div class="mistake">
+    <div class="h">The single most common error in this unit</div>
+    Forgetting the <b>semicolon after the closing brace</b> of a class:
+    <span class="term">};</span> &nbsp;not&nbsp; <span class="term">}</span>.
+    A class declaration is a statement, so it must end with a semicolon. Leaving it out produces a
+    long, confusing list of compiler errors.
+    <span class="np-cell">क्लासको बन्द ब्रेस पछि <b>सेमीकोलन</b> बिर्सनु — यो युनिटको सबैभन्दा
+    सामान्य गल्ती हो। <span class="term">};</span> लेख्नुपर्छ, <span class="term">}</span> मात्र होइन।</span>
+  </div>
+
+  <h4 class="sub">Defining a member function outside the class</h4>
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Using the scope resolution operator <span class="term">::</span></div>
+    <pre class="cpp">
+class Student {
+private:
+    string name;
+    int roll;
+public:
+    void setData(string n, int r);    // only DECLARED here
+    void display();                   // only DECLARED here
+};
+
+// DEFINED outside, using ClassName::functionName
+void Student::setData(string n, int r) {
+    name = n;
+    roll = r;
+}
+
+void Student::display() {
+    cout &lt;&lt; name &lt;&lt; " - " &lt;&lt; roll &lt;&lt; endl;
+}</pre>
+    <p class="wex-note">The <b>scope resolution operator</b> <span class="term">::</span> tells the
+    compiler which class the function belongs to. Without
+    <span class="term">Student::</span> the compiler would treat
+    <span class="term">display()</span> as an ordinary global function that knows nothing about
+    <span class="term">name</span> or <span class="term">roll</span>.
+    <span class="np-cell"><b>Scope resolution operator</b> <span class="term">::</span> ले फङ्सन
+    कुन क्लासको हो भनेर कम्पाइलरलाई बताउँछ। <span class="term">Student::</span> नलेखे कम्पाइलरले यसलाई
+    सामान्य global फङ्सन ठान्छ, जसलाई <span class="term">name</span> र
+    <span class="term">roll</span> को केही थाहा हुँदैन।</span></p>
+  </div>
+
+  <!-- ============ 3.5 ============ -->
+  <h3 class="topic" id="t35">3.5 &nbsp;Constructor and Destructor</h3>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Constructor</span>
+      <p>A <b>constructor</b> is a special member function that is called <b>automatically when an
+      object is created</b>. Its job is to <b>initialise</b> the object's data.</p>
+      <ul class="tick">
+        <li>Its name is <b>exactly the same as the class name</b>.</li>
+        <li>It has <b>no return type</b> — not even <span class="term">void</span>.</li>
+        <li>It <b>can take parameters</b> and <b>can be overloaded</b>.</li>
+      </ul>
+      <p><b>Three types:</b><br>
+        <b>Default constructor</b> — takes no arguments.<br>
+        <b>Parameterized constructor</b> — takes arguments to set the starting values.<br>
+        <b>Copy constructor</b> — creates a new object as a copy of an existing one,
+        written <span class="term">Student(Student &amp;s)</span>.</p>
+    </div>
+    <div class="np">
+      <span class="tag">कन्स्ट्रक्टर</span>
+      <p><b>कन्स्ट्रक्टर</b> एउटा विशेष मेम्बर फङ्सन हो, जुन <b>अब्जेक्ट बन्ने बित्तिकै आफैं</b>
+      बोलिन्छ। यसको काम डाटालाई <b>सुरुवाती मान दिनु</b> हो।</p>
+      <ul class="tick">
+        <li>नाम <b>क्लासकै नामसँग ठ्याक्कै मिल्नुपर्छ</b>।</li>
+        <li><b>return type हुँदैन</b> — <span class="term">void</span> पनि होइन।</li>
+        <li><b>प्यारामिटर लिन सक्छ</b> र <b>overload पनि हुन सक्छ</b>।</li>
+      </ul>
+      <p><b>तीन प्रकार:</b><br>
+        <b>Default</b> — कुनै आर्गुमेन्ट नलिने।<br>
+        <b>Parameterized</b> — सुरुको मान तोक्न आर्गुमेन्ट लिने।<br>
+        <b>Copy</b> — भइरहेको अब्जेक्टको प्रतिलिपि बनाउने।</p>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Destructor</span>
+      <p>A <b>destructor</b> is a special member function that is called <b>automatically when an
+      object is destroyed</b> — that is, when it goes out of scope. Its job is to <b>free the
+      memory</b> the object was using.</p>
+      <ul class="tick">
+        <li>Its name is the class name with a <b>tilde <span class="term">~</span></b> in front.</li>
+        <li>It has <b>no return type</b> and takes <b>no parameters</b>.</li>
+        <li>It <b>cannot be overloaded</b> — a class has exactly <b>one</b> destructor.</li>
+        <li>Objects are destroyed in the <b>reverse order</b> of their creation.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">डिस्ट्रक्टर</span>
+      <p><b>डिस्ट्रक्टर</b> एउटा विशेष मेम्बर फङ्सन हो, जुन <b>अब्जेक्ट नष्ट हुँदा आफैं</b> बोलिन्छ।
+      यसको काम अब्जेक्टले लिएको <b>मेमोरी खाली गर्नु</b> हो।</p>
+      <ul class="tick">
+        <li>नाम अगाडि <b>टिल्ड <span class="term">~</span></b> राखेर क्लासकै नाम।</li>
+        <li><b>return type हुँदैन</b> र <b>प्यारामिटर पनि लिँदैन</b>।</li>
+        <li><b>overload गर्न मिल्दैन</b> — क्लासमा <b>एउटा मात्र</b> डिस्ट्रक्टर हुन्छ।</li>
+        <li>अब्जेक्टहरू बनेको <b>उल्टो क्रममा</b> नष्ट हुन्छन्।</li>
+      </ul>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:ctorDtor}}
+    <figcaption>Constructors run in creation order; destructors run in the exact reverse order.
+      <span class="np-cell">कन्स्ट्रक्टर बनेको क्रममा, डिस्ट्रक्टर ठ्याक्कै उल्टो क्रममा चल्छ।</span>
+    </figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 3</span> Constructor overloading — three constructors in one class</div>
+    <pre class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Box {
+    int len, wid;
+public:
+    Box() {                          // 1. default constructor
+        len = 1; wid = 1;
+        cout &lt;&lt; "Default called" &lt;&lt; endl;
+    }
+    Box(int l, int w) {              // 2. parameterized constructor
+        len = l; wid = w;
+        cout &lt;&lt; "Parameterized called" &lt;&lt; endl;
+    }
+    Box(Box &amp;b) {                    // 3. copy constructor
+        len = b.len; wid = b.wid;
+        cout &lt;&lt; "Copy called" &lt;&lt; endl;
+    }
+    void area() { cout &lt;&lt; "Area = " &lt;&lt; len * wid &lt;&lt; endl; }
+};
+
+int main() {
+    Box b1;              // calls the default
+    Box b2(4, 6);        // calls the parameterized
+    Box b3 = b2;         // calls the copy constructor
+    b1.area();
+    b2.area();
+    b3.area();
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">Default called
+Parameterized called
+Copy called
+Area = 1
+Area = 24
+Area = 24</pre>
+    </div>
+    <p class="wex-note">All three constructors have the <b>same name</b> — the compiler picks the
+    right one by counting and checking the arguments. That is <b>constructor overloading</b>, and it
+    is an example of compile-time polymorphism.
+    <span class="np-cell">तीनै कन्स्ट्रक्टरको <b>नाम उही</b> छ — कम्पाइलरले आर्गुमेन्ट हेरेर सही
+    एउटा छान्छ। यसैलाई <b>constructor overloading</b> भनिन्छ, र यो compile-time polymorphism कै
+    उदाहरण हो।</span></p>
+  </div>
+
+  <div class="callout">
+    <div class="h">Exam favourite — the automatic call</div>
+    Constructors and destructors are called <b>automatically</b>. You never write
+    <span class="term">s1.Student();</span> or <span class="term">s1.~Student();</span> yourself.
+    And the destruction order is always the <b>reverse</b> of the creation order — like plates on a
+    stack.
+    <span class="np-cell">दुवै <b>आफैं</b> बोलिन्छन् — हातले बोलाउनु पर्दैन। नष्ट हुने क्रम सधैं
+    बनेको <b>उल्टो</b> हुन्छ, स्ट्याकमा थुपारेको प्लेट जस्तै।</span>
+  </div>
+
+  <!-- ---------- EXAM FOCUS ---------- -->
+  <h3 class="topic" id="exam3">Exam focus — questions asked from this unit</h3>
+
+  <div class="examq">
+    <div class="q-h">Q1 · Differentiate between a class and an object. <span class="mk">[3 marks]</span></div>
+    <button class="btn-ans" data-answer="c1">Show the answer</button>
+    <div class="ans" id="c1">
+      <p>A class is a blueprint or template that defines the data members and member functions; an
+      object is an instance of that class. A class takes no memory, while an object takes memory
+      when it is created. A class is declared once, but many objects can be created from it.
+      Example: <span class="term">class Student{ };</span> is the class,
+      <span class="term">Student s1;</span> creates the object.</p>
+      <span class="np-cell">नक्सा vs घर, मेमोरी लिँदैन vs लिन्छ, एक पटक घोषणा vs धेरै अब्जेक्ट —
+      यी तीन बुँदा लेख्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q2 · Explain the three access specifiers in C++. Which is the default? <span class="mk">[4 marks]</span></div>
+    <button class="btn-ans" data-answer="c2">Show the answer</button>
+    <div class="ans" id="c2">
+      <p><b>private</b> — accessible only inside the same class; not from outside and not from a
+      derived class. <b>public</b> — accessible from anywhere, including through an object.
+      <b>protected</b> — accessible inside the class and inside its derived classes, but not through
+      an object from outside.</p>
+      <p>In a <b>class</b> the default is <b>private</b>. (In a <b>struct</b> the default is public.)</p>
+      <span class="np-cell">तीनवटैको एक–एक लाइन + default चाहिँ <b>private</b> हो भनेर लेख्न नबिर्सनुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q3 · What is a constructor? Write its characteristics and name its types. <span class="mk">[5 marks]</span></div>
+    <button class="btn-ans" data-answer="c3">Show the answer</button>
+    <div class="ans" id="c3">
+      <p>A constructor is a special member function that is automatically invoked when an object of
+      the class is created, and it is used to initialise the object's data members.</p>
+      <p>Characteristics: its name is the same as the class name; it has no return type, not even
+      void; it is called automatically; it can take parameters; it can be overloaded.</p>
+      <p>Types: default constructor, parameterized constructor and copy constructor.</p>
+      <span class="np-cell">परिभाषा + पाँच विशेषता + तीन प्रकार — पूरा अंकका लागि तीनै भाग चाहिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q4 · Differentiate between a constructor and a destructor. <span class="mk">[4 marks]</span></div>
+    <button class="btn-ans" data-answer="c4">Show the answer</button>
+    <div class="ans" id="c4">
+      <p>Write it as a table: <b>when called</b> (on creation vs on destruction);
+      <b>name</b> (class name vs class name with ~);
+      <b>parameters</b> (can take them vs cannot);
+      <b>overloading</b> (can be overloaded vs cannot, only one per class);
+      <b>purpose</b> (initialise / allocate memory vs clean up / free memory).</p>
+      <span class="np-cell">तालिकाको रूपमा पाँच हरफ लेख्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h4>Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h4>
+    <ul>
+      <li>Class = blueprint, <b>no memory</b>. Object = instance, <b>takes memory</b>.</li>
+      <li>Default access in a <b>class</b> is <b>private</b>; in a <b>struct</b> it is public.</li>
+      <li><span class="term">protected</span> = private from outside, but visible to derived classes.</li>
+      <li>A class declaration <b>must end with a semicolon</b>: <span class="term">};</span></li>
+      <li>Dot operator <span class="term">.</span> for objects; scope resolution <span class="term">::</span> to define a function outside its class.</li>
+      <li>Constructor: same name as class, <b>no return type</b>, called automatically, <b>can</b> be overloaded.</li>
+      <li>Destructor: <span class="term">~ClassName()</span>, no parameters, <b>cannot</b> be overloaded, only one per class.</li>
+      <li>Destruction order is always the <b>reverse</b> of creation order.</li>
+    </ul>
+  </div>
+</section>

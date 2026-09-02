@@ -1,0 +1,456 @@
+<section id="u6">
+  <div class="sec-head">
+    <div class="sec-num">6</div>
+    <div>
+      <h2>Polymorphism</h2>
+      <p class="sec-sub">पोलिमर्फिज्म — एउटै नाम, धेरै रूप</p>
+    </div>
+    <span class="marks">10 hrs · 7 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h4>By the end of this unit you can…</h4>
+    <ol>
+      <li>Define polymorphism and explain where the word comes from.</li>
+      <li>Draw the tree of polymorphism types and name what achieves each.</li>
+      <li>Write programs using function overloading and operator overloading.</li>
+      <li>Explain function overriding and the <span class="term">virtual</span> keyword.</li>
+      <li>Compare overloading vs overriding — the most-tested table in the unit.</li>
+      <li>Predict the output of a program that uses a base class pointer.</li>
+    </ol>
+    <p class="np-cell"><b>यो युनिट सकिँदा:</b> परिभाषा, प्रकारको रूख, overloading र overriding का
+    प्रोग्राम, <span class="term">virtual</span> को काम, र तुलनात्मक तालिका लेख्न सक्नुहुनेछ।</p>
+  </div>
+
+  <!-- ============ 6.1 ============ -->
+  <h3 class="topic" id="t61">6.1 &nbsp;What is Polymorphism?</h3>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Definition — learn this wording</span>
+      <p>The word <b>polymorphism</b> comes from Greek: <b>poly</b> means many and <b>morph</b>
+      means forms. So polymorphism literally means <b>"many forms"</b>.</p>
+      <p>In C++, <b>polymorphism</b> is the ability of the <b>same function name or the same
+      operator</b> to behave <b>differently</b> in different situations, depending on the object
+      or on the arguments used.</p>
+    </div>
+    <div class="np">
+      <span class="tag">परिभाषा — यही शब्द कण्ठ पार्नुहोस्</span>
+      <p><b>Polymorphism</b> ग्रीक शब्दबाट बनेको हो: <b>poly</b> = धेरै, <b>morph</b> = रूप।
+      अर्थात् <b>"धेरै रूप"</b>।</p>
+      <p>C++ मा <b>एउटै फङ्सनको नाम वा एउटै अपरेटर</b> ले फरक अवस्थामा <b>फरक व्यवहार</b> गर्ने
+      क्षमतालाई polymorphism भनिन्छ — कुन अब्जेक्ट वा कस्तो आर्गुमेन्ट प्रयोग भयो, त्यसमा भर पर्छ।</p>
+    </div>
+  </div>
+
+  <div class="callout an">
+    <div class="h">Real-world analogy — one person, many roles</div>
+    <p>One person is a <b>son</b> at home, a <b>student</b> at school, a <b>customer</b> in a shop
+    and a <b>patient</b> at the hospital.</p>
+    <p><b>Same person — different behaviour in different places.</b> The name did not change; the
+    situation decided the behaviour. That is polymorphism.</p>
+    <span class="np-cell"><b>उदाहरण — एउटै मान्छे, धेरै भूमिका।</b> एउटै मान्छे घरमा <b>छोरा</b>,
+    स्कुलमा <b>विद्यार्थी</b>, पसलमा <b>ग्राहक</b> र अस्पतालमा <b>बिरामी</b> हुन्छ।
+    <b>व्यक्ति उही, ठाउँ अनुसार व्यवहार फरक।</b> नाम फेरिएन, अवस्थाले व्यवहार तय गर्‍यो — यही
+    polymorphism हो।</span>
+  </div>
+
+  <!-- ============ 6.4 ============ -->
+  <h3 class="topic" id="t64">6.4 &nbsp;Types of Polymorphism</h3>
+
+  <figure class="fig">
+    {{dia:polyTypes}}
+    <figcaption>Learn this whole tree — the branches, the other names, and what achieves each.
+      <span class="np-cell">यो पूरा रूख कण्ठ पार्नुहोस् — हाँगा, अर्को नाम, र कसले हासिल गर्छ।</span>
+    </figcaption>
+  </figure>
+
+  <div class="cards">
+    <div class="card">
+      <h4>A. Compile-time Polymorphism</h4>
+      <p>Also called <b>static polymorphism</b> or <b>early binding</b>. The <b>compiler</b> decides
+      which function to call <b>while compiling</b>, by looking at the number and type of the
+      arguments.</p>
+      <p style="margin-top:8px">Achieved by:<br>
+        <span class="pill b">Function Overloading</span>
+        <span class="pill b">Operator Overloading</span></p>
+      <span class="np-cell">यसलाई <b>static polymorphism</b> वा <b>early binding</b> भनिन्छ।
+      कुन फङ्सन बोलाउने भन्ने कुरा <b>कम्पाइल गर्दै</b> आर्गुमेन्टको संख्या र प्रकार हेरेर निर्णय हुन्छ।
+      यो <b>छिटो</b> हुन्छ किनकि निर्णय पहिल्यै भइसकेको हुन्छ।</span>
+    </div>
+    <div class="card">
+      <h4>B. Run-time Polymorphism</h4>
+      <p>Also called <b>dynamic polymorphism</b> or <b>late binding</b>. The decision is made
+      <b>while the program is running</b>, by looking at which object the base class pointer is
+      actually pointing to.</p>
+      <p style="margin-top:8px">Achieved by:<br>
+        <span class="pill c">Function Overriding</span>
+        <span class="pill c">Virtual Functions</span></p>
+      <span class="np-cell">यसलाई <b>dynamic polymorphism</b> वा <b>late binding</b> भनिन्छ।
+      निर्णय <b>प्रोग्राम चल्दै गर्दा</b> हुन्छ — base पोइन्टरले वास्तवमा कुन अब्जेक्ट देखाइरहेको छ
+      त्यो हेरेर। यो <b>अलि ढिलो</b> तर <b>बढी लचिलो</b> हुन्छ।</span>
+    </div>
+  </div>
+
+  <!-- ============ OVERLOADING ============ -->
+  <h3 class="topic" id="t62">Function Overloading — compile-time</h3>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Function overloading</span>
+      <p><b>Function overloading</b> means writing <b>two or more functions with the same name</b>
+      in the <b>same class</b>, but with <b>different parameter lists</b>.</p>
+      <p>The parameter lists must differ in the <b>number</b> of parameters, the <b>type</b> of
+      parameters, or their <b>order</b>.</p>
+      <p><b>Important:</b> a difference in the <b>return type alone is NOT enough</b>. Two functions
+      with the same name and same parameters but different return types cause a compiler error.</p>
+    </div>
+    <div class="np">
+      <span class="tag">फङ्सन ओभरलोडिङ</span>
+      <p><b>Function overloading</b> भनेको <b>उही क्लास</b> भित्र <b>उही नाम</b> तर
+      <b>फरक प्यारामिटर</b> भएका दुई वा बढी फङ्सन लेख्नु हो।</p>
+      <p>प्यारामिटर <b>संख्या</b>, <b>प्रकार</b>, वा <b>क्रम</b> मा फरक हुनुपर्छ।</p>
+      <p><b>महत्त्वपूर्ण:</b> <b>return type मात्र फरक भएर पुग्दैन</b>। नाम र प्यारामिटर उही तर
+      return type फरक भए कम्पाइलर error दिन्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:overloadResolve}}
+    <figcaption>The compiler matches the call against each version's parameter list and picks the
+      one that fits — all before the program runs.
+      <span class="np-cell">कम्पाइलरले कललाई हरेक संस्करणको प्यारामिटरसँग मिलाएर सही एउटा छान्छ —
+      प्रोग्राम चल्नु अघि नै।</span>
+    </figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Function overloading — three versions of <span class="term">area()</span></div>
+    <pre class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Shape {
+public:
+    void area(int s) {                    // 1 int
+        cout &lt;&lt; "Square area = " &lt;&lt; s * s &lt;&lt; endl;
+    }
+    void area(int l, int b) {             // 2 ints
+        cout &lt;&lt; "Rectangle area = " &lt;&lt; l * b &lt;&lt; endl;
+    }
+    void area(float r) {                  // 1 float - different TYPE
+        cout &lt;&lt; "Circle area = " &lt;&lt; 3.14 * r * r &lt;&lt; endl;
+    }
+};
+
+int main() {
+    Shape s;
+    s.area(5);          // matches version 1
+    s.area(4, 6);       // matches version 2
+    s.area(2.0f);       // matches version 3
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">Square area = 25
+Rectangle area = 24
+Circle area = 12.56</pre>
+    </div>
+    <p class="wex-note">One name, three jobs. Version 1 and 3 both take a single argument — they are
+    still valid overloads because the <b>types</b> differ (<span class="term">int</span> vs
+    <span class="term">float</span>).
+    <span class="np-cell">एउटै नाम, तीन काम। संस्करण १ र ३ दुवैले एउटै आर्गुमेन्ट लिन्छन् — तर
+    <b>प्रकार</b> फरक (<span class="term">int</span> vs <span class="term">float</span>) भएकाले
+    दुवै मान्य overload हुन्।</span></p>
+  </div>
+
+  <h4 class="sub">Operator overloading</h4>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Operator overloading</span>
+      <p><b>Operator overloading</b> means giving an <b>additional meaning</b> to an existing C++
+      operator so that it also works with objects of your own class.</p>
+      <p>For example <span class="term">+</span> normally adds numbers. By overloading it, you can
+      make <span class="term">c1 + c2</span> add two Complex number objects.</p>
+      <p>The syntax uses the keyword <span class="term">operator</span> followed by the symbol.</p>
+    </div>
+    <div class="np">
+      <span class="tag">अपरेटर ओभरलोडिङ</span>
+      <p><b>Operator overloading</b> भनेको भइरहेको C++ अपरेटरलाई <b>थप अर्थ</b> दिनु हो, ताकि यो
+      तपाईंकै क्लासका अब्जेक्टसँग पनि काम गरोस्।</p>
+      <p>जस्तै <span class="term">+</span> ले सामान्यतया संख्या जोड्छ। ओभरलोड गरेपछि
+      <span class="term">c1 + c2</span> ले दुई Complex अब्जेक्ट जोड्न सक्छ।</p>
+      <p>Syntax मा <span class="term">operator</span> कीवर्ड पछि चिन्ह लेखिन्छ।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Overloading the <span class="term">+</span> operator</div>
+    <pre class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Complex {
+    int real, imag;
+public:
+    Complex(int r = 0, int i = 0) { real = r; imag = i; }
+
+    Complex operator + (Complex c) {      // overloading +
+        Complex temp;
+        temp.real = real + c.real;
+        temp.imag = imag + c.imag;
+        return temp;
+    }
+    void show() { cout &lt;&lt; real &lt;&lt; " + " &lt;&lt; imag &lt;&lt; "i" &lt;&lt; endl; }
+};
+
+int main() {
+    Complex c1(3, 2), c2(1, 7);
+    Complex c3 = c1 + c2;      // + now works on objects
+    c3.show();
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">4 + 9i</pre>
+    </div>
+    <p class="wex-note">Note that <span class="term">+</span> still adds ordinary numbers exactly as
+    before. Overloading <b>adds</b> a meaning; it never removes the original one.
+    <span class="np-cell"><span class="term">+</span> ले सामान्य संख्या पहिले जस्तै जोड्छ।
+    ओभरलोडिङले अर्थ <b>थप्छ</b>, पुरानो अर्थ हटाउँदैन।</span></p>
+  </div>
+
+  <!-- ============ OVERRIDING ============ -->
+  <h3 class="topic" id="t65">6.5 &nbsp;Function Overriding — run-time</h3>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Function overriding</span>
+      <p><b>Function overriding</b> means the <b>derived class defines a function with exactly the
+      same name, the same return type and the same parameters</b> as a function already present in
+      its base class.</p>
+      <p>The derived version <b>replaces</b> the base version for objects of the derived class.
+      Overriding <b>requires inheritance</b> — it is impossible without a base and a derived class.</p>
+      <p>If the base function is marked <span class="term">virtual</span> and you call it through a
+      <b>base class pointer</b>, C++ calls the <b>derived</b> version at run time. That is
+      <b>run-time polymorphism</b>. Without <span class="term">virtual</span>, the <b>base</b>
+      version is called instead.</p>
+    </div>
+    <div class="np">
+      <span class="tag">फङ्सन ओभरराइडिङ</span>
+      <p><b>Function overriding</b> भनेको derived क्लासमा base क्लासकै फङ्सन जस्तै <b>उही नाम, उही
+      return type र उही प्यारामिटर</b> भएको फङ्सन लेख्नु हो।</p>
+      <p>derived अब्जेक्टका लागि derived कै संस्करणले base को संस्करणलाई <b>प्रतिस्थापन</b> गर्छ।
+      Overriding का लागि <b>inheritance अनिवार्य</b> छ।</p>
+      <p>base फङ्सनमा <span class="term">virtual</span> लेखिएको छ र <b>base पोइन्टर</b> बाट
+      बोलाइयो भने C++ ले चल्दै गर्दा <b>derived</b> संस्करण बोलाउँछ — यही
+      <b>run-time polymorphism</b> हो। <span class="term">virtual</span> नलेखे <b>base</b> कै
+      संस्करण चल्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:dispatch}}
+    <figcaption>The same pointer and the same call give two different answers, because
+      <span class="term">virtual</span> makes C++ look at the real object.
+      <span class="np-cell">उही पोइन्टर, उही कल — तर दुई फरक जवाफ, किनकि
+      <span class="term">virtual</span> ले C++ लाई वास्तविक अब्जेक्ट हेर्न लगाउँछ।</span>
+    </figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 3</span> With and without <span class="term">virtual</span> — the exam's favourite trick</div>
+    <pre class="cpp">
+class Base {
+public:
+    void show() { cout &lt;&lt; "Base show" &lt;&lt; endl; }      // NOT virtual
+};
+class Derived : public Base {
+public:
+    void show() { cout &lt;&lt; "Derived show" &lt;&lt; endl; }
+};
+
+int main() {
+    Base *p;  Derived d;
+    p = &amp;d;
+    p-&gt;show();        // prints "Base show"  &lt;-- surprising!
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output without virtual</span>
+      <pre class="out">Base show</pre>
+    </div>
+    <p class="wex-note">Now add one word — <span class="term">virtual void show()</span> in
+    <span class="term">Base</span> — and the very same program prints
+    <span class="term">Derived show</span> instead. <b>One keyword changes the whole output.</b>
+    That is exactly what the examiner is testing.
+    <span class="np-cell">अब <span class="term">Base</span> मा एउटा शब्द थप्नुहोस् —
+    <span class="term">virtual void show()</span> — र उही प्रोग्रामले
+    <span class="term">Derived show</span> छाप्छ। <b>एउटा कीवर्डले पूरै आउटपुट फेर्छ।</b>
+    परीक्षकले जाँच्ने ठ्याक्कै यही हो।</span></p>
+  </div>
+
+  <div class="mistake">
+    <div class="h">Common mistake</div>
+    Thinking overriding works through the object as well as the pointer. If you write
+    <span class="term">Derived d; d.show();</span> the derived version runs <b>whether or not</b>
+    the function is virtual — because the object's type is known exactly.
+    <span class="term">virtual</span> only matters when you call through a <b>base class pointer or
+    reference</b>.
+    <span class="np-cell"><span class="term">Derived d; d.show();</span> लेख्दा virtual भए पनि
+    नभए पनि derived कै संस्करण चल्छ — किनकि अब्जेक्टको प्रकार ठ्याक्कै थाहा हुन्छ।
+    <span class="term">virtual</span> को महत्त्व <b>base पोइन्टर</b> बाट बोलाउँदा मात्र देखिन्छ।</span>
+  </div>
+
+  <!-- ---------- SIMULATOR ---------- -->
+  <h3 class="topic" id="sim2">▶ &nbsp;Simulator — Which function actually runs?</h3>
+  <p class="lead-sub">Pick a call. Watch the matching line light up and the console explain exactly
+  how C++ decides. This is the single most-tested idea in the unit.</p>
+
+  <div class="en" style="margin-top:12px">
+    <div class="btns">
+      <button class="blue" onclick="dispatch('ol1')">area(5)</button>
+      <button class="blue" onclick="dispatch('ol2')">area(4, 6)</button>
+      <button class="coral" onclick="dispatch('rt1')">p = &amp;s; p-&gt;show()</button>
+      <button class="coral" onclick="dispatch('rt2')">p = &amp;c; p-&gt;show()</button>
+      <button onclick="dispatch(null)">Reset</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px" class="simgrid">
+      <div><div class="code" id="dispCode"></div></div>
+      <div>
+        <div class="console" id="dispCon"></div>
+        <div class="cap" id="dispCap" style="display:none">
+          <div class="en-line" id="dispCapEn"></div>
+          <div class="np-line" id="dispCapNp"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ COMPARISON ============ -->
+  <h3 class="topic" id="t6c">Overloading vs Overriding — the key table</h3>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Function Overloading</th><th>Function Overriding</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Meaning</td><td>Same function name with <b>different parameters</b> in the <b>same class</b>.</td><td>Same function name with the <b>same parameters</b>, redefined in a <b>derived class</b>.</td></tr>
+        <tr><td class="k">Inheritance</td><td><b>Not required.</b></td><td><b>Required</b> — there must be a base and a derived class.</td></tr>
+        <tr><td class="k">Parameters</td><td>Must be <b>different</b> — in number, type or order.</td><td>Must be <b>exactly the same</b>.</td></tr>
+        <tr><td class="k">Return type</td><td>May be same or different (return type alone is not enough).</td><td>Must be the <b>same</b>.</td></tr>
+        <tr><td class="k">Binding</td><td><b>Early / static</b> binding.</td><td><b>Late / dynamic</b> binding when <span class="term">virtual</span> is used.</td></tr>
+        <tr><td class="k">Type</td><td><b>Compile-time</b> polymorphism.</td><td><b>Run-time</b> polymorphism.</td></tr>
+        <tr><td class="k">virtual keyword</td><td>Not used.</td><td><span class="term">virtual</span> is used in the base class.</td></tr>
+        <tr><td class="k">Purpose</td><td>To give <b>one name to several similar jobs</b>.</td><td>To give the child a <b>different version</b> of the parent's function.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="np">
+    <span class="tag">छोटो सार</span>
+    <p><b>Overloading</b> = उही क्लासमा उही नाम तर <b>फरक प्यारामिटर</b>; inheritance चाहिँदैन;
+    <b>compile-time</b>। <b>Overriding</b> = derived क्लासमा उही नाम र <b>उही प्यारामिटर</b>;
+    inheritance <b>चाहिन्छ</b>; <span class="term">virtual</span> राखे <b>run-time</b>।</p>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Advantages of polymorphism</span>
+      <ul class="tick">
+        <li><b>One interface, many implementations</b> — easier to read, write and remember.</li>
+        <li><b>Code reusability</b> and shorter programs.</li>
+        <li><b>Flexibility</b> — new derived classes can be added without changing existing code.</li>
+        <li>Supports <b>dynamic binding</b> and cleaner program design.</li>
+        <li>Reduces the number of different function names a programmer must remember.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">पोलिमर्फिज्मका फाइदा</span>
+      <ul class="tick">
+        <li><b>एउटै इन्टरफेस, धेरै काम</b> — पढ्न, लेख्न र सम्झन सजिलो।</li>
+        <li><b>कोड पुनः प्रयोग</b> र छोटो प्रोग्राम।</li>
+        <li><b>लचकता</b> — पुरानो कोड नछोई नयाँ derived क्लास थप्न सकिन्छ।</li>
+        <li><b>Dynamic binding</b> सम्भव बनाउँछ।</li>
+        <li>फरक–फरक नाम सम्झिरहनु पर्दैन।</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ---------- EXAM FOCUS ---------- -->
+  <h3 class="topic" id="exam6">Exam focus — questions asked from this unit</h3>
+
+  <div class="examq">
+    <div class="q-h">Q1 · Define polymorphism. Explain its types with examples. <span class="mk">[6 marks]</span></div>
+    <button class="btn-ans" data-answer="f1">Show the answer</button>
+    <div class="ans" id="f1">
+      <p>Polymorphism comes from the Greek words poly (many) and morph (forms), so it means many
+      forms. In C++ it is the ability of the same function name or operator to behave differently
+      in different situations.</p>
+      <p><b>Compile-time (static) polymorphism</b> — the compiler decides which function to call
+      while compiling, by checking the arguments. It is achieved by function overloading and
+      operator overloading. Example: three <span class="term">area()</span> functions with
+      different parameters.</p>
+      <p><b>Run-time (dynamic) polymorphism</b> — the decision is made while the program runs, based
+      on the object the base pointer points to. It is achieved by function overriding with virtual
+      functions. Example: <span class="term">Base *p = &amp;derivedObj; p-&gt;show();</span></p>
+      <span class="np-cell">परिभाषा + दुवै प्रकार + एक–एक उदाहरण। चित्र (रूख) कोरे झन् राम्रो।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q2 · Differentiate between function overloading and function overriding. <span class="mk">[5 marks]</span></div>
+    <button class="btn-ans" data-answer="f2">Show the answer</button>
+    <div class="ans" id="f2">
+      <p>Write a table with at least five rows: meaning (same class, different parameters vs derived
+      class, same parameters); inheritance (not required vs required); parameters (must differ vs
+      must be identical); binding (early/static vs late/dynamic); type (compile-time vs run-time);
+      and the virtual keyword (not used vs used in the base class).</p>
+      <span class="np-cell">कम्तीमा पाँच हरफको तालिका लेख्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q3 · What is a virtual function? Why is it needed? <span class="mk">[3 marks]</span></div>
+    <button class="btn-ans" data-answer="f3">Show the answer</button>
+    <div class="ans" id="f3">
+      <p>A virtual function is a member function declared in the base class using the keyword
+      <span class="term">virtual</span> and redefined (overridden) in a derived class.</p>
+      <p>It is needed so that when the function is called through a base class pointer, C++ decides
+      at run time which version to run by looking at the actual object being pointed to, instead of
+      the pointer's type. Without <span class="term">virtual</span> the base class version would
+      always be called, and run-time polymorphism would be impossible.</p>
+      <span class="np-cell">परिभाषा + किन चाहिन्छ (base पोइन्टरबाट derived संस्करण चलाउन) — दुवै लेख्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q4 · Write a program to demonstrate run-time polymorphism. <span class="mk">[5 marks]</span></div>
+    <button class="btn-ans" data-answer="f4">Show the answer</button>
+    <div class="ans" id="f4">
+      <p>Write a base class <span class="term">Shape</span> with
+      <span class="term">virtual void draw()</span>, two derived classes
+      <span class="term">Circle</span> and <span class="term">Square</span> that each override
+      <span class="term">draw()</span>, and a <span class="term">main()</span> that declares
+      <span class="term">Shape *p;</span> then points it first at a Circle object and then at a
+      Square object, calling <span class="term">p-&gt;draw();</span> each time.</p>
+      <p>The output will be "Drawing a Circle" then "Drawing a Square" — the same call giving two
+      different results. That is the full program traced step by step in the
+      <b>Trace a Program</b> section.</p>
+      <span class="np-cell">Trace a Program सेक्सनको Program 3 नै यसको पूरा उत्तर हो — त्यहीँ लाइन–लाइन हेर्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h4>Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h4>
+    <ul>
+      <li>Polymorphism = <b>poly (many) + morph (forms)</b> = one name, many forms.</li>
+      <li><b>Compile-time</b> = static = early binding → <b>function overloading + operator overloading</b>.</li>
+      <li><b>Run-time</b> = dynamic = late binding → <b>function overriding + virtual functions</b>.</li>
+      <li>Overloading: same class, <b>different parameters</b>, no inheritance needed.</li>
+      <li>Overriding: derived class, <b>identical signature</b>, inheritance <b>required</b>.</li>
+      <li><b>Return type alone cannot overload</b> a function.</li>
+      <li><span class="term">virtual</span> matters <b>only</b> when calling through a base class pointer or reference.</li>
+      <li>Remove <span class="term">virtual</span> and the <b>base</b> version runs — this is the classic output question.</li>
+    </ul>
+  </div>
+</section>

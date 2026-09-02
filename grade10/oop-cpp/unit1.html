@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basic Introduction to Data Structure — DS &amp; OOP with C++ | RGSC Study Board</title>
+<meta name="description" content="Basic Introduction to Data Structure explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small>सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small>कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small>इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small>वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small>डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small>कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small>डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small>डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small>गृहपृष्ठ</small></a><h4>Grade 9 · कक्षा ९</h4><a href="../../grade9/index.html">All Grade 9 subjects <small>सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small>सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small>कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small>इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small>वेबसाइट डिजाइन</small></a><h4>Grade 10 · कक्षा १०</h4><a href="../../grade10/index.html">All Grade 10 subjects <small>सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small>डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small>कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small>डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small>डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><h4>Grade 11 · कक्षा ११</h4><a class="dis" href="#" onclick="return false">Coming in the next phase <small>अर्को चरणमा आउँदैछ</small></a><h4>Grade 12 · कक्षा १२</h4><a class="dis" href="#" onclick="return false">Coming in the next phase <small>अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DS &amp; OOP with C++</a> <span class="sep">/</span> <span>Basic Introduction to Data Structure</span></nav>
+<main id="main">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html" style="color:var(--yellow);border-color:var(--yellow)">1 · Data Structure</a><a href="unit2.html">2 · OOP + C++</a><a href="unit3.html">3 · Class and Object</a><a href="unit4.html">4 · Abstraction / Encapsulation</a><a href="unit5.html">5 · Inheritance</a><a href="unit6.html">6 · Polymorphism</a><a href="trace.html">▶ · Trace a Program</a><a href="tables.html">≠ · Tables & Terms</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="u1">
+  <div class="sec-head">
+    <div class="sec-num">1</div>
+    <div>
+      <h2>Basic Introduction to Data Structure</h2>
+      <p class="sec-sub">डाटा स्ट्रक्चरको आधारभूत परिचय</p>
+    </div>
+    <span class="marks">20 hrs · 15 marks · biggest unit</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h4>By the end of this unit you can…</h4>
+    <ol>
+      <li>Define a data structure and give two reasons why it is needed.</li>
+      <li>Name and explain the seven terms: data, group item, elementary item, record, entity, attribute, file.</li>
+      <li>Classify any data structure as linear or non-linear, and justify your answer.</li>
+      <li>Describe array, linked list, stack, queue, tree and graph — with a diagram for each.</li>
+      <li>List the six operations performed on data structures.</li>
+      <li>Compare array vs linked list, and stack vs queue, in a table.</li>
+    </ol>
+    <p class="np-cell"><b>यो युनिट सकिँदा तपाईंले:</b> डाटा स्ट्रक्चरको परिभाषा दिन, सातवटा शब्द
+    व्याख्या गर्न, linear/non-linear छुट्याउन, छवटै संरचनाको चित्र कोर्न, छवटा अपरेसन भन्न, र
+    तुलनात्मक तालिका लेख्न सक्नुहुनेछ।</p>
+  </div>
+
+  <!-- ============ 1.1 ============ -->
+  <h3 class="topic" id="t11">1.1 &nbsp;What is a Data Structure?</h3>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Definition — learn this wording</span>
+      <p>A <b>data structure</b> is a particular way of <b>organising, storing and managing data</b>
+      in a computer's memory so that it can be <b>accessed and modified efficiently</b>.</p>
+      <p>Notice what the definition does <i>not</i> say. A data structure is <b>not the data itself</b>.
+      It is the <b>arrangement</b> of the data, together with the <b>rules</b> for putting data in
+      and taking data out.</p>
+    </div>
+    <div class="np">
+      <span class="tag">परिभाषा — यही शब्द कण्ठ पार्नुहोस्</span>
+      <p><b>डाटा स्ट्रक्चर</b> भनेको कम्प्युटरको मेमोरीमा डाटालाई <b>मिलाएर, राखेर र व्यवस्थापन गर्ने</b>
+      एउटा खास तरिका हो, ताकि त्यो डाटा <b>छिटो र सजिलै</b> प्रयोग र परिवर्तन गर्न सकियोस्।</p>
+      <p>ध्यान दिनुहोस् — डाटा स्ट्रक्चर भनेको <b>डाटा आफैं होइन</b>। यो डाटा <b>कसरी मिलाइएको छ</b>
+      भन्ने कुरा र डाटा <b>राख्ने–झिक्ने नियम</b> हो।</p>
+    </div>
+  </div>
+
+  <div class="callout an">
+    <div class="h">Real-world analogy — the school library</div>
+    <p>Imagine a library with 5,000 books. The <b>books are the data</b>.</p>
+    <p>If the books are thrown in a heap on the floor, finding one book might take an hour — you
+    must check them one by one. If the same books are kept on <b>numbered shelves arranged by
+    subject</b>, you find any book in under a minute.</p>
+    <p><b>Same books. Same room. Same librarian. Only the arrangement changed — and the speed
+    changed completely.</b> That arrangement is the data structure.</p>
+    <span class="np-cell"><b>व्यवहारिक उदाहरण — पुस्तकालय।</b> ५,००० किताब भएको पुस्तकालय सम्झनुहोस्।
+    किताबहरू नै डाटा हुन्। भुइँमा थुपारेको छ भने एउटा किताब खोज्न घण्टौं लाग्न सक्छ। तर विषय अनुसार
+    नम्बर हालेको र्‍याकमा राखिएको छ भने एक मिनेटमै भेटिन्छ। <b>किताब उही, कोठा उही — तर मिलाउने
+    तरिका फेरियो, र गति पूरै फेरियो।</b> त्यही मिलान नै डाटा स्ट्रक्चर हो।</span>
+  </div>
+
+  <!-- ============ 1.2 ============ -->
+  <h3 class="topic" id="t12">1.2 &nbsp;Advantages of Data Structures</h3>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Six advantages</span>
+      <ul class="tick">
+        <li><b>Efficiency</b> — the right structure makes searching and sorting far faster.
+          Searching a sorted array by binary search takes about 20 steps for 10,00,000 items;
+          checking one by one takes up to 10,00,000 steps.</li>
+        <li><b>Reusability</b> — one structure such as a stack can be written once and used in
+          many different programs.</li>
+        <li><b>Abstraction</b> — the user calls <span class="term">push()</span> without knowing
+          how it works inside.</li>
+        <li><b>Better memory use</b> — structures like the linked list take memory only when
+          it is actually needed.</li>
+        <li><b>Easy maintenance</b> — organised data means shorter, clearer code that is easier
+          to correct later.</li>
+        <li><b>Handles large data</b> — millions of records stay manageable.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">छ वटा फाइदा</span>
+      <ul class="tick">
+        <li><b>Efficiency (दक्षता)</b> — सही स्ट्रक्चरले खोज्ने र क्रम मिलाउने काम धेरै छिटो बनाउँछ।
+          १० लाख डाटामा binary search ले करिब २० चरणमै भेट्छ; एक–एक गरी हेर्दा १० लाख चरणसम्म लाग्न सक्छ।</li>
+        <li><b>Reusability</b> — एक पटक लेखेको स्ट्याक धेरै प्रोग्राममा प्रयोग गर्न सकिन्छ।</li>
+        <li><b>Abstraction</b> — भित्र कसरी चल्छ थाहा नपाई पनि <span class="term">push()</span> प्रयोग गर्न सकिन्छ।</li>
+        <li><b>मेमोरीको राम्रो प्रयोग</b> — linked list ले चाहिएको बेला मात्र मेमोरी लिन्छ।</li>
+        <li><b>सजिलो मर्मत</b> — मिलेको डाटाले कोड छोटो र स्पष्ट बनाउँछ।</li>
+        <li><b>ठूलो डाटा</b> — लाखौं रेकर्ड पनि व्यवस्थित रहन्छ।</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ 1.3 ============ -->
+  <h3 class="topic" id="t13">1.3 &nbsp;Terms Used in Data Structures</h3>
+  <p class="lead-sub">These seven words are asked directly, almost every year. Learn the English
+  term, one line of meaning, and one example for each.</p>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 720 300" role="img" aria-labelledby="t-dh">
+  <title id="t-dh">How fields build records and records build a file</title>
+  <defs><marker id="a-dh" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ffd76e"/></marker></defs>
+  <text class="f-ttl" x="10" y="18">Field → Record → File · the ladder you must be able to name in the exam</text>
+
+  <rect class="f-box-d" x="40" y="40" width="640" height="150" rx="8"/>
+  <text class="f-lbl-y" x="60" y="60" text-anchor="start">FILE — all the student records kept together</text>
+
+  <rect class="f-box"   x="60" y="72" width="140" height="34" rx="4"/>
+  <rect class="f-box"   x="200" y="72" width="90"  height="34" rx="4"/>
+  <rect class="f-box"   x="290" y="72" width="120" height="34" rx="4"/>
+  <rect class="f-box"   x="410" y="72" width="120" height="34" rx="4"/>
+  <text class="f-lbl-y" x="130" y="94">Name</text>
+  <text class="f-lbl-y" x="245" y="94">Roll</text>
+  <text class="f-lbl-y" x="350" y="94">Class</text>
+  <text class="f-lbl-y" x="470" y="94">Marks</text>
+
+  <rect class="f-box-y" x="60" y="108" width="470" height="34" rx="4" fill="rgba(255,215,110,.10)"/>
+  <text class="f-val" x="130" y="130" font-size="13">Ram Thapa</text>
+  <text class="f-val" x="245" y="130" font-size="13">15</text>
+  <text class="f-val" x="350" y="130" font-size="13">10</text>
+  <text class="f-val" x="470" y="130" font-size="13">78</text>
+
+  <rect class="f-box" x="60" y="146" width="470" height="30" rx="4" opacity=".55"/>
+  <text class="f-val" x="130" y="166" font-size="13" opacity=".55">Sita Rai</text>
+  <text class="f-val" x="245" y="166" font-size="13" opacity=".55">16</text>
+  <text class="f-val" x="350" y="166" font-size="13" opacity=".55">10</text>
+  <text class="f-val" x="470" y="166" font-size="13" opacity=".55">85</text>
+
+  <path class="f-arr" marker-end="url(#a-dh)" d="M600,89 L545,89"/>
+  <text class="f-lbl-y" x="610" y="84" text-anchor="start">ATTRIBUTE</text>
+  <text class="f-lbl"   x="610" y="100" text-anchor="start">(field)</text>
+
+  <path class="f-arr" marker-end="url(#a-dh)" d="M600,125 L545,125"/>
+  <text class="f-lbl-y" x="610" y="128" text-anchor="start">RECORD</text>
+
+  <text class="f-lbl-y" x="360" y="222">ENTITY = "Student" — the real-world thing all of this describes</text>
+  <text class="f-lbl" x="360" y="248">"Ram Thapa" is a GROUP ITEM — it can be split into first name + last name.</text>
+  <text class="f-lbl" x="360" y="268">15 is an ELEMENTARY ITEM — it cannot be split any further.</text>
+  <text class="f-lbl" x="360" y="288">One row = one RECORD. All rows together = one FILE.</text>
+</svg>
+    <figcaption>How one value becomes a field, fields become a record, and records become a file.
+      <span class="np-cell">एउटा मान → फिल्ड, फिल्डहरू → रेकर्ड, रेकर्डहरू → फाइल कसरी बन्छ।</span>
+    </figcaption>
+  </figure>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:160px">Term</th><th>Meaning (exam wording)</th><th style="width:180px">Example</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Data</td>
+          <td>The <b>raw facts and figures</b> that a computer stores or processes. On its own, data
+            carries no meaning until it is organised.
+            <span class="np-cell">कच्चा तथ्य र अंक। मिलाएर नराखेसम्म यसको अर्थ हुँदैन।</span></td>
+          <td class="k">Ram, 15, 78</td></tr>
+        <tr><td class="k">Group Item</td>
+          <td>A data item that <b>can be divided</b> into smaller sub-items.
+            <span class="np-cell">फेरि साना टुक्रामा <b>भाग गर्न मिल्ने</b> डाटा आइटम।</span></td>
+          <td class="k">Name → First + Last<br>Date → DD + MM + YYYY</td></tr>
+        <tr><td class="k">Elementary Item</td>
+          <td>A data item that <b>cannot be divided</b> any further. Also called an <b>atomic</b> item.
+            <span class="np-cell">अब <b>भाग गर्न नमिल्ने</b> डाटा आइटम।</span></td>
+          <td class="k">Roll No = 15</td></tr>
+        <tr><td class="k">Record</td>
+          <td>A collection of <b>related data items (fields)</b> that together describe <b>one thing</b>.
+            One row of a table.
+            <span class="np-cell">एउटै वस्तुलाई जनाउने सम्बन्धित फिल्डहरूको समूह — तालिकाको एउटा हरफ।</span></td>
+          <td class="k">Ram | 15 | 10 | 78</td></tr>
+        <tr><td class="k">Entity</td>
+          <td>Any <b>real-world thing, person or object</b> about which we store data.
+            <span class="np-cell">जुन वास्तविक वस्तु/व्यक्तिको बारेमा डाटा राखिन्छ।</span></td>
+          <td class="k">Student</td></tr>
+        <tr><td class="k">Attribute / Field</td>
+          <td>One <b>property or characteristic</b> of an entity. One column of a table.
+            <span class="np-cell">एन्टिटीको एउटा गुण वा विशेषता — तालिकाको एउटा कोलम।</span></td>
+          <td class="k">Name, Roll, Class, Marks</td></tr>
+        <tr><td class="k">File</td>
+          <td>A collection of <b>related records</b> of the same entity, stored together.
+            <span class="np-cell">एउटै एन्टिटीका धेरै रेकर्डहरूको संग्रह।</span></td>
+          <td class="k">All 40 student records</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="h">Exam tip — remember the ladder</div>
+    <b>Field → Record → File.</b> One field is one value; many fields make one record; many records
+    make one file. The <b>entity</b> is the real thing all of it describes. Students most often mix
+    up <b>entity</b> (the thing) with <b>attribute</b> (a property of the thing).
+    <span class="np-cell">फिल्ड → रेकर्ड → फाइल। <b>एन्टिटी</b> चाहिँ जुन वास्तविक वस्तुको वर्णन
+    गरिँदैछ त्यो हो। विद्यार्थीहरूले प्रायः <b>entity</b> (वस्तु) र <b>attribute</b> (त्यसको गुण)
+    लाई अलमल्याउँछन्।</span>
+  </div>
+
+  <!-- ============ 1.4 ============ -->
+  <h3 class="topic" id="t14">1.4 &nbsp;Need of Data Structures</h3>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Why they are needed</span>
+      <ul class="tick">
+        <li><b>Data keeps growing</b> — programs must handle huge amounts of data.</li>
+        <li><b>Processor speed is limited</b> — a faster CPU cannot rescue a badly arranged pile of data.</li>
+        <li><b>Search must be fast</b> — searching 1,00,000 unsorted names one by one is far too slow.</li>
+        <li><b>Many users at once</b> — many requests must reach the data quickly.</li>
+        <li><b>Memory is limited</b> — data must be stored without waste.</li>
+      </ul>
+    </div>
+    <div class="np">
+      <span class="tag">किन आवश्यक छ</span>
+      <ul class="tick">
+        <li><b>डाटा बढ्दै छ</b> — प्रोग्रामले धेरै ठूलो डाटा सम्हाल्नुपर्छ।</li>
+        <li><b>प्रोसेसरको गति सीमित छ</b> — छिटो CPU ले पनि बिग्रेको मिलानलाई सुधार्न सक्दैन।</li>
+        <li><b>खोजी छिटो हुनुपर्छ</b> — नमिलेको १ लाख नाम एक–एक गरी खोज्न धेरै ढिलो हुन्छ।</li>
+        <li><b>एकैचोटि धेरै प्रयोगकर्ता</b> — डाटा छिटो पुग्नुपर्छ।</li>
+        <li><b>मेमोरी सीमित छ</b> — खेर नफाली राख्नुपर्छ।</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ 1.5 ============ -->
+  <h3 class="topic" id="t15">1.5 &nbsp;Classification of Data Structures</h3>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 720 330" role="img" aria-labelledby="t-dscls">
+  <title id="t-dscls">Classification of data structures into linear and non-linear types</title>
+  <text class="f-ttl" x="10" y="18">Classification of Data Structures — डाटा स्ट्रक्चरको वर्गीकरण</text>
+
+  <rect class="f-box-y" x="280" y="36" width="170" height="42" rx="8"/>
+  <text class="f-val" x="365" y="62" font-size="14">DATA STRUCTURE</text>
+
+  <line class="f-ln" x1="365" y1="78" x2="365" y2="96"/>
+  <line class="f-ln" x1="185" y1="96" x2="545" y2="96"/>
+  <line class="f-ln" x1="185" y1="96" x2="185" y2="118"/>
+  <line class="f-ln" x1="545" y1="96" x2="545" y2="118"/>
+
+  <rect class="f-box" x="90" y="118" width="190" height="42" rx="8"/>
+  <text class="f-val" x="185" y="144" font-size="13">LINEAR</text>
+  <rect class="f-box-c" x="450" y="118" width="190" height="42" rx="8"/>
+  <text class="f-val" x="545" y="144" font-size="13">NON-LINEAR</text>
+
+  <text class="f-lbl" x="185" y="176">elements in a sequence</text>
+  <text class="f-lbl" x="545" y="176">elements in a hierarchy</text>
+
+  <line class="f-ln" x1="185" y1="186" x2="185" y2="200"/>
+  <line class="f-ln" x1="60"  y1="200" x2="310" y2="200"/>
+  <line class="f-ln" x1="60"  y1="200" x2="60"  y2="216"/>
+  <line class="f-ln" x1="143" y1="200" x2="143" y2="216"/>
+  <line class="f-ln" x1="226" y1="200" x2="226" y2="216"/>
+  <line class="f-ln" x1="310" y1="200" x2="310" y2="216"/>
+
+  <rect class="f-box-g" x="20"  y="216" width="80" height="36" rx="6"/><text class="f-val" x="60"  y="239" font-size="12">Array</text>
+  <rect class="f-box-g" x="106" y="216" width="80" height="36" rx="6"/><text class="f-val" x="146" y="239" font-size="11">Linked List</text>
+  <rect class="f-box-g" x="192" y="216" width="72" height="36" rx="6"/><text class="f-val" x="228" y="239" font-size="12">Stack</text>
+  <rect class="f-box-g" x="272" y="216" width="72" height="36" rx="6"/><text class="f-val" x="308" y="239" font-size="12">Queue</text>
+
+  <line class="f-ln" x1="545" y1="186" x2="545" y2="200"/>
+  <line class="f-ln" x1="490" y1="200" x2="600" y2="200"/>
+  <line class="f-ln" x1="490" y1="200" x2="490" y2="216"/>
+  <line class="f-ln" x1="600" y1="200" x2="600" y2="216"/>
+  <rect class="f-box-g" x="450" y="216" width="80" height="36" rx="6"/><text class="f-val" x="490" y="239" font-size="12">Tree</text>
+  <rect class="f-box-g" x="560" y="216" width="80" height="36" rx="6"/><text class="f-val" x="600" y="239" font-size="12">Graph</text>
+
+  <text class="f-lbl" x="185" y="286">can be traversed completely in ONE run</text>
+  <text class="f-lbl" x="545" y="286">CANNOT be traversed in one straight run</text>
+  <text class="f-lbl-y" x="360" y="316">Exam tip: if it has levels or branches, it is NON-LINEAR.</text>
+</svg>
+    <figcaption>The classification tree. If a structure has levels or branches, it is non-linear.
+      <span class="np-cell">वर्गीकरणको रूख। तह वा हाँगा भएको संरचना non-linear हो।</span>
+    </figcaption>
+  </figure>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">The two main groups</span>
+      <p><b>Linear data structure:</b> the elements are arranged in a <b>sequence</b>, one after
+      another. Each element has exactly one element before it and one after it. The whole structure
+      can be <b>traversed completely in a single run</b>.</p>
+      <p><b>Non-linear data structure:</b> the elements are <b>not in a sequence</b>. One element
+      may be connected to many elements. It <b>cannot be traversed in one straight run</b>.</p>
+      <p>Some books first split data structures into <b>primitive</b> (int, float, char, pointer —
+      supplied by the language) and <b>non-primitive</b> (built by the programmer). Linear and
+      non-linear are the two kinds of non-primitive structures.</p>
+    </div>
+    <div class="np">
+      <span class="tag">दुई मुख्य समूह</span>
+      <p><b>Linear (रेखीय):</b> तत्त्वहरू <b>एउटा पछि अर्को</b> गरी क्रमैसँग राखिन्छन्। प्रत्येकको
+      एउटा अघिल्लो र एउटा पछिल्लो हुन्छ। <b>एकै पटकमा सबै घुम्न सकिन्छ</b>।</p>
+      <p><b>Non-linear (अरेखीय):</b> तत्त्वहरू <b>क्रममा हुँदैनन्</b>। एउटा तत्त्व धेरैसँग जोडिन सक्छ।
+      <b>सिधा एकै पटकमा सबै घुम्न सकिँदैन</b>।</p>
+      <p>केही किताबले पहिले <b>primitive</b> (int, float, char, pointer — भाषाले नै दिएको) र
+      <b>non-primitive</b> (प्रोग्रामरले बनाएको) भनेर छुट्याउँछन्। Linear र non-linear चाहिँ
+      non-primitive कै दुई प्रकार हुन्।</p>
+    </div>
+  </div>
+
+  <!-- ---- ARRAY ---- -->
+  <h4 class="sub" id="t15a">1.5.1 (a) &nbsp;Array — एरे</h4>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Array</span>
+      <p>An <b>array</b> is a collection of elements of the <b>same data type</b>, stored in
+      <b>continuous (contiguous) memory locations</b>, and accessed using an <b>index</b> that
+      always starts at <b>0</b>.</p>
+      <p>Because the memory is continuous and every element is the same size, the computer can
+      calculate the address of any element instantly:
+      <span class="term">address = base + index × size</span>. That is why array access is
+      called <b>direct</b> or <b>random</b> access — reaching <span class="term">a[900]</span>
+      takes exactly as long as reaching <span class="term">a[0]</span>.</p>
+    </div>
+    <div class="np">
+      <span class="tag">एरे</span>
+      <p><b>एरे</b> भनेको <b>एउटै प्रकारका</b> तत्त्वहरूको संग्रह हो, जुन <b>लगातार मेमोरी</b> मा
+      राखिन्छ र सधैं <b>० बाट सुरु हुने index</b> ले पुगिन्छ।</p>
+      <p>मेमोरी लगातार भएकाले र हरेक तत्त्वको साइज उही भएकाले कम्प्युटरले जुनसुकै तत्त्वको ठेगाना
+      तुरुन्तै गणना गर्न सक्छ: <span class="term">ठेगाना = base + index × size</span>। त्यसैले
+      एरेको पहुँचलाई <b>direct/random access</b> भनिन्छ — <span class="term">a[900]</span> मा पुग्न
+      पनि <span class="term">a[0]</span> जत्तिकै समय लाग्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 720 210" role="img" aria-labelledby="t-arrmem">
+  <title id="t-arrmem">An array of five integers stored in continuous memory locations</title>
+  <defs><marker id="a-arr" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ffd76e"/></marker></defs>
+  <text class="f-ttl" x="10" y="20">int marks[5] = {75, 82, 60, 91, 48};</text>
+
+  <g>
+    <rect class="f-box" x="60"  y="42" width="110" height="52" rx="6"/>
+    <rect class="f-box" x="180" y="42" width="110" height="52" rx="6"/>
+    <rect class="f-box" x="300" y="42" width="110" height="52" rx="6"/>
+    <rect class="f-box" x="420" y="42" width="110" height="52" rx="6"/>
+    <rect class="f-box" x="540" y="42" width="110" height="52" rx="6"/>
+    <text class="f-val" x="115" y="75">75</text>
+    <text class="f-val" x="235" y="75">82</text>
+    <text class="f-val" x="355" y="75">60</text>
+    <text class="f-val" x="475" y="75">91</text>
+    <text class="f-val" x="595" y="75">48</text>
+  </g>
+
+  <text class="f-lbl-y" x="115" y="113">marks[0]</text>
+  <text class="f-lbl-y" x="235" y="113">marks[1]</text>
+  <text class="f-lbl-y" x="355" y="113">marks[2]</text>
+  <text class="f-lbl-y" x="475" y="113">marks[3]</text>
+  <text class="f-lbl-y" x="595" y="113">marks[4]</text>
+
+  <text class="f-addr" x="115" y="132">1000</text>
+  <text class="f-addr" x="235" y="132">1004</text>
+  <text class="f-addr" x="355" y="132">1008</text>
+  <text class="f-addr" x="475" y="132">1012</text>
+  <text class="f-addr" x="595" y="132">1016</text>
+
+  <path class="f-ln" d="M60,148 L60,158 L650,158 L650,148"/>
+  <text class="f-lbl" x="355" y="176">one block of continuous memory — each int takes 4 bytes</text>
+  <text class="f-lbl" x="355" y="194">index always starts at 0, so the last index is size − 1 = 4</text>
+</svg>
+    <figcaption>Five integers in one continuous block. Index 0 to 4 — never 1 to 5.
+      <span class="np-cell">पाँच पूर्णांक एउटै लगातार ब्लकमा। index ० देखि ४ सम्म — १ देखि ५ होइन।</span>
+    </figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Declaring an array and printing it</div>
+    <pre class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int marks[5] = {75, 82, 60, 91, 48};
+
+    for (int i = 0; i &lt; 5; i++) {
+        cout &lt;&lt; "marks[" &lt;&lt; i &lt;&lt; "] = " &lt;&lt; marks[i] &lt;&lt; endl;
+    }
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">marks[0] = 75
+marks[1] = 82
+marks[2] = 60
+marks[3] = 91
+marks[4] = 48</pre>
+    </div>
+    <p class="wex-note">The loop runs while <span class="term">i &lt; 5</span>, so i takes the
+    values 0, 1, 2, 3, 4 — exactly the five valid indexes.
+    <span class="np-cell">लुप <span class="term">i &lt; 5</span> सम्म चल्छ, त्यसैले i ले ०,१,२,३,४
+    मान लिन्छ — यीनै पाँच वटा मान्य index हुन्।</span></p>
+  </div>
+
+  <div class="mistake">
+    <div class="h">Common mistake</div>
+    Writing <span class="term">marks[5]</span> to reach the last element. In an array of size 5 the
+    <b>last index is 4</b>. <span class="term">marks[5]</span> is outside the array and gives a
+    <b>garbage value</b> or crashes the program. C++ does <b>not</b> warn you.
+    <span class="np-cell">अन्तिम तत्त्वका लागि <span class="term">marks[5]</span> लेख्नु गलत हो।
+    साइज ५ को एरेमा <b>अन्तिम index ४</b> हो। <span class="term">marks[5]</span> एरे बाहिर पर्छ र
+    फोहोर मान दिन्छ वा प्रोग्राम क्र्यास हुन्छ। C++ ले चेतावनी दिँदैन।</span>
+  </div>
+
+  <!-- ---- LINKED LIST ---- -->
+  <h4 class="sub" id="t15b">1.5.1 (b) &nbsp;Linked List — लिंक्ड लिस्ट</h4>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Linked List</span>
+      <p>A <b>linked list</b> is a collection of elements called <b>nodes</b>, where each node has
+      <b>two parts</b>: the <b>data</b>, and a <b>pointer</b> holding the <b>address of the next
+      node</b>.</p>
+      <p>The nodes are <b>not</b> in continuous memory — they may sit anywhere. The list is held
+      together only by the pointers. A special pointer called <b>head</b> points to the first node,
+      and the last node's pointer holds <b>NULL</b> to mark the end.</p>
+      <p>Because memory is taken one node at a time, the list can <b>grow and shrink while the
+      program is running</b>. This is called a <b>dynamic</b> data structure.</p>
+      <p><b>Types:</b> singly linked list (one pointer), doubly linked list (pointers to next and
+      previous), circular linked list (last node points back to the first).</p>
+    </div>
+    <div class="np">
+      <span class="tag">लिंक्ड लिस्ट</span>
+      <p><b>लिंक्ड लिस्ट</b> भनेको <b>नोड</b> भनिने तत्त्वहरूको संग्रह हो। हरेक नोडका <b>दुई भाग</b>
+      हुन्छन्: <b>डाटा</b>, र <b>अर्को नोडको ठेगाना</b> राख्ने <b>pointer</b>।</p>
+      <p>नोडहरू लगातार मेमोरीमा <b>हुँदैनन्</b> — जहाँसुकै हुन सक्छन्। लिस्टलाई पोइन्टरले मात्र
+      जोडेर राख्छ। <b>head</b> नामक पोइन्टरले पहिलो नोड देखाउँछ, र अन्तिम नोडको पोइन्टरमा
+      <b>NULL</b> हुन्छ जसले अन्त्य जनाउँछ।</p>
+      <p>एक–एक नोड गरी मेमोरी लिने भएकाले लिस्ट <b>प्रोग्राम चल्दै गर्दा घटबढ</b> हुन सक्छ। यसैलाई
+      <b>dynamic</b> डाटा स्ट्रक्चर भनिन्छ।</p>
+      <p><b>प्रकार:</b> singly (एउटा पोइन्टर), doubly (अघि र पछि दुवैको पोइन्टर), circular
+      (अन्तिम नोडले पहिलो नोड देखाउने)।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 720 230" role="img" aria-labelledby="t-ll">
+  <title id="t-ll">A singly linked list of three nodes joined by pointers</title>
+  <defs><marker id="a-ll" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ffd76e"/></marker></defs>
+  <text class="f-ttl" x="10" y="20">Linked list — each node stores DATA + the ADDRESS of the next node</text>
+
+  <text class="f-lbl-y" x="42" y="62">head</text>
+  <path class="f-arr" marker-end="url(#a-ll)" d="M42,72 L42,96 L74,96"/>
+
+  <g>
+    <rect class="f-box-g" x="80"  y="76" width="80" height="44" rx="6"/>
+    <rect class="f-box-d" x="160" y="76" width="52" height="44" rx="6"/>
+    <text class="f-val" x="120" y="104">75</text>
+    <text class="f-lbl" x="186" y="103">next</text>
+    <text class="f-addr" x="146" y="138">at 2400</text>
+  </g>
+  <path class="f-arr" marker-end="url(#a-ll)" d="M212,98 L268,98"/>
+
+  <g>
+    <rect class="f-box-g" x="274" y="76" width="80" height="44" rx="6"/>
+    <rect class="f-box-d" x="354" y="76" width="52" height="44" rx="6"/>
+    <text class="f-val" x="314" y="104">82</text>
+    <text class="f-lbl" x="380" y="103">next</text>
+    <text class="f-addr" x="340" y="138">at 7100</text>
+  </g>
+  <path class="f-arr" marker-end="url(#a-ll)" d="M406,98 L462,98"/>
+
+  <g>
+    <rect class="f-box-g" x="468" y="76" width="80" height="44" rx="6"/>
+    <rect class="f-box-d" x="548" y="76" width="52" height="44" rx="6"/>
+    <text class="f-val" x="508" y="104">60</text>
+    <text class="f-lbl-y" x="574" y="103">NULL</text>
+    <text class="f-addr" x="534" y="138">at 3900</text>
+  </g>
+
+  <text class="f-lbl" x="360" y="176">The addresses 2400, 7100, 3900 are NOT in order — memory is scattered.</text>
+  <text class="f-lbl" x="360" y="196">Each node only knows where the NEXT node is. NULL means "the list ends here".</text>
+  <text class="f-lbl" x="360" y="216">To reach node 3 you must start at head and walk through node 1 and node 2.</text>
+</svg>
+    <figcaption>Three nodes at scattered addresses, held together only by pointers.
+      <span class="np-cell">छरिएका ठेगानामा रहेका तीन नोड, पोइन्टरले मात्र जोडिएका।</span>
+    </figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> What one node looks like in C++</div>
+    <pre class="cpp">
+struct Node {
+    int data;          // part 1 — the value
+    Node *next;        // part 2 — address of the next node
+};
+
+int main() {
+    Node *head = new Node;   // create the first node
+    head-&gt;data = 75;
+    head-&gt;next = NULL;       // NULL means "the list ends here"
+    return 0;
+}</pre>
+    <p class="wex-note">Notice <span class="term">Node *next;</span> — a Node that stores the
+    address of another Node. That single line is what makes the chain possible.
+    <span class="np-cell"><span class="term">Node *next;</span> हेर्नुहोस् — एउटा Node ले अर्को
+    Node को ठेगाना राख्छ। यही एउटा लाइनले शृंखला सम्भव बनाउँछ।</span></p>
+  </div>
+
+  <h4 class="sub">Why this difference matters — array vs linked list in action</h4>
+  <figure class="fig">
+    
+<svg viewBox="0 0 720 300" role="img" aria-labelledby="t-avl">
+  <title id="t-avl">Inserting a value in the middle of an array versus a linked list</title>
+  <defs><marker id="a-avl" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ff8f7a"/></marker></defs>
+  <defs><marker id="a-avl2" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#9ae6a0"/></marker></defs>
+
+  <text class="f-ttl" x="10" y="18">Insert 55 in the middle — why the two structures behave differently</text>
+
+  <text class="f-lbl-y" x="10" y="46" text-anchor="start">ARRAY — every later element must SHIFT one place right</text>
+  <g>
+    <rect class="f-box" x="20"  y="58" width="70" height="42" rx="5"/>
+    <rect class="f-box" x="95"  y="58" width="70" height="42" rx="5"/>
+    <rect class="f-box-y" x="170" y="58" width="70" height="42" rx="5"/>
+    <rect class="f-box" x="245" y="58" width="70" height="42" rx="5"/>
+    <rect class="f-box" x="320" y="58" width="70" height="42" rx="5"/>
+    <rect class="f-box-d" x="395" y="58" width="70" height="42" rx="5"/>
+    <text class="f-val" x="55"  y="85">75</text>
+    <text class="f-val" x="130" y="85">82</text>
+    <text class="f-val" x="205" y="85">55</text>
+    <text class="f-val" x="280" y="85">60</text>
+    <text class="f-val" x="355" y="85">91</text>
+  </g>
+  <path class="f-arr" marker-end="url(#a-avl)" style="stroke:#ff8f7a" d="M280,116 L355,116"/>
+  <path class="f-arr" marker-end="url(#a-avl)" style="stroke:#ff8f7a" d="M355,132 L430,132"/>
+  <text class="f-lbl" x="480" y="88" text-anchor="start">3 elements had to move.</text>
+  <text class="f-lbl" x="480" y="106" text-anchor="start">Big array = very slow.</text>
+  <text class="f-lbl" x="230" y="152">shifting costs time — this is the array's weakness</text>
+
+  <line class="f-ln" x1="10" y1="172" x2="710" y2="172" stroke-dasharray="5 5"/>
+
+  <text class="f-lbl-y" x="10" y="196" text-anchor="start">LINKED LIST — only TWO pointers change, nothing moves</text>
+  <g>
+    <rect class="f-box-g" x="20"  y="208" width="60" height="38" rx="5"/>
+    <rect class="f-box-d" x="80"  y="208" width="34" height="38" rx="5"/>
+    <text class="f-val" x="50" y="233">75</text>
+    <rect class="f-box-g" x="150" y="208" width="60" height="38" rx="5"/>
+    <rect class="f-box-d" x="210" y="208" width="34" height="38" rx="5"/>
+    <text class="f-val" x="180" y="233">82</text>
+    <rect class="f-box-y" x="280" y="256" width="60" height="38" rx="5"/>
+    <rect class="f-box-d" x="340" y="256" width="34" height="38" rx="5"/>
+    <text class="f-val" x="310" y="281">55</text>
+    <rect class="f-box-g" x="440" y="208" width="60" height="38" rx="5"/>
+    <rect class="f-box-d" x="500" y="208" width="34" height="38" rx="5"/>
+    <text class="f-val" x="470" y="233">60</text>
+  </g>
+  <path class="f-arr" marker-end="url(#a-avl2)" style="stroke:#9ae6a0" d="M114,227 L146,227"/>
+  <path class="f-arr" marker-end="url(#a-avl2)" style="stroke:#ffd76e" d="M244,232 L276,268"/>
+  <path class="f-arr" marker-end="url(#a-avl2)" style="stroke:#ffd76e" d="M374,270 L436,238"/>
+  <text class="f-lbl" x="600" y="233" text-anchor="start">only 2 links</text>
+  <text class="f-lbl" x="600" y="251" text-anchor="start">were re-pointed</text>
+</svg>
+    <figcaption>Inserting into the middle: the array must shift elements, the linked list only
+      re-points two links. This single picture answers most array-vs-list questions.
+      <span class="np-cell">बीचमा थप्दा: एरेले तत्त्वहरू सार्नुपर्छ, लिंक्ड लिस्टले दुई लिंक मात्र
+      फेर्छ। यही एउटा चित्रले array-vs-list का धेरै प्रश्नको जवाफ दिन्छ।</span>
+    </figcaption>
+  </figure>
+
+  <!-- ---- STACK ---- -->
+  <h4 class="sub" id="t15c">1.5.1 (c) &nbsp;Stack — स्ट्याक</h4>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Stack</span>
+      <p>A <b>stack</b> is a linear data structure in which <b>insertion and deletion take place at
+      only one end</b>, called the <b>top</b>.</p>
+      <p>It follows the <b>LIFO</b> principle — <b>Last In, First Out</b>. The element inserted
+      last is the element removed first.</p>
+      <p><b>Operations:</b> <span class="term">push()</span> inserts, <span class="term">pop()</span>
+      removes, <span class="term">peek()</span> (or <span class="term">top()</span>) reads the top
+      without removing it, <span class="term">isEmpty()</span> and
+      <span class="term">isFull()</span> check the state.</p>
+      <p><b>Overflow</b> = pushing into a full stack. <b>Underflow</b> = popping from an empty stack.
+      An empty stack has <span class="term">top = -1</span>.</p>
+      <p><b>Applications:</b> the browser Back button, Undo in an editor, function calls in memory
+      (the call stack), reversing a string, checking balanced brackets, and converting infix
+      expressions to postfix.</p>
+    </div>
+    <div class="np">
+      <span class="tag">स्ट्याक</span>
+      <p><b>स्ट्याक</b> त्यस्तो रेखीय डाटा स्ट्रक्चर हो जहाँ <b>राख्ने र झिक्ने काम एउटै छेउ</b>
+      (<b>top</b>) बाट मात्र हुन्छ।</p>
+      <p>यसले <b>LIFO</b> — <b>Last In, First Out</b> नियम मान्छ। अन्तिममा हालेको तत्त्व सबैभन्दा
+      पहिले निस्कन्छ।</p>
+      <p><b>अपरेसन:</b> <span class="term">push()</span> हाल्ने,
+      <span class="term">pop()</span> झिक्ने, <span class="term">peek()</span> नझिकी हेर्ने,
+      <span class="term">isEmpty()</span> र <span class="term">isFull()</span> अवस्था जाँच्ने।</p>
+      <p><b>Overflow</b> = भरिएको स्ट्याकमा push। <b>Underflow</b> = खाली स्ट्याकबाट pop।
+      खाली स्ट्याकमा <span class="term">top = -1</span> हुन्छ।</p>
+      <p><b>प्रयोग:</b> ब्राउजरको Back बटन, एडिटरको Undo, फङ्सन कलको call stack, स्ट्रिङ उल्टाउने,
+      ब्राकेट मिलेको छ कि छैन जाँच्ने, infix लाई postfix मा बदल्ने।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 720 280" role="img" aria-labelledby="t-stk">
+  <title id="t-stk">Stack push and pop happen at the same end, called the top</title>
+  <defs><marker id="a-stk" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ffd76e"/></marker></defs>
+  <defs><marker id="a-stk2" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ff8f7a"/></marker></defs>
+  <text class="f-ttl" x="10" y="18">STACK — LIFO (Last In, First Out) · both push and pop use the TOP</text>
+
+  <rect class="f-box-d" x="230" y="60" width="150" height="200" rx="6"/>
+
+  <rect class="f-box"   x="245" y="215" width="120" height="38" rx="5"/>
+  <rect class="f-box"   x="245" y="173" width="120" height="38" rx="5"/>
+  <rect class="f-box-y" x="245" y="131" width="120" height="38" rx="5"/>
+  <text class="f-val" x="305" y="240">10</text>
+  <text class="f-val" x="305" y="198">20</text>
+  <text class="f-val" x="305" y="156">30</text>
+
+  <text class="f-lbl-y" x="440" y="155" text-anchor="start">← top (index 2)</text>
+  <text class="f-lbl"   x="440" y="200" text-anchor="start">← pushed 2nd</text>
+  <text class="f-lbl"   x="440" y="242" text-anchor="start">← pushed 1st (bottom)</text>
+
+  <path class="f-arr" marker-end="url(#a-stk)" d="M150,120 L150,145 L238,145"/>
+  <text class="f-lbl-y" x="120" y="112" text-anchor="middle">push(30)</text>
+  <path class="f-arr" marker-end="url(#a-stk2)" style="stroke:#ff8f7a" d="M238,110 L150,110 L150,86"/>
+  <text class="f-lbl" x="120" y="78" text-anchor="middle" fill="#ff8f7a">pop() → 30</text>
+
+  <text class="f-lbl" x="360" y="276">The plate you put on LAST is the plate you take off FIRST. The bottom plate leaves last.</text>
+</svg>
+    <figcaption>Both push and pop use the same end. Only <span class="term">top</span> moves.
+      <span class="np-cell">push र pop दुवै उही छेउ प्रयोग गर्छन्। <span class="term">top</span> मात्र सर्छ।</span>
+    </figcaption>
+  </figure>
+
+  <div class="callout an">
+    <div class="h">Analogy — a pile of plates</div>
+    You wash plates and stack them one on top of another. The plate you put down <b>last</b> sits on
+    top, so it is the plate you pick up <b>first</b>. The very first plate is at the bottom and
+    leaves last. You cannot pull a plate from the middle without lifting the ones above it.
+    <span class="np-cell"><b>उदाहरण — थाकिएका प्लेट।</b> धोएर एक–अर्कामाथि थुपारेका प्लेटमध्ये
+    <b>अन्तिममा</b> राखेको सबैभन्दा माथि हुन्छ, त्यसैले <b>पहिले</b> त्यही उठाइन्छ। पहिलो प्लेट
+    सबैभन्दा तल हुन्छ र अन्तिममा निस्कन्छ।</span>
+  </div>
+
+  <!-- ---- QUEUE ---- -->
+  <h4 class="sub" id="t15d">1.5.1 (d) &nbsp;Queue — क्यु</h4>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Queue</span>
+      <p>A <b>queue</b> is a linear data structure in which <b>insertion takes place at one end
+      (the rear)</b> and <b>deletion takes place at the other end (the front)</b>.</p>
+      <p>It follows the <b>FIFO</b> principle — <b>First In, First Out</b>. The element inserted
+      first is the element removed first.</p>
+      <p><b>Operations:</b> <span class="term">enqueue()</span> inserts at the rear,
+      <span class="term">dequeue()</span> removes from the front,
+      <span class="term">front()</span> reads the first element without removing it.</p>
+      <p>A queue is <b>empty</b> when <span class="term">front &gt; rear</span>.</p>
+      <p><b>Types:</b> simple queue, circular queue (the rear wraps back to the start to reuse
+      space), priority queue (the most important element leaves first), double-ended queue or
+      <b>deque</b> (insert and delete allowed at both ends).</p>
+      <p><b>Applications:</b> the printer job queue, CPU scheduling, a call-centre waiting line,
+      and data buffers.</p>
+    </div>
+    <div class="np">
+      <span class="tag">क्यु</span>
+      <p><b>क्यु</b> त्यस्तो रेखीय डाटा स्ट्रक्चर हो जहाँ <b>एउटा छेउ (rear) बाट राखिन्छ</b> र
+      <b>अर्को छेउ (front) बाट झिकिन्छ</b>।</p>
+      <p>यसले <b>FIFO</b> — <b>First In, First Out</b> नियम मान्छ। पहिले हालेको पहिले निस्कन्छ।</p>
+      <p><b>अपरेसन:</b> <span class="term">enqueue()</span> पछाडि हाल्ने,
+      <span class="term">dequeue()</span> अगाडिबाट झिक्ने,
+      <span class="term">front()</span> पहिलो तत्त्व नझिकी हेर्ने।</p>
+      <p><span class="term">front &gt; rear</span> हुँदा क्यु <b>खाली</b> हुन्छ।</p>
+      <p><b>प्रकार:</b> simple queue, circular queue (rear घुमेर सुरुमै फर्कने), priority queue
+      (महत्त्वपूर्ण तत्त्व पहिले निस्कने), deque (दुवै छेउबाट राख्न–झिक्न मिल्ने)।</p>
+      <p><b>प्रयोग:</b> प्रिन्टरको job queue, CPU scheduling, कल–सेन्टरको लाइन, डाटा बफर।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 720 220" role="img" aria-labelledby="t-que">
+  <title id="t-que">Queue insertion at the rear and deletion at the front</title>
+  <defs><marker id="a-que" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ffd76e"/></marker></defs>
+  <defs><marker id="a-que2" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ff8f7a"/></marker></defs>
+  <text class="f-ttl" x="10" y="18">QUEUE — FIFO (First In, First Out) · two different ends are used</text>
+
+  <rect class="f-box-d" x="150" y="70" width="420" height="70" rx="6"/>
+  <rect class="f-box-y" x="165" y="82" width="90" height="46" rx="5"/>
+  <rect class="f-box"   x="265" y="82" width="90" height="46" rx="5"/>
+  <rect class="f-box"   x="365" y="82" width="90" height="46" rx="5"/>
+  <rect class="f-box"   x="465" y="82" width="90" height="46" rx="5"/>
+  <text class="f-val" x="210" y="112">11</text>
+  <text class="f-val" x="310" y="112">22</text>
+  <text class="f-val" x="410" y="112">33</text>
+  <text class="f-val" x="510" y="112">44</text>
+
+  <text class="f-lbl-y" x="210" y="160">FRONT</text>
+  <text class="f-lbl-y" x="510" y="160">REAR</text>
+  <text class="f-lbl" x="210" y="177">leaves first</text>
+  <text class="f-lbl" x="510" y="177">joined last</text>
+
+  <path class="f-arr" marker-end="url(#a-que2)" style="stroke:#ff8f7a" d="M158,105 L92,105"/>
+  <text class="f-lbl" x="60" y="98" fill="#ff8f7a">dequeue()</text>
+  <path class="f-arr" marker-end="url(#a-que)" d="M638,105 L568,105"/>
+  <text class="f-lbl-y" x="666" y="98">enqueue()</text>
+
+  <text class="f-lbl" x="360" y="208">Exactly like a queue at a ticket counter: you join at the back, you are served from the front.</text>
+</svg>
+    <figcaption>Two different ends: join at the rear, leave from the front.
+      <span class="np-cell">दुई फरक छेउ: पछाडिबाट लाइनमा बस्ने, अगाडिबाट निस्कने।</span>
+    </figcaption>
+  </figure>
+
+  <!-- ---- TREE ---- -->
+  <h4 class="sub" id="t15e">1.5.2 (a) &nbsp;Tree — ट्री</h4>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Tree</span>
+      <p>A <b>tree</b> is a non-linear data structure that arranges data in a <b>hierarchy</b> of
+      nodes. It has exactly one node at the top called the <b>root</b>, and every other node has
+      exactly <b>one parent</b>. A tree contains <b>no cycles</b>.</p>
+      <p><b>Terms you must know:</b></p>
+      <ul class="tick">
+        <li><b>Root</b> — the topmost node; the only node with no parent.</li>
+        <li><b>Parent</b> — a node that has nodes below it.</li>
+        <li><b>Child</b> — a node directly below another node.</li>
+        <li><b>Siblings</b> — nodes that share the same parent.</li>
+        <li><b>Leaf</b> (terminal node) — a node with <b>no children</b>.</li>
+        <li><b>Level</b> — the root is level 0, its children level 1, and so on.</li>
+        <li><b>Height / Depth</b> — the number of levels from the root to the deepest leaf.</li>
+      </ul>
+      <p>A <b>binary tree</b> is a tree in which every node has <b>at most two children</b>.</p>
+    </div>
+    <div class="np">
+      <span class="tag">ट्री</span>
+      <p><b>ट्री</b> त्यस्तो अरेखीय डाटा स्ट्रक्चर हो जसले डाटालाई नोडहरूको <b>तह (hierarchy)</b> मा
+      मिलाउँछ। माथि एउटा मात्र <b>root</b> हुन्छ, र अरू हरेक नोडको <b>एउटा मात्र parent</b> हुन्छ।
+      ट्रीमा <b>चक्र (cycle) हुँदैन</b>।</p>
+      <p><b>जान्नैपर्ने शब्दहरू:</b></p>
+      <ul class="tick">
+        <li><b>Root</b> — सबैभन्दा माथिको नोड; parent नभएको एक मात्र नोड।</li>
+        <li><b>Parent</b> — तल नोड भएको नोड।</li>
+        <li><b>Child</b> — कुनै नोडको ठीक तलको नोड।</li>
+        <li><b>Siblings</b> — एउटै parent भएका नोडहरू।</li>
+        <li><b>Leaf</b> — <b>सन्तान नभएको</b> नोड।</li>
+        <li><b>Level</b> — root level ०, त्यसका सन्तान level १, यसरी नै।</li>
+        <li><b>Height</b> — root देखि सबैभन्दा तलको leaf सम्मको तह संख्या।</li>
+      </ul>
+      <p><b>Binary tree</b> भनेको हरेक नोडका <b>बढीमा दुई सन्तान</b> हुने ट्री हो।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 720 300" role="img" aria-labelledby="t-tree">
+  <title id="t-tree">A tree showing root, parent, child, sibling and leaf nodes</title>
+  <text class="f-ttl" x="10" y="18">TREE — a hierarchical (non-linear) structure. No cycles.</text>
+
+  <line class="f-ln" x1="360" y1="72" x2="220" y2="132"/>
+  <line class="f-ln" x1="360" y1="72" x2="500" y2="132"/>
+  <line class="f-ln" x1="220" y1="172" x2="150" y2="232"/>
+  <line class="f-ln" x1="220" y1="172" x2="290" y2="232"/>
+  <line class="f-ln" x1="500" y1="172" x2="500" y2="232"/>
+
+  <circle class="f-box-y" cx="360" cy="52" r="26"/><text class="f-val" x="360" y="58">A</text>
+  <circle class="f-box"   cx="220" cy="152" r="26"/><text class="f-val" x="220" y="158">B</text>
+  <circle class="f-box"   cx="500" cy="152" r="26"/><text class="f-val" x="500" y="158">C</text>
+  <circle class="f-box-g" cx="150" cy="252" r="26"/><text class="f-val" x="150" y="258">D</text>
+  <circle class="f-box-g" cx="290" cy="252" r="26"/><text class="f-val" x="290" y="258">E</text>
+  <circle class="f-box-g" cx="500" cy="252" r="26"/><text class="f-val" x="500" y="258">F</text>
+
+  <text class="f-lbl-y" x="360" y="22" opacity="0"></text>
+  <text class="f-lbl-y" x="440" y="50" text-anchor="start">ROOT — the only node with no parent</text>
+  <text class="f-lbl"   x="590" y="152" text-anchor="start">level 1</text>
+  <text class="f-lbl"   x="590" y="252" text-anchor="start">level 2</text>
+  <text class="f-lbl-y" x="60" y="290" text-anchor="start">D, E, F are LEAF nodes (no children). B is the PARENT of D and E. D and E are SIBLINGS.</text>
+</svg>
+    <figcaption>A is the root. D, E and F are leaves. D and E are siblings.
+      <span class="np-cell">A root हो। D, E, F leaf हुन्। D र E siblings हुन्।</span>
+    </figcaption>
+  </figure>
+
+  <!-- ---- GRAPH ---- -->
+  <h4 class="sub" id="t15f">1.5.2 (b) &nbsp;Graph — ग्राफ</h4>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">Graph</span>
+      <p>A <b>graph</b> is a non-linear data structure made of a set of <b>vertices</b> (also called
+      nodes) joined by a set of <b>edges</b> (lines).</p>
+      <p>Any vertex may connect to any other vertex. There is <b>no root</b>, <b>no parent–child
+      rule</b>, and <b>cycles are allowed</b> — this is the main difference from a tree.</p>
+      <p>In a <b>directed graph</b> the edges have arrows (one-way). In an <b>undirected graph</b>
+      the edges have no direction (two-way). A <b>weighted graph</b> puts a number on each edge, for
+      example the distance between two cities.</p>
+      <p><b>Applications:</b> road maps and Google Maps routing, social networks, computer networks.</p>
+    </div>
+    <div class="np">
+      <span class="tag">ग्राफ</span>
+      <p><b>ग्राफ</b> भनेको <b>vertex</b> (बिन्दु) हरूको समूह र तिनलाई जोड्ने <b>edge</b> (रेखा)
+      हरूको समूहबाट बनेको अरेखीय डाटा स्ट्रक्चर हो।</p>
+      <p>जुनसुकै vertex जुनसुकैसँग जोडिन सक्छ। <b>root हुँदैन</b>, <b>parent–child नियम हुँदैन</b>,
+      र <b>चक्र (cycle) हुन सक्छ</b> — ट्रीसँगको मुख्य फरक यही हो।</p>
+      <p><b>Directed graph</b> मा edge मा तीर हुन्छ (एकतर्फी)। <b>Undirected</b> मा दिशा हुँदैन।
+      <b>Weighted graph</b> मा हरेक edge मा संख्या हुन्छ, जस्तै दुई सहरबीचको दूरी।</p>
+      <p><b>प्रयोग:</b> सडक नक्सा र Google Maps, सामाजिक सञ्जाल, कम्प्युटर नेटवर्क।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 720 260" role="img" aria-labelledby="t-graph">
+  <title id="t-graph">A graph of five vertices joined by edges, containing a cycle</title>
+  <text class="f-ttl" x="10" y="18">GRAPH — vertices joined by edges. Cycles ARE allowed. No root, no parent.</text>
+
+  <line class="f-ln" x1="160" y1="90"  x2="330" y2="60"  style="stroke:#7fd1ff"/>
+  <line class="f-ln" x1="330" y1="60"  x2="470" y2="130" style="stroke:#ffd76e;stroke-width:2.4"/>
+  <line class="f-ln" x1="470" y1="130" x2="300" y2="190" style="stroke:#ffd76e;stroke-width:2.4"/>
+  <line class="f-ln" x1="300" y1="190" x2="330" y2="60"  style="stroke:#ffd76e;stroke-width:2.4"/>
+  <line class="f-ln" x1="160" y1="90"  x2="300" y2="190" style="stroke:#7fd1ff"/>
+  <line class="f-ln" x1="470" y1="130" x2="600" y2="200" style="stroke:#7fd1ff"/>
+
+  <circle class="f-box" cx="160" cy="90"  r="24"/><text class="f-val" x="160" y="96">A</text>
+  <circle class="f-box" cx="330" cy="60"  r="24"/><text class="f-val" x="330" y="66">B</text>
+  <circle class="f-box" cx="470" cy="130" r="24"/><text class="f-val" x="470" y="136">C</text>
+  <circle class="f-box" cx="300" cy="190" r="24"/><text class="f-val" x="300" y="196">D</text>
+  <circle class="f-box" cx="600" cy="200" r="24"/><text class="f-val" x="600" y="206">E</text>
+
+  <text class="f-lbl-y" x="360" y="240">The yellow path B → C → D → B is a CYCLE. A tree can never have one.</text>
+</svg>
+    <figcaption>The yellow path B → C → D → B is a cycle. A tree can never contain one.
+      <span class="np-cell">पहेँलो बाटो B → C → D → B एउटा चक्र हो। ट्रीमा यस्तो कहिल्यै हुँदैन।</span>
+    </figcaption>
+  </figure>
+
+  <!-- ============ 1.6 ============ -->
+  <h3 class="topic" id="t16">1.6 &nbsp;Operations on Data Structures</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Operation</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Traversing</td><td>Visiting <b>each element exactly once</b> in order to read or process it.
+          <span class="np-cell">हरेक तत्त्वलाई ठीक एक पटक भेटेर पढ्ने वा प्रयोग गर्ने।</span></td></tr>
+        <tr><td class="k">Searching</td><td>Finding the <b>location of an element</b> that matches a given value.
+          <span class="np-cell">दिइएको मानसँग मिल्ने तत्त्व कहाँ छ भनेर पत्ता लगाउने।</span></td></tr>
+        <tr><td class="k">Insertion</td><td>Adding a <b>new element</b> into the structure.
+          <span class="np-cell">संरचनामा नयाँ तत्त्व थप्ने।</span></td></tr>
+        <tr><td class="k">Deletion</td><td>Removing an <b>existing element</b> from the structure.
+          <span class="np-cell">भइरहेको तत्त्व हटाउने।</span></td></tr>
+        <tr><td class="k">Sorting</td><td>Arranging elements in a <b>particular order</b> — ascending or descending.
+          <span class="np-cell">तत्त्वहरूलाई सानोदेखि ठूलो वा ठूलोदेखि सानो क्रममा मिलाउने।</span></td></tr>
+        <tr><td class="k">Merging</td><td>Joining <b>two sorted lists</b> into one single sorted list.
+          <span class="np-cell">दुईवटा मिलेका लिस्टलाई जोडेर एउटै मिलेको लिस्ट बनाउने।</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 3</span> Searching — linear search on an array</div>
+    <pre class="cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a[6] = {12, 45, 7, 23, 56, 9};
+    int key = 23, pos = -1;
+
+    for (int i = 0; i &lt; 6; i++) {
+        if (a[i] == key) {      // compare one by one
+            pos = i;
+            break;              // stop as soon as it is found
+        }
+    }
+
+    if (pos != -1)
+        cout &lt;&lt; "Found " &lt;&lt; key &lt;&lt; " at index " &lt;&lt; pos;
+    else
+        cout &lt;&lt; "Not found";
+    return 0;
+}</pre>
+    <div class="wex-out">
+      <span class="wex-lbl">Output</span>
+      <pre class="out">Found 23 at index 3</pre>
+    </div>
+    <p class="wex-note"><b>Linear search</b> checks elements one by one and works even on unsorted
+    data. <b>Binary search</b> is far faster but the data <b>must be sorted</b> first.
+    <span class="np-cell"><b>Linear search</b> ले एक–एक गरी जाँच्छ र नमिलेको डाटामा पनि चल्छ।
+    <b>Binary search</b> धेरै छिटो हुन्छ तर डाटा <b>मिलेको हुनैपर्छ</b>।</span></p>
+  </div>
+
+  <!-- ---------- SIMULATOR ---------- -->
+  <h3 class="topic" id="sim1">▶ &nbsp;Simulator — Stack (LIFO) vs Queue (FIFO)</h3>
+  <p class="lead-sub">Click the buttons. Watch the code line light up, the boxes move, and the
+  console explain every step in English and Nepali.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px" class="simgrid">
+    <div class="en">
+      <span class="tag">Stack — LIFO</span>
+      <div class="code" id="stackCode"></div>
+      <div class="btns">
+        <button class="primary" onclick="stkPush()">push()</button>
+        <button class="coral" onclick="stkPop()">pop()</button>
+        <button class="blue" onclick="stkPeek()">peek()</button>
+        <button onclick="stkReset()">Reset</button>
+      </div>
+      <div class="vizbox">
+        <div style="text-align:center">
+          <div class="stackcol" id="stackViz"></div>
+          <div class="ptr" id="stackPtr">top = -1 (empty)</div>
+        </div>
+      </div>
+      <div class="console" id="stackCon"></div>
+    </div>
+
+    <div class="en">
+      <span class="tag">Queue — FIFO</span>
+      <div class="code" id="queueCode"></div>
+      <div class="btns">
+        <button class="primary" onclick="qEnq()">enqueue()</button>
+        <button class="coral" onclick="qDeq()">dequeue()</button>
+        <button class="blue" onclick="qFront()">front()</button>
+        <button onclick="qReset()">Reset</button>
+      </div>
+      <div class="vizbox q">
+        <div style="text-align:center;width:100%">
+          <div style="display:flex;gap:6px;justify-content:center;min-height:44px;align-items:center" id="queueViz"></div>
+          <div class="ptr" id="queuePtr">front = 0 · rear = -1 (empty)</div>
+        </div>
+      </div>
+      <div class="console" id="queueCon"></div>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">What you just saw</span>
+      <p>In the <b>stack</b>, the value pushed <b>last</b> came out <b>first</b> — only
+      <span class="term">top</span> moved. That is <b>LIFO</b>.</p>
+      <p>In the <b>queue</b>, the value inserted <b>first</b> came out <b>first</b> —
+      <span class="term">rear</span> moved on insert, <span class="term">front</span> moved on
+      delete. That is <b>FIFO</b>.</p>
+    </div>
+    <div class="np">
+      <span class="tag">तपाईंले के देख्नुभयो</span>
+      <p><b>Stack</b> मा <b>अन्तिममा</b> हालेको मान <b>पहिले</b> निस्कियो — <span class="term">top</span>
+      मात्र सर्‍यो। यही <b>LIFO</b> हो।</p>
+      <p><b>Queue</b> मा <b>पहिले</b> हालेको मान <b>पहिले</b> निस्कियो — हाल्दा
+      <span class="term">rear</span>, झिक्दा <span class="term">front</span> सर्‍यो। यही <b>FIFO</b> हो।</p>
+    </div>
+  </div>
+
+  <!-- ---------- EXAM FOCUS ---------- -->
+  <h3 class="topic" id="exam1">Exam focus — questions asked from this unit</h3>
+
+  <div class="examq">
+    <div class="q-h">Q1 · Define data structure and list any four advantages. <span class="mk">[4 marks]</span></div>
+    <button class="btn-ans" data-answer="a1">Show the answer</button>
+    <div class="ans" id="a1">
+      <p><b>Model answer:</b> A data structure is a particular way of organising, storing and
+      managing data in a computer's memory so that it can be accessed and modified efficiently.</p>
+      <p>Advantages: (i) efficiency — searching and sorting become faster; (ii) reusability — one
+      structure can be used in many programs; (iii) abstraction — the user need not know the
+      internal working; (iv) better memory utilisation.</p>
+      <span class="np-cell">परिभाषा र कुनै चार फाइदा लेख्नुहोस्। माथिकै अंग्रेजी वाक्य जस्ताको तस्तै लेख्दा पूरा अंक आउँछ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q2 · Differentiate between linear and non-linear data structures with examples. <span class="mk">[4 marks]</span></div>
+    <button class="btn-ans" data-answer="a2">Show the answer</button>
+    <div class="ans" id="a2">
+      <p>In a <b>linear</b> data structure the elements are arranged in a sequence, one after
+      another, at a single level, and the whole structure can be traversed in one run.
+      Examples: array, linked list, stack, queue.</p>
+      <p>In a <b>non-linear</b> data structure the elements are not in a sequence; one element may
+      connect to many, the structure has multiple levels, and it cannot be traversed in one straight
+      run. Examples: tree, graph.</p>
+      <span class="np-cell">दुवैको परिभाषा + कम्तीमा दुई–दुई उदाहरण लेख्नुहोस्। तालिकाको रूपमा लेखे झन् राम्रो।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q3 · What is a stack? Explain LIFO with a real-life example and name its operations. <span class="mk">[5 marks]</span></div>
+    <button class="btn-ans" data-answer="a3">Show the answer</button>
+    <div class="ans" id="a3">
+      <p>A stack is a linear data structure in which insertion and deletion take place at only one
+      end, called the top. It follows LIFO — Last In, First Out — meaning the element inserted last
+      is removed first.</p>
+      <p>Real-life example: a pile of plates. The plate placed last sits on top and is taken first.</p>
+      <p>Operations: push() to insert, pop() to remove, peek()/top() to read the top element,
+      isEmpty() and isFull() to check the state. Pushing into a full stack causes overflow;
+      popping from an empty stack causes underflow.</p>
+      <span class="np-cell">परिभाषा + LIFO + प्लेटको उदाहरण + अपरेसनका नाम — चारै कुरा लेखे पूरा अंक।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h">Q4 · Explain the terms entity, attribute, record and file with one example each. <span class="mk">[4 marks]</span></div>
+    <button class="btn-ans" data-answer="a4">Show the answer</button>
+    <div class="ans" id="a4">
+      <p><b>Entity</b> — a real-world thing about which data is stored, e.g. Student.<br>
+      <b>Attribute (field)</b> — one property of that entity, e.g. Name, Roll, Marks.<br>
+      <b>Record</b> — a collection of related fields describing one entity, e.g. Ram | 15 | 78.<br>
+      <b>File</b> — a collection of related records, e.g. the records of all 40 students.</p>
+      <span class="np-cell">चारै शब्दको एक–एक लाइन परिभाषा र एक–एक उदाहरण दिनुहोस्।</span>
+    </div>
+  </div>
+
+  <!-- ---------- KEY POINTS ---------- -->
+  <div class="keypoints">
+    <h4>Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h4>
+    <ul>
+      <li>Data structure = <b>organising + storing + managing</b> data for <b>efficient</b> access.</li>
+      <li>Ladder: <b>Field → Record → File</b>. Entity = the real thing described.</li>
+      <li><b>Linear</b> = array, linked list, stack, queue. <b>Non-linear</b> = tree, graph.</li>
+      <li><b>Array</b> = continuous memory, fixed size, direct access by index (starts at 0).</li>
+      <li><b>Linked list</b> = scattered memory, dynamic size, sequential access, node = data + pointer.</li>
+      <li><b>Stack = LIFO</b>, one end (top). <b>Queue = FIFO</b>, two ends (front and rear).</li>
+      <li><b>Tree</b> has a root and one parent per node, no cycles. <b>Graph</b> has no root and cycles are allowed.</li>
+      <li>Six operations: <b>traversing, searching, insertion, deletion, sorting, merging</b>.</li>
+    </ul>
+    <p class="np-cell">यी आठ बुँदा कण्ठ भए यो युनिटका अधिकांश प्रश्नको जवाफ दिन सकिन्छ।</p>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="index.html"><span class="lab">◂ Previous</span><span class="ttl">Overview</span></a><a class="nx" href="unit2.html"><span class="lab">Next ▸</span><span class="ttl">Concept of OOP using C++</span></a></div>
+<footer>
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  <span class="np-cell">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/sim-stackqueue.js"></script>
+</body>
+</html>

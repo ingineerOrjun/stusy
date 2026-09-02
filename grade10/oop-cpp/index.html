@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Structure & OOP Concept using C++ — Grade 10 | RGSC Study Board</title>
+<meta name="description" content="Bilingual Class 10 notes, simulators, program tracer and quiz for Data Structure and OOP using C++.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small>सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small>कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small>इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small>वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small>डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small>कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small>डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small>डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small>गृहपृष्ठ</small></a><h4>Grade 9 · कक्षा ९</h4><a href="../../grade9/index.html">All Grade 9 subjects <small>सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small>सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small>कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small>इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small>वेबसाइट डिजाइन</small></a><h4>Grade 10 · कक्षा १०</h4><a href="../../grade10/index.html">All Grade 10 subjects <small>सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small>डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small>कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small>डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small>डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><h4>Grade 11 · कक्षा ११</h4><a class="dis" href="#" onclick="return false">Coming in the next phase <small>अर्को चरणमा आउँदैछ</small></a><h4>Grade 12 · कक्षा १२</h4><a class="dis" href="#" onclick="return false">Coming in the next phase <small>अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <span>DS &amp; OOP with C++</span></nav>
+<main id="main">
+
+<header class="hero">
+  <div class="herogrid">
+    <div>
+      <div class="eyebrow">Grade 10 · Computer Engineering · CDC Nepal 2078</div>
+      <h1>Data Structure &amp; <span class="hl">OOP</span> using C++</h1>
+      <p class="lead">
+        A <b>data structure</b> is a way of organising data in memory so a program can use it quickly.
+        <b>Object-Oriented Programming (OOP)</b> is a way of writing a program by binding data and the
+        functions that work on that data together inside an <b>object</b>.
+      </p>
+      <p class="lead-np">
+        <b>डाटा स्ट्रक्चर</b> भनेको मेमोरीमा डाटा मिलाएर राख्ने तरिका हो, जसले गर्दा प्रोग्रामले
+        छिटो काम गर्न सक्छ। <b>OOP</b> भनेको डाटा र त्यो डाटामाथि काम गर्ने फङ्सनलाई एउटै
+        <b>अब्जेक्ट</b> भित्र बाँधेर प्रोग्राम लेख्ने तरिका हो।
+      </p>
+      <div style="margin-top:14px">
+        <span class="pill y">6 Units</span>
+        <span class="pill b">64 theory hrs</span>
+        <span class="pill c">50 external marks</span>
+        <span class="pill">Exam in English</span>
+      </div>
+    </div>
+
+    <div class="viz">
+      <div class="lbl">Raw data — बिनामिलाएको डाटा</div>
+      <div class="row">
+        <div class="cell f d1">7</div><div class="cell f d2">3</div>
+        <div class="cell f d3">9</div><div class="cell f d4">1</div>
+      </div>
+      <div class="lbl">Array — क्रम मिलाएर</div>
+      <div class="row">
+        <div class="cell d5">1</div><div class="cell d5">3</div>
+        <div class="cell d6">7</div><div class="cell d6">9</div>
+      </div>
+      <div class="lbl">Linked list — जोडिएर</div>
+      <div class="row">
+        <div class="node d7"><span class="v">1</span><span class="p">•</span></div>
+        <span class="arrow">→</span>
+        <div class="node d7"><span class="v">3</span><span class="p">•</span></div>
+        <span class="arrow">→</span>
+        <div class="node d8"><span class="v">7</span><span class="p">∅</span></div>
+      </div>
+      <div class="lbl">Object — डाटा + फङ्सन सँगै</div>
+      <div class="row">
+        <div class="objbox d8">
+          Student s1;
+          <small>data: name, roll &nbsp;·&nbsp; functions: input(), show()</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="pair">
+  <div class="en">
+    <span class="tag">How to use this page</span>
+    <p>Read the <b>solid box</b> first — that is the exact English wording the exam uses.
+    Then read the <b>dashed yellow box</b> — that is the same idea in Nepali. Both are always
+    on screen together, so you can match the Nepali meaning to the English exam word.</p>
+    <p>The most important part is <b>▶ Trace a Program</b>. Exams ask
+    <i>"what is the output of this program?"</i> — that section teaches you to walk a program line by line.</p>
+  </div>
+  <div class="np">
+    <span class="tag">यो पेज कसरी प्रयोग गर्ने</span>
+    <p>पहिले <b>सलिड बाकस</b> पढ्नुहोस् — त्यही अंग्रेजी शब्द नै परीक्षामा आउँछ।
+    त्यसपछि <b>पहेँलो डटेड बाकस</b> पढ्नुहोस् — त्यहाँ त्यही कुरा नेपालीमा छ।
+    दुवै सँगै देखिन्छन्, ताकि नेपाली अर्थलाई अंग्रेजी शब्दसँग जोड्न सकियोस्।</p>
+    <p>सबैभन्दा महत्त्वपूर्ण भाग <b>▶ Trace a Program</b> हो। परीक्षामा
+    <i>"यो प्रोग्रामको आउटपुट के हो?"</i> भनेर सोधिन्छ — त्यो सेक्सनले लाइन–लाइन पढ्न सिकाउँछ।</p>
+  </div>
+</div>
+
+<section style="margin-top:34px">
+  <div class="sec-head"><div class="sec-num">≡</div>
+    <div><h2>Units and sections</h2><p class="sec-sub">युनिट र सेक्सनहरू</p></div>
+    <span class="marks">6 units · 64 hrs · 50 marks</span></div>
+  <div class="rule"></div>
+  <div class="ucards"><a class="ucard" href="unit1.html">
+      <div class="top"><div class="badge">1</div><h4>Basic Introduction to Data Structure</h4></div>
+      <span class="np-cell">डाटा स्ट्रक्चरको आधारभूत परिचय</span>
+      <span class="hrs">20 hrs · 15 marks</span></a><a class="ucard" href="unit2.html">
+      <div class="top"><div class="badge">2</div><h4>Concept of OOP using C++</h4></div>
+      <span class="np-cell">OOP को अवधारणा (C++)</span>
+      <span class="hrs">10 hrs · 14 marks</span></a><a class="ucard" href="unit3.html">
+      <div class="top"><div class="badge">3</div><h4>Class and Object</h4></div>
+      <span class="np-cell">क्लास र अब्जेक्ट</span>
+      <span class="hrs">7 hrs · 2 marks</span></a><a class="ucard" href="unit4.html">
+      <div class="top"><div class="badge">4</div><h4>Abstraction and Encapsulation</h4></div>
+      <span class="np-cell">एब्स्ट्र्याक्सन र इनक्याप्सुलेसन</span>
+      <span class="hrs">7 hrs · 5 marks</span></a><a class="ucard" href="unit5.html">
+      <div class="top"><div class="badge">5</div><h4>Inheritance</h4></div>
+      <span class="np-cell">इनहेरिटेन्स</span>
+      <span class="hrs">10 hrs · 7 marks</span></a><a class="ucard" href="unit6.html">
+      <div class="top"><div class="badge">6</div><h4>Polymorphism</h4></div>
+      <span class="np-cell">पोलिमर्फिज्म</span>
+      <span class="hrs">10 hrs · 7 marks</span></a><a class="ucard" href="trace.html">
+      <div class="top"><div class="badge">▶</div><h4>Trace a Full Program</h4></div>
+      <span class="np-cell">पूरा प्रोग्राम ट्रेस गर्नुहोस्</span>
+      <span class="hrs">practice &amp; revision</span></a><a class="ucard" href="tables.html">
+      <div class="top"><div class="badge">≠</div><h4>Comparison Tables & Exam Terms</h4></div>
+      <span class="np-cell">तुलनात्मक तालिका र परीक्षा शब्दावली</span>
+      <span class="hrs">practice &amp; revision</span></a><a class="ucard" href="quiz.html">
+      <div class="top"><div class="badge">?</div><h4>Self-Check Quiz</h4></div>
+      <span class="np-cell">आफैं जाँच्ने क्विज</span>
+      <span class="hrs">practice &amp; revision</span></a></div>
+</section>
+</main>
+
+<footer>
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  <span class="np-cell">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/nav.js"></script>
+
+</body>
+</html>
