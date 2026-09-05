@@ -1,0 +1,69 @@
+<section id="trace">
+  <div class="sec-head">
+    <div class="sec-num">▶</div>
+    <div>
+      <h2>Trace a Full Program</h2>
+      <p class="sec-sub">पूरा प्रोग्राम लाइन–लाइन हेर्नुहोस् — परीक्षामा "आउटपुट के हुन्छ?" यहीँबाट सिकिन्छ</p>
+    </div>
+    <span class="marks">most important section</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="pair">
+    <div class="en">
+      <span class="tag">How to use this</span>
+      <p>Pick a program. Press <b>Next</b> one step at a time. The <b>yellow line</b> is the line the
+      computer is running <b>right now</b>. Output appears in the black console only when
+      a <span class="term">cout</span> line actually runs.</p>
+      <p>Before pressing Next, <b>guess in your head</b> what will happen. Then press it and check.
+      That guessing habit is exactly what the exam tests.</p>
+    </div>
+    <div class="np">
+      <span class="tag">कसरी प्रयोग गर्ने</span>
+      <p>एउटा प्रोग्राम छान्नुहोस्। एक–एक पटक <b>Next</b> थिच्नुहोस्। <b>पहेँलो लाइन</b> भनेको
+      कम्प्युटरले <b>अहिले चलाइरहेको</b> लाइन हो। <span class="term">cout</span> लाइन चलेपछि मात्र
+      कालो कन्सोलमा आउटपुट देखिन्छ।</p>
+      <p>Next थिच्नु अघि <b>मनमै अनुमान गर्नुहोस्</b> — के हुन्छ होला? अनि थिचेर मिलायो कि मिलेन हेर्नुहोस्।
+      परीक्षाले जाँच्ने ठ्याक्कै यही बानी हो।</p>
+    </div>
+  </div>
+
+  <div class="btns" style="margin-top:18px">
+    <button class="primary" id="pgBtn0" onclick="loadProg(0)">Program 1 · Class + Constructor + Destructor</button>
+    <button id="pgBtn1" onclick="loadProg(1)">Program 2 · Multilevel Inheritance</button>
+    <button id="pgBtn2" onclick="loadProg(2)">Program 3 · Polymorphism (virtual)</button>
+  </div>
+
+  <div class="en">
+    <h3 id="progTitle" style="margin-top:0;color:var(--yellow)"></h3>
+    <p id="progDesc" style="font-size:.92rem;margin-bottom:4px"></p>
+    <p id="progDescNp" style="font-family:var(--deva);color:#f6ecd2;font-size:.92rem;
+       border-left:3px dashed rgba(255,215,110,.5);padding-left:12px"></p>
+
+    <div style="display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-top:14px" class="simgrid">
+      <div>
+        <div class="code" id="traceCode"></div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:.7rem;letter-spacing:1.4px;color:var(--green);
+             text-transform:uppercase;margin-bottom:6px">Console output</div>
+        <div class="console" id="traceCon"></div>
+
+        <div class="cap" style="margin-top:12px">
+          <div id="traceCapEn">Press <b>Next ▸</b> to start.</div>
+          <div class="np-line" id="traceCapNp">सुरु गर्न <b>Next ▸</b> थिच्नुहोस्।</div>
+        </div>
+
+        <div class="btns">
+          <button id="btnPrev" onclick="stepTrace(-1)">◂ Prev</button>
+          <button class="primary" id="btnNext" onclick="stepTrace(1)">Next ▸</button>
+          <button class="coral" onclick="resetTrace()">Reset</button>
+        </div>
+        <div class="stepbar">
+          <span id="stepLbl">step 0 / 0</span>
+          <span class="track"><i id="stepFill"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,227 @@
+/* =========================================================
+   DiagramRuntime — step-driven animated diagrams.
+
+       Initial state → action → transition → new state → explanation
+
+   The model is STATE-DRIVEN, not a chain of DOM mutations. Showing
+   step N means: reset every animatable element to its base state, then
+   apply steps 0…N in order. Two consequences that matter:
+
+     - stepping backwards is exact, not an "undo" guess
+     - a diagram can be jumped to any step, replayed, or reset, and
+       always looks identical for a given step number
+
+   A diagram author writes SVG with ids plus a list of steps. They write
+   no JavaScript and no CSS.
+
+   Controls are delegated from the document, so any number of diagrams on
+   a page cost one listener and no inline handlers (keeping the CSP path
+   open — see docs/SECURITY.md).
+   ========================================================= */
+(function (global) {
+  'use strict';
+
+  var configs = Object.create(null);
+  var instances = Object.create(null);
+
+  /* ---------- registration (called by generated diagram-data.js) ---- */
+
+  function register(name, cfg){
+    if (typeof name !== 'string' || !name) throw new TypeError('DiagramRuntime: name required');
+    if (!cfg || !Array.isArray(cfg.steps) || !cfg.steps.length){
+      throw new TypeError('DiagramRuntime(' + name + '): steps must be a non-empty array');
+    }
+    for (var i = 0; i < cfg.steps.length; i++){
+      var s = cfg.steps[i];
+      if (!s || typeof s.en !== 'string' || !s.en){
+        throw new TypeError('DiagramRuntime(' + name + '): step ' + (i + 1) + ' has no English caption');
+      }
+      if (typeof s.ne !== 'string' || !s.ne){
+        throw new TypeError('DiagramRuntime(' + name + '): step ' + (i + 1) + ' has no Nepali caption');
+      }
+    }
+    configs[name] = cfg;
+    return cfg.steps.length;
+  }
+
+  /* ---------- one mounted diagram ---------------------------------- */
+
+  function Diagram(root, name, cfg){
+    this.root = root;
+    this.name = name;
+    this.cfg = cfg;
+    this.svg = root.querySelector('svg');
+    this.capEn = root.querySelector('.dia-cap-en');
+    this.capNe = root.querySelector('.dia-cap-ne');
+    this.progress = root.querySelector('.dia-progress');
+    this.step = 0;                      // 0 = initial state, before step 1
+    this.seq = null;
+    this.applyTo(0);
+  }
+
+  Diagram.prototype.$ = function(sel){
+    return this.svg ? this.svg.querySelectorAll(sel) : [];
+  };
+
+  /* Return every animatable element to its base state. */
+  Diagram.prototype.reset = function(){
+    var marked = this.$('.dia-step, .dia-dim, .dia-focus, .dia-draw, .dia-travel');
+    for (var i = 0; i < marked.length; i++){
+      marked[i].classList.remove('on');
+      marked[i].removeAttribute('transform');
+      if (global.MotionService) MotionService.setState(marked[i], null);
+    }
+    return this;
+  };
+
+  Diagram.prototype._applyStep = function(s){
+    var self = this;
+    function each(list, fn){
+      if (!list) return;
+      var arr = typeof list === 'string' ? [list] : list;
+      for (var i = 0; i < arr.length; i++){
+        var els = self.$(arr[i]);
+        for (var j = 0; j < els.length; j++) fn(els[j]);
+      }
+    }
+    each(s.show,  function(el){ el.classList.add('on'); });
+    each(s.hide,  function(el){ el.classList.remove('on'); });
+    each(s.focus, function(el){ el.classList.add('on'); });
+    if (s.state){
+      for (var sel in s.state){
+        if (!Object.prototype.hasOwnProperty.call(s.state, sel)) continue;
+        (function(v){
+          each(sel, function(el){
+            if (global.MotionService) MotionService.setState(el, v);
+            else el.classList.add('is-' + v);
+          });
+        })(s.state[sel]);
+      }
+    }
+    /* move an element along the diagram's own coordinate system */
+    if (s.move){
+      for (var msel in s.move){
+        if (!Object.prototype.hasOwnProperty.call(s.move, msel)) continue;
+        (function(to){
+          each(msel, function(el){
+            el.classList.add('on');
+            el.setAttribute('transform', 'translate(' + to[0] + ',' + to[1] + ')');
+          });
+        })(s.move[msel]);
+      }
+    }
+  };
+
+  /* Show state as of step n (1-based; 0 = initial). */
+  Diagram.prototype.applyTo = function(n){
+    n = Math.max(0, Math.min(n, this.cfg.steps.length));
+    this.step = n;
+    this.reset();
+    for (var i = 0; i < n; i++) this._applyStep(this.cfg.steps[i]);
+
+    var s = n > 0 ? this.cfg.steps[n - 1] : null;
+    if (this.capEn) this.capEn.textContent = s ? s.en : (this.cfg.intro ? this.cfg.intro.en : '');
+    if (this.capNe) this.capNe.textContent = s ? s.ne : (this.cfg.intro ? this.cfg.intro.ne : '');
+    if (this.progress) this.progress.textContent = 'step ' + n + ' / ' + this.cfg.steps.length;
+
+    var prev = this.root.querySelector('[data-dia-act="prev"]');
+    var next = this.root.querySelector('[data-dia-act="next"]');
+    if (prev) prev.disabled = n === 0;
+    if (next) next.disabled = n === this.cfg.steps.length;
+    return this;
+  };
+
+  Diagram.prototype.next  = function(){ this.stop(); return this.applyTo(this.step + 1); };
+  Diagram.prototype.prev  = function(){ this.stop(); return this.applyTo(this.step - 1); };
+  Diagram.prototype.reboot = function(){ this.stop(); return this.applyTo(0); };
+
+  Diagram.prototype.play = function(){
+    if (!global.MotionService) { this.applyTo(this.cfg.steps.length); return this; }
+    var self = this;
+    this.stop();
+    if (this.step >= this.cfg.steps.length) this.applyTo(0);
+    this.seq = MotionService.sequence({
+      steps: this.cfg.steps.slice(this.step),
+      pace: 'step',
+      onStep: function(){ self.applyTo(self.step + 1); },
+      onDone: function(){ self.seq = null; self._syncPlayButton(); }
+    });
+    /* pause when scrolled away or the tab is hidden */
+    this._unregister = MotionService.register(this.seq, this.root);
+    this.seq.play();
+    this._syncPlayButton();
+    return this;
+  };
+
+  Diagram.prototype.stop = function(){
+    if (this.seq){ this.seq.destroy(); this.seq = null; }
+    if (this._unregister){ this._unregister(); this._unregister = null; }
+    this._syncPlayButton();
+    return this;
+  };
+
+  Diagram.prototype._syncPlayButton = function(){
+    var b = this.root.querySelector('[data-dia-act="play"]');
+    if (!b) return;
+    var playing = !!this.seq;
+    b.textContent = playing ? '❙❙ Pause' : '▶ Play';
+    b.setAttribute('aria-pressed', playing ? 'true' : 'false');
+  };
+
+  /* ---------- mounting + delegated controls ------------------------ */
+
+  function mount(){
+    var roots = document.querySelectorAll('[data-dia]');
+    for (var i = 0; i < roots.length; i++){
+      var root = roots[i];
+      var name = root.getAttribute('data-dia');
+      var cfg = configs[name];
+      if (!cfg){
+        if (global.console && console.warn) console.warn('DiagramRuntime: no config registered for "' + name + '"');
+        continue;
+      }
+      if (!instances[name]) instances[name] = [];
+      instances[name].push(new Diagram(root, name, cfg));
+    }
+  }
+
+  function find(el){
+    var root = el.closest ? el.closest('[data-dia]') : null;
+    if (!root) return null;
+    var list = instances[root.getAttribute('data-dia')] || [];
+    for (var i = 0; i < list.length; i++) if (list[i].root === root) return list[i];
+    return null;
+  }
+
+  function onClick(e){
+    var btn = e.target && e.target.closest ? e.target.closest('[data-dia-act]') : null;
+    if (!btn) return;
+    var d = find(btn);
+    if (!d) return;
+    var act = btn.getAttribute('data-dia-act');
+    if (act === 'next') d.next();
+    else if (act === 'prev') d.prev();
+    else if (act === 'reset') d.reboot();
+    else if (act === 'play'){ if (d.seq) d.stop(); else d.play(); }
+  }
+
+  function ready(fn){
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+    else fn();
+  }
+
+  ready(function(){
+    mount();
+    document.addEventListener('click', onClick);
+  });
+
+  global.DiagramRuntime = {
+    register: register,
+    mount: mount,
+    get: function(name){ return (instances[name] || [])[0] || null; },
+    config: function(name){ return configs[name] || null; },
+    names: function(){ return Object.keys(configs); }
+  };
+  if (typeof module !== 'undefined' && module.exports) module.exports = global.DiagramRuntime;
+
+})(typeof window !== 'undefined' ? window : globalThis);

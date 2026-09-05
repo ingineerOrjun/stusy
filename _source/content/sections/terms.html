@@ -1,0 +1,40 @@
+<section id="terms">
+  <div class="sec-head">
+    <div class="sec-num">+</div>
+    <div>
+      <h2>Extra Exam Terms</h2>
+      <p class="sec-sub">छोटा तर सोधिन सक्ने शब्दहरू</p>
+    </div>
+    <span class="marks">1-mark answers</span>
+  </div>
+  <div class="rule"></div>
+  <p class="sec-sub">These appear in one-mark or fill-in questions. Learn one line for each — do not go deeper than this.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:190px">Term</th><th>One-line meaning</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Instantiation</td><td>The act of <b>creating an object</b> from a class.<span class="np-cell">क्लासबाट अब्जेक्ट बनाउने काम।</span></td></tr>
+        <tr><td class="k">Member function</td><td>A function <b>declared inside a class</b>; also called a <b>method</b>.<span class="np-cell">क्लास भित्र घोषित फङ्सन — मेथड।</span></td></tr>
+        <tr><td class="k">Data member</td><td>A <b>variable declared inside a class</b>.<span class="np-cell">क्लास भित्रको भेरिएबल।</span></td></tr>
+        <tr><td class="k">Scope resolution operator <span class="term">::</span></td><td>Used to define a member function <b>outside the class</b>, e.g. <span class="term">void Student::show()</span>.<span class="np-cell">क्लास बाहिर फङ्सन परिभाषित गर्न प्रयोग हुन्छ।</span></td></tr>
+        <tr><td class="k">Dot operator <span class="term">.</span></td><td>Used to access a member <b>through an object</b>: <span class="term">s1.show();</span><span class="np-cell">अब्जेक्ट मार्फत मेम्बर पुग्न।</span></td></tr>
+        <tr><td class="k">Arrow operator <span class="term">-&gt;</span></td><td>Used to access a member <b>through a pointer</b>: <span class="term">p-&gt;show();</span><span class="np-cell">पोइन्टर मार्फत मेम्बर पुग्न।</span></td></tr>
+        <tr><td class="k"><span class="term">this</span> pointer</td><td>A hidden pointer inside every member function that points to <b>the current object</b>.<span class="np-cell">हरेक मेम्बर फङ्सन भित्र लुकेको पोइन्टर, जसले <b>हालको अब्जेक्ट</b> देखाउँछ।</span></td></tr>
+        <tr><td class="k">Friend function</td><td>A <b>non-member</b> function that is allowed to access the <b>private</b> members of a class.<span class="np-cell">क्लासको मेम्बर नभई पनि private डाटा छुन पाउने फङ्सन।</span></td></tr>
+        <tr><td class="k">Static member</td><td>A member <b>shared by all objects</b> of the class — only <b>one copy</b> exists.<span class="np-cell">सबै अब्जेक्टले साझा गर्ने मेम्बर — एउटै मात्र प्रति हुन्छ।</span></td></tr>
+        <tr><td class="k">Inline function</td><td>A small function whose code the compiler <b>copies at the call place</b> to save call time.<span class="np-cell">बोलाइएकै ठाउँमा कोड सारिने सानो फङ्सन।</span></td></tr>
+        <tr><td class="k">Virtual function</td><td>A base-class function declared with <span class="term">virtual</span> so the <b>derived</b> version runs through a base pointer.<span class="np-cell"><span class="term">virtual</span> लेखिएको base फङ्सन — base पोइन्टरबाट derived कै संस्करण चल्छ।</span></td></tr>
+        <tr><td class="k">Pure virtual function</td><td>A virtual function with <b>no body</b>, written <span class="term">= 0</span>. It <b>must</b> be overridden.<span class="np-cell">शरीर नभएको virtual फङ्सन (<span class="term">= 0</span>) — override गर्नै पर्छ।</span></td></tr>
+        <tr><td class="k">Abstract class</td><td>A class containing <b>at least one pure virtual function</b>. <b>No object can be created</b> from it.<span class="np-cell">कम्तीमा एउटा pure virtual फङ्सन भएको क्लास — यसको अब्जेक्ट बन्दैन।</span></td></tr>
+        <tr><td class="k">Operator overloading</td><td>Giving an <b>extra meaning</b> to an existing operator (like <span class="term">+</span>) for objects.<span class="np-cell">भइरहेको अपरेटरलाई अब्जेक्टका लागि थप अर्थ दिने।</span></td></tr>
+        <tr><td class="k">Virtual base class</td><td>Used in <b>hybrid inheritance</b> to solve the <b>diamond problem</b> (duplicate copies of a base).<span class="np-cell">hybrid inheritance मा diamond problem हटाउन प्रयोग हुन्छ।</span></td></tr>
+        <tr><td class="k">Namespace</td><td>A named region that groups names to avoid clashes — e.g. <span class="term">std</span>.<span class="np-cell">नाम नबाझियोस् भनेर नामहरू समूहमा राख्ने ठाउँ।</span></td></tr>
+        <tr><td class="k">Header file</td><td>A file (like <span class="term">&lt;iostream&gt;</span>) added by <span class="term">#include</span> that holds ready-made declarations.<span class="np-cell"><span class="term">#include</span> ले थप्ने, पहिल्यै बनेका घोषणा भएको फाइल।</span></td></tr>
+        <tr><td class="k">Overflow / Underflow</td><td><b>Overflow</b> = pushing into a <b>full</b> stack. <b>Underflow</b> = popping from an <b>empty</b> stack.<span class="np-cell">भरिएको स्ट्याकमा push = overflow; खाली स्ट्याकबाट pop = underflow।</span></td></tr>
+        <tr><td class="k">Linear search</td><td>Checks elements <b>one by one</b> from the start. Works on unsorted data.<span class="np-cell">सुरुदेखि एक–एक गरी जाँच्ने। नमिलेको डाटामा पनि चल्छ।</span></td></tr>
+        <tr><td class="k">Binary search</td><td>Repeatedly cuts a <b>sorted</b> list in half. Much faster, but the data <b>must be sorted</b>.<span class="np-cell">मिलेको लिस्टलाई पटक–पटक आधा काट्ने। धेरै छिटो, तर डाटा मिलेको हुनुपर्छ।</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>

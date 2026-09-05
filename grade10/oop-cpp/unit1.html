@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Basic Introduction to Data Structure — DS &amp; OOP with C++ | RGSC Study Board</title>
 <meta name="description" content="Basic Introduction to Data Structure explained in simple English with a Nepali explanation beside it.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
@@ -19,13 +20,13 @@
       <span class="brand-mark">RG</span>
       <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
     </a>
-    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small>सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small>कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small>इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small>वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small>डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small>कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small>डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small>डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
     <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
-<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small>गृहपृष्ठ</small></a><h4>Grade 9 · कक्षा ९</h4><a href="../../grade9/index.html">All Grade 9 subjects <small>सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small>सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small>कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small>इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small>वेबसाइट डिजाइन</small></a><h4>Grade 10 · कक्षा १०</h4><a href="../../grade10/index.html">All Grade 10 subjects <small>सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small>डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small>कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small>डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small>डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><h4>Grade 11 · कक्षा ११</h4><a class="dis" href="#" onclick="return false">Coming in the next phase <small>अर्को चरणमा आउँदैछ</small></a><h4>Grade 12 · कक्षा १२</h4><a class="dis" href="#" onclick="return false">Coming in the next phase <small>अर्को चरणमा आउँदैछ</small></a></div>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
 
 <div class="wrap">
 <nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DS &amp; OOP with C++</a> <span class="sep">/</span> <span>Basic Introduction to Data Structure</span></nav>
@@ -35,15 +36,15 @@
   <div class="sec-head">
     <div class="sec-num">1</div>
     <div>
-      <h2>Basic Introduction to Data Structure</h2>
-      <p class="sec-sub">डाटा स्ट्रक्चरको आधारभूत परिचय</p>
+      <h1>Basic Introduction to Data Structure</h1>
+      <p class="sec-sub" lang="ne">डाटा स्ट्रक्चरको आधारभूत परिचय</p>
     </div>
     <span class="marks">20 hrs · 15 marks · biggest unit</span>
   </div>
   <div class="rule"></div>
 
   <div class="outcomes">
-    <h4>By the end of this unit you can…</h4>
+    <h2>By the end of this unit you can…</h2>
     <ol>
       <li>Define a data structure and give two reasons why it is needed.</li>
       <li>Name and explain the seven terms: data, group item, elementary item, record, entity, attribute, file.</li>
@@ -52,13 +53,13 @@
       <li>List the six operations performed on data structures.</li>
       <li>Compare array vs linked list, and stack vs queue, in a table.</li>
     </ol>
-    <p class="np-cell"><b>यो युनिट सकिँदा तपाईंले:</b> डाटा स्ट्रक्चरको परिभाषा दिन, सातवटा शब्द
+    <p class="np-cell" lang="ne"><b lang="ne">यो युनिट सकिँदा तपाईंले:</b> डाटा स्ट्रक्चरको परिभाषा दिन, सातवटा शब्द
     व्याख्या गर्न, linear/non-linear छुट्याउन, छवटै संरचनाको चित्र कोर्न, छवटा अपरेसन भन्न, र
     तुलनात्मक तालिका लेख्न सक्नुहुनेछ।</p>
   </div>
 
   <!-- ============ 1.1 ============ -->
-  <h3 class="topic" id="t11">1.1 &nbsp;What is a Data Structure?</h3>
+  <h2 class="topic" id="t11">1.1 &nbsp;What is a Data Structure?</h2>
 
   <div class="pair">
     <div class="en">
@@ -69,12 +70,12 @@
       It is the <b>arrangement</b> of the data, together with the <b>rules</b> for putting data in
       and taking data out.</p>
     </div>
-    <div class="np">
-      <span class="tag">परिभाषा — यही शब्द कण्ठ पार्नुहोस्</span>
-      <p><b>डाटा स्ट्रक्चर</b> भनेको कम्प्युटरको मेमोरीमा डाटालाई <b>मिलाएर, राखेर र व्यवस्थापन गर्ने</b>
-      एउटा खास तरिका हो, ताकि त्यो डाटा <b>छिटो र सजिलै</b> प्रयोग र परिवर्तन गर्न सकियोस्।</p>
-      <p>ध्यान दिनुहोस् — डाटा स्ट्रक्चर भनेको <b>डाटा आफैं होइन</b>। यो डाटा <b>कसरी मिलाइएको छ</b>
-      भन्ने कुरा र डाटा <b>राख्ने–झिक्ने नियम</b> हो।</p>
+    <div class="np" lang="ne">
+      <span class="tag" lang="ne">परिभाषा — यही शब्द कण्ठ पार्नुहोस्</span>
+      <p><b lang="ne">डाटा स्ट्रक्चर</b> भनेको कम्प्युटरको मेमोरीमा डाटालाई <b lang="ne">मिलाएर, राखेर र व्यवस्थापन गर्ने</b>
+      एउटा खास तरिका हो, ताकि त्यो डाटा <b lang="ne">छिटो र सजिलै</b> प्रयोग र परिवर्तन गर्न सकियोस्।</p>
+      <p lang="ne">ध्यान दिनुहोस् — डाटा स्ट्रक्चर भनेको <b lang="ne">डाटा आफैं होइन</b>। यो डाटा <b lang="ne">कसरी मिलाइएको छ</b>
+      भन्ने कुरा र डाटा <b lang="ne">राख्ने–झिक्ने नियम</b> हो।</p>
     </div>
   </div>
 
@@ -86,14 +87,14 @@
     subject</b>, you find any book in under a minute.</p>
     <p><b>Same books. Same room. Same librarian. Only the arrangement changed — and the speed
     changed completely.</b> That arrangement is the data structure.</p>
-    <span class="np-cell"><b>व्यवहारिक उदाहरण — पुस्तकालय।</b> ५,००० किताब भएको पुस्तकालय सम्झनुहोस्।
+    <span class="np-cell" lang="ne"><b lang="ne">व्यवहारिक उदाहरण — पुस्तकालय।</b> ५,००० किताब भएको पुस्तकालय सम्झनुहोस्।
     किताबहरू नै डाटा हुन्। भुइँमा थुपारेको छ भने एउटा किताब खोज्न घण्टौं लाग्न सक्छ। तर विषय अनुसार
-    नम्बर हालेको र्‍याकमा राखिएको छ भने एक मिनेटमै भेटिन्छ। <b>किताब उही, कोठा उही — तर मिलाउने
+    नम्बर हालेको र्‍याकमा राखिएको छ भने एक मिनेटमै भेटिन्छ। <b lang="ne">किताब उही, कोठा उही — तर मिलाउने
     तरिका फेरियो, र गति पूरै फेरियो।</b> त्यही मिलान नै डाटा स्ट्रक्चर हो।</span>
   </div>
 
   <!-- ============ 1.2 ============ -->
-  <h3 class="topic" id="t12">1.2 &nbsp;Advantages of Data Structures</h3>
+  <h2 class="topic" id="t12">1.2 &nbsp;Advantages of Data Structures</h2>
 
   <div class="pair">
     <div class="en">
@@ -113,22 +114,22 @@
         <li><b>Handles large data</b> — millions of records stay manageable.</li>
       </ul>
     </div>
-    <div class="np">
-      <span class="tag">छ वटा फाइदा</span>
+    <div class="np" lang="ne">
+      <span class="tag" lang="ne">छ वटा फाइदा</span>
       <ul class="tick">
-        <li><b>Efficiency (दक्षता)</b> — सही स्ट्रक्चरले खोज्ने र क्रम मिलाउने काम धेरै छिटो बनाउँछ।
+        <li><b lang="ne">Efficiency (दक्षता)</b> — सही स्ट्रक्चरले खोज्ने र क्रम मिलाउने काम धेरै छिटो बनाउँछ।
           १० लाख डाटामा binary search ले करिब २० चरणमै भेट्छ; एक–एक गरी हेर्दा १० लाख चरणसम्म लाग्न सक्छ।</li>
         <li><b>Reusability</b> — एक पटक लेखेको स्ट्याक धेरै प्रोग्राममा प्रयोग गर्न सकिन्छ।</li>
         <li><b>Abstraction</b> — भित्र कसरी चल्छ थाहा नपाई पनि <span class="term">push()</span> प्रयोग गर्न सकिन्छ।</li>
-        <li><b>मेमोरीको राम्रो प्रयोग</b> — linked list ले चाहिएको बेला मात्र मेमोरी लिन्छ।</li>
-        <li><b>सजिलो मर्मत</b> — मिलेको डाटाले कोड छोटो र स्पष्ट बनाउँछ।</li>
-        <li><b>ठूलो डाटा</b> — लाखौं रेकर्ड पनि व्यवस्थित रहन्छ।</li>
+        <li><b lang="ne">मेमोरीको राम्रो प्रयोग</b> — linked list ले चाहिएको बेला मात्र मेमोरी लिन्छ।</li>
+        <li><b lang="ne">सजिलो मर्मत</b> — मिलेको डाटाले कोड छोटो र स्पष्ट बनाउँछ।</li>
+        <li><b lang="ne">ठूलो डाटा</b> — लाखौं रेकर्ड पनि व्यवस्थित रहन्छ।</li>
       </ul>
     </div>
   </div>
 
   <!-- ============ 1.3 ============ -->
-  <h3 class="topic" id="t13">1.3 &nbsp;Terms Used in Data Structures</h3>
+  <h2 class="topic" id="t13">1.3 &nbsp;Terms Used in Data Structures</h2>
   <p class="lead-sub">These seven words are asked directly, almost every year. Learn the English
   term, one line of meaning, and one example for each.</p>
 
@@ -154,16 +155,16 @@
   <text class="f-lbl-y" x="470" y="94">Marks</text>
 
   <rect class="f-box-y" x="60" y="108" width="470" height="34" rx="4" fill="rgba(255,215,110,.10)"/>
-  <text class="f-val" x="130" y="130" font-size="13">Ram Thapa</text>
-  <text class="f-val" x="245" y="130" font-size="13">15</text>
-  <text class="f-val" x="350" y="130" font-size="13">10</text>
-  <text class="f-val" x="470" y="130" font-size="13">78</text>
+  <text class="f-val" x="130" y="130" style="font-size:13px">Ram Thapa</text>
+  <text class="f-val" x="245" y="130" style="font-size:13px">15</text>
+  <text class="f-val" x="350" y="130" style="font-size:13px">10</text>
+  <text class="f-val" x="470" y="130" style="font-size:13px">78</text>
 
   <rect class="f-box" x="60" y="146" width="470" height="30" rx="4" opacity=".55"/>
-  <text class="f-val" x="130" y="166" font-size="13" opacity=".55">Sita Rai</text>
-  <text class="f-val" x="245" y="166" font-size="13" opacity=".55">16</text>
-  <text class="f-val" x="350" y="166" font-size="13" opacity=".55">10</text>
-  <text class="f-val" x="470" y="166" font-size="13" opacity=".55">85</text>
+  <text class="f-val" x="130" y="166" style="font-size:13px" opacity=".55">Sita Rai</text>
+  <text class="f-val" x="245" y="166" style="font-size:13px" opacity=".55">16</text>
+  <text class="f-val" x="350" y="166" style="font-size:13px" opacity=".55">10</text>
+  <text class="f-val" x="470" y="166" style="font-size:13px" opacity=".55">85</text>
 
   <path class="f-arr" marker-end="url(#a-dh)" d="M600,89 L545,89"/>
   <text class="f-lbl-y" x="610" y="84" text-anchor="start">ATTRIBUTE</text>
@@ -178,7 +179,7 @@
   <text class="f-lbl" x="360" y="288">One row = one RECORD. All rows together = one FILE.</text>
 </svg>
     <figcaption>How one value becomes a field, fields become a record, and records become a file.
-      <span class="np-cell">एउटा मान → फिल्ड, फिल्डहरू → रेकर्ड, रेकर्डहरू → फाइल कसरी बन्छ।</span>
+      <span class="np-cell" lang="ne">एउटा मान → फिल्ड, फिल्डहरू → रेकर्ड, रेकर्डहरू → फाइल कसरी बन्छ।</span>
     </figcaption>
   </figure>
 
@@ -189,32 +190,32 @@
         <tr><td class="k">Data</td>
           <td>The <b>raw facts and figures</b> that a computer stores or processes. On its own, data
             carries no meaning until it is organised.
-            <span class="np-cell">कच्चा तथ्य र अंक। मिलाएर नराखेसम्म यसको अर्थ हुँदैन।</span></td>
+            <span class="np-cell" lang="ne">कच्चा तथ्य र अंक। मिलाएर नराखेसम्म यसको अर्थ हुँदैन।</span></td>
           <td class="k">Ram, 15, 78</td></tr>
         <tr><td class="k">Group Item</td>
           <td>A data item that <b>can be divided</b> into smaller sub-items.
-            <span class="np-cell">फेरि साना टुक्रामा <b>भाग गर्न मिल्ने</b> डाटा आइटम।</span></td>
+            <span class="np-cell" lang="ne">फेरि साना टुक्रामा <b lang="ne">भाग गर्न मिल्ने</b> डाटा आइटम।</span></td>
           <td class="k">Name → First + Last<br>Date → DD + MM + YYYY</td></tr>
         <tr><td class="k">Elementary Item</td>
           <td>A data item that <b>cannot be divided</b> any further. Also called an <b>atomic</b> item.
-            <span class="np-cell">अब <b>भाग गर्न नमिल्ने</b> डाटा आइटम।</span></td>
+            <span class="np-cell" lang="ne">अब <b lang="ne">भाग गर्न नमिल्ने</b> डाटा आइटम।</span></td>
           <td class="k">Roll No = 15</td></tr>
         <tr><td class="k">Record</td>
           <td>A collection of <b>related data items (fields)</b> that together describe <b>one thing</b>.
             One row of a table.
-            <span class="np-cell">एउटै वस्तुलाई जनाउने सम्बन्धित फिल्डहरूको समूह — तालिकाको एउटा हरफ।</span></td>
+            <span class="np-cell" lang="ne">एउटै वस्तुलाई जनाउने सम्बन्धित फिल्डहरूको समूह — तालिकाको एउटा हरफ।</span></td>
           <td class="k">Ram | 15 | 10 | 78</td></tr>
         <tr><td class="k">Entity</td>
           <td>Any <b>real-world thing, person or object</b> about which we store data.
-            <span class="np-cell">जुन वास्तविक वस्तु/व्यक्तिको बारेमा डाटा राखिन्छ।</span></td>
+            <span class="np-cell" lang="ne">जुन वास्तविक वस्तु/व्यक्तिको बारेमा डाटा राखिन्छ।</span></td>
           <td class="k">Student</td></tr>
         <tr><td class="k">Attribute / Field</td>
           <td>One <b>property or characteristic</b> of an entity. One column of a table.
-            <span class="np-cell">एन्टिटीको एउटा गुण वा विशेषता — तालिकाको एउटा कोलम।</span></td>
+            <span class="np-cell" lang="ne">एन्टिटीको एउटा गुण वा विशेषता — तालिकाको एउटा कोलम।</span></td>
           <td class="k">Name, Roll, Class, Marks</td></tr>
         <tr><td class="k">File</td>
           <td>A collection of <b>related records</b> of the same entity, stored together.
-            <span class="np-cell">एउटै एन्टिटीका धेरै रेकर्डहरूको संग्रह।</span></td>
+            <span class="np-cell" lang="ne">एउटै एन्टिटीका धेरै रेकर्डहरूको संग्रह।</span></td>
           <td class="k">All 40 student records</td></tr>
       </tbody>
     </table>
@@ -225,13 +226,13 @@
     <b>Field → Record → File.</b> One field is one value; many fields make one record; many records
     make one file. The <b>entity</b> is the real thing all of it describes. Students most often mix
     up <b>entity</b> (the thing) with <b>attribute</b> (a property of the thing).
-    <span class="np-cell">फिल्ड → रेकर्ड → फाइल। <b>एन्टिटी</b> चाहिँ जुन वास्तविक वस्तुको वर्णन
+    <span class="np-cell" lang="ne">फिल्ड → रेकर्ड → फाइल। <b lang="ne">एन्टिटी</b> चाहिँ जुन वास्तविक वस्तुको वर्णन
     गरिँदैछ त्यो हो। विद्यार्थीहरूले प्रायः <b>entity</b> (वस्तु) र <b>attribute</b> (त्यसको गुण)
     लाई अलमल्याउँछन्।</span>
   </div>
 
   <!-- ============ 1.4 ============ -->
-  <h3 class="topic" id="t14">1.4 &nbsp;Need of Data Structures</h3>
+  <h2 class="topic" id="t14">1.4 &nbsp;Need of Data Structures</h2>
   <div class="pair">
     <div class="en">
       <span class="tag">Why they are needed</span>
@@ -243,29 +244,29 @@
         <li><b>Memory is limited</b> — data must be stored without waste.</li>
       </ul>
     </div>
-    <div class="np">
-      <span class="tag">किन आवश्यक छ</span>
+    <div class="np" lang="ne">
+      <span class="tag" lang="ne">किन आवश्यक छ</span>
       <ul class="tick">
-        <li><b>डाटा बढ्दै छ</b> — प्रोग्रामले धेरै ठूलो डाटा सम्हाल्नुपर्छ।</li>
-        <li><b>प्रोसेसरको गति सीमित छ</b> — छिटो CPU ले पनि बिग्रेको मिलानलाई सुधार्न सक्दैन।</li>
-        <li><b>खोजी छिटो हुनुपर्छ</b> — नमिलेको १ लाख नाम एक–एक गरी खोज्न धेरै ढिलो हुन्छ।</li>
-        <li><b>एकैचोटि धेरै प्रयोगकर्ता</b> — डाटा छिटो पुग्नुपर्छ।</li>
-        <li><b>मेमोरी सीमित छ</b> — खेर नफाली राख्नुपर्छ।</li>
+        <li><b lang="ne">डाटा बढ्दै छ</b> — प्रोग्रामले धेरै ठूलो डाटा सम्हाल्नुपर्छ।</li>
+        <li><b lang="ne">प्रोसेसरको गति सीमित छ</b> — छिटो CPU ले पनि बिग्रेको मिलानलाई सुधार्न सक्दैन।</li>
+        <li><b lang="ne">खोजी छिटो हुनुपर्छ</b> — नमिलेको १ लाख नाम एक–एक गरी खोज्न धेरै ढिलो हुन्छ।</li>
+        <li><b lang="ne">एकैचोटि धेरै प्रयोगकर्ता</b> — डाटा छिटो पुग्नुपर्छ।</li>
+        <li><b lang="ne">मेमोरी सीमित छ</b> — खेर नफाली राख्नुपर्छ।</li>
       </ul>
     </div>
   </div>
 
   <!-- ============ 1.5 ============ -->
-  <h3 class="topic" id="t15">1.5 &nbsp;Classification of Data Structures</h3>
+  <h2 class="topic" id="t15">1.5 &nbsp;Classification of Data Structures</h2>
 
   <figure class="fig">
     
 <svg viewBox="0 0 720 330" role="img" aria-labelledby="t-dscls">
   <title id="t-dscls">Classification of data structures into linear and non-linear types</title>
-  <text class="f-ttl" x="10" y="18">Classification of Data Structures — डाटा स्ट्रक्चरको वर्गीकरण</text>
+  <text class="f-ttl" x="10" y="18" lang="ne">Classification of Data Structures — डाटा स्ट्रक्चरको वर्गीकरण</text>
 
   <rect class="f-box-y" x="280" y="36" width="170" height="42" rx="8"/>
-  <text class="f-val" x="365" y="62" font-size="14">DATA STRUCTURE</text>
+  <text class="f-val" x="365" y="62" style="font-size:14px">DATA STRUCTURE</text>
 
   <line class="f-ln" x1="365" y1="78" x2="365" y2="96"/>
   <line class="f-ln" x1="185" y1="96" x2="545" y2="96"/>
@@ -273,9 +274,9 @@
   <line class="f-ln" x1="545" y1="96" x2="545" y2="118"/>
 
   <rect class="f-box" x="90" y="118" width="190" height="42" rx="8"/>
-  <text class="f-val" x="185" y="144" font-size="13">LINEAR</text>
+  <text class="f-val" x="185" y="144" style="font-size:13px">LINEAR</text>
   <rect class="f-box-c" x="450" y="118" width="190" height="42" rx="8"/>
-  <text class="f-val" x="545" y="144" font-size="13">NON-LINEAR</text>
+  <text class="f-val" x="545" y="144" style="font-size:13px">NON-LINEAR</text>
 
   <text class="f-lbl" x="185" y="176">elements in a sequence</text>
   <text class="f-lbl" x="545" y="176">elements in a hierarchy</text>
@@ -287,24 +288,24 @@
   <line class="f-ln" x1="226" y1="200" x2="226" y2="216"/>
   <line class="f-ln" x1="310" y1="200" x2="310" y2="216"/>
 
-  <rect class="f-box-g" x="20"  y="216" width="80" height="36" rx="6"/><text class="f-val" x="60"  y="239" font-size="12">Array</text>
-  <rect class="f-box-g" x="106" y="216" width="80" height="36" rx="6"/><text class="f-val" x="146" y="239" font-size="11">Linked List</text>
-  <rect class="f-box-g" x="192" y="216" width="72" height="36" rx="6"/><text class="f-val" x="228" y="239" font-size="12">Stack</text>
-  <rect class="f-box-g" x="272" y="216" width="72" height="36" rx="6"/><text class="f-val" x="308" y="239" font-size="12">Queue</text>
+  <rect class="f-box-g" x="20"  y="216" width="80" height="36" rx="6"/><text class="f-val" x="60"  y="239" style="font-size:12px">Array</text>
+  <rect class="f-box-g" x="106" y="216" width="80" height="36" rx="6"/><text class="f-val" x="146" y="239" style="font-size:11px">Linked List</text>
+  <rect class="f-box-g" x="192" y="216" width="72" height="36" rx="6"/><text class="f-val" x="228" y="239" style="font-size:12px">Stack</text>
+  <rect class="f-box-g" x="272" y="216" width="72" height="36" rx="6"/><text class="f-val" x="308" y="239" style="font-size:12px">Queue</text>
 
   <line class="f-ln" x1="545" y1="186" x2="545" y2="200"/>
   <line class="f-ln" x1="490" y1="200" x2="600" y2="200"/>
   <line class="f-ln" x1="490" y1="200" x2="490" y2="216"/>
   <line class="f-ln" x1="600" y1="200" x2="600" y2="216"/>
-  <rect class="f-box-g" x="450" y="216" width="80" height="36" rx="6"/><text class="f-val" x="490" y="239" font-size="12">Tree</text>
-  <rect class="f-box-g" x="560" y="216" width="80" height="36" rx="6"/><text class="f-val" x="600" y="239" font-size="12">Graph</text>
+  <rect class="f-box-g" x="450" y="216" width="80" height="36" rx="6"/><text class="f-val" x="490" y="239" style="font-size:12px">Tree</text>
+  <rect class="f-box-g" x="560" y="216" width="80" height="36" rx="6"/><text class="f-val" x="600" y="239" style="font-size:12px">Graph</text>
 
   <text class="f-lbl" x="185" y="286">can be traversed completely in ONE run</text>
   <text class="f-lbl" x="545" y="286">CANNOT be traversed in one straight run</text>
   <text class="f-lbl-y" x="360" y="316">Exam tip: if it has levels or branches, it is NON-LINEAR.</text>
 </svg>
     <figcaption>The classification tree. If a structure has levels or branches, it is non-linear.
-      <span class="np-cell">वर्गीकरणको रूख। तह वा हाँगा भएको संरचना non-linear हो।</span>
+      <span class="np-cell" lang="ne">वर्गीकरणको रूख। तह वा हाँगा भएको संरचना non-linear हो।</span>
     </figcaption>
   </figure>
 
@@ -320,20 +321,20 @@
       supplied by the language) and <b>non-primitive</b> (built by the programmer). Linear and
       non-linear are the two kinds of non-primitive structures.</p>
     </div>
-    <div class="np">
-      <span class="tag">दुई मुख्य समूह</span>
-      <p><b>Linear (रेखीय):</b> तत्त्वहरू <b>एउटा पछि अर्को</b> गरी क्रमैसँग राखिन्छन्। प्रत्येकको
-      एउटा अघिल्लो र एउटा पछिल्लो हुन्छ। <b>एकै पटकमा सबै घुम्न सकिन्छ</b>।</p>
-      <p><b>Non-linear (अरेखीय):</b> तत्त्वहरू <b>क्रममा हुँदैनन्</b>। एउटा तत्त्व धेरैसँग जोडिन सक्छ।
-      <b>सिधा एकै पटकमा सबै घुम्न सकिँदैन</b>।</p>
-      <p>केही किताबले पहिले <b>primitive</b> (int, float, char, pointer — भाषाले नै दिएको) र
+    <div class="np" lang="ne">
+      <span class="tag" lang="ne">दुई मुख्य समूह</span>
+      <p><b lang="ne">Linear (रेखीय):</b> तत्त्वहरू <b lang="ne">एउटा पछि अर्को</b> गरी क्रमैसँग राखिन्छन्। प्रत्येकको
+      एउटा अघिल्लो र एउटा पछिल्लो हुन्छ। <b lang="ne">एकै पटकमा सबै घुम्न सकिन्छ</b>।</p>
+      <p><b lang="ne">Non-linear (अरेखीय):</b> तत्त्वहरू <b lang="ne">क्रममा हुँदैनन्</b>। एउटा तत्त्व धेरैसँग जोडिन सक्छ।
+      <b lang="ne">सिधा एकै पटकमा सबै घुम्न सकिँदैन</b>।</p>
+      <p lang="ne">केही किताबले पहिले <b>primitive</b> (int, float, char, pointer — भाषाले नै दिएको) र
       <b>non-primitive</b> (प्रोग्रामरले बनाएको) भनेर छुट्याउँछन्। Linear र non-linear चाहिँ
       non-primitive कै दुई प्रकार हुन्।</p>
     </div>
   </div>
 
   <!-- ---- ARRAY ---- -->
-  <h4 class="sub" id="t15a">1.5.1 (a) &nbsp;Array — एरे</h4>
+  <h3 class="sub" id="t15a" lang="ne">1.5.1 (a) &nbsp;Array — एरे</h3>
   <div class="pair">
     <div class="en">
       <span class="tag">Array</span>
@@ -346,12 +347,12 @@
       called <b>direct</b> or <b>random</b> access — reaching <span class="term">a[900]</span>
       takes exactly as long as reaching <span class="term">a[0]</span>.</p>
     </div>
-    <div class="np">
-      <span class="tag">एरे</span>
-      <p><b>एरे</b> भनेको <b>एउटै प्रकारका</b> तत्त्वहरूको संग्रह हो, जुन <b>लगातार मेमोरी</b> मा
-      राखिन्छ र सधैं <b>० बाट सुरु हुने index</b> ले पुगिन्छ।</p>
-      <p>मेमोरी लगातार भएकाले र हरेक तत्त्वको साइज उही भएकाले कम्प्युटरले जुनसुकै तत्त्वको ठेगाना
-      तुरुन्तै गणना गर्न सक्छ: <span class="term">ठेगाना = base + index × size</span>। त्यसैले
+    <div class="np" lang="ne">
+      <span class="tag" lang="ne">एरे</span>
+      <p><b lang="ne">एरे</b> भनेको <b lang="ne">एउटै प्रकारका</b> तत्त्वहरूको संग्रह हो, जुन <b lang="ne">लगातार मेमोरी</b> मा
+      राखिन्छ र सधैं <b lang="ne">० बाट सुरु हुने index</b> ले पुगिन्छ।</p>
+      <p lang="ne">मेमोरी लगातार भएकाले र हरेक तत्त्वको साइज उही भएकाले कम्प्युटरले जुनसुकै तत्त्वको ठेगाना
+      तुरुन्तै गणना गर्न सक्छ: <span class="term" lang="ne">ठेगाना = base + index × size</span>। त्यसैले
       एरेको पहुँचलाई <b>direct/random access</b> भनिन्छ — <span class="term">a[900]</span> मा पुग्न
       पनि <span class="term">a[0]</span> जत्तिकै समय लाग्छ।</p>
     </div>
@@ -396,7 +397,7 @@
   <text class="f-lbl" x="355" y="194">index always starts at 0, so the last index is size − 1 = 4</text>
 </svg>
     <figcaption>Five integers in one continuous block. Index 0 to 4 — never 1 to 5.
-      <span class="np-cell">पाँच पूर्णांक एउटै लगातार ब्लकमा। index ० देखि ४ सम्म — १ देखि ५ होइन।</span>
+      <span class="np-cell" lang="ne">पाँच पूर्णांक एउटै लगातार ब्लकमा। index ० देखि ४ सम्म — १ देखि ५ होइन।</span>
     </figcaption>
   </figure>
 
@@ -424,7 +425,7 @@ marks[4] = 48</pre>
     </div>
     <p class="wex-note">The loop runs while <span class="term">i &lt; 5</span>, so i takes the
     values 0, 1, 2, 3, 4 — exactly the five valid indexes.
-    <span class="np-cell">लुप <span class="term">i &lt; 5</span> सम्म चल्छ, त्यसैले i ले ०,१,२,३,४
+    <span class="np-cell" lang="ne">लुप <span class="term">i &lt; 5</span> सम्म चल्छ, त्यसैले i ले ०,१,२,३,४
     मान लिन्छ — यीनै पाँच वटा मान्य index हुन्।</span></p>
   </div>
 
@@ -433,13 +434,13 @@ marks[4] = 48</pre>
     Writing <span class="term">marks[5]</span> to reach the last element. In an array of size 5 the
     <b>last index is 4</b>. <span class="term">marks[5]</span> is outside the array and gives a
     <b>garbage value</b> or crashes the program. C++ does <b>not</b> warn you.
-    <span class="np-cell">अन्तिम तत्त्वका लागि <span class="term">marks[5]</span> लेख्नु गलत हो।
-    साइज ५ को एरेमा <b>अन्तिम index ४</b> हो। <span class="term">marks[5]</span> एरे बाहिर पर्छ र
+    <span class="np-cell" lang="ne">अन्तिम तत्त्वका लागि <span class="term">marks[5]</span> लेख्नु गलत हो।
+    साइज ५ को एरेमा <b lang="ne">अन्तिम index ४</b> हो। <span class="term">marks[5]</span> एरे बाहिर पर्छ र
     फोहोर मान दिन्छ वा प्रोग्राम क्र्यास हुन्छ। C++ ले चेतावनी दिँदैन।</span>
   </div>
 
   <!-- ---- LINKED LIST ---- -->
-  <h4 class="sub" id="t15b">1.5.1 (b) &nbsp;Linked List — लिंक्ड लिस्ट</h4>
+  <h3 class="sub" id="t15b" lang="ne">1.5.1 (b) &nbsp;Linked List — लिंक्ड लिस्ट</h3>
   <div class="pair">
     <div class="en">
       <span class="tag">Linked List</span>
@@ -454,16 +455,16 @@ marks[4] = 48</pre>
       <p><b>Types:</b> singly linked list (one pointer), doubly linked list (pointers to next and
       previous), circular linked list (last node points back to the first).</p>
     </div>
-    <div class="np">
-      <span class="tag">लिंक्ड लिस्ट</span>
-      <p><b>लिंक्ड लिस्ट</b> भनेको <b>नोड</b> भनिने तत्त्वहरूको संग्रह हो। हरेक नोडका <b>दुई भाग</b>
-      हुन्छन्: <b>डाटा</b>, र <b>अर्को नोडको ठेगाना</b> राख्ने <b>pointer</b>।</p>
-      <p>नोडहरू लगातार मेमोरीमा <b>हुँदैनन्</b> — जहाँसुकै हुन सक्छन्। लिस्टलाई पोइन्टरले मात्र
+    <div class="np" lang="ne">
+      <span class="tag" lang="ne">लिंक्ड लिस्ट</span>
+      <p><b lang="ne">लिंक्ड लिस्ट</b> भनेको <b lang="ne">नोड</b> भनिने तत्त्वहरूको संग्रह हो। हरेक नोडका <b lang="ne">दुई भाग</b>
+      हुन्छन्: <b lang="ne">डाटा</b>, र <b lang="ne">अर्को नोडको ठेगाना</b> राख्ने <b>pointer</b>।</p>
+      <p lang="ne">नोडहरू लगातार मेमोरीमा <b lang="ne">हुँदैनन्</b> — जहाँसुकै हुन सक्छन्। लिस्टलाई पोइन्टरले मात्र
       जोडेर राख्छ। <b>head</b> नामक पोइन्टरले पहिलो नोड देखाउँछ, र अन्तिम नोडको पोइन्टरमा
       <b>NULL</b> हुन्छ जसले अन्त्य जनाउँछ।</p>
-      <p>एक–एक नोड गरी मेमोरी लिने भएकाले लिस्ट <b>प्रोग्राम चल्दै गर्दा घटबढ</b> हुन सक्छ। यसैलाई
+      <p lang="ne">एक–एक नोड गरी मेमोरी लिने भएकाले लिस्ट <b lang="ne">प्रोग्राम चल्दै गर्दा घटबढ</b> हुन सक्छ। यसैलाई
       <b>dynamic</b> डाटा स्ट्रक्चर भनिन्छ।</p>
-      <p><b>प्रकार:</b> singly (एउटा पोइन्टर), doubly (अघि र पछि दुवैको पोइन्टर), circular
+      <p><b lang="ne">प्रकार:</b> singly (एउटा पोइन्टर), doubly (अघि र पछि दुवैको पोइन्टर), circular
       (अन्तिम नोडले पहिलो नोड देखाउने)।</p>
     </div>
   </div>
@@ -511,7 +512,7 @@ marks[4] = 48</pre>
   <text class="f-lbl" x="360" y="216">To reach node 3 you must start at head and walk through node 1 and node 2.</text>
 </svg>
     <figcaption>Three nodes at scattered addresses, held together only by pointers.
-      <span class="np-cell">छरिएका ठेगानामा रहेका तीन नोड, पोइन्टरले मात्र जोडिएका।</span>
+      <span class="np-cell" lang="ne">छरिएका ठेगानामा रहेका तीन नोड, पोइन्टरले मात्र जोडिएका।</span>
     </figcaption>
   </figure>
 
@@ -531,11 +532,11 @@ int main() {
 }</pre>
     <p class="wex-note">Notice <span class="term">Node *next;</span> — a Node that stores the
     address of another Node. That single line is what makes the chain possible.
-    <span class="np-cell"><span class="term">Node *next;</span> हेर्नुहोस् — एउटा Node ले अर्को
+    <span class="np-cell" lang="ne"><span class="term">Node *next;</span> हेर्नुहोस् — एउटा Node ले अर्को
     Node को ठेगाना राख्छ। यही एउटा लाइनले शृंखला सम्भव बनाउँछ।</span></p>
   </div>
 
-  <h4 class="sub">Why this difference matters — array vs linked list in action</h4>
+  <h3 class="sub">Why this difference matters — array vs linked list in action</h3>
   <figure class="fig">
     
 <svg viewBox="0 0 720 300" role="img" aria-labelledby="t-avl">
@@ -594,13 +595,13 @@ int main() {
 </svg>
     <figcaption>Inserting into the middle: the array must shift elements, the linked list only
       re-points two links. This single picture answers most array-vs-list questions.
-      <span class="np-cell">बीचमा थप्दा: एरेले तत्त्वहरू सार्नुपर्छ, लिंक्ड लिस्टले दुई लिंक मात्र
+      <span class="np-cell" lang="ne">बीचमा थप्दा: एरेले तत्त्वहरू सार्नुपर्छ, लिंक्ड लिस्टले दुई लिंक मात्र
       फेर्छ। यही एउटा चित्रले array-vs-list का धेरै प्रश्नको जवाफ दिन्छ।</span>
     </figcaption>
   </figure>
 
   <!-- ---- STACK ---- -->
-  <h4 class="sub" id="t15c">1.5.1 (c) &nbsp;Stack — स्ट्याक</h4>
+  <h3 class="sub" id="t15c" lang="ne">1.5.1 (c) &nbsp;Stack — स्ट्याक</h3>
   <div class="pair">
     <div class="en">
       <span class="tag">Stack</span>
@@ -618,18 +619,18 @@ int main() {
       (the call stack), reversing a string, checking balanced brackets, and converting infix
       expressions to postfix.</p>
     </div>
-    <div class="np">
-      <span class="tag">स्ट्याक</span>
-      <p><b>स्ट्याक</b> त्यस्तो रेखीय डाटा स्ट्रक्चर हो जहाँ <b>राख्ने र झिक्ने काम एउटै छेउ</b>
+    <div class="np" lang="ne">
+      <span class="tag" lang="ne">स्ट्याक</span>
+      <p><b lang="ne">स्ट्याक</b> त्यस्तो रेखीय डाटा स्ट्रक्चर हो जहाँ <b lang="ne">राख्ने र झिक्ने काम एउटै छेउ</b>
       (<b>top</b>) बाट मात्र हुन्छ।</p>
-      <p>यसले <b>LIFO</b> — <b>Last In, First Out</b> नियम मान्छ। अन्तिममा हालेको तत्त्व सबैभन्दा
+      <p lang="ne">यसले <b>LIFO</b> — <b>Last In, First Out</b> नियम मान्छ। अन्तिममा हालेको तत्त्व सबैभन्दा
       पहिले निस्कन्छ।</p>
-      <p><b>अपरेसन:</b> <span class="term">push()</span> हाल्ने,
+      <p><b lang="ne">अपरेसन:</b> <span class="term">push()</span> हाल्ने,
       <span class="term">pop()</span> झिक्ने, <span class="term">peek()</span> नझिकी हेर्ने,
       <span class="term">isEmpty()</span> र <span class="term">isFull()</span> अवस्था जाँच्ने।</p>
       <p><b>Overflow</b> = भरिएको स्ट्याकमा push। <b>Underflow</b> = खाली स्ट्याकबाट pop।
       खाली स्ट्याकमा <span class="term">top = -1</span> हुन्छ।</p>
-      <p><b>प्रयोग:</b> ब्राउजरको Back बटन, एडिटरको Undo, फङ्सन कलको call stack, स्ट्रिङ उल्टाउने,
+      <p><b lang="ne">प्रयोग:</b> ब्राउजरको Back बटन, एडिटरको Undo, फङ्सन कलको call stack, स्ट्रिङ उल्टाउने,
       ब्राकेट मिलेको छ कि छैन जाँच्ने, infix लाई postfix मा बदल्ने।</p>
     </div>
   </div>
@@ -667,7 +668,7 @@ int main() {
   <text class="f-lbl" x="360" y="276">The plate you put on LAST is the plate you take off FIRST. The bottom plate leaves last.</text>
 </svg>
     <figcaption>Both push and pop use the same end. Only <span class="term">top</span> moves.
-      <span class="np-cell">push र pop दुवै उही छेउ प्रयोग गर्छन्। <span class="term">top</span> मात्र सर्छ।</span>
+      <span class="np-cell" lang="ne">push र pop दुवै उही छेउ प्रयोग गर्छन्। <span class="term">top</span> मात्र सर्छ।</span>
     </figcaption>
   </figure>
 
@@ -676,13 +677,13 @@ int main() {
     You wash plates and stack them one on top of another. The plate you put down <b>last</b> sits on
     top, so it is the plate you pick up <b>first</b>. The very first plate is at the bottom and
     leaves last. You cannot pull a plate from the middle without lifting the ones above it.
-    <span class="np-cell"><b>उदाहरण — थाकिएका प्लेट।</b> धोएर एक–अर्कामाथि थुपारेका प्लेटमध्ये
-    <b>अन्तिममा</b> राखेको सबैभन्दा माथि हुन्छ, त्यसैले <b>पहिले</b> त्यही उठाइन्छ। पहिलो प्लेट
+    <span class="np-cell" lang="ne"><b lang="ne">उदाहरण — थाकिएका प्लेट।</b> धोएर एक–अर्कामाथि थुपारेका प्लेटमध्ये
+    <b lang="ne">अन्तिममा</b> राखेको सबैभन्दा माथि हुन्छ, त्यसैले <b lang="ne">पहिले</b> त्यही उठाइन्छ। पहिलो प्लेट
     सबैभन्दा तल हुन्छ र अन्तिममा निस्कन्छ।</span>
   </div>
 
   <!-- ---- QUEUE ---- -->
-  <h4 class="sub" id="t15d">1.5.1 (d) &nbsp;Queue — क्यु</h4>
+  <h3 class="sub" id="t15d" lang="ne">1.5.1 (d) &nbsp;Queue — क्यु</h3>
   <div class="pair">
     <div class="en">
       <span class="tag">Queue</span>
@@ -700,18 +701,18 @@ int main() {
       <p><b>Applications:</b> the printer job queue, CPU scheduling, a call-centre waiting line,
       and data buffers.</p>
     </div>
-    <div class="np">
-      <span class="tag">क्यु</span>
-      <p><b>क्यु</b> त्यस्तो रेखीय डाटा स्ट्रक्चर हो जहाँ <b>एउटा छेउ (rear) बाट राखिन्छ</b> र
-      <b>अर्को छेउ (front) बाट झिकिन्छ</b>।</p>
-      <p>यसले <b>FIFO</b> — <b>First In, First Out</b> नियम मान्छ। पहिले हालेको पहिले निस्कन्छ।</p>
-      <p><b>अपरेसन:</b> <span class="term">enqueue()</span> पछाडि हाल्ने,
+    <div class="np" lang="ne">
+      <span class="tag" lang="ne">क्यु</span>
+      <p><b lang="ne">क्यु</b> त्यस्तो रेखीय डाटा स्ट्रक्चर हो जहाँ <b lang="ne">एउटा छेउ (rear) बाट राखिन्छ</b> र
+      <b lang="ne">अर्को छेउ (front) बाट झिकिन्छ</b>।</p>
+      <p lang="ne">यसले <b>FIFO</b> — <b>First In, First Out</b> नियम मान्छ। पहिले हालेको पहिले निस्कन्छ।</p>
+      <p><b lang="ne">अपरेसन:</b> <span class="term">enqueue()</span> पछाडि हाल्ने,
       <span class="term">dequeue()</span> अगाडिबाट झिक्ने,
       <span class="term">front()</span> पहिलो तत्त्व नझिकी हेर्ने।</p>
-      <p><span class="term">front &gt; rear</span> हुँदा क्यु <b>खाली</b> हुन्छ।</p>
-      <p><b>प्रकार:</b> simple queue, circular queue (rear घुमेर सुरुमै फर्कने), priority queue
+      <p><span class="term">front &gt; rear</span> हुँदा क्यु <b lang="ne">खाली</b> हुन्छ।</p>
+      <p><b lang="ne">प्रकार:</b> simple queue, circular queue (rear घुमेर सुरुमै फर्कने), priority queue
       (महत्त्वपूर्ण तत्त्व पहिले निस्कने), deque (दुवै छेउबाट राख्न–झिक्न मिल्ने)।</p>
-      <p><b>प्रयोग:</b> प्रिन्टरको job queue, CPU scheduling, कल–सेन्टरको लाइन, डाटा बफर।</p>
+      <p><b lang="ne">प्रयोग:</b> प्रिन्टरको job queue, CPU scheduling, कल–सेन्टरको लाइन, डाटा बफर।</p>
     </div>
   </div>
 
@@ -750,12 +751,12 @@ int main() {
   <text class="f-lbl" x="360" y="208">Exactly like a queue at a ticket counter: you join at the back, you are served from the front.</text>
 </svg>
     <figcaption>Two different ends: join at the rear, leave from the front.
-      <span class="np-cell">दुई फरक छेउ: पछाडिबाट लाइनमा बस्ने, अगाडिबाट निस्कने।</span>
+      <span class="np-cell" lang="ne">दुई फरक छेउ: पछाडिबाट लाइनमा बस्ने, अगाडिबाट निस्कने।</span>
     </figcaption>
   </figure>
 
   <!-- ---- TREE ---- -->
-  <h4 class="sub" id="t15e">1.5.2 (a) &nbsp;Tree — ट्री</h4>
+  <h3 class="sub" id="t15e" lang="ne">1.5.2 (a) &nbsp;Tree — ट्री</h3>
   <div class="pair">
     <div class="en">
       <span class="tag">Tree</span>
@@ -774,28 +775,28 @@ int main() {
       </ul>
       <p>A <b>binary tree</b> is a tree in which every node has <b>at most two children</b>.</p>
     </div>
-    <div class="np">
-      <span class="tag">ट्री</span>
-      <p><b>ट्री</b> त्यस्तो अरेखीय डाटा स्ट्रक्चर हो जसले डाटालाई नोडहरूको <b>तह (hierarchy)</b> मा
-      मिलाउँछ। माथि एउटा मात्र <b>root</b> हुन्छ, र अरू हरेक नोडको <b>एउटा मात्र parent</b> हुन्छ।
-      ट्रीमा <b>चक्र (cycle) हुँदैन</b>।</p>
-      <p><b>जान्नैपर्ने शब्दहरू:</b></p>
+    <div class="np" lang="ne">
+      <span class="tag" lang="ne">ट्री</span>
+      <p><b lang="ne">ट्री</b> त्यस्तो अरेखीय डाटा स्ट्रक्चर हो जसले डाटालाई नोडहरूको <b lang="ne">तह (hierarchy)</b> मा
+      मिलाउँछ। माथि एउटा मात्र <b>root</b> हुन्छ, र अरू हरेक नोडको <b lang="ne">एउटा मात्र parent</b> हुन्छ।
+      ट्रीमा <b lang="ne">चक्र (cycle) हुँदैन</b>।</p>
+      <p><b lang="ne">जान्नैपर्ने शब्दहरू:</b></p>
       <ul class="tick">
         <li><b>Root</b> — सबैभन्दा माथिको नोड; parent नभएको एक मात्र नोड।</li>
         <li><b>Parent</b> — तल नोड भएको नोड।</li>
         <li><b>Child</b> — कुनै नोडको ठीक तलको नोड।</li>
         <li><b>Siblings</b> — एउटै parent भएका नोडहरू।</li>
-        <li><b>Leaf</b> — <b>सन्तान नभएको</b> नोड।</li>
+        <li><b>Leaf</b> — <b lang="ne">सन्तान नभएको</b> नोड।</li>
         <li><b>Level</b> — root level ०, त्यसका सन्तान level १, यसरी नै।</li>
         <li><b>Height</b> — root देखि सबैभन्दा तलको leaf सम्मको तह संख्या।</li>
       </ul>
-      <p><b>Binary tree</b> भनेको हरेक नोडका <b>बढीमा दुई सन्तान</b> हुने ट्री हो।</p>
+      <p><b>Binary tree</b> भनेको हरेक नोडका <b lang="ne">बढीमा दुई सन्तान</b> हुने ट्री हो।</p>
     </div>
   </div>
 
   <figure class="fig">
     
-<svg viewBox="0 0 720 300" role="img" aria-labelledby="t-tree">
+<svg viewBox="0 0 720 324" role="img" aria-labelledby="t-tree">
   <title id="t-tree">A tree showing root, parent, child, sibling and leaf nodes</title>
   <text class="f-ttl" x="10" y="18">TREE — a hierarchical (non-linear) structure. No cycles.</text>
 
@@ -816,15 +817,15 @@ int main() {
   <text class="f-lbl-y" x="440" y="50" text-anchor="start">ROOT — the only node with no parent</text>
   <text class="f-lbl"   x="590" y="152" text-anchor="start">level 1</text>
   <text class="f-lbl"   x="590" y="252" text-anchor="start">level 2</text>
-  <text class="f-lbl-y" x="60" y="290" text-anchor="start">D, E, F are LEAF nodes (no children). B is the PARENT of D and E. D and E are SIBLINGS.</text>
+  <text class="f-lbl-y" x="60" y="312" text-anchor="start">D, E, F are LEAF nodes (no children). B is the PARENT of D and E. D and E are SIBLINGS.</text>
 </svg>
     <figcaption>A is the root. D, E and F are leaves. D and E are siblings.
-      <span class="np-cell">A root हो। D, E, F leaf हुन्। D र E siblings हुन्।</span>
+      <span class="np-cell" lang="ne">A root हो। D, E, F leaf हुन्। D र E siblings हुन्।</span>
     </figcaption>
   </figure>
 
   <!-- ---- GRAPH ---- -->
-  <h4 class="sub" id="t15f">1.5.2 (b) &nbsp;Graph — ग्राफ</h4>
+  <h3 class="sub" id="t15f" lang="ne">1.5.2 (b) &nbsp;Graph — ग्राफ</h3>
   <div class="pair">
     <div class="en">
       <span class="tag">Graph</span>
@@ -837,15 +838,15 @@ int main() {
       example the distance between two cities.</p>
       <p><b>Applications:</b> road maps and Google Maps routing, social networks, computer networks.</p>
     </div>
-    <div class="np">
-      <span class="tag">ग्राफ</span>
-      <p><b>ग्राफ</b> भनेको <b>vertex</b> (बिन्दु) हरूको समूह र तिनलाई जोड्ने <b>edge</b> (रेखा)
+    <div class="np" lang="ne">
+      <span class="tag" lang="ne">ग्राफ</span>
+      <p><b lang="ne">ग्राफ</b> भनेको <b>vertex</b> (बिन्दु) हरूको समूह र तिनलाई जोड्ने <b>edge</b> (रेखा)
       हरूको समूहबाट बनेको अरेखीय डाटा स्ट्रक्चर हो।</p>
-      <p>जुनसुकै vertex जुनसुकैसँग जोडिन सक्छ। <b>root हुँदैन</b>, <b>parent–child नियम हुँदैन</b>,
-      र <b>चक्र (cycle) हुन सक्छ</b> — ट्रीसँगको मुख्य फरक यही हो।</p>
+      <p lang="ne">जुनसुकै vertex जुनसुकैसँग जोडिन सक्छ। <b lang="ne">root हुँदैन</b>, <b lang="ne">parent–child नियम हुँदैन</b>,
+      र <b lang="ne">चक्र (cycle) हुन सक्छ</b> — ट्रीसँगको मुख्य फरक यही हो।</p>
       <p><b>Directed graph</b> मा edge मा तीर हुन्छ (एकतर्फी)। <b>Undirected</b> मा दिशा हुँदैन।
       <b>Weighted graph</b> मा हरेक edge मा संख्या हुन्छ, जस्तै दुई सहरबीचको दूरी।</p>
-      <p><b>प्रयोग:</b> सडक नक्सा र Google Maps, सामाजिक सञ्जाल, कम्प्युटर नेटवर्क।</p>
+      <p><b lang="ne">प्रयोग:</b> सडक नक्सा र Google Maps, सामाजिक सञ्जाल, कम्प्युटर नेटवर्क।</p>
     </div>
   </div>
 
@@ -871,28 +872,28 @@ int main() {
   <text class="f-lbl-y" x="360" y="240">The yellow path B → C → D → B is a CYCLE. A tree can never have one.</text>
 </svg>
     <figcaption>The yellow path B → C → D → B is a cycle. A tree can never contain one.
-      <span class="np-cell">पहेँलो बाटो B → C → D → B एउटा चक्र हो। ट्रीमा यस्तो कहिल्यै हुँदैन।</span>
+      <span class="np-cell" lang="ne">पहेँलो बाटो B → C → D → B एउटा चक्र हो। ट्रीमा यस्तो कहिल्यै हुँदैन।</span>
     </figcaption>
   </figure>
 
   <!-- ============ 1.6 ============ -->
-  <h3 class="topic" id="t16">1.6 &nbsp;Operations on Data Structures</h3>
+  <h2 class="topic" id="t16">1.6 &nbsp;Operations on Data Structures</h2>
   <div class="tablewrap">
     <table>
       <thead><tr><th style="width:150px">Operation</th><th>What it does</th></tr></thead>
       <tbody>
         <tr><td class="k">Traversing</td><td>Visiting <b>each element exactly once</b> in order to read or process it.
-          <span class="np-cell">हरेक तत्त्वलाई ठीक एक पटक भेटेर पढ्ने वा प्रयोग गर्ने।</span></td></tr>
+          <span class="np-cell" lang="ne">हरेक तत्त्वलाई ठीक एक पटक भेटेर पढ्ने वा प्रयोग गर्ने।</span></td></tr>
         <tr><td class="k">Searching</td><td>Finding the <b>location of an element</b> that matches a given value.
-          <span class="np-cell">दिइएको मानसँग मिल्ने तत्त्व कहाँ छ भनेर पत्ता लगाउने।</span></td></tr>
+          <span class="np-cell" lang="ne">दिइएको मानसँग मिल्ने तत्त्व कहाँ छ भनेर पत्ता लगाउने।</span></td></tr>
         <tr><td class="k">Insertion</td><td>Adding a <b>new element</b> into the structure.
-          <span class="np-cell">संरचनामा नयाँ तत्त्व थप्ने।</span></td></tr>
+          <span class="np-cell" lang="ne">संरचनामा नयाँ तत्त्व थप्ने।</span></td></tr>
         <tr><td class="k">Deletion</td><td>Removing an <b>existing element</b> from the structure.
-          <span class="np-cell">भइरहेको तत्त्व हटाउने।</span></td></tr>
+          <span class="np-cell" lang="ne">भइरहेको तत्त्व हटाउने।</span></td></tr>
         <tr><td class="k">Sorting</td><td>Arranging elements in a <b>particular order</b> — ascending or descending.
-          <span class="np-cell">तत्त्वहरूलाई सानोदेखि ठूलो वा ठूलोदेखि सानो क्रममा मिलाउने।</span></td></tr>
+          <span class="np-cell" lang="ne">तत्त्वहरूलाई सानोदेखि ठूलो वा ठूलोदेखि सानो क्रममा मिलाउने।</span></td></tr>
         <tr><td class="k">Merging</td><td>Joining <b>two sorted lists</b> into one single sorted list.
-          <span class="np-cell">दुईवटा मिलेका लिस्टलाई जोडेर एउटै मिलेको लिस्ट बनाउने।</span></td></tr>
+          <span class="np-cell" lang="ne">दुईवटा मिलेका लिस्टलाई जोडेर एउटै मिलेको लिस्ट बनाउने।</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -926,73 +927,111 @@ int main() {
     </div>
     <p class="wex-note"><b>Linear search</b> checks elements one by one and works even on unsorted
     data. <b>Binary search</b> is far faster but the data <b>must be sorted</b> first.
-    <span class="np-cell"><b>Linear search</b> ले एक–एक गरी जाँच्छ र नमिलेको डाटामा पनि चल्छ।
-    <b>Binary search</b> धेरै छिटो हुन्छ तर डाटा <b>मिलेको हुनैपर्छ</b>।</span></p>
+    <span class="np-cell" lang="ne"><b>Linear search</b> ले एक–एक गरी जाँच्छ र नमिलेको डाटामा पनि चल्छ।
+    <b>Binary search</b> धेरै छिटो हुन्छ तर डाटा <b lang="ne">मिलेको हुनैपर्छ</b>।</span></p>
   </div>
 
   <!-- ---------- SIMULATOR ---------- -->
-  <h3 class="topic" id="sim1">▶ &nbsp;Simulator — Stack (LIFO) vs Queue (FIFO)</h3>
-  <p class="lead-sub">Click the buttons. Watch the code line light up, the boxes move, and the
-  console explain every step in English and Nepali.</p>
+  <h2 class="topic" id="sim1">▶ &nbsp;Experiment — Stack (LIFO) vs Queue (FIFO)</h2>
+  <p class="lead-sub">Commit to an answer first, then run the experiment and see whether you were
+  right. Guessing and being corrected is what makes this stick.</p>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px" class="simgrid">
-    <div class="en">
-      <span class="tag">Stack — LIFO</span>
-      <div class="code" id="stackCode"></div>
-      <div class="btns">
-        <button class="primary" onclick="stkPush()">push()</button>
-        <button class="coral" onclick="stkPop()">pop()</button>
-        <button class="blue" onclick="stkPeek()">peek()</button>
-        <button onclick="stkReset()">Reset</button>
-      </div>
-      <div class="vizbox">
-        <div style="text-align:center">
-          <div class="stackcol" id="stackViz"></div>
-          <div class="ptr" id="stackPtr">top = -1 (empty)</div>
-        </div>
-      </div>
-      <div class="console" id="stackCon"></div>
+  <div class="predict" data-answer="b">
+    <p class="predict-q" lang="ne">Predict first · पहिले अनुमान गर्नुहोस्</p>
+    <h3>You push <b>10</b>, then <b>20</b>, then <b>30</b> onto an empty stack.
+    You then call <span class="term">pop()</span> once. Which value comes out?</h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">10</button>
+      <button class="predict-opt" data-value="c">20</button>
+      <button class="predict-opt" data-value="b">30</button>
+      <button class="predict-opt" data-value="d">Nothing</button>
     </div>
-
-    <div class="en">
-      <span class="tag">Queue — FIFO</span>
-      <div class="code" id="queueCode"></div>
-      <div class="btns">
-        <button class="primary" onclick="qEnq()">enqueue()</button>
-        <button class="coral" onclick="qDeq()">dequeue()</button>
-        <button class="blue" onclick="qFront()">front()</button>
-        <button onclick="qReset()">Reset</button>
-      </div>
-      <div class="vizbox q">
-        <div style="text-align:center;width:100%">
-          <div style="display:flex;gap:6px;justify-content:center;min-height:44px;align-items:center" id="queueViz"></div>
-          <div class="ptr" id="queuePtr">front = 0 · rear = -1 (empty)</div>
-        </div>
-      </div>
-      <div class="console" id="queueCon"></div>
+    <div class="predict-feedback">
+      <p>A stack inserts and removes at <b>one end only</b> — the
+      <span class="term">top</span>. <b>30</b> was pushed last, so it is sitting on top and
+      leaves first. Run the experiment below and watch <span class="term">top</span> move.</p>
+      <span class="np-cell" lang="ne">स्ट्याकले <b lang="ne">एउटै छेउ</b> — <span class="term">top</span> — बाट मात्र
+      राख्छ र झिक्छ। <b lang="ne">३०</b> अन्तिममा हालिएकाले सबैभन्दा माथि छ, त्यसैले पहिले निस्कन्छ।
+      तल प्रयोग चलाएर <span class="term">top</span> सरेको हेर्नुहोस्।</span>
     </div>
   </div>
 
-  <div class="pair">
-    <div class="en">
-      <span class="tag">What you just saw</span>
-      <p>In the <b>stack</b>, the value pushed <b>last</b> came out <b>first</b> — only
-      <span class="term">top</span> moved. That is <b>LIFO</b>.</p>
-      <p>In the <b>queue</b>, the value inserted <b>first</b> came out <b>first</b> —
-      <span class="term">rear</span> moved on insert, <span class="term">front</span> moved on
-      delete. That is <b>FIFO</b>.</p>
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker" lang="ne">Interactive experiment · अन्तरक्रियात्मक प्रयोग</p>
+      <h3>Stack and Queue, side by side</h3>
+      <p class="sim-goal">What you will learn: <b>which end</b> each structure uses, and why that
+      one difference decides the order values come out. The running code line lights up and the
+      console explains every step in both languages.
+      <span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: दुवैले <b lang="ne">कुन छेउ</b> प्रयोग गर्छन्, र त्यही
+      एउटा फरकले मान निस्कने क्रम कसरी निर्धारण गर्छ।</span></p>
     </div>
-    <div class="np">
-      <span class="tag">तपाईंले के देख्नुभयो</span>
-      <p><b>Stack</b> मा <b>अन्तिममा</b> हालेको मान <b>पहिले</b> निस्कियो — <span class="term">top</span>
-      मात्र सर्‍यो। यही <b>LIFO</b> हो।</p>
-      <p><b>Queue</b> मा <b>पहिले</b> हालेको मान <b>पहिले</b> निस्कियो — हाल्दा
-      <span class="term">rear</span>, झिक्दा <span class="term">front</span> सर्‍यो। यही <b>FIFO</b> हो।</p>
+
+    <div class="sim-body">
+      <div class="simgrid">
+        <div>
+          <p class="sim-controls-label">Stack — LIFO</p>
+          <div class="code" id="stackCode"></div>
+          <div class="sim-controls">
+            <span class="sim-controls-label">Try it</span>
+            <button class="primary" onclick="stkPush()">push()</button>
+            <button class="coral" onclick="stkPop()">pop()</button>
+            <button class="blue" onclick="stkPeek()">peek()</button>
+            <button onclick="stkReset()">Reset</button>
+          </div>
+          <div class="sim-stage vizbox">
+            <div style="text-align:center">
+              <div class="stackcol" id="stackViz"></div>
+              <div class="ptr" id="stackPtr">top = -1 (empty)</div>
+            </div>
+          </div>
+          <div class="sim-result console" id="stackCon"></div>
+        </div>
+
+        <div>
+          <p class="sim-controls-label">Queue — FIFO</p>
+          <div class="code" id="queueCode"></div>
+          <div class="sim-controls">
+            <span class="sim-controls-label">Try it</span>
+            <button class="primary" onclick="qEnq()">enqueue()</button>
+            <button class="coral" onclick="qDeq()">dequeue()</button>
+            <button class="blue" onclick="qFront()">front()</button>
+            <button onclick="qReset()">Reset</button>
+          </div>
+          <div class="sim-stage vizbox q">
+            <div style="text-align:center;width:100%">
+              <div style="display:flex;gap:6px;justify-content:center;min-height:44px;align-items:center" id="queueViz"></div>
+              <div class="ptr" id="queuePtr">front = 0 · rear = -1 (empty)</div>
+            </div>
+          </div>
+          <div class="sim-result console" id="queueCon"></div>
+        </div>
+      </div>
+
+      <div class="sim-why">
+        <span class="h">Why did this happen?</span>
+        <p>In the <b>stack</b>, the value pushed <b>last</b> came out <b>first</b> — only
+        <span class="term">top</span> moved. That is <b>LIFO</b>.</p>
+        <p>In the <b>queue</b>, the value inserted <b>first</b> came out <b>first</b> —
+        <span class="term">rear</span> moved on insert, <span class="term">front</span> moved on
+        delete. That is <b>FIFO</b>.</p>
+        <span class="np-cell" lang="ne"><b>Stack</b> मा <b lang="ne">अन्तिममा</b> हालेको मान <b lang="ne">पहिले</b> निस्कियो —
+        <span class="term">top</span> मात्र सर्‍यो। यही <b>LIFO</b> हो।
+        <b>Queue</b> मा <b lang="ne">पहिले</b> हालेको मान <b lang="ne">पहिले</b> निस्कियो — हाल्दा
+        <span class="term">rear</span>, झिक्दा <span class="term">front</span> सर्‍यो। यही
+        <b>FIFO</b> हो।</span>
+      </div>
     </div>
   </div>
 
   <!-- ---------- EXAM FOCUS ---------- -->
-  <h3 class="topic" id="exam1">Exam focus — questions asked from this unit</h3>
+  <h2 class="topic" id="exam1">Exam focus — questions asked from this unit</h2>
+
+  <div class="exam-connect">
+    <p class="lead-in" lang="ne">SEE exam connection · परीक्षा जोड</p>
+    <p>Data structure terms, classification and operations are guaranteed marks — the definitions are asked almost every year.</p>
+    <span class="np-cell" lang="ne">डाटा स्ट्रक्चरका शब्द, वर्गीकरण र अपरेसन पक्का अंक हुन् — परिभाषा लगभग हरेक वर्ष सोधिन्छ।</span>
+  </div>
 
   <div class="examq">
     <div class="q-h">Q1 · Define data structure and list any four advantages. <span class="mk">[4 marks]</span></div>
@@ -1003,7 +1042,7 @@ int main() {
       <p>Advantages: (i) efficiency — searching and sorting become faster; (ii) reusability — one
       structure can be used in many programs; (iii) abstraction — the user need not know the
       internal working; (iv) better memory utilisation.</p>
-      <span class="np-cell">परिभाषा र कुनै चार फाइदा लेख्नुहोस्। माथिकै अंग्रेजी वाक्य जस्ताको तस्तै लेख्दा पूरा अंक आउँछ।</span>
+      <span class="np-cell" lang="ne">परिभाषा र कुनै चार फाइदा लेख्नुहोस्। माथिकै अंग्रेजी वाक्य जस्ताको तस्तै लेख्दा पूरा अंक आउँछ।</span>
     </div>
   </div>
 
@@ -1017,7 +1056,7 @@ int main() {
       <p>In a <b>non-linear</b> data structure the elements are not in a sequence; one element may
       connect to many, the structure has multiple levels, and it cannot be traversed in one straight
       run. Examples: tree, graph.</p>
-      <span class="np-cell">दुवैको परिभाषा + कम्तीमा दुई–दुई उदाहरण लेख्नुहोस्। तालिकाको रूपमा लेखे झन् राम्रो।</span>
+      <span class="np-cell" lang="ne">दुवैको परिभाषा + कम्तीमा दुई–दुई उदाहरण लेख्नुहोस्। तालिकाको रूपमा लेखे झन् राम्रो।</span>
     </div>
   </div>
 
@@ -1032,7 +1071,7 @@ int main() {
       <p>Operations: push() to insert, pop() to remove, peek()/top() to read the top element,
       isEmpty() and isFull() to check the state. Pushing into a full stack causes overflow;
       popping from an empty stack causes underflow.</p>
-      <span class="np-cell">परिभाषा + LIFO + प्लेटको उदाहरण + अपरेसनका नाम — चारै कुरा लेखे पूरा अंक।</span>
+      <span class="np-cell" lang="ne">परिभाषा + LIFO + प्लेटको उदाहरण + अपरेसनका नाम — चारै कुरा लेखे पूरा अंक।</span>
     </div>
   </div>
 
@@ -1044,13 +1083,13 @@ int main() {
       <b>Attribute (field)</b> — one property of that entity, e.g. Name, Roll, Marks.<br>
       <b>Record</b> — a collection of related fields describing one entity, e.g. Ram | 15 | 78.<br>
       <b>File</b> — a collection of related records, e.g. the records of all 40 students.</p>
-      <span class="np-cell">चारै शब्दको एक–एक लाइन परिभाषा र एक–एक उदाहरण दिनुहोस्।</span>
+      <span class="np-cell" lang="ne">चारै शब्दको एक–एक लाइन परिभाषा र एक–एक उदाहरण दिनुहोस्।</span>
     </div>
   </div>
 
   <!-- ---------- KEY POINTS ---------- -->
   <div class="keypoints">
-    <h4>Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h4>
+    <h2 lang="ne">Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h2>
     <ul>
       <li>Data structure = <b>organising + storing + managing</b> data for <b>efficient</b> access.</li>
       <li>Ladder: <b>Field → Record → File</b>. Entity = the real thing described.</li>
@@ -1061,7 +1100,7 @@ int main() {
       <li><b>Tree</b> has a root and one parent per node, no cycles. <b>Graph</b> has no root and cycles are allowed.</li>
       <li>Six operations: <b>traversing, searching, insertion, deletion, sorting, merging</b>.</li>
     </ul>
-    <p class="np-cell">यी आठ बुँदा कण्ठ भए यो युनिटका अधिकांश प्रश्नको जवाफ दिन सकिन्छ।</p>
+    <p class="np-cell" lang="ne">यी आठ बुँदा कण्ठ भए यो युनिटका अधिकांश प्रश्नको जवाफ दिन सकिन्छ।</p>
   </div>
 </section>
 
@@ -1071,11 +1110,14 @@ int main() {
   <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
   Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
   Works fully offline. No login, no server, no internet needed (web fonts are optional).
-  <span class="np-cell">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+  <span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
 </footer>
 </div>
 <script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
 <script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
 <script src="../../assets/js/sim-stackqueue.js"></script>
 </body>
 </html>

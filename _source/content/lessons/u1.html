@@ -10,7 +10,7 @@
   <div class="rule"></div>
 
   <div class="outcomes">
-    <h4>By the end of this unit you can…</h4>
+    <h2>By the end of this unit you can…</h2>
     <ol>
       <li>Define a data structure and give two reasons why it is needed.</li>
       <li>Name and explain the seven terms: data, group item, elementary item, record, entity, attribute, file.</li>
@@ -578,68 +578,106 @@ int main() {
   </div>
 
   <!-- ---------- SIMULATOR ---------- -->
-  <h3 class="topic" id="sim1">▶ &nbsp;Simulator — Stack (LIFO) vs Queue (FIFO)</h3>
-  <p class="lead-sub">Click the buttons. Watch the code line light up, the boxes move, and the
-  console explain every step in English and Nepali.</p>
+  <h3 class="topic" id="sim1">▶ &nbsp;Experiment — Stack (LIFO) vs Queue (FIFO)</h3>
+  <p class="lead-sub">Commit to an answer first, then run the experiment and see whether you were
+  right. Guessing and being corrected is what makes this stick.</p>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px" class="simgrid">
-    <div class="en">
-      <span class="tag">Stack — LIFO</span>
-      <div class="code" id="stackCode"></div>
-      <div class="btns">
-        <button class="primary" onclick="stkPush()">push()</button>
-        <button class="coral" onclick="stkPop()">pop()</button>
-        <button class="blue" onclick="stkPeek()">peek()</button>
-        <button onclick="stkReset()">Reset</button>
-      </div>
-      <div class="vizbox">
-        <div style="text-align:center">
-          <div class="stackcol" id="stackViz"></div>
-          <div class="ptr" id="stackPtr">top = -1 (empty)</div>
-        </div>
-      </div>
-      <div class="console" id="stackCon"></div>
+  <div class="predict" data-answer="b">
+    <p class="predict-q">Predict first · पहिले अनुमान गर्नुहोस्</p>
+    <h4>You push <b>10</b>, then <b>20</b>, then <b>30</b> onto an empty stack.
+    You then call <span class="term">pop()</span> once. Which value comes out?</h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">10</button>
+      <button class="predict-opt" data-value="c">20</button>
+      <button class="predict-opt" data-value="b">30</button>
+      <button class="predict-opt" data-value="d">Nothing</button>
     </div>
-
-    <div class="en">
-      <span class="tag">Queue — FIFO</span>
-      <div class="code" id="queueCode"></div>
-      <div class="btns">
-        <button class="primary" onclick="qEnq()">enqueue()</button>
-        <button class="coral" onclick="qDeq()">dequeue()</button>
-        <button class="blue" onclick="qFront()">front()</button>
-        <button onclick="qReset()">Reset</button>
-      </div>
-      <div class="vizbox q">
-        <div style="text-align:center;width:100%">
-          <div style="display:flex;gap:6px;justify-content:center;min-height:44px;align-items:center" id="queueViz"></div>
-          <div class="ptr" id="queuePtr">front = 0 · rear = -1 (empty)</div>
-        </div>
-      </div>
-      <div class="console" id="queueCon"></div>
+    <div class="predict-feedback">
+      <p>A stack inserts and removes at <b>one end only</b> — the
+      <span class="term">top</span>. <b>30</b> was pushed last, so it is sitting on top and
+      leaves first. Run the experiment below and watch <span class="term">top</span> move.</p>
+      <span class="np-cell">स्ट्याकले <b>एउटै छेउ</b> — <span class="term">top</span> — बाट मात्र
+      राख्छ र झिक्छ। <b>३०</b> अन्तिममा हालिएकाले सबैभन्दा माथि छ, त्यसैले पहिले निस्कन्छ।
+      तल प्रयोग चलाएर <span class="term">top</span> सरेको हेर्नुहोस्।</span>
     </div>
   </div>
 
-  <div class="pair">
-    <div class="en">
-      <span class="tag">What you just saw</span>
-      <p>In the <b>stack</b>, the value pushed <b>last</b> came out <b>first</b> — only
-      <span class="term">top</span> moved. That is <b>LIFO</b>.</p>
-      <p>In the <b>queue</b>, the value inserted <b>first</b> came out <b>first</b> —
-      <span class="term">rear</span> moved on insert, <span class="term">front</span> moved on
-      delete. That is <b>FIFO</b>.</p>
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker">Interactive experiment · अन्तरक्रियात्मक प्रयोग</p>
+      <h4>Stack and Queue, side by side</h4>
+      <p class="sim-goal">What you will learn: <b>which end</b> each structure uses, and why that
+      one difference decides the order values come out. The running code line lights up and the
+      console explains every step in both languages.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: दुवैले <b>कुन छेउ</b> प्रयोग गर्छन्, र त्यही
+      एउटा फरकले मान निस्कने क्रम कसरी निर्धारण गर्छ।</span></p>
     </div>
-    <div class="np">
-      <span class="tag">तपाईंले के देख्नुभयो</span>
-      <p><b>Stack</b> मा <b>अन्तिममा</b> हालेको मान <b>पहिले</b> निस्कियो — <span class="term">top</span>
-      मात्र सर्‍यो। यही <b>LIFO</b> हो।</p>
-      <p><b>Queue</b> मा <b>पहिले</b> हालेको मान <b>पहिले</b> निस्कियो — हाल्दा
-      <span class="term">rear</span>, झिक्दा <span class="term">front</span> सर्‍यो। यही <b>FIFO</b> हो।</p>
+
+    <div class="sim-body">
+      <div class="simgrid">
+        <div>
+          <p class="sim-controls-label">Stack — LIFO</p>
+          <div class="code" id="stackCode"></div>
+          <div class="sim-controls">
+            <span class="sim-controls-label">Try it</span>
+            <button class="primary" onclick="stkPush()">push()</button>
+            <button class="coral" onclick="stkPop()">pop()</button>
+            <button class="blue" onclick="stkPeek()">peek()</button>
+            <button onclick="stkReset()">Reset</button>
+          </div>
+          <div class="sim-stage vizbox">
+            <div style="text-align:center">
+              <div class="stackcol" id="stackViz"></div>
+              <div class="ptr" id="stackPtr">top = -1 (empty)</div>
+            </div>
+          </div>
+          <div class="sim-result console" id="stackCon"></div>
+        </div>
+
+        <div>
+          <p class="sim-controls-label">Queue — FIFO</p>
+          <div class="code" id="queueCode"></div>
+          <div class="sim-controls">
+            <span class="sim-controls-label">Try it</span>
+            <button class="primary" onclick="qEnq()">enqueue()</button>
+            <button class="coral" onclick="qDeq()">dequeue()</button>
+            <button class="blue" onclick="qFront()">front()</button>
+            <button onclick="qReset()">Reset</button>
+          </div>
+          <div class="sim-stage vizbox q">
+            <div style="text-align:center;width:100%">
+              <div style="display:flex;gap:6px;justify-content:center;min-height:44px;align-items:center" id="queueViz"></div>
+              <div class="ptr" id="queuePtr">front = 0 · rear = -1 (empty)</div>
+            </div>
+          </div>
+          <div class="sim-result console" id="queueCon"></div>
+        </div>
+      </div>
+
+      <div class="sim-why">
+        <span class="h">Why did this happen?</span>
+        <p>In the <b>stack</b>, the value pushed <b>last</b> came out <b>first</b> — only
+        <span class="term">top</span> moved. That is <b>LIFO</b>.</p>
+        <p>In the <b>queue</b>, the value inserted <b>first</b> came out <b>first</b> —
+        <span class="term">rear</span> moved on insert, <span class="term">front</span> moved on
+        delete. That is <b>FIFO</b>.</p>
+        <span class="np-cell"><b>Stack</b> मा <b>अन्तिममा</b> हालेको मान <b>पहिले</b> निस्कियो —
+        <span class="term">top</span> मात्र सर्‍यो। यही <b>LIFO</b> हो।
+        <b>Queue</b> मा <b>पहिले</b> हालेको मान <b>पहिले</b> निस्कियो — हाल्दा
+        <span class="term">rear</span>, झिक्दा <span class="term">front</span> सर्‍यो। यही
+        <b>FIFO</b> हो।</span>
+      </div>
     </div>
   </div>
 
   <!-- ---------- EXAM FOCUS ---------- -->
   <h3 class="topic" id="exam1">Exam focus — questions asked from this unit</h3>
+
+  <div class="exam-connect">
+    <p class="lead-in">SEE exam connection · परीक्षा जोड</p>
+    <p>Data structure terms, classification and operations are guaranteed marks — the definitions are asked almost every year.</p>
+    <span class="np-cell">डाटा स्ट्रक्चरका शब्द, वर्गीकरण र अपरेसन पक्का अंक हुन् — परिभाषा लगभग हरेक वर्ष सोधिन्छ।</span>
+  </div>
 
   <div class="examq">
     <div class="q-h">Q1 · Define data structure and list any four advantages. <span class="mk">[4 marks]</span></div>
@@ -697,7 +735,7 @@ int main() {
 
   <!-- ---------- KEY POINTS ---------- -->
   <div class="keypoints">
-    <h4>Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h4>
+    <h2>Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h2>
     <ul>
       <li>Data structure = <b>organising + storing + managing</b> data for <b>efficient</b> access.</li>
       <li>Ladder: <b>Field → Record → File</b>. Entity = the real thing described.</li>

@@ -1,0 +1,184 @@
+/* ============================================================
+   DESIGN TOKENS — the contract every subject inherits.
+
+   Layer 1  PRIMITIVES   raw values. Never used directly in components.
+   Layer 2  SEMANTIC     roles. This is what components use.
+   Layer 3  SCALES       spacing, type, radius, elevation, motion.
+
+   Rule: a component references a semantic token or a scale step,
+   never a primitive and never a literal. That is what keeps 500
+   future lessons visually consistent.
+
+   The palette is unchanged from Phase 1 — this adds the system
+   around it, it does not restyle the product.
+   ============================================================ */
+:root{
+  /* ---------- LAYER 1 · PRIMITIVES ---------- */
+  --bg:#0e1a16;
+  --board:#13241f;
+  --board-2:#172b25;
+  --panel:#19302a;
+  --line:#2c4a41;
+  --line-soft:#24403a;
+
+  --chalk-white:#eef5f2;
+  --chalk-dim:#a1b8b1;
+  --chalk-faint:#7e948e;
+
+  --yellow:#ffd76e;
+  --blue:#7fd1ff;
+  --coral:#ff8f7a;
+  --green:#9ae6a0;
+  --violet:#c9a9ff;
+
+  --mono:"JetBrains Mono","Consolas","Courier New",monospace;
+  --sans:"Noto Sans","Segoe UI",Arial,sans-serif;
+  --deva:"Noto Sans Devanagari","Noto Sans","Mangal","Segoe UI",sans-serif;
+
+  --r:14px;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+
+  /* ---------- LAYER 2 · SEMANTIC ROLES ----------
+     Components say what a colour MEANS, not which hue it is.
+     Re-theming later means changing this block only. */
+  --color-background:        var(--bg);
+  --color-surface:           var(--panel);
+  --color-surface-sunken:    #0c1714;          /* code + console wells */
+  --color-surface-elevated:  var(--board-2);
+  --color-border:            var(--line);
+  --color-border-soft:       var(--line-soft);
+
+  --color-text:              var(--chalk-white);
+  --color-text-muted:        var(--chalk-dim);
+  --color-text-subtle:       var(--chalk-faint);
+
+  --color-primary:           var(--yellow);    /* emphasis, active state, Nepali */
+  --color-secondary:         var(--blue);      /* terms, English tags, links */
+  --color-accent:            var(--violet);
+
+  --color-success:           var(--green);     /* correct answer, program output */
+  --color-warning:           var(--yellow);    /* common mistakes */
+  --color-error:             var(--coral);     /* wrong answer */
+  --color-info:              var(--blue);
+
+  --color-interactive:       var(--blue);
+  --color-focus:             var(--yellow);    /* single focus colour, everywhere */
+
+  /* Language roles — bilingualism is structural, so it gets tokens. */
+  --color-lang-en:           var(--blue);      /* English panel accent */
+  --color-lang-ne:           var(--yellow);    /* Nepali note accent */
+
+  /* ---------- LAYER 3 · SPACING ----------
+     4px base. Replaces the 16 different ad-hoc values found in the audit. */
+  --sp-0: 0;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* Rhythm between the parts of a lesson. Named by role so pacing
+     stays consistent as units are written by different authors. */
+  --space-section:   var(--sp-12);   /* between numbered topics */
+  --space-block:     var(--sp-5);    /* between components in a topic */
+  --space-tight:     var(--sp-3);    /* inside a component */
+
+  /* ---------- LAYER 3 · TYPE SCALE ----------
+     Replaces 20+ ad-hoc sizes. Floor is 0.75rem (12px): the audit
+     measured 10px rendered text, which is unreadable on a phone and
+     worse in Devanagari, whose conjuncts need more height than Latin. */
+  --fs-xs:   0.75rem;    /* 12px — labels, captions, metadata */
+  --fs-sm:   0.85rem;    /* 13.6px — secondary prose, table cells */
+  --fs-base: 1rem;       /* 16px — body */
+  --fs-md:   1.05rem;    /* lead paragraphs */
+  --fs-lg:   1.2rem;     /* h4 */
+  --fs-xl:   1.45rem;    /* h3 */
+  --fs-2xl:  1.75rem;    /* h2 */
+  --fs-3xl:  2.15rem;    /* h1 / hero */
+
+  --lh-tight: 1.25;      /* headings */
+  --lh-snug:  1.45;      /* code, dense UI */
+  --lh-base:  1.65;      /* body */
+  --lh-deva:  1.85;      /* Devanagari needs more leading than Latin */
+
+  --fw-normal: 400;
+  --fw-medium: 600;
+  --fw-bold:   700;
+
+  /* ---------- LAYER 3 · RADIUS ---------- */
+  --r-sm:   8px;    /* buttons, chips, inline controls */
+  --r-md:   12px;   /* code blocks, tables, figures */
+  --r-lg:   14px;   /* panels, cards */
+  --r-xl:   18px;   /* page head, hero */
+  --r-full: 999px;  /* pills */
+
+  /* ---------- LAYER 3 · ELEVATION ----------
+     Three steps only. Depth marks importance; it is not decoration. */
+  --elev-0: none;
+  --elev-1: 0 1px 2px rgba(0,0,0,.25);
+  --elev-2: 0 10px 30px rgba(0,0,0,.35);
+  --elev-3: 0 18px 45px rgba(0,0,0,.45);
+
+  /* ---------- LAYER 3 · MOTION ----------
+     Motion communicates meaning. It is never decorative.
+
+     Three levels, matching docs/MOTION-DESIGN.md:
+       L1 micro       — the interface responding to a touch
+       L2 transition  — a diagram or component changing state
+       L3 educational — the motion IS the concept (flow, order, traversal)
+
+     Durations are chosen against what the eye and the reading brain need,
+     not copied from a framework:
+       120ms  below conscious notice — feels instant but not abrupt
+       200ms  the shortest change the eye can reliably track
+       320ms  an element entering or leaving a structure
+       520ms  a transformation the student is meant to follow deliberately
+       760ms  the gap between narrated steps: long enough to read a
+              bilingual caption, short enough to hold attention. Measured
+              against the existing tracer pacing, which reads well. */
+  --dur-instant: 0ms;
+  --dur-fast: 120ms;        /* L1 · hover, focus, press */
+  --dur-base: 200ms;        /* L1/L2 · reveal, open/close, highlight */
+  --dur-slow: 320ms;        /* L2 · element enters or leaves */
+  --dur-deliberate: 520ms;  /* L3 · a transformation to be followed */
+  --dur-step: 760ms;        /* L3 · pause between narrated steps */
+
+  /* Easing carries meaning too.
+     Anything representing PHYSICAL TRAVEL of data uses --ease-flow (linear):
+     a value moving along a bus travels at a constant rate, and easing it
+     would misrepresent the mechanism. Interface motion is always eased. */
+  --ease-standard: cubic-bezier(.2,.6,.3,1);   /* general purpose */
+  --ease-emphasis: cubic-bezier(.2,.9,.25,1);  /* a change that must be noticed */
+  --ease-enter:    cubic-bezier(0,.7,.3,1);    /* decelerate in */
+  --ease-exit:     cubic-bezier(.5,0,.9,.3);   /* accelerate out */
+  --ease-flow:     linear;                     /* constant-rate travel */
+  --ease: var(--ease-standard);                /* Phase 2 alias, still used */
+
+  /* Stagger: 40ms reads as "ordered but together"; 80ms as a clear
+     sequence; 140ms only for a few major stages. */
+  --stagger-sm: 40ms;
+  --stagger-md: 80ms;
+  --stagger-lg: 140ms;
+
+  /* ---------- TOUCH ----------
+     44px is the comfortable target. The audit found 26-39px controls;
+     this is the floor new components must meet. */
+  --touch-min: 44px;
+}
+
+/* Students who ask for less motion get less motion — including the
+   step players, which fall back to instant state changes. */
+@media (prefers-reduced-motion: reduce){
+  :root{ --dur-fast:0ms; --dur-base:0ms; --dur-slow:0ms; }
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+}

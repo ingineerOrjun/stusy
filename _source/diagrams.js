@@ -206,7 +206,7 @@ D.queueOps = `
 </svg>`;
 
 D.tree = `
-<svg viewBox="0 0 720 300" role="img" aria-labelledby="t-tree">
+<svg viewBox="0 0 720 324" role="img" aria-labelledby="t-tree">
   <title id="t-tree">A tree showing root, parent, child, sibling and leaf nodes</title>
   <text class="f-ttl" x="10" y="18">TREE — a hierarchical (non-linear) structure. No cycles.</text>
 
@@ -227,7 +227,7 @@ D.tree = `
   <text class="f-lbl-y" x="440" y="50" text-anchor="start">ROOT — the only node with no parent</text>
   <text class="f-lbl"   x="590" y="152" text-anchor="start">level 1</text>
   <text class="f-lbl"   x="590" y="252" text-anchor="start">level 2</text>
-  <text class="f-lbl-y" x="60" y="290" text-anchor="start">D, E, F are LEAF nodes (no children). B is the PARENT of D and E. D and E are SIBLINGS.</text>
+  <text class="f-lbl-y" x="60" y="312" text-anchor="start">D, E, F are LEAF nodes (no children). B is the PARENT of D and E. D and E are SIBLINGS.</text>
 </svg>`;
 
 D.graph = `
@@ -257,7 +257,7 @@ D.dsClass = `
   <text class="f-ttl" x="10" y="18">Classification of Data Structures — डाटा स्ट्रक्चरको वर्गीकरण</text>
 
   <rect class="f-box-y" x="280" y="36" width="170" height="42" rx="8"/>
-  <text class="f-val" x="365" y="62" font-size="14">DATA STRUCTURE</text>
+  <text class="f-val" x="365" y="62" style="font-size:14px">DATA STRUCTURE</text>
 
   <line class="f-ln" x1="365" y1="78" x2="365" y2="96"/>
   <line class="f-ln" x1="185" y1="96" x2="545" y2="96"/>
@@ -265,9 +265,9 @@ D.dsClass = `
   <line class="f-ln" x1="545" y1="96" x2="545" y2="118"/>
 
   <rect class="f-box" x="90" y="118" width="190" height="42" rx="8"/>
-  <text class="f-val" x="185" y="144" font-size="13">LINEAR</text>
+  <text class="f-val" x="185" y="144" style="font-size:13px">LINEAR</text>
   <rect class="f-box-c" x="450" y="118" width="190" height="42" rx="8"/>
-  <text class="f-val" x="545" y="144" font-size="13">NON-LINEAR</text>
+  <text class="f-val" x="545" y="144" style="font-size:13px">NON-LINEAR</text>
 
   <text class="f-lbl" x="185" y="176">elements in a sequence</text>
   <text class="f-lbl" x="545" y="176">elements in a hierarchy</text>
@@ -279,17 +279,17 @@ D.dsClass = `
   <line class="f-ln" x1="226" y1="200" x2="226" y2="216"/>
   <line class="f-ln" x1="310" y1="200" x2="310" y2="216"/>
 
-  <rect class="f-box-g" x="20"  y="216" width="80" height="36" rx="6"/><text class="f-val" x="60"  y="239" font-size="12">Array</text>
-  <rect class="f-box-g" x="106" y="216" width="80" height="36" rx="6"/><text class="f-val" x="146" y="239" font-size="11">Linked List</text>
-  <rect class="f-box-g" x="192" y="216" width="72" height="36" rx="6"/><text class="f-val" x="228" y="239" font-size="12">Stack</text>
-  <rect class="f-box-g" x="272" y="216" width="72" height="36" rx="6"/><text class="f-val" x="308" y="239" font-size="12">Queue</text>
+  <rect class="f-box-g" x="20"  y="216" width="80" height="36" rx="6"/><text class="f-val" x="60"  y="239" style="font-size:12px">Array</text>
+  <rect class="f-box-g" x="106" y="216" width="80" height="36" rx="6"/><text class="f-val" x="146" y="239" style="font-size:11px">Linked List</text>
+  <rect class="f-box-g" x="192" y="216" width="72" height="36" rx="6"/><text class="f-val" x="228" y="239" style="font-size:12px">Stack</text>
+  <rect class="f-box-g" x="272" y="216" width="72" height="36" rx="6"/><text class="f-val" x="308" y="239" style="font-size:12px">Queue</text>
 
   <line class="f-ln" x1="545" y1="186" x2="545" y2="200"/>
   <line class="f-ln" x1="490" y1="200" x2="600" y2="200"/>
   <line class="f-ln" x1="490" y1="200" x2="490" y2="216"/>
   <line class="f-ln" x1="600" y1="200" x2="600" y2="216"/>
-  <rect class="f-box-g" x="450" y="216" width="80" height="36" rx="6"/><text class="f-val" x="490" y="239" font-size="12">Tree</text>
-  <rect class="f-box-g" x="560" y="216" width="80" height="36" rx="6"/><text class="f-val" x="600" y="239" font-size="12">Graph</text>
+  <rect class="f-box-g" x="450" y="216" width="80" height="36" rx="6"/><text class="f-val" x="490" y="239" style="font-size:12px">Tree</text>
+  <rect class="f-box-g" x="560" y="216" width="80" height="36" rx="6"/><text class="f-val" x="600" y="239" style="font-size:12px">Graph</text>
 
   <text class="f-lbl" x="185" y="286">can be traversed completely in ONE run</text>
   <text class="f-lbl" x="545" y="286">CANNOT be traversed in one straight run</text>
@@ -315,16 +315,16 @@ D.dataHierarchy = `
   <text class="f-lbl-y" x="470" y="94">Marks</text>
 
   <rect class="f-box-y" x="60" y="108" width="470" height="34" rx="4" fill="rgba(255,215,110,.10)"/>
-  <text class="f-val" x="130" y="130" font-size="13">Ram Thapa</text>
-  <text class="f-val" x="245" y="130" font-size="13">15</text>
-  <text class="f-val" x="350" y="130" font-size="13">10</text>
-  <text class="f-val" x="470" y="130" font-size="13">78</text>
+  <text class="f-val" x="130" y="130" style="font-size:13px">Ram Thapa</text>
+  <text class="f-val" x="245" y="130" style="font-size:13px">15</text>
+  <text class="f-val" x="350" y="130" style="font-size:13px">10</text>
+  <text class="f-val" x="470" y="130" style="font-size:13px">78</text>
 
   <rect class="f-box" x="60" y="146" width="470" height="30" rx="4" opacity=".55"/>
-  <text class="f-val" x="130" y="166" font-size="13" opacity=".55">Sita Rai</text>
-  <text class="f-val" x="245" y="166" font-size="13" opacity=".55">16</text>
-  <text class="f-val" x="350" y="166" font-size="13" opacity=".55">10</text>
-  <text class="f-val" x="470" y="166" font-size="13" opacity=".55">85</text>
+  <text class="f-val" x="130" y="166" style="font-size:13px" opacity=".55">Sita Rai</text>
+  <text class="f-val" x="245" y="166" style="font-size:13px" opacity=".55">16</text>
+  <text class="f-val" x="350" y="166" style="font-size:13px" opacity=".55">10</text>
+  <text class="f-val" x="470" y="166" style="font-size:13px" opacity=".55">85</text>
 
   <path class="f-arr" marker-end="url(#a-dh)" d="M600,89 L545,89"/>
   <text class="f-lbl-y" x="610" y="84" text-anchor="start">ATTRIBUTE</text>
@@ -353,14 +353,14 @@ D.popVsOop = `
 
   <text class="f-lbl-y" x="20" y="46" text-anchor="start">PROCEDURAL (C) — data is GLOBAL, every function can change it</text>
   <rect class="f-box-c" x="110" y="128" width="150" height="52" rx="8"/>
-  <text class="f-val" x="185" y="152" font-size="13">GLOBAL DATA</text>
+  <text class="f-val" x="185" y="152" style="font-size:13px">GLOBAL DATA</text>
   <text class="f-lbl" x="185" y="170">unprotected</text>
 
-  <rect class="f-box" x="20"  y="60" width="90" height="34" rx="5"/><text class="f-val" x="65"  y="82" font-size="11">func1()</text>
-  <rect class="f-box" x="140" y="60" width="90" height="34" rx="5"/><text class="f-val" x="185" y="82" font-size="11">func2()</text>
-  <rect class="f-box" x="260" y="60" width="90" height="34" rx="5"/><text class="f-val" x="305" y="82" font-size="11">func3()</text>
-  <rect class="f-box" x="20"  y="212" width="90" height="34" rx="5"/><text class="f-val" x="65"  y="234" font-size="11">func4()</text>
-  <rect class="f-box" x="260" y="212" width="90" height="34" rx="5"/><text class="f-val" x="305" y="234" font-size="11">func5()</text>
+  <rect class="f-box" x="20"  y="60" width="90" height="34" rx="5"/><text class="f-val" x="65"  y="82" style="font-size:11px">func1()</text>
+  <rect class="f-box" x="140" y="60" width="90" height="34" rx="5"/><text class="f-val" x="185" y="82" style="font-size:11px">func2()</text>
+  <rect class="f-box" x="260" y="60" width="90" height="34" rx="5"/><text class="f-val" x="305" y="82" style="font-size:11px">func3()</text>
+  <rect class="f-box" x="20"  y="212" width="90" height="34" rx="5"/><text class="f-val" x="65"  y="234" style="font-size:11px">func4()</text>
+  <rect class="f-box" x="260" y="212" width="90" height="34" rx="5"/><text class="f-val" x="305" y="234" style="font-size:11px">func5()</text>
 
   <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:#ff8f7a" d="M75,96 L140,126"/>
   <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:#ff8f7a" d="M185,96 L185,124"/>
@@ -371,26 +371,26 @@ D.popVsOop = `
 
   <line class="f-ln" x1="380" y1="34" x2="380" y2="300" stroke-dasharray="5 5"/>
 
-  <text class="f-lbl-y" x="410" y="46" text-anchor="start">OBJECT-ORIENTED (C++) — data is PRIVATE inside each object</text>
+  <text class="f-lbl-y" x="382" y="46" text-anchor="start">OBJECT-ORIENTED (C++) — data is PRIVATE inside the object</text>
 
   <rect class="f-box-d" x="410" y="62" width="130" height="130" rx="10"/>
   <text class="f-lbl-y" x="475" y="80">Object: acc1</text>
   <rect class="f-box-c" x="432" y="112" width="86" height="40" rx="6"/>
-  <text class="f-val" x="475" y="130" font-size="11">balance</text>
+  <text class="f-val" x="475" y="130" style="font-size:11px">balance</text>
   <text class="f-lbl" x="475" y="145">private</text>
   <rect class="f-box-g" x="424" y="160" width="102" height="24" rx="12"/>
-  <text class="f-val" x="475" y="176" font-size="10">deposit() public</text>
+  <text class="f-val" x="475" y="176" style="font-size:10px">deposit() public</text>
 
   <rect class="f-box-d" x="560" y="62" width="130" height="130" rx="10"/>
   <text class="f-lbl-y" x="625" y="80">Object: acc2</text>
   <rect class="f-box-c" x="582" y="112" width="86" height="40" rx="6"/>
-  <text class="f-val" x="625" y="130" font-size="11">balance</text>
+  <text class="f-val" x="625" y="130" style="font-size:11px">balance</text>
   <text class="f-lbl" x="625" y="145">private</text>
   <rect class="f-box-g" x="574" y="160" width="102" height="24" rx="12"/>
-  <text class="f-val" x="625" y="176" font-size="10">deposit() public</text>
+  <text class="f-val" x="625" y="176" style="font-size:10px">deposit() public</text>
 
   <rect class="f-box" x="470" y="220" width="160" height="34" rx="5"/>
-  <text class="f-val" x="550" y="242" font-size="11">outside code</text>
+  <text class="f-val" x="550" y="242" style="font-size:11px">outside code</text>
   <path class="f-arr" marker-end="url(#a-pvo2)" style="stroke:#9ae6a0" d="M510,218 L480,190"/>
   <path class="f-arr" marker-end="url(#a-pvo2)" style="stroke:#9ae6a0" d="M590,218 L622,190"/>
   <text class="f-lbl" x="550" y="278" fill="#9ae6a0">Outside code can only knock on the public door.</text>
@@ -398,7 +398,7 @@ D.popVsOop = `
 </svg>`;
 
 D.programAnatomy = `
-<svg viewBox="0 0 720 290" role="img" aria-labelledby="t-anat">
+<svg viewBox="0 0 720 310" role="img" aria-labelledby="t-anat">
   <title id="t-anat">The parts of a basic C++ program labelled</title>
   ${ah('a-anat')}
   <text class="f-ttl" x="10" y="18">Anatomy of every C++ program you will ever write</text>
@@ -413,24 +413,24 @@ D.programAnatomy = `
 
   <path class="f-arr" marker-end="url(#a-anat)" d="M470,58 L410,58"/>
   <text class="f-lbl-y" x="480" y="54" text-anchor="start">Preprocessor directive</text>
-  <text class="f-lbl"   x="480" y="70" text-anchor="start">brings in cout and cin</text>
+  <text class="f-lbl"   x="480" y="74" text-anchor="start">brings in cout and cin</text>
 
-  <path class="f-arr" marker-end="url(#a-anat)" d="M470,88 L410,88"/>
-  <text class="f-lbl-y" x="480" y="84" text-anchor="start">Namespace</text>
-  <text class="f-lbl"   x="480" y="100" text-anchor="start">lets you write cout, not std::cout</text>
+  <path class="f-arr" marker-end="url(#a-anat)" d="M470,92 L410,92"/>
+  <text class="f-lbl-y" x="480" y="92" text-anchor="start">Namespace</text>
+  <text class="f-lbl"   x="480" y="108" text-anchor="start">lets you write cout, not std::cout</text>
 
-  <path class="f-arr" marker-end="url(#a-anat)" d="M470,126 L410,126"/>
-  <text class="f-lbl-y" x="480" y="122" text-anchor="start">main() — the starting point</text>
-  <text class="f-lbl"   x="480" y="138" text-anchor="start">execution ALWAYS begins here</text>
+  <path class="f-arr" marker-end="url(#a-anat)" d="M470,134 L410,134"/>
+  <text class="f-lbl-y" x="480" y="134" text-anchor="start">main() — the starting point</text>
+  <text class="f-lbl"   x="480" y="154" text-anchor="start">execution ALWAYS begins here</text>
 
-  <path class="f-arr" marker-end="url(#a-anat)" d="M470,156 L410,156"/>
-  <text class="f-lbl-y" x="480" y="152" text-anchor="start">Statement — ends with ;</text>
+  <path class="f-arr" marker-end="url(#a-anat)" d="M470,174 L410,174"/>
+  <text class="f-lbl-y" x="480" y="174" text-anchor="start">Statement — ends with ;</text>
 
-  <path class="f-arr" marker-end="url(#a-anat)" d="M470,184 L410,184"/>
-  <text class="f-lbl-y" x="480" y="180" text-anchor="start">return 0 — tells the OS</text>
-  <text class="f-lbl"   x="480" y="196" text-anchor="start">the program ended successfully</text>
+  <path class="f-arr" marker-end="url(#a-anat)" d="M470,208 L410,208"/>
+  <text class="f-lbl-y" x="480" y="208" text-anchor="start">return 0 — tells the OS</text>
+  <text class="f-lbl"   x="480" y="228" text-anchor="start">the program ended successfully</text>
 
-  <text class="f-lbl" x="360" y="272">The braces { } mark the body of the function. Every opening brace needs a closing brace.</text>
+  <text class="f-lbl" x="360" y="294">The braces { } mark the body of the function. Every opening brace needs a closing brace.</text>
 </svg>`;
 
 /* ---------------------------------------------------------------
@@ -444,14 +444,14 @@ D.classObject = `
   <text class="f-ttl" x="10" y="18">ONE class (blueprint) → MANY objects (each with its own memory)</text>
 
   <rect class="f-box-y" x="30" y="60" width="200" height="170" rx="10"/>
-  <text class="f-lbl-y" x="130" y="84" font-size="12">class Student</text>
+  <text class="f-lbl-y" x="130" y="84" style="font-size:12px">class Student</text>
   <text class="f-lbl" x="130" y="102">the design on paper</text>
   <line class="f-ln" x1="50" y1="112" x2="210" y2="112"/>
-  <text class="f-code" x="50" y="136" font-size="11">string name;</text>
-  <text class="f-code" x="50" y="158" font-size="11">int roll;</text>
+  <text class="f-code" x="50" y="136" style="font-size:11px">string name;</text>
+  <text class="f-code" x="50" y="158" style="font-size:11px">int roll;</text>
   <line class="f-ln" x1="50" y1="170" x2="210" y2="170" stroke-dasharray="4 3"/>
-  <text class="f-code" x="50" y="194" font-size="11">void setData();</text>
-  <text class="f-code" x="50" y="216" font-size="11">void display();</text>
+  <text class="f-code" x="50" y="194" style="font-size:11px">void setData();</text>
+  <text class="f-code" x="50" y="216" style="font-size:11px">void display();</text>
   <text class="f-lbl" x="130" y="252" fill="#ff8f7a">takes NO memory</text>
 
   <path class="f-arr" marker-end="url(#a-co)" d="M240,100 L300,90"/>
@@ -460,17 +460,17 @@ D.classObject = `
 
   <rect class="f-box" x="320" y="52" width="170" height="76" rx="8"/>
   <text class="f-lbl-y" x="405" y="72">object s1</text>
-  <text class="f-code" x="340" y="94" font-size="11">name = "Ram"</text>
-  <text class="f-code" x="340" y="114" font-size="11">roll = 15</text>
+  <text class="f-code" x="340" y="94" style="font-size:11px">name = "Ram"</text>
+  <text class="f-code" x="340" y="114" style="font-size:11px">roll = 15</text>
 
   <rect class="f-box" x="320" y="140" width="170" height="76" rx="8"/>
   <text class="f-lbl-y" x="405" y="160">object s2</text>
-  <text class="f-code" x="340" y="182" font-size="11">name = "Sita"</text>
-  <text class="f-code" x="340" y="202" font-size="11">roll = 16</text>
+  <text class="f-code" x="340" y="182" style="font-size:11px">name = "Sita"</text>
+  <text class="f-code" x="340" y="202" style="font-size:11px">roll = 16</text>
 
   <rect class="f-box" x="320" y="228" width="170" height="60" rx="8"/>
   <text class="f-lbl-y" x="405" y="248">object s3</text>
-  <text class="f-code" x="340" y="272" font-size="11">name = "Hari"</text>
+  <text class="f-code" x="340" y="272" style="font-size:11px">name = "Hari"</text>
 
   <text class="f-lbl-y" x="530" y="90" text-anchor="start">Each object gets its</text>
   <text class="f-lbl-y" x="530" y="108" text-anchor="start">OWN copy of the data.</text>
@@ -493,16 +493,16 @@ D.accessSpecifiers = `
   <circle cx="280" cy="165" r="80"  fill="rgba(255,215,110,.07)" style="stroke:#ffd76e;stroke-width:1.6"/>
   <circle cx="280" cy="165" r="44"  fill="rgba(255,143,122,.12)" style="stroke:#ff8f7a;stroke-width:1.8"/>
 
-  <text class="f-val" x="280" y="162" font-size="12">private</text>
-  <text class="f-lbl" x="280" y="180" font-size="10">the secret core</text>
+  <text class="f-val" x="280" y="162" style="font-size:12px">private</text>
+  <text class="f-lbl" x="280" y="180" style="font-size:10px">the secret core</text>
   <text class="f-lbl-y" x="280" y="118">protected</text>
-  <text class="f-val" x="280" y="72" font-size="12" fill="#9ae6a0">public</text>
+  <text class="f-val" x="280" y="72" style="font-size:12px" fill="#9ae6a0">public</text>
 
   <text class="f-lbl" x="105" y="165" fill="#9ae6a0">outside</text>
   <path class="f-arr" marker-end="url(#a-acc)" style="stroke:#9ae6a0" d="M140,180 L192,180"/>
-  <text class="f-lbl" x="150" y="205" font-size="10" fill="#9ae6a0">reaches public ✓</text>
+  <text class="f-lbl" x="120" y="212" style="font-size:10px" fill="#9ae6a0" text-anchor="middle">reaches public ✓</text>
   <path class="f-arr" marker-end="url(#a-accx)" style="stroke:#ff8f7a" d="M140,148 L228,148"/>
-  <text class="f-lbl" x="150" y="130" font-size="10" fill="#ff8f7a">blocked from private ✗</text>
+  <text class="f-lbl" x="112" y="108" style="font-size:10px" fill="#ff8f7a" text-anchor="middle">blocked from private ✗</text>
 
   <rect class="f-box-d" x="450" y="52" width="250" height="216" rx="8"/>
   <text class="f-lbl-y" x="575" y="76">Quick rule</text>
@@ -523,31 +523,31 @@ D.ctorDtor = `
 
   <line class="f-ln" x1="40" y1="150" x2="680" y2="150" style="stroke:#2c4a41;stroke-width:2"/>
   <path class="f-arr" marker-end="url(#a-cd)" d="M660,150 L690,150"/>
-  <text class="f-lbl" x="640" y="172" text-anchor="start">time →</text>
+  <text class="f-lbl" x="655" y="176" text-anchor="start">time →</text>
 
   <circle class="f-box-g" cx="120" cy="150" r="12"/>
   <text class="f-lbl-y" x="120" y="120">Student s1;</text>
-  <text class="f-lbl" x="120" y="102" font-size="10">object created</text>
-  <text class="f-val" x="120" y="196" font-size="11" fill="#9ae6a0">Constructor</text>
-  <text class="f-val" x="120" y="212" font-size="11" fill="#9ae6a0">for Ram</text>
+  <text class="f-lbl" x="120" y="102" style="font-size:10px">object created</text>
+  <text class="f-val" x="120" y="196" style="font-size:11px" fill="#9ae6a0">Constructor</text>
+  <text class="f-val" x="120" y="212" style="font-size:11px" fill="#9ae6a0">for Ram</text>
 
   <circle class="f-box-g" cx="270" cy="150" r="12"/>
   <text class="f-lbl-y" x="270" y="120">Student s2;</text>
-  <text class="f-val" x="270" y="196" font-size="11" fill="#9ae6a0">Constructor</text>
-  <text class="f-val" x="270" y="212" font-size="11" fill="#9ae6a0">for Sita</text>
+  <text class="f-val" x="270" y="196" style="font-size:11px" fill="#9ae6a0">Constructor</text>
+  <text class="f-val" x="270" y="212" style="font-size:11px" fill="#9ae6a0">for Sita</text>
 
   <circle class="f-box" cx="420" cy="150" r="12"/>
   <text class="f-lbl-y" x="420" y="120">work happens</text>
-  <text class="f-lbl" x="420" y="196" font-size="11">display() calls</text>
+  <text class="f-lbl" x="420" y="196" style="font-size:11px">display() calls</text>
 
   <circle class="f-box-c" cx="540" cy="150" r="12"/>
   <text class="f-lbl-y" x="540" y="120">main() ends</text>
-  <text class="f-val" x="540" y="196" font-size="11" fill="#ff8f7a">Destructor</text>
-  <text class="f-val" x="540" y="212" font-size="11" fill="#ff8f7a">for Sita ← last in</text>
+  <text class="f-val" x="540" y="196" style="font-size:11px" fill="#ff8f7a">Destructor</text>
+  <text class="f-val" x="540" y="212" style="font-size:11px" fill="#ff8f7a">for Sita ← last in</text>
 
   <circle class="f-box-c" cx="650" cy="150" r="12"/>
-  <text class="f-val" x="640" y="196" font-size="11" fill="#ff8f7a">Destructor</text>
-  <text class="f-val" x="640" y="212" font-size="11" fill="#ff8f7a">for Ram</text>
+  <text class="f-val" x="640" y="196" style="font-size:11px" fill="#ff8f7a">Destructor</text>
+  <text class="f-val" x="640" y="212" style="font-size:11px" fill="#ff8f7a">for Ram</text>
 
   <text class="f-lbl-y" x="360" y="256">Sita was created LAST, so Sita is destroyed FIRST — exactly like plates on a stack.</text>
   <text class="f-lbl" x="360" y="278">You never call either of them yourself. C++ calls both automatically.</text>
@@ -566,60 +566,68 @@ D.abstraction = `
   <rect class="f-box" x="40" y="60" width="150" height="150" rx="10"/>
   <text class="f-lbl-y" x="115" y="86">YOU (the user)</text>
   <rect class="f-box-g" x="62" y="104" width="106" height="30" rx="15"/>
-  <text class="f-val" x="115" y="124" font-size="11">start()</text>
+  <text class="f-val" x="115" y="124" style="font-size:11px">start()</text>
   <rect class="f-box-g" x="62" y="144" width="106" height="30" rx="15"/>
-  <text class="f-val" x="115" y="164" font-size="11">stop()</text>
-  <text class="f-lbl" x="115" y="196" font-size="10">simple, safe buttons</text>
+  <text class="f-val" x="115" y="164" style="font-size:11px">stop()</text>
+  <text class="f-lbl" x="115" y="196" style="font-size:10px">simple, safe buttons</text>
 
   <path class="f-arr" marker-end="url(#a-abs)" d="M200,135 L268,135"/>
-  <text class="f-lbl-y" x="234" y="126" font-size="10">calls</text>
+  <text class="f-lbl-y" x="234" y="126" style="font-size:10px">calls</text>
 
   <rect class="f-box-d" x="280" y="52" width="200" height="166" rx="10"/>
   <text class="f-lbl-y" x="380" y="76">THE WALL</text>
-  <text class="f-lbl" x="380" y="94" font-size="10">interface / abstraction layer</text>
+  <text class="f-lbl" x="380" y="94" style="font-size:10px">interface / abstraction layer</text>
   <line class="f-ln" x1="300" y1="106" x2="460" y2="106" stroke-dasharray="4 3"/>
-  <text class="f-lbl" x="380" y="132" font-size="10">you cannot see past this</text>
-  <text class="f-lbl" x="380" y="160" font-size="26" fill="#ffd76e">🔒</text>
+  <text class="f-lbl" x="380" y="132" style="font-size:10px">you cannot see past this</text>
+  <text class="f-lbl" x="380" y="172" style="font-size:26px" fill="#ffd76e">🔒</text>
 
   <rect class="f-box-c" x="500" y="60" width="190" height="150" rx="10"/>
   <text class="f-lbl-y" x="595" y="86">HIDDEN INSIDE</text>
-  <text class="f-lbl" x="595" y="112" font-size="10">fuel injection logic</text>
-  <text class="f-lbl" x="595" y="132" font-size="10">spark timing</text>
-  <text class="f-lbl" x="595" y="152" font-size="10">temperature control</text>
-  <text class="f-lbl" x="595" y="172" font-size="10">400 lines of code</text>
-  <text class="f-lbl" x="595" y="196" font-size="10" fill="#ff8f7a">can change any time</text>
+  <text class="f-lbl" x="595" y="112" style="font-size:10px">fuel injection logic</text>
+  <text class="f-lbl" x="595" y="132" style="font-size:10px">spark timing</text>
+  <text class="f-lbl" x="595" y="152" style="font-size:10px">temperature control</text>
+  <text class="f-lbl" x="595" y="172" style="font-size:10px">400 lines of code</text>
+  <text class="f-lbl" x="595" y="196" style="font-size:10px" fill="#ff8f7a">can change any time</text>
 
   <text class="f-lbl-y" x="360" y="246">Because the buttons never change, the hidden code CAN be rewritten without breaking your program.</text>
 </svg>`;
 
 D.encapsulation = `
-<svg viewBox="0 0 720 280" role="img" aria-labelledby="t-enc">
+<svg viewBox="0 0 640 304" role="img" aria-labelledby="t-enc">
   <title id="t-enc">Encapsulation puts private data inside a capsule guarded by public functions</title>
-  ${ah('a-enc', '#9ae6a0')}
-  ${ah('a-encx', '#ff8f7a')}
-  <text class="f-ttl" x="10" y="18">ENCAPSULATION — private data wrapped in a capsule of public functions</text>
+  <defs><marker id="a-enc" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#9ae6a0"/></marker></defs>
+  <text class="f-ttl" x="10" y="20">ENCAPSULATION — private data wrapped in a capsule of public functions</text>
 
-  <rect x="200" y="52" width="320" height="180" rx="90" fill="rgba(154,230,160,.05)" style="stroke:#9ae6a0;stroke-width:1.8"/>
-  <text class="f-lbl-y" x="360" y="78">class Account</text>
+  <rect x="208" y="54" width="392" height="192" rx="96" fill="rgba(154,230,160,.05)" style="stroke:#9ae6a0;stroke-width:1.8"/>
+  <text class="f-lbl-y" x="404" y="84" style="font-size:13px">class Account</text>
 
-  <rect class="f-box-c" x="290" y="112" width="140" height="58" rx="8"/>
-  <text class="f-val" x="360" y="136" font-size="12">balance</text>
-  <text class="f-lbl" x="360" y="156" font-size="10">PRIVATE — hidden</text>
+  <rect class="f-box-c" x="322" y="98" width="164" height="60" rx="10"/>
+  <text class="f-val" x="404" y="123" style="font-size:14px">balance</text>
+  <text class="f-lbl" x="404" y="144" style="font-size:10.5px">PRIVATE — hidden</text>
 
-  <rect class="f-box-g" x="212" y="186" width="130" height="30" rx="15"/>
-  <text class="f-val" x="277" y="206" font-size="10">setBalance()</text>
-  <rect class="f-box-g" x="378" y="186" width="130" height="30" rx="15"/>
-  <text class="f-val" x="443" y="206" font-size="10">getBalance()</text>
+  <rect class="f-box-g" x="252" y="182" width="140" height="32" rx="16"/>
+  <text class="f-val" x="322" y="203" style="font-size:11.5px">setBalance()</text>
+  <rect class="f-box-g" x="416" y="182" width="140" height="32" rx="16"/>
+  <text class="f-val" x="486" y="203" style="font-size:11.5px">getBalance()</text>
+  <text class="f-lbl" x="404" y="234" style="font-size:10.5px;letter-spacing:.6px">PUBLIC — the only way in or out</text>
 
-  <path class="f-arr" marker-end="url(#a-enc)" style="stroke:#9ae6a0" d="M110,200 L206,200"/>
-  <text class="f-lbl" x="70" y="196" fill="#9ae6a0">allowed</text>
-  <text class="f-lbl" x="70" y="212" font-size="10" fill="#9ae6a0">a.setBalance(5000)</text>
+  <text class="f-lbl" x="16" y="72" text-anchor="start" style="font-size:10px;letter-spacing:1.2px">CODE OUTSIDE THE CLASS</text>
+  <path d="M16,80 L120,80" style="stroke:#4c7368;stroke-width:1;stroke-dasharray:4 4;fill:none"/>
 
-  <path class="f-arr" marker-end="url(#a-encx)" style="stroke:#ff8f7a" d="M110,140 L284,140"/>
-  <text class="f-lbl" x="66" y="128" fill="#ff8f7a">BLOCKED</text>
-  <text class="f-lbl" x="60" y="112" font-size="10" fill="#ff8f7a">a.balance = -500</text>
+  <text class="f-lbl" x="16" y="118" text-anchor="start" fill="#ff8f7a" style="font-weight:700">BLOCKED</text>
+  <text class="f-code" x="16" y="135" style="font-size:10.5px" fill="#ff8f7a">a.balance = -500</text>
+  <path class="f-arr" style="stroke:#ff8f7a" d="M134,124 L196,124"/>
+  <circle cx="208" cy="124" r="9.5" fill="rgba(255,143,122,.18)" style="stroke:#ff8f7a;stroke-width:1.6"/>
+  <text x="208" y="128.5" text-anchor="middle" fill="#ff8f7a" style="font-size:11px;font-weight:700">✕</text>
 
-  <text class="f-lbl-y" x="360" y="256">The setter can REFUSE bad values (like a negative balance). That is why data hiding protects the program.</text>
+  <text class="f-lbl" x="16" y="192" text-anchor="start" fill="#9ae6a0" style="font-weight:700">ALLOWED</text>
+  <text class="f-code" x="16" y="209" style="font-size:10.5px" fill="#9ae6a0">a.setBalance(5000)</text>
+  <path class="f-arr" marker-end="url(#a-enc)" style="stroke:#9ae6a0" d="M134,198 L246,198"/>
+
+  <text class="f-lbl-y" x="320" y="272">The setter can REFUSE a bad value — a negative balance never gets in.</text>
+  <text class="f-lbl" x="320" y="290">That is why data hiding protects the program.</text>
 </svg>`;
 
 /* ---------------------------------------------------------------
@@ -630,7 +638,7 @@ D.encapsulation = `
 function inhBox(x, y, label, cls){
   const w = Math.max(52, label.length * 9 + 18);
   return `<rect class="${cls || 'f-box'}" x="${x - w / 2}" y="${y - 17}" width="${w}" height="34" rx="6"/>
-          <text class="f-val" x="${x}" y="${y + 6}" font-size="13">${label}</text>`;
+          <text class="f-val" x="${x}" y="${y + 6}" style="font-size:13px">${label}</text>`;
 }
 
 D.inhTypes = `
@@ -643,7 +651,7 @@ D.inhTypes = `
   <line class="f-ln" x1="80" y1="82" x2="80" y2="118"/>
   ${inhBox(80, 65, 'A', 'f-box-y')}
   ${inhBox(80, 135, 'B')}
-  <text class="f-lbl" x="80" y="172" font-size="10">one base → one derived</text>
+  <text class="f-lbl" x="80" y="172" style="font-size:10px">one base → one derived</text>
 
   <!-- 2 multilevel -->
   <text class="f-lbl-y" x="240" y="38">2 · MULTILEVEL</text>
@@ -652,8 +660,8 @@ D.inhTypes = `
   ${inhBox(240, 65, 'A', 'f-box-y')}
   ${inhBox(240, 115, 'B')}
   ${inhBox(240, 165, 'C')}
-  <text class="f-lbl" x="240" y="196" font-size="10">a chain: B is derived,</text>
-  <text class="f-lbl" x="240" y="210" font-size="10">then becomes a base</text>
+  <text class="f-lbl" x="240" y="196" style="font-size:10px">a chain: B is derived,</text>
+  <text class="f-lbl" x="240" y="210" style="font-size:10px">then becomes a base</text>
 
   <!-- 3 multiple -->
   <text class="f-lbl-y" x="430" y="38">3 · MULTIPLE</text>
@@ -662,7 +670,7 @@ D.inhTypes = `
   ${inhBox(400, 65, 'A', 'f-box-y')}
   ${inhBox(460, 65, 'B', 'f-box-y')}
   ${inhBox(430, 135, 'C')}
-  <text class="f-lbl" x="430" y="172" font-size="10">two bases → one derived</text>
+  <text class="f-lbl" x="430" y="172" style="font-size:10px">two bases → one derived</text>
 
   <!-- 4 hierarchical -->
   <text class="f-lbl-y" x="610" y="38">4 · HIERARCHICAL</text>
@@ -671,7 +679,7 @@ D.inhTypes = `
   ${inhBox(610, 65, 'A', 'f-box-y')}
   ${inhBox(570, 135, 'B')}
   ${inhBox(650, 135, 'C')}
-  <text class="f-lbl" x="610" y="172" font-size="10">one base → many derived</text>
+  <text class="f-lbl" x="610" y="172" style="font-size:10px">one base → many derived</text>
 
   <line class="f-ln" x1="20" y1="240" x2="700" y2="240" stroke-dasharray="5 5"/>
 
@@ -692,7 +700,7 @@ D.inhTypes = `
   <text class="f-lbl" x="320" y="336" text-anchor="start">from A — so D would receive TWO copies of A.</text>
   <text class="f-lbl" x="320" y="356" text-anchor="start">The compiler cannot decide which one to use.</text>
   <text class="f-lbl-y" x="320" y="386" text-anchor="start">Solution: make A a VIRTUAL BASE CLASS</text>
-  <text class="f-code" x="320" y="410" font-size="11">class B : virtual public A { };</text>
+  <text class="f-code" x="320" y="410" style="font-size:11px">class B : virtual public A { };</text>
 </svg>`;
 
 D.inhAccess = `
@@ -703,62 +711,118 @@ D.inhAccess = `
 
   <rect class="f-box-y" x="30" y="44" width="150" height="140" rx="8"/>
   <text class="f-lbl-y" x="105" y="66">BASE class</text>
-  <rect class="f-box-g" x="48" y="80" width="114" height="26" rx="5"/><text class="f-val" x="105" y="98" font-size="11">public</text>
-  <rect class="f-box-y" x="48" y="112" width="114" height="26" rx="5"/><text class="f-val" x="105" y="130" font-size="11">protected</text>
-  <rect class="f-box-c" x="48" y="144" width="114" height="26" rx="5"/><text class="f-val" x="105" y="162" font-size="11">private</text>
+  <rect class="f-box-g" x="48" y="80" width="114" height="26" rx="5"/><text class="f-val" x="105" y="98" style="font-size:11px">public</text>
+  <rect class="f-box-y" x="48" y="112" width="114" height="26" rx="5"/><text class="f-val" x="105" y="130" style="font-size:11px">protected</text>
+  <rect class="f-box-c" x="48" y="144" width="114" height="26" rx="5"/><text class="f-val" x="105" y="162" style="font-size:11px">private</text>
 
   <path class="f-arr" marker-end="url(#a-inha)" d="M190,92 L250,80"/>
   <path class="f-arr" marker-end="url(#a-inha)" d="M190,124 L250,150"/>
   <path class="f-arr" marker-end="url(#a-inha)" d="M190,156 L250,222"/>
 
   <rect class="f-box-d" x="260" y="44" width="130" height="80" rx="8"/>
-  <text class="f-lbl-y" x="325" y="64" font-size="11">: public</text>
-  <text class="f-lbl" x="325" y="86" font-size="10" fill="#9ae6a0">public stays public</text>
-  <text class="f-lbl" x="325" y="104" font-size="10" fill="#ffd76e">protected stays protected</text>
+  <text class="f-lbl-y" x="325" y="64" style="font-size:11px">: public</text>
+  <text class="f-lbl" x="325" y="86" style="font-size:10px" fill="#9ae6a0">public stays public</text>
+  <text class="f-lbl" x="325" y="104" style="font-size:10px" fill="#ffd76e">protected stays protected</text>
 
   <rect class="f-box-d" x="260" y="134" width="130" height="80" rx="8"/>
-  <text class="f-lbl-y" x="325" y="154" font-size="11">: protected</text>
-  <text class="f-lbl" x="325" y="176" font-size="10" fill="#ffd76e">public → protected</text>
-  <text class="f-lbl" x="325" y="194" font-size="10" fill="#ffd76e">protected stays</text>
+  <text class="f-lbl-y" x="325" y="154" style="font-size:11px">: protected</text>
+  <text class="f-lbl" x="325" y="176" style="font-size:10px" fill="#ffd76e">public → protected</text>
+  <text class="f-lbl" x="325" y="194" style="font-size:10px" fill="#ffd76e">protected stays</text>
 
   <rect class="f-box-d" x="260" y="224" width="130" height="66" rx="8"/>
-  <text class="f-lbl-y" x="325" y="244" font-size="11">: private</text>
-  <text class="f-lbl" x="325" y="266" font-size="10" fill="#ff8f7a">both become private</text>
+  <text class="f-lbl-y" x="325" y="244" style="font-size:11px">: private</text>
+  <text class="f-lbl" x="325" y="266" style="font-size:10px" fill="#ff8f7a">both become private</text>
 
   <rect class="f-box-c" x="430" y="120" width="260" height="110" rx="8"/>
   <text class="f-lbl-y" x="560" y="146">The one rule that never changes</text>
-  <text class="f-val" x="560" y="176" font-size="13" fill="#ff8f7a">private members are</text>
-  <text class="f-val" x="560" y="196" font-size="13" fill="#ff8f7a">NEVER inherited</text>
-  <text class="f-lbl" x="560" y="216" font-size="10">in any mode — they exist, but the child cannot touch them</text>
+  <text class="f-val" x="560" y="176" style="font-size:13px" fill="#ff8f7a">private members are</text>
+  <text class="f-val" x="560" y="196" style="font-size:13px" fill="#ff8f7a">NEVER inherited</text>
+  <text class="f-lbl" x="560" y="216" style="font-size:10px">in any mode — they exist, but the child cannot touch them</text>
 </svg>`;
 
-D.ctorOrder = `
-<svg viewBox="0 0 720 250" role="img" aria-labelledby="t-cord">
+D.ctorOrder = {
+  type: 'animated',
+  intro: {
+    en: 'One Puppy object is about to be created. Press Next and watch the ORDER.',
+    ne: 'एउटा Puppy अब्जेक्ट बन्न लागेको छ। Next थिच्नुहोस् र क्रम हेर्नुहोस्।'
+  },
+  svg: `
+<svg viewBox="0 0 720 300" role="img" aria-labelledby="t-cord">
   <title id="t-cord">Constructor and destructor order in multilevel inheritance</title>
   ${ah('a-cord', '#9ae6a0')}
   ${ah('a-cordr', '#ff8f7a')}
-  <text class="f-ttl" x="10" y="18">Creating ONE Puppy object runs THREE constructors — in this order</text>
+  <text class="f-ttl" x="10" y="18">Creating ONE Puppy object runs THREE constructors — and destroys them in reverse</text>
 
-  ${inhBox(150, 60, 'Animal', 'f-box-y')}
-  ${inhBox(150, 130, 'Dog')}
-  ${inhBox(150, 200, 'Puppy')}
-  <line class="f-ln" x1="150" y1="77" x2="150" y2="113"/>
-  <line class="f-ln" x1="150" y1="147" x2="150" y2="183"/>
+  <text class="f-lbl-y" x="150" y="42" style="font-size:10px">CONSTRUCTORS — base first</text>
+  <text class="f-lbl-y" x="570" y="42" style="font-size:10px">DESTRUCTORS — derived first</text>
 
-  <path class="f-arr" marker-end="url(#a-cord)" style="stroke:#9ae6a0" d="M300,200 L300,80"/>
-  <text class="f-val" x="330" y="70" font-size="11" fill="#9ae6a0" text-anchor="start">1st — Animal()</text>
-  <text class="f-val" x="330" y="140" font-size="11" fill="#9ae6a0" text-anchor="start">2nd — Dog()</text>
-  <text class="f-val" x="330" y="210" font-size="11" fill="#9ae6a0" text-anchor="start">3rd — Puppy()</text>
-  <text class="f-lbl-y" x="300" y="228" font-size="10">CONSTRUCTORS</text>
-  <text class="f-lbl" x="300" y="44" font-size="10" fill="#9ae6a0">top-most base first ↑</text>
+  <g id="cls-animal" class="dia-focus">
+    <rect class="f-box-y" x="290" y="54" width="140" height="40" rx="6"/>
+    <text class="f-val" x="360" y="79" style="font-size:13px">Animal</text>
+  </g>
+  <g id="cls-dog" class="dia-focus">
+    <rect class="f-box" x="290" y="128" width="140" height="40" rx="6"/>
+    <text class="f-val" x="360" y="153" style="font-size:13px">Dog</text>
+  </g>
+  <g id="cls-puppy" class="dia-focus">
+    <rect class="f-box" x="290" y="202" width="140" height="40" rx="6"/>
+    <text class="f-val" x="360" y="227" style="font-size:13px">Puppy</text>
+  </g>
+  <line class="f-ln" x1="360" y1="94"  x2="360" y2="128"/>
+  <line class="f-ln" x1="360" y1="168" x2="360" y2="202"/>
 
-  <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:#ff8f7a" d="M560,80 L560,200"/>
-  <text class="f-val" x="530" y="70" font-size="11" fill="#ff8f7a" text-anchor="end">3rd — ~Animal()</text>
-  <text class="f-val" x="530" y="140" font-size="11" fill="#ff8f7a" text-anchor="end">2nd — ~Dog()</text>
-  <text class="f-val" x="530" y="210" font-size="11" fill="#ff8f7a" text-anchor="end">1st — ~Puppy()</text>
-  <text class="f-lbl-y" x="560" y="228" font-size="10">DESTRUCTORS</text>
-  <text class="f-lbl" x="560" y="44" font-size="10" fill="#ff8f7a">exact reverse ↓</text>
-</svg>`;
+  <g id="ctor-1" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:#9ae6a0" d="M250,80 L284,80"/>
+    <text class="f-val" x="240" y="84" style="font-size:11px" fill="#9ae6a0" text-anchor="end">1 · Animal()</text>
+  </g>
+  <g id="ctor-2" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:#9ae6a0" d="M250,154 L284,154"/>
+    <text class="f-val" x="240" y="158" style="font-size:11px" fill="#9ae6a0" text-anchor="end">2 · Dog()</text>
+  </g>
+  <g id="ctor-3" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:#9ae6a0" d="M250,228 L284,228"/>
+    <text class="f-val" x="240" y="232" style="font-size:11px" fill="#9ae6a0" text-anchor="end">3 · Puppy()</text>
+  </g>
+
+  <g id="dtor-1" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:#ff8f7a" d="M470,228 L436,228"/>
+    <text class="f-val" x="480" y="232" style="font-size:11px" fill="#ff8f7a" text-anchor="start">1 · ~Puppy()</text>
+  </g>
+  <g id="dtor-2" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:#ff8f7a" d="M470,154 L436,154"/>
+    <text class="f-val" x="480" y="158" style="font-size:11px" fill="#ff8f7a" text-anchor="start">2 · ~Dog()</text>
+  </g>
+  <g id="dtor-3" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:#ff8f7a" d="M470,80 L436,80"/>
+    <text class="f-val" x="480" y="84" style="font-size:11px" fill="#ff8f7a" text-anchor="start">3 · ~Animal()</text>
+  </g>
+
+  <g id="verdict" class="dia-step">
+    <rect class="f-box-c" x="130" y="262" width="460" height="30" rx="6"/>
+    <text class="f-lbl-y" x="360" y="282" style="font-size:11px">Destruction is the EXACT REVERSE of construction.</text>
+  </g>
+</svg>`,
+  steps: [
+    { show: '#ctor-1', focus: '#cls-animal',
+      en: 'Animal() runs first — the top-most base class is always constructed first.',
+      ne: 'पहिले Animal() चल्छ — सबैभन्दा माथिको base क्लास सधैं पहिले बन्छ।' },
+    { show: '#ctor-2', focus: '#cls-dog', hide: '#cls-animal',
+      en: 'Dog() runs second, once its own base is ready.',
+      ne: 'आफ्नो base तयार भएपछि दोस्रोमा Dog() चल्छ।' },
+    { show: '#ctor-3', focus: '#cls-puppy', hide: '#cls-dog',
+      en: 'Puppy() runs last. The object is now completely built.',
+      ne: 'अन्तिममा Puppy() चल्छ। अब अब्जेक्ट पूरै तयार भयो।' },
+    { show: '#dtor-1', focus: '#cls-puppy',
+      en: 'Now it is destroyed. ~Puppy() runs FIRST — the most derived class goes first.',
+      ne: 'अब नष्ट हुँदैछ। पहिले ~Puppy() चल्छ — सबैभन्दा तलको derived क्लास पहिले जान्छ।' },
+    { show: '#dtor-2', focus: '#cls-dog', hide: '#cls-puppy',
+      en: '~Dog() runs second.',
+      ne: 'दोस्रोमा ~Dog() चल्छ।' },
+    { show: ['#dtor-3', '#verdict'], focus: '#cls-animal', hide: '#cls-dog',
+      en: '~Animal() runs last. Destruction is the exact reverse of construction — this is the exam answer.',
+      ne: 'अन्तिममा ~Animal() चल्छ। नष्ट हुने क्रम बन्ने क्रमको ठ्याक्कै उल्टो हो — परीक्षाको उत्तर यही हो।' }
+  ]
+};
 
 /* ---------------------------------------------------------------
    UNIT 6 — POLYMORPHISM
@@ -770,8 +834,8 @@ D.polyTypes = `
   <text class="f-ttl" x="10" y="18">Types of Polymorphism — this tree is worth full marks on its own</text>
 
   <rect class="f-box-y" x="270" y="36" width="180" height="44" rx="8"/>
-  <text class="f-val" x="360" y="58" font-size="13">POLYMORPHISM</text>
-  <text class="f-lbl" x="360" y="73" font-size="9">one name, many forms</text>
+  <text class="f-val" x="360" y="58" style="font-size:13px">POLYMORPHISM</text>
+  <text class="f-lbl" x="360" y="73" style="font-size:9px">one name, many forms</text>
 
   <line class="f-ln" x1="360" y1="80" x2="360" y2="98"/>
   <line class="f-ln" x1="180" y1="98" x2="540" y2="98"/>
@@ -779,80 +843,119 @@ D.polyTypes = `
   <line class="f-ln" x1="540" y1="98" x2="540" y2="118"/>
 
   <rect class="f-box" x="70" y="118" width="220" height="56" rx="8"/>
-  <text class="f-val" x="180" y="140" font-size="12">COMPILE-TIME</text>
-  <text class="f-lbl" x="180" y="158" font-size="10">static · early binding</text>
+  <text class="f-val" x="180" y="140" style="font-size:12px">COMPILE-TIME</text>
+  <text class="f-lbl" x="180" y="158" style="font-size:10px">static · early binding</text>
 
   <rect class="f-box-c" x="430" y="118" width="220" height="56" rx="8"/>
-  <text class="f-val" x="540" y="140" font-size="12">RUN-TIME</text>
-  <text class="f-lbl" x="540" y="158" font-size="10">dynamic · late binding</text>
+  <text class="f-val" x="540" y="140" style="font-size:12px">RUN-TIME</text>
+  <text class="f-lbl" x="540" y="158" style="font-size:10px">dynamic · late binding</text>
 
   <line class="f-ln" x1="180" y1="174" x2="180" y2="192"/>
   <line class="f-ln" x1="110" y1="192" x2="250" y2="192"/>
   <line class="f-ln" x1="110" y1="192" x2="110" y2="210"/>
   <line class="f-ln" x1="250" y1="192" x2="250" y2="210"/>
   <rect class="f-box-g" x="40" y="210" width="140" height="44" rx="6"/>
-  <text class="f-val" x="110" y="230" font-size="11">Function</text>
-  <text class="f-val" x="110" y="246" font-size="11">Overloading</text>
+  <text class="f-val" x="110" y="230" style="font-size:11px">Function</text>
+  <text class="f-val" x="110" y="246" style="font-size:11px">Overloading</text>
   <rect class="f-box-g" x="190" y="210" width="140" height="44" rx="6"/>
-  <text class="f-val" x="260" y="230" font-size="11">Operator</text>
-  <text class="f-val" x="260" y="246" font-size="11">Overloading</text>
+  <text class="f-val" x="260" y="230" style="font-size:11px">Operator</text>
+  <text class="f-val" x="260" y="246" style="font-size:11px">Overloading</text>
 
   <line class="f-ln" x1="540" y1="174" x2="540" y2="192"/>
   <line class="f-ln" x1="470" y1="192" x2="610" y2="192"/>
   <line class="f-ln" x1="470" y1="192" x2="470" y2="210"/>
   <line class="f-ln" x1="610" y1="192" x2="610" y2="210"/>
   <rect class="f-box-g" x="400" y="210" width="140" height="44" rx="6"/>
-  <text class="f-val" x="470" y="230" font-size="11">Function</text>
-  <text class="f-val" x="470" y="246" font-size="11">Overriding</text>
+  <text class="f-val" x="470" y="230" style="font-size:11px">Function</text>
+  <text class="f-val" x="470" y="246" style="font-size:11px">Overriding</text>
   <rect class="f-box-g" x="550" y="210" width="140" height="44" rx="6"/>
-  <text class="f-val" x="620" y="230" font-size="11">Virtual</text>
-  <text class="f-val" x="620" y="246" font-size="11">Functions</text>
+  <text class="f-val" x="620" y="230" style="font-size:11px">Virtual</text>
+  <text class="f-val" x="620" y="246" style="font-size:11px">Functions</text>
 
   <text class="f-lbl-y" x="180" y="284">decided BEFORE the program runs</text>
   <text class="f-lbl-y" x="540" y="284">decided WHILE the program runs</text>
 </svg>`;
 
-D.dispatch = `
-<svg viewBox="0 0 720 320" role="img" aria-labelledby="t-disp">
+D.dispatch = {
+  type: 'animated',
+  intro: {
+    en: 'The same line p->draw() is about to run twice. Watch where it ends up.',
+    ne: 'उही लाइन p->draw() दुई पटक चल्न लागेको छ। कहाँ पुग्छ हेर्नुहोस्।'
+  },
+  svg: `
+<svg viewBox="0 0 720 330" role="img" aria-labelledby="t-disp">
   <title id="t-disp">How a base class pointer chooses the derived version of a virtual function</title>
   ${ah('a-disp')}
   ${ah('a-disp2', '#9ae6a0')}
   <text class="f-ttl" x="10" y="18">Run-time dispatch — the same line p-&gt;draw() gives two different answers</text>
 
-  <rect class="f-box-y" x="30" y="130" width="120" height="50" rx="8"/>
-  <text class="f-val" x="90" y="152" font-size="12">Shape *p</text>
-  <text class="f-lbl" x="90" y="169" font-size="10">base pointer</text>
+  <g id="ptr" class="dia-focus">
+    <rect class="f-box-y" x="30" y="130" width="120" height="50" rx="8"/>
+    <text class="f-val" x="90" y="152" style="font-size:12px">Shape *p</text>
+    <text class="f-lbl" x="90" y="169" style="font-size:10px">base pointer</text>
+  </g>
 
-  <path class="f-arr" marker-end="url(#a-disp)" d="M156,144 L246,86"/>
-  <text class="f-lbl-y" x="196" y="106" font-size="10">p = &amp;c</text>
-  <path class="f-arr" marker-end="url(#a-disp)" d="M156,168 L246,232" opacity=".45"/>
-  <text class="f-lbl" x="196" y="216" font-size="10" opacity=".6">p = &amp;s</text>
+  <g id="obj-c" class="dia-focus">
+    <rect class="f-box" x="250" y="52" width="150" height="70" rx="8"/>
+    <text class="f-lbl-y" x="325" y="74">object c</text>
+    <text class="f-lbl" x="325" y="92" style="font-size:10px">real type: Circle</text>
+    <text class="f-lbl" x="325" y="110" style="font-size:10px">has its own draw()</text>
+  </g>
+  <g id="obj-s" class="dia-focus">
+    <rect class="f-box" x="250" y="198" width="150" height="70" rx="8"/>
+    <text class="f-lbl-y" x="325" y="220">object s</text>
+    <text class="f-lbl" x="325" y="238" style="font-size:10px">real type: Square</text>
+    <text class="f-lbl" x="325" y="256" style="font-size:10px">has its own draw()</text>
+  </g>
 
-  <rect class="f-box" x="250" y="52" width="150" height="70" rx="8"/>
-  <text class="f-lbl-y" x="325" y="74">object c</text>
-  <text class="f-lbl" x="325" y="92" font-size="10">real type: Circle</text>
-  <text class="f-lbl" x="325" y="110" font-size="10">has its own draw()</text>
+  <g id="link-c" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-disp)" d="M156,144 L246,86"/>
+    <text class="f-lbl-y" x="196" y="106" style="font-size:10px">p = &amp;c</text>
+  </g>
+  <g id="link-s" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-disp)" d="M156,168 L246,232"/>
+    <text class="f-lbl-y" x="196" y="216" style="font-size:10px">p = &amp;s</text>
+  </g>
 
-  <rect class="f-box" x="250" y="198" width="150" height="70" rx="8" opacity=".55"/>
-  <text class="f-lbl-y" x="325" y="220" opacity=".7">object s</text>
-  <text class="f-lbl" x="325" y="238" font-size="10" opacity=".7">real type: Square</text>
+  <g id="call-c" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:#9ae6a0" d="M406,86 L486,86"/>
+    <rect class="f-box-g" x="490" y="60" width="200" height="52" rx="8"/>
+    <text class="f-val" x="590" y="82" style="font-size:12px">Circle::draw()</text>
+    <text class="f-lbl" x="590" y="100" style="font-size:10px">"Drawing a Circle"</text>
+  </g>
+  <g id="call-s" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:#9ae6a0" d="M406,232 L486,232"/>
+    <rect class="f-box-g" x="490" y="206" width="200" height="52" rx="8"/>
+    <text class="f-val" x="590" y="228" style="font-size:12px">Square::draw()</text>
+    <text class="f-lbl" x="590" y="246" style="font-size:10px">"Drawing a Square"</text>
+  </g>
 
-  <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:#9ae6a0" d="M406,86 L486,86"/>
-  <text class="f-lbl" x="446" y="76" font-size="9" fill="#9ae6a0">C++ checks the</text>
-  <text class="f-lbl" x="446" y="66" font-size="9" fill="#9ae6a0">OBJECT, not the pointer</text>
-
-  <rect class="f-box-g" x="490" y="60" width="200" height="52" rx="8"/>
-  <text class="f-val" x="590" y="82" font-size="12">Circle::draw()</text>
-  <text class="f-lbl" x="590" y="100" font-size="10">"Drawing a Circle"</text>
-
-  <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:#9ae6a0" d="M406,232 L486,232" opacity=".55"/>
-  <rect class="f-box-g" x="490" y="206" width="200" height="52" rx="8" opacity=".55"/>
-  <text class="f-val" x="590" y="228" font-size="12">Square::draw()</text>
-  <text class="f-lbl" x="590" y="246" font-size="10">"Drawing a Square"</text>
-
-  <rect class="f-box-c" x="120" y="278" width="480" height="34" rx="6"/>
-  <text class="f-lbl-y" x="360" y="300" font-size="11">Delete the word "virtual" and BOTH calls print "Drawing a Shape" instead.</text>
-</svg>`;
+  <g id="rule" class="dia-step">
+    <rect class="f-box-c" x="120" y="288" width="480" height="34" rx="6"/>
+    <text class="f-lbl-y" x="360" y="310" style="font-size:11px">Delete the word "virtual" and BOTH calls print "Drawing a Shape".</text>
+  </g>
+</svg>`,
+  steps: [
+    { focus: '#ptr',
+      en: 'p is a Shape pointer. Its declared type never changes — only what it points at.',
+      ne: 'p एउटा Shape पोइन्टर हो। यसको घोषित प्रकार बदलिँदैन — केवल यसले देखाउने वस्तु बदलिन्छ।' },
+    { show: '#link-c', focus: ['#ptr', '#obj-c'],
+      en: 'p = &c — the pointer now holds the address of a Circle object.',
+      ne: 'p = &c — अब पोइन्टरसँग Circle अब्जेक्टको ठेगाना छ।' },
+    { show: '#call-c', hide: '#ptr',
+      en: 'p->draw() runs. Because draw() is virtual, C++ looks at the OBJECT and calls Circle::draw().',
+      ne: 'p->draw() चल्यो। draw() virtual भएकाले C++ ले अब्जेक्ट हेरेर Circle::draw() बोलायो।' },
+    { show: '#link-s', hide: ['#obj-c', '#link-c', '#call-c'], focus: ['#ptr', '#obj-s'],
+      en: 'p = &s — the SAME pointer, now pointing at a Square.',
+      ne: 'p = &s — उही पोइन्टर, अब Square तिर देखाइरहेको।' },
+    { show: '#call-s', hide: '#ptr',
+      en: 'The identical line p->draw() now calls Square::draw(). The line did not change — the object did.',
+      ne: 'उही लाइन p->draw() ले अब Square::draw() बोलायो। लाइन बदलिएन — अब्जेक्ट बदलियो।' },
+    { show: '#rule',
+      en: 'This only happens because draw() is virtual. Without it, C++ would decide from the pointer type at compile time.',
+      ne: 'यो draw() virtual भएकाले मात्र हुन्छ। नभए C++ ले पोइन्टरको प्रकार हेरेर कम्पाइल गर्दै निर्णय गर्थ्यो।' }
+  ]
+};
 
 D.overloadResolve = `
 <svg viewBox="0 0 720 250" role="img" aria-labelledby="t-ovr">
@@ -862,19 +965,19 @@ D.overloadResolve = `
   <text class="f-ttl" x="10" y="18">Overload resolution — the compiler matches by ARGUMENTS, before the program runs</text>
 
   <rect class="f-box-y" x="250" y="40" width="220" height="44" rx="8"/>
-  <text class="f-code" x="360" y="68" text-anchor="middle" font-size="13">area(4, 6);</text>
-  <text class="f-lbl" x="360" y="100" font-size="10">two int arguments</text>
+  <text class="f-code" x="360" y="68" text-anchor="middle" style="font-size:13px">area(4, 6);</text>
+  <text class="f-lbl" x="360" y="100" style="font-size:10px">two int arguments</text>
 
   <path class="f-arr" marker-end="url(#a-ovrx)" style="stroke:#ff8f7a" d="M300,110 L180,150"/>
   <path class="f-arr" marker-end="url(#a-ovr)"  style="stroke:#9ae6a0" d="M420,110 L540,150"/>
 
   <rect class="f-box-c" x="40" y="158" width="280" height="66" rx="8"/>
-  <text class="f-code" x="180" y="184" text-anchor="middle" font-size="12">void area(int s)</text>
-  <text class="f-lbl" x="180" y="206" font-size="10" fill="#ff8f7a">needs 1 argument — REJECTED ✗</text>
+  <text class="f-code" x="180" y="184" text-anchor="middle" style="font-size:12px">void area(int s)</text>
+  <text class="f-lbl" x="180" y="206" style="font-size:10px" fill="#ff8f7a">needs 1 argument — REJECTED ✗</text>
 
   <rect class="f-box-g" x="400" y="158" width="280" height="66" rx="8"/>
-  <text class="f-code" x="540" y="184" text-anchor="middle" font-size="12">void area(int l, int b)</text>
-  <text class="f-lbl" x="540" y="206" font-size="10" fill="#9ae6a0">needs 2 arguments — MATCHED ✓</text>
+  <text class="f-code" x="540" y="184" text-anchor="middle" style="font-size:12px">void area(int l, int b)</text>
+  <text class="f-lbl" x="540" y="206" style="font-size:10px" fill="#9ae6a0">needs 2 arguments — MATCHED ✓</text>
 </svg>`;
 
 module.exports = D;

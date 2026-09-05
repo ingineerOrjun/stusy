@@ -1,0 +1,313 @@
+
+
+/* ============================================================
+   SITE CHROME — top bar, hamburger, cards, breadcrumb
+   ============================================================ */
+.skip{position:absolute;left:-9999px;top:0;background:var(--yellow);color:#12241f;
+  padding:10px 16px;border-radius:0 0 8px 0;z-index:100;font-weight:700}
+.skip:focus{left:0}
+
+.topbar{position:sticky;top:0;z-index:60;background:rgba(11,21,18,.94);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1140px;margin:0 auto;padding:0 18px;height:58px;
+  display:flex;align-items:center;gap:18px}
+
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.brand-mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+  font-family:var(--mono);font-weight:700;font-size:.82rem;color:#12241f;
+  background:linear-gradient(150deg,var(--yellow),#e0a93f);flex:none}
+.brand-txt{display:flex;flex-direction:column;line-height:1.15;color:var(--chalk-white);
+  font-weight:700;font-size:.95rem;white-space:nowrap}
+.brand-txt small{font-weight:400;font-size:.66rem;color:var(--chalk-faint);letter-spacing:.3px}
+
+.desknav{display:flex;align-items:center;gap:4px;margin-left:auto}
+.desknav > a,.droptop{
+  font-family:var(--sans);font-size:.86rem;font-weight:600;color:var(--chalk-dim);
+  text-decoration:none;padding:8px 13px;border-radius:9px;border:1px solid transparent;
+  background:none;cursor:pointer;white-space:nowrap;line-height:1.4}
+.desknav > a:hover,.droptop:hover{color:var(--yellow);border-color:var(--line);transform:none}
+.desknav > a.on,.drop.on .droptop{color:var(--yellow);border-color:rgba(255,215,110,.45);
+  background:rgba(255,215,110,.08)}
+.droptop .car{font-size:.7rem;opacity:.7;margin-left:3px}
+.soonchip{font-family:var(--mono);font-size:.7rem;color:var(--chalk-faint);
+  border:1px dashed var(--line);border-radius:99px;padding:4px 10px;white-space:nowrap}
+
+.drop{position:relative}
+.dropmenu{position:absolute;top:calc(100% + 8px);right:0;min-width:270px;
+  background:var(--board-2);border:1.5px solid var(--line);border-radius:12px;
+  box-shadow:var(--shadow);padding:7px;opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:.16s;z-index:70}
+.drop:hover .dropmenu,.drop:focus-within .dropmenu{opacity:1;visibility:visible;transform:none}
+.dropmenu a{display:block;text-decoration:none;color:var(--chalk-white);font-size:.86rem;
+  padding:8px 11px;border-radius:8px;line-height:1.35}
+.dropmenu a:hover{background:rgba(127,209,255,.1);color:var(--blue)}
+.dropmenu a.all{color:var(--yellow);font-weight:600;border-bottom:1px dashed var(--line);
+  border-radius:8px 8px 0 0;margin-bottom:4px;padding-bottom:9px}
+.dropmenu a small{display:block;font-family:var(--deva);color:var(--chalk-faint);font-size:.72rem}
+.dropmenu a .dn{font-family:var(--mono);font-size:.64rem;color:var(--green);letter-spacing:.6px}
+
+.hamburger{display:none;margin-left:auto;width:42px;height:38px;padding:0;
+  background:none;border:1.5px solid var(--line);border-radius:10px;position:relative}
+.hamburger span{position:absolute;left:11px;width:18px;height:2px;background:var(--yellow);
+  border-radius:2px;transition:.22s}
+.hamburger span:nth-child(1){top:12px}
+.hamburger span:nth-child(2){top:18px}
+.hamburger span:nth-child(3){top:24px}
+.hamburger.is-open span:nth-child(1){top:18px;transform:rotate(45deg)}
+.hamburger.is-open span:nth-child(2){opacity:0}
+.hamburger.is-open span:nth-child(3){top:18px;transform:rotate(-45deg)}
+
+.mobilepanel{position:fixed;inset:58px 0 0;z-index:55;background:var(--bg);
+  overflow-y:auto;padding:18px 18px 60px;display:none}
+.mobilepanel.open{display:block;animation:fade .2s ease both}
+.mobilepanel h4{font-family:var(--mono);font-size:.72rem;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--coral);margin:20px 0 8px}
+.mobilepanel h4:first-child{margin-top:4px}
+.mobilepanel a{display:block;text-decoration:none;color:var(--chalk-white);font-size:.98rem;
+  padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;margin-bottom:8px;
+  background:var(--panel)}
+.mobilepanel a small{display:block;font-family:var(--deva);color:var(--chalk-faint);font-size:.78rem}
+.mobilepanel a.on{border-color:rgba(255,215,110,.5);color:var(--yellow)}
+.mobilepanel .dis{opacity:.45;border-style:dashed;background:none}
+
+@media (max-width:940px){
+  .desknav{display:none}
+  .hamburger{display:block}
+  .brand-txt small{display:none}
+}
+
+/* ---------------- breadcrumb + page head ---------------- */
+.crumb{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-family:var(--mono);
+  font-size:.74rem;color:var(--chalk-faint);margin:20px 0 0}
+.crumb a{color:var(--chalk-dim);text-decoration:none}
+.crumb a:hover{color:var(--yellow)}
+.crumb .sep{opacity:.5}
+
+.pagehead{margin:16px 0 0;border:1.5px solid var(--line);border-radius:18px;
+  background:linear-gradient(165deg,#1a322b,#122421);padding:24px 26px;box-shadow:var(--shadow)}
+.pagehead .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:2px;
+  color:var(--coral);text-transform:uppercase}
+.pagehead h1{font-size:1.85rem;margin:.3em 0 .2em}
+.pagehead .np-line{font-family:var(--deva);color:#f6ecd2;
+  border-left:3px dashed rgba(255,215,110,.5);padding-left:12px;margin-top:8px;max-width:70ch}
+.pagehead .meta{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+
+/* ---------------- cards ---------------- */
+.gcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:22px 0}
+.gcard{display:block;text-decoration:none;background:var(--panel);border:1.5px solid var(--line);
+  border-radius:16px;padding:20px 22px;transition:.16s;color:var(--chalk-white)}
+.gcard:hover{border-color:var(--yellow);transform:translateY(-3px);box-shadow:var(--shadow)}
+.gcard .num{font-family:var(--mono);font-size:2.1rem;font-weight:700;color:var(--yellow);line-height:1}
+.gcard h3{margin:10px 0 4px;font-size:1.15rem;color:var(--chalk-white)}
+.gcard .np-cell{display:block;font-family:var(--deva);color:#e7d9b4;font-size:.9rem}
+.gcard p{margin:10px 0 0;font-size:.86rem;color:var(--chalk-dim)}
+.gcard.dis{opacity:.5;border-style:dashed;pointer-events:none;background:none}
+
+.scards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin:22px 0}
+.scard{display:block;text-decoration:none;background:var(--panel);border:1.5px solid var(--line);
+  border-radius:16px;padding:18px 20px;transition:.16s;color:var(--chalk-white);position:relative}
+.scard:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:var(--shadow)}
+.scard .idx{font-family:var(--mono);font-size:.72rem;color:var(--chalk-faint);letter-spacing:1.4px}
+.scard h3{margin:6px 0 4px;font-size:1.05rem;color:var(--chalk-white);line-height:1.35}
+.scard .np-cell{display:block;font-family:var(--deva);color:#e7d9b4;font-size:.88rem;margin-top:2px}
+.scard .foot{margin-top:12px;display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+
+.ucards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:18px 0}
+.ucard{display:block;text-decoration:none;background:var(--board-2);border:1.5px solid var(--line);
+  border-radius:13px;padding:15px 17px;transition:.16s;color:var(--chalk-white)}
+.ucard:hover{border-color:var(--yellow);transform:translateY(-2px)}
+.ucard .top{display:flex;align-items:center;gap:11px}
+.ucard .badge{flex:none;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+  font-family:var(--mono);font-weight:700;font-size:.9rem;color:var(--yellow);
+  background:linear-gradient(160deg,#25453c,#1a322c);border:1px solid var(--line)}
+.ucard h4{margin:0;font-size:.99rem;color:var(--chalk-white);line-height:1.3}
+.ucard .np-cell{display:block;font-family:var(--deva);color:#e7d9b4;font-size:.85rem;margin-top:8px}
+.ucard .hrs{font-family:var(--mono);font-size:.68rem;color:var(--chalk-faint);margin-top:8px;display:block}
+
+.status{font-family:var(--mono);font-size:.64rem;letter-spacing:.9px;text-transform:uppercase;
+  padding:3px 9px;border-radius:99px;border:1px solid;white-space:nowrap}
+.status.done{color:var(--green);border-color:rgba(154,230,160,.5);background:rgba(154,230,160,.08)}
+.status.out{color:var(--blue);border-color:rgba(127,209,255,.45);background:rgba(127,209,255,.07)}
+.status.soon{color:var(--chalk-faint);border-color:var(--line);border-style:dashed}
+
+/* ---------------- syllabus outline list ---------------- */
+.outline{background:var(--panel);border:1.5px solid var(--line);border-radius:14px;
+  padding:16px 20px;margin:14px 0}
+.outline .oh{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.outline .badge{flex:none;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+  font-family:var(--mono);font-weight:700;color:var(--yellow);
+  background:linear-gradient(160deg,#25453c,#1a322c);border:1px solid var(--line)}
+.outline h3{margin:0;font-size:1.08rem;color:var(--chalk-white)}
+.outline .np-cell{display:block;font-family:var(--deva);color:#e7d9b4;font-size:.88rem}
+.outline ul{margin:12px 0 0;padding-left:20px}
+.outline li{margin:.34em 0;font-size:.92rem;color:var(--chalk-white)}
+.outline li::marker{color:var(--blue)}
+
+/* ---------------- prev / next pager ---------------- */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:40px 0 0}
+.pager a{display:block;text-decoration:none;background:var(--panel);border:1.5px solid var(--line);
+  border-radius:13px;padding:14px 18px;color:var(--chalk-white);transition:.16s}
+.pager a:hover{border-color:var(--yellow)}
+.pager .lab{font-family:var(--mono);font-size:.68rem;letter-spacing:1.4px;color:var(--chalk-faint);
+  text-transform:uppercase}
+.pager .ttl{display:block;margin-top:4px;font-weight:600;font-size:.95rem}
+.pager .nx{text-align:right}
+.pager .sp{visibility:hidden}
+@media (max-width:640px){.pager{grid-template-columns:1fr}.pager .sp{display:none}}
+
+/* in-subject chip bar sits below the sticky top bar */
+.nav{top:58px}
+
+/* ============================================================
+   LESSON COMPONENTS — figures, worked examples, exam boxes
+   ============================================================ */
+
+/* ---- headings inside a unit ---- */
+.topic{
+  font-size:1.32rem;color:var(--yellow);margin:46px 0 6px;padding-top:16px;
+  border-top:1px solid var(--line-soft);scroll-margin-top:74px}
+.sub{font-size:1.06rem;color:var(--blue);margin:30px 0 8px;scroll-margin-top:74px}
+.lead-sub{color:var(--chalk-dim);font-size:.92rem;margin:0 0 12px}
+
+/* ---- learning outcomes ---- */
+.outcomes{
+  border:1.5px solid rgba(154,230,160,.4);background:rgba(154,230,160,.06);
+  border-radius:14px;padding:16px 22px;margin:18px 0}
+.outcomes h4{margin:0 0 8px;color:var(--green);font-size:.98rem}
+.outcomes ol{margin:0;padding-left:20px}
+.outcomes li{margin:.3em 0;font-size:.93rem}
+.outcomes li::marker{color:var(--green);font-family:var(--mono)}
+.outcomes .np-cell{display:block;font-family:var(--deva);color:#dcefdc;font-size:.9rem;
+  margin-top:12px;border-top:1px dashed rgba(154,230,160,.35);padding-top:10px}
+
+/* ---- figures ---- */
+.fig{
+  background:#0b1613;border:1.5px solid var(--line);border-radius:16px;
+  padding:18px 18px 6px;margin:20px 0;overflow-x:auto}
+.fig svg{width:100%;min-width:520px;height:auto;display:block}
+.fig figcaption{
+  margin:12px 0 12px;padding-top:11px;border-top:1px dashed var(--line);
+  color:var(--chalk-dim);font-size:.87rem;text-align:center}
+.fig figcaption .np-cell{
+  display:block;font-family:var(--deva);color:#e7d9b4;font-size:.85rem;margin-top:5px}
+
+/* ============================================================
+   SVG DIAGRAM BUILDING BLOCKS — shared by every diagram
+
+   Typography follows the same rule as the rest of the product:
+   MONO for anything the compiler would read — identifiers, values,
+   code, addresses. SANS for anything a human reads as prose —
+   annotations, captions, titles.
+
+   Setting prose in monospace was making long labels roughly 15%
+   wider than necessary and giving the figures a cramped, uniform
+   texture. Splitting the two is what makes a technical diagram read
+   as engineered rather than typed.
+
+   Colours reference the semantic tokens so a diagram participates in
+   the product's state language instead of sitting outside it.
+   ============================================================ */
+
+/* Applies to static figures AND animated diagram stages — these were
+   previously different, so an animated diagram silently rendered in a
+   different typeface from the static one beside it. */
+.fig svg text, .dia-stage svg text{
+  font-family: var(--sans);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Identifiers, values, code and memory addresses — machine text.
+   Selector depth must match the rule above, or `.fig svg text` (0,1,2)
+   outranks a bare class (0,1,0) and every value silently renders sans.
+   Same specificity trap that produced the label collisions. */
+.fig svg .f-val,  .dia-stage svg .f-val,
+.fig svg .f-code, .dia-stage svg .f-code,
+.fig svg .f-addr, .dia-stage svg .f-addr{ font-family: var(--mono); }
+
+.f-box  { fill:rgba(127,209,255,.10); stroke:var(--color-secondary); stroke-width:1.6 }
+.f-box-y{ fill:rgba(255,215,110,.12); stroke:var(--color-primary);   stroke-width:1.6 }
+.f-box-c{ fill:rgba(255,143,122,.12); stroke:var(--color-error);     stroke-width:1.6 }
+.f-box-g{ fill:rgba(154,230,160,.12); stroke:var(--color-success);   stroke-width:1.6 }
+/* a grouping container recedes: thinner, dashed, lower contrast */
+.f-box-d{ fill:none; stroke:#4c7368; stroke-width:1.3; stroke-dasharray:5 4 }
+
+.f-val { fill:var(--color-text);        font-size:15px; font-weight:700;
+         letter-spacing:-.2px; text-anchor:middle }
+.f-lbl { fill:var(--color-text-muted);  font-size:11.5px; text-anchor:middle }
+.f-lbl-y{fill:var(--color-primary);     font-size:11.5px; font-weight:600; text-anchor:middle }
+.f-addr{ fill:var(--color-text-subtle); font-size:10.5px; text-anchor:middle }
+.f-code{ fill:var(--color-secondary);   font-size:13px }
+
+.f-ln  { stroke:#5c8579; stroke-width:1.5; fill:none; stroke-linecap:round }
+.f-arr { stroke:var(--color-primary); stroke-width:1.8; fill:none;
+         stroke-linecap:round; stroke-linejoin:round }
+
+/* the diagram's own title: the one place tracking earns its keep */
+.f-ttl { fill:var(--color-primary); font-size:12.5px; font-weight:700;
+         letter-spacing:.3px }
+
+/* ---- worked example ---- */
+.wex{border:1.5px solid var(--line);border-radius:14px;background:var(--panel);
+  padding:16px 20px;margin:20px 0}
+.wex-h{display:flex;align-items:center;gap:11px;font-weight:600;font-size:1rem;
+  color:var(--chalk-white);margin-bottom:4px;flex-wrap:wrap}
+.wex-n{font-family:var(--mono);font-size:.66rem;letter-spacing:1.2px;text-transform:uppercase;
+  color:#12241f;background:var(--yellow);padding:3px 9px;border-radius:99px;flex:none}
+.wex-out{margin-top:4px}
+.wex-lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:1.4px;text-transform:uppercase;
+  color:var(--green);display:block;margin-bottom:5px}
+pre.out{
+  background:#08110f;border:1.5px solid var(--line);border-left:4px solid var(--green);
+  border-radius:10px;font-family:var(--mono);font-size:.85rem;line-height:1.7;
+  color:var(--green);padding:12px 15px;margin:0;overflow-x:auto;white-space:pre}
+.wex-note{font-size:.9rem;color:var(--chalk-dim);margin:12px 0 0}
+.wex-note .np-cell{display:block;font-family:var(--deva);color:#e7d9b4;margin-top:5px}
+.code.nonum .ln .n{display:none}
+
+/* ---- common-mistake callout ---- */
+.mistake{
+  border:1.5px solid rgba(255,143,122,.5);background:rgba(255,143,122,.08);
+  border-left:5px solid var(--coral);border-radius:0 12px 12px 0;padding:13px 18px;margin:18px 0;
+  font-size:.93rem}
+.mistake .h{color:var(--coral);font-weight:700;font-size:.88rem;letter-spacing:.4px;margin-bottom:4px}
+.mistake .np-cell{display:block;font-family:var(--deva);color:#f7e0d8;margin-top:7px;font-size:.9rem}
+
+/* analogy variant of the standard callout */
+.callout.an{border-color:rgba(127,209,255,.45);background:rgba(127,209,255,.07)}
+.callout.an .h{color:var(--blue)}
+.callout p{margin:0 0 .6em}
+.callout p:last-of-type{margin-bottom:0}
+
+/* ---- exam question + hidden model answer ---- */
+.examq{border:1.5px solid var(--line);border-radius:13px;background:var(--board-2);
+  padding:14px 18px;margin:14px 0}
+.examq .q-h{font-weight:600;font-size:.97rem;color:var(--chalk-white);
+  display:flex;gap:10px;justify-content:space-between;align-items:baseline;flex-wrap:wrap}
+.examq .mk{font-family:var(--mono);font-size:.7rem;color:var(--coral);flex:none}
+.btn-ans{margin-top:11px;font-size:.82rem;padding:6px 13px;
+  border-color:rgba(127,209,255,.45);color:var(--blue)}
+.examq .ans{display:none;margin-top:12px;padding:12px 15px;border-radius:10px;
+  background:rgba(255,215,110,.06);border-left:3px solid var(--yellow);font-size:.92rem}
+.examq .ans.show{display:block;animation:fade .22s ease both}
+.examq .ans .np-cell{display:block;font-family:var(--deva);color:#f6ecd2;margin-top:8px;
+  padding-top:8px;border-top:1px dashed rgba(255,215,110,.3);font-size:.89rem}
+
+/* ---- key points recap ---- */
+.keypoints{
+  border:2px dashed rgba(255,215,110,.45);border-radius:16px;
+  background:rgba(255,215,110,.05);padding:18px 24px;margin:36px 0 0}
+.keypoints h4{margin:0 0 10px;color:var(--yellow);font-size:1.02rem}
+.keypoints ul{margin:0;padding-left:20px}
+.keypoints li{margin:.36em 0;font-size:.93rem}
+.keypoints li::marker{color:var(--yellow)}
+.keypoints .np-cell{display:block;font-family:var(--deva);color:#f6ecd2;font-size:.89rem;
+  margin-top:12px;border-top:1px dashed rgba(255,215,110,.3);padding-top:9px}
+
+/* ---- print: students print these notes ---- */
+@media print{
+  .topbar,.mobilepanel,.nav,.pager,.btns,.skip,.btn-ans{display:none !important}
+  body{background:#fff;color:#000}
+  .en,.np,.fig,.wex,.examq,.keypoints,.outcomes,.tablewrap{
+    break-inside:avoid;page-break-inside:avoid}
+  .examq .ans{display:block !important}
+}

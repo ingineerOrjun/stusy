@@ -1,52 +1,83 @@
-# RGSC Study Board — build pipeline
+# `_source` — everything the site is generated from
 
-The published site lives in the folder **above** this one. This folder holds the
-source it is generated from, so the site can be rebuilt and extended.
-
-## Rebuild
+The published site lives in the folder **above** this one and is generated
+output. Edit files here, never the HTML in the site root — a rebuild overwrites it.
 
 ```bash
-node build2.js      # regenerates every page into the site root
-node check-links.js # verifies all internal links resolve
+npm run build     # regenerate all 20 pages + assets
+npm test          # 73 tests: build, links, content, runtime, storage
+npm run check     # both
+npm run serve     # http://localhost:8080
 ```
 
-`build2.js` requires `build.js`, which does the extraction and holds the site map.
+## Layout
 
-## What each file does
+```
+config/
+  site.js         the curriculum tree — grades and subjects
+  pages.js        page map for the one fully authored subject
+content/
+  lessons/        authored lesson bodies, one <section> per file
+  sections/       shared page sections (hero, trace, tables, terms, quiz)
+  syllabus.js     official CDC outlines for the 7 not-yet-authored subjects
+  questions/      tagged question banks, one module per subject
+design/
+  tokens.css      the design contract every subject inherits
+  base.css        component layer
+  site.css        chrome — nav, cards, lesson components, print
+diagrams.js       22 inline SVG diagrams, referenced as {{dia:name}}
+runtime/          browser JavaScript, shipped verbatim to assets/js
+  core.js           highlighter, step player, console, content enhancers
+  nav.js            hamburger
+  snippets.js       static code samples
+  sim-*.js          simulations
+  trace.js          program tracer
+  quiz.js           quiz UI
+  services/         ProgressService · QuizService · SimulationService
+build/
+  context.js      loads config, content, design and runtime; owns paths
+  validate.js     the content contract — fails the build on a violation
+  index.js        templates and the page-writing loop
+archive/
+  legacy-single-file.html   the original single-file build. NOT a build input;
+                            kept only for provenance.
+```
 
-| File | Purpose |
-| --- | --- |
-| `build.js` | Site map (grades, subjects), syllabus outlines for the not-yet-written subjects, and extraction of CSS/JS/sections from `legacy-single-file.html`. Exports everything `build2.js` needs. |
-| `build2.js` | Page writer. Holds the design system CSS, the nav/hamburger markup, the page shell, and the loop that writes all 20 HTML pages. |
-| `diagrams.js` | The SVG diagram library — 22 hand-authored, theme-aware diagrams. Content refers to them as `{{dia:name}}`. |
-| `enhance.js` | Runtime helper shipped inside `assets/js/code.js`. Turns `<pre class="cpp">` into numbered, syntax-highlighted blocks and wires up the "show the answer" toggles. |
-| `content/uN.html` | The deep-authored lesson content for Grade 10 DS & OOP, one file per unit. |
-| `legacy-single-file.html` | The original single-file build. Still the source for the trace / tables / quiz sections and for the shared CSS+JS. |
-| `check-links.js` | Verifies every internal href/src resolves, and that every page carries the nav chrome. |
+Dependency direction and layer rules: [`../docs/ARCHITECTURE.md`](../docs/ARCHITECTURE.md).
 
-## Adding content
+## Common tasks
 
-**A new diagram:** add it to `diagrams.js` as `D.myDiagram = \`<svg …>\``, using the
+**Add a diagram.** Define `D.myThing = \`<svg …>\`` in `diagrams.js` using the
 shared classes (`f-box`, `f-lbl`, `f-arr`, …) so it themes correctly. Reference it
-from any content file as `{{dia:myDiagram}}`. The build fails loudly if a
-placeholder has no matching diagram.
+from any lesson as `{{dia:myThing}}`. An unknown name **fails the build**.
 
-**Deepening a unit:** create `content/<id>.html` containing a single `<section>`.
-The build picks it up automatically and stops falling back to the legacy extract.
-Use the existing components: `.outcomes`, `.pair` + `.en`/`.np`, `figure.fig`,
-`.wex` (worked example), `.mistake`, `.examq`, `.keypoints`.
+**Deepen a page.** Create `content/lessons/<id>.html` containing one `<section>`.
+The build picks it up automatically and stops using the shared section. Use the
+existing components: `.outcomes`, `.pair` + `.en`/`.np`, `figure.fig`, `.wex`,
+`.mistake`, `.examq`, `.keypoints`, `pre.cpp`.
 
-**A new subject:** add its units to `OUTLINE` in `build.js` — the outline page is
-generated from that data. To give it full notes, follow the `content/uN.html`
-pattern and add the pages to `CPP_PAGES`-style config.
+**Add a subject.** Add it to `config/site.js`, then add its units to
+`content/syllabus.js` (hours must total 64). The outline page and all navigation
+generate themselves. See
+[`../docs/CONTENT-ARCHITECTURE.md`](../docs/CONTENT-ARCHITECTURE.md#6-adding-a-subject).
+
+**Add questions.** Create `content/questions/<subject>.js` following the schema in
+[`../docs/ASSESSMENT-ARCHITECTURE.md`](../docs/ASSESSMENT-ARCHITECTURE.md), then
+register it in `build/context.js`. The engine needs no change.
+
+**Add a simulation.** See
+[`../docs/SIMULATION-ARCHITECTURE.md`](../docs/SIMULATION-ARCHITECTURE.md#4-building-a-new-simulation).
 
 ## Conventions that matter
 
-- **Bilingual, always both visible.** English in a solid-bordered `.en` panel,
-  Nepali in a dashed `.np` chalk box. Never a toggle.
-- **English wording is exam wording.** The Nepali explains it; it does not replace it.
+- **Bilingual, always both visible.** English in a solid `.en` panel, Nepali in a
+  dashed `.np` box. Never a toggle.
+- **English wording is exam wording.** Nepali explains it; it does not replace it.
 - **Offline first.** No fetch, no ES modules, no root-relative paths, no external
-  assets except optional Google Fonts. The site must work from `file://`.
-- **SVG presentation attributes lose to CSS classes.** When overriding a stroke on
-  an element that carries a class, use `style="stroke:…"`, not `stroke="…"`.
-- Arrow markers use `orient="auto"` — `auto-start-end` is not supported everywhere.
+  assets except optional Google Fonts. Enforced by tests.
+- **Nepali is marked `lang="ne"` automatically** by the build. Do not hand-add it.
+- **SVG presentation attributes lose to CSS classes.** To override a stroke on a
+  classed element use `style="stroke:…"`, not `stroke="…"`.
+- Arrow markers use `orient="auto"`; `auto-start-end` is not supported everywhere.
+- **Generated output is committed.** Run `npm run build` before committing so the
+  site and its source never disagree.

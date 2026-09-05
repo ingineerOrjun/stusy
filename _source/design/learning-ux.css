@@ -1,0 +1,345 @@
+
+/* ============================================================
+   LEARNING UX LAYER — Phase 2
+
+   Loaded after base.css and site.css so it can correct them
+   without rewriting the visual identity.
+
+   Contains:
+     1. Responsive containment fixes (the 320px overflow bug)
+     2. Readability floor and touch-target floor
+     3. Focus visibility
+     4. Lesson rhythm
+     5. New learning components: Simulation, Predict, Exam
+     6. Scroll affordances for wide content
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. RESPONSIVE CONTAINMENT
+
+   Grid and flex items default to min-width:auto, so a track can
+   never shrink below its content. That is what pushed .vizbox to
+   490px inside a 339px grid and produced 226px of horizontal
+   page overflow at 320px. One rule, whole-product effect.
+   ------------------------------------------------------------ */
+.pair > *, .simgrid > *, .herogrid > *, .cards > *, .gcards > *,
+.scards > *, .ucards > *, .pager > *, .outline > *, .wex > *,
+.topbar-in > *, .sim-body > *, .sim > *{
+  min-width: 0;
+}
+
+/* Interactive surfaces must never dictate page width. */
+.vizbox, .console, .code, .tablewrap, figure.fig{
+  max-width: 100%;
+}
+.vizbox{ overflow-x: auto; }
+
+/* The page itself may never scroll sideways. Wide content scrolls
+   inside its own container instead — see §6. */
+html, body{ overflow-x: clip; }
+
+/* ------------------------------------------------------------
+   2. READABILITY + TOUCH FLOORS
+
+   Audit measured 10px rendered text and 26-39px controls.
+   Devanagari needs more height than Latin at equal legibility,
+   so the floor applies to both scripts.
+   ------------------------------------------------------------ */
+.viz .lbl, .objbox small, .pill, .ptr, .q .qn, .brand-txt small,
+.droptop .car, .soonchip, .dropmenu a small, .dropmenu a .dn,
+.mobilepanel-label, .pagehead .eyebrow, .scard .idx, .ucard .hrs,
+.status, .pager .lab, .wex-n, .wex-lbl, .examq .mk, .hero .eyebrow,
+.sec-head .marks, .crumb, .nav a, .stepbar{
+  font-size: var(--fs-xs);       /* 12px floor */
+}
+
+/* Nepali is set slightly larger and looser than the Latin beside it —
+   equal optical size, not equal point size. */
+[lang="ne"]{ line-height: var(--lh-deva); }
+.np-cell, .mobilepanel a small, .dropmenu a small{ font-size: var(--fs-xs); }
+.np, .np-line{ font-size: var(--fs-sm); }
+
+/* On touch devices every control clears 44px. Desktop keeps its
+   density — a mouse does not need a 44px target. */
+@media (pointer: coarse){
+  button, .opt, .btn-ans, .nav a, .pager a, .mobilepanel a,
+  .dropmenu a, .hamburger, [data-answer], .crumb a, .brand,
+  .predict-opt, .sim-controls button{
+    min-height: var(--touch-min);
+  }
+  /* breadcrumb links are small text; give them tappable padding rather than
+     inflating the type, so the crumb still reads as a trail */
+  .crumb a{ display: inline-flex; align-items: center; padding: 0 var(--sp-1); }
+  button, .btn-ans, .hamburger{
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .nav a{ display: inline-flex; align-items: center; }
+}
+
+/* Primary learning controls are generous on every device — these are
+   pressed dozens of times per unit. */
+.btn-ans{ padding: var(--sp-2) var(--sp-4); font-size: var(--fs-sm); }
+.opt{ padding: var(--sp-3) var(--sp-4); }
+
+/* ------------------------------------------------------------
+   3. FOCUS VISIBILITY
+   One focus treatment everywhere, on the token colour.
+   ------------------------------------------------------------ */
+:focus-visible{
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+/* Do not show the ring for pointer users who click a button. */
+:focus:not(:focus-visible){ outline: none; }
+
+.skip:focus{ outline: 3px solid var(--color-focus); outline-offset: 0; }
+
+/* ------------------------------------------------------------
+   4. LESSON RHYTHM
+   Consistent pacing between the parts of a lesson, so a unit
+   written next year reads like one written today.
+   ------------------------------------------------------------ */
+.topic{ margin-top: var(--space-section); }
+.pair, .wex, .mistake, .callout, .tablewrap, figure.fig,
+.sim, .predict, .examq{ margin-block: var(--space-block); }
+.keypoints{ margin-top: var(--space-section); }
+
+/* ------------------------------------------------------------
+   5. LEARNING COMPONENTS
+   ------------------------------------------------------------ */
+
+/* ---- 5a. Simulation container -------------------------------
+   Every simulation gets the same frame, so a student learns the
+   interface once and then only has to think about the concept:
+
+     title → what you will learn → stage → controls → result → why
+   ------------------------------------------------------------ */
+.sim{
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-lg);
+  background: var(--color-surface);
+  box-shadow: var(--elev-2);
+  overflow: hidden;
+}
+.sim-head{
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1.5px solid var(--color-border);
+  background: linear-gradient(160deg, var(--color-surface-elevated), var(--color-surface));
+}
+.sim-kicker{
+  display: flex; align-items: center; gap: var(--sp-2);
+  font-family: var(--mono); font-size: var(--fs-xs);
+  letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--color-error);
+}
+.sim-kicker::before{ content: "▶"; font-size: .9em; }
+.sim-head h3{
+  margin: var(--sp-2) 0 0;
+  font-size: var(--fs-lg); color: var(--color-text);
+}
+.sim-goal{
+  margin: var(--sp-2) 0 0; font-size: var(--fs-sm); color: var(--color-text-muted);
+}
+.sim-goal .np-cell{ margin-top: var(--sp-1); }
+
+.sim-body{ padding: var(--sp-5); }
+.sim-stage{
+  background: var(--color-surface-sunken);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-md);
+  padding: var(--sp-4);
+  min-height: 180px;
+}
+.sim-controls{
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: 1px dashed var(--color-border);
+}
+.sim-controls-label{
+  width: 100%; font-family: var(--mono); font-size: var(--fs-xs);
+  letter-spacing: 1.2px; text-transform: uppercase; color: var(--color-text-subtle);
+  margin-bottom: var(--sp-1);
+}
+.sim-result{ margin-top: var(--sp-4); }
+.sim-why{
+  margin-top: var(--sp-4);
+  border-left: 3px solid var(--color-primary);
+  background: rgba(255,215,110,.06);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+}
+.sim-why .h{
+  display: block; font-weight: var(--fw-bold); color: var(--color-primary);
+  margin-bottom: var(--sp-1);
+}
+.sim-why .np-cell{ display: block; margin-top: var(--sp-2); }
+
+/* ---- 5b. Prediction ----------------------------------------
+   Commit to an answer BEFORE seeing the result. A wrong prediction
+   that the student owns teaches more than a correct answer they read.
+   ------------------------------------------------------------ */
+.predict{
+  border: 2px dashed rgba(127,209,255,.45);
+  border-radius: var(--r-lg);
+  background: rgba(127,209,255,.05);
+  padding: var(--sp-4) var(--sp-5);
+}
+.predict-q{
+  font-family: var(--mono); font-size: var(--fs-xs); letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--color-secondary);
+}
+.predict h4{ margin: var(--sp-2) 0 var(--sp-3); font-size: var(--fs-base); }
+.predict-options{ display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.predict-opt{
+  flex: 1 1 auto; min-width: 120px;
+  background: var(--color-surface); border: 1.5px solid var(--color-border);
+  border-radius: var(--r-sm); padding: var(--sp-3) var(--sp-4);
+  font-family: var(--mono); font-size: var(--fs-sm); color: var(--color-text);
+  cursor: pointer; transition: border-color var(--dur-fast) var(--ease);
+}
+.predict-opt:hover:not(:disabled){ border-color: var(--color-secondary); }
+.predict-opt[aria-pressed="true"]{
+  border-color: var(--color-secondary); background: rgba(127,209,255,.14);
+  color: var(--color-secondary);
+}
+.predict-opt.right{ border-color: var(--color-success); background: rgba(154,230,160,.14); color: var(--color-success); }
+.predict-opt.wrong{ border-color: var(--color-error);   background: rgba(255,143,122,.14); color: var(--color-error); }
+.predict-feedback{
+  display: none; margin-top: var(--sp-3); padding-top: var(--sp-3);
+  border-top: 1px dashed var(--color-border); font-size: var(--fs-sm);
+}
+.predict-feedback.show{ display: block; }
+.predict-feedback .verdict{ font-weight: var(--fw-bold); }
+.predict-feedback .np-cell{ display: block; margin-top: var(--sp-2); }
+
+/* ---- 5c. Exam connection -----------------------------------
+   Frames practice as "this is how the SEE asks it", rather than
+   questions dropped at the foot of the page.
+   ------------------------------------------------------------ */
+.exam-connect{
+  border: 1.5px solid rgba(255,143,122,.4);
+  border-radius: var(--r-lg);
+  background: rgba(255,143,122,.05);
+  padding: var(--sp-4) var(--sp-5);
+}
+.exam-connect .lead-in{
+  font-family: var(--mono); font-size: var(--fs-xs); letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--color-error);
+}
+.exam-connect h3{ margin: var(--sp-2) 0 var(--sp-1); font-size: var(--fs-lg); }
+.exam-connect .np-cell{ display: block; font-size: var(--fs-sm); }
+
+/* the individual question keeps its existing look, with a clearer answer control */
+.examq .btn-ans{
+  border-color: rgba(255,215,110,.5); color: var(--color-primary);
+}
+.examq .ans[aria-hidden="true"]{ display: none; }
+
+/* ------------------------------------------------------------
+   6. SCROLL AFFORDANCE FOR WIDE CONTENT
+
+   A 520px diagram scrolled into 284px is correct — scaling it down
+   would render its 10px labels at ~5.5px. But the student must be
+   told it scrolls, or a cropped diagram reads as a broken one.
+   The class is added by core.js only when content actually overflows.
+   ------------------------------------------------------------ */
+.is-scrollable{ position: relative; }
+.is-scrollable::after{
+  content: "";
+  position: absolute; top: 0; right: 0; bottom: 0; width: 44px;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, var(--color-surface) 85%);
+  opacity: .9;
+}
+figure.fig.is-scrollable::after{
+  background: linear-gradient(to right, transparent, var(--color-background) 85%);
+}
+.scroll-hint{
+  display: block; margin-top: var(--sp-2);
+  font-family: var(--mono); font-size: var(--fs-xs);
+  color: var(--color-text-subtle);
+}
+.scroll-hint::before{ content: "↔ "; }
+
+/* ------------------------------------------------------------
+   7. HEADING + LANDMARK CORRECTIONS
+   ------------------------------------------------------------ */
+/* The mobile panel's grade labels were <h4>, which put four navigation
+   entries at the top of the document outline ahead of the page title.
+   They are now non-heading elements with identical styling. */
+.mobilepanel-label{
+  font-family: var(--mono); letter-spacing: 1.6px;
+  text-transform: uppercase; color: var(--color-error);
+  margin: var(--sp-5) 0 var(--sp-2); font-weight: var(--fw-bold);
+}
+.mobilepanel-label:first-child{ margin-top: var(--sp-1); }
+
+/* The lesson title is promoted to <h1> by the build; keep it looking
+   exactly like the <h2> it replaced. */
+.sec-head h1{
+  margin: 0; font-size: var(--fs-2xl); line-height: var(--lh-tight);
+  color: var(--color-text); font-weight: var(--fw-bold);
+}
+
+/* ------------------------------------------------------------
+   8. MOBILE REFINEMENTS
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+  .wrap{ padding-left: var(--sp-4); padding-right: var(--sp-4); }
+  .sim-body{ padding: var(--sp-4); }
+  .sim-head{ padding: var(--sp-4); }
+  .sim-controls button{ flex: 1 1 calc(50% - var(--sp-2)); }
+  .predict-opt{ flex: 1 1 100%; }
+  .pagehead{ padding: var(--sp-5) var(--sp-4); }
+  .pagehead h1{ font-size: var(--fs-2xl); }
+  /* Stacked bilingual pairs need a visible tie between the two halves. */
+  .pair{ gap: var(--sp-2); }
+  .pair > .np{ border-top-width: 0; }
+}
+
+/* ------------------------------------------------------------
+   9. TYPE FLOOR — remaining cases
+   ------------------------------------------------------------ */
+/* Panel labels ("DEFINITION" / "परिभाषा") sit above every bilingual
+   block, so they are read constantly. 0.68rem was 10.9px. */
+.en .tag, .np .tag{ font-size: var(--fs-xs); }
+
+/* Diagram labels are the only text inside a diagram. Diagrams scroll at
+   natural size rather than scaling down, so these render at their literal
+   size on a phone — 10-11px was below the readable floor. */
+.f-lbl, .f-lbl-y{ font-size: 12px; }
+.f-addr{ font-size: 11px; }
+
+/* ------------------------------------------------------------
+   10. HEADING LEVEL vs HEADING APPEARANCE
+
+   .outcomes and .keypoints were promoted from <h4> to <h2> so the
+   document outline is correct for screen readers. Their visual weight
+   must not change with it — they are section labels inside a lesson,
+   not page titles. Semantics and appearance are separate concerns.
+   ------------------------------------------------------------ */
+.outcomes h2, .keypoints h2{
+  font-size: var(--fs-lg);
+  line-height: var(--lh-tight);
+  margin: 0 0 var(--sp-3);
+}
+@media (max-width: 640px){
+  .outcomes h2, .keypoints h2{ font-size: var(--fs-md); }
+  /* the lesson title itself should not dominate a small screen either */
+  .sec-head h1{ font-size: var(--fs-xl); }
+  .crumb{ gap: var(--sp-1); }
+}
+
+/* ------------------------------------------------------------
+   11. DESIGN-SYSTEM REFERENCE PAGE (dev only)
+   ------------------------------------------------------------ */
+.ds-sw{display:inline-block;width:14px;height:14px;border-radius:4px;
+  border:1px solid var(--color-border);vertical-align:-2px;margin-right:6px}
+.ds-sp{display:inline-block;background:var(--color-primary);border-radius:2px}
+.ds-r{display:inline-grid;place-items:center;width:64px;height:44px;
+  background:var(--color-surface-elevated);border:1.5px solid var(--color-border);
+  font-family:var(--mono);font-size:var(--fs-xs);color:var(--color-text-muted)}
+.sim-head h4{margin:var(--sp-2) 0 0;font-size:var(--fs-lg);color:var(--color-text)}

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Animation & Motion Reference — RGSC Study Board (internal)</title>
+<meta name="description" content="Internal QA reference for the motion system. Not student-facing.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="grade9/index.html">All Grade 9 subjects</a><a href="grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="grade10/index.html">All Grade 10 subjects</a><a href="grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="grade10/digital-design/index.html">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="grade10/digital-design/index.html">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="index.html">Home</a> <span class="sep">/</span> <span>Animation Reference (internal)</span></nav>
+<main id="main">
+<section id="fx">
+  <div class="sec-head">
+    <div class="sec-num">▶</div>
+    <div>
+      <h1>Animation &amp; Motion Reference</h1>
+      <p class="sec-sub">Internal QA page — not linked from student navigation</p>
+    </div>
+    <span class="marks">dev only</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="callout">
+    <div class="h">What this page is for</div>
+    Every motion pattern the platform uses, on one page, so timing and quality can be
+    judged together rather than one lesson at a time. Change a motion token and check
+    it here against all of them at once.
+  </div>
+
+  <!-- ============ HIERARCHY ============ -->
+  <h2 class="topic">The three levels of motion</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>L1 · Micro-interaction</h3>
+      <p>The interface acknowledging a touch. Hover, focus, button press, answer reveal.
+      120–200ms. Should be felt, not watched.</p>
+      <div class="btns" style="margin-top:10px">
+        <button type="button" class="primary">Press me</button>
+        <button type="button" class="blue">Focus me</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>L2 · Educational transition</h3>
+      <p>A component changing state: a node activating, a step advancing, a value
+      changing. 200–320ms. Clearly visible, never distracting.</p>
+      <div class="btns" style="margin-top:10px">
+        <button type="button" data-fx="pulse" data-fx-target="#fx-pulse-target">Pulse</button>
+        <button type="button" data-fx="value" data-fx-target="#fx-value-target">Change value</button>
+      </div>
+      <p style="margin-top:10px">
+        <span id="fx-pulse-target" class="pill y">notice me</span>
+        <span id="fx-value-target" class="term" style="font-size:1.2rem">10</span>
+      </p>
+    </div>
+    <div class="card">
+      <h3>L3 · Educational simulation</h3>
+      <p>The motion <b>is</b> the concept: order, flow, traversal, propagation.
+      520ms transformations, 760ms between narrated steps. Student-controlled.</p>
+      <p style="margin-top:10px"><span class="pill b">see the diagram below</span></p>
+    </div>
+  </div>
+
+  <!-- ============ TOKENS ============ -->
+  <h2 class="topic">Duration tokens</h2>
+  <div class="en">
+    <p class="sim-controls-label">Each bar runs for its own duration — press to compare</p>
+    <div class="btns">
+      <button type="button" data-fx="run" data-fx-dur="fast">fast · 120ms</button>
+      <button type="button" data-fx="run" data-fx-dur="base">base · 200ms</button>
+      <button type="button" data-fx="run" data-fx-dur="slow">slow · 320ms</button>
+      <button type="button" data-fx="run" data-fx-dur="deliberate">deliberate · 520ms</button>
+    </div>
+    <div id="fx-track" style="margin-top:14px;display:grid;gap:8px"></div>
+    <p style="font-size:var(--fs-sm);color:var(--color-text-muted);margin-top:12px">
+      <b>fast</b> — below conscious notice; the interface simply responded.
+      <b>base</b> — the shortest change the eye can reliably track.
+      <b>slow</b> — an element entering or leaving a structure.
+      <b>deliberate</b> — a transformation the student is meant to follow.
+    </p>
+  </div>
+
+  <h2 class="topic">Easing</h2>
+  <div class="en">
+    <p>Easing carries meaning. Interface motion is eased; <b>data travelling along a path
+    is linear</b>, because a value moving on a bus moves at a constant rate and easing it
+    would misrepresent the mechanism.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Token</th><th>Curve</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr><td class="k">--ease-standard</td><td class="k">cubic-bezier(.2,.6,.3,1)</td><td>General state change</td></tr>
+          <tr><td class="k">--ease-emphasis</td><td class="k">cubic-bezier(.2,.9,.25,1)</td><td>A change that must be noticed</td></tr>
+          <tr><td class="k">--ease-enter</td><td class="k">cubic-bezier(0,.7,.3,1)</td><td>Element arriving — decelerates and settles</td></tr>
+          <tr><td class="k">--ease-exit</td><td class="k">cubic-bezier(.5,0,.9,.3)</td><td>Element leaving — accelerates away</td></tr>
+          <tr><td class="k">--ease-flow</td><td class="k">linear</td><td>Constant-rate travel of data</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============ STATE LANGUAGE ============ -->
+  <h2 class="topic">Shared state language</h2>
+  <p class="lead-sub">The same vocabulary in diagrams, simulators, the quiz and the tracer —
+  so a success in one looks like a success in all of them.</p>
+  <div class="en">
+    <div class="btns">
+      <span class="pill">idle</span>
+      <span class="pill is-active">is-active</span>
+      <span class="pill is-selected">is-selected</span>
+      <span class="pill is-success">is-success</span>
+      <span class="pill is-error">is-error</span>
+      <span class="pill is-disabled">is-disabled</span>
+    </div>
+    <p class="sim-controls-label" style="margin-top:16px">The same states inside SVG</p>
+    <svg viewBox="0 0 560 70" style="max-width:100%;height:auto" role="img" aria-label="State classes applied to SVG shapes">
+      <rect class="f-box" x="10"  y="15" width="100" height="40" rx="6"/>
+      <text class="f-val" x="60"  y="40" font-size="11">idle</text>
+      <rect class="f-box is-active" x="125" y="15" width="100" height="40" rx="6"/>
+      <text class="f-val is-active" x="175" y="40" font-size="11">active</text>
+      <rect class="f-box is-success" x="240" y="15" width="100" height="40" rx="6"/>
+      <text class="f-val is-success" x="290" y="40" font-size="11">success</text>
+      <rect class="f-box is-error" x="355" y="15" width="100" height="40" rx="6"/>
+      <text class="f-val is-error" x="405" y="40" font-size="11">error</text>
+    </svg>
+  </div>
+
+  <!-- ============ LIVE ANIMATED DIAGRAM ============ -->
+  <h2 class="topic">Animated diagram — the real thing</h2>
+  <p class="lead-sub">This is the shipped Unit 5 diagram, not a mock-up. Step forward and
+  backward: the state is recomputed from step 0 each time, so reversing is exact rather
+  than an undo guess.</p>
+  <div class="dia" data-dia="ctorOrder">
+  <div class="dia-stage">
+<svg viewBox="0 0 720 300" role="img" aria-labelledby="t-cord">
+  <title id="t-cord">Constructor and destructor order in multilevel inheritance</title>
+  <defs><marker id="a-cord" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#9ae6a0"/></marker></defs>
+  <defs><marker id="a-cordr" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ff8f7a"/></marker></defs>
+  <text class="f-ttl" x="10" y="18">Creating ONE Puppy object runs THREE constructors — and destroys them in reverse</text>
+
+  <text class="f-lbl-y" x="150" y="42" style="font-size:10px">CONSTRUCTORS — base first</text>
+  <text class="f-lbl-y" x="570" y="42" style="font-size:10px">DESTRUCTORS — derived first</text>
+
+  <g id="cls-animal" class="dia-focus">
+    <rect class="f-box-y" x="290" y="54" width="140" height="40" rx="6"/>
+    <text class="f-val" x="360" y="79" style="font-size:13px">Animal</text>
+  </g>
+  <g id="cls-dog" class="dia-focus">
+    <rect class="f-box" x="290" y="128" width="140" height="40" rx="6"/>
+    <text class="f-val" x="360" y="153" style="font-size:13px">Dog</text>
+  </g>
+  <g id="cls-puppy" class="dia-focus">
+    <rect class="f-box" x="290" y="202" width="140" height="40" rx="6"/>
+    <text class="f-val" x="360" y="227" style="font-size:13px">Puppy</text>
+  </g>
+  <line class="f-ln" x1="360" y1="94"  x2="360" y2="128"/>
+  <line class="f-ln" x1="360" y1="168" x2="360" y2="202"/>
+
+  <g id="ctor-1" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:#9ae6a0" d="M250,80 L284,80"/>
+    <text class="f-val" x="240" y="84" style="font-size:11px" fill="#9ae6a0" text-anchor="end">1 · Animal()</text>
+  </g>
+  <g id="ctor-2" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:#9ae6a0" d="M250,154 L284,154"/>
+    <text class="f-val" x="240" y="158" style="font-size:11px" fill="#9ae6a0" text-anchor="end">2 · Dog()</text>
+  </g>
+  <g id="ctor-3" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:#9ae6a0" d="M250,228 L284,228"/>
+    <text class="f-val" x="240" y="232" style="font-size:11px" fill="#9ae6a0" text-anchor="end">3 · Puppy()</text>
+  </g>
+
+  <g id="dtor-1" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:#ff8f7a" d="M470,228 L436,228"/>
+    <text class="f-val" x="480" y="232" style="font-size:11px" fill="#ff8f7a" text-anchor="start">1 · ~Puppy()</text>
+  </g>
+  <g id="dtor-2" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:#ff8f7a" d="M470,154 L436,154"/>
+    <text class="f-val" x="480" y="158" style="font-size:11px" fill="#ff8f7a" text-anchor="start">2 · ~Dog()</text>
+  </g>
+  <g id="dtor-3" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:#ff8f7a" d="M470,80 L436,80"/>
+    <text class="f-val" x="480" y="84" style="font-size:11px" fill="#ff8f7a" text-anchor="start">3 · ~Animal()</text>
+  </g>
+
+  <g id="verdict" class="dia-step">
+    <rect class="f-box-c" x="130" y="262" width="460" height="30" rx="6"/>
+    <text class="f-lbl-y" x="360" y="282" style="font-size:11px">Destruction is the EXACT REVERSE of construction.</text>
+  </g>
+</svg></div>
+  <div class="dia-controls">
+    <button type="button" data-dia-act="prev" aria-label="Previous step">&#9666; Prev</button>
+    <button type="button" data-dia-act="play" aria-pressed="false">&#9654; Play</button>
+    <button type="button" data-dia-act="next" aria-label="Next step">Next &#9656;</button>
+    <button type="button" data-dia-act="reset">Reset</button>
+    <span class="dia-progress" aria-live="polite">step 0 / 6</span>
+  </div>
+  <div class="dia-caption" role="status">
+    <span class="dia-cap-en"></span>
+    <span class="dia-cap-ne np-cell" lang="ne"></span>
+  </div>
+</div>
+
+  <h2 class="topic">Cause and effect — run-time dispatch</h2>
+  <p class="lead-sub">The Unit 6 diagram. The same pointer reaching a different function is
+  a flow, which is why it earns animation while the taxonomy diagrams beside it do not.</p>
+  <div class="dia" data-dia="dispatch">
+  <div class="dia-stage">
+<svg viewBox="0 0 720 330" role="img" aria-labelledby="t-disp">
+  <title id="t-disp">How a base class pointer chooses the derived version of a virtual function</title>
+  <defs><marker id="a-disp" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#ffd76e"/></marker></defs>
+  <defs><marker id="a-disp2" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="#9ae6a0"/></marker></defs>
+  <text class="f-ttl" x="10" y="18">Run-time dispatch — the same line p-&gt;draw() gives two different answers</text>
+
+  <g id="ptr" class="dia-focus">
+    <rect class="f-box-y" x="30" y="130" width="120" height="50" rx="8"/>
+    <text class="f-val" x="90" y="152" style="font-size:12px">Shape *p</text>
+    <text class="f-lbl" x="90" y="169" style="font-size:10px">base pointer</text>
+  </g>
+
+  <g id="obj-c" class="dia-focus">
+    <rect class="f-box" x="250" y="52" width="150" height="70" rx="8"/>
+    <text class="f-lbl-y" x="325" y="74">object c</text>
+    <text class="f-lbl" x="325" y="92" style="font-size:10px">real type: Circle</text>
+    <text class="f-lbl" x="325" y="110" style="font-size:10px">has its own draw()</text>
+  </g>
+  <g id="obj-s" class="dia-focus">
+    <rect class="f-box" x="250" y="198" width="150" height="70" rx="8"/>
+    <text class="f-lbl-y" x="325" y="220">object s</text>
+    <text class="f-lbl" x="325" y="238" style="font-size:10px">real type: Square</text>
+    <text class="f-lbl" x="325" y="256" style="font-size:10px">has its own draw()</text>
+  </g>
+
+  <g id="link-c" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-disp)" d="M156,144 L246,86"/>
+    <text class="f-lbl-y" x="196" y="106" style="font-size:10px">p = &amp;c</text>
+  </g>
+  <g id="link-s" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-disp)" d="M156,168 L246,232"/>
+    <text class="f-lbl-y" x="196" y="216" style="font-size:10px">p = &amp;s</text>
+  </g>
+
+  <g id="call-c" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:#9ae6a0" d="M406,86 L486,86"/>
+    <rect class="f-box-g" x="490" y="60" width="200" height="52" rx="8"/>
+    <text class="f-val" x="590" y="82" style="font-size:12px">Circle::draw()</text>
+    <text class="f-lbl" x="590" y="100" style="font-size:10px">"Drawing a Circle"</text>
+  </g>
+  <g id="call-s" class="dia-step">
+    <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:#9ae6a0" d="M406,232 L486,232"/>
+    <rect class="f-box-g" x="490" y="206" width="200" height="52" rx="8"/>
+    <text class="f-val" x="590" y="228" style="font-size:12px">Square::draw()</text>
+    <text class="f-lbl" x="590" y="246" style="font-size:10px">"Drawing a Square"</text>
+  </g>
+
+  <g id="rule" class="dia-step">
+    <rect class="f-box-c" x="120" y="288" width="480" height="34" rx="6"/>
+    <text class="f-lbl-y" x="360" y="310" style="font-size:11px">Delete the word "virtual" and BOTH calls print "Drawing a Shape".</text>
+  </g>
+</svg></div>
+  <div class="dia-controls">
+    <button type="button" data-dia-act="prev" aria-label="Previous step">&#9666; Prev</button>
+    <button type="button" data-dia-act="play" aria-pressed="false">&#9654; Play</button>
+    <button type="button" data-dia-act="next" aria-label="Next step">Next &#9656;</button>
+    <button type="button" data-dia-act="reset">Reset</button>
+    <span class="dia-progress" aria-live="polite">step 0 / 6</span>
+  </div>
+  <div class="dia-caption" role="status">
+    <span class="dia-cap-en"></span>
+    <span class="dia-cap-ne np-cell" lang="ne"></span>
+  </div>
+</div>
+
+  <!-- ============ WHAT STAYS STATIC ============ -->
+  <h2 class="topic">What deliberately does not animate</h2>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">14 of 22 diagrams stay static</span>
+      <p>Taxonomies, comparison tables and reference shapes are <b>better</b> still.
+      Students screenshot them, print them and revise from them. Animation would add
+      nothing and would cost the ability to take one in at a glance.</p>
+      <p>A beautifully animated but educationally unnecessary element should stay static.</p>
+    </div>
+    <div class="np" lang="ne">
+      <span class="tag" lang="ne">२२ मध्ये १४ चित्र स्थिर नै रहन्छन्</span>
+      <p lang="ne">वर्गीकरण, तुलना तालिका र सन्दर्भ आकृति <b lang="ne">स्थिर</b> नै राम्रो हुन्छ।
+      विद्यार्थीले स्क्रिनसट लिन्छन्, प्रिन्ट गर्छन् र दोहोर्‍याउँछन्।
+      एनिमेसनले केही थप्दैन।</p>
+    </div>
+  </div>
+  
+<svg viewBox="0 0 720 440" role="img" aria-labelledby="t-inh">
+  <title id="t-inh">The five types of inheritance drawn as class diagrams</title>
+  <text class="f-ttl" x="10" y="18">The 5 types of inheritance — learn to DRAW each of these</text>
+
+  <!-- 1 single -->
+  <text class="f-lbl-y" x="80" y="38">1 · SINGLE</text>
+  <line class="f-ln" x1="80" y1="82" x2="80" y2="118"/>
+  <rect class="f-box-y" x="54" y="48" width="52" height="34" rx="6"/>
+          <text class="f-val" x="80" y="71" style="font-size:13px">A</text>
+  <rect class="f-box" x="54" y="118" width="52" height="34" rx="6"/>
+          <text class="f-val" x="80" y="141" style="font-size:13px">B</text>
+  <text class="f-lbl" x="80" y="172" style="font-size:10px">one base → one derived</text>
+
+  <!-- 2 multilevel -->
+  <text class="f-lbl-y" x="240" y="38">2 · MULTILEVEL</text>
+  <line class="f-ln" x1="240" y1="82" x2="240" y2="98"/>
+  <line class="f-ln" x1="240" y1="132" x2="240" y2="148"/>
+  <rect class="f-box-y" x="214" y="48" width="52" height="34" rx="6"/>
+          <text class="f-val" x="240" y="71" style="font-size:13px">A</text>
+  <rect class="f-box" x="214" y="98" width="52" height="34" rx="6"/>
+          <text class="f-val" x="240" y="121" style="font-size:13px">B</text>
+  <rect class="f-box" x="214" y="148" width="52" height="34" rx="6"/>
+          <text class="f-val" x="240" y="171" style="font-size:13px">C</text>
+  <text class="f-lbl" x="240" y="196" style="font-size:10px">a chain: B is derived,</text>
+  <text class="f-lbl" x="240" y="210" style="font-size:10px">then becomes a base</text>
+
+  <!-- 3 multiple -->
+  <text class="f-lbl-y" x="430" y="38">3 · MULTIPLE</text>
+  <line class="f-ln" x1="400" y1="82" x2="430" y2="118"/>
+  <line class="f-ln" x1="460" y1="82" x2="430" y2="118"/>
+  <rect class="f-box-y" x="374" y="48" width="52" height="34" rx="6"/>
+          <text class="f-val" x="400" y="71" style="font-size:13px">A</text>
+  <rect class="f-box-y" x="434" y="48" width="52" height="34" rx="6"/>
+          <text class="f-val" x="460" y="71" style="font-size:13px">B</text>
+  <rect class="f-box" x="404" y="118" width="52" height="34" rx="6"/>
+          <text class="f-val" x="430" y="141" style="font-size:13px">C</text>
+  <text class="f-lbl" x="430" y="172" style="font-size:10px">two bases → one derived</text>
+
+  <!-- 4 hierarchical -->
+  <text class="f-lbl-y" x="610" y="38">4 · HIERARCHICAL</text>
+  <line class="f-ln" x1="610" y1="82" x2="570" y2="118"/>
+  <line class="f-ln" x1="610" y1="82" x2="650" y2="118"/>
+  <rect class="f-box-y" x="584" y="48" width="52" height="34" rx="6"/>
+          <text class="f-val" x="610" y="71" style="font-size:13px">A</text>
+  <rect class="f-box" x="544" y="118" width="52" height="34" rx="6"/>
+          <text class="f-val" x="570" y="141" style="font-size:13px">B</text>
+  <rect class="f-box" x="624" y="118" width="52" height="34" rx="6"/>
+          <text class="f-val" x="650" y="141" style="font-size:13px">C</text>
+  <text class="f-lbl" x="610" y="172" style="font-size:10px">one base → many derived</text>
+
+  <line class="f-ln" x1="20" y1="240" x2="700" y2="240" stroke-dasharray="5 5"/>
+
+  <!-- 5 hybrid -->
+  <text class="f-lbl-y" x="150" y="264">5 · HYBRID (a mix — here hierarchical + multiple)</text>
+  <line class="f-ln" x1="150" y1="306" x2="100" y2="336"/>
+  <line class="f-ln" x1="150" y1="306" x2="200" y2="336"/>
+  <line class="f-ln" x1="100" y1="370" x2="150" y2="400"/>
+  <line class="f-ln" x1="200" y1="370" x2="150" y2="400"/>
+  <rect class="f-box-y" x="124" y="272" width="52" height="34" rx="6"/>
+          <text class="f-val" x="150" y="295" style="font-size:13px">A</text>
+  <rect class="f-box" x="74" y="336" width="52" height="34" rx="6"/>
+          <text class="f-val" x="100" y="359" style="font-size:13px">B</text>
+  <rect class="f-box" x="174" y="336" width="52" height="34" rx="6"/>
+          <text class="f-val" x="200" y="359" style="font-size:13px">C</text>
+  <rect class="f-box-c" x="124" y="400" width="52" height="34" rx="6"/>
+          <text class="f-val" x="150" y="423" style="font-size:13px">D</text>
+
+  <rect class="f-box-d" x="300" y="262" width="400" height="164" rx="8"/>
+  <text class="f-lbl-y" x="500" y="288">The DIAMOND PROBLEM</text>
+  <text class="f-lbl" x="320" y="316" text-anchor="start">D inherits from B and C. Both B and C inherit</text>
+  <text class="f-lbl" x="320" y="336" text-anchor="start">from A — so D would receive TWO copies of A.</text>
+  <text class="f-lbl" x="320" y="356" text-anchor="start">The compiler cannot decide which one to use.</text>
+  <text class="f-lbl-y" x="320" y="386" text-anchor="start">Solution: make A a VIRTUAL BASE CLASS</text>
+  <text class="f-code" x="320" y="410" style="font-size:11px">class B : virtual public A { };</text>
+</svg>
+
+  <!-- ============ REDUCED MOTION ============ -->
+  <h2 class="topic">Reduced motion</h2>
+  <div class="en">
+    <p>With <span class="term">prefers-reduced-motion: reduce</span>:</p>
+    <ul class="tick">
+      <li>Every CSS duration collapses to zero.</li>
+      <li>Step-revealed diagram elements render at reduced opacity instead of hidden, so
+      the diagram still reads as one complete figure.</li>
+      <li>Narrated simulator sequences play out <b>instantly and completely</b> — every
+      caption and output line is written at once. Less movement, not less teaching.</li>
+      <li>The pulse and travel primitives become no-ops.</li>
+    </ul>
+    <p><b>Currently detected:</b> <span id="fx-reduced" class="term">checking…</span></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  <span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="assets/js/nav.js"></script>
+<script src="assets/js/services/motion.js"></script>
+<script src="assets/js/code.js"></script>
+<script src="assets/js/showcase.js"></script>
+<script src="assets/js/diagram.js"></script>
+<script src="assets/js/diagram-data.js"></script>
+</body>
+</html>

@@ -1,10 +1,19 @@
-
 /* ============================================================
-   RGSC STUDY BOARD — SHARED CHALKBOARD PALETTE
-   Reuse these exact tokens in every topic simulation so the
-   whole set looks and feels like one book.
+   DESIGN TOKENS — the contract every subject inherits.
+
+   Layer 1  PRIMITIVES   raw values. Never used directly in components.
+   Layer 2  SEMANTIC     roles. This is what components use.
+   Layer 3  SCALES       spacing, type, radius, elevation, motion.
+
+   Rule: a component references a semantic token or a scale step,
+   never a primitive and never a literal. That is what keeps 500
+   future lessons visually consistent.
+
+   The palette is unchanged from Phase 1 — this adds the system
+   around it, it does not restyle the product.
    ============================================================ */
 :root{
+  /* ---------- LAYER 1 · PRIMITIVES ---------- */
   --bg:#0e1a16;
   --board:#13241f;
   --board-2:#172b25;
@@ -28,7 +37,152 @@
 
   --r:14px;
   --shadow:0 10px 30px rgba(0,0,0,.35);
+
+  /* ---------- LAYER 2 · SEMANTIC ROLES ----------
+     Components say what a colour MEANS, not which hue it is.
+     Re-theming later means changing this block only. */
+  --color-background:        var(--bg);
+  --color-surface:           var(--panel);
+  --color-surface-sunken:    #0c1714;          /* code + console wells */
+  --color-surface-elevated:  var(--board-2);
+  --color-border:            var(--line);
+  --color-border-soft:       var(--line-soft);
+
+  --color-text:              var(--chalk-white);
+  --color-text-muted:        var(--chalk-dim);
+  --color-text-subtle:       var(--chalk-faint);
+
+  --color-primary:           var(--yellow);    /* emphasis, active state, Nepali */
+  --color-secondary:         var(--blue);      /* terms, English tags, links */
+  --color-accent:            var(--violet);
+
+  --color-success:           var(--green);     /* correct answer, program output */
+  --color-warning:           var(--yellow);    /* common mistakes */
+  --color-error:             var(--coral);     /* wrong answer */
+  --color-info:              var(--blue);
+
+  --color-interactive:       var(--blue);
+  --color-focus:             var(--yellow);    /* single focus colour, everywhere */
+
+  /* Language roles — bilingualism is structural, so it gets tokens. */
+  --color-lang-en:           var(--blue);      /* English panel accent */
+  --color-lang-ne:           var(--yellow);    /* Nepali note accent */
+
+  /* ---------- LAYER 3 · SPACING ----------
+     4px base. Replaces the 16 different ad-hoc values found in the audit. */
+  --sp-0: 0;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* Rhythm between the parts of a lesson. Named by role so pacing
+     stays consistent as units are written by different authors. */
+  --space-section:   var(--sp-12);   /* between numbered topics */
+  --space-block:     var(--sp-5);    /* between components in a topic */
+  --space-tight:     var(--sp-3);    /* inside a component */
+
+  /* ---------- LAYER 3 · TYPE SCALE ----------
+     Replaces 20+ ad-hoc sizes. Floor is 0.75rem (12px): the audit
+     measured 10px rendered text, which is unreadable on a phone and
+     worse in Devanagari, whose conjuncts need more height than Latin. */
+  --fs-xs:   0.75rem;    /* 12px — labels, captions, metadata */
+  --fs-sm:   0.85rem;    /* 13.6px — secondary prose, table cells */
+  --fs-base: 1rem;       /* 16px — body */
+  --fs-md:   1.05rem;    /* lead paragraphs */
+  --fs-lg:   1.2rem;     /* h4 */
+  --fs-xl:   1.45rem;    /* h3 */
+  --fs-2xl:  1.75rem;    /* h2 */
+  --fs-3xl:  2.15rem;    /* h1 / hero */
+
+  --lh-tight: 1.25;      /* headings */
+  --lh-snug:  1.45;      /* code, dense UI */
+  --lh-base:  1.65;      /* body */
+  --lh-deva:  1.85;      /* Devanagari needs more leading than Latin */
+
+  --fw-normal: 400;
+  --fw-medium: 600;
+  --fw-bold:   700;
+
+  /* ---------- LAYER 3 · RADIUS ---------- */
+  --r-sm:   8px;    /* buttons, chips, inline controls */
+  --r-md:   12px;   /* code blocks, tables, figures */
+  --r-lg:   14px;   /* panels, cards */
+  --r-xl:   18px;   /* page head, hero */
+  --r-full: 999px;  /* pills */
+
+  /* ---------- LAYER 3 · ELEVATION ----------
+     Three steps only. Depth marks importance; it is not decoration. */
+  --elev-0: none;
+  --elev-1: 0 1px 2px rgba(0,0,0,.25);
+  --elev-2: 0 10px 30px rgba(0,0,0,.35);
+  --elev-3: 0 18px 45px rgba(0,0,0,.45);
+
+  /* ---------- LAYER 3 · MOTION ----------
+     Motion communicates meaning. It is never decorative.
+
+     Three levels, matching docs/MOTION-DESIGN.md:
+       L1 micro       — the interface responding to a touch
+       L2 transition  — a diagram or component changing state
+       L3 educational — the motion IS the concept (flow, order, traversal)
+
+     Durations are chosen against what the eye and the reading brain need,
+     not copied from a framework:
+       120ms  below conscious notice — feels instant but not abrupt
+       200ms  the shortest change the eye can reliably track
+       320ms  an element entering or leaving a structure
+       520ms  a transformation the student is meant to follow deliberately
+       760ms  the gap between narrated steps: long enough to read a
+              bilingual caption, short enough to hold attention. Measured
+              against the existing tracer pacing, which reads well. */
+  --dur-instant: 0ms;
+  --dur-fast: 120ms;        /* L1 · hover, focus, press */
+  --dur-base: 200ms;        /* L1/L2 · reveal, open/close, highlight */
+  --dur-slow: 320ms;        /* L2 · element enters or leaves */
+  --dur-deliberate: 520ms;  /* L3 · a transformation to be followed */
+  --dur-step: 760ms;        /* L3 · pause between narrated steps */
+
+  /* Easing carries meaning too.
+     Anything representing PHYSICAL TRAVEL of data uses --ease-flow (linear):
+     a value moving along a bus travels at a constant rate, and easing it
+     would misrepresent the mechanism. Interface motion is always eased. */
+  --ease-standard: cubic-bezier(.2,.6,.3,1);   /* general purpose */
+  --ease-emphasis: cubic-bezier(.2,.9,.25,1);  /* a change that must be noticed */
+  --ease-enter:    cubic-bezier(0,.7,.3,1);    /* decelerate in */
+  --ease-exit:     cubic-bezier(.5,0,.9,.3);   /* accelerate out */
+  --ease-flow:     linear;                     /* constant-rate travel */
+  --ease: var(--ease-standard);                /* Phase 2 alias, still used */
+
+  /* Stagger: 40ms reads as "ordered but together"; 80ms as a clear
+     sequence; 140ms only for a few major stages. */
+  --stagger-sm: 40ms;
+  --stagger-md: 80ms;
+  --stagger-lg: 140ms;
+
+  /* ---------- TOUCH ----------
+     44px is the comfortable target. The audit found 26-39px controls;
+     this is the floor new components must meet. */
+  --touch-min: 44px;
 }
+
+/* Students who ask for less motion get less motion — including the
+   step players, which fall back to instant state changes. */
+@media (prefers-reduced-motion: reduce){
+  :root{ --dur-fast:0ms; --dur-base:0ms; --dur-slow:0ms; }
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -475,10 +629,10 @@ footer .np-cell{font-family:var(--deva);display:block;margin-top:6px}
    ============================================================ */
 
 /* ---- headings inside a unit ---- */
-h3.topic{
+.topic{
   font-size:1.32rem;color:var(--yellow);margin:46px 0 6px;padding-top:16px;
   border-top:1px solid var(--line-soft);scroll-margin-top:74px}
-h4.sub{font-size:1.06rem;color:var(--blue);margin:30px 0 8px;scroll-margin-top:74px}
+.sub{font-size:1.06rem;color:var(--blue);margin:30px 0 8px;scroll-margin-top:74px}
 .lead-sub{color:var(--chalk-dim);font-size:.92rem;margin:0 0 12px}
 
 /* ---- learning outcomes ---- */
@@ -503,21 +657,60 @@ h4.sub{font-size:1.06rem;color:var(--blue);margin:30px 0 8px;scroll-margin-top:7
 .fig figcaption .np-cell{
   display:block;font-family:var(--deva);color:#e7d9b4;font-size:.85rem;margin-top:5px}
 
-/* svg building blocks — shared by every diagram */
-.fig svg text{font-family:var(--mono)}
-.f-box{fill:rgba(127,209,255,.10);stroke:#7fd1ff;stroke-width:1.6}
-.f-box-y{fill:rgba(255,215,110,.12);stroke:#ffd76e;stroke-width:1.6}
-.f-box-c{fill:rgba(255,143,122,.12);stroke:#ff8f7a;stroke-width:1.6}
-.f-box-g{fill:rgba(154,230,160,.12);stroke:#9ae6a0;stroke-width:1.6}
-.f-box-d{fill:none;stroke:#4c7368;stroke-width:1.4;stroke-dasharray:5 4}
-.f-val{fill:#eef5f2;font-size:16px;font-weight:700;text-anchor:middle}
-.f-lbl{fill:#a1b8b1;font-size:11px;text-anchor:middle}
-.f-lbl-y{fill:#ffd76e;font-size:11px;text-anchor:middle}
-.f-addr{fill:#5f7a73;font-size:10px;text-anchor:middle}
-.f-code{fill:#7fd1ff;font-size:13px}
-.f-ln{stroke:#5c8579;stroke-width:1.5;fill:none}
-.f-arr{stroke:#ffd76e;stroke-width:1.8;fill:none}
-.f-ttl{fill:#ffd76e;font-size:12px;font-weight:700}
+/* ============================================================
+   SVG DIAGRAM BUILDING BLOCKS — shared by every diagram
+
+   Typography follows the same rule as the rest of the product:
+   MONO for anything the compiler would read — identifiers, values,
+   code, addresses. SANS for anything a human reads as prose —
+   annotations, captions, titles.
+
+   Setting prose in monospace was making long labels roughly 15%
+   wider than necessary and giving the figures a cramped, uniform
+   texture. Splitting the two is what makes a technical diagram read
+   as engineered rather than typed.
+
+   Colours reference the semantic tokens so a diagram participates in
+   the product's state language instead of sitting outside it.
+   ============================================================ */
+
+/* Applies to static figures AND animated diagram stages — these were
+   previously different, so an animated diagram silently rendered in a
+   different typeface from the static one beside it. */
+.fig svg text, .dia-stage svg text{
+  font-family: var(--sans);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Identifiers, values, code and memory addresses — machine text.
+   Selector depth must match the rule above, or `.fig svg text` (0,1,2)
+   outranks a bare class (0,1,0) and every value silently renders sans.
+   Same specificity trap that produced the label collisions. */
+.fig svg .f-val,  .dia-stage svg .f-val,
+.fig svg .f-code, .dia-stage svg .f-code,
+.fig svg .f-addr, .dia-stage svg .f-addr{ font-family: var(--mono); }
+
+.f-box  { fill:rgba(127,209,255,.10); stroke:var(--color-secondary); stroke-width:1.6 }
+.f-box-y{ fill:rgba(255,215,110,.12); stroke:var(--color-primary);   stroke-width:1.6 }
+.f-box-c{ fill:rgba(255,143,122,.12); stroke:var(--color-error);     stroke-width:1.6 }
+.f-box-g{ fill:rgba(154,230,160,.12); stroke:var(--color-success);   stroke-width:1.6 }
+/* a grouping container recedes: thinner, dashed, lower contrast */
+.f-box-d{ fill:none; stroke:#4c7368; stroke-width:1.3; stroke-dasharray:5 4 }
+
+.f-val { fill:var(--color-text);        font-size:15px; font-weight:700;
+         letter-spacing:-.2px; text-anchor:middle }
+.f-lbl { fill:var(--color-text-muted);  font-size:11.5px; text-anchor:middle }
+.f-lbl-y{fill:var(--color-primary);     font-size:11.5px; font-weight:600; text-anchor:middle }
+.f-addr{ fill:var(--color-text-subtle); font-size:10.5px; text-anchor:middle }
+.f-code{ fill:var(--color-secondary);   font-size:13px }
+
+.f-ln  { stroke:#5c8579; stroke-width:1.5; fill:none; stroke-linecap:round }
+.f-arr { stroke:var(--color-primary); stroke-width:1.8; fill:none;
+         stroke-linecap:round; stroke-linejoin:round }
+
+/* the diagram's own title: the one place tracking earns its keep */
+.f-ttl { fill:var(--color-primary); font-size:12.5px; font-weight:700;
+         letter-spacing:.3px }
 
 /* ---- worked example ---- */
 .wex{border:1.5px solid var(--line);border-radius:14px;background:var(--panel);
@@ -584,3 +777,582 @@ pre.out{
     break-inside:avoid;page-break-inside:avoid}
   .examq .ans{display:block !important}
 }
+
+/* ============================================================
+   LEARNING UX LAYER — Phase 2
+
+   Loaded after base.css and site.css so it can correct them
+   without rewriting the visual identity.
+
+   Contains:
+     1. Responsive containment fixes (the 320px overflow bug)
+     2. Readability floor and touch-target floor
+     3. Focus visibility
+     4. Lesson rhythm
+     5. New learning components: Simulation, Predict, Exam
+     6. Scroll affordances for wide content
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. RESPONSIVE CONTAINMENT
+
+   Grid and flex items default to min-width:auto, so a track can
+   never shrink below its content. That is what pushed .vizbox to
+   490px inside a 339px grid and produced 226px of horizontal
+   page overflow at 320px. One rule, whole-product effect.
+   ------------------------------------------------------------ */
+.pair > *, .simgrid > *, .herogrid > *, .cards > *, .gcards > *,
+.scards > *, .ucards > *, .pager > *, .outline > *, .wex > *,
+.topbar-in > *, .sim-body > *, .sim > *{
+  min-width: 0;
+}
+
+/* Interactive surfaces must never dictate page width. */
+.vizbox, .console, .code, .tablewrap, figure.fig{
+  max-width: 100%;
+}
+.vizbox{ overflow-x: auto; }
+
+/* The page itself may never scroll sideways. Wide content scrolls
+   inside its own container instead — see §6. */
+html, body{ overflow-x: clip; }
+
+/* ------------------------------------------------------------
+   2. READABILITY + TOUCH FLOORS
+
+   Audit measured 10px rendered text and 26-39px controls.
+   Devanagari needs more height than Latin at equal legibility,
+   so the floor applies to both scripts.
+   ------------------------------------------------------------ */
+.viz .lbl, .objbox small, .pill, .ptr, .q .qn, .brand-txt small,
+.droptop .car, .soonchip, .dropmenu a small, .dropmenu a .dn,
+.mobilepanel-label, .pagehead .eyebrow, .scard .idx, .ucard .hrs,
+.status, .pager .lab, .wex-n, .wex-lbl, .examq .mk, .hero .eyebrow,
+.sec-head .marks, .crumb, .nav a, .stepbar{
+  font-size: var(--fs-xs);       /* 12px floor */
+}
+
+/* Nepali is set slightly larger and looser than the Latin beside it —
+   equal optical size, not equal point size. */
+[lang="ne"]{ line-height: var(--lh-deva); }
+.np-cell, .mobilepanel a small, .dropmenu a small{ font-size: var(--fs-xs); }
+.np, .np-line{ font-size: var(--fs-sm); }
+
+/* On touch devices every control clears 44px. Desktop keeps its
+   density — a mouse does not need a 44px target. */
+@media (pointer: coarse){
+  button, .opt, .btn-ans, .nav a, .pager a, .mobilepanel a,
+  .dropmenu a, .hamburger, [data-answer], .crumb a, .brand,
+  .predict-opt, .sim-controls button{
+    min-height: var(--touch-min);
+  }
+  /* breadcrumb links are small text; give them tappable padding rather than
+     inflating the type, so the crumb still reads as a trail */
+  .crumb a{ display: inline-flex; align-items: center; padding: 0 var(--sp-1); }
+  button, .btn-ans, .hamburger{
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .nav a{ display: inline-flex; align-items: center; }
+}
+
+/* Primary learning controls are generous on every device — these are
+   pressed dozens of times per unit. */
+.btn-ans{ padding: var(--sp-2) var(--sp-4); font-size: var(--fs-sm); }
+.opt{ padding: var(--sp-3) var(--sp-4); }
+
+/* ------------------------------------------------------------
+   3. FOCUS VISIBILITY
+   One focus treatment everywhere, on the token colour.
+   ------------------------------------------------------------ */
+:focus-visible{
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+/* Do not show the ring for pointer users who click a button. */
+:focus:not(:focus-visible){ outline: none; }
+
+.skip:focus{ outline: 3px solid var(--color-focus); outline-offset: 0; }
+
+/* ------------------------------------------------------------
+   4. LESSON RHYTHM
+   Consistent pacing between the parts of a lesson, so a unit
+   written next year reads like one written today.
+   ------------------------------------------------------------ */
+.topic{ margin-top: var(--space-section); }
+.pair, .wex, .mistake, .callout, .tablewrap, figure.fig,
+.sim, .predict, .examq{ margin-block: var(--space-block); }
+.keypoints{ margin-top: var(--space-section); }
+
+/* ------------------------------------------------------------
+   5. LEARNING COMPONENTS
+   ------------------------------------------------------------ */
+
+/* ---- 5a. Simulation container -------------------------------
+   Every simulation gets the same frame, so a student learns the
+   interface once and then only has to think about the concept:
+
+     title → what you will learn → stage → controls → result → why
+   ------------------------------------------------------------ */
+.sim{
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-lg);
+  background: var(--color-surface);
+  box-shadow: var(--elev-2);
+  overflow: hidden;
+}
+.sim-head{
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1.5px solid var(--color-border);
+  background: linear-gradient(160deg, var(--color-surface-elevated), var(--color-surface));
+}
+.sim-kicker{
+  display: flex; align-items: center; gap: var(--sp-2);
+  font-family: var(--mono); font-size: var(--fs-xs);
+  letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--color-error);
+}
+.sim-kicker::before{ content: "▶"; font-size: .9em; }
+.sim-head h3{
+  margin: var(--sp-2) 0 0;
+  font-size: var(--fs-lg); color: var(--color-text);
+}
+.sim-goal{
+  margin: var(--sp-2) 0 0; font-size: var(--fs-sm); color: var(--color-text-muted);
+}
+.sim-goal .np-cell{ margin-top: var(--sp-1); }
+
+.sim-body{ padding: var(--sp-5); }
+.sim-stage{
+  background: var(--color-surface-sunken);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-md);
+  padding: var(--sp-4);
+  min-height: 180px;
+}
+.sim-controls{
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: 1px dashed var(--color-border);
+}
+.sim-controls-label{
+  width: 100%; font-family: var(--mono); font-size: var(--fs-xs);
+  letter-spacing: 1.2px; text-transform: uppercase; color: var(--color-text-subtle);
+  margin-bottom: var(--sp-1);
+}
+.sim-result{ margin-top: var(--sp-4); }
+.sim-why{
+  margin-top: var(--sp-4);
+  border-left: 3px solid var(--color-primary);
+  background: rgba(255,215,110,.06);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+}
+.sim-why .h{
+  display: block; font-weight: var(--fw-bold); color: var(--color-primary);
+  margin-bottom: var(--sp-1);
+}
+.sim-why .np-cell{ display: block; margin-top: var(--sp-2); }
+
+/* ---- 5b. Prediction ----------------------------------------
+   Commit to an answer BEFORE seeing the result. A wrong prediction
+   that the student owns teaches more than a correct answer they read.
+   ------------------------------------------------------------ */
+.predict{
+  border: 2px dashed rgba(127,209,255,.45);
+  border-radius: var(--r-lg);
+  background: rgba(127,209,255,.05);
+  padding: var(--sp-4) var(--sp-5);
+}
+.predict-q{
+  font-family: var(--mono); font-size: var(--fs-xs); letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--color-secondary);
+}
+.predict h4{ margin: var(--sp-2) 0 var(--sp-3); font-size: var(--fs-base); }
+.predict-options{ display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.predict-opt{
+  flex: 1 1 auto; min-width: 120px;
+  background: var(--color-surface); border: 1.5px solid var(--color-border);
+  border-radius: var(--r-sm); padding: var(--sp-3) var(--sp-4);
+  font-family: var(--mono); font-size: var(--fs-sm); color: var(--color-text);
+  cursor: pointer; transition: border-color var(--dur-fast) var(--ease);
+}
+.predict-opt:hover:not(:disabled){ border-color: var(--color-secondary); }
+.predict-opt[aria-pressed="true"]{
+  border-color: var(--color-secondary); background: rgba(127,209,255,.14);
+  color: var(--color-secondary);
+}
+.predict-opt.right{ border-color: var(--color-success); background: rgba(154,230,160,.14); color: var(--color-success); }
+.predict-opt.wrong{ border-color: var(--color-error);   background: rgba(255,143,122,.14); color: var(--color-error); }
+.predict-feedback{
+  display: none; margin-top: var(--sp-3); padding-top: var(--sp-3);
+  border-top: 1px dashed var(--color-border); font-size: var(--fs-sm);
+}
+.predict-feedback.show{ display: block; }
+.predict-feedback .verdict{ font-weight: var(--fw-bold); }
+.predict-feedback .np-cell{ display: block; margin-top: var(--sp-2); }
+
+/* ---- 5c. Exam connection -----------------------------------
+   Frames practice as "this is how the SEE asks it", rather than
+   questions dropped at the foot of the page.
+   ------------------------------------------------------------ */
+.exam-connect{
+  border: 1.5px solid rgba(255,143,122,.4);
+  border-radius: var(--r-lg);
+  background: rgba(255,143,122,.05);
+  padding: var(--sp-4) var(--sp-5);
+}
+.exam-connect .lead-in{
+  font-family: var(--mono); font-size: var(--fs-xs); letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--color-error);
+}
+.exam-connect h3{ margin: var(--sp-2) 0 var(--sp-1); font-size: var(--fs-lg); }
+.exam-connect .np-cell{ display: block; font-size: var(--fs-sm); }
+
+/* the individual question keeps its existing look, with a clearer answer control */
+.examq .btn-ans{
+  border-color: rgba(255,215,110,.5); color: var(--color-primary);
+}
+.examq .ans[aria-hidden="true"]{ display: none; }
+
+/* ------------------------------------------------------------
+   6. SCROLL AFFORDANCE FOR WIDE CONTENT
+
+   A 520px diagram scrolled into 284px is correct — scaling it down
+   would render its 10px labels at ~5.5px. But the student must be
+   told it scrolls, or a cropped diagram reads as a broken one.
+   The class is added by core.js only when content actually overflows.
+   ------------------------------------------------------------ */
+.is-scrollable{ position: relative; }
+.is-scrollable::after{
+  content: "";
+  position: absolute; top: 0; right: 0; bottom: 0; width: 44px;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, var(--color-surface) 85%);
+  opacity: .9;
+}
+figure.fig.is-scrollable::after{
+  background: linear-gradient(to right, transparent, var(--color-background) 85%);
+}
+.scroll-hint{
+  display: block; margin-top: var(--sp-2);
+  font-family: var(--mono); font-size: var(--fs-xs);
+  color: var(--color-text-subtle);
+}
+.scroll-hint::before{ content: "↔ "; }
+
+/* ------------------------------------------------------------
+   7. HEADING + LANDMARK CORRECTIONS
+   ------------------------------------------------------------ */
+/* The mobile panel's grade labels were <h4>, which put four navigation
+   entries at the top of the document outline ahead of the page title.
+   They are now non-heading elements with identical styling. */
+.mobilepanel-label{
+  font-family: var(--mono); letter-spacing: 1.6px;
+  text-transform: uppercase; color: var(--color-error);
+  margin: var(--sp-5) 0 var(--sp-2); font-weight: var(--fw-bold);
+}
+.mobilepanel-label:first-child{ margin-top: var(--sp-1); }
+
+/* The lesson title is promoted to <h1> by the build; keep it looking
+   exactly like the <h2> it replaced. */
+.sec-head h1{
+  margin: 0; font-size: var(--fs-2xl); line-height: var(--lh-tight);
+  color: var(--color-text); font-weight: var(--fw-bold);
+}
+
+/* ------------------------------------------------------------
+   8. MOBILE REFINEMENTS
+   ------------------------------------------------------------ */
+@media (max-width: 640px){
+  .wrap{ padding-left: var(--sp-4); padding-right: var(--sp-4); }
+  .sim-body{ padding: var(--sp-4); }
+  .sim-head{ padding: var(--sp-4); }
+  .sim-controls button{ flex: 1 1 calc(50% - var(--sp-2)); }
+  .predict-opt{ flex: 1 1 100%; }
+  .pagehead{ padding: var(--sp-5) var(--sp-4); }
+  .pagehead h1{ font-size: var(--fs-2xl); }
+  /* Stacked bilingual pairs need a visible tie between the two halves. */
+  .pair{ gap: var(--sp-2); }
+  .pair > .np{ border-top-width: 0; }
+}
+
+/* ------------------------------------------------------------
+   9. TYPE FLOOR — remaining cases
+   ------------------------------------------------------------ */
+/* Panel labels ("DEFINITION" / "परिभाषा") sit above every bilingual
+   block, so they are read constantly. 0.68rem was 10.9px. */
+.en .tag, .np .tag{ font-size: var(--fs-xs); }
+
+/* Diagram labels are the only text inside a diagram. Diagrams scroll at
+   natural size rather than scaling down, so these render at their literal
+   size on a phone — 10-11px was below the readable floor. */
+.f-lbl, .f-lbl-y{ font-size: 12px; }
+.f-addr{ font-size: 11px; }
+
+/* ------------------------------------------------------------
+   10. HEADING LEVEL vs HEADING APPEARANCE
+
+   .outcomes and .keypoints were promoted from <h4> to <h2> so the
+   document outline is correct for screen readers. Their visual weight
+   must not change with it — they are section labels inside a lesson,
+   not page titles. Semantics and appearance are separate concerns.
+   ------------------------------------------------------------ */
+.outcomes h2, .keypoints h2{
+  font-size: var(--fs-lg);
+  line-height: var(--lh-tight);
+  margin: 0 0 var(--sp-3);
+}
+@media (max-width: 640px){
+  .outcomes h2, .keypoints h2{ font-size: var(--fs-md); }
+  /* the lesson title itself should not dominate a small screen either */
+  .sec-head h1{ font-size: var(--fs-xl); }
+  .crumb{ gap: var(--sp-1); }
+}
+
+/* ------------------------------------------------------------
+   11. DESIGN-SYSTEM REFERENCE PAGE (dev only)
+   ------------------------------------------------------------ */
+.ds-sw{display:inline-block;width:14px;height:14px;border-radius:4px;
+  border:1px solid var(--color-border);vertical-align:-2px;margin-right:6px}
+.ds-sp{display:inline-block;background:var(--color-primary);border-radius:2px}
+.ds-r{display:inline-grid;place-items:center;width:64px;height:44px;
+  background:var(--color-surface-elevated);border:1.5px solid var(--color-border);
+  font-family:var(--mono);font-size:var(--fs-xs);color:var(--color-text-muted)}
+.sim-head h4{margin:var(--sp-2) 0 0;font-size:var(--fs-lg);color:var(--color-text)}
+
+/* ============================================================
+   MOTION LAYER — Phase 2.5
+
+   Loaded after learning-ux.css. Contains only motion and the
+   shared visual-state language. No new colours, no new layout.
+
+     1. Shared state language (diagrams, quiz, simulators, tracer)
+     2. Educational transitions on existing components
+     3. Animation primitives (fx-*)
+     4. Diagram animation classes (dia-*)
+     5. Reduced motion
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. SHARED STATE LANGUAGE
+
+   One visual vocabulary for "this is active / correct / wrong",
+   used by diagrams, simulators, the quiz and the tracer alike, so
+   a success in a diagram looks like a success in a quiz.
+
+   Written to work on both HTML elements and SVG shapes: HTML takes
+   background/border, SVG takes fill/stroke.
+   ------------------------------------------------------------ */
+.is-active, .is-selected, .is-success, .is-error,
+.is-processing, .is-complete{
+  transition: background-color var(--dur-base) var(--ease-standard),
+              border-color     var(--dur-base) var(--ease-standard),
+              color            var(--dur-base) var(--ease-standard),
+              fill             var(--dur-base) var(--ease-standard),
+              stroke           var(--dur-base) var(--ease-standard),
+              opacity          var(--dur-base) var(--ease-standard);
+}
+
+.is-active   { border-color: var(--color-primary)   !important; color: var(--color-primary); }
+.is-selected { border-color: var(--color-secondary) !important; color: var(--color-secondary); }
+.is-success  { border-color: var(--color-success)   !important; color: var(--color-success); }
+.is-error    { border-color: var(--color-error)     !important; color: var(--color-error); }
+.is-disabled { opacity: .45; }
+
+/* SVG equivalents — a shape has no border, so the same states map to stroke */
+svg .is-active  { stroke: var(--color-primary);   stroke-width: 2.5; }
+svg .is-selected{ stroke: var(--color-secondary); stroke-width: 2.5; }
+svg .is-success { stroke: var(--color-success);   stroke-width: 2.5; }
+svg .is-error   { stroke: var(--color-error);     stroke-width: 2.5; }
+svg text.is-active  { fill: var(--color-primary);   stroke: none; }
+svg text.is-success { fill: var(--color-success);   stroke: none; }
+svg text.is-error   { fill: var(--color-error);     stroke: none; }
+
+/* ------------------------------------------------------------
+   2. EDUCATIONAL TRANSITIONS ON EXISTING COMPONENTS
+   ------------------------------------------------------------ */
+
+/* The executing line. This is the most-repeated state change in the
+   product — 58 tracer steps plus every simulator run — and it had no
+   transition at all, so it snapped and the eye had nothing to follow
+   from one line to the next. */
+.code .ln{
+  transition: background-color var(--dur-base) var(--ease-standard),
+              border-left-color var(--dur-base) var(--ease-standard);
+}
+.code .ln .n{ transition: color var(--dur-base) var(--ease-standard); }
+
+/* An element entering or leaving a data structure. Enter decelerates
+   (it arrives and settles); exit accelerates (it is gone). */
+.sbox{ animation: slidein var(--dur-slow) var(--ease-enter) both; }
+.sbox.out{ animation: slideout var(--dur-slow) var(--ease-exit) both; }
+
+/* The active end of a structure — top of a stack, front of a queue. */
+.sbox.top{
+  transition: border-color var(--dur-base) var(--ease-emphasis),
+              background-color var(--dur-base) var(--ease-emphasis),
+              color var(--dur-base) var(--ease-emphasis);
+}
+
+/* Revealing a model answer or prediction feedback: grow into place
+   rather than appearing abruptly. */
+.expl.show, .predict-feedback.show, .examq .ans.show{
+  animation: reveal var(--dur-base) var(--ease-enter) both;
+}
+@keyframes reveal{
+  from{ opacity:0; transform: translateY(-4px); }
+  to  { opacity:1; transform: none; }
+}
+
+/* Button press — immediate acknowledgement of a touch. */
+button:active:not(:disabled){ transform: translateY(1px); }
+button{ transition: border-color var(--dur-fast) var(--ease-standard),
+                    color var(--dur-fast) var(--ease-standard),
+                    transform var(--dur-fast) var(--ease-standard); }
+
+/* ------------------------------------------------------------
+   3. ANIMATION PRIMITIVES
+   Driven by MotionService. Each is finite — nothing loops forever.
+   ------------------------------------------------------------ */
+
+/* One-shot attention pulse. Used when a value the student should notice
+   changes somewhere they may not be looking. */
+.fx-pulse{ animation: fxPulse var(--dur-deliberate) var(--ease-emphasis) 1; }
+@keyframes fxPulse{
+  0%  { transform: scale(1);    filter: none; }
+  35% { transform: scale(1.06); filter: brightness(1.25); }
+  100%{ transform: scale(1);    filter: none; }
+}
+
+/* Connect an old value to its replacement, so the student sees that the
+   number CHANGED rather than simply finding a different number there. */
+.fx-value-out{ animation: fxValueOut var(--dur-fast) var(--ease-exit) both; }
+.fx-value-in { animation: fxValueIn  var(--dur-base) var(--ease-enter) both; }
+@keyframes fxValueOut{ to  { opacity:0; transform: translateY(-6px); } }
+@keyframes fxValueIn { from{ opacity:0; transform: translateY(6px);  } }
+
+/* ------------------------------------------------------------
+   4. DIAGRAM ANIMATION
+
+   Diagrams are inline SVG. Elements that participate in animation are
+   given ids and the dia-* classes below; everything else stays static.
+
+   Motion is driven by class changes from JavaScript, never by SMIL or
+   infinite CSS loops, so a diagram is a state machine that can be
+   stepped forwards and backwards.
+   ------------------------------------------------------------ */
+
+/* Hidden until the step that introduces it. Not display:none — SVG
+   layout must stay stable so nothing reflows mid-sequence. */
+.dia-step{
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-enter);
+}
+.dia-step.on{ opacity: 1; }
+
+/* Dimmed rather than hidden: context the student can still see, but
+   which is clearly not the current focus. */
+.dia-dim{ opacity: .28; transition: opacity var(--dur-base) var(--ease-standard); }
+.dia-dim.on{ opacity: 1; }
+
+/* A travelling value. Linear, because data moving along a path moves at
+   a constant rate — easing it would misrepresent the mechanism. */
+.dia-travel{
+  transition: transform var(--dur-deliberate) var(--ease-flow),
+              opacity   var(--dur-base)       var(--ease-standard);
+}
+
+/* Drawing a connection, so the eye follows the direction of the link. */
+.dia-draw{
+  stroke-dasharray: var(--dia-len, 300);
+  stroke-dashoffset: var(--dia-len, 300);
+  transition: stroke-dashoffset var(--dur-deliberate) var(--ease-standard);
+}
+.dia-draw.on{ stroke-dashoffset: 0; }
+
+/* Emphasis without movement — for diagrams where a shape must be
+   pointed at rather than moved.
+
+   The stroke is applied to SHAPES only. Stroking <text> thickens every
+   glyph and the label reads as smudged rather than emphasised, which is
+   the opposite of the intent — a focused label must be easier to read,
+   not harder. Text is emphasised by fill instead. */
+.dia-focus rect, .dia-focus circle, .dia-focus ellipse,
+.dia-focus polygon, .dia-focus line, .dia-focus path{
+  transition: stroke var(--dur-base) var(--ease-emphasis),
+              stroke-width var(--dur-base) var(--ease-emphasis);
+}
+.dia-focus text{ transition: fill var(--dur-base) var(--ease-emphasis); }
+
+.dia-focus.on rect, .dia-focus.on circle, .dia-focus.on ellipse,
+.dia-focus.on polygon{
+  stroke: var(--color-primary);
+  stroke-width: 3;
+}
+.dia-focus.on text{ fill: var(--color-primary); }
+
+/* Diagram control bar — shared by every animated diagram. */
+.dia-controls{
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2);
+  margin-top: var(--sp-3); padding-top: var(--sp-3);
+  border-top: 1px dashed var(--color-border);
+}
+.dia-caption{
+  margin-top: var(--sp-3); font-size: var(--fs-sm);
+  border-left: 3px solid var(--color-secondary);
+  background: rgba(127,209,255,.06);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-2) var(--sp-3);
+  min-height: 3.4em;
+}
+.dia-caption .np-cell{ display: block; margin-top: var(--sp-1); }
+.dia-progress{
+  font-family: var(--mono); font-size: var(--fs-xs);
+  color: var(--color-text-subtle); margin-left: auto;
+}
+
+/* ------------------------------------------------------------
+   5. REDUCED MOTION
+
+   Phase 2 already zeroes durations globally. These rules additionally
+   make sure that removing motion never removes INFORMATION: anything
+   revealed by an animation must still be visible in its final state.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce){
+  .fx-pulse{ animation: none; }
+  .dia-travel{ transition: none; }
+
+  /* A step-revealed element must not stay invisible just because its
+     transition was removed — show it at reduced opacity so the whole
+     diagram reads as a complete static figure. */
+  .dia-step{ opacity: .35; }
+  .dia-step.on{ opacity: 1; }
+  .dia-draw{ stroke-dasharray: none; stroke-dashoffset: 0; }
+}
+
+/* An animated diagram is authored at ~520px like every other figure. On a
+   narrow phone it must scroll INSIDE its own stage — the page-level
+   overflow:clip would otherwise crop it with no way to reach the rest. */
+.dia-stage{ overflow-x: auto; max-width: 100%; }
+.dia-stage svg{ display: block; }
+
+/* ------------------------------------------------------------
+   12. SVG TEXT ANCHORING — systemic fix
+
+   .f-val / .f-lbl / .f-lbl-y / .f-addr all set text-anchor:middle.
+   A CSS declaration beats a presentation attribute, so every
+   text-anchor="start" and text-anchor="end" written in a diagram was
+   silently ignored — 53 of them. Each such label was centred on its
+   anchor point instead of starting there, spilling half its width to
+   the left: across nodes, and in five diagrams clean off the canvas.
+
+   Attribute selectors carry higher specificity than the class, so an
+   explicitly requested anchor now wins, as the author intended.
+   Same class of bug as the documented stroke gotcha, one level up.
+   ------------------------------------------------------------ */
+svg text[text-anchor="start"] { text-anchor: start; }
+svg text[text-anchor="end"]   { text-anchor: end; }
+svg text[text-anchor="middle"]{ text-anchor: middle; }

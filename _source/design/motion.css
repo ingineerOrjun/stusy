@@ -1,0 +1,234 @@
+
+/* ============================================================
+   MOTION LAYER — Phase 2.5
+
+   Loaded after learning-ux.css. Contains only motion and the
+   shared visual-state language. No new colours, no new layout.
+
+     1. Shared state language (diagrams, quiz, simulators, tracer)
+     2. Educational transitions on existing components
+     3. Animation primitives (fx-*)
+     4. Diagram animation classes (dia-*)
+     5. Reduced motion
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. SHARED STATE LANGUAGE
+
+   One visual vocabulary for "this is active / correct / wrong",
+   used by diagrams, simulators, the quiz and the tracer alike, so
+   a success in a diagram looks like a success in a quiz.
+
+   Written to work on both HTML elements and SVG shapes: HTML takes
+   background/border, SVG takes fill/stroke.
+   ------------------------------------------------------------ */
+.is-active, .is-selected, .is-success, .is-error,
+.is-processing, .is-complete{
+  transition: background-color var(--dur-base) var(--ease-standard),
+              border-color     var(--dur-base) var(--ease-standard),
+              color            var(--dur-base) var(--ease-standard),
+              fill             var(--dur-base) var(--ease-standard),
+              stroke           var(--dur-base) var(--ease-standard),
+              opacity          var(--dur-base) var(--ease-standard);
+}
+
+.is-active   { border-color: var(--color-primary)   !important; color: var(--color-primary); }
+.is-selected { border-color: var(--color-secondary) !important; color: var(--color-secondary); }
+.is-success  { border-color: var(--color-success)   !important; color: var(--color-success); }
+.is-error    { border-color: var(--color-error)     !important; color: var(--color-error); }
+.is-disabled { opacity: .45; }
+
+/* SVG equivalents — a shape has no border, so the same states map to stroke */
+svg .is-active  { stroke: var(--color-primary);   stroke-width: 2.5; }
+svg .is-selected{ stroke: var(--color-secondary); stroke-width: 2.5; }
+svg .is-success { stroke: var(--color-success);   stroke-width: 2.5; }
+svg .is-error   { stroke: var(--color-error);     stroke-width: 2.5; }
+svg text.is-active  { fill: var(--color-primary);   stroke: none; }
+svg text.is-success { fill: var(--color-success);   stroke: none; }
+svg text.is-error   { fill: var(--color-error);     stroke: none; }
+
+/* ------------------------------------------------------------
+   2. EDUCATIONAL TRANSITIONS ON EXISTING COMPONENTS
+   ------------------------------------------------------------ */
+
+/* The executing line. This is the most-repeated state change in the
+   product — 58 tracer steps plus every simulator run — and it had no
+   transition at all, so it snapped and the eye had nothing to follow
+   from one line to the next. */
+.code .ln{
+  transition: background-color var(--dur-base) var(--ease-standard),
+              border-left-color var(--dur-base) var(--ease-standard);
+}
+.code .ln .n{ transition: color var(--dur-base) var(--ease-standard); }
+
+/* An element entering or leaving a data structure. Enter decelerates
+   (it arrives and settles); exit accelerates (it is gone). */
+.sbox{ animation: slidein var(--dur-slow) var(--ease-enter) both; }
+.sbox.out{ animation: slideout var(--dur-slow) var(--ease-exit) both; }
+
+/* The active end of a structure — top of a stack, front of a queue. */
+.sbox.top{
+  transition: border-color var(--dur-base) var(--ease-emphasis),
+              background-color var(--dur-base) var(--ease-emphasis),
+              color var(--dur-base) var(--ease-emphasis);
+}
+
+/* Revealing a model answer or prediction feedback: grow into place
+   rather than appearing abruptly. */
+.expl.show, .predict-feedback.show, .examq .ans.show{
+  animation: reveal var(--dur-base) var(--ease-enter) both;
+}
+@keyframes reveal{
+  from{ opacity:0; transform: translateY(-4px); }
+  to  { opacity:1; transform: none; }
+}
+
+/* Button press — immediate acknowledgement of a touch. */
+button:active:not(:disabled){ transform: translateY(1px); }
+button{ transition: border-color var(--dur-fast) var(--ease-standard),
+                    color var(--dur-fast) var(--ease-standard),
+                    transform var(--dur-fast) var(--ease-standard); }
+
+/* ------------------------------------------------------------
+   3. ANIMATION PRIMITIVES
+   Driven by MotionService. Each is finite — nothing loops forever.
+   ------------------------------------------------------------ */
+
+/* One-shot attention pulse. Used when a value the student should notice
+   changes somewhere they may not be looking. */
+.fx-pulse{ animation: fxPulse var(--dur-deliberate) var(--ease-emphasis) 1; }
+@keyframes fxPulse{
+  0%  { transform: scale(1);    filter: none; }
+  35% { transform: scale(1.06); filter: brightness(1.25); }
+  100%{ transform: scale(1);    filter: none; }
+}
+
+/* Connect an old value to its replacement, so the student sees that the
+   number CHANGED rather than simply finding a different number there. */
+.fx-value-out{ animation: fxValueOut var(--dur-fast) var(--ease-exit) both; }
+.fx-value-in { animation: fxValueIn  var(--dur-base) var(--ease-enter) both; }
+@keyframes fxValueOut{ to  { opacity:0; transform: translateY(-6px); } }
+@keyframes fxValueIn { from{ opacity:0; transform: translateY(6px);  } }
+
+/* ------------------------------------------------------------
+   4. DIAGRAM ANIMATION
+
+   Diagrams are inline SVG. Elements that participate in animation are
+   given ids and the dia-* classes below; everything else stays static.
+
+   Motion is driven by class changes from JavaScript, never by SMIL or
+   infinite CSS loops, so a diagram is a state machine that can be
+   stepped forwards and backwards.
+   ------------------------------------------------------------ */
+
+/* Hidden until the step that introduces it. Not display:none — SVG
+   layout must stay stable so nothing reflows mid-sequence. */
+.dia-step{
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-enter);
+}
+.dia-step.on{ opacity: 1; }
+
+/* Dimmed rather than hidden: context the student can still see, but
+   which is clearly not the current focus. */
+.dia-dim{ opacity: .28; transition: opacity var(--dur-base) var(--ease-standard); }
+.dia-dim.on{ opacity: 1; }
+
+/* A travelling value. Linear, because data moving along a path moves at
+   a constant rate — easing it would misrepresent the mechanism. */
+.dia-travel{
+  transition: transform var(--dur-deliberate) var(--ease-flow),
+              opacity   var(--dur-base)       var(--ease-standard);
+}
+
+/* Drawing a connection, so the eye follows the direction of the link. */
+.dia-draw{
+  stroke-dasharray: var(--dia-len, 300);
+  stroke-dashoffset: var(--dia-len, 300);
+  transition: stroke-dashoffset var(--dur-deliberate) var(--ease-standard);
+}
+.dia-draw.on{ stroke-dashoffset: 0; }
+
+/* Emphasis without movement — for diagrams where a shape must be
+   pointed at rather than moved.
+
+   The stroke is applied to SHAPES only. Stroking <text> thickens every
+   glyph and the label reads as smudged rather than emphasised, which is
+   the opposite of the intent — a focused label must be easier to read,
+   not harder. Text is emphasised by fill instead. */
+.dia-focus rect, .dia-focus circle, .dia-focus ellipse,
+.dia-focus polygon, .dia-focus line, .dia-focus path{
+  transition: stroke var(--dur-base) var(--ease-emphasis),
+              stroke-width var(--dur-base) var(--ease-emphasis);
+}
+.dia-focus text{ transition: fill var(--dur-base) var(--ease-emphasis); }
+
+.dia-focus.on rect, .dia-focus.on circle, .dia-focus.on ellipse,
+.dia-focus.on polygon{
+  stroke: var(--color-primary);
+  stroke-width: 3;
+}
+.dia-focus.on text{ fill: var(--color-primary); }
+
+/* Diagram control bar — shared by every animated diagram. */
+.dia-controls{
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2);
+  margin-top: var(--sp-3); padding-top: var(--sp-3);
+  border-top: 1px dashed var(--color-border);
+}
+.dia-caption{
+  margin-top: var(--sp-3); font-size: var(--fs-sm);
+  border-left: 3px solid var(--color-secondary);
+  background: rgba(127,209,255,.06);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-2) var(--sp-3);
+  min-height: 3.4em;
+}
+.dia-caption .np-cell{ display: block; margin-top: var(--sp-1); }
+.dia-progress{
+  font-family: var(--mono); font-size: var(--fs-xs);
+  color: var(--color-text-subtle); margin-left: auto;
+}
+
+/* ------------------------------------------------------------
+   5. REDUCED MOTION
+
+   Phase 2 already zeroes durations globally. These rules additionally
+   make sure that removing motion never removes INFORMATION: anything
+   revealed by an animation must still be visible in its final state.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce){
+  .fx-pulse{ animation: none; }
+  .dia-travel{ transition: none; }
+
+  /* A step-revealed element must not stay invisible just because its
+     transition was removed — show it at reduced opacity so the whole
+     diagram reads as a complete static figure. */
+  .dia-step{ opacity: .35; }
+  .dia-step.on{ opacity: 1; }
+  .dia-draw{ stroke-dasharray: none; stroke-dashoffset: 0; }
+}
+
+/* An animated diagram is authored at ~520px like every other figure. On a
+   narrow phone it must scroll INSIDE its own stage — the page-level
+   overflow:clip would otherwise crop it with no way to reach the rest. */
+.dia-stage{ overflow-x: auto; max-width: 100%; }
+.dia-stage svg{ display: block; }
+
+/* ------------------------------------------------------------
+   12. SVG TEXT ANCHORING — systemic fix
+
+   .f-val / .f-lbl / .f-lbl-y / .f-addr all set text-anchor:middle.
+   A CSS declaration beats a presentation attribute, so every
+   text-anchor="start" and text-anchor="end" written in a diagram was
+   silently ignored — 53 of them. Each such label was centred on its
+   anchor point instead of starting there, spilling half its width to
+   the left: across nodes, and in five diagrams clean off the canvas.
+
+   Attribute selectors carry higher specificity than the class, so an
+   explicitly requested anchor now wins, as the author intended.
+   Same class of bug as the documented stroke gotcha, one level up.
+   ------------------------------------------------------------ */
+svg text[text-anchor="start"] { text-anchor: start; }
+svg text[text-anchor="end"]   { text-anchor: end; }
+svg text[text-anchor="middle"]{ text-anchor: middle; }

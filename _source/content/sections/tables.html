@@ -1,0 +1,160 @@
+<section id="tables">
+  <div class="sec-head">
+    <div class="sec-num">≠</div>
+    <div>
+      <h2>Comparison Tables</h2>
+      <p class="sec-sub">तुलनात्मक तालिका — परीक्षामा सबैभन्दा बढी सोधिने भाग</p>
+    </div>
+    <span class="marks">high-scoring</span>
+  </div>
+  <div class="rule"></div>
+
+  <h3 style="color:var(--blue)">A. Structured (Procedural) vs Object-Oriented Programming</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Structured / Procedural (POP)</th><th>Object-Oriented (OOP)</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Basic unit</td><td>The <b>function</b> is the basic unit.</td><td>The <b>object</b> is the basic unit.</td></tr>
+        <tr><td class="k">Approach</td><td><b>Top-down</b> — big problem broken into functions.</td><td><b>Bottom-up</b> — objects built first, then combined.</td></tr>
+        <tr><td class="k">Focus</td><td>Focus is on <b>the procedure / how to do it</b>.</td><td>Focus is on <b>the data and the object</b>.</td></tr>
+        <tr><td class="k">Data security</td><td>Data is mostly <b>global</b>, so it can be changed by any function — <b>less secure</b>.</td><td>Data is <b>private/hidden</b> inside the object — <b>more secure</b>.</td></tr>
+        <tr><td class="k">Data + function</td><td>Data and functions are <b>separate</b>.</td><td>Data and functions are <b>bound together</b>.</td></tr>
+        <tr><td class="k">Reusability</td><td><b>Difficult</b> — no inheritance.</td><td><b>Easy</b> — supports inheritance.</td></tr>
+        <tr><td class="k">Overloading</td><td><b>Not supported.</b></td><td><b>Supported</b> (function and operator overloading).</td></tr>
+        <tr><td class="k">Suitable for</td><td><b>Small</b> and simple programs.</td><td><b>Large</b> and complex programs.</td></tr>
+        <tr><td class="k">Example language</td><td>C, Pascal, FORTRAN</td><td>C++, Java, Python, C#</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="np" style="margin-top:-4px">
+    <span class="tag">छोटो सार</span>
+    <p>POP मा <b>फङ्सन</b> मुख्य हुन्छ, डाटा प्रायः <b>global</b> हुने भएकाले कम सुरक्षित हुन्छ,
+    र यसले माथिबाट तलतिर (<b>top-down</b>) सोच्छ। OOP मा <b>अब्जेक्ट</b> मुख्य हुन्छ, डाटा
+    <b>private</b> राखेर लुकाइन्छ, र तलबाट माथितिर (<b>bottom-up</b>) सोच्छ। ठूलो प्रोग्रामका लागि OOP राम्रो।</p>
+  </div>
+
+  <h3 style="margin-top:30px;color:var(--blue)">B. Function Overloading vs Function Overriding</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Function Overloading</th><th>Function Overriding</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Meaning</td><td>Same function name with <b>different parameters</b> in the <b>same class</b>.</td><td>Same function name with the <b>same parameters</b> redefined in a <b>derived class</b>.</td></tr>
+        <tr><td class="k">Inheritance</td><td><b>Not required.</b></td><td><b>Required</b> — there must be a base and a derived class.</td></tr>
+        <tr><td class="k">Parameters</td><td>Must be <b>different</b> (number, type or order).</td><td>Must be <b>exactly the same</b>.</td></tr>
+        <tr><td class="k">Return type</td><td>May be same or different (return type alone is not enough).</td><td>Must be the <b>same</b>.</td></tr>
+        <tr><td class="k">Binding</td><td><b>Early / static</b> binding.</td><td><b>Late / dynamic</b> binding (when <span class="term">virtual</span> is used).</td></tr>
+        <tr><td class="k">Type</td><td><b>Compile-time</b> polymorphism.</td><td><b>Run-time</b> polymorphism.</td></tr>
+        <tr><td class="k">virtual keyword</td><td>Not used.</td><td><span class="term">virtual</span> is used in the base class.</td></tr>
+        <tr><td class="k">Purpose</td><td>To give <b>one name to similar jobs</b>.</td><td>To give the child a <b>different version</b> of the parent's job.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="np" style="margin-top:-4px">
+    <span class="tag">छोटो सार</span>
+    <p><b>Overloading</b> = उही क्लासमा उही नाम तर <b>फरक प्यारामिटर</b>; inheritance चाहिँदैन;
+    <b>compile-time</b>। <b>Overriding</b> = derived क्लासमा उही नाम र <b>उही प्यारामिटर</b>;
+    inheritance <b>चाहिन्छ</b>; <span class="term">virtual</span> राखे <b>run-time</b>।</p>
+  </div>
+
+  <h3 style="margin-top:30px;color:var(--blue)">C. Compile-time vs Run-time Polymorphism</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Compile-time (Static)</th><th>Run-time (Dynamic)</th></tr></thead>
+      <tbody>
+        <tr><td class="k">When decided</td><td>While the program is being <b>compiled</b>.</td><td>While the program is <b>running</b>.</td></tr>
+        <tr><td class="k">Also called</td><td>Early binding / static binding.</td><td>Late binding / dynamic binding.</td></tr>
+        <tr><td class="k">Achieved by</td><td>Function overloading, operator overloading.</td><td>Function overriding with <span class="term">virtual</span> functions.</td></tr>
+        <tr><td class="k">Speed</td><td><b>Faster</b> (decision already made).</td><td><b>Slower</b> (decision made during execution).</td></tr>
+        <tr><td class="k">Flexibility</td><td><b>Less</b> flexible.</td><td><b>More</b> flexible.</td></tr>
+        <tr><td class="k">Pointers</td><td>Base class pointer not needed.</td><td>Usually uses a <b>base class pointer or reference</b>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:30px;color:var(--blue)">D. Array vs Linked List</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Array</th><th>Linked List</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Memory</td><td><b>Continuous</b> (contiguous) memory.</td><td><b>Scattered</b> memory joined by pointers.</td></tr>
+        <tr><td class="k">Size</td><td><b>Fixed</b> at declaration time.</td><td><b>Dynamic</b> — grows and shrinks while running.</td></tr>
+        <tr><td class="k">Access</td><td><b>Direct / random</b> access using index — fast.</td><td><b>Sequential</b> access from the first node — slower.</td></tr>
+        <tr><td class="k">Insert / delete</td><td><b>Slow</b> — other elements must be shifted.</td><td><b>Fast</b> — only pointers are changed.</td></tr>
+        <tr><td class="k">Extra memory</td><td>No extra memory needed.</td><td>Extra memory needed for the <b>pointer</b> in each node.</td></tr>
+        <tr><td class="k">Memory waste</td><td>Unused declared space is <b>wasted</b>.</td><td><b>No waste</b> — memory taken only when needed.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="np" style="margin-top:-4px">
+    <span class="tag">छोटो सार</span>
+    <p><b>Array</b>: लगातार मेमोरी, साइज फिक्स, index ले <b>सिधै</b> पुगिन्छ (छिटो), तर थप्न/हटाउन
+    सार्नुपर्ने भएकाले <b>ढिलो</b>। <b>Linked list</b>: छरिएको मेमोरी, साइज घटबढ, पहिलो नोडबाट
+    <b>क्रमशः</b> जानुपर्छ (ढिलो), तर थप्न/हटाउन पोइन्टर मात्र फेरे पुग्छ (<b>छिटो</b>)।</p>
+  </div>
+
+  <h3 style="margin-top:30px;color:var(--blue)">E. Stack vs Queue</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Stack</th><th>Queue</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Principle</td><td><b>LIFO</b> — Last In, First Out.</td><td><b>FIFO</b> — First In, First Out.</td></tr>
+        <tr><td class="k">Ends used</td><td><b>One end</b> only, called <b>top</b>.</td><td><b>Two ends</b> — insert at <b>rear</b>, delete at <b>front</b>.</td></tr>
+        <tr><td class="k">Operations</td><td><span class="term">push()</span>, <span class="term">pop()</span>, <span class="term">peek()</span></td><td><span class="term">enqueue()</span>, <span class="term">dequeue()</span>, <span class="term">front()</span></td></tr>
+        <tr><td class="k">Pointers</td><td>One pointer: <span class="term">top</span>.</td><td>Two pointers: <span class="term">front</span> and <span class="term">rear</span>.</td></tr>
+        <tr><td class="k">Real example</td><td>Pile of plates; browser Back button; undo.</td><td>Queue at a ticket counter; printer job queue.</td></tr>
+        <tr><td class="k">Empty condition</td><td><span class="term">top == -1</span></td><td><span class="term">front &gt; rear</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:30px;color:var(--blue)">F. Linear vs Non-Linear Data Structure</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Linear</th><th>Non-Linear</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Arrangement</td><td>Elements are in a <b>sequence</b>, one after another.</td><td>Elements are <b>not in a sequence</b>; one connects to many.</td></tr>
+        <tr><td class="k">Levels</td><td><b>Single level.</b></td><td><b>Multiple levels</b> (hierarchical).</td></tr>
+        <tr><td class="k">Traversal</td><td>Can be traversed <b>completely in one run</b>.</td><td><b>Cannot</b> be traversed in one straight run.</td></tr>
+        <tr><td class="k">Memory use</td><td>Often <b>less efficient</b> for large data.</td><td>Usually <b>more efficient</b> for large data.</td></tr>
+        <tr><td class="k">Examples</td><td>Array, Linked List, Stack, Queue</td><td>Tree, Graph</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:30px;color:var(--blue)">G. Class vs Object &nbsp;·&nbsp; Constructor vs Destructor &nbsp;·&nbsp; Abstraction vs Encapsulation</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Class</th><th>Object</th></tr></thead>
+      <tbody>
+        <tr><td class="k">What it is</td><td>A <b>blueprint / template</b>.</td><td>An <b>instance</b> of a class.</td></tr>
+        <tr><td class="k">Memory</td><td><b>Does not</b> take memory.</td><td><b>Takes</b> memory when created.</td></tr>
+        <tr><td class="k">How many</td><td>Declared <b>once</b>.</td><td><b>Many</b> objects from one class.</td></tr>
+        <tr><td class="k">Created by</td><td><span class="term">class Student { … };</span></td><td><span class="term">Student s1;</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Constructor</th><th>Destructor</th></tr></thead>
+      <tbody>
+        <tr><td class="k">When called</td><td>Automatically when the object is <b>created</b>.</td><td>Automatically when the object is <b>destroyed</b>.</td></tr>
+        <tr><td class="k">Name</td><td>Same as the class name.</td><td>Class name with <span class="term">~</span> in front.</td></tr>
+        <tr><td class="k">Parameters</td><td><b>Can</b> take parameters.</td><td><b>Cannot</b> take parameters.</td></tr>
+        <tr><td class="k">Overloading</td><td><b>Can</b> be overloaded.</td><td><b>Cannot</b> be overloaded — only one.</td></tr>
+        <tr><td class="k">Purpose</td><td><b>Initialise</b> data / allocate memory.</td><td><b>Clean up</b> / free memory.</td></tr>
+        <tr><td class="k">Order</td><td>Base first, then derived.</td><td>Derived first, then base (reverse).</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th style="width:150px">Basis</th><th>Abstraction</th><th>Encapsulation</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Hides</td><td>Hides the <b>complexity / implementation</b> — the "how".</td><td>Hides the <b>data</b> — the "what".</td></tr>
+        <tr><td class="k">Level</td><td>A <b>design-level</b> idea.</td><td>An <b>implementation-level</b> idea.</td></tr>
+        <tr><td class="k">Achieved by</td><td>Abstract classes and <b>pure virtual functions</b>.</td><td><b>private</b> data + <b>public</b> getter/setter functions.</td></tr>
+        <tr><td class="k">Focus</td><td><b>What</b> an object does.</td><td><b>How</b> the data is protected.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>

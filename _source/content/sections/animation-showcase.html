@@ -1,0 +1,161 @@
+<section id="fx">
+  <div class="sec-head">
+    <div class="sec-num">▶</div>
+    <div>
+      <h2>Animation &amp; Motion Reference</h2>
+      <p class="sec-sub">Internal QA page — not linked from student navigation</p>
+    </div>
+    <span class="marks">dev only</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="callout">
+    <div class="h">What this page is for</div>
+    Every motion pattern the platform uses, on one page, so timing and quality can be
+    judged together rather than one lesson at a time. Change a motion token and check
+    it here against all of them at once.
+  </div>
+
+  <!-- ============ HIERARCHY ============ -->
+  <h3 class="topic">The three levels of motion</h3>
+  <div class="cards">
+    <div class="card">
+      <h4>L1 · Micro-interaction</h4>
+      <p>The interface acknowledging a touch. Hover, focus, button press, answer reveal.
+      120–200ms. Should be felt, not watched.</p>
+      <div class="btns" style="margin-top:10px">
+        <button type="button" class="primary">Press me</button>
+        <button type="button" class="blue">Focus me</button>
+      </div>
+    </div>
+    <div class="card">
+      <h4>L2 · Educational transition</h4>
+      <p>A component changing state: a node activating, a step advancing, a value
+      changing. 200–320ms. Clearly visible, never distracting.</p>
+      <div class="btns" style="margin-top:10px">
+        <button type="button" data-fx="pulse" data-fx-target="#fx-pulse-target">Pulse</button>
+        <button type="button" data-fx="value" data-fx-target="#fx-value-target">Change value</button>
+      </div>
+      <p style="margin-top:10px">
+        <span id="fx-pulse-target" class="pill y">notice me</span>
+        <span id="fx-value-target" class="term" style="font-size:1.2rem">10</span>
+      </p>
+    </div>
+    <div class="card">
+      <h4>L3 · Educational simulation</h4>
+      <p>The motion <b>is</b> the concept: order, flow, traversal, propagation.
+      520ms transformations, 760ms between narrated steps. Student-controlled.</p>
+      <p style="margin-top:10px"><span class="pill b">see the diagram below</span></p>
+    </div>
+  </div>
+
+  <!-- ============ TOKENS ============ -->
+  <h3 class="topic">Duration tokens</h3>
+  <div class="en">
+    <p class="sim-controls-label">Each bar runs for its own duration — press to compare</p>
+    <div class="btns">
+      <button type="button" data-fx="run" data-fx-dur="fast">fast · 120ms</button>
+      <button type="button" data-fx="run" data-fx-dur="base">base · 200ms</button>
+      <button type="button" data-fx="run" data-fx-dur="slow">slow · 320ms</button>
+      <button type="button" data-fx="run" data-fx-dur="deliberate">deliberate · 520ms</button>
+    </div>
+    <div id="fx-track" style="margin-top:14px;display:grid;gap:8px"></div>
+    <p style="font-size:var(--fs-sm);color:var(--color-text-muted);margin-top:12px">
+      <b>fast</b> — below conscious notice; the interface simply responded.
+      <b>base</b> — the shortest change the eye can reliably track.
+      <b>slow</b> — an element entering or leaving a structure.
+      <b>deliberate</b> — a transformation the student is meant to follow.
+    </p>
+  </div>
+
+  <h3 class="topic">Easing</h3>
+  <div class="en">
+    <p>Easing carries meaning. Interface motion is eased; <b>data travelling along a path
+    is linear</b>, because a value moving on a bus moves at a constant rate and easing it
+    would misrepresent the mechanism.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Token</th><th>Curve</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr><td class="k">--ease-standard</td><td class="k">cubic-bezier(.2,.6,.3,1)</td><td>General state change</td></tr>
+          <tr><td class="k">--ease-emphasis</td><td class="k">cubic-bezier(.2,.9,.25,1)</td><td>A change that must be noticed</td></tr>
+          <tr><td class="k">--ease-enter</td><td class="k">cubic-bezier(0,.7,.3,1)</td><td>Element arriving — decelerates and settles</td></tr>
+          <tr><td class="k">--ease-exit</td><td class="k">cubic-bezier(.5,0,.9,.3)</td><td>Element leaving — accelerates away</td></tr>
+          <tr><td class="k">--ease-flow</td><td class="k">linear</td><td>Constant-rate travel of data</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============ STATE LANGUAGE ============ -->
+  <h3 class="topic">Shared state language</h3>
+  <p class="lead-sub">The same vocabulary in diagrams, simulators, the quiz and the tracer —
+  so a success in one looks like a success in all of them.</p>
+  <div class="en">
+    <div class="btns">
+      <span class="pill">idle</span>
+      <span class="pill is-active">is-active</span>
+      <span class="pill is-selected">is-selected</span>
+      <span class="pill is-success">is-success</span>
+      <span class="pill is-error">is-error</span>
+      <span class="pill is-disabled">is-disabled</span>
+    </div>
+    <p class="sim-controls-label" style="margin-top:16px">The same states inside SVG</p>
+    <svg viewBox="0 0 560 70" style="max-width:100%;height:auto" role="img" aria-label="State classes applied to SVG shapes">
+      <rect class="f-box" x="10"  y="15" width="100" height="40" rx="6"/>
+      <text class="f-val" x="60"  y="40" font-size="11">idle</text>
+      <rect class="f-box is-active" x="125" y="15" width="100" height="40" rx="6"/>
+      <text class="f-val is-active" x="175" y="40" font-size="11">active</text>
+      <rect class="f-box is-success" x="240" y="15" width="100" height="40" rx="6"/>
+      <text class="f-val is-success" x="290" y="40" font-size="11">success</text>
+      <rect class="f-box is-error" x="355" y="15" width="100" height="40" rx="6"/>
+      <text class="f-val is-error" x="405" y="40" font-size="11">error</text>
+    </svg>
+  </div>
+
+  <!-- ============ LIVE ANIMATED DIAGRAM ============ -->
+  <h3 class="topic">Animated diagram — the real thing</h3>
+  <p class="lead-sub">This is the shipped Unit 5 diagram, not a mock-up. Step forward and
+  backward: the state is recomputed from step 0 each time, so reversing is exact rather
+  than an undo guess.</p>
+  {{dia:ctorOrder}}
+
+  <h3 class="topic">Cause and effect — run-time dispatch</h3>
+  <p class="lead-sub">The Unit 6 diagram. The same pointer reaching a different function is
+  a flow, which is why it earns animation while the taxonomy diagrams beside it do not.</p>
+  {{dia:dispatch}}
+
+  <!-- ============ WHAT STAYS STATIC ============ -->
+  <h3 class="topic">What deliberately does not animate</h3>
+  <div class="pair">
+    <div class="en">
+      <span class="tag">14 of 22 diagrams stay static</span>
+      <p>Taxonomies, comparison tables and reference shapes are <b>better</b> still.
+      Students screenshot them, print them and revise from them. Animation would add
+      nothing and would cost the ability to take one in at a glance.</p>
+      <p>A beautifully animated but educationally unnecessary element should stay static.</p>
+    </div>
+    <div class="np">
+      <span class="tag">२२ मध्ये १४ चित्र स्थिर नै रहन्छन्</span>
+      <p>वर्गीकरण, तुलना तालिका र सन्दर्भ आकृति <b>स्थिर</b> नै राम्रो हुन्छ।
+      विद्यार्थीले स्क्रिनसट लिन्छन्, प्रिन्ट गर्छन् र दोहोर्‍याउँछन्।
+      एनिमेसनले केही थप्दैन।</p>
+    </div>
+  </div>
+  {{dia:inhTypes}}
+
+  <!-- ============ REDUCED MOTION ============ -->
+  <h3 class="topic">Reduced motion</h3>
+  <div class="en">
+    <p>With <span class="term">prefers-reduced-motion: reduce</span>:</p>
+    <ul class="tick">
+      <li>Every CSS duration collapses to zero.</li>
+      <li>Step-revealed diagram elements render at reduced opacity instead of hidden, so
+      the diagram still reads as one complete figure.</li>
+      <li>Narrated simulator sequences play out <b>instantly and completely</b> — every
+      caption and output line is written at once. Less movement, not less teaching.</li>
+      <li>The pulse and travel primitives become no-ops.</li>
+    </ul>
+    <p><b>Currently detected:</b> <span id="fx-reduced" class="term">checking…</span></p>
+  </div>
+</section>
