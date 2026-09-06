@@ -5,13 +5,16 @@ A bilingual (English + Nepali) study and revision website for Nepal's
 stream, Curriculum Development Centre, 2078.
 
 Every topic is explained in **simple English first** — the exact wording the exam
-uses — with a **Nepali explanation beside it**, always both visible at once. The
-site is built for students whose English is weak but whose exam is in English.
+uses — with a **Nepali explanation beside it**. Both are shown together by
+default, and a student can switch to **Nepali-led** or **English-only** at any
+time without losing their place. The site is built for students whose English is
+weak but whose exam is in English.
 
-**Status:** Grade 10 *Data Structure & OOP using C++* is complete and live-verified.
-The other seven Grade 9/10 subjects ship their full official syllabus outline.
-Grades 11–12 are a later phase. See **[docs/PROJECT_REPORT.md](docs/PROJECT_REPORT.md)**
-for the complete report.
+**Status:** Grade 10 *Data Structure & OOP using C++* and *Digital Design &
+Microprocessor* are both complete and live-verified. The other six Grade 9/10
+subjects ship their full official syllabus outline. Grades 11–12 are a later
+phase. See **[docs/PHASE-3-COMPLETION-REPORT.md](docs/PHASE-3-COMPLETION-REPORT.md)**
+for the most recent report.
 
 ---
 
@@ -19,19 +22,20 @@ for the complete report.
 
 | | |
 | --- | --- |
-| Pages | 20 static HTML |
-| Internal links | 704, all resolving |
-| Subjects with full notes | 1 of 8 (Grade 9 + 10) |
-| Subjects with syllabus outline | 7 of 8 — 46 units, 284 topics |
-| Written content | ~21,800 words |
-| Hand-drawn SVG diagrams | 22 (20 static, 2 animated) |
-| Worked examples | 20 |
-| Exam-style questions | 24, each with a model answer |
-| Interactive simulators | 3, in a shared container |
-| Animated diagrams | 2, student-stepped |
+| Pages | 26 student pages + 2 internal |
+| Internal links | 1,102, all resolving |
+| Language modes | 3 — bilingual (default), Nepali-led, English |
+| Subjects with full notes | 2 of 8 (Grade 9 + 10) |
+| Subjects with syllabus outline | 6 of 8 — 46 units, 284 topics |
+| Written content | 32,281 words |
+| Hand-drawn SVG diagrams | 38 (32 static, 6 animated) |
+| Worked examples | 34 |
+| Exam-style questions | 43, each with a model answer |
+| Interactive components | 10 simulations, 15 runtime modules + 6 services |
 | Traceable C++ programs | 3 (58 steps) |
-| Quiz questions | 15, with instant feedback |
-| Prediction exercises | 3, commit-before-reveal |
+| Question bank | 69, tagged by unit, topic and difficulty |
+| Prediction exercises | 8, commit-before-reveal |
+| Automated tests | 202 |
 | Runtime dependencies | none |
 
 ## Works offline, permanently
@@ -61,8 +65,8 @@ The published site is **generated**. Source lives in `_source/`.
 npm run check
 ```
 
-That runs `npm run build` (writes all 20 pages and assets, failing loudly on any
-content-contract violation) followed by `npm test` (113 tests covering the build,
+That runs `npm run build` (writes all 28 pages and assets, failing loudly on any
+content-contract violation) followed by `npm test` (202 tests covering the build,
 links, the content contract, the runtime, the storage layer and the design system).
 
 **There are no dependencies to install.** Node 20+ is the only requirement.
@@ -77,9 +81,9 @@ grade9/  grade10/          Subject index + one folder per subject
     trace.html               Step-through C++ program tracer
     tables.html              Comparison tables + exam terms
     quiz.html                15-question self-check
-assets/css  assets/js      One stylesheet, twelve scripts
+assets/css  assets/js      One stylesheet, seventeen scripts
 _source/                   Source — config, content, design, runtime, build
-tests/                     113 automated tests (npm test)
+tests/                     202 automated tests (npm test)
 docs/                      Architecture, security, accessibility, decisions
 ```
 
@@ -88,31 +92,13 @@ docs/                      Architecture, security, accessibility, decisions
 
 ## Documentation
 
-| Document | Purpose |
-| --- | --- |
-| `README.md` | This file — what it is, how to run and rebuild |
-| `docs/ARCHITECTURE.md` | Layers, dependency direction, extension points, future boundaries |
-| `docs/CONTENT-ARCHITECTURE.md` | The content contract and how to add a subject |
-| `docs/I18N-ARCHITECTURE.md` | The bilingual model and why there is no language toggle |
-| `docs/UI-ARCHITECTURE.md` | Component vocabulary, chrome generation, responsive and print |
-| `docs/SIMULATION-ARCHITECTURE.md` | The step player, the registry, how to build a simulation |
-| `docs/ASSESSMENT-ARCHITECTURE.md` | Question schema, QuizService, path to a question bank |
-| `docs/SECURITY.md` | Threat model, CSP, and the rules for a future backend |
-| `docs/ACCESSIBILITY.md` | Measured contrast, what is fixed, what is not |
-| `docs/LEARNING-UX.md` | The lesson framework: predict, experiment, exam connection |
-| `docs/DESIGN-SYSTEM.md` | Tokens, scales, components, responsive and motion rules |
-| `docs/MOTION-DESIGN.md` | Motion levels, timing, easing, reduced motion, when NOT to animate |
-| `docs/VISUALIZATION-ARCHITECTURE.md` | Static / animated / interactive modes and how to add one |
-| `docs/PHASE-2.5-ANIMATION-AUDIT.md` | Every visual classified, with the animate-or-not reasoning |
-| `docs/PHASE-2.5-DECISIONS.md` | Motion and visualization decision records |
-| `docs/PHASE-2.5-COMPLETION-REPORT.md` | What Phase 2.5 changed, measurements, remaining debt |
-| `docs/PHASE-1-DECISIONS.md` | Phase 1 decision records, including what was rejected |
-| `docs/PHASE-2-DECISIONS.md` | Phase 2 design and UX decision records |
-| `docs/PHASE-2-UX-AUDIT.md` | Measured learning-UX and mobile audit |
-| `docs/PHASE-2-COMPLETION-REPORT.md` | What Phase 2 changed, results, remaining debt |
-| `docs/PHASE-1-COMPLETION-REPORT.md` | What Phase 1 changed, test results, remaining debt |
-| `docs/PROJECT_REPORT.md` | Content status: what is taught, what remains to write |
-| `_source/README.md` | Build pipeline: add a diagram, deepen a unit, add a subject |
+Thirty-one documents, indexed by what you are trying to do:
+**[docs/README.md](docs/README.md)**.
+
+The short version — contracts describe how the system works now and must be
+kept true; phase records are dated accounts of a piece of work and must not be
+rewritten. Start with [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), then read
+the contract for whatever you are about to touch.
 
 ## Licence and attribution
 

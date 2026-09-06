@@ -3,6 +3,12 @@
 Bilingualism is not a feature of this product — it is the product. The
 architecture reflects that.
 
+> **Superseded in part by Phase 3.** §1 and §7 recorded a decision that there
+> would be no language switcher. There now is one, with three modes and
+> bilingual as the default. The reasoning below is still why bilingual is the
+> default; it is no longer why it is the only option.
+> See **[LANGUAGE-SYSTEM.md](LANGUAGE-SYSTEM.md)**.
+
 ---
 
 ## 1. The pedagogical model comes first
@@ -129,7 +135,7 @@ the build assumes exactly two languages except the `.pair` layout itself.
 
 | Not built | Why |
 | --- | --- |
-| Language switcher | Contradicts the pedagogy — both languages must stay visible |
+| ~~Language switcher~~ | **Built in Phase 3.** Bilingual remains the default; the other two modes exist so a student is not made to read past the language they do not need. See [LANGUAGE-SYSTEM.md](LANGUAGE-SYSTEM.md) |
 | Message catalogues / ICU | Content is prose, not interpolated UI strings |
 | RTL support | No target language is right-to-left |
 | Locale-formatted numbers/dates | Exam notation is used verbatim; localising it would teach the wrong form |

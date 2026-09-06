@@ -92,6 +92,9 @@ worth — it is a cheap check that catches a mistranscribed syllabus.
 
 ### Page (authored unit)
 
+Page maps are keyed by subject id — `pages['grade10/digital-design']` — with a
+`hero` section and an ordered `pages` array.
+
 ```js
 {
   file:  'unit1.html',
@@ -170,6 +173,6 @@ No existing subject, page or stylesheet is touched at any step.
 | Limitation | Consequence | When it must be fixed |
 | --- | --- | --- |
 | Lesson bodies are HTML, not structured data | Cannot re-render as an app or PDF without parsing | If a native app or generated PDF is needed |
-| `config/pages.js` is specific to `grade10/oop-cpp` | A second authored subject needs the page map keyed by subject | Before the second subject is authored |
-| Nepali lives inline in HTML, not in a message catalogue | A third language means re-authoring | See [I18N-ARCHITECTURE.md](I18N-ARCHITECTURE.md) |
+| ~~`config/pages.js` is specific to `grade10/oop-cpp`~~ | **Fixed in Phase 3.** The page map is keyed by subject id and the build iterates it, so a third authored subject is a config entry plus lesson files | — |
+| Nepali lives inline in HTML, not in a message catalogue | A third *simultaneous* language means re-authoring; a third *switchable* one needs only content | See [LANGUAGE-SYSTEM.md](LANGUAGE-SYSTEM.md) |
 | No content versioning | Cannot show "updated since you last revised" | When progress tracking ships |

@@ -1,3 +1,9 @@
+> **Historical — a Phase 1-era snapshot.** Page counts, the diagram total
+> and the file layout it describes have all moved on, and it still names
+> `build2.js`, which no longer exists. Kept for the record. For current
+> status see the phase completion reports, most recently
+> [PHASE-3-COMPLETION-REPORT.md](PHASE-3-COMPLETION-REPORT.md).
+
 # RGSC Study Board — Project Report
 
 **Status date:** 5 September 2026
