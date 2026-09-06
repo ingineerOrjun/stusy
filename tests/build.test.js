@@ -46,8 +46,24 @@ const ASSETS = [
   'assets/js/services/progress.js'
 ];
 
-function build(){
+function runBuild(){
   return execFileSync(process.execPath, [BUILD], { cwd: ROOT, encoding: 'utf8' });
+}
+
+/* Eight tests in this file each ran a full build, which is eight chances
+   for a transient Windows file lock to fail the suite for environmental
+   reasons — and it did, about once in fifteen runs. The output is
+   deterministic (asserted below), so one build serves every test that
+   only needs the site to exist. `buildAgain()` is for the two tests
+   whose subject IS a second build. */
+let cached = null;
+function build(){
+  if (cached === null) cached = runBuild();
+  return cached;
+}
+function buildAgain(){
+  cached = runBuild();
+  return cached;
 }
 
 function hashTree(){
@@ -87,9 +103,11 @@ test('all runtime assets are published', () => {
 });
 
 test('build is deterministic — rebuilding changes nothing', () => {
+  /* The one test whose subject IS a second build, so it must not reuse
+     the cached one. */
   build();
   const first = hashTree();
-  build();
+  buildAgain();
   const second = hashTree();
   for (const k of Object.keys(first)){
     assert.strictEqual(second[k], first[k], 'non-deterministic output: ' + k);

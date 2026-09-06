@@ -1,0 +1,216 @@
+
+/* ============================================================
+   LANGUAGE LAYER — Phase 3
+
+   Three modes over one DOM. Both languages are always present; this
+   layer decides which is shown. Nothing is re-rendered when the mode
+   changes, which is why a switch cannot disturb a running simulation,
+   an answered prediction or a part-finished quiz.
+
+       (none) / bi   both, side by side      — the default
+       ne            Nepali-led
+       en            English only
+
+   Loaded last, after motion.css, so it can override any display
+   declaration in the layers above.
+
+   WHY !important HERE
+   This layer answers one question — "is this passage shown in this
+   mode?" — and its answer has to beat every display rule in the
+   product, including deeper ones such as `.fig figcaption .np-cell`
+   (0,2,1). Raising specificity to out-rank each of them individually
+   would be a guessing game that breaks the next time a component is
+   styled. A visibility mode is the legitimate case for !important, and
+   it is confined to this file.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. ENGLISH MODE — every Nepali passage is hidden
+   ------------------------------------------------------------ */
+[data-lang="en"] .np,
+[data-lang="en"] .np-cell,
+[data-lang="en"] .np-line,
+[data-lang="en"] .lead-np,
+[data-lang="en"] .t-ne,
+[data-lang="en"] .dia-cap-ne,
+[data-lang="en"] .verdict-np,
+[data-lang="en"] .sec-sub,
+[data-lang="en"] .brand-txt small,
+[data-lang="en"] .mobilepanel a small,
+[data-lang="en"] .dropmenu a small{ display: none !important; }
+
+/* ------------------------------------------------------------
+   2. NEPALI MODE — the English half is hidden
+
+   .t-en is generated at build time (build/bilingual.js) around English
+   prose that sits beside an inline Nepali gloss. .en / .en-line /
+   .dia-cap-en were already explicit in the markup.
+
+   Exam terminology written inside Nepali prose is NOT hidden. It is
+   not a translation failure — it is the point. See LANGUAGE-SYSTEM.md.
+   ------------------------------------------------------------ */
+/* .en means "the English half of a bilingual pair" — and ONLY that.
+   It is also used, in seven places, purely for its solid-panel styling:
+   the program tracer's container is one of them, and the unqualified
+   rule below used to hide the ENTIRE TRACER in Nepali mode. Scoping it
+   to .pair makes the selector say what the class means, and stops a
+   future author breaking a mode by reusing a panel look. */
+[data-lang="ne"] .pair .en,
+[data-lang="ne"] .en-line,
+[data-lang="ne"] .t-en,
+[data-lang="ne"] .dia-cap-en{ display: none !important; }
+
+/* ------------------------------------------------------------
+   3. LAYOUT REPAIR
+
+   .pair is a two-column grid. With one column hidden the survivor must
+   take the full width, or the lesson reads as a half-empty page.
+   ------------------------------------------------------------ */
+[data-lang="en"] .pair,
+[data-lang="ne"] .pair{ grid-template-columns: 1fr; }
+
+/* The Nepali panel is a dashed chalk box so a student can find it by
+   shape next to the solid English panel. Alone, that distinction has
+   nothing to distinguish it from, and the dashes read as a draft. In
+   Nepali mode it becomes the primary panel and is dressed as one. */
+[data-lang="ne"] .np{
+  border-style: solid;
+  border-color: var(--color-border);
+  background: var(--color-surface);
+}
+[data-lang="ne"] .np .tag{ color: var(--color-primary); }
+
+/* A gloss that becomes the only text should not stay indented under
+   nothing, or sized as a footnote to an absent paragraph. */
+[data-lang="ne"] .np-cell{
+  font-size: var(--fs-sm);
+  margin-top: 0 !important;
+}
+
+/* ------------------------------------------------------------
+   3b. BILINGUAL PAIRS WRITTEN BY SCRIPT
+
+   The quiz engine renders both languages into the DOM and lets this
+   layer choose — it never re-renders on a mode change, because
+   re-rendering a quiz is how a student's answers get thrown away.
+
+   Both halves therefore share a line, and two languages on one line is
+   unreadable at question length. They stack instead.
+   ------------------------------------------------------------ */
+.q-title .t-en, .q-title .t-ne,
+.opt .t-en,     .opt .t-ne,
+.expl .t-en,    .expl .t-ne{ display: block; }
+
+.q-title .t-ne, .opt .t-ne, .expl .t-ne{
+  font-family: var(--deva);
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  color: #f6ecd2;
+  line-height: var(--lh-deva);
+  margin-top: 3px;
+}
+/* The option letter stays on the English line rather than becoming a
+   third stacked row. */
+.opt .opt-key{ float: left; margin-right: 6px; font-family: var(--mono); color: var(--chalk-faint); }
+.opt::after{ content: ""; display: block; clear: both; }
+
+/* In a single-language mode the pair collapses to one line, so the gap
+   that separated the two languages would read as a stray margin. */
+[data-lang="en"] .q-title .t-en,
+[data-lang="ne"] .q-title .t-ne,
+[data-lang="en"] .opt .t-en,
+[data-lang="ne"] .opt .t-ne{ margin-top: 0; }
+
+/* The verdict is inline with the explanation that follows it. */
+.expl b .t-en, .expl b .t-ne{ display: inline; }
+
+/* ------------------------------------------------------------
+   4. THE SWITCHER
+
+   A segmented control in the top bar: one visible group, one active
+   segment, no menu to open. Built as a radiogroup because the three
+   modes are mutually exclusive — that is what tells a screen-reader
+   user this is a choice of one, not three buttons.
+   ------------------------------------------------------------ */
+.langbar{
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  padding: 3px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(0,0,0,.22);
+  flex: none;
+}
+.lang-opt{
+  font-family: var(--sans);
+  font-size: .78rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--chalk-dim);
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 7px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--dur-fast, .14s) ease, background var(--dur-fast, .14s) ease;
+}
+.lang-opt:hover{ color: var(--chalk-white); background: rgba(255,255,255,.06); }
+
+/* The active segment is styled from the document attribute, not from a
+   class the runtime adds — so it is correct on the very first paint,
+   before any script runs. */
+[data-lang="bi"] .lang-opt[data-lang-set="bi"],
+[data-lang="ne"] .lang-opt[data-lang-set="ne"],
+[data-lang="en"] .lang-opt[data-lang-set="en"],
+html:not([data-lang]) .lang-opt[data-lang-set="bi"]{
+  color: #12241f;
+  background: linear-gradient(150deg, var(--yellow), #e0a93f);
+  box-shadow: 0 1px 6px rgba(0,0,0,.35);
+}
+
+.lang-opt .ll-mini{ display: none; }
+
+/* Devanagari in a control needs its own stack, or it falls back to a
+   font that renders the shirorekha badly at small sizes. */
+.lang-opt [lang="ne"]{ font-family: var(--deva); }
+
+/* ------------------------------------------------------------
+   5. RESPONSIVE
+
+   Below 940px the desktop nav collapses to the hamburger and the bar
+   gets tight. The switcher keeps its place — it is a learning control,
+   not navigation, and burying it in a menu would make the product's
+   main differentiator invisible — but it switches to short labels.
+   ------------------------------------------------------------ */
+@media (max-width: 940px){
+  .langbar{ margin-left: auto; }
+}
+@media (max-width: 640px){
+  .lang-opt .ll-full{ display: none; }
+  .lang-opt .ll-mini{ display: inline; }
+  .lang-opt{ padding: 7px 10px; font-size: .8rem; }
+  .brand-txt small{ display: none; }
+}
+@media (max-width: 380px){
+  .topbar-in{ gap: 8px; padding: 0 10px; }
+  .lang-opt{ padding: 7px 8px; }
+}
+
+/* Touch devices need the 44px floor on this control like any other. */
+@media (pointer: coarse){
+  .lang-opt{ min-height: var(--touch-min); }
+}
+
+/* ------------------------------------------------------------
+   6. PRINT
+   A printed revision sheet should carry whatever mode the student
+   chose, so nothing is forced back on here.
+   ------------------------------------------------------------ */
+@media print{
+  .langbar{ display: none; }
+}

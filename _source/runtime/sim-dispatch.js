@@ -82,7 +82,7 @@ function dispatch(key){
   conClear(con); cap.style.display = 'none';
   if (!key){
     renderCode(document.getElementById('dispCode'), DISP_CODE, 0);
-    conLine(con, 'Reset. Click a call above to see how C++ decides which function runs.');
+    conLine(con, 'Reset. Click a call above to see how C++ decides which function runs.', 't-en');
     conLine(con, 'रिसेट भयो। माथिको कुनै बटन थिच्नुहोस् — C++ ले कुन फङ्सन छान्छ हेर्न।', 'np');
     return;
   }

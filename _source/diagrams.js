@@ -7,7 +7,7 @@
 
 /* arrow marker, unique id per diagram */
 function ah(id, color){
-  color = color || '#ffd76e';
+  color = color || 'var(--color-primary)';
   return `<defs><marker id="${id}" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
     <path d="M0,0 L10,5 L0,10 z" fill="${color}"/></marker></defs>`;
@@ -98,8 +98,8 @@ D.linkedList = `
 D.arrayVsList = `
 <svg viewBox="0 0 720 300" role="img" aria-labelledby="t-avl">
   <title id="t-avl">Inserting a value in the middle of an array versus a linked list</title>
-  ${ah('a-avl', '#ff8f7a')}
-  ${ah('a-avl2', '#9ae6a0')}
+  ${ah('a-avl', 'var(--color-error)')}
+  ${ah('a-avl2', 'var(--color-success)')}
 
   <text class="f-ttl" x="10" y="18">Insert 55 in the middle — why the two structures behave differently</text>
 
@@ -117,8 +117,8 @@ D.arrayVsList = `
     <text class="f-val" x="280" y="85">60</text>
     <text class="f-val" x="355" y="85">91</text>
   </g>
-  <path class="f-arr" marker-end="url(#a-avl)" style="stroke:#ff8f7a" d="M280,116 L355,116"/>
-  <path class="f-arr" marker-end="url(#a-avl)" style="stroke:#ff8f7a" d="M355,132 L430,132"/>
+  <path class="f-arr" marker-end="url(#a-avl)" style="stroke:var(--color-error)" d="M280,116 L355,116"/>
+  <path class="f-arr" marker-end="url(#a-avl)" style="stroke:var(--color-error)" d="M355,132 L430,132"/>
   <text class="f-lbl" x="480" y="88" text-anchor="start">3 elements had to move.</text>
   <text class="f-lbl" x="480" y="106" text-anchor="start">Big array = very slow.</text>
   <text class="f-lbl" x="230" y="152">shifting costs time — this is the array's weakness</text>
@@ -140,9 +140,9 @@ D.arrayVsList = `
     <rect class="f-box-d" x="500" y="208" width="34" height="38" rx="5"/>
     <text class="f-val" x="470" y="233">60</text>
   </g>
-  <path class="f-arr" marker-end="url(#a-avl2)" style="stroke:#9ae6a0" d="M114,227 L146,227"/>
-  <path class="f-arr" marker-end="url(#a-avl2)" style="stroke:#ffd76e" d="M244,232 L276,268"/>
-  <path class="f-arr" marker-end="url(#a-avl2)" style="stroke:#ffd76e" d="M374,270 L436,238"/>
+  <path class="f-arr" marker-end="url(#a-avl2)" style="stroke:var(--color-success)" d="M114,227 L146,227"/>
+  <path class="f-arr" marker-end="url(#a-avl2)" style="stroke:var(--color-primary)" d="M244,232 L276,268"/>
+  <path class="f-arr" marker-end="url(#a-avl2)" style="stroke:var(--color-primary)" d="M374,270 L436,238"/>
   <text class="f-lbl" x="600" y="233" text-anchor="start">only 2 links</text>
   <text class="f-lbl" x="600" y="251" text-anchor="start">were re-pointed</text>
 </svg>`;
@@ -151,7 +151,7 @@ D.stackOps = `
 <svg viewBox="0 0 720 280" role="img" aria-labelledby="t-stk">
   <title id="t-stk">Stack push and pop happen at the same end, called the top</title>
   ${ah('a-stk')}
-  ${ah('a-stk2', '#ff8f7a')}
+  ${ah('a-stk2', 'var(--color-error)')}
   <text class="f-ttl" x="10" y="18">STACK — LIFO (Last In, First Out) · both push and pop use the TOP</text>
 
   <rect class="f-box-d" x="230" y="60" width="150" height="200" rx="6"/>
@@ -169,8 +169,8 @@ D.stackOps = `
 
   <path class="f-arr" marker-end="url(#a-stk)" d="M150,120 L150,145 L238,145"/>
   <text class="f-lbl-y" x="120" y="112" text-anchor="middle">push(30)</text>
-  <path class="f-arr" marker-end="url(#a-stk2)" style="stroke:#ff8f7a" d="M238,110 L150,110 L150,86"/>
-  <text class="f-lbl" x="120" y="78" text-anchor="middle" fill="#ff8f7a">pop() → 30</text>
+  <path class="f-arr" marker-end="url(#a-stk2)" style="stroke:var(--color-error)" d="M238,110 L150,110 L150,86"/>
+  <text class="f-lbl" x="120" y="78" text-anchor="middle" style="fill:var(--color-error)">pop() → 30</text>
 
   <text class="f-lbl" x="360" y="276">The plate you put on LAST is the plate you take off FIRST. The bottom plate leaves last.</text>
 </svg>`;
@@ -179,7 +179,7 @@ D.queueOps = `
 <svg viewBox="0 0 720 220" role="img" aria-labelledby="t-que">
   <title id="t-que">Queue insertion at the rear and deletion at the front</title>
   ${ah('a-que')}
-  ${ah('a-que2', '#ff8f7a')}
+  ${ah('a-que2', 'var(--color-error)')}
   <text class="f-ttl" x="10" y="18">QUEUE — FIFO (First In, First Out) · two different ends are used</text>
 
   <rect class="f-box-d" x="150" y="70" width="420" height="70" rx="6"/>
@@ -197,8 +197,8 @@ D.queueOps = `
   <text class="f-lbl" x="210" y="177">leaves first</text>
   <text class="f-lbl" x="510" y="177">joined last</text>
 
-  <path class="f-arr" marker-end="url(#a-que2)" style="stroke:#ff8f7a" d="M158,105 L92,105"/>
-  <text class="f-lbl" x="60" y="98" fill="#ff8f7a">dequeue()</text>
+  <path class="f-arr" marker-end="url(#a-que2)" style="stroke:var(--color-error)" d="M158,105 L92,105"/>
+  <text class="f-lbl" x="60" y="98" style="fill:var(--color-error)">dequeue()</text>
   <path class="f-arr" marker-end="url(#a-que)" d="M638,105 L568,105"/>
   <text class="f-lbl-y" x="666" y="98">enqueue()</text>
 
@@ -235,12 +235,18 @@ D.graph = `
   <title id="t-graph">A graph of five vertices joined by edges, containing a cycle</title>
   <text class="f-ttl" x="10" y="18">GRAPH — vertices joined by edges. Cycles ARE allowed. No root, no parent.</text>
 
-  <line class="f-ln" x1="160" y1="90"  x2="330" y2="60"  style="stroke:#7fd1ff"/>
-  <line class="f-ln" x1="330" y1="60"  x2="470" y2="130" style="stroke:#ffd76e;stroke-width:2.4"/>
-  <line class="f-ln" x1="470" y1="130" x2="300" y2="190" style="stroke:#ffd76e;stroke-width:2.4"/>
-  <line class="f-ln" x1="300" y1="190" x2="330" y2="60"  style="stroke:#ffd76e;stroke-width:2.4"/>
-  <line class="f-ln" x1="160" y1="90"  x2="300" y2="190" style="stroke:#7fd1ff"/>
-  <line class="f-ln" x1="470" y1="130" x2="600" y2="200" style="stroke:#7fd1ff"/>
+  <line class="f-ln" x1="183.6" y1="85.8" x2="306.4" y2="64.2" style="stroke:var(--color-secondary)"/>
+  <line class="f-ln" x1="351.5" y1="70.7" x2="448.5" y2="119.3" style="stroke:var(--color-primary);stroke-width:2.4"/>
+  <line class="f-ln" x1="447.4" y1="138" x2="322.6" y2="182" style="stroke:var(--color-primary);stroke-width:2.4"/>
+  <line class="f-ln" x1="305.4" y1="166.6" x2="324.6" y2="83.4" style="stroke:var(--color-primary);stroke-width:2.4"/>
+  <line class="f-ln" x1="179.5" y1="103.9" x2="280.5" y2="176.1" style="stroke:var(--color-secondary)"/>
+  <line class="f-ln" x1="491.1" y1="141.4" x2="578.9" y2="188.6" style="stroke:var(--color-secondary)"/>
+
+  <circle class="f-node-bg" cx="160" cy="90"  r="24"/>
+  <circle class="f-node-bg" cx="330" cy="60"  r="24"/>
+  <circle class="f-node-bg" cx="470" cy="130" r="24"/>
+  <circle class="f-node-bg" cx="300" cy="190" r="24"/>
+  <circle class="f-node-bg" cx="600" cy="200" r="24"/>
 
   <circle class="f-box" cx="160" cy="90"  r="24"/><text class="f-val" x="160" y="96">A</text>
   <circle class="f-box" cx="330" cy="60"  r="24"/><text class="f-val" x="330" y="66">B</text>
@@ -254,7 +260,7 @@ D.graph = `
 D.dsClass = `
 <svg viewBox="0 0 720 330" role="img" aria-labelledby="t-dscls">
   <title id="t-dscls">Classification of data structures into linear and non-linear types</title>
-  <text class="f-ttl" x="10" y="18">Classification of Data Structures — डाटा स्ट्रक्चरको वर्गीकरण</text>
+  <text class="f-ttl" x="10" y="18"><tspan class="t-en">Classification of Data Structures</tspan><tspan class="t-ne"><tspan class="t-en"> — </tspan>डाटा स्ट्रक्चरको वर्गीकरण</tspan></text>
 
   <rect class="f-box-y" x="280" y="36" width="170" height="42" rx="8"/>
   <text class="f-val" x="365" y="62" style="font-size:14px">DATA STRUCTURE</text>
@@ -314,7 +320,7 @@ D.dataHierarchy = `
   <text class="f-lbl-y" x="350" y="94">Class</text>
   <text class="f-lbl-y" x="470" y="94">Marks</text>
 
-  <rect class="f-box-y" x="60" y="108" width="470" height="34" rx="4" fill="rgba(255,215,110,.10)"/>
+  <rect class="f-box-y" x="60" y="108" width="470" height="34" rx="4"/>
   <text class="f-val" x="130" y="130" style="font-size:13px">Ram Thapa</text>
   <text class="f-val" x="245" y="130" style="font-size:13px">15</text>
   <text class="f-val" x="350" y="130" style="font-size:13px">10</text>
@@ -346,8 +352,8 @@ D.dataHierarchy = `
 D.popVsOop = `
 <svg viewBox="0 0 720 320" role="img" aria-labelledby="t-pvo">
   <title id="t-pvo">Procedural programming with global data compared with objects that hide their data</title>
-  ${ah('a-pvo', '#ff8f7a')}
-  ${ah('a-pvo2', '#9ae6a0')}
+  ${ah('a-pvo', 'var(--color-error)')}
+  ${ah('a-pvo2', 'var(--color-success)')}
 
   <text class="f-ttl" x="10" y="18">Why OOP was invented — the data-security problem</text>
 
@@ -362,12 +368,12 @@ D.popVsOop = `
   <rect class="f-box" x="20"  y="212" width="90" height="34" rx="5"/><text class="f-val" x="65"  y="234" style="font-size:11px">func4()</text>
   <rect class="f-box" x="260" y="212" width="90" height="34" rx="5"/><text class="f-val" x="305" y="234" style="font-size:11px">func5()</text>
 
-  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:#ff8f7a" d="M75,96 L140,126"/>
-  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:#ff8f7a" d="M185,96 L185,124"/>
-  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:#ff8f7a" d="M295,96 L230,126"/>
-  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:#ff8f7a" d="M75,210 L140,182"/>
-  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:#ff8f7a" d="M295,210 L230,182"/>
-  <text class="f-lbl" x="185" y="272" fill="#ff8f7a">Any function can spoil the data. Hard to find who broke it.</text>
+  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:var(--color-error)" d="M75,96 L140,126"/>
+  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:var(--color-error)" d="M185,96 L185,124"/>
+  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:var(--color-error)" d="M295,96 L230,126"/>
+  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:var(--color-error)" d="M75,210 L140,182"/>
+  <path class="f-arr" marker-end="url(#a-pvo)" style="stroke:var(--color-error)" d="M295,210 L230,182"/>
+  <text class="f-lbl" x="185" y="272" style="fill:var(--color-error)">Any function can spoil the data. Hard to find who broke it.</text>
 
   <line class="f-ln" x1="380" y1="34" x2="380" y2="300" stroke-dasharray="5 5"/>
 
@@ -391,10 +397,10 @@ D.popVsOop = `
 
   <rect class="f-box" x="470" y="220" width="160" height="34" rx="5"/>
   <text class="f-val" x="550" y="242" style="font-size:11px">outside code</text>
-  <path class="f-arr" marker-end="url(#a-pvo2)" style="stroke:#9ae6a0" d="M510,218 L480,190"/>
-  <path class="f-arr" marker-end="url(#a-pvo2)" style="stroke:#9ae6a0" d="M590,218 L622,190"/>
-  <text class="f-lbl" x="550" y="278" fill="#9ae6a0">Outside code can only knock on the public door.</text>
-  <text class="f-lbl" x="550" y="296" fill="#9ae6a0">It can never touch balance directly.</text>
+  <path class="f-arr" marker-end="url(#a-pvo2)" style="stroke:var(--color-success)" d="M510,218 L480,190"/>
+  <path class="f-arr" marker-end="url(#a-pvo2)" style="stroke:var(--color-success)" d="M590,218 L622,190"/>
+  <text class="f-lbl" x="550" y="278" style="fill:var(--color-success)">Outside code can only knock on the public door.</text>
+  <text class="f-lbl" x="550" y="296" style="fill:var(--color-success)">It can never touch balance directly.</text>
 </svg>`;
 
 D.programAnatomy = `
@@ -452,7 +458,7 @@ D.classObject = `
   <line class="f-ln" x1="50" y1="170" x2="210" y2="170" stroke-dasharray="4 3"/>
   <text class="f-code" x="50" y="194" style="font-size:11px">void setData();</text>
   <text class="f-code" x="50" y="216" style="font-size:11px">void display();</text>
-  <text class="f-lbl" x="130" y="252" fill="#ff8f7a">takes NO memory</text>
+  <text class="f-lbl" x="130" y="252" style="fill:var(--color-error)">takes NO memory</text>
 
   <path class="f-arr" marker-end="url(#a-co)" d="M240,100 L300,90"/>
   <path class="f-arr" marker-end="url(#a-co)" d="M240,145 L300,160"/>
@@ -485,24 +491,24 @@ D.classObject = `
 D.accessSpecifiers = `
 <svg viewBox="0 0 720 300" role="img" aria-labelledby="t-acc">
   <title id="t-acc">Private, protected and public access shown as three rings around a class</title>
-  ${ah('a-acc', '#9ae6a0')}
-  ${ah('a-accx', '#ff8f7a')}
+  ${ah('a-acc', 'var(--color-success)')}
+  ${ah('a-accx', 'var(--color-error)')}
   <text class="f-ttl" x="10" y="18">Access specifiers — who is allowed to reach inside the class?</text>
 
-  <circle cx="280" cy="165" r="115" fill="rgba(154,230,160,.06)" style="stroke:#9ae6a0;stroke-width:1.6"/>
-  <circle cx="280" cy="165" r="80"  fill="rgba(255,215,110,.07)" style="stroke:#ffd76e;stroke-width:1.6"/>
-  <circle cx="280" cy="165" r="44"  fill="rgba(255,143,122,.12)" style="stroke:#ff8f7a;stroke-width:1.8"/>
+  <circle cx="280" cy="165" r="115" fill="rgba(154,230,160,.06)" style="stroke:var(--color-success);stroke-width:1.6"/>
+  <circle cx="280" cy="165" r="80"  fill="rgba(255,215,110,.07)" style="stroke:var(--color-primary);stroke-width:1.6"/>
+  <circle cx="280" cy="165" r="44"  fill="rgba(255,143,122,.12)" style="stroke:var(--color-error);stroke-width:1.8"/>
 
   <text class="f-val" x="280" y="162" style="font-size:12px">private</text>
   <text class="f-lbl" x="280" y="180" style="font-size:10px">the secret core</text>
   <text class="f-lbl-y" x="280" y="118">protected</text>
-  <text class="f-val" x="280" y="72" style="font-size:12px" fill="#9ae6a0">public</text>
+  <text class="f-val" x="280" y="72" style="font-size:12px;fill:var(--color-success)">public</text>
 
-  <text class="f-lbl" x="105" y="165" fill="#9ae6a0">outside</text>
-  <path class="f-arr" marker-end="url(#a-acc)" style="stroke:#9ae6a0" d="M140,180 L192,180"/>
-  <text class="f-lbl" x="120" y="212" style="font-size:10px" fill="#9ae6a0" text-anchor="middle">reaches public ✓</text>
-  <path class="f-arr" marker-end="url(#a-accx)" style="stroke:#ff8f7a" d="M140,148 L228,148"/>
-  <text class="f-lbl" x="112" y="108" style="font-size:10px" fill="#ff8f7a" text-anchor="middle">blocked from private ✗</text>
+  <text class="f-lbl" x="105" y="165" style="fill:var(--color-success)">outside</text>
+  <path class="f-arr" marker-end="url(#a-acc)" style="stroke:var(--color-success)" d="M140,180 L192,180"/>
+  <text class="f-lbl" x="120" y="212" style="font-size:10px;fill:var(--color-success)" text-anchor="middle">reaches public ✓</text>
+  <path class="f-arr" marker-end="url(#a-accx)" style="stroke:var(--color-error)" d="M140,148 L228,148"/>
+  <text class="f-lbl" x="112" y="108" style="font-size:10px;fill:var(--color-error)" text-anchor="middle">blocked from private ✗</text>
 
   <rect class="f-box-d" x="450" y="52" width="250" height="216" rx="8"/>
   <text class="f-lbl-y" x="575" y="76">Quick rule</text>
@@ -521,20 +527,20 @@ D.ctorDtor = `
   ${ah('a-cd')}
   <text class="f-ttl" x="10" y="18">Object lifetime — constructors run in order, destructors run in REVERSE</text>
 
-  <line class="f-ln" x1="40" y1="150" x2="680" y2="150" style="stroke:#2c4a41;stroke-width:2"/>
+  <line class="f-ln" x1="40" y1="150" x2="680" y2="150" style="stroke:var(--color-border);stroke-width:2"/>
   <path class="f-arr" marker-end="url(#a-cd)" d="M660,150 L690,150"/>
   <text class="f-lbl" x="655" y="176" text-anchor="start">time →</text>
 
   <circle class="f-box-g" cx="120" cy="150" r="12"/>
   <text class="f-lbl-y" x="120" y="120">Student s1;</text>
   <text class="f-lbl" x="120" y="102" style="font-size:10px">object created</text>
-  <text class="f-val" x="120" y="196" style="font-size:11px" fill="#9ae6a0">Constructor</text>
-  <text class="f-val" x="120" y="212" style="font-size:11px" fill="#9ae6a0">for Ram</text>
+  <text class="f-val" x="120" y="196" style="font-size:11px;fill:var(--color-success)">Constructor</text>
+  <text class="f-val" x="120" y="212" style="font-size:11px;fill:var(--color-success)">for Ram</text>
 
   <circle class="f-box-g" cx="270" cy="150" r="12"/>
   <text class="f-lbl-y" x="270" y="120">Student s2;</text>
-  <text class="f-val" x="270" y="196" style="font-size:11px" fill="#9ae6a0">Constructor</text>
-  <text class="f-val" x="270" y="212" style="font-size:11px" fill="#9ae6a0">for Sita</text>
+  <text class="f-val" x="270" y="196" style="font-size:11px;fill:var(--color-success)">Constructor</text>
+  <text class="f-val" x="270" y="212" style="font-size:11px;fill:var(--color-success)">for Sita</text>
 
   <circle class="f-box" cx="420" cy="150" r="12"/>
   <text class="f-lbl-y" x="420" y="120">work happens</text>
@@ -542,12 +548,12 @@ D.ctorDtor = `
 
   <circle class="f-box-c" cx="540" cy="150" r="12"/>
   <text class="f-lbl-y" x="540" y="120">main() ends</text>
-  <text class="f-val" x="540" y="196" style="font-size:11px" fill="#ff8f7a">Destructor</text>
-  <text class="f-val" x="540" y="212" style="font-size:11px" fill="#ff8f7a">for Sita ← last in</text>
+  <text class="f-val" x="540" y="196" style="font-size:11px;fill:var(--color-error)">Destructor</text>
+  <text class="f-val" x="540" y="212" style="font-size:11px;fill:var(--color-error)">for Sita ← last in</text>
 
   <circle class="f-box-c" cx="650" cy="150" r="12"/>
-  <text class="f-val" x="640" y="196" style="font-size:11px" fill="#ff8f7a">Destructor</text>
-  <text class="f-val" x="640" y="212" style="font-size:11px" fill="#ff8f7a">for Ram</text>
+  <text class="f-val" x="640" y="196" style="font-size:11px;fill:var(--color-error)">Destructor</text>
+  <text class="f-val" x="640" y="212" style="font-size:11px;fill:var(--color-error)">for Ram</text>
 
   <text class="f-lbl-y" x="360" y="256">Sita was created LAST, so Sita is destroyed FIRST — exactly like plates on a stack.</text>
   <text class="f-lbl" x="360" y="278">You never call either of them yourself. C++ calls both automatically.</text>
@@ -579,7 +585,7 @@ D.abstraction = `
   <text class="f-lbl" x="380" y="94" style="font-size:10px">interface / abstraction layer</text>
   <line class="f-ln" x1="300" y1="106" x2="460" y2="106" stroke-dasharray="4 3"/>
   <text class="f-lbl" x="380" y="132" style="font-size:10px">you cannot see past this</text>
-  <text class="f-lbl" x="380" y="172" style="font-size:26px" fill="#ffd76e">🔒</text>
+  <text class="f-lbl" x="380" y="172" style="font-size:26px;fill:var(--color-primary)">🔒</text>
 
   <rect class="f-box-c" x="500" y="60" width="190" height="150" rx="10"/>
   <text class="f-lbl-y" x="595" y="86">HIDDEN INSIDE</text>
@@ -587,7 +593,7 @@ D.abstraction = `
   <text class="f-lbl" x="595" y="132" style="font-size:10px">spark timing</text>
   <text class="f-lbl" x="595" y="152" style="font-size:10px">temperature control</text>
   <text class="f-lbl" x="595" y="172" style="font-size:10px">400 lines of code</text>
-  <text class="f-lbl" x="595" y="196" style="font-size:10px" fill="#ff8f7a">can change any time</text>
+  <text class="f-lbl" x="595" y="196" style="font-size:10px;fill:var(--color-error)">can change any time</text>
 
   <text class="f-lbl-y" x="360" y="246">Because the buttons never change, the hidden code CAN be rewritten without breaking your program.</text>
 </svg>`;
@@ -597,10 +603,10 @@ D.encapsulation = `
   <title id="t-enc">Encapsulation puts private data inside a capsule guarded by public functions</title>
   <defs><marker id="a-enc" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#9ae6a0"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z"/ style="fill:var(--color-success)"></marker></defs>
   <text class="f-ttl" x="10" y="20">ENCAPSULATION — private data wrapped in a capsule of public functions</text>
 
-  <rect x="208" y="54" width="392" height="192" rx="96" fill="rgba(154,230,160,.05)" style="stroke:#9ae6a0;stroke-width:1.8"/>
+  <rect x="208" y="54" width="392" height="192" rx="96" fill="rgba(154,230,160,.05)" style="stroke:var(--color-success);stroke-width:1.8"/>
   <text class="f-lbl-y" x="404" y="84" style="font-size:13px">class Account</text>
 
   <rect class="f-box-c" x="322" y="98" width="164" height="60" rx="10"/>
@@ -614,17 +620,17 @@ D.encapsulation = `
   <text class="f-lbl" x="404" y="234" style="font-size:10.5px;letter-spacing:.6px">PUBLIC — the only way in or out</text>
 
   <text class="f-lbl" x="16" y="72" text-anchor="start" style="font-size:10px;letter-spacing:1.2px">CODE OUTSIDE THE CLASS</text>
-  <path d="M16,80 L120,80" style="stroke:#4c7368;stroke-width:1;stroke-dasharray:4 4;fill:none"/>
+  <path d="M16,80 L120,80" style="stroke:var(--color-border-strong);stroke-width:1;stroke-dasharray:4 4;fill:none"/>
 
-  <text class="f-lbl" x="16" y="118" text-anchor="start" fill="#ff8f7a" style="font-weight:700">BLOCKED</text>
-  <text class="f-code" x="16" y="135" style="font-size:10.5px" fill="#ff8f7a">a.balance = -500</text>
-  <path class="f-arr" style="stroke:#ff8f7a" d="M134,124 L196,124"/>
-  <circle cx="208" cy="124" r="9.5" fill="rgba(255,143,122,.18)" style="stroke:#ff8f7a;stroke-width:1.6"/>
-  <text x="208" y="128.5" text-anchor="middle" fill="#ff8f7a" style="font-size:11px;font-weight:700">✕</text>
+  <text class="f-lbl" x="16" y="118" text-anchor="start" style="font-weight:700;fill:var(--color-error)">BLOCKED</text>
+  <text class="f-code" x="16" y="135" style="font-size:10.5px;fill:var(--color-error)">a.balance = -500</text>
+  <path class="f-arr" style="stroke:var(--color-error)" d="M134,124 L196,124"/>
+  <circle cx="208" cy="124" r="9.5" fill="rgba(255,143,122,.18)" style="stroke:var(--color-error);stroke-width:1.6"/>
+  <text x="208" y="128.5" text-anchor="middle" style="font-size:11px;font-weight:700;fill:var(--color-error)">✕</text>
 
-  <text class="f-lbl" x="16" y="192" text-anchor="start" fill="#9ae6a0" style="font-weight:700">ALLOWED</text>
-  <text class="f-code" x="16" y="209" style="font-size:10.5px" fill="#9ae6a0">a.setBalance(5000)</text>
-  <path class="f-arr" marker-end="url(#a-enc)" style="stroke:#9ae6a0" d="M134,198 L246,198"/>
+  <text class="f-lbl" x="16" y="192" text-anchor="start" style="font-weight:700;fill:var(--color-success)">ALLOWED</text>
+  <text class="f-code" x="16" y="209" style="font-size:10.5px;fill:var(--color-success)">a.setBalance(5000)</text>
+  <path class="f-arr" marker-end="url(#a-enc)" style="stroke:var(--color-success)" d="M134,198 L246,198"/>
 
   <text class="f-lbl-y" x="320" y="272">The setter can REFUSE a bad value — a negative balance never gets in.</text>
   <text class="f-lbl" x="320" y="290">That is why data hiding protects the program.</text>
@@ -721,22 +727,22 @@ D.inhAccess = `
 
   <rect class="f-box-d" x="260" y="44" width="130" height="80" rx="8"/>
   <text class="f-lbl-y" x="325" y="64" style="font-size:11px">: public</text>
-  <text class="f-lbl" x="325" y="86" style="font-size:10px" fill="#9ae6a0">public stays public</text>
-  <text class="f-lbl" x="325" y="104" style="font-size:10px" fill="#ffd76e">protected stays protected</text>
+  <text class="f-lbl" x="325" y="86" style="font-size:10px;fill:var(--color-success)">public stays public</text>
+  <text class="f-lbl" x="325" y="104" style="font-size:10px;fill:var(--color-primary)">protected stays protected</text>
 
   <rect class="f-box-d" x="260" y="134" width="130" height="80" rx="8"/>
   <text class="f-lbl-y" x="325" y="154" style="font-size:11px">: protected</text>
-  <text class="f-lbl" x="325" y="176" style="font-size:10px" fill="#ffd76e">public → protected</text>
-  <text class="f-lbl" x="325" y="194" style="font-size:10px" fill="#ffd76e">protected stays</text>
+  <text class="f-lbl" x="325" y="176" style="font-size:10px;fill:var(--color-primary)">public → protected</text>
+  <text class="f-lbl" x="325" y="194" style="font-size:10px;fill:var(--color-primary)">protected stays</text>
 
   <rect class="f-box-d" x="260" y="224" width="130" height="66" rx="8"/>
   <text class="f-lbl-y" x="325" y="244" style="font-size:11px">: private</text>
-  <text class="f-lbl" x="325" y="266" style="font-size:10px" fill="#ff8f7a">both become private</text>
+  <text class="f-lbl" x="325" y="266" style="font-size:10px;fill:var(--color-error)">both become private</text>
 
   <rect class="f-box-c" x="430" y="120" width="260" height="110" rx="8"/>
   <text class="f-lbl-y" x="560" y="146">The one rule that never changes</text>
-  <text class="f-val" x="560" y="176" style="font-size:13px" fill="#ff8f7a">private members are</text>
-  <text class="f-val" x="560" y="196" style="font-size:13px" fill="#ff8f7a">NEVER inherited</text>
+  <text class="f-val" x="560" y="176" style="font-size:13px;fill:var(--color-error)">private members are</text>
+  <text class="f-val" x="560" y="196" style="font-size:13px;fill:var(--color-error)">NEVER inherited</text>
   <text class="f-lbl" x="560" y="216" style="font-size:10px">in any mode — they exist, but the child cannot touch them</text>
 </svg>`;
 
@@ -749,8 +755,8 @@ D.ctorOrder = {
   svg: `
 <svg viewBox="0 0 720 300" role="img" aria-labelledby="t-cord">
   <title id="t-cord">Constructor and destructor order in multilevel inheritance</title>
-  ${ah('a-cord', '#9ae6a0')}
-  ${ah('a-cordr', '#ff8f7a')}
+  ${ah('a-cord', 'var(--color-success)')}
+  ${ah('a-cordr', 'var(--color-error)')}
   <text class="f-ttl" x="10" y="18">Creating ONE Puppy object runs THREE constructors — and destroys them in reverse</text>
 
   <text class="f-lbl-y" x="150" y="42" style="font-size:10px">CONSTRUCTORS — base first</text>
@@ -772,29 +778,29 @@ D.ctorOrder = {
   <line class="f-ln" x1="360" y1="168" x2="360" y2="202"/>
 
   <g id="ctor-1" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:#9ae6a0" d="M250,80 L284,80"/>
-    <text class="f-val" x="240" y="84" style="font-size:11px" fill="#9ae6a0" text-anchor="end">1 · Animal()</text>
+    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:var(--color-success)" d="M250,80 L284,80"/>
+    <text class="f-val" x="240" y="84" style="font-size:11px;fill:var(--color-success)" text-anchor="end">1 · Animal()</text>
   </g>
   <g id="ctor-2" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:#9ae6a0" d="M250,154 L284,154"/>
-    <text class="f-val" x="240" y="158" style="font-size:11px" fill="#9ae6a0" text-anchor="end">2 · Dog()</text>
+    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:var(--color-success)" d="M250,154 L284,154"/>
+    <text class="f-val" x="240" y="158" style="font-size:11px;fill:var(--color-success)" text-anchor="end">2 · Dog()</text>
   </g>
   <g id="ctor-3" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:#9ae6a0" d="M250,228 L284,228"/>
-    <text class="f-val" x="240" y="232" style="font-size:11px" fill="#9ae6a0" text-anchor="end">3 · Puppy()</text>
+    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:var(--color-success)" d="M250,228 L284,228"/>
+    <text class="f-val" x="240" y="232" style="font-size:11px;fill:var(--color-success)" text-anchor="end">3 · Puppy()</text>
   </g>
 
   <g id="dtor-1" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:#ff8f7a" d="M470,228 L436,228"/>
-    <text class="f-val" x="480" y="232" style="font-size:11px" fill="#ff8f7a" text-anchor="start">1 · ~Puppy()</text>
+    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:var(--color-error)" d="M470,228 L436,228"/>
+    <text class="f-val" x="480" y="232" style="font-size:11px;fill:var(--color-error)" text-anchor="start">1 · ~Puppy()</text>
   </g>
   <g id="dtor-2" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:#ff8f7a" d="M470,154 L436,154"/>
-    <text class="f-val" x="480" y="158" style="font-size:11px" fill="#ff8f7a" text-anchor="start">2 · ~Dog()</text>
+    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:var(--color-error)" d="M470,154 L436,154"/>
+    <text class="f-val" x="480" y="158" style="font-size:11px;fill:var(--color-error)" text-anchor="start">2 · ~Dog()</text>
   </g>
   <g id="dtor-3" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:#ff8f7a" d="M470,80 L436,80"/>
-    <text class="f-val" x="480" y="84" style="font-size:11px" fill="#ff8f7a" text-anchor="start">3 · ~Animal()</text>
+    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:var(--color-error)" d="M470,80 L436,80"/>
+    <text class="f-val" x="480" y="84" style="font-size:11px;fill:var(--color-error)" text-anchor="start">3 · ~Animal()</text>
   </g>
 
   <g id="verdict" class="dia-step">
@@ -886,7 +892,7 @@ D.dispatch = {
 <svg viewBox="0 0 720 330" role="img" aria-labelledby="t-disp">
   <title id="t-disp">How a base class pointer chooses the derived version of a virtual function</title>
   ${ah('a-disp')}
-  ${ah('a-disp2', '#9ae6a0')}
+  ${ah('a-disp2', 'var(--color-success)')}
   <text class="f-ttl" x="10" y="18">Run-time dispatch — the same line p-&gt;draw() gives two different answers</text>
 
   <g id="ptr" class="dia-focus">
@@ -918,13 +924,13 @@ D.dispatch = {
   </g>
 
   <g id="call-c" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:#9ae6a0" d="M406,86 L486,86"/>
+    <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:var(--color-success)" d="M406,86 L486,86"/>
     <rect class="f-box-g" x="490" y="60" width="200" height="52" rx="8"/>
     <text class="f-val" x="590" y="82" style="font-size:12px">Circle::draw()</text>
     <text class="f-lbl" x="590" y="100" style="font-size:10px">"Drawing a Circle"</text>
   </g>
   <g id="call-s" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:#9ae6a0" d="M406,232 L486,232"/>
+    <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:var(--color-success)" d="M406,232 L486,232"/>
     <rect class="f-box-g" x="490" y="206" width="200" height="52" rx="8"/>
     <text class="f-val" x="590" y="228" style="font-size:12px">Square::draw()</text>
     <text class="f-lbl" x="590" y="246" style="font-size:10px">"Drawing a Square"</text>
@@ -960,24 +966,776 @@ D.dispatch = {
 D.overloadResolve = `
 <svg viewBox="0 0 720 250" role="img" aria-labelledby="t-ovr">
   <title id="t-ovr">The compiler picks an overloaded function by matching the arguments</title>
-  ${ah('a-ovr', '#9ae6a0')}
-  ${ah('a-ovrx', '#ff8f7a')}
+  ${ah('a-ovr', 'var(--color-success)')}
+  ${ah('a-ovrx', 'var(--color-error)')}
   <text class="f-ttl" x="10" y="18">Overload resolution — the compiler matches by ARGUMENTS, before the program runs</text>
 
   <rect class="f-box-y" x="250" y="40" width="220" height="44" rx="8"/>
   <text class="f-code" x="360" y="68" text-anchor="middle" style="font-size:13px">area(4, 6);</text>
   <text class="f-lbl" x="360" y="100" style="font-size:10px">two int arguments</text>
 
-  <path class="f-arr" marker-end="url(#a-ovrx)" style="stroke:#ff8f7a" d="M300,110 L180,150"/>
-  <path class="f-arr" marker-end="url(#a-ovr)"  style="stroke:#9ae6a0" d="M420,110 L540,150"/>
+  <path class="f-arr" marker-end="url(#a-ovrx)" style="stroke:var(--color-error)" d="M300,110 L180,150"/>
+  <path class="f-arr" marker-end="url(#a-ovr)"  style="stroke:var(--color-success)" d="M420,110 L540,150"/>
 
   <rect class="f-box-c" x="40" y="158" width="280" height="66" rx="8"/>
   <text class="f-code" x="180" y="184" text-anchor="middle" style="font-size:12px">void area(int s)</text>
-  <text class="f-lbl" x="180" y="206" style="font-size:10px" fill="#ff8f7a">needs 1 argument — REJECTED ✗</text>
+  <text class="f-lbl" x="180" y="206" style="font-size:10px;fill:var(--color-error)">needs 1 argument — REJECTED ✗</text>
 
   <rect class="f-box-g" x="400" y="158" width="280" height="66" rx="8"/>
   <text class="f-code" x="540" y="184" text-anchor="middle" style="font-size:12px">void area(int l, int b)</text>
-  <text class="f-lbl" x="540" y="206" style="font-size:10px" fill="#9ae6a0">needs 2 arguments — MATCHED ✓</text>
+  <text class="f-lbl" x="540" y="206" style="font-size:10px;fill:var(--color-success)">needs 2 arguments — MATCHED ✓</text>
+</svg>`;
+
+/* ---------------------------------------------------------------
+   GRADE 10 · DIGITAL DESIGN AND MICROPROCESSOR
+   --------------------------------------------------------------- */
+
+/* Gate outlines live in one place so a symbol drawn in a figure is the
+   same symbol the student toggles in the workbench, and both are the
+   ANSI shapes the SEE paper asks them to draw. Local box: 0..nose wide,
+   0..60 tall, inputs at y=15 and y=45, output at y=30. */
+const GATE_BODY = {
+  AND: 'M0,0 L40,0 A30,30 0 0 1 40,60 L0,60 Z',
+  OR:  'M0,0 Q25,30 0,60 Q50,60 75,30 Q50,0 0,0 Z',
+  NOT: 'M0,0 L60,30 L0,60 Z',
+  XOR: 'M8,0 Q33,30 8,60 Q58,60 83,30 Q58,0 8,0 Z'
+};
+const GATE_NOSE = { AND: 70, OR: 75, NOT: 60, XOR: 83 };
+const INVERTING = { NAND: 'AND', NOR: 'OR', NOT: 'NOT' };
+
+function gateBase(kind){ return INVERTING[kind] && kind !== 'NOT' ? INVERTING[kind] : kind; }
+
+/* x,y is the top-left of the gate's 60-tall box. */
+function gate(kind, x, y){
+  const base = gateBase(kind);
+  const inv  = !!INVERTING[kind];
+  let g = `<g transform="translate(${x},${y})">`;
+  g += `<path class="f-gate" d="${GATE_BODY[base]}"/>`;
+  if (kind === 'XOR') g += '<path class="f-gate f-gate-open" d="M0,0 Q25,30 0,60"/>';
+  if (inv) g += `<circle class="f-gate" cx="${GATE_NOSE[base] + 6.5}" cy="30" r="6.5"/>`;
+  return g + '</g>';
+}
+/* Where the output wire leaves — past the bubble on an inverting gate. */
+function gateOut(kind){
+  const base = gateBase(kind);
+  return GATE_NOSE[base] + (INVERTING[kind] ? 13 : 0);
+}
+/* Input wires; NOT takes one, entering at the middle. */
+const ATTACH = { AND: 4, NOT: 4, OR: 12, XOR: 20 };
+function gateIn(kind, x, y, fromX, labels){
+  const one = kind === 'NOT';
+  const into = ATTACH[gateBase(kind)];
+  let h = '';
+  const ys = one ? [y + 30] : [y + 15, y + 45];
+  ys.forEach((wy, i) => {
+    h += `<path class="f-wire" d="M${fromX},${wy} L${x + into},${wy}"/>`;
+    if (labels) h += `<text class="f-pin" x="${fromX - 8}" y="${wy + 4.5}" text-anchor="end">${labels[i]}</text>`;
+  });
+  return h;
+}
+
+/* ---- 2.1 / 2.2 the symbol chart students must be able to redraw ---- */
+D.gateSymbols = `
+<svg viewBox="0 0 700 366" role="img" aria-labelledby="t-gsym">
+  <title id="t-gsym">The six logic gate symbols with their Boolean expressions</title>
+  <text class="f-ttl" x="10" y="20">LOGIC GATE SYMBOLS — the shapes and expressions to memorise</text>
+  ${[['NOT', 'NOT (Inverter)', "Y = A'"],
+     ['AND', 'AND',  'Y = A · B'],
+     ['OR',  'OR',   'Y = A + B'],
+     ['NAND','NAND', "Y = (A · B)'"],
+     ['NOR', 'NOR',  "Y = (A + B)'"],
+     ['XOR', 'XOR',  'Y = A \u2295 B']].map((cell, i) => {
+    const col = i % 3, row = (i / 3) | 0;
+    const cx = 16 + col * 230, cy = 44 + row * 156;
+    const gx = cx + 62, gy = cy + 34;
+    const out = gx + gateOut(cell[0]);
+    return `
+  <g>
+    <rect class="f-box-d" x="${cx}" y="${cy}" width="212" height="140" rx="10"/>
+    <text class="f-lbl-y" x="${cx + 106}" y="${cy + 22}" style="font-size:12.5px">${cell[1]}</text>
+    ${gateIn(cell[0], gx, gy, cx + 30, ['A', 'B'])}
+    ${gate(cell[0], gx, gy)}
+    <path class="f-wire" d="M${out},${gy + 30} L${cx + 182},${gy + 30}"/>
+    <text class="f-pin" x="${cx + 190}" y="${gy + 34.5}">Y</text>
+    <text class="f-code" x="${cx + 106}" y="${cy + 128}" text-anchor="middle" style="font-size:12px">${cell[2]}</text>
+  </g>`;
+  }).join('')}
+</svg>`;
+
+/* ---- 2.2.6 universal gates ---- */
+D.nandUniversal = `
+<svg viewBox="0 0 700 500" role="img" aria-labelledby="t-nandu">
+  <title id="t-nandu">NOT, AND and OR each built from NAND gates only</title>
+  <text class="f-ttl" x="10" y="20">WHY NAND IS CALLED UNIVERSAL — every other gate can be built from it</text>
+
+  <g>
+    <text class="f-lbl-y" x="16" y="58" text-anchor="start">1 &nbsp;NOT — join both inputs of one NAND</text>
+    <text class="f-pin" x="42" y="110.5" text-anchor="end">A</text>
+    <path class="f-wire" d="M50,106 L74,106"/>
+    <path class="f-wire" d="M74,91 L74,121"/>
+    <path class="f-wire" d="M74,91 L104,91"/>
+    <path class="f-wire" d="M74,121 L104,121"/>
+    ${gate('NAND', 100, 76)}
+    <path class="f-wire" d="M183,106 L233,106"/>
+    <text class="f-code" x="241" y="110" style="font-size:12px">(A · A)' = A'</text>
+  </g>
+
+  <g>
+    <text class="f-lbl-y" x="16" y="188" text-anchor="start">2 &nbsp;AND — a NAND, then a second NAND used as a NOT</text>
+    <text class="f-pin" x="42" y="225.5" text-anchor="end">A</text>
+    <text class="f-pin" x="42" y="255.5" text-anchor="end">B</text>
+    <path class="f-wire" d="M50,221 L104,221"/>
+    <path class="f-wire" d="M50,251 L104,251"/>
+    ${gate('NAND', 100, 206)}
+    <path class="f-wire" d="M183,236 L206,236"/>
+    <path class="f-wire" d="M206,221 L206,251"/>
+    <path class="f-wire" d="M206,221 L244,221"/>
+    <path class="f-wire" d="M206,251 L244,251"/>
+    ${gate('NAND', 240, 206)}
+    <path class="f-wire" d="M323,236 L373,236"/>
+    <text class="f-code" x="381" y="240" style="font-size:12px">((A · B)')' = A · B</text>
+  </g>
+
+  <g>
+    <text class="f-lbl-y" x="16" y="302" text-anchor="start">3 &nbsp;OR — invert each input first, then NAND them (De Morgan)</text>
+    <text class="f-pin" x="42" y="354.5" text-anchor="end">A</text>
+    <path class="f-wire" d="M50,350 L70,350"/>
+    <path class="f-wire" d="M70,335 L70,365"/>
+    <path class="f-wire" d="M70,335 L104,335"/>
+    <path class="f-wire" d="M70,365 L104,365"/>
+    ${gate('NAND', 100, 320)}
+    <text class="f-pin" x="42" y="434.5" text-anchor="end">B</text>
+    <path class="f-wire" d="M50,430 L70,430"/>
+    <path class="f-wire" d="M70,415 L70,445"/>
+    <path class="f-wire" d="M70,415 L104,415"/>
+    <path class="f-wire" d="M70,445 L104,445"/>
+    ${gate('NAND', 100, 400)}
+    <path class="f-wire" d="M183,350 L226,350"/>
+    <path class="f-wire" d="M226,350 L226,375"/>
+    <path class="f-wire" d="M226,375 L254,375"/>
+    <path class="f-wire" d="M183,430 L226,430"/>
+    <path class="f-wire" d="M226,430 L226,405"/>
+    <path class="f-wire" d="M226,405 L254,405"/>
+    ${gate('NAND', 250, 360)}
+    <path class="f-wire" d="M333,390 L383,390"/>
+    <text class="f-code" x="391" y="394" style="font-size:12px">(A' · B')' = A + B</text>
+    <text class="f-lbl" x="391" y="414" text-anchor="start">NOR is universal in exactly the same way.</text>
+  </g>
+</svg>`;
+
+
+D.deMorgan = {
+  type: 'animated',
+  intro: {
+    en: 'De Morgan’s first law. Press Next to see a NAND turn into an OR with inverted inputs — and then check it against the truth table.',
+    ne: 'डी–मर्गनको पहिलो नियम। NAND कसरी उल्टो इनपुट भएको OR बन्छ हेर्न Next थिच्नुहोस् — अनि ट्रुथ टेबलले जाँच्नुहोस्।'
+  },
+  svg: `<svg viewBox="0 0 700 430" role="img" aria-labelledby="t-dm">
+  <title id="t-dm">De Morgan's first law: NOT (A AND B) equals NOT A OR NOT B</title>
+  <text class="f-ttl" x="10" y="20">DE MORGAN'S FIRST LAW &nbsp;&nbsp; (A · B)' = A' + B'</text>
+
+  <g id="dm-left" class="dia-focus">
+    <text class="f-lbl-y" x="120" y="52" style="font-size:12px">NAND — invert AFTER the AND</text>
+    <text class="f-pin" x="34" y="90.5" text-anchor="end">A</text>
+    <text class="f-pin" x="34" y="120.5" text-anchor="end">B</text>
+    <path class="f-wire" d="M42,86 L96,86"/>
+    <path class="f-wire" d="M42,116 L96,116"/>
+    ${gate('NAND', 92, 71)}
+    <path class="f-wire" d="M175,101 L215,101"/>
+    <text class="f-code" x="223" y="105" style="font-size:12px">(A · B)'</text>
+  </g>
+
+  <g id="dm-bar" class="dia-step">
+    <path class="f-arr" style="stroke:var(--color-error)" d="M181,84 L181,68 L268,68"/>
+    <text class="f-lbl" x="276" y="72" text-anchor="start" style="font-size:11px;fill:var(--color-error)">this bubble is the bar over (A · B)</text>
+  </g>
+
+  <g id="dm-rule" class="dia-step">
+    <rect class="f-box-y" x="40" y="152" width="620" height="56" rx="10"/>
+    <text class="f-lbl-y" x="350" y="176" style="font-size:12.5px">THE RULE — break the bar, and change the sign</text>
+    <text class="f-code" x="350" y="196" text-anchor="middle" style="font-size:12.5px">(A · B)'  →  A' + B'&nbsp;&nbsp;&nbsp;·  becomes  +</text>
+  </g>
+
+  <g id="dm-right" class="dia-step">
+    <text class="f-lbl-y" x="150" y="248" style="font-size:12px">OR with inverted inputs — invert BEFORE the OR</text>
+    <text class="f-pin" x="34" y="286.5" text-anchor="end">A</text>
+    <text class="f-pin" x="34" y="336.5" text-anchor="end">B</text>
+    <path class="f-wire" d="M42,282 L54,282"/>
+    ${gate('NOT', 54, 252)}
+    <path class="f-wire" d="M127,282 L166,282"/>
+    <path class="f-wire" d="M42,332 L54,332"/>
+    ${gate('NOT', 54, 302)}
+    <path class="f-wire" d="M127,332 L166,332"/>
+    <path class="f-wire" d="M166,282 L166,292 L170,292"/>
+    <path class="f-wire" d="M166,332 L166,322 L170,322"/>
+    ${gate('OR', 166, 277)}
+    <path class="f-wire" d="M241,307 L281,307"/>
+    <text class="f-code" x="289" y="311" style="font-size:12px">A' + B'</text>
+  </g>
+
+  <g id="dm-table" class="dia-step">
+    <text class="f-lbl-y" x="530" y="248" style="font-size:12px">Both columns match — the law holds</text>
+    <rect class="f-box-d" x="410" y="258" width="272" height="140" rx="8"/>
+    <text class="f-lbl" x="440" y="278" style="font-size:11px">A</text>
+    <text class="f-lbl" x="480" y="278" style="font-size:11px">B</text>
+    <text class="f-lbl-y" x="560" y="278" style="font-size:11px">(A · B)'</text>
+    <text class="f-lbl-y" x="645" y="278" style="font-size:11px">A' + B'</text>
+    <path class="f-wire" d="M418,286 L674,286"/>
+    <text class="f-val" x="440" y="306" style="font-size:12px">0</text>
+    <text class="f-val" x="480" y="306" style="font-size:12px">0</text>
+    <text class="f-val" x="560" y="306" style="font-size:12px">1</text>
+    <text class="f-val" x="645" y="306" style="font-size:12px">1</text>
+    <text class="f-val" x="440" y="330" style="font-size:12px">0</text>
+    <text class="f-val" x="480" y="330" style="font-size:12px">1</text>
+    <text class="f-val" x="560" y="330" style="font-size:12px">1</text>
+    <text class="f-val" x="645" y="330" style="font-size:12px">1</text>
+    <text class="f-val" x="440" y="354" style="font-size:12px">1</text>
+    <text class="f-val" x="480" y="354" style="font-size:12px">0</text>
+    <text class="f-val" x="560" y="354" style="font-size:12px">1</text>
+    <text class="f-val" x="645" y="354" style="font-size:12px">1</text>
+    <text class="f-val" x="440" y="378" style="font-size:12px">1</text>
+    <text class="f-val" x="480" y="378" style="font-size:12px">1</text>
+    <text class="f-val" x="560" y="378" style="font-size:12px">0</text>
+    <text class="f-val" x="645" y="378" style="font-size:12px">0</text>
+  </g>
+
+  <text class="f-lbl" x="350" y="420">The second law is the mirror image: (A + B)' = A' · B'</text>
+</svg>`,
+  steps: [
+    { focus: '#dm-left',
+      en: 'Start with NAND. The AND happens first, and the small circle on the nose inverts the answer afterwards.',
+      ne: 'NAND बाट सुरु गरौं। पहिले AND हुन्छ, अनि नाकको सानो गोलोले उत्तर उल्टाइदिन्छ।' },
+    { show: '#dm-bar', focus: '#dm-left',
+      en: 'That circle is what the bar in (A · B)′ means: invert the whole result.',
+      ne: 'त्यही गोलो नै (A · B)′ माथिको बारको अर्थ हो — पूरै नतिजा उल्टाउनु।' },
+    { show: ['#dm-bar', '#dm-rule'],
+      en: 'De Morgan says you may break the bar and move it onto each letter — but when the bar breaks, the sign flips: · becomes +.',
+      ne: 'डी–मर्गनका अनुसार बारलाई फुटाएर हरेक अक्षरमाथि लैजान सकिन्छ — तर बार फुट्दा चिन्ह बदलिन्छ: · को साटो + हुन्छ।' },
+    { show: ['#dm-rule', '#dm-right'], focus: '#dm-right',
+      en: 'So the same circuit can be drawn the other way round: invert A and B first, then OR them.',
+      ne: 'त्यसैले उही सर्किट अर्को तरिकाले पनि बनाउन सकिन्छ: पहिले A र B लाई उल्टाउने, अनि OR गर्ने।' },
+    { show: ['#dm-rule', '#dm-right', '#dm-table'], focus: '#dm-table',
+      en: 'Proof: for all four input combinations the two columns are identical. Equal truth tables mean equal circuits.',
+      ne: 'प्रमाण: चारै इनपुट जोडीमा दुवै स्तम्भ उस्तै छन्। ट्रुथ टेबल उस्तै भयो भने सर्किट पनि उस्तै हो।' }
+  ]
+};
+
+
+/* ---- 1.1 positional value: the idea every base shares ---- */
+D.placeValue = `
+<svg viewBox="0 0 700 262" role="img" aria-labelledby="t-place">
+  <title id="t-place">The same digits mean different amounts depending on their position</title>
+  <text class="f-ttl" x="10" y="20">POSITIONAL VALUE — a digit's worth depends on WHERE it sits</text>
+
+  <text class="f-lbl-y" x="90" y="52" text-anchor="start">Decimal 3 4 7 &nbsp;(base 10)</text>
+  <g>
+    <rect class="f-box-y" x="90" y="64" width="120" height="72" rx="8"/>
+    <text class="f-val" x="150" y="96" style="font-size:22px">3</text>
+    <text class="f-lbl" x="150" y="120" style="font-size:10.5px">10²  =  100</text>
+    <text class="f-lbl-y" x="150" y="154" style="font-size:12px">300</text>
+  </g><g>
+    <rect class="f-box-y" x="240" y="64" width="120" height="72" rx="8"/>
+    <text class="f-val" x="300" y="96" style="font-size:22px">4</text>
+    <text class="f-lbl" x="300" y="120" style="font-size:10.5px">10¹  =  10</text>
+    <text class="f-lbl-y" x="300" y="154" style="font-size:12px">40</text>
+  </g><g>
+    <rect class="f-box-y" x="390" y="64" width="120" height="72" rx="8"/>
+    <text class="f-val" x="450" y="96" style="font-size:22px">7</text>
+    <text class="f-lbl" x="450" y="120" style="font-size:10.5px">10⁰  =  1</text>
+    <text class="f-lbl-y" x="450" y="154" style="font-size:12px">7</text>
+  </g>
+  <text class="f-code" x="556" y="104" text-anchor="start" style="font-size:13px">= 347</text>
+
+  <text class="f-lbl-y" x="90" y="192" text-anchor="start">Binary 1 0 1 &nbsp;(base 2) — same idea, different base</text>
+  <g>
+    <rect class="f-box" x="90" y="204" width="120" height="48" rx="8"/>
+    <text class="f-val" x="150" y="226" style="font-size:16px">1</text>
+    <text class="f-lbl" x="150" y="244" style="font-size:10px">2²  =  4  →  4</text>
+  </g><g>
+    <rect class="f-box" x="240" y="204" width="120" height="48" rx="8"/>
+    <text class="f-val" x="300" y="226" style="font-size:16px">0</text>
+    <text class="f-lbl" x="300" y="244" style="font-size:10px">2¹  =  2  →  0</text>
+  </g><g>
+    <rect class="f-box" x="390" y="204" width="120" height="48" rx="8"/>
+    <text class="f-val" x="450" y="226" style="font-size:16px">1</text>
+    <text class="f-lbl" x="450" y="244" style="font-size:10px">2⁰  =  1  →  1</text>
+  </g>
+  <text class="f-code" x="556" y="232" text-anchor="start" style="font-size:13px">= 5</text>
+</svg>`;
+
+/* ---- 1.2 the four bases side by side ---- */
+D.baseTable = `
+<svg viewBox="0 0 700 254" role="img" aria-labelledby="t-bases">
+  <title id="t-bases">The four number systems: decimal, binary, octal and hexadecimal</title>
+  <text class="f-ttl" x="10" y="20">THE FOUR NUMBER SYSTEMS — base, digits, and what each is for</text>
+  <g>
+    <rect class="f-box-d" x="16" y="40" width="668" height="42" rx="8"/>
+    <rect x="18" y="49" width="4" height="24" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="36" y="58" text-anchor="start" style="font-size:12px">DECIMAL</text>
+    <text class="f-lbl" x="36" y="74" text-anchor="start" style="font-size:10.5px">base 10</text>
+    <text class="f-code" x="208" y="67" text-anchor="start" style="font-size:12.5px">digits: 0 – 9</text>
+    <text class="f-lbl" x="384" y="67" text-anchor="start" style="font-size:11.5px">what people count in</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="90" width="668" height="42" rx="8"/>
+    <rect x="18" y="99" width="4" height="24" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="36" y="108" text-anchor="start" style="font-size:12px">BINARY</text>
+    <text class="f-lbl" x="36" y="124" text-anchor="start" style="font-size:10.5px">base 2</text>
+    <text class="f-code" x="208" y="117" text-anchor="start" style="font-size:12.5px">digits: 0, 1</text>
+    <text class="f-lbl" x="384" y="117" text-anchor="start" style="font-size:11.5px">what the machine actually stores</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="140" width="668" height="42" rx="8"/>
+    <rect x="18" y="149" width="4" height="24" rx="2" style="fill:var(--color-secondary)"/>
+    <text class="f-lbl-y" x="36" y="158" text-anchor="start" style="font-size:12px">OCTAL</text>
+    <text class="f-lbl" x="36" y="174" text-anchor="start" style="font-size:10.5px">base 8</text>
+    <text class="f-code" x="208" y="167" text-anchor="start" style="font-size:12.5px">digits: 0 – 7</text>
+    <text class="f-lbl" x="384" y="167" text-anchor="start" style="font-size:11.5px">a short way to write groups of 3 bits</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="190" width="668" height="42" rx="8"/>
+    <rect x="18" y="199" width="4" height="24" rx="2" style="fill:var(--color-error)"/>
+    <text class="f-lbl-y" x="36" y="208" text-anchor="start" style="font-size:12px">HEXADECIMAL</text>
+    <text class="f-lbl" x="36" y="224" text-anchor="start" style="font-size:10.5px">base 16</text>
+    <text class="f-code" x="208" y="217" text-anchor="start" style="font-size:12.5px">digits: 0 – 9, A – F</text>
+    <text class="f-lbl" x="384" y="217" text-anchor="start" style="font-size:11.5px">a short way to write groups of 4 bits</text>
+  </g>
+  <text class="f-lbl-y" x="350" y="244" style="font-size:11.5px">A number does not change value when you rewrite it in another base — only the notation changes.</text>
+</svg>`;
+
+/* ---- 1.4 / 1.5 complements: a two-stage process, so it is animated ---- */
+D.twosComplement = {
+  type: 'animated',
+  intro: {
+    en: 'Two stages, in order. Press Next to invert every bit, then add 1 — and see why a computer can subtract using an adder.',
+    ne: 'क्रमैसँग दुई चरण। हरेक बिट उल्टाउन र त्यसपछि 1 जोड्न Next थिच्नुहोस् — अनि कम्प्युटरले adder ले नै किन घटाउन सक्छ बुझ्नुहोस्।'
+  },
+  svg: `<svg viewBox="0 0 700 320" role="img" aria-labelledby="t-2c">
+  <title id="t-2c">Finding the 2's complement of 0101 by inverting the bits and adding one</title>
+  <text class="f-ttl" x="10" y="20">FINDING THE 2'S COMPLEMENT OF &nbsp;0 1 0 1</text>
+
+  <g id="tc-orig" class="dia-focus">
+    <text class="f-lbl-y" x="34" y="56" text-anchor="start" style="font-size:12px">Step 0 — the original number</text>
+    <rect class="f-box" x="34" y="68" width="48" height="46" rx="6"/>
+    <text class="f-val" x="58" y="98" style="font-size:18px">0</text><rect class="f-box" x="94" y="68" width="48" height="46" rx="6"/>
+    <text class="f-val" x="118" y="98" style="font-size:18px">1</text><rect class="f-box" x="154" y="68" width="48" height="46" rx="6"/>
+    <text class="f-val" x="178" y="98" style="font-size:18px">0</text><rect class="f-box" x="214" y="68" width="48" height="46" rx="6"/>
+    <text class="f-val" x="238" y="98" style="font-size:18px">1</text>
+    <text class="f-code" x="286" y="98" text-anchor="start" style="font-size:12.5px">= 5 in decimal</text>
+  </g>
+
+  <g id="tc-ones" class="dia-step">
+    <text class="f-lbl-y" x="34" y="150" text-anchor="start" style="font-size:12px">Step 1 — 1's complement: flip every bit</text>
+    <rect class="f-box-c" x="34" y="162" width="48" height="46" rx="6"/>
+    <text class="f-val" x="58" y="192" style="font-size:18px">1</text><rect class="f-box-c" x="94" y="162" width="48" height="46" rx="6"/>
+    <text class="f-val" x="118" y="192" style="font-size:18px">0</text><rect class="f-box-c" x="154" y="162" width="48" height="46" rx="6"/>
+    <text class="f-val" x="178" y="192" style="font-size:18px">1</text><rect class="f-box-c" x="214" y="162" width="48" height="46" rx="6"/>
+    <text class="f-val" x="238" y="192" style="font-size:18px">0</text>
+    <text class="f-code" x="286" y="192" text-anchor="start" style="font-size:12.5px">1 becomes 0, 0 becomes 1</text>
+  </g>
+
+  <g id="tc-add" class="dia-step">
+    <text class="f-lbl-y" x="34" y="244" text-anchor="start" style="font-size:12px">Step 2 — add 1 to that result</text>
+    <rect class="f-box-g" x="34" y="256" width="48" height="46" rx="6"/>
+    <text class="f-val" x="58" y="286" style="font-size:18px">1</text><rect class="f-box-g" x="94" y="256" width="48" height="46" rx="6"/>
+    <text class="f-val" x="118" y="286" style="font-size:18px">0</text><rect class="f-box-g" x="154" y="256" width="48" height="46" rx="6"/>
+    <text class="f-val" x="178" y="286" style="font-size:18px">1</text><rect class="f-box-g" x="214" y="256" width="48" height="46" rx="6"/>
+    <text class="f-val" x="238" y="286" style="font-size:18px">1</text>
+    <text class="f-code" x="286" y="280" text-anchor="start" style="font-size:12.5px">1010 + 1 = 1011</text>
+    <text class="f-lbl" x="286" y="298" text-anchor="start" style="font-size:10.5px">the 2's complement of 0101</text>
+  </g>
+
+  <g id="tc-why" class="dia-step">
+    <rect class="f-box-y" x="470" y="56" width="214" height="164" rx="10"/>
+    <text class="f-lbl-y" x="577" y="82" style="font-size:12px">WHY IT MATTERS</text>
+    <text class="f-lbl" x="577" y="108" style="font-size:11px">To work out A − B the machine</text>
+    <text class="f-lbl" x="577" y="126" style="font-size:11px">needs no subtractor at all.</text>
+    <text class="f-lbl-y" x="577" y="154" style="font-size:11.5px">A − B  =  A + (2's comp of B)</text>
+    <text class="f-lbl" x="577" y="182" style="font-size:11px">One adder circuit does both</text>
+    <text class="f-lbl" x="577" y="200" style="font-size:11px">jobs — simpler, cheaper.</text>
+  </g>
+</svg>`,
+  steps: [
+    { focus: '#tc-orig',
+      en: 'Start with 0101, which is 5 in decimal. It has four bits, so every answer will have four bits too.',
+      ne: '0101 बाट सुरु गरौं, जुन दशमलवमा 5 हो। यसमा चार बिट भएकाले उत्तर पनि चार बिटकै हुनेछ।' },
+    { show: '#tc-ones', focus: '#tc-ones',
+      en: "Step 1 is the 1's complement: flip every bit. Each 0 becomes 1 and each 1 becomes 0, which gives 1010. Nothing has been added yet.",
+      ne: "पहिलो चरण 1's complement हो: हरेक बिट उल्टाउने। 0 भए 1, 1 भए 0 — 1010 आयो। अहिलेसम्म केही जोडिएको छैन।" },
+    { show: ['#tc-ones', '#tc-add'], focus: '#tc-add',
+      en: "Step 2 adds 1 to that result: 1010 + 1 = 1011. That is the 2's complement of 0101. The whole rule is: invert, then add one.",
+      ne: "दोस्रो चरणमा त्यसमा 1 जोड्ने: 1010 + 1 = 1011। यही 0101 को 2's complement हो। पूरा नियम — उल्टाउने, अनि एक जोड्ने।" },
+    { show: ['#tc-ones', '#tc-add', '#tc-why'], focus: '#tc-why',
+      en: 'This is why it is worth learning: a computer subtracts by adding the 2\u2019s complement, so a single adder circuit performs both addition and subtraction.',
+      ne: 'यही कारण यो सिक्नु महत्त्वपूर्ण छ: कम्प्युटरले 2\u2019s complement जोडेर घटाउँछ, त्यसैले एउटै adder सर्किटले जोड र घटाउ दुवै गर्छ।' }
+  ]
+};
+
+
+/* ---- 3.1 the law table: a reference to look up, so it stays static ---- */
+D.boolLaws = `
+<svg viewBox="0 0 700 268" role="img" aria-labelledby="t-blaws">
+  <title id="t-blaws">The Boolean laws used for algebraic simplification</title>
+  <text class="f-ttl" x="10" y="20">BOOLEAN LAWS — each one in its OR form and its AND form</text>
+  <text class="f-lbl" x="200" y="38" text-anchor="start" style="font-size:10px">OR form</text>
+  <text class="f-lbl" x="430" y="38" text-anchor="start" style="font-size:10px">AND form</text>
+    <rect class="f-box-d" x="16" y="46" width="668" height="28" rx="6"/>
+    <text class="f-lbl-y" x="34" y="65" text-anchor="start" style="font-size:11.5px">Identity</text>
+    <text class="f-code" x="200" y="65" text-anchor="start" style="font-size:12px">A + 0 = A</text>
+    <text class="f-code" x="430" y="65" text-anchor="start" style="font-size:12px">A · 1 = A</text>
+    <rect class="f-box-d" x="16" y="80" width="668" height="28" rx="6"/>
+    <text class="f-lbl-y" x="34" y="99" text-anchor="start" style="font-size:11.5px">Null</text>
+    <text class="f-code" x="200" y="99" text-anchor="start" style="font-size:12px">A + 1 = 1</text>
+    <text class="f-code" x="430" y="99" text-anchor="start" style="font-size:12px">A · 0 = 0</text>
+    <rect class="f-box-d" x="16" y="114" width="668" height="28" rx="6"/>
+    <text class="f-lbl-y" x="34" y="133" text-anchor="start" style="font-size:11.5px">Idempotent</text>
+    <text class="f-code" x="200" y="133" text-anchor="start" style="font-size:12px">A + A = A</text>
+    <text class="f-code" x="430" y="133" text-anchor="start" style="font-size:12px">A · A = A</text>
+    <rect class="f-box-d" x="16" y="148" width="668" height="28" rx="6"/>
+    <text class="f-lbl-y" x="34" y="167" text-anchor="start" style="font-size:11.5px">Complement</text>
+    <text class="f-code" x="200" y="167" text-anchor="start" style="font-size:12px">A + A' = 1</text>
+    <text class="f-code" x="430" y="167" text-anchor="start" style="font-size:12px">A · A' = 0</text>
+    <rect class="f-box-d" x="16" y="182" width="668" height="28" rx="6"/>
+    <text class="f-lbl-y" x="34" y="201" text-anchor="start" style="font-size:11.5px">Commutative</text>
+    <text class="f-code" x="200" y="201" text-anchor="start" style="font-size:12px">A + B = B + A</text>
+    <text class="f-code" x="430" y="201" text-anchor="start" style="font-size:12px">A · B = B · A</text>
+    <rect class="f-box-d" x="16" y="216" width="668" height="28" rx="6"/>
+    <text class="f-lbl-y" x="34" y="235" text-anchor="start" style="font-size:11.5px">Absorption</text>
+    <text class="f-code" x="200" y="235" text-anchor="start" style="font-size:12px">A + AB = A</text>
+    <text class="f-code" x="430" y="235" text-anchor="start" style="font-size:12px">A(A + B) = A</text>
+  <text class="f-lbl-y" x="350" y="262" style="font-size:11.5px">Every law comes in a pair. Learn one side and swap + with · to get the other.</text>
+</svg>`;
+
+/* ---- 3.4 algebraic simplification: one law per step, named ---- */
+D.simplify = {
+  type: 'animated',
+  intro: {
+    en: 'Simplifying AB + AB\u2032 + A\u2032B one law at a time. Each step names the law it uses — that naming is what an exam answer must show.',
+    ne: 'AB + AB\u2032 + A\u2032B लाई एक–एक नियम प्रयोग गरेर सरल बनाउँदै। हरेक चरणले प्रयोग गरेको नियमको नाम दिन्छ — परीक्षाको उत्तरमा त्यही देखाउनुपर्छ।'
+  },
+  svg: `<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-simp">
+  <title id="t-simp">Simplifying a Boolean expression step by step, naming the law at each step</title>
+  <text class="f-ttl" x="10" y="20">ALGEBRAIC SIMPLIFICATION — name the law at every step</text>
+
+  <g id="sm-0" class="dia-focus">
+    <rect class="f-box-y" x="60" y="40" width="580" height="42" rx="8"/>
+    <text class="f-code" x="350" y="60" text-anchor="middle" style="font-size:14px">F = AB + AB' + A'B</text>
+    <text class="f-lbl" x="350" y="76" style="font-size:10.5px">the expression we start with</text>
+  </g>
+
+  <g id="sm-1" class="dia-step">
+    <path class="f-arr" d="M350,86 L350,100"/>
+    <rect class="f-box" x="60" y="104" width="580" height="42" rx="8"/>
+    <text class="f-code" x="350" y="124" text-anchor="middle" style="font-size:14px">F = A(B + B') + A'B</text>
+    <text class="f-lbl-y" x="350" y="140" style="font-size:10.5px">Distributive law — take the common A out of the first two terms</text>
+  </g>
+
+  <g id="sm-2" class="dia-step">
+    <path class="f-arr" d="M350,150 L350,164"/>
+    <rect class="f-box" x="60" y="168" width="580" height="42" rx="8"/>
+    <text class="f-code" x="350" y="188" text-anchor="middle" style="font-size:14px">F = A · 1 + A'B</text>
+    <text class="f-lbl-y" x="350" y="204" style="font-size:10.5px">Complement law — B + B' is always 1</text>
+  </g>
+
+  <g id="sm-3" class="dia-step">
+    <path class="f-arr" d="M350,214 L350,228"/>
+    <rect class="f-box-g" x="60" y="232" width="580" height="46" rx="8"/>
+    <text class="f-code" x="350" y="254" text-anchor="middle" style="font-size:14px">F = A + B</text>
+    <text class="f-lbl-y" x="350" y="270" style="font-size:10.5px">Identity law A · 1 = A, then absorption A + A'B = A + B</text>
+  </g>
+
+  <text class="f-lbl" x="350" y="294" style="font-size:10.5px">Three terms became two variables. Fewer terms means fewer gates.</text>
+</svg>`,
+  steps: [
+    { focus: '#sm-0',
+      en: 'Start with F = AB + AB\u2032 + A\u2032B. Three product terms, each needing its own AND gate.',
+      ne: 'F = AB + AB\u2032 + A\u2032B बाट सुरु। तीन product पद, हरेकलाई आफ्नै AND गेट चाहिन्छ।' },
+    { show: '#sm-1', focus: '#sm-1',
+      en: 'The first two terms both contain A, so take it outside the bracket. This is the distributive law, used backwards.',
+      ne: 'पहिलो दुई पदमा A छ, त्यसैले A लाई कोष्ठक बाहिर निकाल्नुहोस्। यो distributive नियम उल्टो तरिकाले प्रयोग गरेको हो।' },
+    { show: ['#sm-1', '#sm-2'], focus: '#sm-2',
+      en: 'B + B\u2032 is 1 — a variable ORed with its own complement always is. That is the complement law.',
+      ne: 'B + B\u2032 सधैं 1 हुन्छ — कुनै चललाई त्यसकै पूरकसँग OR गर्दा सधैं 1 आउँछ। यही complement नियम हो।' },
+    { show: ['#sm-1', '#sm-2', '#sm-3'], focus: '#sm-3',
+      en: 'A · 1 is just A (identity law), leaving A + A\u2032B, which absorption reduces to A + B. Three terms became two variables.',
+      ne: 'A · 1 भनेको A नै हो (identity नियम), बाँकी रह्यो A + A\u2032B, जसलाई absorption ले A + B बनाइदिन्छ। तीन पद घटेर दुई चल भयो।' }
+  ]
+};
+
+/* ---- 3.2 / 3.3 SOP and POS come from the same table, read two ways ---- */
+D.sopPos = `
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-sop">
+  <title id="t-sop">Reading SOP from the rows where the output is 1 and POS from the rows where it is 0</title>
+  <text class="f-ttl" x="10" y="20">SOP AND POS — one truth table, read two different ways</text>
+
+  <rect class="f-box-d" x="16" y="36" width="230" height="180" rx="8"/>
+  <text class="f-lbl-y" x="131" y="56" style="font-size:11.5px">the truth table</text>
+  <text class="f-lbl" x="52"  y="76" style="font-size:11px">A</text>
+  <text class="f-lbl" x="102" y="76" style="font-size:11px">B</text>
+  <text class="f-lbl-y" x="170" y="76" style="font-size:11px">F</text>
+  <path class="f-wire" d="M28,84 L234,84"/>
+  <text class="f-val" x="52"  y="106" style="font-size:12px">0</text>
+  <text class="f-val" x="102" y="106" style="font-size:12px">0</text>
+  <text class="f-val" x="170" y="106" style="font-size:12px">0</text>
+  <text class="f-val" x="52"  y="134" style="font-size:12px">0</text>
+  <text class="f-val" x="102" y="134" style="font-size:12px">1</text>
+  <text class="f-val" x="170" y="134" style="font-size:12px">1</text>
+  <text class="f-val" x="52"  y="162" style="font-size:12px">1</text>
+  <text class="f-val" x="102" y="162" style="font-size:12px">0</text>
+  <text class="f-val" x="170" y="162" style="font-size:12px">0</text>
+  <text class="f-val" x="52"  y="190" style="font-size:12px">1</text>
+  <text class="f-val" x="102" y="190" style="font-size:12px">1</text>
+  <text class="f-val" x="170" y="190" style="font-size:12px">1</text>
+
+  <rect class="f-box-g" x="272" y="36" width="412" height="120" rx="8"/>
+  <text class="f-lbl-y" x="478" y="58" style="font-size:12px">SOP — read the rows where F = 1</text>
+  <text class="f-lbl" x="478" y="80" style="font-size:11px">In a 1-row, a 0 means the variable is complemented.</text>
+  <text class="f-code" x="478" y="106" text-anchor="middle" style="font-size:13px">F = A'B + AB</text>
+  <text class="f-lbl" x="478" y="130" style="font-size:10.5px">row 01 gives A'B &nbsp;·&nbsp; row 11 gives AB</text>
+  <text class="f-lbl" x="478" y="148" style="font-size:10.5px">Sum OF Products: terms are ANDed, then ORed together.</text>
+
+  <rect class="f-box-c" x="272" y="172" width="412" height="120" rx="8"/>
+  <text class="f-lbl-y" x="478" y="194" style="font-size:12px">POS — read the rows where F = 0</text>
+  <text class="f-lbl" x="478" y="216" style="font-size:11px">In a 0-row, a 1 means the variable is complemented.</text>
+  <text class="f-code" x="478" y="242" text-anchor="middle" style="font-size:13px">F = (A + B)(A' + B)</text>
+  <text class="f-lbl" x="478" y="266" style="font-size:10.5px">row 00 gives (A + B) &nbsp;·&nbsp; row 10 gives (A' + B)</text>
+  <text class="f-lbl" x="478" y="284" style="font-size:10.5px">Product OF Sums: terms are ORed, then ANDed together.</text>
+</svg>`;
+
+
+/* ---- 4.1 half adder circuit ---- */
+D.halfAdder = `
+<svg viewBox="0 0 700 260" role="img" aria-labelledby="t-ha">
+  <title id="t-ha">Half adder: an XOR gate gives SUM and an AND gate gives CARRY</title>
+  <text class="f-ttl" x="10" y="20">HALF ADDER — two gates reading the SAME two inputs</text>
+
+  <text class="f-pin" x="44" y="84.5" text-anchor="end">A</text>
+  <text class="f-pin" x="44" y="174.5" text-anchor="end">B</text>
+
+  <path class="f-wire" d="M52,80 L120,80"/>
+  <path class="f-wire" d="M52,170 L120,170"/>
+  <circle class="f-node-bg" cx="86" cy="80" r="4"/>
+  <circle class="f-node-bg" cx="86" cy="170" r="4"/>
+  <path class="f-wire" d="M86,80 L86,125"/>
+  <path class="f-wire" d="M86,170 L86,155"/>
+
+  ${gate('XOR', 200, 50)}
+  <path class="f-wire" d="M120,80 L220,65"/>
+  <path class="f-wire" d="M86,125 L220,95"/>
+  <path class="f-wire" d="M283,80 L400,80"/>
+  <rect class="f-box-g" x="400" y="58" width="150" height="44" rx="8"/>
+  <text class="f-val" x="475" y="80" style="font-size:13px">SUM</text>
+  <text class="f-lbl" x="475" y="96" style="font-size:10px">S = A &#8853; B</text>
+
+  ${gate('AND', 200, 140)}
+  <path class="f-wire" d="M120,170 L204,155"/>
+  <path class="f-wire" d="M86,155 L204,185"/>
+  <path class="f-wire" d="M270,170 L400,170"/>
+  <rect class="f-box-y" x="400" y="148" width="150" height="44" rx="8"/>
+  <text class="f-val" x="475" y="170" style="font-size:13px">CARRY</text>
+  <text class="f-lbl" x="475" y="186" style="font-size:10px">C = A &#183; B</text>
+
+  <text class="f-lbl" x="350" y="232" style="font-size:11.5px">Both gates see the same A and B. SUM is this column's answer; CARRY moves to the next column.</text>
+  <text class="f-lbl" x="350" y="250" style="font-size:10.5px">It is called HALF because it has no input for a carry coming IN.</text>
+</svg>`;
+
+/* ---- 4.2 ripple carry: the carry moving is the lesson, so animate it ---- */
+D.rippleCarry = {
+  type: 'animated',
+  intro: {
+    en: 'A 4-bit adder is four full adders in a row. Press Next to follow the carry as it ripples from the rightmost column to the leftmost.',
+    ne: '४-बिट adder भनेको लहरै राखिएका चार full adder हुन्। क्यारी दायाँबाट बायाँ कसरी सर्दै जान्छ हेर्न Next थिच्नुहोस्।'
+  },
+  svg: `<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-rc">
+  <title id="t-rc">A four bit ripple carry adder, with the carry passing from each stage to the next</title>
+  <text class="f-ttl" x="10" y="20">4-BIT BINARY ADDER — the carry ripples from right to left</text>
+
+  ${[3,2,1,0].map(function(k){
+    const x = 60 + (3-k)*150;
+    return `
+  <g id="fa-${k}">
+    <rect class="f-box" x="${x}" y="90" width="110" height="86" rx="8"/>
+    <text class="f-lbl-y" x="${x+55}" y="120" style="font-size:12px">FA ${k}</text>
+    <text class="f-lbl" x="${x+55}" y="140" style="font-size:10px">full adder</text>
+    <text class="f-pin" x="${x+22}" y="80" text-anchor="middle" style="font-size:11px">A${k}</text>
+    <text class="f-pin" x="${x+88}" y="80" text-anchor="middle" style="font-size:11px">B${k}</text>
+    <path class="f-wire" d="M${x+22},84 L${x+22},90"/>
+    <path class="f-wire" d="M${x+88},84 L${x+88},90"/>
+    <path class="f-wire" d="M${x+55},176 L${x+55},196"/>
+    <text class="f-pin" x="${x+55}" y="212" text-anchor="middle" style="font-size:11px">S${k}</text>
+  </g>`;}).join('')}
+
+  ${[0,1,2].map(function(i){
+    const from = 60 + i*150 + 110;
+    return `<g id="carry-${i}" class="dia-step">
+    <path class="f-arr" style="stroke:var(--color-error)" d="M${from},133 L${from+40},133"/>
+    <text class="f-lbl" x="${from+20}" y="126" style="font-size:9.5px;fill:var(--color-error)">carry</text>
+  </g>`;}).join('')}
+
+  <text class="f-lbl" x="30" y="137" text-anchor="start" style="font-size:10.5px">Cin = 0</text>
+  <path class="f-wire" d="M20,148 L60,148"/>
+
+  <g id="carry-out" class="dia-step">
+    <path class="f-arr" style="stroke:var(--color-error)" d="M610,133 L660,133"/>
+    <text class="f-lbl-y" x="668" y="137" text-anchor="end" style="font-size:10.5px">Cout</text>
+  </g>
+
+  <text class="f-lbl" x="350" y="252" style="font-size:11.5px">Each stage must wait for the carry from the stage on its right — that waiting is the delay of a ripple adder.</text>
+  <text class="f-lbl" x="350" y="272" style="font-size:10.5px">The rightmost stage has no carry coming in, so a half adder could be used there instead.</text>
+</svg>`,
+  steps: [
+    { focus: '#fa-0',
+      en: 'The rightmost stage, FA 0, adds A0 and B0 with a carry-in of 0. It can start immediately — nothing is waiting on it.',
+      ne: 'सबैभन्दा दायाँको FA 0 ले A0 र B0 लाई क्यारी-इन 0 सँग जोड्छ। यसले तुरुन्तै सुरु गर्न सक्छ — कसैलाई कुर्नु पर्दैन।' },
+    { show: '#carry-0', focus: '#fa-1',
+      en: 'FA 0 produces a carry, which becomes the carry-in of FA 1. Only now can FA 1 finish its own sum.',
+      ne: 'FA 0 ले क्यारी बनायो, जुन FA 1 को क्यारी-इन बन्छ। अब मात्र FA 1 ले आफ्नो जोड टुङ्ग्याउन सक्छ।' },
+    { show: ['#carry-0', '#carry-1'], focus: '#fa-2',
+      en: 'The same handover happens again into FA 2. Each stage adds its own small delay on top of the one before it.',
+      ne: 'उही हस्तान्तरण FA 2 मा फेरि हुन्छ। हरेक चरणले अघिल्लोमाथि आफ्नै थोरै ढिलाइ थप्छ।' },
+    { show: ['#carry-0', '#carry-1', '#carry-2'], focus: '#fa-3',
+      en: 'FA 3 is last, so it waits the longest. This accumulating wait is why the design is called a RIPPLE carry adder.',
+      ne: 'FA 3 अन्तिम भएकाले सबैभन्दा बढी कुर्छ। यही थुप्रिने प्रतीक्षाकै कारण यसलाई RIPPLE carry adder भनिन्छ।' },
+    { show: ['#carry-0', '#carry-1', '#carry-2', '#carry-out'], focus: '#carry-out',
+      en: 'The final carry leaves the adder as Cout. Four inputs bits plus four more produce five output bits in total.',
+      ne: 'अन्तिम क्यारी Cout भएर बाहिर निस्कन्छ। चार-चार बिटका दुई इनपुटले जम्मा पाँच बिटको आउटपुट दिन्छन्।' }
+  ]
+};
+
+/* ---- 4.7 - 4.10 the four block-level circuits, side by side ---- */
+D.combBlocks = `
+<svg viewBox="0 0 700 320" role="img" aria-labelledby="t-cb">
+  <title id="t-cb">Decoder, encoder, multiplexer and demultiplexer compared as blocks</title>
+  <text class="f-ttl" x="10" y="20">DECODER · ENCODER · MULTIPLEXER · DEMULTIPLEXER</text>
+  ${[['DECODER','n in','2\u207f out','one output line goes high','few \u2192 many','var(--color-secondary)'],
+      ['ENCODER','2\u207f in','n out','reports WHICH line is high','many \u2192 few','var(--color-success)'],
+      ['MULTIPLEXER','many in','1 out','select lines choose one input','many \u2192 one','var(--color-primary)'],
+      ['DEMULTIPLEXER','1 in','many out','select lines choose one output','one \u2192 many','var(--color-error)']
+     ].map(function(r,i){
+    const x = 16 + (i % 2) * 344;
+    const y = 40 + ((i/2)|0) * 138;
+    return `<g>
+    <rect class="f-box-d" x="${x}" y="${y}" width="324" height="124" rx="10"/>
+    <text class="f-lbl-y" x="${x+20}" y="${y+26}" text-anchor="start" style="font-size:12.5px">${r[0]}</text>
+    <text class="f-code" x="${x+20}" y="${y+50}" text-anchor="start" style="font-size:11.5px">${r[1]}  \u2192  ${r[2]}</text>
+    <text class="f-lbl" x="${x+20}" y="${y+74}" text-anchor="start" style="font-size:11px">${r[3]}</text>
+    <rect x="${x+20}" y="${y+90}" width="152" height="22" rx="11" style="fill:none;stroke:${r[5]};stroke-width:1.4"/>
+    <text class="f-lbl" x="${x+96}" y="${y+105}" style="font-size:10.5px;fill:${r[5]}">${r[4]}</text>
+  </g>`;}).join('')}
+  <text class="f-lbl-y" x="350" y="312" style="font-size:11.5px">A MUX and a DEMUX are opposites, and so are an encoder and a decoder. Learn them in pairs.</text>
+</svg>`;
+
+/* ---- 4.6 code converters ---- */
+D.grayCode = `
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="t-gray">
+  <title id="t-gray">Converting binary to Gray code and back again</title>
+  <text class="f-ttl" x="10" y="20">BINARY &#8596; GRAY CODE — only one bit changes between neighbours</text>
+
+  <text class="f-lbl-y" x="30" y="52" text-anchor="start" style="font-size:12px">Binary &#8594; Gray: keep the first bit, then XOR each pair</text>
+  ${['1','0','1','1'].map(function(b,i){
+    return `<rect class="f-box" x="${`${60+i*70}`}" y="64" width="52" height="40" rx="6"/>
+    <text class="f-val" x="${86+i*70}" y="90" style="font-size:15px">${b}</text>`;}).join('')}
+  ${['1','1','1','0'].map(function(b,i){
+    return `<rect class="f-box-g" x="${`${60+i*70}`}" y="136" width="52" height="40" rx="6"/>
+    <text class="f-val" x="${86+i*70}" y="162" style="font-size:15px">${b}</text>`;}).join('')}
+  <path class="f-arr" style="stroke:var(--color-success)" d="M86,108 L86,132"/>
+  <text class="f-lbl" x="86" y="124" style="font-size:9px;fill:var(--color-success)">copy</text>
+  ${[0,1,2].map(function(i){
+    const a = 86 + i*70, b = 86 + (i+1)*70;
+    return `<path class="f-arr" style="stroke:var(--color-primary)" d="M${a+6},110 L${b-6},128"/>
+    <text class="f-lbl" x="${(a+b)/2}" y="124" style="font-size:9px;fill:var(--color-primary)">&#8853;</text>`;}).join('')}
+
+  <text class="f-lbl" x="350" y="204" style="font-size:11px">Binary 1011 becomes Gray 1110. Copy the leading 1, then XOR each neighbouring pair.</text>
+  <text class="f-lbl-y" x="350" y="228" style="font-size:11.5px">Gray code is used where a wrong reading matters: only one bit changes between consecutive values.</text>
+</svg>`;
+
+
+/* ---- 5.5 / 5.7 the block diagram the exam asks students to redraw ---- */
+D.cpuBlocks = `
+<svg viewBox="0 0 700 360" role="img" aria-labelledby="t-cpub">
+  <title id="t-cpub">Block diagram of a microprocessor system: CPU, memory and input output joined by buses</title>
+  ${ah('a-cpu-addr', 'var(--color-secondary)')}${ah('a-cpu-data', 'var(--color-primary)')}${ah('a-cpu-ctrl', 'var(--color-error)')}
+  <text class="f-ttl" x="10" y="20">MICROPROCESSOR SYSTEM — the block diagram to redraw in the exam</text>
+
+  <rect class="f-box-y" x="30" y="42" width="270" height="182" rx="12"/>
+  <text class="f-lbl-y" x="165" y="66" style="font-size:12.5px">CPU (the microprocessor)</text>
+
+  <rect class="f-box" x="50" y="80" width="110" height="56" rx="8"/>
+  <text class="f-val" x="105" y="104" style="font-size:12px">ALU</text>
+  <text class="f-lbl" x="105" y="122" style="font-size:9.5px">arithmetic + logic</text>
+
+  <rect class="f-box" x="172" y="80" width="110" height="56" rx="8"/>
+  <text class="f-val" x="227" y="104" style="font-size:12px">Control Unit</text>
+  <text class="f-lbl" x="227" y="122" style="font-size:9.5px">decodes, directs</text>
+
+  <rect class="f-box" x="50" y="150" width="232" height="56" rx="8"/>
+  <text class="f-val" x="166" y="174" style="font-size:12px">Registers</text>
+  <text class="f-lbl" x="166" y="192" style="font-size:9.5px">A (accumulator) · B C D E H L · PC · SP · IR · flags</text>
+
+  <rect class="f-box-g" x="430" y="42" width="240" height="76" rx="10"/>
+  <text class="f-val" x="550" y="72" style="font-size:12px">MEMORY</text>
+  <text class="f-lbl" x="550" y="92" style="font-size:9.5px">program and data, one byte per address</text>
+
+  <rect class="f-box-c" x="430" y="148" width="240" height="76" rx="10"/>
+  <text class="f-val" x="550" y="178" style="font-size:12px">INPUT / OUTPUT</text>
+  <text class="f-lbl" x="550" y="198" style="font-size:9.5px">keyboard, display, ports</text>
+
+  <path class="f-arr" marker-end="url(#a-cpu-addr)" style="stroke:var(--color-secondary)" d="M302,86 L426,86"/>
+  <text class="f-lbl" x="364" y="76" style="font-size:10px;fill:var(--color-secondary)">ADDRESS</text>
+
+  <path class="f-arr" marker-end="url(#a-cpu-data)" style="stroke:var(--color-primary)" d="M302,124 L426,124"/>
+  <path class="f-arr" marker-end="url(#a-cpu-data)" style="stroke:var(--color-primary)" d="M426,144 L302,144"/>
+  <text class="f-lbl" x="364" y="114" style="font-size:10px;fill:var(--color-primary)">DATA</text>
+
+  <path class="f-arr" marker-end="url(#a-cpu-ctrl)" style="stroke:var(--color-error)" d="M302,192 L426,192"/>
+  <text class="f-lbl" x="364" y="182" style="font-size:10px;fill:var(--color-error)">CONTROL</text>
+
+  <text class="f-lbl-y" x="350" y="256" style="font-size:11.5px">The address bus says WHERE. The data bus carries WHAT. The control bus says WHEN and WHICH WAY.</text>
+  <text class="f-lbl" x="350" y="282" style="font-size:11px">16 address lines reach 2&#185;&#8310; = 65,536 locations, which is 64 KB — the 8085's whole memory range.</text>
+  <text class="f-lbl" x="350" y="306" style="font-size:11px">The data bus is 8 bits wide, which is what makes the 8085 an 8-bit microprocessor.</text>
+  <text class="f-lbl" x="350" y="330" style="font-size:11px">Only the address bus is one-way: the CPU always chooses the address, never the memory.</text>
+</svg>`;
+
+/* ---- 5.8 pin configuration, grouped by function rather than listed flat ---- */
+D.pins8085 = `
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-pins">
+  <title id="t-pins">The 40 pins of the 8085 grouped by function</title>
+  <text class="f-ttl" x="10" y="20">8085 PIN CONFIGURATION — 40 pins, learned in six groups</text>
+  <text class="f-lbl" x="350" y="40" style="font-size:11px">Nobody memorises 40 separate pins. Learn the six groups and what each group is for.</text>
+  ${[['Address bus','A8 – A15','8 pins — the upper half of the address','var(--color-secondary)'],
+      ['Address / data','AD0 – AD7','8 pins — shared, hence multiplexed','var(--color-primary)'],
+      ['Control and status','ALE, RD, WR, IO/M, S0, S1','tell memory what to do and when','var(--color-error)'],
+      ['Interrupts','TRAP, RST 7.5, 6.5, 5.5, INTR, INTA','ask the CPU to stop and attend','var(--color-success)'],
+      ['Power and clock','Vcc, Vss, X1, X2, CLK OUT','5 V supply and the timing crystal','var(--color-accent)'],
+      ['Serial and reset','SID, SOD, RESET IN/OUT, READY, HOLD','one bit at a time, and restart','var(--color-secondary)']
+     ].map(function(r,i){
+    const y = 54 + i*38;
+    return `<g>
+    <rect class="f-box-d" x="16" y="${y}" width="668" height="32" rx="7"/>
+    <rect x="18" y="${y+7}" width="4" height="18" rx="2" style="fill:${r[3]}"/>
+    <text class="f-lbl-y" x="38" y="${y+21}" text-anchor="start" style="font-size:11.5px">${r[0]}</text>
+    <text class="f-code" x="184" y="${y+21}" text-anchor="start" style="font-size:11px">${r[1]}</text>
+    <text class="f-lbl" x="430" y="${y+21}" text-anchor="start" style="font-size:10.5px">${r[2]}</text>
+  </g>`;}).join('')}
+  <text class="f-lbl-y" x="350" y="296" style="font-size:11.5px">AD0–AD7 carry an address first and then data, which is why the 8085 needs the ALE pin to say which.</text>
+</svg>`;
+
+/* ---- 5.10 addressing modes ---- */
+D.addressModes = `
+<svg viewBox="0 0 700 280" role="img" aria-labelledby="t-addr">
+  <title id="t-addr">The five addressing modes of the 8085 with an example of each</title>
+  <text class="f-ttl" x="10" y="20">ADDRESSING MODES — where the instruction finds its operand</text>
+  ${[['Immediate','MVI A, 05H','the value is inside the instruction itself'],
+      ['Direct','LDA 2050H','the instruction gives the memory address'],
+      ['Register','MOV A, B','the operand is in a named register'],
+      ['Register indirect','MOV A, M','a register PAIR holds the address'],
+      ['Implicit','CMA','the operand is understood, not written']
+     ].map(function(r,i){
+    const y = 44 + i*44;
+    return `<g>
+    <rect class="f-box-d" x="16" y="${y}" width="668" height="38" rx="8"/>
+    <text class="f-lbl-y" x="36" y="${y+24}" text-anchor="start" style="font-size:12px">${r[0]}</text>
+    <text class="f-code" x="200" y="${y+24}" text-anchor="start" style="font-size:12px">${r[1]}</text>
+    <text class="f-lbl" x="360" y="${y+24}" text-anchor="start" style="font-size:11px">${r[2]}</text>
+  </g>`;}).join('')}
+  <text class="f-lbl-y" x="350" y="272" style="font-size:11.5px">The mode is not about what the instruction does — it is about WHERE the data it needs is found.</text>
 </svg>`;
 
 module.exports = D;

@@ -4,7 +4,7 @@ The published site lives in the folder **above** this one and is generated
 output. Edit files here, never the HTML in the site root — a rebuild overwrites it.
 
 ```bash
-npm run build     # regenerate all 20 pages + assets
+npm run build     # regenerate all 28 pages + assets
 npm test          # 73 tests: build, links, content, runtime, storage
 npm run check     # both
 npm run serve     # http://localhost:8080

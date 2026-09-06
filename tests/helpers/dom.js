@@ -80,9 +80,12 @@ const doc = {
 
 /* ------------------------------------------------------------------ */
 
-function createEnvironment(ids = []){
+function createEnvironment(ids = [], opts = {}){
   doc._els = Object.create(null);
   doc.body = new Element('body');
+  /* The language mode is an attribute on <html>, so the stub needs a
+     document element to carry it. */
+  doc.documentElement = new Element('html');
   ids.forEach(id => doc._ensure(id));
 
   const timers = [];
@@ -99,7 +102,10 @@ function createEnvironment(ids = []){
     },
     innerWidth: 1024,
     console,
-    localStorage: undefined
+    /* Storage is injectable so a test can reproduce the cases that
+       actually happen to students: no storage at all, a private-mode
+       object that throws on write, and a corrupted value. */
+    localStorage: opts.localStorage
   };
   sandbox.__listeners = listeners;
   sandbox.window = sandbox;

@@ -1,0 +1,418 @@
+<section id="dd-u2">
+  <div class="sec-head">
+    <div class="sec-num">2</div>
+    <div>
+      <h2>Concept of Logic Gates</h2>
+      <p class="sec-sub">लजिक गेटको अवधारणा</p>
+    </div>
+    <span class="marks">14 hrs · 15 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Draw the symbol of every basic gate from memory.</li>
+      <li>Write the Boolean expression for each gate.</li>
+      <li>Complete the truth table of any gate without memorising it.</li>
+      <li>Explain why NAND and NOR are called universal gates.</li>
+      <li>State De Morgan's two theorems and prove them with a truth table.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: हरेक गेटको चिन्ह सम्झेर कोर्न, त्यसको बुलियन अभिव्यक्ति लेख्न,
+    ट्रुथ टेबल आफैं भर्न, NAND र NOR किन universal हुन् भन्न, र डी–मर्गनका दुवै नियम प्रमाणसहित
+    सुनाउन सक्नुहुनेछ।</span>
+  </div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>logic gate</b> is a basic electronic circuit that takes one or more binary
+      inputs (0 or 1) and produces a single binary output, decided by a fixed rule.</p>
+      <p>0 means <b>low voltage / false / off</b>. 1 means <b>high voltage / true / on</b>.
+      Every digital device you own is built from these gates and nothing else.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>लजिक गेट</b> भनेको त्यस्तो आधारभूत इलेक्ट्रोनिक सर्किट हो, जसले एक वा बढी
+      binary इनपुट (० वा १) लिएर, तोकिएको नियमअनुसार एउटा मात्र binary आउटपुट दिन्छ।</p>
+      <p>० को अर्थ <b>कम भोल्टेज / असत्य / बन्द</b>, र १ को अर्थ <b>बढी भोल्टेज / सत्य / खुला</b>।
+      तपाईंले चलाउने हरेक डिजिटल यन्त्र यिनै गेटबाट बनेको हुन्छ।</p>
+    </div>
+  </div>
+
+  <h3 class="topic" id="t21">2.1 &nbsp;Notations — three ways to write the same gate</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Why three notations</span>
+      <p>The exam can ask for a gate in any of three forms, and they mean exactly the same thing:</p>
+      <ol>
+        <li>the <b>symbol</b> — the shape you draw;</li>
+        <li>the <b>Boolean expression</b> — the algebra you write, such as <code>Y = A · B</code>;</li>
+        <li>the <b>truth table</b> — every possible input with its output.</li>
+      </ol>
+      <p>A bar over a letter, <span class="ovl">A</span>, means NOT A. Some books write it
+      <code>A'</code> instead. Both are correct and both appear in question papers.</p>
+    </div>
+    <div class="np"><span class="tag">तीन किसिमको नोटेसन किन</span>
+      <p>परीक्षामा एउटै गेटलाई तीनमध्ये कुनै पनि रूपमा सोध्न सकिन्छ, र तीनैको अर्थ एउटै हो:</p>
+      <ol>
+        <li><b>symbol</b> — कोर्ने आकार;</li>
+        <li><b>Boolean expression</b> — लेख्ने बीजगणित, जस्तै <code>Y = A · B</code>;</li>
+        <li><b>truth table</b> — सम्भव सबै इनपुट र तिनको आउटपुट।</li>
+      </ol>
+      <p>अक्षरमाथिको धर्को, जस्तै <span class="ovl">A</span>, को अर्थ NOT A हो। कतै <code>A'</code>
+      पनि लेखिन्छ। दुवै सही हुन् र दुवै प्रश्नपत्रमा आउँछन्।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:gateSymbols}}
+    <figcaption>The six symbols and their expressions. Learn to draw these — "draw the symbol
+    and write the truth table of a NAND gate" is a standard question.
+    <span class="np-cell">छ वटा चिन्ह र तिनका अभिव्यक्ति। यी कोर्न सिक्नुहोस् — "NAND गेटको चिन्ह
+    कोर्नुहोस् र ट्रुथ टेबल लेख्नुहोस्" भन्ने प्रश्न पटक–पटक आउँछ।</span></figcaption>
+  </figure>
+
+  <div class="callout">
+    <b>How to tell the shapes apart in one line each.</b>
+    AND has a <b>flat back and a round nose</b> — D-shaped.
+    OR has a <b>curved back and a pointed nose</b>.
+    NOT is a <b>triangle</b>.
+    A small circle on the nose means <b>"and then invert"</b> — that circle is the whole
+    difference between AND and NAND, and between OR and NOR.
+    <span class="np-cell">आकार छुट्याउने सजिलो तरिका: AND को पछाडि सम्म र नाक गोलो (D जस्तो);
+    OR को पछाडि खुम्चिएको र नाक चुच्चो; NOT त्रिकोण। नाकमा सानो गोलो छ भने त्यसको अर्थ
+    "अनि उल्टाउने" — यही गोलोले मात्र AND लाई NAND र OR लाई NOR बनाउँछ।</span>
+  </div>
+
+  <h3 class="topic" id="t22">2.2 &nbsp;The concept of a gate and its truth table</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">What a truth table is</span>
+      <p>A gate has a fixed rule, so its behaviour can be listed completely. That list is the
+      <b>truth table</b>: one row for every possible combination of inputs, and the output for
+      each.</p>
+      <p>With <b>n inputs there are 2<sup>n</sup> rows</b> — 2 inputs give 4 rows, 3 inputs give
+      8 rows. Write the input columns counting up in binary (00, 01, 10, 11) and you can never
+      miss a row.</p>
+    </div>
+    <div class="np"><span class="tag">ट्रुथ टेबल भनेको के</span>
+      <p>गेटको नियम निश्चित हुने भएकाले त्यसको पूरा व्यवहार सूचीबद्ध गर्न सकिन्छ। त्यही सूची नै
+      <b>ट्रुथ टेबल</b> हो: इनपुटका सम्भव हरेक जोडीको एउटा पङ्क्ति, र प्रत्येकको आउटपुट।</p>
+      <p><b>n इनपुट भए 2<sup>n</sup> पङ्क्ति</b> हुन्छन् — २ इनपुटमा ४, ३ इनपुटमा ८। इनपुट स्तम्भलाई
+      binary मा गन्दै (००, ०१, १०, ११) लेख्नुभयो भने कुनै पङ्क्ति छुट्दैन।</p>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>A NAND gate has A = 1 and B = 1. What is the output Y?
+      <span class="np-cell">NAND गेटमा A = 1 र B = 1 छ। आउटपुट Y कति हुन्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Y = 1</button>
+      <button class="predict-opt" data-value="b">Y = 0</button>
+    </div>
+    <div class="predict-feedback">
+      <p>Do the AND first: 1 · 1 = 1. Then the circle on the nose inverts it: Y = 0.
+      NAND is the only gate that gives 0 when both inputs are 1 — check it in the workbench below.</p>
+      <span class="np-cell">पहिले AND गर्नुहोस्: १ · १ = १। अनि नाकको गोलोले उल्टाउँछ: Y = ०।
+      दुवै इनपुट १ हुँदा ० दिने एउटै गेट NAND हो — तलको प्रयोगशालामा जाँच्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h4>The gate workbench</h4>
+      <p class="sim-goal">What you will learn: how each gate turns its inputs into an output,
+      and which row of the truth table your inputs are pointing at.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: हरेक गेटले इनपुटलाई कसरी आउटपुटमा बदल्छ, र
+      तपाईंको इनपुटले ट्रुथ टेबलको कुन पङ्क्ति देखाइरहेको छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="gatelab" id="gl-main" data-gates="NOT,AND,OR,NAND,NOR,XOR" data-gate="AND"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Pick a gate, then click <b>A</b> and <b>B</b> to change the inputs. Watch three things
+        move together: the wire lights up when it carries 1, the lamp shows the output, and the
+        matching row of the truth table is highlighted.</p>
+        <p><b>Try this:</b> set A = 1, B = 0 and step through all six gates without changing the
+        inputs. The same inputs give a different answer in every gate — that difference <i>is</i>
+        the gate.</p>
+        <span class="np-cell">गेट छान्नुहोस्, अनि <b>A</b> र <b>B</b> थिचेर इनपुट बदल्नुहोस्। तीन कुरा
+        सँगै चल्छन्: १ बग्दा तार बल्छ, बत्तीले आउटपुट देखाउँछ, र ट्रुथ टेबलको मिल्दो पङ्क्ति उज्यालो हुन्छ।
+        <b>यसो गरेर हेर्नुहोस्:</b> A = 1, B = 0 राखेर इनपुट नबदली छैटै गेट पालैपालो हेर्नुहोस्।
+        उही इनपुटले हरेक गेटमा फरक उत्तर दिन्छ — त्यही फरक नै गेट हो।</span>
+      </div>
+    </div>
+  </div>
+
+  <h4 class="sub">Reading each gate in one sentence</h4>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Gate</th><th>Expression</th><th>Output is 1 when…</th><th>Remember it as</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>NOT</td><td><code>Y = <span class="ovl">A</span></code></td>
+            <td>the input is 0</td>
+            <td>reverses<span class="np-cell">उल्टाउँछ</span></td></tr>
+        <tr><td>AND</td><td><code>Y = A · B</code></td>
+            <td>ALL inputs are 1</td>
+            <td>strict — one 0 spoils it<span class="np-cell">कडा — एउटा ० भए पुग्छ</span></td></tr>
+        <tr><td>OR</td><td><code>Y = A + B</code></td>
+            <td>AT LEAST ONE input is 1</td>
+            <td>generous<span class="np-cell">उदार</span></td></tr>
+        <tr><td>NAND</td><td><code>Y = <span class="ovl">A · B</span></code></td>
+            <td>NOT all inputs are 1</td>
+            <td>AND, then flip<span class="np-cell">AND अनि उल्टो</span></td></tr>
+        <tr><td>NOR</td><td><code>Y = <span class="ovl">A + B</span></code></td>
+            <td>ALL inputs are 0</td>
+            <td>OR, then flip<span class="np-cell">OR अनि उल्टो</span></td></tr>
+        <tr><td>XOR</td><td><code>Y = A ⊕ B</code></td>
+            <td>the inputs are DIFFERENT</td>
+            <td>"odd one out"<span class="np-cell">फरक भए मात्र</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout an">
+    <b>XOR is not in the numbered syllabus list, but you need it.</b>
+    The SUM output of a half adder (Unit 4.1) <i>is</i> an XOR gate, so it is taught here rather
+    than sprung on you later.
+    <span class="np-cell">XOR सिलेबसको क्रमबद्ध सूचीमा छैन, तर चाहिन्छ। Half adder (युनिट ४.१) को
+    SUM भनेकै XOR गेट हो, त्यसैले पछि अचानक आउनुभन्दा यहीँ सिकाइएको हो।</span>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Filling a truth table you have not memorised</div>
+    <p><b>Question:</b> complete the truth table of a NOR gate.</p>
+    <p><b>Step 1 — write the rows.</b> Two inputs, so 2² = 4 rows. Count up in binary:
+    00, 01, 10, 11. Now no row can be missed.</p>
+    <p><b>Step 2 — do the easy gate first.</b> NOR is OR then NOT, so find OR:
+    0, 1, 1, 1.</p>
+    <p><b>Step 3 — invert every answer.</b> 1, 0, 0, 0.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">A B → Y : 0 0 → 1 &nbsp;|&nbsp; 0 1 → 0 &nbsp;|&nbsp; 1 0 → 0 &nbsp;|&nbsp; 1 1 → 0</div>
+    </div>
+    <p class="wex-note">You never have to memorise NAND and NOR tables. Work out AND or OR,
+    then flip. That is one rule instead of four tables.
+    <span class="np-cell">NAND र NOR का टेबल घोक्नु पर्दैन। पहिले AND वा OR निकाल्नुहोस्, अनि
+    उल्टाउनुहोस्। चार टेबल घोक्नुभन्दा एउटा नियम सजिलो।</span></p>
+  </div>
+
+  <h3 class="topic" id="t226">2.2.6 &nbsp;Universal gates</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition</span>
+      <p>A <b>universal gate</b> is a gate from which every other logic gate can be built.
+      <b>NAND and NOR are the two universal gates.</b></p>
+      <p>This matters in real manufacturing: a factory that can make one kind of gate reliably
+      and cheaply can build any circuit at all from it, instead of producing six different
+      components.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा</span>
+      <p><b>Universal gate</b> भनेको त्यस्तो गेट हो जसबाट अरू सबै लजिक गेट बनाउन सकिन्छ।
+      <b>NAND र NOR — यी दुई universal गेट हुन्।</b></p>
+      <p>यसको महत्त्व उत्पादनमा छ: एउटै किसिमको गेट सस्तो र भरपर्दो गरी बनाउन सक्ने कारखानाले
+      छ किसिमका पार्ट्स नबनाई त्यसैबाट जुनसुकै सर्किट बनाउन सक्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:nandUniversal}}
+    <figcaption>NOT, AND and OR built from NAND gates only. Learn at least the NOT and the AND
+    construction — those two are the ones asked for.
+    <span class="np-cell">NAND बाटै बनाइएका NOT, AND र OR। कम्तीमा NOT र AND बनाउने तरिका
+    सिक्नुहोस् — प्रायः यी दुई नै सोधिन्छन्।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Check it yourself</span><span class="t-ne"><span class="t-en"> · </span>आफैं जाँच्नुहोस्</span></p>
+      <h4>Does NAND with both inputs joined really behave like NOT?</h4>
+      <p class="sim-goal">Set A and B to the <b>same</b> value — that is what joining the inputs
+      does. Read the output: it is always the opposite of the input.
+      <span class="np-cell">A र B लाई <b>उही</b> मान दिनुहोस् — इनपुट जोड्नुको अर्थ त्यही हो।
+      आउटपुट हेर्नुहोस्: सधैं इनपुटको उल्टो आउँछ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="gatelab" id="gl-nand" data-gates="NAND,NOT" data-gate="NAND"></div>
+      <div class="sim-why">
+        <span class="h">Why does this work?</span>
+        <p>Joining the two inputs of a NAND means both of them always carry the same value —
+        so the gate only ever sees the rows <b>0 0</b> and <b>1 1</b>. In those two rows NAND
+        gives 1 and 0, which is exactly the NOT table.</p>
+        <p>Switch the picker to NOT and compare: same two rows, same two answers. One NAND with
+        its inputs tied together <i>is</i> an inverter.</p>
+        <span class="np-cell">NAND का दुई इनपुट जोड्दा दुवैमा सधैं उही मान जान्छ — त्यसैले गेटले
+        <b>0 0</b> र <b>1 1</b> पङ्क्ति मात्र देख्छ। ती दुई पङ्क्तिमा NAND ले 1 र 0 दिन्छ, जुन
+        ठ्याक्कै NOT को टेबल हो। पिकरबाट NOT छानेर तुलना गर्नुहोस्: उही दुई पङ्क्ति, उही दुई उत्तर।</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="topic" id="t23">2.3 &nbsp;De Morgan's theorems</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The two theorems</span>
+      <p><b>First theorem:</b> <code>(A · B)' = A' + B'</code><br>
+      The complement of a product equals the sum of the complements.</p>
+      <p><b>Second theorem:</b> <code>(A + B)' = A' · B'</code><br>
+      The complement of a sum equals the product of the complements.</p>
+      <p>In plain words, and this is how to remember it in the exam hall:
+      <b>break the bar, and change the sign.</b> A dot becomes a plus; a plus becomes a dot.</p>
+    </div>
+    <div class="np"><span class="tag">दुई नियम</span>
+      <p><b>पहिलो नियम:</b> <code>(A · B)' = A' + B'</code><br>
+      गुणनफलको पूरक भनेको पूरकहरूको जोड हो।</p>
+      <p><b>दोस्रो नियम:</b> <code>(A + B)' = A' · B'</code><br>
+      जोडको पूरक भनेको पूरकहरूको गुणनफल हो।</p>
+      <p>सजिलो भाषामा, र परीक्षामा यसैगरी सम्झनुहोस्:
+      <b>बार फुटाउनुहोस्, अनि चिन्ह बदल्नुहोस्।</b> डट भए प्लस, प्लस भए डट।</p>
+    </div>
+  </div>
+
+  {{dia:deMorgan}}
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Proving the second theorem by truth table</div>
+    <p><b>Question:</b> prove that <code>(A + B)' = A' · B'</code>.</p>
+    <p><b>Step 1 — build the columns you need:</b> A, B, A + B, (A + B)', A', B', A' · B'.</p>
+    <p><b>Step 2 — fill them row by row.</b></p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">A B | A+B | (A+B)' | A' B' | A'·B'
+0 0 |  0  |   1    | 1  1 |   1
+0 1 |  1  |   0    | 1  0 |   0
+1 0 |  1  |   0    | 0  1 |   0
+1 1 |  1  |   0    | 0  0 |   0</div>
+    </div>
+    <p><b>Step 3 — compare the two answer columns.</b> 1, 0, 0, 0 and 1, 0, 0, 0. They are
+    identical in all four rows, so the theorem is proved.</p>
+    <p class="wex-note">Two expressions are equal if and only if their truth tables match in
+    every row. That single sentence is what a "prove" question is asking for — always finish by
+    saying the columns are identical.
+    <span class="np-cell">दुई अभिव्यक्ति बराबर हुन्छन् भने तिनका ट्रुथ टेबल हरेक पङ्क्तिमा मिल्नुपर्छ।
+    "प्रमाणित गर्नुहोस्" भन्ने प्रश्नले खोजेको यही हो — अन्त्यमा "दुवै स्तम्भ उस्तै छन्" भनेर टुङ्ग्याउनुहोस्।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Breaking the bar but forgetting to change the sign.</b> Writing
+        <code>(A · B)' = A' · B'</code> looks tidy and is wrong. Check it: with A = 1, B = 0 the
+        left side is 1 but the right side is 0.
+        <span class="np-cell">बार फुटाएर चिन्ह नबदल्नु। <code>(A · B)' = A' · B'</code> हेर्दा
+        मिल्दो देखिन्छ तर गलत हो। A = 1, B = 0 राखेर जाँच्नुहोस्: बायाँ १, दायाँ ०।</span></li>
+      <li><b>Confusing NAND with NOR.</b> NAND is 0 only when both inputs are 1; NOR is 1 only
+        when both inputs are 0. They are opposites of different gates, not of each other.
+        <span class="np-cell">NAND र NOR मिसाउनु। दुवै इनपुट १ हुँदा मात्र ० दिने NAND हो; दुवै ०
+        हुँदा मात्र १ दिने NOR हो।</span></li>
+      <li><b>Drawing AND with a pointed nose.</b> The marker is checking the shape. Flat back,
+        round nose = AND. Curved back, pointed nose = OR.
+        <span class="np-cell">AND लाई चुच्चो नाक भएको कोर्नु। परीक्षकले आकार नै हेर्छ।</span></li>
+      <li><b>Writing 2 rows for a 3-input gate.</b> It is 2<sup>n</sup> rows, not 2 rows —
+        3 inputs need 8.
+        <span class="np-cell">३ इनपुटको गेटलाई २ पङ्क्ति लेख्नु। 2<sup>n</sup> हुन्छ — ३ इनपुटमा ८।</span></li>
+    </ul>
+  </div>
+
+  <h3 class="topic" id="exam2">Exam focus — what is asked from this unit</h3>
+
+  <div class="exam-connect">
+    <b>This unit carries 15 of the 50 marks — the joint highest in the subject.</b>
+    Questions come in four shapes, and all four are drawing or table work rather than essays:
+    draw a symbol, complete a truth table, state and prove De Morgan, and explain why NAND is
+    universal. Practise on paper, because that is where the marks are.
+    <span class="np-cell">यो युनिटले ५० मध्ये १५ अंक बोक्छ — विषयकै सबैभन्दा बढी। प्रश्न चार किसिमका
+    आउँछन्, र चारै लेखाइभन्दा कोराइ र तालिकामा आधारित छन्: चिन्ह कोर्ने, ट्रुथ टेबल भर्ने,
+    डी–मर्गन प्रमाणित गर्ने, र NAND किन universal हो भन्ने। कागजमै अभ्यास गर्नुहोस्।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>Define a logic gate. <span class="np-cell">लजिक गेटको परिभाषा दिनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a21">Show the answer</button>
+    <div class="ans" id="a21">
+      <p>A logic gate is a basic electronic circuit that accepts one or more binary inputs
+      (0 or 1) and produces one binary output according to a fixed logical rule. It is the
+      building block of every digital circuit.</p>
+      <span class="np-cell">लजिक गेट भनेको एक वा बढी binary इनपुट (० वा १) लिएर तोकिएको तार्किक
+      नियमअनुसार एउटा binary आउटपुट दिने आधारभूत इलेक्ट्रोनिक सर्किट हो। यो हरेक डिजिटल
+      सर्किटको आधारभूत एकाइ हो।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>Draw the symbol and write the truth table of a NAND gate.
+    <span class="np-cell">NAND गेटको चिन्ह कोर्नुहोस् र ट्रुथ टेबल लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a22">Show the answer</button>
+    <div class="ans" id="a22">
+      <p><b>Symbol:</b> the AND shape — flat back, round nose — with a small circle on the nose.
+      Label the inputs A and B and the output Y.</p>
+      <p><b>Expression:</b> <code>Y = <span class="ovl">A · B</span></code></p>
+      <div class="out">A B → Y : 0 0 → 1 &nbsp;|&nbsp; 0 1 → 1 &nbsp;|&nbsp; 1 0 → 1 &nbsp;|&nbsp; 1 1 → 0</div>
+      <span class="np-cell">चिन्ह: AND कै आकार (पछाडि सम्म, नाक गोलो) र नाकमा सानो गोलो।
+      इनपुट A, B र आउटपुट Y लेख्नुहोस्। दुवै इनपुट १ हुँदा मात्र आउटपुट ० हुन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>Why are NAND and NOR called universal gates? Show how a NOT gate is made from a NAND gate.
+    <span class="np-cell">NAND र NOR लाई किन universal गेट भनिन्छ? NAND बाट NOT गेट कसरी बन्छ देखाउनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a23">Show the answer</button>
+    <div class="ans" id="a23">
+      <p>They are called universal because every other logic gate — NOT, AND, OR, XOR — can be
+      built using only that one type of gate. A circuit can therefore be manufactured from a
+      single component.</p>
+      <p><b>NOT from NAND:</b> connect both inputs of the NAND together and feed A into them.
+      The output is <code>(A · A)' = A'</code>, which is exactly NOT A.</p>
+      <span class="np-cell">अरू सबै गेट — NOT, AND, OR, XOR — एउटै किसिमको गेटबाट बनाउन सकिने
+      भएकाले universal भनिन्छ। NAND का दुवै इनपुट जोडेर A दिँदा आउटपुट <code>(A · A)' = A'</code>
+      हुन्छ, जुन NOT A नै हो।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">5 marks</span> Practice question</div>
+    <p>State De Morgan's theorems and prove the first one using a truth table.
+    <span class="np-cell">डी–मर्गनका नियम भन्नुहोस् र पहिलो नियमलाई ट्रुथ टेबलबाट प्रमाणित गर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a24">Show the answer</button>
+    <div class="ans" id="a24">
+      <p><b>First:</b> <code>(A · B)' = A' + B'</code> — the complement of a product is the sum
+      of the complements.<br>
+      <b>Second:</b> <code>(A + B)' = A' · B'</code> — the complement of a sum is the product of
+      the complements.</p>
+      <div class="out">A B | A·B | (A·B)' | A' B' | A'+B'
+0 0 |  0  |   1    | 1  1 |   1
+0 1 |  0  |   1    | 1  0 |   1
+1 0 |  0  |   1    | 0  1 |   1
+1 1 |  1  |   0    | 0  0 |   0</div>
+      <p>The columns <code>(A · B)'</code> and <code>A' + B'</code> are identical in all four
+      rows, so the theorem is proved.</p>
+      <span class="np-cell">दुवै स्तम्भ चारै पङ्क्तिमा उस्तै भएकाले नियम प्रमाणित भयो।
+      उत्तरको अन्त्यमा यही वाक्य लेख्न नबिर्सनुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick">A logic gate turns binary inputs into one binary output by a fixed rule.
+        <span class="np-cell">लजिक गेटले binary इनपुटलाई निश्चित नियमले एउटा binary आउटपुटमा बदल्छ।</span></li>
+      <li class="tick">Symbol, Boolean expression and truth table are three notations for the same gate.
+        <span class="np-cell">चिन्ह, बुलियन अभिव्यक्ति र ट्रुथ टेबल — एउटै गेटका तीन नोटेसन।</span></li>
+      <li class="tick">n inputs give 2<sup>n</sup> rows. Count the inputs up in binary and no row is missed.
+        <span class="np-cell">n इनपुटमा 2<sup>n</sup> पङ्क्ति। binary मा गन्नुभयो भने कुनै छुट्दैन।</span></li>
+      <li class="tick">AND needs every input to be 1; OR needs at least one; a nose circle inverts the answer.
+        <span class="np-cell">AND लाई सबै इनपुट १ चाहिन्छ; OR लाई एउटा भए पुग्छ; नाकको गोलोले उत्तर उल्टाउँछ।</span></li>
+      <li class="tick">NAND and NOR are universal — every other gate can be built from either one.
+        <span class="np-cell">NAND र NOR universal हुन् — अरू सबै गेट यीमध्ये एउटैबाट बनाउन सकिन्छ।</span></li>
+      <li class="tick">De Morgan: break the bar, change the sign. Prove it by matching truth tables.
+        <span class="np-cell">डी–मर्गन: बार फुटाउने, चिन्ह बदल्ने। ट्रुथ टेबल मिलाएर प्रमाणित गर्ने।</span></li>
+    </ul>
+  </div>
+</section>

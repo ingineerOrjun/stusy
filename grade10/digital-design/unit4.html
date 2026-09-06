@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Binary Arithmetic and Combinational Logic — Digital Design | RGSC Study Board</title>
+<meta name="description" content="Binary Arithmetic and Combinational Logic explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html" class="on">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">Digital Design</a> <span class="sep">/</span> <span>Binary Arithmetic and Combinational Logic</span></nav>
+<main id="main" data-subject="grade10/digital-design">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Number Systems</a><a href="unit2.html">2 · Logic Gates</a><a href="unit3.html">3 · Boolean / K-map</a><a href="unit4.html" style="color:var(--yellow);border-color:var(--yellow)">4 · Combinational Logic</a><a href="unit5.html">5 · Microprocessor</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="dd-u4">
+  <div class="sec-head">
+    <div class="sec-num">4</div>
+    <div>
+      <h1>Binary Arithmetic and Combinational Logic</h1>
+      <p class="sec-sub" lang="ne">बाइनरी गणित र कम्बिनेसनल लजिक</p>
+    </div>
+    <span class="marks">13 hrs · 7 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2><div class="t-en">
+    <ol>
+      <li>Draw a half adder and a full adder and derive each from its truth table.</li>
+      <li>Explain the difference between a half adder and a full adder in one sentence.</li>
+      <li>Draw a half subtractor and a full subtractor.</li>
+      <li>Convert between binary, Gray code and BCD.</li>
+      <li>State what a decoder, encoder, multiplexer and demultiplexer each do.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: half adder र full adder कोर्न र ट्रुथ टेबलबाट निकाल्न,
+    दुईबीचको फरक एक वाक्यमा भन्न, subtractor कोर्न, binary–Gray–BCD बदल्न, र decoder, encoder,
+    multiplexer, demultiplexer ले के गर्छन् भन्न सक्नुहुनेछ।</span>
+  </div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">What "combinational" means</span>
+      <p>A <b>combinational circuit</b> is one whose output depends only on the inputs
+      <b>right now</b>. It has no memory of what happened before.</p>
+      <p>Every circuit in this unit is combinational. That is why a truth table describes each
+      one completely: list every input combination, and you have described the circuit.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">"कम्बिनेसनल" को अर्थ</span>
+      <p><b lang="ne">Combinational सर्किट</b> भनेको त्यस्तो सर्किट हो जसको आउटपुट <b lang="ne">अहिलेको</b> इनपुटमा मात्र
+      भर पर्छ। यसले पहिले के भयो भन्ने सम्झँदैन।</p>
+      <p lang="ne">यस युनिटका सबै सर्किट combinational हुन्। त्यसैले ट्रुथ टेबलले हरेकलाई पूरै वर्णन गर्छ:
+      सबै इनपुट जोडी लेखिसकेपछि सर्किट वर्णन भइसक्यो।</p>
+    </div>
+  </div>
+
+  <h2 class="topic" id="t41">4.1 &nbsp;Half adder</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition</span>
+      <p>A <b>half adder</b> is a circuit that adds two single binary digits and produces two
+      outputs: <b>SUM</b> and <b>CARRY</b>.</p>
+      <p>Work out its truth table from ordinary binary addition and the gates fall out by
+      themselves. SUM is 1 when the inputs differ — that is XOR. CARRY is 1 only when both
+      are 1 — that is AND.</p>
+      <p>It is called <b>half</b> because it has no third input for a carry arriving from the
+      column to its right.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा</span>
+      <p><b>Half adder</b> भनेको दुई एकल binary अङ्क जोडेर <b>SUM</b> र <b>CARRY</b> दुई आउटपुट
+      दिने सर्किट हो।</p>
+      <p lang="ne">साधारण binary जोडबाट ट्रुथ टेबल निकाल्नुहोस्, गेट आफैं देखिन्छन्। इनपुट फरक हुँदा SUM 1 हुन्छ —
+      त्यो XOR हो। दुवै 1 हुँदा मात्र CARRY 1 हुन्छ — त्यो AND हो।</p>
+      <p lang="ne">यसलाई <b>half</b> भनिनुको कारण: दायाँको स्तम्भबाट आउने क्यारीका लागि तेस्रो इनपुट छैन।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 260" role="img" aria-labelledby="t-ha">
+  <title id="t-ha">Half adder: an XOR gate gives SUM and an AND gate gives CARRY</title>
+  <text class="f-ttl" x="10" y="20">HALF ADDER — two gates reading the SAME two inputs</text>
+
+  <text class="f-pin" x="44" y="84.5" text-anchor="end">A</text>
+  <text class="f-pin" x="44" y="174.5" text-anchor="end">B</text>
+
+  <path class="f-wire" d="M52,80 L120,80"/>
+  <path class="f-wire" d="M52,170 L120,170"/>
+  <circle class="f-node-bg" cx="86" cy="80" r="4"/>
+  <circle class="f-node-bg" cx="86" cy="170" r="4"/>
+  <path class="f-wire" d="M86,80 L86,125"/>
+  <path class="f-wire" d="M86,170 L86,155"/>
+
+  <g transform="translate(200,50)"><path class="f-gate" d="M8,0 Q33,30 8,60 Q58,60 83,30 Q58,0 8,0 Z"/><path class="f-gate f-gate-open" d="M0,0 Q25,30 0,60"/></g>
+  <path class="f-wire" d="M120,80 L220,65"/>
+  <path class="f-wire" d="M86,125 L220,95"/>
+  <path class="f-wire" d="M283,80 L400,80"/>
+  <rect class="f-box-g" x="400" y="58" width="150" height="44" rx="8"/>
+  <text class="f-val" x="475" y="80" style="font-size:13px">SUM</text>
+  <text class="f-lbl" x="475" y="96" style="font-size:10px">S = A &#8853; B</text>
+
+  <g transform="translate(200,140)"><path class="f-gate" d="M0,0 L40,0 A30,30 0 0 1 40,60 L0,60 Z"/></g>
+  <path class="f-wire" d="M120,170 L204,155"/>
+  <path class="f-wire" d="M86,155 L204,185"/>
+  <path class="f-wire" d="M270,170 L400,170"/>
+  <rect class="f-box-y" x="400" y="148" width="150" height="44" rx="8"/>
+  <text class="f-val" x="475" y="170" style="font-size:13px">CARRY</text>
+  <text class="f-lbl" x="475" y="186" style="font-size:10px">C = A &#183; B</text>
+
+  <text class="f-lbl" x="350" y="232" style="font-size:11.5px">Both gates see the same A and B. SUM is this column's answer; CARRY moves to the next column.</text>
+  <text class="f-lbl" x="350" y="250" style="font-size:10.5px">It is called HALF because it has no input for a carry coming IN.</text>
+</svg>
+    <figcaption><span class="t-en">Two gates, both reading the same A and B. This is the circuit to reproduce in
+    the exam — label the gates, the inputs and both outputs.
+    </span><span class="np-cell" lang="ne">दुई गेट, दुवैले उही A र B पढ्छन्। परीक्षामा यही सर्किट कोर्नुपर्छ — गेट,
+    इनपुट र दुवै आउटपुटमा नाम लेख्नुहोस्।</span></figcaption>
+  </figure>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">In a half adder with A = 1 and B = 1, what are SUM and CARRY?
+      </span><span class="np-cell" lang="ne">A = 1 र B = 1 भएको half adder मा SUM र CARRY कति हुन्छन्?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">SUM = 1, CARRY = 1</button>
+      <button class="predict-opt" data-value="b">SUM = 0, CARRY = 1</button>
+      <button class="predict-opt" data-value="c">SUM = 1, CARRY = 0</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p>1 + 1 = 10 in binary: write 0 in this column and carry 1 to the next. So SUM = 0 and
+      CARRY = 1. Confirm it in the workbench below, then compare with the half subtractor.</p>
+      </div><span class="np-cell" lang="ne">binary मा 1 + 1 = 10: यही स्तम्भमा 0 लेख्ने, 1 क्यारी लैजाने। त्यसैले
+      SUM = 0 र CARRY = 1। तलको प्रयोगशालामा पुष्टि गर्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h3>The combinational circuit workbench</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: how each circuit turns its inputs into
+      <b>several</b> outputs at once, and which truth-table row you are standing on.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: हरेक सर्किटले इनपुटलाई एकैचोटि <b lang="ne">धेरै</b>
+      आउटपुटमा कसरी बदल्छ, र तपाईं ट्रुथ टेबलको कुन पङ्क्तिमा हुनुहुन्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="comblab" id="cb-main" data-circuit="halfadder"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">The comparisons worth making</span>
+        <p><b>Half adder vs half subtractor.</b> Switch between them without changing the inputs.
+        The first output is identical — both are XOR. Only the second output changes: AND for a
+        carry, but A′·B for a borrow, because you only borrow when A is 0 and B is 1.</p>
+        <p><b>Half adder vs full adder.</b> The full adder has a third input, Cin. Set it to 0
+        and the full adder behaves exactly like a half adder — which is the clearest way to see
+        what the word "full" is adding.</p>
+        </div><span class="np-cell" lang="ne"><b lang="ne">Half adder र half subtractor:</b> इनपुट नबदली दुईबीच साट्नुहोस्।
+        पहिलो आउटपुट उही छ — दुवै XOR। दोस्रो मात्र फरक। <b lang="ne">Half adder र full adder:</b> full adder
+        मा तेस्रो इनपुट Cin छ; त्यसलाई 0 राख्दा full adder ठ्याक्कै half adder जस्तै चल्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="topic" id="t44">4.4 &nbsp;Full adder, and the binary adder</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition</span>
+      <p>A <b>full adder</b> adds <b>three</b> bits: the two digits being added and the carry
+      coming in from the previous column. It produces SUM and CARRY OUT.</p>
+      <p><code>S = A ⊕ B ⊕ Cin</code><br>
+      <code>Cout = AB + BCin + ACin</code></p>
+      <p>Read the carry expression in words: a carry is produced when <b>any two</b> of the three
+      inputs are 1.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा</span>
+      <p><b>Full adder</b> ले <b lang="ne">तीन</b> बिट जोड्छ: जोड्नुपर्ने दुई अङ्क र अघिल्लो स्तम्भबाट आएको क्यारी।
+      यसले SUM र CARRY OUT दिन्छ।</p>
+      <p><code>S = A ⊕ B ⊕ Cin</code><br>
+      <code>Cout = AB + BCin + ACin</code></p>
+      <p lang="ne">क्यारीको सूत्रलाई शब्दमा पढ्नुहोस्: तीनमध्ये <b lang="ne">कुनै दुई</b> इनपुट 1 भए क्यारी बन्छ।</p>
+    </div>
+  </div>
+
+  <div class="dia" data-dia="rippleCarry">
+  <div class="dia-stage"><svg viewBox="0 0 700 300" role="img" aria-labelledby="t-rc">
+  <title id="t-rc">A four bit ripple carry adder, with the carry passing from each stage to the next</title>
+  <text class="f-ttl" x="10" y="20">4-BIT BINARY ADDER — the carry ripples from right to left</text>
+
+  
+  <g id="fa-3">
+    <rect class="f-box" x="60" y="90" width="110" height="86" rx="8"/>
+    <text class="f-lbl-y" x="115" y="120" style="font-size:12px">FA 3</text>
+    <text class="f-lbl" x="115" y="140" style="font-size:10px">full adder</text>
+    <text class="f-pin" x="82" y="80" text-anchor="middle" style="font-size:11px">A3</text>
+    <text class="f-pin" x="148" y="80" text-anchor="middle" style="font-size:11px">B3</text>
+    <path class="f-wire" d="M82,84 L82,90"/>
+    <path class="f-wire" d="M148,84 L148,90"/>
+    <path class="f-wire" d="M115,176 L115,196"/>
+    <text class="f-pin" x="115" y="212" text-anchor="middle" style="font-size:11px">S3</text>
+  </g>
+  <g id="fa-2">
+    <rect class="f-box" x="210" y="90" width="110" height="86" rx="8"/>
+    <text class="f-lbl-y" x="265" y="120" style="font-size:12px">FA 2</text>
+    <text class="f-lbl" x="265" y="140" style="font-size:10px">full adder</text>
+    <text class="f-pin" x="232" y="80" text-anchor="middle" style="font-size:11px">A2</text>
+    <text class="f-pin" x="298" y="80" text-anchor="middle" style="font-size:11px">B2</text>
+    <path class="f-wire" d="M232,84 L232,90"/>
+    <path class="f-wire" d="M298,84 L298,90"/>
+    <path class="f-wire" d="M265,176 L265,196"/>
+    <text class="f-pin" x="265" y="212" text-anchor="middle" style="font-size:11px">S2</text>
+  </g>
+  <g id="fa-1">
+    <rect class="f-box" x="360" y="90" width="110" height="86" rx="8"/>
+    <text class="f-lbl-y" x="415" y="120" style="font-size:12px">FA 1</text>
+    <text class="f-lbl" x="415" y="140" style="font-size:10px">full adder</text>
+    <text class="f-pin" x="382" y="80" text-anchor="middle" style="font-size:11px">A1</text>
+    <text class="f-pin" x="448" y="80" text-anchor="middle" style="font-size:11px">B1</text>
+    <path class="f-wire" d="M382,84 L382,90"/>
+    <path class="f-wire" d="M448,84 L448,90"/>
+    <path class="f-wire" d="M415,176 L415,196"/>
+    <text class="f-pin" x="415" y="212" text-anchor="middle" style="font-size:11px">S1</text>
+  </g>
+  <g id="fa-0">
+    <rect class="f-box" x="510" y="90" width="110" height="86" rx="8"/>
+    <text class="f-lbl-y" x="565" y="120" style="font-size:12px">FA 0</text>
+    <text class="f-lbl" x="565" y="140" style="font-size:10px">full adder</text>
+    <text class="f-pin" x="532" y="80" text-anchor="middle" style="font-size:11px">A0</text>
+    <text class="f-pin" x="598" y="80" text-anchor="middle" style="font-size:11px">B0</text>
+    <path class="f-wire" d="M532,84 L532,90"/>
+    <path class="f-wire" d="M598,84 L598,90"/>
+    <path class="f-wire" d="M565,176 L565,196"/>
+    <text class="f-pin" x="565" y="212" text-anchor="middle" style="font-size:11px">S0</text>
+  </g>
+
+  <g id="carry-0" class="dia-step">
+    <path class="f-arr" style="stroke:var(--color-error)" d="M170,133 L210,133"/>
+    <text class="f-lbl" x="190" y="126" style="font-size:9.5px;fill:var(--color-error)">carry</text>
+  </g><g id="carry-1" class="dia-step">
+    <path class="f-arr" style="stroke:var(--color-error)" d="M320,133 L360,133"/>
+    <text class="f-lbl" x="340" y="126" style="font-size:9.5px;fill:var(--color-error)">carry</text>
+  </g><g id="carry-2" class="dia-step">
+    <path class="f-arr" style="stroke:var(--color-error)" d="M470,133 L510,133"/>
+    <text class="f-lbl" x="490" y="126" style="font-size:9.5px;fill:var(--color-error)">carry</text>
+  </g>
+
+  <text class="f-lbl" x="30" y="137" text-anchor="start" style="font-size:10.5px">Cin = 0</text>
+  <path class="f-wire" d="M20,148 L60,148"/>
+
+  <g id="carry-out" class="dia-step">
+    <path class="f-arr" style="stroke:var(--color-error)" d="M610,133 L660,133"/>
+    <text class="f-lbl-y" x="668" y="137" text-anchor="end" style="font-size:10.5px">Cout</text>
+  </g>
+
+  <text class="f-lbl" x="350" y="252" style="font-size:11.5px">Each stage must wait for the carry from the stage on its right — that waiting is the delay of a ripple adder.</text>
+  <text class="f-lbl" x="350" y="272" style="font-size:10.5px">The rightmost stage has no carry coming in, so a half adder could be used there instead.</text>
+</svg></div>
+  <div class="dia-controls">
+    <button type="button" data-dia-act="prev" data-ui="prev">&#9666; Prev</button>
+    <button type="button" data-dia-act="play" data-ui="play" aria-pressed="false">&#9654; Play</button>
+    <button type="button" data-dia-act="next" data-ui="next">Next &#9656;</button>
+    <button type="button" data-dia-act="reset" data-ui="reset">Reset</button>
+    <span class="dia-progress" aria-live="polite" data-dia-steps="5">step 0 / 5</span>
+  </div>
+  <div class="dia-caption" role="status">
+    <span class="dia-cap-en"></span>
+    <span class="dia-cap-ne np-cell" lang="ne"></span>
+  </div>
+</div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Deriving the full adder from its truth table</div>
+    <p><b>Question:</b> write the truth table of a full adder and read the SUM expression from it.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Truth table</span>
+      <div class="out">A  B  Cin |  S  Cout
+0  0   0  |  0   0
+0  0   1  |  1   0
+0  1   0  |  1   0
+0  1   1  |  0   1
+1  0   0  |  1   0
+1  0   1  |  0   1
+1  1   0  |  0   1
+1  1   1  |  1   1</div>
+    </div>
+    <p><b>Reading SUM as SOP</b> — the rows where S = 1 are 001, 010, 100 and 111:</p>
+    <div class="out">S = A'B'Cin + A'BCin' + AB'Cin' + ABCin</div>
+    <p>Those four terms simplify to <code>A ⊕ B ⊕ Cin</code>.</p>
+    <p class="wex-note"><span class="t-en">Notice S is 1 whenever an <b>odd number</b> of inputs is 1, and Cout is 1
+    whenever <b>two or more</b> are. Those two sentences are the whole full adder, and either one
+    earns the mark if you cannot remember the algebra.
+    </span><span class="np-cell" lang="ne">इनपुटमा <b lang="ne">बिजोर सङ्ख्यामा</b> 1 भए S = 1, र <b lang="ne">दुई वा बढी</b> 1 भए
+    Cout = 1। यी दुई वाक्यले पूरै full adder भन्छन्।</span></p>
+  </div>
+
+  <h2 class="topic" id="t43">4.3 &amp; 4.5 &nbsp;Subtractors</h2>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Circuit</th><th>Inputs</th><th>Outputs</th><th>Expressions</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Half adder</td><td>A, B</td><td>SUM, CARRY</td>
+            <td><code>S = A ⊕ B</code>, <code>C = A · B</code></td></tr>
+        <tr><td>Half subtractor</td><td>A, B</td><td>DIFFERENCE, BORROW</td>
+            <td><code>D = A ⊕ B</code>, <code>Bo = A′ · B</code></td></tr>
+        <tr><td>Full adder</td><td>A, B, Cin</td><td>SUM, CARRY OUT</td>
+            <td><code>S = A ⊕ B ⊕ Cin</code>, <code>Cout = AB + BCin + ACin</code></td></tr>
+        <tr><td>Full subtractor</td><td>A, B, Bin</td><td>DIFFERENCE, BORROW OUT</td>
+            <td><code>D = A ⊕ B ⊕ Bin</code>, <code>Bo = A′B + A′Bin + BBin</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout"><span class="t-en">
+    <b>One pattern covers the whole table.</b> In every row the first output is an XOR of all the
+    inputs. Only the second output differs, and it differs in exactly one place: a carry uses
+    <code>A</code>, a borrow uses <code>A′</code>. Learn the adders properly and the subtractors
+    cost you one extra fact.
+    </span><span class="np-cell" lang="ne">पूरै तालिकामा एउटै ढाँचा छ: पहिलो आउटपुट सधैं सबै इनपुटको XOR हो। दोस्रो
+    मात्र फरक, र फरक एउटै ठाउँमा: carry ले <code>A</code> प्रयोग गर्छ, borrow ले <code>A′</code>।</span>
+  </div>
+
+  <h2 class="topic" id="t46">4.6 &nbsp;Code converters</h2>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="t-gray">
+  <title id="t-gray">Converting binary to Gray code and back again</title>
+  <text class="f-ttl" x="10" y="20">BINARY &#8596; GRAY CODE — only one bit changes between neighbours</text>
+
+  <text class="f-lbl-y" x="30" y="52" text-anchor="start" style="font-size:12px">Binary &#8594; Gray: keep the first bit, then XOR each pair</text>
+  <rect class="f-box" x="60" y="64" width="52" height="40" rx="6"/>
+    <text class="f-val" x="86" y="90" style="font-size:15px">1</text><rect class="f-box" x="130" y="64" width="52" height="40" rx="6"/>
+    <text class="f-val" x="156" y="90" style="font-size:15px">0</text><rect class="f-box" x="200" y="64" width="52" height="40" rx="6"/>
+    <text class="f-val" x="226" y="90" style="font-size:15px">1</text><rect class="f-box" x="270" y="64" width="52" height="40" rx="6"/>
+    <text class="f-val" x="296" y="90" style="font-size:15px">1</text>
+  <rect class="f-box-g" x="60" y="136" width="52" height="40" rx="6"/>
+    <text class="f-val" x="86" y="162" style="font-size:15px">1</text><rect class="f-box-g" x="130" y="136" width="52" height="40" rx="6"/>
+    <text class="f-val" x="156" y="162" style="font-size:15px">1</text><rect class="f-box-g" x="200" y="136" width="52" height="40" rx="6"/>
+    <text class="f-val" x="226" y="162" style="font-size:15px">1</text><rect class="f-box-g" x="270" y="136" width="52" height="40" rx="6"/>
+    <text class="f-val" x="296" y="162" style="font-size:15px">0</text>
+  <path class="f-arr" style="stroke:var(--color-success)" d="M86,108 L86,132"/>
+  <text class="f-lbl" x="86" y="124" style="font-size:9px;fill:var(--color-success)">copy</text>
+  <path class="f-arr" style="stroke:var(--color-primary)" d="M92,110 L150,128"/>
+    <text class="f-lbl" x="121" y="124" style="font-size:9px;fill:var(--color-primary)">&#8853;</text><path class="f-arr" style="stroke:var(--color-primary)" d="M162,110 L220,128"/>
+    <text class="f-lbl" x="191" y="124" style="font-size:9px;fill:var(--color-primary)">&#8853;</text><path class="f-arr" style="stroke:var(--color-primary)" d="M232,110 L290,128"/>
+    <text class="f-lbl" x="261" y="124" style="font-size:9px;fill:var(--color-primary)">&#8853;</text>
+
+  <text class="f-lbl" x="350" y="204" style="font-size:11px">Binary 1011 becomes Gray 1110. Copy the leading 1, then XOR each neighbouring pair.</text>
+  <text class="f-lbl-y" x="350" y="228" style="font-size:11.5px">Gray code is used where a wrong reading matters: only one bit changes between consecutive values.</text>
+</svg>
+    <figcaption><span class="t-en">Binary to Gray: copy the leading bit, then XOR each neighbouring pair.
+    </span><span class="np-cell" lang="ne">Binary बाट Gray: पहिलो बिट सारै लैजाने, अनि छेउछाउका जोडी XOR गर्ने।</span></figcaption>
+  </figure>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The two converters you need</span>
+      <p><b>Gray code</b> is arranged so that only <b>one bit changes</b> between consecutive
+      values. That matters in a position sensor: if several bits changed at once, a reading taken
+      mid-change could be wildly wrong.</p>
+      <p><b>BCD (Binary Coded Decimal)</b> stores each decimal digit in its own group of four
+      bits. 59 in BCD is <code>0101 1001</code> — not the same as 59 in plain binary, which is
+      <code>111011</code>.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">चाहिने दुई converter</span>
+      <p><b>Gray code</b> यसरी मिलाइएको हुन्छ कि लगातार दुई मानबीच <b lang="ne">एउटै बिट मात्र फेरियोस्</b>।
+      position sensor मा यो महत्त्वपूर्ण छ: धेरै बिट एकैचोटि फेरिँदा बीचमा लिइएको पठन धेरै गलत हुन सक्छ।</p>
+      <p><b>BCD (Binary Coded Decimal)</b> ले हरेक दशमलव अङ्कलाई आफ्नै चार बिटको समूहमा राख्छ।
+      BCD मा 59 भनेको <code>0101 1001</code> हो — साधारण binary को 59 (<code>111011</code>) होइन।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Convert 1011 to Gray code, and 47 to BCD</div>
+    <p><b>(a) Binary 1011 → Gray.</b> Copy the leading bit, then XOR each adjacent pair:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">binary   1   0   1   1
+copy     1
+1 ⊕ 0 =      1
+0 ⊕ 1 =          1
+1 ⊕ 1 =              0
+Gray     1   1   1   0</div>
+    </div>
+    <p><b>(b) Decimal 47 → BCD.</b> Convert each digit separately into four bits:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">4 → 0100        7 → 0111
+47 in BCD = 0100 0111</div>
+    </div>
+    <p class="wex-note"><span class="t-en">The commonest error is converting 47 as a whole number to binary
+    (101111) and calling it BCD. BCD never converts the number — it converts each
+    <b>digit</b>.
+    </span><span class="np-cell" lang="ne">सबैभन्दा धेरै हुने गल्ती: 47 लाई पूरै संख्याका रूपमा binary (101111) बनाएर
+    BCD भन्नु। BCD ले संख्या होइन, हरेक <b lang="ne">अङ्क</b> बदल्छ।</span></p>
+  </div>
+
+  <h2 class="topic" id="t47">4.7 – 4.10 &nbsp;Decoder, encoder, multiplexer, demultiplexer</h2>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 320" role="img" aria-labelledby="t-cb">
+  <title id="t-cb">Decoder, encoder, multiplexer and demultiplexer compared as blocks</title>
+  <text class="f-ttl" x="10" y="20">DECODER · ENCODER · MULTIPLEXER · DEMULTIPLEXER</text>
+  <g>
+    <rect class="f-box-d" x="16" y="40" width="324" height="124" rx="10"/>
+    <text class="f-lbl-y" x="36" y="66" text-anchor="start" style="font-size:12.5px">DECODER</text>
+    <text class="f-code" x="36" y="90" text-anchor="start" style="font-size:11.5px">n in  →  2ⁿ out</text>
+    <text class="f-lbl" x="36" y="114" text-anchor="start" style="font-size:11px">one output line goes high</text>
+    <rect x="36" y="130" width="152" height="22" rx="11" style="fill:none;stroke:var(--color-secondary);stroke-width:1.4"/>
+    <text class="f-lbl" x="112" y="145" style="font-size:10.5px;fill:var(--color-secondary)">few → many</text>
+  </g><g>
+    <rect class="f-box-d" x="360" y="40" width="324" height="124" rx="10"/>
+    <text class="f-lbl-y" x="380" y="66" text-anchor="start" style="font-size:12.5px">ENCODER</text>
+    <text class="f-code" x="380" y="90" text-anchor="start" style="font-size:11.5px">2ⁿ in  →  n out</text>
+    <text class="f-lbl" x="380" y="114" text-anchor="start" style="font-size:11px">reports WHICH line is high</text>
+    <rect x="380" y="130" width="152" height="22" rx="11" style="fill:none;stroke:var(--color-success);stroke-width:1.4"/>
+    <text class="f-lbl" x="456" y="145" style="font-size:10.5px;fill:var(--color-success)">many → few</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="178" width="324" height="124" rx="10"/>
+    <text class="f-lbl-y" x="36" y="204" text-anchor="start" style="font-size:12.5px">MULTIPLEXER</text>
+    <text class="f-code" x="36" y="228" text-anchor="start" style="font-size:11.5px">many in  →  1 out</text>
+    <text class="f-lbl" x="36" y="252" text-anchor="start" style="font-size:11px">select lines choose one input</text>
+    <rect x="36" y="268" width="152" height="22" rx="11" style="fill:none;stroke:var(--color-primary);stroke-width:1.4"/>
+    <text class="f-lbl" x="112" y="283" style="font-size:10.5px;fill:var(--color-primary)">many → one</text>
+  </g><g>
+    <rect class="f-box-d" x="360" y="178" width="324" height="124" rx="10"/>
+    <text class="f-lbl-y" x="380" y="204" text-anchor="start" style="font-size:12.5px">DEMULTIPLEXER</text>
+    <text class="f-code" x="380" y="228" text-anchor="start" style="font-size:11.5px">1 in  →  many out</text>
+    <text class="f-lbl" x="380" y="252" text-anchor="start" style="font-size:11px">select lines choose one output</text>
+    <rect x="380" y="268" width="152" height="22" rx="11" style="fill:none;stroke:var(--color-error);stroke-width:1.4"/>
+    <text class="f-lbl" x="456" y="283" style="font-size:10.5px;fill:var(--color-error)">one → many</text>
+  </g>
+  <text class="f-lbl-y" x="350" y="312" style="font-size:11.5px">A MUX and a DEMUX are opposites, and so are an encoder and a decoder. Learn them in pairs.</text>
+</svg>
+    <figcaption><span class="t-en">Learn them in opposite pairs: decoder ↔ encoder, and MUX ↔ DEMUX.
+    </span><span class="np-cell" lang="ne">विपरीत जोडीमा सिक्नुहोस्: decoder ↔ encoder, र MUX ↔ DEMUX।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Try it</span><span class="t-ne"><span class="t-en"> · </span>चलाएर हेर्नुहोस्</span></p>
+      <h3>Which input does the multiplexer let through?</h3>
+      <p class="sim-goal"><span class="t-en">Choose <b>Multiplexer</b> in the workbench above, then change S1 and S0
+      and watch which data input reaches Y.
+      </span><span class="np-cell" lang="ne">माथिको प्रयोगशालामा <b>Multiplexer</b> छान्नुहोस्, अनि S1 र S0 बदलेर
+      कुन डाटा इनपुट Y सम्म पुग्छ हेर्नुहोस्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="comblab" id="cb-mux" data-circuit="mux"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">The rule to take away</span>
+        <p><b>n select lines choose between 2ⁿ inputs.</b> Two select lines address four inputs,
+        three address eight. Set S1 S0 to 10 and only I2 reaches the output, no matter what the
+        other three inputs are doing.</p>
+        <p>A demultiplexer is the same circuit running backwards: one input, and the select lines
+        decide which of the many outputs it comes out of.</p>
+        </div><span class="np-cell" lang="ne"><b lang="ne">n select लाइनले 2ⁿ इनपुटबीच छान्छ।</b> दुई select लाइनले चार इनपुट,
+        तीनले आठ। S1 S0 = 10 राख्दा अरू इनपुटले जे गरे पनि I2 मात्र आउटपुटसम्म पुग्छ।
+        Demultiplexer उही सर्किट उल्टो चलेको हो।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h3>Mistakes that cost marks here</h3>
+    <ul>
+      <li><span class="t-en"><b>Saying a half adder has three inputs.</b> It has two. The third input is exactly
+        what makes an adder <i>full</i>.
+        </span><span class="np-cell" lang="ne">Half adder मा तीन इनपुट छन् भन्नु। दुई मात्र हुन्छन्। तेस्रो इनपुटले नै
+        adder लाई <i>full</i> बनाउँछ।</span></li>
+      <li><span class="t-en"><b>Swapping MUX and DEMUX.</b> MUX is many-to-one; DEMUX is one-to-many. The
+        "multi" in multiplexer is on the <i>input</i> side.
+        </span><span class="np-cell" lang="ne">MUX र DEMUX साट्नु। MUX धेरै-देखि-एक; DEMUX एक-देखि-धेरै।</span></li>
+      <li><span class="t-en"><b>Converting a whole number for BCD.</b> BCD converts each decimal digit separately.
+        </span><span class="np-cell" lang="ne">BCD मा पूरै संख्या बदल्नु। BCD ले हरेक अङ्क छुट्टाछुट्टै बदल्छ।</span></li>
+      <li><span class="t-en"><b>Drawing the carry output of a half adder from an OR gate.</b> It is AND. The OR
+        appears in the <i>full</i> adder's carry, not the half adder's.
+        </span><span class="np-cell" lang="ne">Half adder को carry लाई OR गेटबाट कोर्नु। त्यो AND हो।</span></li>
+    </ul>
+  </div>
+
+  <h2 class="topic" id="exam4">Exam focus — what is asked from this unit</h2>
+
+  <div class="exam-connect"><span class="t-en">
+    <b>13 hours, 7 marks.</b> The reliable question is "draw the circuit and write the truth
+    table" for a half adder or full adder — and the difference between them is asked almost as
+    often. The block-level circuits (decoder, encoder, MUX, DEMUX) usually appear as short
+    definition questions rather than drawings.
+    </span><span class="np-cell" lang="ne">१३ घण्टा, ७ अंक। भरपर्दो प्रश्न: half adder वा full adder को "सर्किट
+    कोर्नुहोस् र ट्रुथ टेबल लेख्नुहोस्" — र दुईबीचको फरक पनि उत्तिकै पटक सोधिन्छ। decoder, encoder,
+    MUX, DEMUX प्रायः छोटो परिभाषामा आउँछन्।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Draw the circuit diagram of a half adder and write its truth table.
+    </span><span class="np-cell" lang="ne">Half adder को सर्किट चित्र कोर्नुहोस् र ट्रुथ टेबल लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a41">Show the answer</button>
+    <div class="ans" id="a41"><div class="t-en">
+      <p><b>Circuit:</b> inputs A and B go to <i>both</i> an XOR gate and an AND gate. The XOR
+      output is SUM; the AND output is CARRY.</p>
+      <div class="out">A  B | SUM  CARRY
+0  0 |  0     0
+0  1 |  1     0
+1  0 |  1     0
+1  1 |  0     1</div>
+      <p><code>S = A ⊕ B</code> and <code>C = A · B</code>.</p>
+      </div><span class="np-cell" lang="ne">इनपुट A र B दुवै XOR र AND गेटमा जान्छन्। XOR ले SUM, AND ले CARRY दिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">Differentiate between a half adder and a full adder.
+    </span><span class="np-cell" lang="ne">Half adder र full adder बीचको भिन्नता लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a42">Show the answer</button>
+    <div class="ans" id="a42"><div class="t-en">
+      <p>A half adder adds <b>two</b> bits and cannot accept a carry from the previous column.
+      A full adder adds <b>three</b> bits — the two digits plus the carry-in — so it can be
+      chained to build a multi-bit adder. A half adder uses two gates; a full adder needs two
+      half adders and an OR gate.</p>
+      </div><span class="np-cell" lang="ne">Half adder ले <b lang="ne">दुई</b> बिट जोड्छ र अघिल्लो स्तम्भको क्यारी लिन सक्दैन।
+      Full adder ले <b lang="ne">तीन</b> बिट जोड्छ, त्यसैले यसलाई लहरै जोडेर धेरै-बिटको adder बनाउन सकिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p><span class="t-en">What is a multiplexer? How many select lines are needed for 8 inputs?
+    </span><span class="np-cell" lang="ne">Multiplexer भनेको के हो? ८ इनपुटका लागि कति select लाइन चाहिन्छ?</span></p>
+    <button class="btn-ans" data-answer="a43">Show the answer</button>
+    <div class="ans" id="a43"><div class="t-en">
+      <p>A multiplexer is a combinational circuit that selects one of many input lines and
+      routes it to a single output line. The choice is made by the select lines.</p>
+      <p>Since n select lines choose between 2ⁿ inputs, 8 inputs need <b>3</b> select lines,
+      because 2³ = 8.</p>
+      </div><span class="np-cell" lang="ne">Multiplexer ले धेरै इनपुट लाइनमध्ये एउटा छानेर एउटै आउटपुट लाइनमा पठाउँछ।
+      2³ = 8 भएकाले ८ इनपुटलाई <b lang="ne">३</b> select लाइन चाहिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick"><span class="t-en">A combinational circuit's output depends only on its present inputs.
+        </span><span class="np-cell" lang="ne">Combinational सर्किटको आउटपुट अहिलेको इनपुटमा मात्र भर पर्छ।</span></li>
+      <li class="tick"><span class="t-en">Half adder: SUM = A ⊕ B, CARRY = A · B. Two inputs, two gates.
+        </span><span class="np-cell" lang="ne">Half adder: SUM = A ⊕ B, CARRY = A · B। दुई इनपुट, दुई गेट।</span></li>
+      <li class="tick"><span class="t-en">Full adder: three inputs including carry-in; chain them for a multi-bit adder.
+        </span><span class="np-cell" lang="ne">Full adder: क्यारी-इन सहित तीन इनपुट; लहरै जोडेर धेरै-बिटको adder बन्छ।</span></li>
+      <li class="tick"><span class="t-en">In every adder and subtractor the first output is XOR; only the second differs.
+        </span><span class="np-cell" lang="ne">हरेक adder र subtractor मा पहिलो आउटपुट XOR हुन्छ; दोस्रो मात्र फरक।</span></li>
+      <li class="tick"><span class="t-en">Gray code changes one bit at a time; BCD codes each decimal digit in four bits.
+        </span><span class="np-cell" lang="ne">Gray code मा एक पटकमा एउटै बिट फेरिन्छ; BCD ले हरेक दशमलव अङ्कलाई चार बिटमा राख्छ।</span></li>
+      <li class="tick"><span class="t-en">MUX = many to one; DEMUX = one to many; n select lines address 2ⁿ lines.
+        </span><span class="np-cell" lang="ne">MUX = धेरैबाट एक; DEMUX = एकबाट धेरै; n select लाइनले 2ⁿ लाइन सम्बोधन गर्छ।</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit3.html"><span class="lab">◂ Previous</span><span class="ttl">Boolean Algebra and Karnaugh Map</span></a><a class="nx" href="unit5.html"><span class="lab">Next ▸</span><span class="ttl">Introduction to Microprocessor</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-comb.js"></script>
+<script src="../../assets/js/diagram.js"></script>
+<script src="../../assets/js/diagram-data.js"></script>
+</body>
+</html>

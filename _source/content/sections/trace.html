@@ -29,15 +29,15 @@
   </div>
 
   <div class="btns" style="margin-top:18px">
-    <button class="primary" id="pgBtn0" onclick="loadProg(0)">Program 1 · Class + Constructor + Destructor</button>
-    <button id="pgBtn1" onclick="loadProg(1)">Program 2 · Multilevel Inheritance</button>
-    <button id="pgBtn2" onclick="loadProg(2)">Program 3 · Polymorphism (virtual)</button>
+    <button class="primary" id="pgBtn0" data-ui-content onclick="loadProg(0)">Program 1 · Class + Constructor + Destructor</button>
+    <button id="pgBtn1" data-ui-content onclick="loadProg(1)">Program 2 · Multilevel Inheritance</button>
+    <button id="pgBtn2" data-ui-content onclick="loadProg(2)">Program 3 · Polymorphism (virtual)</button>
   </div>
 
-  <div class="en">
+  <div class="panelbox">
     <h3 id="progTitle" style="margin-top:0;color:var(--yellow)"></h3>
     <p id="progDesc" style="font-size:.92rem;margin-bottom:4px"></p>
-    <p id="progDescNp" style="font-family:var(--deva);color:#f6ecd2;font-size:.92rem;
+    <p class="np-line" id="progDescNp" style="font-family:var(--deva);color:#f6ecd2;font-size:.92rem;
        border-left:3px dashed rgba(255,215,110,.5);padding-left:12px"></p>
 
     <div style="display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-top:14px" class="simgrid">
@@ -55,9 +55,9 @@
         </div>
 
         <div class="btns">
-          <button id="btnPrev" onclick="stepTrace(-1)">◂ Prev</button>
-          <button class="primary" id="btnNext" onclick="stepTrace(1)">Next ▸</button>
-          <button class="coral" onclick="resetTrace()">Reset</button>
+          <button id="btnPrev" data-ui="prev" onclick="stepTrace(-1)">◂ Prev</button>
+          <button class="primary" id="btnNext" data-ui="next" onclick="stepTrace(1)">Next ▸</button>
+          <button class="coral" data-ui="reset" onclick="resetTrace()">Reset</button>
         </div>
         <div class="stepbar">
           <span id="stepLbl">step 0 / 0</span>

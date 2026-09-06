@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>Polymorphism — DS &amp; OOP with C++ | RGSC Study Board</title>
+<title>Polymorphism — DS & OOP with C++ | RGSC Study Board</title>
 <meta name="description" content="Polymorphism explained in simple English with a Nepali explanation beside it.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -20,17 +21,22 @@
       <span class="brand-mark">RG</span>
       <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
     </a>
-    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
     <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
-<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
 
 <div class="wrap">
-<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DS &amp; OOP with C++</a> <span class="sep">/</span> <span>Polymorphism</span></nav>
-<main id="main">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DS & OOP with C++</a> <span class="sep">/</span> <span>Polymorphism</span></nav>
+<main id="main" data-subject="grade10/oop-cpp">
 <nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Data Structure</a><a href="unit2.html">2 · OOP + C++</a><a href="unit3.html">3 · Class and Object</a><a href="unit4.html">4 · Abstraction / Encapsulation</a><a href="unit5.html">5 · Inheritance</a><a href="unit6.html" style="color:var(--yellow);border-color:var(--yellow)">6 · Polymorphism</a><a href="trace.html">▶ · Trace a Program</a><a href="tables.html">≠ · Tables & Terms</a><a href="quiz.html">? · Quiz</a></nav>
 <section id="u6">
   <div class="sec-head">
@@ -44,7 +50,7 @@
   <div class="rule"></div>
 
   <div class="outcomes">
-    <h2>By the end of this unit you can…</h2>
+    <h2>By the end of this unit you can…</h2><div class="t-en">
     <ol>
       <li>Define polymorphism and explain where the word comes from.</li>
       <li>Draw the tree of polymorphism types and name what achieves each.</li>
@@ -53,7 +59,7 @@
       <li>Compare overloading vs overriding — the most-tested table in the unit.</li>
       <li>Predict the output of a program that uses a base class pointer.</li>
     </ol>
-    <p class="np-cell" lang="ne"><b lang="ne">यो युनिट सकिँदा:</b> परिभाषा, प्रकारको रूख, overloading र overriding का
+    </div><p class="np-cell" lang="ne"><b lang="ne">यो युनिट सकिँदा:</b> परिभाषा, प्रकारको रूख, overloading र overriding का
     प्रोग्राम, <span class="term">virtual</span> को काम, र तुलनात्मक तालिका लेख्न सक्नुहुनेछ।</p>
   </div>
 
@@ -78,13 +84,13 @@
     </div>
   </div>
 
-  <div class="callout an">
+  <div class="callout an"><div class="t-en">
     <div class="h">Real-world analogy — one person, many roles</div>
     <p>One person is a <b>son</b> at home, a <b>student</b> at school, a <b>customer</b> in a shop
     and a <b>patient</b> at the hospital.</p>
     <p><b>Same person — different behaviour in different places.</b> The name did not change; the
     situation decided the behaviour. That is polymorphism.</p>
-    <span class="np-cell" lang="ne"><b lang="ne">उदाहरण — एउटै मान्छे, धेरै भूमिका।</b> एउटै मान्छे घरमा <b lang="ne">छोरा</b>,
+    </div><span class="np-cell" lang="ne"><b lang="ne">उदाहरण — एउटै मान्छे, धेरै भूमिका।</b> एउटै मान्छे घरमा <b lang="ne">छोरा</b>,
     स्कुलमा <b lang="ne">विद्यार्थी</b>, पसलमा <b lang="ne">ग्राहक</b> र अस्पतालमा <b lang="ne">बिरामी</b> हुन्छ।
     <b lang="ne">व्यक्ति उही, ठाउँ अनुसार व्यवहार फरक।</b> नाम फेरिएन, अवस्थाले व्यवहार तय गर्‍यो — यही
     polymorphism हो।</span>
@@ -141,33 +147,33 @@
   <text class="f-lbl-y" x="180" y="284">decided BEFORE the program runs</text>
   <text class="f-lbl-y" x="540" y="284">decided WHILE the program runs</text>
 </svg>
-    <figcaption>Learn this whole tree — the branches, the other names, and what achieves each.
-      <span class="np-cell" lang="ne">यो पूरा रूख कण्ठ पार्नुहोस् — हाँगा, अर्को नाम, र कसले हासिल गर्छ।</span>
+    <figcaption><span class="t-en">Learn this whole tree — the branches, the other names, and what achieves each.
+      </span><span class="np-cell" lang="ne">यो पूरा रूख कण्ठ पार्नुहोस् — हाँगा, अर्को नाम, र कसले हासिल गर्छ।</span>
     </figcaption>
   </figure>
 
   <div class="cards">
     <div class="card">
-      <h3>A. Compile-time Polymorphism</h3>
+      <h3>A. Compile-time Polymorphism</h3><div class="t-en">
       <p>Also called <b>static polymorphism</b> or <b>early binding</b>. The <b>compiler</b> decides
       which function to call <b>while compiling</b>, by looking at the number and type of the
       arguments.</p>
       <p style="margin-top:8px">Achieved by:<br>
         <span class="pill b">Function Overloading</span>
         <span class="pill b">Operator Overloading</span></p>
-      <span class="np-cell" lang="ne">यसलाई <b>static polymorphism</b> वा <b>early binding</b> भनिन्छ।
+      </div><span class="np-cell" lang="ne">यसलाई <b>static polymorphism</b> वा <b>early binding</b> भनिन्छ।
       कुन फङ्सन बोलाउने भन्ने कुरा <b lang="ne">कम्पाइल गर्दै</b> आर्गुमेन्टको संख्या र प्रकार हेरेर निर्णय हुन्छ।
       यो <b lang="ne">छिटो</b> हुन्छ किनकि निर्णय पहिल्यै भइसकेको हुन्छ।</span>
     </div>
     <div class="card">
-      <h3>B. Run-time Polymorphism</h3>
+      <h3>B. Run-time Polymorphism</h3><div class="t-en">
       <p>Also called <b>dynamic polymorphism</b> or <b>late binding</b>. The decision is made
       <b>while the program is running</b>, by looking at which object the base class pointer is
       actually pointing to.</p>
       <p style="margin-top:8px">Achieved by:<br>
         <span class="pill c">Function Overriding</span>
         <span class="pill c">Virtual Functions</span></p>
-      <span class="np-cell" lang="ne">यसलाई <b>dynamic polymorphism</b> वा <b>late binding</b> भनिन्छ।
+      </div><span class="np-cell" lang="ne">यसलाई <b>dynamic polymorphism</b> वा <b>late binding</b> भनिन्छ।
       निर्णय <b lang="ne">प्रोग्राम चल्दै गर्दा</b> हुन्छ — base पोइन्टरले वास्तवमा कुन अब्जेक्ट देखाइरहेको छ
       त्यो हेरेर। यो <b lang="ne">अलि ढिलो</b> तर <b lang="ne">बढी लचिलो</b> हुन्छ।</span>
     </div>
@@ -202,30 +208,30 @@
   <title id="t-ovr">The compiler picks an overloaded function by matching the arguments</title>
   <defs><marker id="a-ovr" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#9ae6a0"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-success)"/></marker></defs>
   <defs><marker id="a-ovrx" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#ff8f7a"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-error)"/></marker></defs>
   <text class="f-ttl" x="10" y="18">Overload resolution — the compiler matches by ARGUMENTS, before the program runs</text>
 
   <rect class="f-box-y" x="250" y="40" width="220" height="44" rx="8"/>
   <text class="f-code" x="360" y="68" text-anchor="middle" style="font-size:13px">area(4, 6);</text>
   <text class="f-lbl" x="360" y="100" style="font-size:10px">two int arguments</text>
 
-  <path class="f-arr" marker-end="url(#a-ovrx)" style="stroke:#ff8f7a" d="M300,110 L180,150"/>
-  <path class="f-arr" marker-end="url(#a-ovr)"  style="stroke:#9ae6a0" d="M420,110 L540,150"/>
+  <path class="f-arr" marker-end="url(#a-ovrx)" style="stroke:var(--color-error)" d="M300,110 L180,150"/>
+  <path class="f-arr" marker-end="url(#a-ovr)"  style="stroke:var(--color-success)" d="M420,110 L540,150"/>
 
   <rect class="f-box-c" x="40" y="158" width="280" height="66" rx="8"/>
   <text class="f-code" x="180" y="184" text-anchor="middle" style="font-size:12px">void area(int s)</text>
-  <text class="f-lbl" x="180" y="206" style="font-size:10px" fill="#ff8f7a">needs 1 argument — REJECTED ✗</text>
+  <text class="f-lbl" x="180" y="206" style="font-size:10px;fill:var(--color-error)">needs 1 argument — REJECTED ✗</text>
 
   <rect class="f-box-g" x="400" y="158" width="280" height="66" rx="8"/>
   <text class="f-code" x="540" y="184" text-anchor="middle" style="font-size:12px">void area(int l, int b)</text>
-  <text class="f-lbl" x="540" y="206" style="font-size:10px" fill="#9ae6a0">needs 2 arguments — MATCHED ✓</text>
+  <text class="f-lbl" x="540" y="206" style="font-size:10px;fill:var(--color-success)">needs 2 arguments — MATCHED ✓</text>
 </svg>
-    <figcaption>The compiler matches the call against each version's parameter list and picks the
+    <figcaption><span class="t-en">The compiler matches the call against each version's parameter list and picks the
       one that fits — all before the program runs.
-      <span class="np-cell" lang="ne">कम्पाइलरले कललाई हरेक संस्करणको प्यारामिटरसँग मिलाएर सही एउटा छान्छ —
+      </span><span class="np-cell" lang="ne">कम्पाइलरले कललाई हरेक संस्करणको प्यारामिटरसँग मिलाएर सही एउटा छान्छ —
       प्रोग्राम चल्नु अघि नै।</span>
     </figcaption>
   </figure>
@@ -262,10 +268,10 @@ int main() {
 Rectangle area = 24
 Circle area = 12.56</pre>
     </div>
-    <p class="wex-note">One name, three jobs. Version 1 and 3 both take a single argument — they are
+    <p class="wex-note"><span class="t-en">One name, three jobs. Version 1 and 3 both take a single argument — they are
     still valid overloads because the <b>types</b> differ (<span class="term">int</span> vs
     <span class="term">float</span>).
-    <span class="np-cell" lang="ne">एउटै नाम, तीन काम। संस्करण १ र ३ दुवैले एउटै आर्गुमेन्ट लिन्छन् — तर
+    </span><span class="np-cell" lang="ne">एउटै नाम, तीन काम। संस्करण १ र ३ दुवैले एउटै आर्गुमेन्ट लिन्छन् — तर
     <b lang="ne">प्रकार</b> फरक (<span class="term">int</span> vs <span class="term">float</span>) भएकाले
     दुवै मान्य overload हुन्।</span></p>
   </div>
@@ -320,9 +326,9 @@ int main() {
       <span class="wex-lbl">Output</span>
       <pre class="out">4 + 9i</pre>
     </div>
-    <p class="wex-note">Note that <span class="term">+</span> still adds ordinary numbers exactly as
+    <p class="wex-note"><span class="t-en">Note that <span class="term">+</span> still adds ordinary numbers exactly as
     before. Overloading <b>adds</b> a meaning; it never removes the original one.
-    <span class="np-cell" lang="ne"><span class="term">+</span> ले सामान्य संख्या पहिले जस्तै जोड्छ।
+    </span><span class="np-cell" lang="ne"><span class="term">+</span> ले सामान्य संख्या पहिले जस्तै जोड्छ।
     ओभरलोडिङले अर्थ <b lang="ne">थप्छ</b>, पुरानो अर्थ हटाउँदैन।</span></p>
   </div>
 
@@ -362,10 +368,10 @@ int main() {
   <title id="t-disp">How a base class pointer chooses the derived version of a virtual function</title>
   <defs><marker id="a-disp" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#ffd76e"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
   <defs><marker id="a-disp2" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#9ae6a0"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-success)"/></marker></defs>
   <text class="f-ttl" x="10" y="18">Run-time dispatch — the same line p-&gt;draw() gives two different answers</text>
 
   <g id="ptr" class="dia-focus">
@@ -397,13 +403,13 @@ int main() {
   </g>
 
   <g id="call-c" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:#9ae6a0" d="M406,86 L486,86"/>
+    <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:var(--color-success)" d="M406,86 L486,86"/>
     <rect class="f-box-g" x="490" y="60" width="200" height="52" rx="8"/>
     <text class="f-val" x="590" y="82" style="font-size:12px">Circle::draw()</text>
     <text class="f-lbl" x="590" y="100" style="font-size:10px">"Drawing a Circle"</text>
   </g>
   <g id="call-s" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:#9ae6a0" d="M406,232 L486,232"/>
+    <path class="f-arr" marker-end="url(#a-disp2)" style="stroke:var(--color-success)" d="M406,232 L486,232"/>
     <rect class="f-box-g" x="490" y="206" width="200" height="52" rx="8"/>
     <text class="f-val" x="590" y="228" style="font-size:12px">Square::draw()</text>
     <text class="f-lbl" x="590" y="246" style="font-size:10px">"Drawing a Square"</text>
@@ -415,20 +421,20 @@ int main() {
   </g>
 </svg></div>
   <div class="dia-controls">
-    <button type="button" data-dia-act="prev" aria-label="Previous step">&#9666; Prev</button>
-    <button type="button" data-dia-act="play" aria-pressed="false">&#9654; Play</button>
-    <button type="button" data-dia-act="next" aria-label="Next step">Next &#9656;</button>
-    <button type="button" data-dia-act="reset">Reset</button>
-    <span class="dia-progress" aria-live="polite">step 0 / 6</span>
+    <button type="button" data-dia-act="prev" data-ui="prev">&#9666; Prev</button>
+    <button type="button" data-dia-act="play" data-ui="play" aria-pressed="false">&#9654; Play</button>
+    <button type="button" data-dia-act="next" data-ui="next">Next &#9656;</button>
+    <button type="button" data-dia-act="reset" data-ui="reset">Reset</button>
+    <span class="dia-progress" aria-live="polite" data-dia-steps="6">step 0 / 6</span>
   </div>
   <div class="dia-caption" role="status">
     <span class="dia-cap-en"></span>
     <span class="dia-cap-ne np-cell" lang="ne"></span>
   </div>
 </div>
-    <figcaption>The same pointer and the same call give two different answers, because
+    <figcaption><span class="t-en">The same pointer and the same call give two different answers, because
       <span class="term">virtual</span> makes C++ look at the real object.
-      <span class="np-cell" lang="ne">उही पोइन्टर, उही कल — तर दुई फरक जवाफ, किनकि
+      </span><span class="np-cell" lang="ne">उही पोइन्टर, उही कल — तर दुई फरक जवाफ, किनकि
       <span class="term">virtual</span> ले C++ लाई वास्तविक अब्जेक्ट हेर्न लगाउँछ।</span>
     </figcaption>
   </figure>
@@ -455,24 +461,24 @@ int main() {
       <span class="wex-lbl">Output without virtual</span>
       <pre class="out">Base show</pre>
     </div>
-    <p class="wex-note">Now add one word — <span class="term">virtual void show()</span> in
+    <p class="wex-note"><span class="t-en">Now add one word — <span class="term">virtual void show()</span> in
     <span class="term">Base</span> — and the very same program prints
     <span class="term">Derived show</span> instead. <b>One keyword changes the whole output.</b>
     That is exactly what the examiner is testing.
-    <span class="np-cell" lang="ne">अब <span class="term">Base</span> मा एउटा शब्द थप्नुहोस् —
+    </span><span class="np-cell" lang="ne">अब <span class="term">Base</span> मा एउटा शब्द थप्नुहोस् —
     <span class="term">virtual void show()</span> — र उही प्रोग्रामले
     <span class="term">Derived show</span> छाप्छ। <b lang="ne">एउटा कीवर्डले पूरै आउटपुट फेर्छ।</b>
     परीक्षकले जाँच्ने ठ्याक्कै यही हो।</span></p>
   </div>
 
-  <div class="mistake">
+  <div class="mistake"><div class="t-en">
     <div class="h">Common mistake</div>
     Thinking overriding works through the object as well as the pointer. If you write
     <span class="term">Derived d; d.show();</span> the derived version runs <b>whether or not</b>
     the function is virtual — because the object's type is known exactly.
     <span class="term">virtual</span> only matters when you call through a <b>base class pointer or
     reference</b>.
-    <span class="np-cell" lang="ne"><span class="term">Derived d; d.show();</span> लेख्दा virtual भए पनि
+    </div><span class="np-cell" lang="ne"><span class="term">Derived d; d.show();</span> लेख्दा virtual भए पनि
     नभए पनि derived कै संस्करण चल्छ — किनकि अब्जेक्टको प्रकार ठ्याक्कै थाहा हुन्छ।
     <span class="term">virtual</span> को महत्त्व <b lang="ne">base पोइन्टर</b> बाट बोलाउँदा मात्र देखिन्छ।</span>
   </div>
@@ -483,7 +489,7 @@ int main() {
   and the one students most often get backwards.</p>
 
   <div class="predict" data-answer="c">
-    <p class="predict-q" lang="ne">Predict first · पहिले अनुमान गर्नुहोस्</p>
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
     <h3><span class="term">Shape</span> has a <span class="term">virtual void show()</span>.
     <span class="term">Circle</span> overrides it. You write
     <span class="term">Shape *p = &amp;c;</span> where <span class="term">c</span> is a
@@ -495,13 +501,13 @@ int main() {
       <button class="predict-opt" data-value="b">Both, in order</button>
       <button class="predict-opt" data-value="d">Compiler error</button>
     </div>
-    <div class="predict-feedback">
+    <div class="predict-feedback"><div class="t-en">
       <p>Because <span class="term">show()</span> is <b>virtual</b>, C++ waits until the program is
       running and looks at the <b>object</b>, not at the pointer's type. The object is a
       <span class="term">Circle</span>, so <span class="term">Circle::show()</span> runs.
       Delete the word <span class="term">virtual</span> and the answer flips to
       <span class="term">Shape::show()</span> — that is the whole idea in one line.</p>
-      <span class="np-cell" lang="ne"><span class="term">show()</span> <b>virtual</b> भएकाले C++ ले प्रोग्राम
+      </div><span class="np-cell" lang="ne"><span class="term">show()</span> <b>virtual</b> भएकाले C++ ले प्रोग्राम
       चल्दै गर्दा पोइन्टरको प्रकार होइन, <b lang="ne">अब्जेक्ट</b> हेर्छ। अब्जेक्ट
       <span class="term">Circle</span> भएकाले <span class="term">Circle::show()</span> चल्छ।
       <span class="term">virtual</span> हटाए उत्तर <span class="term">Shape::show()</span> मा
@@ -511,11 +517,11 @@ int main() {
 
   <div class="sim">
     <div class="sim-head">
-      <p class="sim-kicker" lang="ne">Interactive experiment · अन्तरक्रियात्मक प्रयोग</p>
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
       <h3>Compile-time choice vs run-time choice</h3>
-      <p class="sim-goal">What you will learn: <b>when</b> C++ decides which function to call.
+      <p class="sim-goal"><span class="t-en">What you will learn: <b>when</b> C++ decides which function to call.
       Overloading is settled while compiling; a virtual call is settled while running.
-      <span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: C++ ले कुन फङ्सन बोलाउने भन्ने <b lang="ne">कहिले</b>
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: C++ ले कुन फङ्सन बोलाउने भन्ने <b lang="ne">कहिले</b>
       निर्णय गर्छ — overloading कम्पाइल गर्दा, virtual चल्दै गर्दा।</span></p>
     </div>
 
@@ -526,7 +532,7 @@ int main() {
         <button class="blue" onclick="dispatch('ol2')">area(4, 6)</button>
         <button class="coral" onclick="dispatch('rt1')">p = &amp;s; p-&gt;show()</button>
         <button class="coral" onclick="dispatch('rt2')">p = &amp;c; p-&gt;show()</button>
-        <button onclick="dispatch(null)">Reset</button>
+        <button data-ui="reset" onclick="dispatch(null)">Reset</button>
       </div>
 
       <div class="simgrid" style="margin-top:16px">
@@ -540,20 +546,20 @@ int main() {
         </div>
       </div>
 
-      <div class="sim-why">
+      <div class="sim-why"><div class="t-en">
         <span class="h">Why did this happen?</span>
         <p><b>Overloading</b> — the compiler counts the arguments and picks the matching version
         before the program ever runs. <b>Compile-time.</b></p>
         <p><b>Virtual override</b> — the computer looks at the object the pointer actually points
         to, while the program is running. <b>Run-time.</b> Same call, different output.</p>
-        <span class="np-cell" lang="ne"><b>Overloading</b>: कम्पाइलरले आर्गुमेन्ट गनेर प्रोग्राम चल्नु अघि नै
+        </div><span class="np-cell" lang="ne"><b>Overloading</b>: कम्पाइलरले आर्गुमेन्ट गनेर प्रोग्राम चल्नु अघि नै
         छान्छ — <b>compile-time</b>। <b>Virtual override</b>: पोइन्टरले देखाएको वास्तविक अब्जेक्ट
         हेरेर चल्दै गर्दा छान्छ — <b>run-time</b>। उही कल, फरक आउटपुट।</span>
       </div>
     </div>
   </div>
 
-  <h2 class="topic" id="t6c">Overloading vs Overriding — the key table</h2>
+  <h2 class="topic" id="t6c">Overloading vs Overriding — the key table</h2><div class="t-en">
 
   <div class="tablewrap">
     <table>
@@ -570,7 +576,7 @@ int main() {
       </tbody>
     </table>
   </div>
-  <div class="np" lang="ne">
+  </div><div class="np" lang="ne">
     <span class="tag" lang="ne">छोटो सार</span>
     <p><b>Overloading</b> = उही क्लासमा उही नाम तर <b lang="ne">फरक प्यारामिटर</b>; inheritance चाहिँदैन;
     <b>compile-time</b>। <b>Overriding</b> = derived क्लासमा उही नाम र <b lang="ne">उही प्यारामिटर</b>;
@@ -604,7 +610,7 @@ int main() {
   <h2 class="topic" id="exam6">Exam focus — questions asked from this unit</h2>
 
   <div class="exam-connect">
-    <p class="lead-in" lang="ne">SEE exam connection · परीक्षा जोड</p>
+    <p class="lead-in"><span class="t-en">SEE exam connection</span><span class="t-ne"><span class="t-en"> · </span>परीक्षा जोड</span></p>
     <p>Overloading versus overriding, and compile-time versus run-time, are the highest-frequency questions in the whole subject.</p>
     <span class="np-cell" lang="ne">Overloading र Overriding, अनि Compile-time र Run-time — यी पूरै विषयकै सबैभन्दा बढी सोधिने प्रश्न हुन्।</span>
   </div>
@@ -612,7 +618,7 @@ int main() {
   <div class="examq">
     <div class="q-h">Q1 · Define polymorphism. Explain its types with examples. <span class="mk">[6 marks]</span></div>
     <button class="btn-ans" data-answer="f1">Show the answer</button>
-    <div class="ans" id="f1">
+    <div class="ans" id="f1"><div class="t-en">
       <p>Polymorphism comes from the Greek words poly (many) and morph (forms), so it means many
       forms. In C++ it is the ability of the same function name or operator to behave differently
       in different situations.</p>
@@ -623,40 +629,40 @@ int main() {
       <p><b>Run-time (dynamic) polymorphism</b> — the decision is made while the program runs, based
       on the object the base pointer points to. It is achieved by function overriding with virtual
       functions. Example: <span class="term">Base *p = &amp;derivedObj; p-&gt;show();</span></p>
-      <span class="np-cell" lang="ne">परिभाषा + दुवै प्रकार + एक–एक उदाहरण। चित्र (रूख) कोरे झन् राम्रो।</span>
+      </div><span class="np-cell" lang="ne">परिभाषा + दुवै प्रकार + एक–एक उदाहरण। चित्र (रूख) कोरे झन् राम्रो।</span>
     </div>
   </div>
 
   <div class="examq">
     <div class="q-h">Q2 · Differentiate between function overloading and function overriding. <span class="mk">[5 marks]</span></div>
     <button class="btn-ans" data-answer="f2">Show the answer</button>
-    <div class="ans" id="f2">
+    <div class="ans" id="f2"><div class="t-en">
       <p>Write a table with at least five rows: meaning (same class, different parameters vs derived
       class, same parameters); inheritance (not required vs required); parameters (must differ vs
       must be identical); binding (early/static vs late/dynamic); type (compile-time vs run-time);
       and the virtual keyword (not used vs used in the base class).</p>
-      <span class="np-cell" lang="ne">कम्तीमा पाँच हरफको तालिका लेख्नुहोस्।</span>
+      </div><span class="np-cell" lang="ne">कम्तीमा पाँच हरफको तालिका लेख्नुहोस्।</span>
     </div>
   </div>
 
   <div class="examq">
     <div class="q-h">Q3 · What is a virtual function? Why is it needed? <span class="mk">[3 marks]</span></div>
     <button class="btn-ans" data-answer="f3">Show the answer</button>
-    <div class="ans" id="f3">
+    <div class="ans" id="f3"><div class="t-en">
       <p>A virtual function is a member function declared in the base class using the keyword
       <span class="term">virtual</span> and redefined (overridden) in a derived class.</p>
       <p>It is needed so that when the function is called through a base class pointer, C++ decides
       at run time which version to run by looking at the actual object being pointed to, instead of
       the pointer's type. Without <span class="term">virtual</span> the base class version would
       always be called, and run-time polymorphism would be impossible.</p>
-      <span class="np-cell" lang="ne">परिभाषा + किन चाहिन्छ (base पोइन्टरबाट derived संस्करण चलाउन) — दुवै लेख्नुहोस्।</span>
+      </div><span class="np-cell" lang="ne">परिभाषा + किन चाहिन्छ (base पोइन्टरबाट derived संस्करण चलाउन) — दुवै लेख्नुहोस्।</span>
     </div>
   </div>
 
   <div class="examq">
     <div class="q-h">Q4 · Write a program to demonstrate run-time polymorphism. <span class="mk">[5 marks]</span></div>
     <button class="btn-ans" data-answer="f4">Show the answer</button>
-    <div class="ans" id="f4">
+    <div class="ans" id="f4"><div class="t-en">
       <p>Write a base class <span class="term">Shape</span> with
       <span class="term">virtual void draw()</span>, two derived classes
       <span class="term">Circle</span> and <span class="term">Square</span> that each override
@@ -666,12 +672,12 @@ int main() {
       <p>The output will be "Drawing a Circle" then "Drawing a Square" — the same call giving two
       different results. That is the full program traced step by step in the
       <b>Trace a Program</b> section.</p>
-      <span class="np-cell" lang="ne">Trace a Program सेक्सनको Program 3 नै यसको पूरा उत्तर हो — त्यहीँ लाइन–लाइन हेर्नुहोस्।</span>
+      </div><span class="np-cell" lang="ne">Trace a Program सेक्सनको Program 3 नै यसको पूरा उत्तर हो — त्यहीँ लाइन–लाइन हेर्नुहोस्।</span>
     </div>
   </div>
 
   <div class="keypoints">
-    <h2 lang="ne">Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h2>
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
     <ul>
       <li>Polymorphism = <b>poly (many) + morph (forms)</b> = one name, many forms.</li>
       <li><b>Compile-time</b> = static = early binding → <b>function overloading + operator overloading</b>.</li>
@@ -687,13 +693,15 @@ int main() {
 
 </main>
 <div class="pager"><a href="unit5.html"><span class="lab">◂ Previous</span><span class="ttl">Inheritance</span></a><a class="nx" href="trace.html"><span class="lab">Next ▸</span><span class="ttl">Trace a Full Program</span></a></div>
-<footer>
+<footer><span class="t-en">
   <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
   Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
   Works fully offline. No login, no server, no internet needed (web fonts are optional).
-  <span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
 </footer>
 </div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
 <script src="../../assets/js/nav.js"></script>
 <script src="../../assets/js/services/motion.js"></script>
 <script src="../../assets/js/code.js"></script>

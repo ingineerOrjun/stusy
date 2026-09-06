@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>Inheritance — DS &amp; OOP with C++ | RGSC Study Board</title>
+<title>Inheritance — DS & OOP with C++ | RGSC Study Board</title>
 <meta name="description" content="Inheritance explained in simple English with a Nepali explanation beside it.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -20,17 +21,22 @@
       <span class="brand-mark">RG</span>
       <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
     </a>
-    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
     <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
-<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
 
 <div class="wrap">
-<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DS &amp; OOP with C++</a> <span class="sep">/</span> <span>Inheritance</span></nav>
-<main id="main">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DS & OOP with C++</a> <span class="sep">/</span> <span>Inheritance</span></nav>
+<main id="main" data-subject="grade10/oop-cpp">
 <nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Data Structure</a><a href="unit2.html">2 · OOP + C++</a><a href="unit3.html">3 · Class and Object</a><a href="unit4.html">4 · Abstraction / Encapsulation</a><a href="unit5.html" style="color:var(--yellow);border-color:var(--yellow)">5 · Inheritance</a><a href="unit6.html">6 · Polymorphism</a><a href="trace.html">▶ · Trace a Program</a><a href="tables.html">≠ · Tables & Terms</a><a href="quiz.html">? · Quiz</a></nav>
 <section id="u5">
   <div class="sec-head">
@@ -44,7 +50,7 @@
   <div class="rule"></div>
 
   <div class="outcomes">
-    <h2>By the end of this unit you can…</h2>
+    <h2>By the end of this unit you can…</h2><div class="t-en">
     <ol>
       <li>Define inheritance and explain base class and derived class.</li>
       <li>Write the syntax of inheritance and name the three modes.</li>
@@ -53,7 +59,7 @@
       <li>Predict the order in which constructors and destructors run.</li>
       <li>Explain the diamond problem and how a virtual base class solves it.</li>
     </ol>
-    <p class="np-cell" lang="ne"><b lang="ne">यो युनिट सकिँदा:</b> परिभाषा, syntax, पाँचै प्रकारको चित्र, access मोडको
+    </div><p class="np-cell" lang="ne"><b lang="ne">यो युनिट सकिँदा:</b> परिभाषा, syntax, पाँचै प्रकारको चित्र, access मोडको
     असर, कन्स्ट्रक्टरको क्रम, र diamond problem भन्न सक्नुहुनेछ।</p>
   </div>
 
@@ -86,14 +92,14 @@
     </div>
   </div>
 
-  <div class="callout an">
+  <div class="callout an"><div class="t-en">
     <div class="h">Real-world analogy — a family</div>
     <p>A <b>child</b> inherits eye colour, surname and blood group from a <b>parent</b>, and also
     has qualities of their own.</p>
     <p>But the child does <b>not</b> get everything. The parent's <b>private</b> members are like a
     personal diary — it exists inside the parent, but the child cannot open it directly. That is
     exactly how <span class="term">private</span> behaves in inheritance.</p>
-    <span class="np-cell" lang="ne"><b lang="ne">उदाहरण — परिवार।</b> <b lang="ne">छोराले</b> बाबुबाट आँखाको रङ, थर र रगतको समूह
+    </div><span class="np-cell" lang="ne"><b lang="ne">उदाहरण — परिवार।</b> <b lang="ne">छोराले</b> बाबुबाट आँखाको रङ, थर र रगतको समूह
     पाउँछ, र आफ्नै छुट्टै गुण पनि राख्छ। तर सबै कुरा पाउँदैन — बाबुको <b>private</b> मेम्बर
     व्यक्तिगत डायरी जस्तै हो: छ त, तर छोराले सिधै खोल्न पाउँदैन।</span>
   </div>
@@ -153,10 +159,10 @@ int main() {
       <pre class="out">Hello from Base
 Hello from Derived</pre>
     </div>
-    <p class="wex-note">Object <span class="term">d</span> is a <span class="term">Derived</span>,
+    <p class="wex-note"><span class="t-en">Object <span class="term">d</span> is a <span class="term">Derived</span>,
     yet it can call <span class="term">greet()</span> which was never written inside
     <span class="term">Derived</span>. That is inheritance doing its job.
-    <span class="np-cell" lang="ne">अब्जेक्ट <span class="term">d</span> चाहिँ
+    </span><span class="np-cell" lang="ne">अब्जेक्ट <span class="term">d</span> चाहिँ
     <span class="term">Derived</span> हो, तर <span class="term">Derived</span> भित्र कहिल्यै
     नलेखिएको <span class="term">greet()</span> बोलाउन सक्छ। यही इनहेरिटेन्सको काम हो।</span></p>
   </div>
@@ -174,7 +180,7 @@ Hello from Derived</pre>
   <title id="t-inha">What happens to base class members under each inheritance mode</title>
   <defs><marker id="a-inha" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#ffd76e"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
   <text class="f-ttl" x="10" y="18">What the derived class actually receives — the most-asked table, drawn</text>
 
   <rect class="f-box-y" x="30" y="44" width="150" height="140" rx="8"/>
@@ -189,26 +195,26 @@ Hello from Derived</pre>
 
   <rect class="f-box-d" x="260" y="44" width="130" height="80" rx="8"/>
   <text class="f-lbl-y" x="325" y="64" style="font-size:11px">: public</text>
-  <text class="f-lbl" x="325" y="86" style="font-size:10px" fill="#9ae6a0">public stays public</text>
-  <text class="f-lbl" x="325" y="104" style="font-size:10px" fill="#ffd76e">protected stays protected</text>
+  <text class="f-lbl" x="325" y="86" style="font-size:10px;fill:var(--color-success)">public stays public</text>
+  <text class="f-lbl" x="325" y="104" style="font-size:10px;fill:var(--color-primary)">protected stays protected</text>
 
   <rect class="f-box-d" x="260" y="134" width="130" height="80" rx="8"/>
   <text class="f-lbl-y" x="325" y="154" style="font-size:11px">: protected</text>
-  <text class="f-lbl" x="325" y="176" style="font-size:10px" fill="#ffd76e">public → protected</text>
-  <text class="f-lbl" x="325" y="194" style="font-size:10px" fill="#ffd76e">protected stays</text>
+  <text class="f-lbl" x="325" y="176" style="font-size:10px;fill:var(--color-primary)">public → protected</text>
+  <text class="f-lbl" x="325" y="194" style="font-size:10px;fill:var(--color-primary)">protected stays</text>
 
   <rect class="f-box-d" x="260" y="224" width="130" height="66" rx="8"/>
   <text class="f-lbl-y" x="325" y="244" style="font-size:11px">: private</text>
-  <text class="f-lbl" x="325" y="266" style="font-size:10px" fill="#ff8f7a">both become private</text>
+  <text class="f-lbl" x="325" y="266" style="font-size:10px;fill:var(--color-error)">both become private</text>
 
   <rect class="f-box-c" x="430" y="120" width="260" height="110" rx="8"/>
   <text class="f-lbl-y" x="560" y="146">The one rule that never changes</text>
-  <text class="f-val" x="560" y="176" style="font-size:13px" fill="#ff8f7a">private members are</text>
-  <text class="f-val" x="560" y="196" style="font-size:13px" fill="#ff8f7a">NEVER inherited</text>
+  <text class="f-val" x="560" y="176" style="font-size:13px;fill:var(--color-error)">private members are</text>
+  <text class="f-val" x="560" y="196" style="font-size:13px;fill:var(--color-error)">NEVER inherited</text>
   <text class="f-lbl" x="560" y="216" style="font-size:10px">in any mode — they exist, but the child cannot touch them</text>
 </svg>
-    <figcaption>The one rule that never changes: private members are never inherited, in any mode.
-      <span class="np-cell" lang="ne">कहिल्यै नफेरिने नियम: private मेम्बर कुनै पनि मोडमा इनहेरिट हुँदैन।</span>
+    <figcaption><span class="t-en">The one rule that never changes: private members are never inherited, in any mode.
+      </span><span class="np-cell" lang="ne">कहिल्यै नफेरिने नियम: private मेम्बर कुनै पनि मोडमा इनहेरिट हुँदैन।</span>
     </figcaption>
   </figure>
 
@@ -220,13 +226,13 @@ Hello from Derived</pre>
       <tbody>
         <tr><td class="k">public</td><td>stays <b>public</b></td><td>becomes <b>protected</b></td><td>becomes <b>private</b></td></tr>
         <tr><td class="k">protected</td><td>stays <b>protected</b></td><td>stays <b>protected</b></td><td>becomes <b>private</b></td></tr>
-        <tr><td class="k">private</td><td colspan="3"><b>Never inherited / not accessible</b> in the derived class, in any mode.
-          <span class="np-cell" lang="ne">कुनै पनि मोडमा derived क्लासले base को private मेम्बर सिधै प्रयोग गर्न पाउँदैन।</span></td></tr>
+        <tr><td class="k">private</td><td colspan="3"><span class="t-en"><b>Never inherited / not accessible</b> in the derived class, in any mode.
+          </span><span class="np-cell" lang="ne">कुनै पनि मोडमा derived क्लासले base को private मेम्बर सिधै प्रयोग गर्न पाउँदैन।</span></td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="mistake">
+  <div class="mistake"><div class="t-en">
     <div class="h">Common mistake</div>
     Trying to use a base class <span class="term">private</span> member inside the derived class:
     <pre class="cpp" data-nonum>class A { private: int x; };
@@ -236,7 +242,7 @@ public:
 };</pre>
     If a child class needs it, the base must declare it <span class="term">protected</span>, not
     <span class="term">private</span>.
-    <span class="np-cell" lang="ne">base को <span class="term">private</span> मेम्बर derived भित्र प्रयोग
+    </div><span class="np-cell" lang="ne">base को <span class="term">private</span> मेम्बर derived भित्र प्रयोग
     गर्न खोज्नु गल्ती हो। सन्तानलाई चाहिन्छ भने base मा <span class="term">protected</span>
     लेख्नुपर्छ, <span class="term">private</span> होइन।</span>
   </div>
@@ -323,8 +329,8 @@ public:
   <text class="f-lbl-y" x="320" y="386" text-anchor="start">Solution: make A a VIRTUAL BASE CLASS</text>
   <text class="f-code" x="320" y="410" style="font-size:11px">class B : virtual public A { };</text>
 </svg>
-    <figcaption>All five types, plus the diamond problem that hybrid inheritance can create.
-      <span class="np-cell" lang="ne">पाँचै प्रकार, र hybrid inheritance ले ल्याउन सक्ने diamond problem।</span>
+    <figcaption><span class="t-en">All five types, plus the diamond problem that hybrid inheritance can create.
+      </span><span class="np-cell" lang="ne">पाँचै प्रकार, र hybrid inheritance ले ल्याउन सक्ने diamond problem।</span>
     </figcaption>
   </figure>
 
@@ -333,26 +339,26 @@ public:
       <thead><tr><th style="width:170px">Type</th><th>Meaning</th><th style="width:250px">Syntax</th></tr></thead>
       <tbody>
         <tr><td class="k">Single</td>
-          <td><b>One base class → one derived class.</b> The simplest form.
-            <span class="np-cell" lang="ne">एउटा base बाट एउटा derived क्लास।</span></td>
+          <td><span class="t-en"><b>One base class → one derived class.</b> The simplest form.
+            </span><span class="np-cell" lang="ne">एउटा base बाट एउटा derived क्लास।</span></td>
           <td class="k">class B : public A { };</td></tr>
         <tr><td class="k">Multilevel</td>
-          <td>A <b>chain</b> — a derived class itself becomes the base of another class.
+          <td><span class="t-en">A <b>chain</b> — a derived class itself becomes the base of another class.
             Grandparent → parent → child.
-            <span class="np-cell" lang="ne">शृंखला — derived क्लास आफैं अर्कोको base बन्छ।</span></td>
+            </span><span class="np-cell" lang="ne">शृंखला — derived क्लास आफैं अर्कोको base बन्छ।</span></td>
           <td class="k">class B : public A { };<br>class C : public B { };</td></tr>
         <tr><td class="k">Multiple</td>
-          <td><b>Two or more base classes → one derived class.</b> The bases are separated by commas.
-            <span class="np-cell" lang="ne">दुई वा बढी base बाट एउटा derived क्लास।</span></td>
+          <td><span class="t-en"><b>Two or more base classes → one derived class.</b> The bases are separated by commas.
+            </span><span class="np-cell" lang="ne">दुई वा बढी base बाट एउटा derived क्लास।</span></td>
           <td class="k">class C : public A, public B { };</td></tr>
         <tr><td class="k">Hierarchical</td>
-          <td><b>One base class → many derived classes.</b> Several children share one parent.
-            <span class="np-cell" lang="ne">एउटा base बाट धेरै derived क्लास।</span></td>
+          <td><span class="t-en"><b>One base class → many derived classes.</b> Several children share one parent.
+            </span><span class="np-cell" lang="ne">एउटा base बाट धेरै derived क्लास।</span></td>
           <td class="k">class B : public A { };<br>class C : public A { };</td></tr>
         <tr><td class="k">Hybrid</td>
-          <td>A <b>combination of two or more</b> of the above types — for example hierarchical
+          <td><span class="t-en">A <b>combination of two or more</b> of the above types — for example hierarchical
             plus multiple. This can create the <b>diamond problem</b>.
-            <span class="np-cell" lang="ne">माथिका दुई वा बढी प्रकारको मिश्रण।</span></td>
+            </span><span class="np-cell" lang="ne">माथिका दुई वा बढी प्रकारको मिश्रण।</span></td>
           <td class="k">combination of the above</td></tr>
       </tbody>
     </table>
@@ -438,10 +444,10 @@ int main() {
       <span class="wex-lbl">Output</span>
       <pre class="out">From A</pre>
     </div>
-    <p class="wex-note">The keyword <span class="term">virtual</span> tells C++ to keep only
+    <p class="wex-note"><span class="t-en">The keyword <span class="term">virtual</span> tells C++ to keep only
     <b>one shared copy</b> of A, so the ambiguity disappears. A base class declared this way is
     called a <b>virtual base class</b>.
-    <span class="np-cell" lang="ne"><span class="term">virtual</span> शब्दले C++ लाई A को <b lang="ne">एउटै साझा
+    </span><span class="np-cell" lang="ne"><span class="term">virtual</span> शब्दले C++ लाई A को <b lang="ne">एउटै साझा
     प्रति</b> राख्न भन्छ, त्यसैले अलमल हट्छ। यसरी घोषित base क्लासलाई <b>virtual base class</b>
     भनिन्छ।</span></p>
   </div>
@@ -456,10 +462,10 @@ int main() {
   <title id="t-cord">Constructor and destructor order in multilevel inheritance</title>
   <defs><marker id="a-cord" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#9ae6a0"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-success)"/></marker></defs>
   <defs><marker id="a-cordr" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#ff8f7a"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-error)"/></marker></defs>
   <text class="f-ttl" x="10" y="18">Creating ONE Puppy object runs THREE constructors — and destroys them in reverse</text>
 
   <text class="f-lbl-y" x="150" y="42" style="font-size:10px">CONSTRUCTORS — base first</text>
@@ -481,29 +487,29 @@ int main() {
   <line class="f-ln" x1="360" y1="168" x2="360" y2="202"/>
 
   <g id="ctor-1" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:#9ae6a0" d="M250,80 L284,80"/>
-    <text class="f-val" x="240" y="84" style="font-size:11px" fill="#9ae6a0" text-anchor="end">1 · Animal()</text>
+    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:var(--color-success)" d="M250,80 L284,80"/>
+    <text class="f-val" x="240" y="84" style="font-size:11px;fill:var(--color-success)" text-anchor="end">1 · Animal()</text>
   </g>
   <g id="ctor-2" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:#9ae6a0" d="M250,154 L284,154"/>
-    <text class="f-val" x="240" y="158" style="font-size:11px" fill="#9ae6a0" text-anchor="end">2 · Dog()</text>
+    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:var(--color-success)" d="M250,154 L284,154"/>
+    <text class="f-val" x="240" y="158" style="font-size:11px;fill:var(--color-success)" text-anchor="end">2 · Dog()</text>
   </g>
   <g id="ctor-3" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:#9ae6a0" d="M250,228 L284,228"/>
-    <text class="f-val" x="240" y="232" style="font-size:11px" fill="#9ae6a0" text-anchor="end">3 · Puppy()</text>
+    <path class="f-arr" marker-end="url(#a-cord)" style="stroke:var(--color-success)" d="M250,228 L284,228"/>
+    <text class="f-val" x="240" y="232" style="font-size:11px;fill:var(--color-success)" text-anchor="end">3 · Puppy()</text>
   </g>
 
   <g id="dtor-1" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:#ff8f7a" d="M470,228 L436,228"/>
-    <text class="f-val" x="480" y="232" style="font-size:11px" fill="#ff8f7a" text-anchor="start">1 · ~Puppy()</text>
+    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:var(--color-error)" d="M470,228 L436,228"/>
+    <text class="f-val" x="480" y="232" style="font-size:11px;fill:var(--color-error)" text-anchor="start">1 · ~Puppy()</text>
   </g>
   <g id="dtor-2" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:#ff8f7a" d="M470,154 L436,154"/>
-    <text class="f-val" x="480" y="158" style="font-size:11px" fill="#ff8f7a" text-anchor="start">2 · ~Dog()</text>
+    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:var(--color-error)" d="M470,154 L436,154"/>
+    <text class="f-val" x="480" y="158" style="font-size:11px;fill:var(--color-error)" text-anchor="start">2 · ~Dog()</text>
   </g>
   <g id="dtor-3" class="dia-step">
-    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:#ff8f7a" d="M470,80 L436,80"/>
-    <text class="f-val" x="480" y="84" style="font-size:11px" fill="#ff8f7a" text-anchor="start">3 · ~Animal()</text>
+    <path class="f-arr" marker-end="url(#a-cordr)" style="stroke:var(--color-error)" d="M470,80 L436,80"/>
+    <text class="f-val" x="480" y="84" style="font-size:11px;fill:var(--color-error)" text-anchor="start">3 · ~Animal()</text>
   </g>
 
   <g id="verdict" class="dia-step">
@@ -512,28 +518,28 @@ int main() {
   </g>
 </svg></div>
   <div class="dia-controls">
-    <button type="button" data-dia-act="prev" aria-label="Previous step">&#9666; Prev</button>
-    <button type="button" data-dia-act="play" aria-pressed="false">&#9654; Play</button>
-    <button type="button" data-dia-act="next" aria-label="Next step">Next &#9656;</button>
-    <button type="button" data-dia-act="reset">Reset</button>
-    <span class="dia-progress" aria-live="polite">step 0 / 6</span>
+    <button type="button" data-dia-act="prev" data-ui="prev">&#9666; Prev</button>
+    <button type="button" data-dia-act="play" data-ui="play" aria-pressed="false">&#9654; Play</button>
+    <button type="button" data-dia-act="next" data-ui="next">Next &#9656;</button>
+    <button type="button" data-dia-act="reset" data-ui="reset">Reset</button>
+    <span class="dia-progress" aria-live="polite" data-dia-steps="6">step 0 / 6</span>
   </div>
   <div class="dia-caption" role="status">
     <span class="dia-cap-en"></span>
     <span class="dia-cap-ne np-cell" lang="ne"></span>
   </div>
 </div>
-    <figcaption>One object, three constructors. Base first going down, derived first coming back up.
-      <span class="np-cell" lang="ne">एउटा अब्जेक्ट, तीन कन्स्ट्रक्टर। बन्दा base पहिले, नष्ट हुँदा derived पहिले।</span>
+    <figcaption><span class="t-en">One object, three constructors. Base first going down, derived first coming back up.
+      </span><span class="np-cell" lang="ne">एउटा अब्जेक्ट, तीन कन्स्ट्रक्टर। बन्दा base पहिले, नष्ट हुँदा derived पहिले।</span>
     </figcaption>
   </figure>
 
-  <div class="callout">
+  <div class="callout"><div class="t-en">
     <div class="h">The rule in one line</div>
     When a derived object is created, the <b>base class constructor runs FIRST</b>, then the
     derived constructor. Destructors run in the <b>exact reverse</b>: derived destructor first,
     then base destructor.
-    <span class="np-cell" lang="ne">derived अब्जेक्ट बन्दा <b lang="ne">पहिले base को कन्स्ट्रक्टर</b> चल्छ, अनि derived को।
+    </div><span class="np-cell" lang="ne">derived अब्जेक्ट बन्दा <b lang="ne">पहिले base को कन्स्ट्रक्टर</b> चल्छ, अनि derived को।
     डिस्ट्रक्टर <b lang="ne">ठ्याक्कै उल्टो</b> — पहिले derived, अनि base।</span>
   </div>
 
@@ -566,9 +572,9 @@ B constructor
 B destructor
 A destructor</pre>
     </div>
-    <p class="wex-note">Four lines from one object. The base is built first (you cannot build the
+    <p class="wex-note"><span class="t-en">Four lines from one object. The base is built first (you cannot build the
     first floor before the ground floor) and destroyed last.
-    <span class="np-cell" lang="ne">एउटै अब्जेक्टबाट चार लाइन। base पहिले बन्छ (भुइँतला नबनाई पहिलो तला
+    </span><span class="np-cell" lang="ne">एउटै अब्जेक्टबाट चार लाइन। base पहिले बन्छ (भुइँतला नबनाई पहिलो तला
     बन्दैन) र अन्तिममा भत्किन्छ।</span></p>
   </div>
 
@@ -576,7 +582,7 @@ A destructor</pre>
   <h2 class="topic" id="exam5">Exam focus — questions asked from this unit</h2>
 
   <div class="exam-connect">
-    <p class="lead-in" lang="ne">SEE exam connection · परीक्षा जोड</p>
+    <p class="lead-in"><span class="t-en">SEE exam connection</span><span class="t-ne"><span class="t-en"> · </span>परीक्षा जोड</span></p>
     <p>Types of inheritance and constructor call order carry the marks here — the order question appears very often.</p>
     <span class="np-cell" lang="ne">Inheritance का प्रकार र constructor चल्ने क्रममा अंक छन् — क्रमको प्रश्न धेरै पटक आउँछ।</span>
   </div>
@@ -584,21 +590,21 @@ A destructor</pre>
   <div class="examq">
     <div class="q-h">Q1 · Define inheritance. Explain base class and derived class with syntax. <span class="mk">[4 marks]</span></div>
     <button class="btn-ans" data-answer="e1">Show the answer</button>
-    <div class="ans" id="e1">
+    <div class="ans" id="e1"><div class="t-en">
       <p>Inheritance is the process by which one class acquires the properties and member functions
       of another class. The class whose features are inherited is called the base class (parent),
       and the class that inherits them is called the derived class (child). The main purpose is
       reusability of code.</p>
       <p>Syntax: <span class="term">class Derived : access_mode Base { … };</span> for example
       <span class="term">class Dog : public Animal { };</span></p>
-      <span class="np-cell" lang="ne">परिभाषा + base/derived + syntax — तीनै लेख्नुहोस्।</span>
+      </div><span class="np-cell" lang="ne">परिभाषा + base/derived + syntax — तीनै लेख्नुहोस्।</span>
     </div>
   </div>
 
   <div class="examq">
     <div class="q-h">Q2 · Explain the types of inheritance with suitable diagrams. <span class="mk">[6 marks]</span></div>
     <button class="btn-ans" data-answer="e2">Show the answer</button>
-    <div class="ans" id="e2">
+    <div class="ans" id="e2"><div class="t-en">
       <p>Draw all five diagrams and give one line each:</p>
       <p><b>Single</b> — one base, one derived (A → B).<br>
       <b>Multilevel</b> — a chain where a derived class becomes a base (A → B → C).<br>
@@ -606,27 +612,27 @@ A destructor</pre>
       <b>Hierarchical</b> — one base, many derived (A → B and A → C).<br>
       <b>Hybrid</b> — a combination of two or more of the above; may cause the diamond problem,
       solved with a virtual base class.</p>
-      <span class="np-cell" lang="ne">पाँचै चित्र कोर्नुहोस् र एक–एक लाइन व्याख्या दिनुहोस्। चित्र बिना पूरा अंक आउँदैन।</span>
+      </div><span class="np-cell" lang="ne">पाँचै चित्र कोर्नुहोस् र एक–एक लाइन व्याख्या दिनुहोस्। चित्र बिना पूरा अंक आउँदैन।</span>
     </div>
   </div>
 
   <div class="examq">
     <div class="q-h">Q3 · What is the output of the given program? (base and derived constructors) <span class="mk">[3 marks]</span></div>
     <button class="btn-ans" data-answer="e3">Show the answer</button>
-    <div class="ans" id="e3">
+    <div class="ans" id="e3"><div class="t-en">
       <p>Apply the rule: base class constructor first, then derived; destructors in exact reverse
       order. For a two-level program the answer is: A constructor, B constructor, B destructor,
       A destructor.</p>
       <p>For a three-level chain (Animal → Dog → Puppy) it is: Animal, Dog, Puppy going in and
       ~Puppy, ~Dog, ~Animal coming out.</p>
-      <span class="np-cell" lang="ne">नियम लगाउनुहोस्: बन्दा माथिबाट तल, नष्ट हुँदा तलबाट माथि।</span>
+      </div><span class="np-cell" lang="ne">नियम लगाउनुहोस्: बन्दा माथिबाट तल, नष्ट हुँदा तलबाट माथि।</span>
     </div>
   </div>
 
   <div class="examq">
     <div class="q-h">Q4 · What is the diamond problem? How is it solved? <span class="mk">[3 marks]</span></div>
     <button class="btn-ans" data-answer="e4">Show the answer</button>
-    <div class="ans" id="e4">
+    <div class="ans" id="e4"><div class="t-en">
       <p>In hybrid inheritance, when two classes B and C both inherit from the same base A, and a
       fourth class D inherits from both B and C, class D receives two copies of A's members. The
       compiler cannot decide which copy to use, causing an ambiguity error. This is called the
@@ -634,12 +640,12 @@ A destructor</pre>
       <p>It is solved by declaring A as a <b>virtual base class</b>:
       <span class="term">class B : virtual public A { };</span> — then only one shared copy of A
       exists.</p>
-      <span class="np-cell" lang="ne">समस्या + <span class="term">virtual</span> कीवर्डको समाधान — दुवै लेख्नुहोस्।</span>
+      </div><span class="np-cell" lang="ne">समस्या + <span class="term">virtual</span> कीवर्डको समाधान — दुवै लेख्नुहोस्।</span>
     </div>
   </div>
 
   <div class="keypoints">
-    <h2 lang="ne">Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h2>
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
     <ul>
       <li>Inheritance = one class <b>acquires the properties and functions</b> of another. Purpose: <b>reusability</b>.</li>
       <li>Base = parent = gives. Derived = child = receives. Relationship is <b>IS-A</b>.</li>
@@ -655,13 +661,15 @@ A destructor</pre>
 
 </main>
 <div class="pager"><a href="unit4.html"><span class="lab">◂ Previous</span><span class="ttl">Abstraction and Encapsulation</span></a><a class="nx" href="unit6.html"><span class="lab">Next ▸</span><span class="ttl">Polymorphism</span></a></div>
-<footer>
+<footer><span class="t-en">
   <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
   Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
   Works fully offline. No login, no server, no internet needed (web fonts are optional).
-  <span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
 </footer>
 </div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
 <script src="../../assets/js/nav.js"></script>
 <script src="../../assets/js/services/motion.js"></script>
 <script src="../../assets/js/code.js"></script>

@@ -141,7 +141,7 @@ html, body{ overflow-x: clip; }
 .sim-goal{
   margin: var(--sp-2) 0 0; font-size: var(--fs-sm); color: var(--color-text-muted);
 }
-.sim-goal .np-cell{ margin-top: var(--sp-1); }
+.sim-goal .np-cell{ display: block; margin-top: var(--sp-1); }
 
 .sim-body{ padding: var(--sp-5); }
 .sim-stage{
@@ -195,7 +195,7 @@ html, body{ overflow-x: clip; }
 .predict-options{ display: flex; flex-wrap: wrap; gap: var(--sp-2); }
 .predict-opt{
   flex: 1 1 auto; min-width: 120px;
-  background: var(--color-surface); border: 1.5px solid var(--color-border);
+  background: var(--color-surface); border: 1.5px solid var(--color-border-strong);
   border-radius: var(--r-sm); padding: var(--sp-3) var(--sp-4);
   font-family: var(--mono); font-size: var(--fs-sm); color: var(--color-text);
   cursor: pointer; transition: border-color var(--dur-fast) var(--ease);
@@ -257,12 +257,7 @@ html, body{ overflow-x: clip; }
 figure.fig.is-scrollable::after{
   background: linear-gradient(to right, transparent, var(--color-background) 85%);
 }
-.scroll-hint{
-  display: block; margin-top: var(--sp-2);
-  font-family: var(--mono); font-size: var(--fs-xs);
-  color: var(--color-text-subtle);
-}
-.scroll-hint::before{ content: "↔ "; }
+
 
 /* ------------------------------------------------------------
    7. HEADING + LANDMARK CORRECTIONS
@@ -311,7 +306,7 @@ figure.fig.is-scrollable::after{
    natural size rather than scaling down, so these render at their literal
    size on a phone — 10-11px was below the readable floor. */
 .f-lbl, .f-lbl-y{ font-size: 12px; }
-.f-addr{ font-size: 11px; }
+.f-addr{ font-size: var(--fs-xs); }
 
 /* ------------------------------------------------------------
    10. HEADING LEVEL vs HEADING APPEARANCE

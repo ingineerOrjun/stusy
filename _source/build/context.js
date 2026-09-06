@@ -18,7 +18,7 @@ const fs = require('fs');
 const path = require('path');
 
 /* Repository root, derived from this file's location.
-   Previously this was the absolute string 'C:/Users/Acer/Desktop/rgsc-study',
+   Previously this was one developer's absolute path,
    which meant the build ran on exactly one machine at one path. */
 const SRC  = path.resolve(__dirname, '..');          // _source
 const ROOT = path.resolve(SRC, '..');                // repository root
@@ -37,24 +37,41 @@ function read(rel){
    failure is still a failure, so the write backs off and tries again. */
 const TRANSIENT = new Set(['EBUSY', 'EPERM', 'UNKNOWN', 'EACCES']);
 
+/* A real synchronous sleep. The previous version busy-spun on Date.now(),
+   which burns a core and never yields — the worst thing to do while
+   waiting for another process to release a handle. Atomics.wait blocks
+   the thread properly. */
+const SLEEP_BUF = new Int32Array(new SharedArrayBuffer(4));
+function sleepMs(ms){ Atomics.wait(SLEEP_BUF, 0, 0, ms); }
+
+/* Retry budget. Phase 1 used 5 attempts totalling ~150ms; Phase 3.1
+   measured a real failure at attempt 5 (`UNKNOWN` writing
+   grade10/index.html) roughly once in fifteen full test runs. An
+   antivirus or indexer can hold a freshly written file for a second or
+   more, so the budget is now ~3.9s across 9 attempts. Waiting costs
+   nothing on the overwhelmingly common path, where the first write
+   succeeds. */
+const WRITE_ATTEMPTS = 9;
+
 function write(rel, content){
   const p = path.join(ROOT, rel);
   fs.mkdirSync(path.dirname(p), { recursive: true });
   let lastErr;
-  for (let attempt = 0; attempt < 5; attempt++){
+  for (let attempt = 0; attempt < WRITE_ATTEMPTS; attempt++){
     try {
       fs.writeFileSync(p, content, 'utf8');
       return;
     } catch (err) {
       if (!TRANSIENT.has(err.code)) throw err;
       lastErr = err;
-      /* short synchronous back-off: 10ms, 20ms, 40ms, 80ms */
-      const until = Date.now() + (10 << attempt);
-      while (Date.now() < until) { /* spin briefly */ }
+      /* 15, 30, 60, 120, 240, 480, 960, 1920 ms — ~3.9s in total */
+      sleepMs(15 << attempt);
     }
   }
-  throw new Error('could not write ' + rel + ' after 5 attempts (' +
-                  lastErr.code + '). Another process may be holding the file.');
+  throw new Error('could not write ' + rel + ' after ' + WRITE_ATTEMPTS +
+                  ' attempts (' + lastErr.code + '). Another process may be ' +
+                  'holding the file — an antivirus scanner or a file indexer ' +
+                  'is the usual cause on Windows.');
 }
 
 /* ---------- design system ----------
@@ -66,21 +83,19 @@ const css = read('design/tokens.css') + read('design/base.css');
 /* ---------- runtime modules ----------
    Key = the filename published under assets/js/. Values are read verbatim,
    so what ships is exactly what is in source control. */
-const RUNTIME_FILES = [
-  'nav.js', 'services/motion.js', 'core.js', 'diagram.js', 'showcase.js', 'snippets.js', 'predict.js',
-  'sim-stackqueue.js', 'sim-dispatch.js', 'trace.js', 'quiz.js',
-  'services/progress.js', 'services/quiz.js', 'services/simulation.js'
-];
-
-const runtime = {};
-for (const f of RUNTIME_FILES){
-  const p = path.join(SRC, 'runtime', f);
-  if (!fs.existsSync(p)) throw new Error('missing runtime module: runtime/' + f);
-  runtime[f] = fs.readFileSync(p, 'utf8');
-}
-/* published name: core.js ships as code.js, the name every page already links */
+/* published name: core.js ships as code.js, the name every page already links.
+   This map is the single list of runtime modules — the set to read and the
+   set to publish are the same set, so a module can never be registered for
+   one and forgotten by the other. */
 const RUNTIME_PUBLISHED = {
   'nav.js': 'nav.js',
+  'services/language.js': 'services/language.js',
+  'services/strings.js': 'services/strings.js',
+  'sim-gates.js': 'sim-gates.js',
+  'sim-number.js': 'sim-number.js',
+  'sim-kmap.js': 'sim-kmap.js',
+  'sim-comb.js': 'sim-comb.js',
+  'sim-8085.js': 'sim-8085.js',
   'services/motion.js': 'services/motion.js',
   'core.js': 'code.js',
   'diagram.js': 'diagram.js',
@@ -95,6 +110,15 @@ const RUNTIME_PUBLISHED = {
   'services/quiz.js': 'services/quiz.js',
   'services/simulation.js': 'services/simulation.js'
 };
+
+const RUNTIME_FILES = Object.keys(RUNTIME_PUBLISHED);
+
+const runtime = {};
+for (const f of RUNTIME_FILES){
+  const p = path.join(SRC, 'runtime', f);
+  if (!fs.existsSync(p)) throw new Error('missing runtime module: runtime/' + f);
+  runtime[f] = fs.readFileSync(p, 'utf8');
+}
 
 /* ---------- content ----------
    A section is either an authored lesson or a shared page section.
@@ -111,7 +135,8 @@ function section(id){
 const hero = read('content/sections/hero.html');
 
 const questionBanks = {
-  'grade10/oop-cpp': require('../content/questions/grade10-oop-cpp.js')
+  'grade10/oop-cpp':        require('../content/questions/grade10-oop-cpp.js'),
+  'grade10/digital-design': require('../content/questions/grade10-digital-design.js')
 };
 
 module.exports = {

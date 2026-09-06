@@ -1,0 +1,433 @@
+<section id="dd-u1">
+  <div class="sec-head">
+    <div class="sec-num">1</div>
+    <div>
+      <h2>Number System and Binary Arithmetic</h2>
+      <p class="sec-sub">संख्या प्रणाली र बाइनरी गणित</p>
+    </div>
+    <span class="marks">12 hrs · 7 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Explain what a base is and why position gives a digit its value.</li>
+      <li>Convert between decimal, binary, octal and hexadecimal in both directions.</li>
+      <li>Convert a decimal fraction to binary.</li>
+      <li>Find the 1's and 2's complement of a binary number.</li>
+      <li>Add, subtract and multiply binary numbers.</li>
+      <li>Explain why 2's complement lets one adder circuit also subtract.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: base भनेको के हो र स्थानले अङ्कलाई कसरी मान दिन्छ भन्न,
+    चारै base बीच दुवैतर्फ रूपान्तरण गर्न, दशमलव भिन्नलाई binary मा लैजान, 1's र 2's complement निकाल्न,
+    binary मा जोड–घटाउ–गुणा गर्न, र 2's complement ले किन एउटै adder सर्किटलाई घटाउन पनि सक्षम बनाउँछ
+    भन्न सक्नुहुनेछ।</span>
+  </div>
+
+  <h3 class="topic" id="t11">1.1 &nbsp;The numbering concept</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>number system</b> is a way of writing numbers using a fixed set of digits. The
+      count of available digits is called the <b>base</b> or <b>radix</b>.</p>
+      <p>The key idea is <b>positional value</b>: the same digit means different amounts
+      depending on where it sits. In 347 the 3 is not worth three — it is worth three hundred,
+      because it sits in the hundreds position.</p>
+      <p>Every base works this way. Only the size of each step changes: ×10 in decimal, ×2 in
+      binary, ×8 in octal, ×16 in hexadecimal.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>संख्या प्रणाली</b> भनेको तोकिएका अङ्कहरू प्रयोग गरेर संख्या लेख्ने तरिका हो। प्रयोग गर्न
+      मिल्ने अङ्कको सङ्ख्यालाई <b>base</b> वा <b>radix</b> भनिन्छ।</p>
+      <p>मुख्य कुरा <b>स्थानीय मान</b> हो: उही अङ्कले कहाँ बसेको छ त्यसअनुसार फरक मान बोक्छ। 347 मा
+      रहेको 3 को मान तीन होइन, तीन सय हो — किनभने त्यो सयको स्थानमा छ।</p>
+      <p>हरेक base यसैगरी चल्छ। फरक केवल एक स्थानबाट अर्को स्थानमा जाँदा कति गुणा हुन्छ भन्नेमा हो:
+      decimal मा ×१०, binary मा ×२, octal मा ×८, hexadecimal मा ×१६।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:placeValue}}
+    <figcaption>The same rule in two bases. Multiply each digit by its place value and add.
+    <span class="np-cell">दुई base मा उही नियम। हरेक अङ्कलाई त्यसको स्थानीय मानले गुणा गरेर जोड्नुहोस्।</span></figcaption>
+  </figure>
+
+  <h3 class="topic" id="t12">1.2 &nbsp;The four number systems</h3>
+
+  <figure class="fig">
+    {{dia:baseTable}}
+    <figcaption>Octal and hexadecimal exist for human convenience: writing 11111111 is
+    error-prone, writing FF is not.
+    <span class="np-cell">Octal र hexadecimal मान्छेको सुविधाका लागि हुन्: 11111111 लेख्दा गल्ती
+    हुन सक्छ, FF लेख्दा हुँदैन।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h4>The place-value converter</h4>
+      <p class="sim-goal">What you will learn: what each bit is actually worth, and how the same
+      number looks in all four bases at once.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: हरेक बिटको वास्तविक मान कति हो, र उही संख्या
+      चारै base मा एकैचोटि कस्तो देखिन्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="numlab" id="nl-convert" data-mode="convert" data-bits="8"></div>
+      <div class="sim-why">
+        <span class="h">What to notice</span>
+        <p>Switch on only the leftmost bit: the value is 128. Switch on only the rightmost: it is
+        1. <b>Each step to the left doubles the place value</b> — that single fact is all of
+        binary.</p>
+        <p>Now make 255 by switching every bit on. Look at the hexadecimal row: <b>FF</b>. Two
+        hex digits cover eight bits exactly, which is why memory addresses are written in hex.</p>
+        <span class="np-cell">सबैभन्दा बायाँको बिट मात्र खोल्नुहोस्: मान 128 हुन्छ। सबैभन्दा दायाँको
+        मात्र खोल्दा 1। <b>बायाँ सर्दै जाँदा स्थानीय मान दोब्बर हुँदै जान्छ</b> — binary को सार यही हो।
+        अब सबै बिट खोलेर 255 बनाउनुहोस्, अनि hexadecimal हेर्नुहोस्: <b>FF</b>। दुई hex अङ्कले ठ्याक्कै
+        आठ बिट ओगट्छ, त्यसैले मेमोरी ठेगाना hex मा लेखिन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="topic" id="t13">1.3 &nbsp;Converting between bases</h3>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Decimal to binary — the division method</div>
+    <p><b>Question:</b> convert 45 to binary.</p>
+    <p><b>Method:</b> divide by 2 repeatedly, writing down the remainder each time. Stop when the
+    quotient is 0. Then <b>read the remainders upwards</b>.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">45 ÷ 2 = 22  remainder 1   ← read last
+22 ÷ 2 = 11  remainder 0
+11 ÷ 2 =  5  remainder 1
+ 5 ÷ 2 =  2  remainder 1
+ 2 ÷ 2 =  1  remainder 0
+ 1 ÷ 2 =  0  remainder 1   ← read first</div>
+    </div>
+    <p><b>Answer:</b> reading upwards, 45 = <b>101101</b>.</p>
+    <p class="wex-note">Check it with place values: 32 + 8 + 4 + 1 = 45. Always check — it takes
+    five seconds and catches the one mistake everyone makes, which is reading the remainders
+    downwards.
+    <span class="np-cell">स्थानीय मानले जाँच्नुहोस्: 32 + 8 + 4 + 1 = 45। सधैं जाँच्नुहोस् — पाँच
+    सेकेन्ड लाग्छ र सबैले गर्ने एउटै गल्ती (बाँकीलाई तलबाट माथि नपढी माथिबाट तल पढ्ने) समात्छ।</span></p>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Binary to decimal, and octal both ways</div>
+    <p><b>(a) 110101 to decimal.</b> Write the place values above the bits and add the ones that
+    are on:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">32 16  8  4  2  1
+ 1  1  0  1  0  1
+32+16 + 4 + 1 = 53</div>
+    </div>
+    <p><b>(b) Decimal 45 to octal.</b> Same division method, but divide by 8:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">45 ÷ 8 = 5  remainder 5
+ 5 ÷ 8 = 0  remainder 5      →  45 = 55 in octal</div>
+    </div>
+    <p><b>(c) Octal 55 to decimal.</b> Multiply by place values 8¹ and 8⁰:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">(5 × 8) + (5 × 1) = 40 + 5 = 45  ✓ back where we started</div>
+    </div>
+    <p class="wex-note">One method, any base: <b>divide by the base</b> going in,
+    <b>multiply by place values</b> coming out.
+    <span class="np-cell">एउटै तरिका, जुनसुकै base: भित्र जाँदा <b>base ले भाग</b>, बाहिर आउँदा
+    <b>स्थानीय मानले गुणा</b>।</span></p>
+  </div>
+
+  <h4 class="sub">1.3.2 &nbsp;Decimal fractions to binary</h4>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The rule</span>
+      <p>For the part <i>after</i> the point, the method turns upside down: <b>multiply by 2</b>
+      instead of dividing, and collect the <b>integer part</b> of each result. Read the
+      collected digits <b>downwards</b>.</p>
+      <p>Stop when the fraction becomes 0, or when you have enough places. Some fractions never
+      end — 0.1 in decimal is a repeating binary fraction.</p>
+    </div>
+    <div class="np"><span class="tag">नियम</span>
+      <p>दशमलव बिन्दुपछिको भागका लागि तरिका उल्टिन्छ: भाग गर्नुको साटो <b>2 ले गुणा</b> गर्ने, र
+      हरेक परिणामको <b>पूर्णाङ्क भाग</b> टिप्ने। टिपेका अङ्कलाई <b>माथिबाट तल</b> पढ्ने।</p>
+      <p>भिन्न 0 भएपछि वा आवश्यक स्थान पुगेपछि रोक्नुहोस्। केही भिन्न कहिल्यै टुङ्गिँदैनन् — दशमलवको
+      0.1 binary मा दोहोरिइरहन्छ।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 3</span> Convert 6.625 to binary</div>
+    <p><b>Split it.</b> Do the whole part and the fraction separately, then join them.</p>
+    <p><b>Whole part 6:</b> 6 ÷ 2 = 3 r 0; 3 ÷ 2 = 1 r 1; 1 ÷ 2 = 0 r 1 → read up → <b>110</b></p>
+    <p><b>Fraction 0.625:</b></p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">0.625 × 2 = 1.25   integer part 1   ← read first
+0.25  × 2 = 0.5    integer part 0
+0.5   × 2 = 1.0    integer part 1   ← read last, fraction is now 0</div>
+    </div>
+    <p><b>Answer:</b> 6.625 = <b>110.101</b> in binary.</p>
+    <p class="wex-note">Check: 4 + 2 = 6, and after the point ½ + ⅛ = 0.5 + 0.125 = 0.625. ✓
+    <span class="np-cell">जाँच: 4 + 2 = 6, र बिन्दुपछि ½ + ⅛ = 0.625। ✓</span></p>
+  </div>
+
+  <h3 class="topic" id="t14">1.4 &amp; 1.5 &nbsp;1's complement and 2's complement</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Both definitions</span>
+      <p>The <b>1's complement</b> of a binary number is found by changing every 0 to 1 and every
+      1 to 0. Nothing else happens.</p>
+      <p>The <b>2's complement</b> is the 1's complement <b>plus 1</b>.</p>
+      <p>They exist so that a computer can represent negative numbers and, more importantly, so
+      that <b>subtraction can be done by the addition circuit</b>.</p>
+    </div>
+    <div class="np"><span class="tag">दुवै परिभाषा</span>
+      <p>कुनै binary संख्याको <b>1's complement</b> निकाल्न हरेक 0 लाई 1 र हरेक 1 लाई 0 बनाइन्छ।
+      अरू केही गरिँदैन।</p>
+      <p><b>2's complement</b> भनेको 1's complement <b>मा 1 जोडेको</b> हो।</p>
+      <p>यी ऋणात्मक संख्या देखाउन, र त्योभन्दा महत्त्वपूर्ण — <b>घटाउलाई जोड्ने सर्किटले नै गर्न</b>
+      सकियोस् भनेर बनाइएका हुन्।</p>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>The 1's complement of 0101 is 1010. What is its 2's complement?
+      <span class="np-cell">0101 को 1's complement 1010 हो। यसको 2's complement कति हुन्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">1010</button>
+      <button class="predict-opt" data-value="b">1011</button>
+      <button class="predict-opt" data-value="c">0110</button>
+    </div>
+    <div class="predict-feedback">
+      <p>2's complement = 1's complement + 1, so 1010 + 1 = 1011. Step through the diagram below
+      and watch both stages happen in order.</p>
+      <span class="np-cell">2's complement = 1's complement + 1, त्यसैले 1010 + 1 = 1011।
+      तलको चित्रमा दुवै चरण क्रमैसँग हेर्नुहोस्।</span>
+    </div>
+  </div>
+
+  {{dia:twosComplement}}
+
+  <h3 class="topic" id="t16">1.6 – 1.8 &nbsp;Binary arithmetic</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The four addition rules</span>
+      <p>Binary addition has only four cases, and only the last one is new:</p>
+      <ul>
+        <li><code>0 + 0 = 0</code></li>
+        <li><code>0 + 1 = 1</code></li>
+        <li><code>1 + 0 = 1</code></li>
+        <li><code>1 + 1 = 10</code> — write 0 and <b>carry 1</b></li>
+      </ul>
+      <p>That last rule is not "one plus one is ten". It is two, written in binary — exactly as
+      9 + 1 = 10 in decimal means ten, not "one zero".</p>
+    </div>
+    <div class="np"><span class="tag">जोडका चार नियम</span>
+      <p>Binary जोडमा चार अवस्था मात्र छन्, र नयाँ कुरा अन्तिममा मात्र छ:</p>
+      <ul>
+        <li><code>0 + 0 = 0</code></li>
+        <li><code>0 + 1 = 1</code></li>
+        <li><code>1 + 0 = 1</code></li>
+        <li><code>1 + 1 = 10</code> — 0 लेख्ने र <b>1 क्यारी</b> लैजाने</li>
+      </ul>
+      <p>अन्तिम नियमको अर्थ "एक जोड एक बराबर दस" होइन। त्यो <b>दुई</b> हो, binary मा लेखिएको —
+      ठ्याक्कै जसरी दशमलवमा 9 + 1 = 10 को अर्थ दस हो, "एक शून्य" होइन।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne"><span class="t-en"> · </span>पाइला–पाइला हेर्नुहोस्</span></p>
+      <h4>Binary addition, one column at a time</h4>
+      <p class="sim-goal">What you will learn: where the carry comes from, and what happens to
+      the last one. Adding 1011 + 0110.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: क्यारी कहाँबाट आउँछ, र अन्तिम क्यारीको के हुन्छ।
+      1011 + 0110 जोड्दै।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="numlab" id="nl-add" data-mode="add" data-a="1011" data-b="0110"></div>
+      <div class="sim-why">
+        <span class="h">Why the carry is the whole difficulty</span>
+        <p>A carry is produced by one column and consumed by the <b>next column to the left</b>.
+        That is why you must work right to left, and why writing all four columns at once goes
+        wrong: column 3 cannot be answered until column 4 has been.</p>
+        <p>Watch the final step. The last carry has no column left to go into, so it becomes an
+        extra digit — the answer is five bits wide even though both inputs were four.</p>
+        <span class="np-cell">क्यारी एउटा स्तम्भले बनाउँछ र <b>त्यसको बायाँको स्तम्भले</b> प्रयोग गर्छ।
+        त्यसैले दायाँबाट बायाँ जानुपर्छ। अन्तिम चरण हेर्नुहोस्: अन्तिम क्यारीलाई जाने स्तम्भ नहुँदा त्यो थप
+        अङ्क बन्छ — दुवै इनपुट चार बिटका भए पनि उत्तर पाँच बिटको हुन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 4</span> Binary subtraction, two ways</div>
+    <p><b>Question:</b> work out 1101 − 0110 (13 − 6, so the answer should be 7 = 0111).</p>
+    <p><b>Method A — direct borrowing.</b> The rule is <code>0 − 1</code> needs a borrow: borrow
+    1 from the left, which is worth <b>2</b> in this column, so <code>10 − 1 = 1</code>.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">  1101
+-  0110
+  ------
+  0111</div>
+    </div>
+    <p><b>Method B — add the 2's complement.</b> This is what the machine does.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">2's complement of 0110:  invert → 1001,  add 1 → 1010
+1101 + 1010 = 1 0111
+Discard the carry out of the last column → 0111</div>
+    </div>
+    <p><b>Answer:</b> 0111 = 7 by both methods.</p>
+    <p class="wex-note">In method B the final carry is thrown away, and that is not a mistake —
+    it is the signal that the answer is positive. Exam answers should say so.
+    <span class="np-cell">तरिका B मा अन्तिम क्यारी फालिन्छ, र त्यो गल्ती होइन — उत्तर धनात्मक छ भन्ने
+    सङ्केत हो। परीक्षामा यो लेख्नुहोस्।</span></p>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 5</span> Binary multiplication</div>
+    <p><b>Question:</b> multiply 101 × 11 (5 × 3, so the answer should be 15 = 1111).</p>
+    <p>Binary multiplication is easier than decimal, because each digit of the multiplier is
+    either 0 or 1. You are only ever copying the number or writing zeros, then shifting left.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">    101
+  ×  11
+  -----
+    101      ← 101 × 1
+   1010      ← 101 × 1, shifted one place left
+  -----
+   1111</div>
+    </div>
+    <p class="wex-note">The four multiplication rules are 0×0=0, 0×1=0, 1×0=0, 1×1=1 — exactly
+    the AND gate you meet in Unit 2.
+    <span class="np-cell">गुणाका चार नियम 0×0=0, 0×1=0, 1×0=0, 1×1=1 — ठ्याक्कै युनिट २ को
+    AND गेट जस्तै।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Reading the remainders the wrong way.</b> In decimal→binary the <b>last</b>
+        remainder is the <b>first</b> digit. Reading downwards reverses the answer.
+        <span class="np-cell">बाँकीलाई उल्टो पढ्नु। decimal→binary मा <b>अन्तिम</b> बाँकी नै
+        <b>पहिलो</b> अङ्क हो।</span></li>
+      <li><b>Forgetting to add 1 for the 2's complement.</b> Inverting alone gives the 1's
+        complement, which is a different answer to a different question.
+        <span class="np-cell">2's complement मा 1 जोड्न बिर्सनु। उल्टाउनु मात्रले 1's complement
+        दिन्छ, जुन फरक प्रश्नको उत्तर हो।</span></li>
+      <li><b>Writing 1 + 1 = 2 in binary.</b> There is no digit 2 in base 2. It is 10.
+        <span class="np-cell">binary मा 1 + 1 = 2 लेख्नु। base 2 मा 2 भन्ने अङ्कै छैन। त्यो 10 हो।</span></li>
+      <li><b>Multiplying by 2 for the whole part of a fraction.</b> The whole part is
+        <i>divided</i>; only the part after the point is multiplied.
+        <span class="np-cell">भिन्नको पूर्णाङ्क भागलाई 2 ले गुणा गर्नु। पूर्णाङ्कलाई <i>भाग</i> गर्ने हो;
+        बिन्दुपछिको भागलाई मात्र गुणा गर्ने।</span></li>
+    </ul>
+  </div>
+
+  <h3 class="topic" id="exam1">Exam focus — what is asked from this unit</h3>
+
+  <div class="exam-connect">
+    <b>This unit is 12 hours but only 7 marks</b> — it is the foundation the rest of the subject
+    stands on rather than a heavily examined topic in itself. Expect one conversion and one
+    arithmetic question. Both are pure method: show every division, every remainder and every
+    carry, because working carries marks even when the final answer slips.
+    <span class="np-cell">यो युनिट १२ घण्टाको भए पनि ७ अंक मात्र — यो बाँकी विषयको जग हो। प्रायः
+    एउटा रूपान्तरण र एउटा गणित प्रश्न आउँछ। दुवै विधिमा आधारित छन्: हरेक भाग, हरेक बाँकी र हरेक क्यारी
+    देखाउनुहोस्, किनकि अन्तिम उत्तर चुके पनि प्रक्रियाले अंक दिन्छ।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>Define number system and base with one example.
+    <span class="np-cell">संख्या प्रणाली र base को परिभाषा एउटा उदाहरणसहित दिनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a11">Show the answer</button>
+    <div class="ans" id="a11">
+      <p>A number system is a way of writing numbers using a fixed set of digits. The number of
+      digits available is called the base. For example the binary system has base 2 because it
+      uses only the digits 0 and 1.</p>
+      <span class="np-cell">संख्या प्रणाली भनेको तोकिएका अङ्कहरू प्रयोग गरेर संख्या लेख्ने तरिका हो।
+      प्रयोग हुने अङ्कको सङ्ख्यालाई base भनिन्छ। जस्तै binary प्रणालीको base 2 हो, किनभने यसले 0 र 1
+      मात्र प्रयोग गर्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>Convert (57)<sub>10</sub> to binary and then to hexadecimal.
+    <span class="np-cell">(57)<sub>10</sub> लाई binary र त्यसपछि hexadecimal मा बदल्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a12">Show the answer</button>
+    <div class="ans" id="a12">
+      <div class="out">57 ÷ 2 = 28 r 1
+28 ÷ 2 = 14 r 0
+14 ÷ 2 =  7 r 0
+ 7 ÷ 2 =  3 r 1
+ 3 ÷ 2 =  1 r 1
+ 1 ÷ 2 =  0 r 1     read upwards → 111001</div>
+      <p>For hexadecimal, group the bits in fours from the right: <code>0011 1001</code> →
+      3 and 9 → <b>39</b>.</p>
+      <p>So (57)<sub>10</sub> = (111001)<sub>2</sub> = (39)<sub>16</sub>.</p>
+      <span class="np-cell">Hexadecimal का लागि दायाँबाट चार–चार बिट समूह बनाउनुहोस्: 0011 1001 →
+      3 र 9 → 39।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p>Find the 2's complement of 10110 and explain its use.
+    <span class="np-cell">10110 को 2's complement निकाल्नुहोस् र यसको उपयोग बताउनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a13">Show the answer</button>
+    <div class="ans" id="a13">
+      <p>1's complement of 10110 = 01001. Adding 1 gives <b>01010</b>, which is the 2's
+      complement.</p>
+      <p>It is used to represent negative numbers and to perform subtraction using an adder:
+      A − B is computed as A + (2's complement of B), so no separate subtractor circuit is
+      needed.</p>
+      <span class="np-cell">10110 को 1's complement 01001 हो; 1 जोड्दा 01010 आउँछ। यो ऋणात्मक
+      संख्या देखाउन र adder ले नै घटाउ गर्न प्रयोग हुन्छ: A − B लाई A + (B को 2's complement)
+      भनेर गणना गरिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p>Add (1101)<sub>2</sub> and (1011)<sub>2</sub>, showing every carry.
+    <span class="np-cell">(1101)<sub>2</sub> र (1011)<sub>2</sub> जोड्नुहोस्, हरेक क्यारी देखाउँदै।</span></p>
+    <button class="btn-ans" data-answer="a14">Show the answer</button>
+    <div class="ans" id="a14">
+      <div class="out">carry  1 1 1 1
+        1 1 0 1
+      + 1 0 1 1
+      ---------
+      1 1 0 0 0</div>
+      <p>Answer: <b>11000</b>. Check in decimal: 13 + 11 = 24, and 11000 = 16 + 8 = 24. ✓</p>
+      <span class="np-cell">उत्तर 11000। दशमलवमा जाँच: 13 + 11 = 24, र 11000 = 16 + 8 = 24। ✓</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick">Base = how many digits a system uses. Position gives a digit its value.
+        <span class="np-cell">Base = प्रणालीले कति अङ्क प्रयोग गर्छ। स्थानले अङ्कलाई मान दिन्छ।</span></li>
+      <li class="tick">Going in, divide by the base and read the remainders upwards; coming out,
+        multiply by place values.
+        <span class="np-cell">भित्र जाँदा base ले भाग गरेर बाँकी तलबाट माथि पढ्ने; बाहिर आउँदा
+        स्थानीय मानले गुणा गर्ने।</span></li>
+      <li class="tick">For a fraction, multiply by 2 and read the integer parts downwards.
+        <span class="np-cell">भिन्नका लागि 2 ले गुणा गरेर पूर्णाङ्क भाग माथिबाट तल पढ्ने।</span></li>
+      <li class="tick">1's complement = flip every bit. 2's complement = flip, then add 1.
+        <span class="np-cell">1's complement = हरेक बिट उल्टाउने। 2's complement = उल्टाएर 1 जोड्ने।</span></li>
+      <li class="tick">1 + 1 = 10: write 0, carry 1. Always work right to left.
+        <span class="np-cell">1 + 1 = 10: 0 लेख्ने, 1 क्यारी। सधैं दायाँबाट बायाँ।</span></li>
+      <li class="tick">A − B = A + (2's complement of B) — one adder does both jobs.
+        <span class="np-cell">A − B = A + (B को 2's complement) — एउटै adder ले दुवै काम गर्छ।</span></li>
+    </ul>
+  </div>
+</section>

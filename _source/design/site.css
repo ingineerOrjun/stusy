@@ -47,7 +47,7 @@
 .dropmenu a .dn{font-family:var(--mono);font-size:.64rem;color:var(--green);letter-spacing:.6px}
 
 .hamburger{display:none;margin-left:auto;width:42px;height:38px;padding:0;
-  background:none;border:1.5px solid var(--line);border-radius:10px;position:relative}
+  background:none;border:1.5px solid var(--line-strong);border-radius:10px;position:relative}
 .hamburger span{position:absolute;left:11px;width:18px;height:2px;background:var(--yellow);
   border-radius:2px;transition:.22s}
 .hamburger span:nth-child(1){top:12px}
@@ -224,6 +224,9 @@
 .fig svg .f-code, .dia-stage svg .f-code,
 .fig svg .f-addr, .dia-stage svg .f-addr{ font-family: var(--mono); }
 
+/* An opaque disc placed under a node so edges stop at its boundary
+   instead of running through the label at its centre. */
+.f-node-bg{ fill:#0b1613; stroke:none }
 .f-box  { fill:rgba(127,209,255,.10); stroke:var(--color-secondary); stroke-width:1.6 }
 .f-box-y{ fill:rgba(255,215,110,.12); stroke:var(--color-primary);   stroke-width:1.6 }
 .f-box-c{ fill:rgba(255,143,122,.12); stroke:var(--color-error);     stroke-width:1.6 }

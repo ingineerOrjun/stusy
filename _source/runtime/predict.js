@@ -18,7 +18,7 @@
        </div>
        <div class="predict-feedback">
          <p>Because a stack is LIFO…</p>
-         <span class="np-cell">किनभने स्ट्याक LIFO हो…</span>
+         <span class="np-cell" lang="ne">किनभने स्ट्याक LIFO हो…</span>
        </div>
      </div>
 
@@ -57,7 +57,7 @@
       var verdict = fb.querySelector('.verdict');
       if (!verdict){
         verdict = document.createElement('span');
-        verdict.className = 'verdict';
+        verdict.className = 'verdict t-en';
         fb.insertBefore(verdict, fb.firstChild);
       }
       verdict.textContent = (isRight ? VERDICT.right.en : VERDICT.wrong.en) + ' ';

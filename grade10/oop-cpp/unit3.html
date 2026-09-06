@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>Class and Object — DS &amp; OOP with C++ | RGSC Study Board</title>
+<title>Class and Object — DS & OOP with C++ | RGSC Study Board</title>
 <meta name="description" content="Class and Object explained in simple English with a Nepali explanation beside it.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -20,17 +21,22 @@
       <span class="brand-mark">RG</span>
       <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
     </a>
-    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
     <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
-<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
 
 <div class="wrap">
-<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DS &amp; OOP with C++</a> <span class="sep">/</span> <span>Class and Object</span></nav>
-<main id="main">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DS & OOP with C++</a> <span class="sep">/</span> <span>Class and Object</span></nav>
+<main id="main" data-subject="grade10/oop-cpp">
 <nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Data Structure</a><a href="unit2.html">2 · OOP + C++</a><a href="unit3.html" style="color:var(--yellow);border-color:var(--yellow)">3 · Class and Object</a><a href="unit4.html">4 · Abstraction / Encapsulation</a><a href="unit5.html">5 · Inheritance</a><a href="unit6.html">6 · Polymorphism</a><a href="trace.html">▶ · Trace a Program</a><a href="tables.html">≠ · Tables & Terms</a><a href="quiz.html">? · Quiz</a></nav>
 <section id="u3">
   <div class="sec-head">
@@ -44,7 +50,7 @@
   <div class="rule"></div>
 
   <div class="outcomes">
-    <h2>By the end of this unit you can…</h2>
+    <h2>By the end of this unit you can…</h2><div class="t-en">
     <ol>
       <li>Define a class and an object, and explain the difference between them.</li>
       <li>Explain <span class="term">private</span>, <span class="term">public</span> and <span class="term">protected</span>, and say which is the default.</li>
@@ -52,7 +58,7 @@
       <li>Define a member function outside the class using the scope resolution operator.</li>
       <li>Explain constructors and destructors, and predict the order in which they run.</li>
     </ol>
-    <p class="np-cell" lang="ne"><b lang="ne">यो युनिट सकिँदा:</b> क्लास र अब्जेक्टको फरक, तीन access specifier,
+    </div><p class="np-cell" lang="ne"><b lang="ne">यो युनिट सकिँदा:</b> क्लास र अब्जेक्टको फरक, तीन access specifier,
     क्लास घोषणा, <span class="term">::</span> को प्रयोग, र कन्स्ट्रक्टर–डिस्ट्रक्टरको क्रम
     भन्न सक्नुहुनेछ।</p>
   </div>
@@ -99,7 +105,7 @@
   <title id="t-co">One class acts as a blueprint for many objects, each with its own memory</title>
   <defs><marker id="a-co" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#ffd76e"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
   <text class="f-ttl" x="10" y="18">ONE class (blueprint) → MANY objects (each with its own memory)</text>
 
   <rect class="f-box-y" x="30" y="60" width="200" height="170" rx="10"/>
@@ -111,7 +117,7 @@
   <line class="f-ln" x1="50" y1="170" x2="210" y2="170" stroke-dasharray="4 3"/>
   <text class="f-code" x="50" y="194" style="font-size:11px">void setData();</text>
   <text class="f-code" x="50" y="216" style="font-size:11px">void display();</text>
-  <text class="f-lbl" x="130" y="252" fill="#ff8f7a">takes NO memory</text>
+  <text class="f-lbl" x="130" y="252" style="fill:var(--color-error)">takes NO memory</text>
 
   <path class="f-arr" marker-end="url(#a-co)" d="M240,100 L300,90"/>
   <path class="f-arr" marker-end="url(#a-co)" d="M240,145 L300,160"/>
@@ -140,17 +146,17 @@
   <text class="f-lbl"   x="530" y="232" text-anchor="start">functions — that saves</text>
   <text class="f-lbl"   x="530" y="250" text-anchor="start">memory.</text>
 </svg>
-    <figcaption>One blueprint, three objects. Each object owns its data; the functions are shared.
-      <span class="np-cell" lang="ne">एउटा नक्सा, तीन अब्जेक्ट। डाटा हरेकको आफ्नै, फङ्सन साझा।</span>
+    <figcaption><span class="t-en">One blueprint, three objects. Each object owns its data; the functions are shared.
+      </span><span class="np-cell" lang="ne">एउटा नक्सा, तीन अब्जेक्ट। डाटा हरेकको आफ्नै, फङ्सन साझा।</span>
     </figcaption>
   </figure>
 
-  <div class="callout an">
+  <div class="callout an"><div class="t-en">
     <div class="h">One-line memory hook</div>
     A class is the <b>house design on paper</b>. An object is the <b>real house built from it</b>.
     One design can produce many houses — and <b>you cannot live inside the design</b>.
     That is exactly why a class takes no memory but an object does.
-    <span class="np-cell" lang="ne">क्लास = कागजमा कोरेको <b lang="ne">घरको नक्सा</b>। अब्जेक्ट = त्यसबाट बनेको
+    </div><span class="np-cell" lang="ne">क्लास = कागजमा कोरेको <b lang="ne">घरको नक्सा</b>। अब्जेक्ट = त्यसबाट बनेको
     <b lang="ne">साँच्चिकै घर</b>। एउटा नक्साबाट धेरै घर बन्छ — र <b lang="ne">नक्सामा बस्न मिल्दैन</b>। त्यसैले
     क्लासले मेमोरी लिँदैन, अब्जेक्टले लिन्छ।</span>
   </div>
@@ -166,26 +172,26 @@
   <title id="t-acc">Private, protected and public access shown as three rings around a class</title>
   <defs><marker id="a-acc" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#9ae6a0"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-success)"/></marker></defs>
   <defs><marker id="a-accx" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#ff8f7a"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-error)"/></marker></defs>
   <text class="f-ttl" x="10" y="18">Access specifiers — who is allowed to reach inside the class?</text>
 
-  <circle cx="280" cy="165" r="115" fill="rgba(154,230,160,.06)" style="stroke:#9ae6a0;stroke-width:1.6"/>
-  <circle cx="280" cy="165" r="80"  fill="rgba(255,215,110,.07)" style="stroke:#ffd76e;stroke-width:1.6"/>
-  <circle cx="280" cy="165" r="44"  fill="rgba(255,143,122,.12)" style="stroke:#ff8f7a;stroke-width:1.8"/>
+  <circle cx="280" cy="165" r="115" fill="rgba(154,230,160,.06)" style="stroke:var(--color-success);stroke-width:1.6"/>
+  <circle cx="280" cy="165" r="80"  fill="rgba(255,215,110,.07)" style="stroke:var(--color-primary);stroke-width:1.6"/>
+  <circle cx="280" cy="165" r="44"  fill="rgba(255,143,122,.12)" style="stroke:var(--color-error);stroke-width:1.8"/>
 
   <text class="f-val" x="280" y="162" style="font-size:12px">private</text>
   <text class="f-lbl" x="280" y="180" style="font-size:10px">the secret core</text>
   <text class="f-lbl-y" x="280" y="118">protected</text>
-  <text class="f-val" x="280" y="72" style="font-size:12px" fill="#9ae6a0">public</text>
+  <text class="f-val" x="280" y="72" style="font-size:12px;fill:var(--color-success)">public</text>
 
-  <text class="f-lbl" x="105" y="165" fill="#9ae6a0">outside</text>
-  <path class="f-arr" marker-end="url(#a-acc)" style="stroke:#9ae6a0" d="M140,180 L192,180"/>
-  <text class="f-lbl" x="120" y="212" style="font-size:10px" fill="#9ae6a0" text-anchor="middle">reaches public ✓</text>
-  <path class="f-arr" marker-end="url(#a-accx)" style="stroke:#ff8f7a" d="M140,148 L228,148"/>
-  <text class="f-lbl" x="112" y="108" style="font-size:10px" fill="#ff8f7a" text-anchor="middle">blocked from private ✗</text>
+  <text class="f-lbl" x="105" y="165" style="fill:var(--color-success)">outside</text>
+  <path class="f-arr" marker-end="url(#a-acc)" style="stroke:var(--color-success)" d="M140,180 L192,180"/>
+  <text class="f-lbl" x="120" y="212" style="font-size:10px;fill:var(--color-success)" text-anchor="middle">reaches public ✓</text>
+  <path class="f-arr" marker-end="url(#a-accx)" style="stroke:var(--color-error)" d="M140,148 L228,148"/>
+  <text class="f-lbl" x="112" y="108" style="font-size:10px;fill:var(--color-error)" text-anchor="middle">blocked from private ✗</text>
 
   <rect class="f-box-d" x="450" y="52" width="250" height="216" rx="8"/>
   <text class="f-lbl-y" x="575" y="76">Quick rule</text>
@@ -197,8 +203,8 @@
   <text class="f-lbl-y" x="470" y="222" text-anchor="start">Default in a class = private</text>
   <text class="f-lbl-y" x="470" y="246" text-anchor="start">Default in a struct = public</text>
 </svg>
-    <figcaption>Three rings of access. Outside code can only reach the public ring.
-      <span class="np-cell" lang="ne">पहुँचका तीन घेरा। बाहिरको कोडले public घेरासम्म मात्र पुग्न सक्छ।</span>
+    <figcaption><span class="t-en">Three rings of access. Outside code can only reach the public ring.
+      </span><span class="np-cell" lang="ne">पहुँचका तीन घेरा। बाहिरको कोडले public घेरासम्म मात्र पुग्न सक्छ।</span>
     </figcaption>
   </figure>
 
@@ -207,34 +213,34 @@
       <thead><tr><th style="width:120px">Specifier</th><th>Who can access it</th><th style="width:170px">Normally used for</th></tr></thead>
       <tbody>
         <tr><td class="k">private</td>
-          <td>Accessible <b>only inside the same class</b>. Not from outside the class, and
+          <td><span class="t-en">Accessible <b>only inside the same class</b>. Not from outside the class, and
             <b>not even from a derived class</b>. This is the <b>default</b> for a class.
-            <span class="np-cell" lang="ne">उही क्लास भित्रबाट मात्र। बाहिरबाट वा derived क्लासबाट पनि हुँदैन।
+            </span><span class="np-cell" lang="ne">उही क्लास भित्रबाट मात्र। बाहिरबाट वा derived क्लासबाट पनि हुँदैन।
             क्लासमा यही default हो।</span></td>
           <td>Data members</td></tr>
         <tr><td class="k">public</td>
-          <td>Accessible <b>from anywhere</b> — inside the class, through an object, and from
+          <td><span class="t-en">Accessible <b>from anywhere</b> — inside the class, through an object, and from
             derived classes. This is the <b>default for a struct</b>.
-            <span class="np-cell" lang="ne">जताबाट पनि — क्लास भित्र, अब्जेक्टबाट, र derived क्लासबाट।</span></td>
+            </span><span class="np-cell" lang="ne">जताबाट पनि — क्लास भित्र, अब्जेक्टबाट, र derived क्लासबाट।</span></td>
           <td>Member functions</td></tr>
         <tr><td class="k">protected</td>
-          <td>Accessible <b>inside the class and inside its derived classes</b>, but
+          <td><span class="t-en">Accessible <b>inside the class and inside its derived classes</b>, but
             <b>not</b> through an object from outside.
-            <span class="np-cell" lang="ne">क्लास भित्र र त्यसका derived क्लास भित्र मात्र; बाहिरको
+            </span><span class="np-cell" lang="ne">क्लास भित्र र त्यसका derived क्लास भित्र मात्र; बाहिरको
             अब्जेक्टबाट हुँदैन।</span></td>
           <td>Members shared with child classes</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="mistake">
+  <div class="mistake"><div class="t-en">
     <div class="h">Common mistake</div>
     Thinking <span class="term">protected</span> behaves like <span class="term">public</span> from
     outside. It does <b>not</b>. From outside the class, <span class="term">protected</span> behaves
     exactly like <span class="term">private</span> — <span class="term">obj.protectedMember</span>
     is an error. The <i>only</i> extra thing <span class="term">protected</span> gives you is access
     from a <b>derived class</b>.
-    <span class="np-cell" lang="ne"><span class="term">protected</span> लाई बाहिरबाट public जस्तो ठान्नु गलत।
+    </div><span class="np-cell" lang="ne"><span class="term">protected</span> लाई बाहिरबाट public जस्तो ठान्नु गलत।
     बाहिरबाट यो <span class="term">private</span> जस्तै हो। यसले दिने एक मात्र थप सुविधा भनेको
     <b lang="ne">derived क्लास</b> बाट पहुँच हो।</span>
   </div>
@@ -277,22 +283,22 @@ int main() {
       <pre class="out">Ram - 15
 Sita - 16</pre>
     </div>
-    <p class="wex-note">Notice that <span class="term">s1</span> and <span class="term">s2</span>
+    <p class="wex-note"><span class="t-en">Notice that <span class="term">s1</span> and <span class="term">s2</span>
     used the <b>same</b> <span class="term">display()</span> function but printed <b>different</b>
     values — because each object carries its own copy of <span class="term">name</span> and
     <span class="term">roll</span>.
-    <span class="np-cell" lang="ne"><span class="term">s1</span> र <span class="term">s2</span> ले
+    </span><span class="np-cell" lang="ne"><span class="term">s1</span> र <span class="term">s2</span> ले
     <b lang="ne">उही</b> <span class="term">display()</span> प्रयोग गरे तर <b lang="ne">फरक</b> मान छापे — किनकि हरेक
     अब्जेक्टसँग आफ्नै <span class="term">name</span> र <span class="term">roll</span> छ।</span></p>
   </div>
 
-  <div class="mistake">
+  <div class="mistake"><div class="t-en">
     <div class="h">The single most common error in this unit</div>
     Forgetting the <b>semicolon after the closing brace</b> of a class:
     <span class="term">};</span> &nbsp;not&nbsp; <span class="term">}</span>.
     A class declaration is a statement, so it must end with a semicolon. Leaving it out produces a
     long, confusing list of compiler errors.
-    <span class="np-cell" lang="ne">क्लासको बन्द ब्रेस पछि <b lang="ne">सेमीकोलन</b> बिर्सनु — यो युनिटको सबैभन्दा
+    </div><span class="np-cell" lang="ne">क्लासको बन्द ब्रेस पछि <b lang="ne">सेमीकोलन</b> बिर्सनु — यो युनिटको सबैभन्दा
     सामान्य गल्ती हो। <span class="term">};</span> लेख्नुपर्छ, <span class="term">}</span> मात्र होइन।</span>
   </div>
 
@@ -318,12 +324,12 @@ void Student::setData(string n, int r) {
 void Student::display() {
     cout &lt;&lt; name &lt;&lt; " - " &lt;&lt; roll &lt;&lt; endl;
 }</pre>
-    <p class="wex-note">The <b>scope resolution operator</b> <span class="term">::</span> tells the
+    <p class="wex-note"><span class="t-en">The <b>scope resolution operator</b> <span class="term">::</span> tells the
     compiler which class the function belongs to. Without
     <span class="term">Student::</span> the compiler would treat
     <span class="term">display()</span> as an ordinary global function that knows nothing about
     <span class="term">name</span> or <span class="term">roll</span>.
-    <span class="np-cell" lang="ne"><b>Scope resolution operator</b> <span class="term">::</span> ले फङ्सन
+    </span><span class="np-cell" lang="ne"><b>Scope resolution operator</b> <span class="term">::</span> ले फङ्सन
     कुन क्लासको हो भनेर कम्पाइलरलाई बताउँछ। <span class="term">Student::</span> नलेखे कम्पाइलरले यसलाई
     सामान्य global फङ्सन ठान्छ, जसलाई <span class="term">name</span> र
     <span class="term">roll</span> को केही थाहा हुँदैन।</span></p>
@@ -396,23 +402,23 @@ void Student::display() {
   <title id="t-cd">Timeline showing constructors running in order and destructors in reverse order</title>
   <defs><marker id="a-cd" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#ffd76e"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
   <text class="f-ttl" x="10" y="18">Object lifetime — constructors run in order, destructors run in REVERSE</text>
 
-  <line class="f-ln" x1="40" y1="150" x2="680" y2="150" style="stroke:#2c4a41;stroke-width:2"/>
+  <line class="f-ln" x1="40" y1="150" x2="680" y2="150" style="stroke:var(--color-border);stroke-width:2"/>
   <path class="f-arr" marker-end="url(#a-cd)" d="M660,150 L690,150"/>
   <text class="f-lbl" x="655" y="176" text-anchor="start">time →</text>
 
   <circle class="f-box-g" cx="120" cy="150" r="12"/>
   <text class="f-lbl-y" x="120" y="120">Student s1;</text>
   <text class="f-lbl" x="120" y="102" style="font-size:10px">object created</text>
-  <text class="f-val" x="120" y="196" style="font-size:11px" fill="#9ae6a0">Constructor</text>
-  <text class="f-val" x="120" y="212" style="font-size:11px" fill="#9ae6a0">for Ram</text>
+  <text class="f-val" x="120" y="196" style="font-size:11px;fill:var(--color-success)">Constructor</text>
+  <text class="f-val" x="120" y="212" style="font-size:11px;fill:var(--color-success)">for Ram</text>
 
   <circle class="f-box-g" cx="270" cy="150" r="12"/>
   <text class="f-lbl-y" x="270" y="120">Student s2;</text>
-  <text class="f-val" x="270" y="196" style="font-size:11px" fill="#9ae6a0">Constructor</text>
-  <text class="f-val" x="270" y="212" style="font-size:11px" fill="#9ae6a0">for Sita</text>
+  <text class="f-val" x="270" y="196" style="font-size:11px;fill:var(--color-success)">Constructor</text>
+  <text class="f-val" x="270" y="212" style="font-size:11px;fill:var(--color-success)">for Sita</text>
 
   <circle class="f-box" cx="420" cy="150" r="12"/>
   <text class="f-lbl-y" x="420" y="120">work happens</text>
@@ -420,18 +426,18 @@ void Student::display() {
 
   <circle class="f-box-c" cx="540" cy="150" r="12"/>
   <text class="f-lbl-y" x="540" y="120">main() ends</text>
-  <text class="f-val" x="540" y="196" style="font-size:11px" fill="#ff8f7a">Destructor</text>
-  <text class="f-val" x="540" y="212" style="font-size:11px" fill="#ff8f7a">for Sita ← last in</text>
+  <text class="f-val" x="540" y="196" style="font-size:11px;fill:var(--color-error)">Destructor</text>
+  <text class="f-val" x="540" y="212" style="font-size:11px;fill:var(--color-error)">for Sita ← last in</text>
 
   <circle class="f-box-c" cx="650" cy="150" r="12"/>
-  <text class="f-val" x="640" y="196" style="font-size:11px" fill="#ff8f7a">Destructor</text>
-  <text class="f-val" x="640" y="212" style="font-size:11px" fill="#ff8f7a">for Ram</text>
+  <text class="f-val" x="640" y="196" style="font-size:11px;fill:var(--color-error)">Destructor</text>
+  <text class="f-val" x="640" y="212" style="font-size:11px;fill:var(--color-error)">for Ram</text>
 
   <text class="f-lbl-y" x="360" y="256">Sita was created LAST, so Sita is destroyed FIRST — exactly like plates on a stack.</text>
   <text class="f-lbl" x="360" y="278">You never call either of them yourself. C++ calls both automatically.</text>
 </svg>
-    <figcaption>Constructors run in creation order; destructors run in the exact reverse order.
-      <span class="np-cell" lang="ne">कन्स्ट्रक्टर बनेको क्रममा, डिस्ट्रक्टर ठ्याक्कै उल्टो क्रममा चल्छ।</span>
+    <figcaption><span class="t-en">Constructors run in creation order; destructors run in the exact reverse order.
+      </span><span class="np-cell" lang="ne">कन्स्ट्रक्टर बनेको क्रममा, डिस्ट्रक्टर ठ्याक्कै उल्टो क्रममा चल्छ।</span>
     </figcaption>
   </figure>
 
@@ -477,21 +483,21 @@ Area = 1
 Area = 24
 Area = 24</pre>
     </div>
-    <p class="wex-note">All three constructors have the <b>same name</b> — the compiler picks the
+    <p class="wex-note"><span class="t-en">All three constructors have the <b>same name</b> — the compiler picks the
     right one by counting and checking the arguments. That is <b>constructor overloading</b>, and it
     is an example of compile-time polymorphism.
-    <span class="np-cell" lang="ne">तीनै कन्स्ट्रक्टरको <b lang="ne">नाम उही</b> छ — कम्पाइलरले आर्गुमेन्ट हेरेर सही
+    </span><span class="np-cell" lang="ne">तीनै कन्स्ट्रक्टरको <b lang="ne">नाम उही</b> छ — कम्पाइलरले आर्गुमेन्ट हेरेर सही
     एउटा छान्छ। यसैलाई <b>constructor overloading</b> भनिन्छ, र यो compile-time polymorphism कै
     उदाहरण हो।</span></p>
   </div>
 
-  <div class="callout">
+  <div class="callout"><div class="t-en">
     <div class="h">Exam favourite — the automatic call</div>
     Constructors and destructors are called <b>automatically</b>. You never write
     <span class="term">s1.Student();</span> or <span class="term">s1.~Student();</span> yourself.
     And the destruction order is always the <b>reverse</b> of the creation order — like plates on a
     stack.
-    <span class="np-cell" lang="ne">दुवै <b lang="ne">आफैं</b> बोलिन्छन् — हातले बोलाउनु पर्दैन। नष्ट हुने क्रम सधैं
+    </div><span class="np-cell" lang="ne">दुवै <b lang="ne">आफैं</b> बोलिन्छन् — हातले बोलाउनु पर्दैन। नष्ट हुने क्रम सधैं
     बनेको <b lang="ne">उल्टो</b> हुन्छ, स्ट्याकमा थुपारेको प्लेट जस्तै।</span>
   </div>
 
@@ -499,7 +505,7 @@ Area = 24</pre>
   <h2 class="topic" id="exam3">Exam focus — questions asked from this unit</h2>
 
   <div class="exam-connect">
-    <p class="lead-in" lang="ne">SEE exam connection · परीक्षा जोड</p>
+    <p class="lead-in"><span class="t-en">SEE exam connection</span><span class="t-ne"><span class="t-en"> · </span>परीक्षा जोड</span></p>
     <p>Access specifiers and the constructor/destructor rules are asked as both short questions and output prediction.</p>
     <span class="np-cell" lang="ne">Access specifier र constructor/destructor का नियम छोटो प्रश्न र आउटपुट दुवैमा सोधिन्छ।</span>
   </div>
@@ -507,13 +513,13 @@ Area = 24</pre>
   <div class="examq">
     <div class="q-h">Q1 · Differentiate between a class and an object. <span class="mk">[3 marks]</span></div>
     <button class="btn-ans" data-answer="c1">Show the answer</button>
-    <div class="ans" id="c1">
+    <div class="ans" id="c1"><div class="t-en">
       <p>A class is a blueprint or template that defines the data members and member functions; an
       object is an instance of that class. A class takes no memory, while an object takes memory
       when it is created. A class is declared once, but many objects can be created from it.
       Example: <span class="term">class Student{ };</span> is the class,
       <span class="term">Student s1;</span> creates the object.</p>
-      <span class="np-cell" lang="ne">नक्सा vs घर, मेमोरी लिँदैन vs लिन्छ, एक पटक घोषणा vs धेरै अब्जेक्ट —
+      </div><span class="np-cell" lang="ne">नक्सा vs घर, मेमोरी लिँदैन vs लिन्छ, एक पटक घोषणा vs धेरै अब्जेक्ट —
       यी तीन बुँदा लेख्नुहोस्।</span>
     </div>
   </div>
@@ -521,44 +527,44 @@ Area = 24</pre>
   <div class="examq">
     <div class="q-h">Q2 · Explain the three access specifiers in C++. Which is the default? <span class="mk">[4 marks]</span></div>
     <button class="btn-ans" data-answer="c2">Show the answer</button>
-    <div class="ans" id="c2">
+    <div class="ans" id="c2"><div class="t-en">
       <p><b>private</b> — accessible only inside the same class; not from outside and not from a
       derived class. <b>public</b> — accessible from anywhere, including through an object.
       <b>protected</b> — accessible inside the class and inside its derived classes, but not through
       an object from outside.</p>
       <p>In a <b>class</b> the default is <b>private</b>. (In a <b>struct</b> the default is public.)</p>
-      <span class="np-cell" lang="ne">तीनवटैको एक–एक लाइन + default चाहिँ <b>private</b> हो भनेर लेख्न नबिर्सनुहोस्।</span>
+      </div><span class="np-cell" lang="ne">तीनवटैको एक–एक लाइन + default चाहिँ <b>private</b> हो भनेर लेख्न नबिर्सनुहोस्।</span>
     </div>
   </div>
 
   <div class="examq">
     <div class="q-h">Q3 · What is a constructor? Write its characteristics and name its types. <span class="mk">[5 marks]</span></div>
     <button class="btn-ans" data-answer="c3">Show the answer</button>
-    <div class="ans" id="c3">
+    <div class="ans" id="c3"><div class="t-en">
       <p>A constructor is a special member function that is automatically invoked when an object of
       the class is created, and it is used to initialise the object's data members.</p>
       <p>Characteristics: its name is the same as the class name; it has no return type, not even
       void; it is called automatically; it can take parameters; it can be overloaded.</p>
       <p>Types: default constructor, parameterized constructor and copy constructor.</p>
-      <span class="np-cell" lang="ne">परिभाषा + पाँच विशेषता + तीन प्रकार — पूरा अंकका लागि तीनै भाग चाहिन्छ।</span>
+      </div><span class="np-cell" lang="ne">परिभाषा + पाँच विशेषता + तीन प्रकार — पूरा अंकका लागि तीनै भाग चाहिन्छ।</span>
     </div>
   </div>
 
   <div class="examq">
     <div class="q-h">Q4 · Differentiate between a constructor and a destructor. <span class="mk">[4 marks]</span></div>
     <button class="btn-ans" data-answer="c4">Show the answer</button>
-    <div class="ans" id="c4">
+    <div class="ans" id="c4"><div class="t-en">
       <p>Write it as a table: <b>when called</b> (on creation vs on destruction);
       <b>name</b> (class name vs class name with ~);
       <b>parameters</b> (can take them vs cannot);
       <b>overloading</b> (can be overloaded vs cannot, only one per class);
       <b>purpose</b> (initialise / allocate memory vs clean up / free memory).</p>
-      <span class="np-cell" lang="ne">तालिकाको रूपमा पाँच हरफ लेख्नुहोस्।</span>
+      </div><span class="np-cell" lang="ne">तालिकाको रूपमा पाँच हरफ लेख्नुहोस्।</span>
     </div>
   </div>
 
   <div class="keypoints">
-    <h2 lang="ne">Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h2>
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
     <ul>
       <li>Class = blueprint, <b>no memory</b>. Object = instance, <b>takes memory</b>.</li>
       <li>Default access in a <b>class</b> is <b>private</b>; in a <b>struct</b> it is public.</li>
@@ -574,13 +580,15 @@ Area = 24</pre>
 
 </main>
 <div class="pager"><a href="unit2.html"><span class="lab">◂ Previous</span><span class="ttl">Concept of OOP using C++</span></a><a class="nx" href="unit4.html"><span class="lab">Next ▸</span><span class="ttl">Abstraction and Encapsulation</span></a></div>
-<footer>
+<footer><span class="t-en">
   <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
   Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
   Works fully offline. No login, no server, no internet needed (web fonts are optional).
-  <span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
 </footer>
 </div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
 <script src="../../assets/js/nav.js"></script>
 <script src="../../assets/js/services/motion.js"></script>
 <script src="../../assets/js/code.js"></script>

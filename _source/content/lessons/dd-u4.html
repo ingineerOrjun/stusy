@@ -1,0 +1,367 @@
+<section id="dd-u4">
+  <div class="sec-head">
+    <div class="sec-num">4</div>
+    <div>
+      <h2>Binary Arithmetic and Combinational Logic</h2>
+      <p class="sec-sub">बाइनरी गणित र कम्बिनेसनल लजिक</p>
+    </div>
+    <span class="marks">13 hrs · 7 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Draw a half adder and a full adder and derive each from its truth table.</li>
+      <li>Explain the difference between a half adder and a full adder in one sentence.</li>
+      <li>Draw a half subtractor and a full subtractor.</li>
+      <li>Convert between binary, Gray code and BCD.</li>
+      <li>State what a decoder, encoder, multiplexer and demultiplexer each do.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: half adder र full adder कोर्न र ट्रुथ टेबलबाट निकाल्न,
+    दुईबीचको फरक एक वाक्यमा भन्न, subtractor कोर्न, binary–Gray–BCD बदल्न, र decoder, encoder,
+    multiplexer, demultiplexer ले के गर्छन् भन्न सक्नुहुनेछ।</span>
+  </div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">What "combinational" means</span>
+      <p>A <b>combinational circuit</b> is one whose output depends only on the inputs
+      <b>right now</b>. It has no memory of what happened before.</p>
+      <p>Every circuit in this unit is combinational. That is why a truth table describes each
+      one completely: list every input combination, and you have described the circuit.</p>
+    </div>
+    <div class="np"><span class="tag">"कम्बिनेसनल" को अर्थ</span>
+      <p><b>Combinational सर्किट</b> भनेको त्यस्तो सर्किट हो जसको आउटपुट <b>अहिलेको</b> इनपुटमा मात्र
+      भर पर्छ। यसले पहिले के भयो भन्ने सम्झँदैन।</p>
+      <p>यस युनिटका सबै सर्किट combinational हुन्। त्यसैले ट्रुथ टेबलले हरेकलाई पूरै वर्णन गर्छ:
+      सबै इनपुट जोडी लेखिसकेपछि सर्किट वर्णन भइसक्यो।</p>
+    </div>
+  </div>
+
+  <h3 class="topic" id="t41">4.1 &nbsp;Half adder</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition</span>
+      <p>A <b>half adder</b> is a circuit that adds two single binary digits and produces two
+      outputs: <b>SUM</b> and <b>CARRY</b>.</p>
+      <p>Work out its truth table from ordinary binary addition and the gates fall out by
+      themselves. SUM is 1 when the inputs differ — that is XOR. CARRY is 1 only when both
+      are 1 — that is AND.</p>
+      <p>It is called <b>half</b> because it has no third input for a carry arriving from the
+      column to its right.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा</span>
+      <p><b>Half adder</b> भनेको दुई एकल binary अङ्क जोडेर <b>SUM</b> र <b>CARRY</b> दुई आउटपुट
+      दिने सर्किट हो।</p>
+      <p>साधारण binary जोडबाट ट्रुथ टेबल निकाल्नुहोस्, गेट आफैं देखिन्छन्। इनपुट फरक हुँदा SUM 1 हुन्छ —
+      त्यो XOR हो। दुवै 1 हुँदा मात्र CARRY 1 हुन्छ — त्यो AND हो।</p>
+      <p>यसलाई <b>half</b> भनिनुको कारण: दायाँको स्तम्भबाट आउने क्यारीका लागि तेस्रो इनपुट छैन।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:halfAdder}}
+    <figcaption>Two gates, both reading the same A and B. This is the circuit to reproduce in
+    the exam — label the gates, the inputs and both outputs.
+    <span class="np-cell">दुई गेट, दुवैले उही A र B पढ्छन्। परीक्षामा यही सर्किट कोर्नुपर्छ — गेट,
+    इनपुट र दुवै आउटपुटमा नाम लेख्नुहोस्।</span></figcaption>
+  </figure>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>In a half adder with A = 1 and B = 1, what are SUM and CARRY?
+      <span class="np-cell">A = 1 र B = 1 भएको half adder मा SUM र CARRY कति हुन्छन्?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">SUM = 1, CARRY = 1</button>
+      <button class="predict-opt" data-value="b">SUM = 0, CARRY = 1</button>
+      <button class="predict-opt" data-value="c">SUM = 1, CARRY = 0</button>
+    </div>
+    <div class="predict-feedback">
+      <p>1 + 1 = 10 in binary: write 0 in this column and carry 1 to the next. So SUM = 0 and
+      CARRY = 1. Confirm it in the workbench below, then compare with the half subtractor.</p>
+      <span class="np-cell">binary मा 1 + 1 = 10: यही स्तम्भमा 0 लेख्ने, 1 क्यारी लैजाने। त्यसैले
+      SUM = 0 र CARRY = 1। तलको प्रयोगशालामा पुष्टि गर्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h4>The combinational circuit workbench</h4>
+      <p class="sim-goal">What you will learn: how each circuit turns its inputs into
+      <b>several</b> outputs at once, and which truth-table row you are standing on.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: हरेक सर्किटले इनपुटलाई एकैचोटि <b>धेरै</b>
+      आउटपुटमा कसरी बदल्छ, र तपाईं ट्रुथ टेबलको कुन पङ्क्तिमा हुनुहुन्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="comblab" id="cb-main" data-circuit="halfadder"></div>
+      <div class="sim-why">
+        <span class="h">The comparisons worth making</span>
+        <p><b>Half adder vs half subtractor.</b> Switch between them without changing the inputs.
+        The first output is identical — both are XOR. Only the second output changes: AND for a
+        carry, but A′·B for a borrow, because you only borrow when A is 0 and B is 1.</p>
+        <p><b>Half adder vs full adder.</b> The full adder has a third input, Cin. Set it to 0
+        and the full adder behaves exactly like a half adder — which is the clearest way to see
+        what the word "full" is adding.</p>
+        <span class="np-cell"><b>Half adder र half subtractor:</b> इनपुट नबदली दुईबीच साट्नुहोस्।
+        पहिलो आउटपुट उही छ — दुवै XOR। दोस्रो मात्र फरक। <b>Half adder र full adder:</b> full adder
+        मा तेस्रो इनपुट Cin छ; त्यसलाई 0 राख्दा full adder ठ्याक्कै half adder जस्तै चल्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="topic" id="t44">4.4 &nbsp;Full adder, and the binary adder</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition</span>
+      <p>A <b>full adder</b> adds <b>three</b> bits: the two digits being added and the carry
+      coming in from the previous column. It produces SUM and CARRY OUT.</p>
+      <p><code>S = A ⊕ B ⊕ Cin</code><br>
+      <code>Cout = AB + BCin + ACin</code></p>
+      <p>Read the carry expression in words: a carry is produced when <b>any two</b> of the three
+      inputs are 1.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा</span>
+      <p><b>Full adder</b> ले <b>तीन</b> बिट जोड्छ: जोड्नुपर्ने दुई अङ्क र अघिल्लो स्तम्भबाट आएको क्यारी।
+      यसले SUM र CARRY OUT दिन्छ।</p>
+      <p><code>S = A ⊕ B ⊕ Cin</code><br>
+      <code>Cout = AB + BCin + ACin</code></p>
+      <p>क्यारीको सूत्रलाई शब्दमा पढ्नुहोस्: तीनमध्ये <b>कुनै दुई</b> इनपुट 1 भए क्यारी बन्छ।</p>
+    </div>
+  </div>
+
+  {{dia:rippleCarry}}
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Deriving the full adder from its truth table</div>
+    <p><b>Question:</b> write the truth table of a full adder and read the SUM expression from it.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Truth table</span>
+      <div class="out">A  B  Cin |  S  Cout
+0  0   0  |  0   0
+0  0   1  |  1   0
+0  1   0  |  1   0
+0  1   1  |  0   1
+1  0   0  |  1   0
+1  0   1  |  0   1
+1  1   0  |  0   1
+1  1   1  |  1   1</div>
+    </div>
+    <p><b>Reading SUM as SOP</b> — the rows where S = 1 are 001, 010, 100 and 111:</p>
+    <div class="out">S = A'B'Cin + A'BCin' + AB'Cin' + ABCin</div>
+    <p>Those four terms simplify to <code>A ⊕ B ⊕ Cin</code>.</p>
+    <p class="wex-note">Notice S is 1 whenever an <b>odd number</b> of inputs is 1, and Cout is 1
+    whenever <b>two or more</b> are. Those two sentences are the whole full adder, and either one
+    earns the mark if you cannot remember the algebra.
+    <span class="np-cell">इनपुटमा <b>बिजोर सङ्ख्यामा</b> 1 भए S = 1, र <b>दुई वा बढी</b> 1 भए
+    Cout = 1। यी दुई वाक्यले पूरै full adder भन्छन्।</span></p>
+  </div>
+
+  <h3 class="topic" id="t43">4.3 &amp; 4.5 &nbsp;Subtractors</h3>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Circuit</th><th>Inputs</th><th>Outputs</th><th>Expressions</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Half adder</td><td>A, B</td><td>SUM, CARRY</td>
+            <td><code>S = A ⊕ B</code>, <code>C = A · B</code></td></tr>
+        <tr><td>Half subtractor</td><td>A, B</td><td>DIFFERENCE, BORROW</td>
+            <td><code>D = A ⊕ B</code>, <code>Bo = A′ · B</code></td></tr>
+        <tr><td>Full adder</td><td>A, B, Cin</td><td>SUM, CARRY OUT</td>
+            <td><code>S = A ⊕ B ⊕ Cin</code>, <code>Cout = AB + BCin + ACin</code></td></tr>
+        <tr><td>Full subtractor</td><td>A, B, Bin</td><td>DIFFERENCE, BORROW OUT</td>
+            <td><code>D = A ⊕ B ⊕ Bin</code>, <code>Bo = A′B + A′Bin + BBin</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <b>One pattern covers the whole table.</b> In every row the first output is an XOR of all the
+    inputs. Only the second output differs, and it differs in exactly one place: a carry uses
+    <code>A</code>, a borrow uses <code>A′</code>. Learn the adders properly and the subtractors
+    cost you one extra fact.
+    <span class="np-cell">पूरै तालिकामा एउटै ढाँचा छ: पहिलो आउटपुट सधैं सबै इनपुटको XOR हो। दोस्रो
+    मात्र फरक, र फरक एउटै ठाउँमा: carry ले <code>A</code> प्रयोग गर्छ, borrow ले <code>A′</code>।</span>
+  </div>
+
+  <h3 class="topic" id="t46">4.6 &nbsp;Code converters</h3>
+
+  <figure class="fig">
+    {{dia:grayCode}}
+    <figcaption>Binary to Gray: copy the leading bit, then XOR each neighbouring pair.
+    <span class="np-cell">Binary बाट Gray: पहिलो बिट सारै लैजाने, अनि छेउछाउका जोडी XOR गर्ने।</span></figcaption>
+  </figure>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The two converters you need</span>
+      <p><b>Gray code</b> is arranged so that only <b>one bit changes</b> between consecutive
+      values. That matters in a position sensor: if several bits changed at once, a reading taken
+      mid-change could be wildly wrong.</p>
+      <p><b>BCD (Binary Coded Decimal)</b> stores each decimal digit in its own group of four
+      bits. 59 in BCD is <code>0101 1001</code> — not the same as 59 in plain binary, which is
+      <code>111011</code>.</p>
+    </div>
+    <div class="np"><span class="tag">चाहिने दुई converter</span>
+      <p><b>Gray code</b> यसरी मिलाइएको हुन्छ कि लगातार दुई मानबीच <b>एउटै बिट मात्र फेरियोस्</b>।
+      position sensor मा यो महत्त्वपूर्ण छ: धेरै बिट एकैचोटि फेरिँदा बीचमा लिइएको पठन धेरै गलत हुन सक्छ।</p>
+      <p><b>BCD (Binary Coded Decimal)</b> ले हरेक दशमलव अङ्कलाई आफ्नै चार बिटको समूहमा राख्छ।
+      BCD मा 59 भनेको <code>0101 1001</code> हो — साधारण binary को 59 (<code>111011</code>) होइन।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Convert 1011 to Gray code, and 47 to BCD</div>
+    <p><b>(a) Binary 1011 → Gray.</b> Copy the leading bit, then XOR each adjacent pair:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">binary   1   0   1   1
+copy     1
+1 ⊕ 0 =      1
+0 ⊕ 1 =          1
+1 ⊕ 1 =              0
+Gray     1   1   1   0</div>
+    </div>
+    <p><b>(b) Decimal 47 → BCD.</b> Convert each digit separately into four bits:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">4 → 0100        7 → 0111
+47 in BCD = 0100 0111</div>
+    </div>
+    <p class="wex-note">The commonest error is converting 47 as a whole number to binary
+    (101111) and calling it BCD. BCD never converts the number — it converts each
+    <b>digit</b>.
+    <span class="np-cell">सबैभन्दा धेरै हुने गल्ती: 47 लाई पूरै संख्याका रूपमा binary (101111) बनाएर
+    BCD भन्नु। BCD ले संख्या होइन, हरेक <b>अङ्क</b> बदल्छ।</span></p>
+  </div>
+
+  <h3 class="topic" id="t47">4.7 – 4.10 &nbsp;Decoder, encoder, multiplexer, demultiplexer</h3>
+
+  <figure class="fig">
+    {{dia:combBlocks}}
+    <figcaption>Learn them in opposite pairs: decoder ↔ encoder, and MUX ↔ DEMUX.
+    <span class="np-cell">विपरीत जोडीमा सिक्नुहोस्: decoder ↔ encoder, र MUX ↔ DEMUX।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Try it</span><span class="t-ne"><span class="t-en"> · </span>चलाएर हेर्नुहोस्</span></p>
+      <h4>Which input does the multiplexer let through?</h4>
+      <p class="sim-goal">Choose <b>Multiplexer</b> in the workbench above, then change S1 and S0
+      and watch which data input reaches Y.
+      <span class="np-cell">माथिको प्रयोगशालामा <b>Multiplexer</b> छान्नुहोस्, अनि S1 र S0 बदलेर
+      कुन डाटा इनपुट Y सम्म पुग्छ हेर्नुहोस्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="comblab" id="cb-mux" data-circuit="mux"></div>
+      <div class="sim-why">
+        <span class="h">The rule to take away</span>
+        <p><b>n select lines choose between 2ⁿ inputs.</b> Two select lines address four inputs,
+        three address eight. Set S1 S0 to 10 and only I2 reaches the output, no matter what the
+        other three inputs are doing.</p>
+        <p>A demultiplexer is the same circuit running backwards: one input, and the select lines
+        decide which of the many outputs it comes out of.</p>
+        <span class="np-cell"><b>n select लाइनले 2ⁿ इनपुटबीच छान्छ।</b> दुई select लाइनले चार इनपुट,
+        तीनले आठ। S1 S0 = 10 राख्दा अरू इनपुटले जे गरे पनि I2 मात्र आउटपुटसम्म पुग्छ।
+        Demultiplexer उही सर्किट उल्टो चलेको हो।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Saying a half adder has three inputs.</b> It has two. The third input is exactly
+        what makes an adder <i>full</i>.
+        <span class="np-cell">Half adder मा तीन इनपुट छन् भन्नु। दुई मात्र हुन्छन्। तेस्रो इनपुटले नै
+        adder लाई <i>full</i> बनाउँछ।</span></li>
+      <li><b>Swapping MUX and DEMUX.</b> MUX is many-to-one; DEMUX is one-to-many. The
+        "multi" in multiplexer is on the <i>input</i> side.
+        <span class="np-cell">MUX र DEMUX साट्नु। MUX धेरै-देखि-एक; DEMUX एक-देखि-धेरै।</span></li>
+      <li><b>Converting a whole number for BCD.</b> BCD converts each decimal digit separately.
+        <span class="np-cell">BCD मा पूरै संख्या बदल्नु। BCD ले हरेक अङ्क छुट्टाछुट्टै बदल्छ।</span></li>
+      <li><b>Drawing the carry output of a half adder from an OR gate.</b> It is AND. The OR
+        appears in the <i>full</i> adder's carry, not the half adder's.
+        <span class="np-cell">Half adder को carry लाई OR गेटबाट कोर्नु। त्यो AND हो।</span></li>
+    </ul>
+  </div>
+
+  <h3 class="topic" id="exam4">Exam focus — what is asked from this unit</h3>
+
+  <div class="exam-connect">
+    <b>13 hours, 7 marks.</b> The reliable question is "draw the circuit and write the truth
+    table" for a half adder or full adder — and the difference between them is asked almost as
+    often. The block-level circuits (decoder, encoder, MUX, DEMUX) usually appear as short
+    definition questions rather than drawings.
+    <span class="np-cell">१३ घण्टा, ७ अंक। भरपर्दो प्रश्न: half adder वा full adder को "सर्किट
+    कोर्नुहोस् र ट्रुथ टेबल लेख्नुहोस्" — र दुईबीचको फरक पनि उत्तिकै पटक सोधिन्छ। decoder, encoder,
+    MUX, DEMUX प्रायः छोटो परिभाषामा आउँछन्।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>Draw the circuit diagram of a half adder and write its truth table.
+    <span class="np-cell">Half adder को सर्किट चित्र कोर्नुहोस् र ट्रुथ टेबल लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a41">Show the answer</button>
+    <div class="ans" id="a41">
+      <p><b>Circuit:</b> inputs A and B go to <i>both</i> an XOR gate and an AND gate. The XOR
+      output is SUM; the AND output is CARRY.</p>
+      <div class="out">A  B | SUM  CARRY
+0  0 |  0     0
+0  1 |  1     0
+1  0 |  1     0
+1  1 |  0     1</div>
+      <p><code>S = A ⊕ B</code> and <code>C = A · B</code>.</p>
+      <span class="np-cell">इनपुट A र B दुवै XOR र AND गेटमा जान्छन्। XOR ले SUM, AND ले CARRY दिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>Differentiate between a half adder and a full adder.
+    <span class="np-cell">Half adder र full adder बीचको भिन्नता लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a42">Show the answer</button>
+    <div class="ans" id="a42">
+      <p>A half adder adds <b>two</b> bits and cannot accept a carry from the previous column.
+      A full adder adds <b>three</b> bits — the two digits plus the carry-in — so it can be
+      chained to build a multi-bit adder. A half adder uses two gates; a full adder needs two
+      half adders and an OR gate.</p>
+      <span class="np-cell">Half adder ले <b>दुई</b> बिट जोड्छ र अघिल्लो स्तम्भको क्यारी लिन सक्दैन।
+      Full adder ले <b>तीन</b> बिट जोड्छ, त्यसैले यसलाई लहरै जोडेर धेरै-बिटको adder बनाउन सकिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p>What is a multiplexer? How many select lines are needed for 8 inputs?
+    <span class="np-cell">Multiplexer भनेको के हो? ८ इनपुटका लागि कति select लाइन चाहिन्छ?</span></p>
+    <button class="btn-ans" data-answer="a43">Show the answer</button>
+    <div class="ans" id="a43">
+      <p>A multiplexer is a combinational circuit that selects one of many input lines and
+      routes it to a single output line. The choice is made by the select lines.</p>
+      <p>Since n select lines choose between 2ⁿ inputs, 8 inputs need <b>3</b> select lines,
+      because 2³ = 8.</p>
+      <span class="np-cell">Multiplexer ले धेरै इनपुट लाइनमध्ये एउटा छानेर एउटै आउटपुट लाइनमा पठाउँछ।
+      2³ = 8 भएकाले ८ इनपुटलाई <b>३</b> select लाइन चाहिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick">A combinational circuit's output depends only on its present inputs.
+        <span class="np-cell">Combinational सर्किटको आउटपुट अहिलेको इनपुटमा मात्र भर पर्छ।</span></li>
+      <li class="tick">Half adder: SUM = A ⊕ B, CARRY = A · B. Two inputs, two gates.
+        <span class="np-cell">Half adder: SUM = A ⊕ B, CARRY = A · B। दुई इनपुट, दुई गेट।</span></li>
+      <li class="tick">Full adder: three inputs including carry-in; chain them for a multi-bit adder.
+        <span class="np-cell">Full adder: क्यारी-इन सहित तीन इनपुट; लहरै जोडेर धेरै-बिटको adder बन्छ।</span></li>
+      <li class="tick">In every adder and subtractor the first output is XOR; only the second differs.
+        <span class="np-cell">हरेक adder र subtractor मा पहिलो आउटपुट XOR हुन्छ; दोस्रो मात्र फरक।</span></li>
+      <li class="tick">Gray code changes one bit at a time; BCD codes each decimal digit in four bits.
+        <span class="np-cell">Gray code मा एक पटकमा एउटै बिट फेरिन्छ; BCD ले हरेक दशमलव अङ्कलाई चार बिटमा राख्छ।</span></li>
+      <li class="tick">MUX = many to one; DEMUX = one to many; n select lines address 2ⁿ lines.
+        <span class="np-cell">MUX = धेरैबाट एक; DEMUX = एकबाट धेरै; n select लाइनले 2ⁿ लाइन सम्बोधन गर्छ।</span></li>
+    </ul>
+  </div>
+</section>

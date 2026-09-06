@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Number System and Binary Arithmetic — Digital Design | RGSC Study Board</title>
+<meta name="description" content="Number System and Binary Arithmetic explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html" class="on">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">Digital Design</a> <span class="sep">/</span> <span>Number System and Binary Arithmetic</span></nav>
+<main id="main" data-subject="grade10/digital-design">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html" style="color:var(--yellow);border-color:var(--yellow)">1 · Number Systems</a><a href="unit2.html">2 · Logic Gates</a><a href="unit3.html">3 · Boolean / K-map</a><a href="unit4.html">4 · Combinational Logic</a><a href="unit5.html">5 · Microprocessor</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="dd-u1">
+  <div class="sec-head">
+    <div class="sec-num">1</div>
+    <div>
+      <h1>Number System and Binary Arithmetic</h1>
+      <p class="sec-sub" lang="ne">संख्या प्रणाली र बाइनरी गणित</p>
+    </div>
+    <span class="marks">12 hrs · 7 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2><div class="t-en">
+    <ol>
+      <li>Explain what a base is and why position gives a digit its value.</li>
+      <li>Convert between decimal, binary, octal and hexadecimal in both directions.</li>
+      <li>Convert a decimal fraction to binary.</li>
+      <li>Find the 1's and 2's complement of a binary number.</li>
+      <li>Add, subtract and multiply binary numbers.</li>
+      <li>Explain why 2's complement lets one adder circuit also subtract.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: base भनेको के हो र स्थानले अङ्कलाई कसरी मान दिन्छ भन्न,
+    चारै base बीच दुवैतर्फ रूपान्तरण गर्न, दशमलव भिन्नलाई binary मा लैजान, 1's र 2's complement निकाल्न,
+    binary मा जोड–घटाउ–गुणा गर्न, र 2's complement ले किन एउटै adder सर्किटलाई घटाउन पनि सक्षम बनाउँछ
+    भन्न सक्नुहुनेछ।</span>
+  </div>
+
+  <h2 class="topic" id="t11">1.1 &nbsp;The numbering concept</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>number system</b> is a way of writing numbers using a fixed set of digits. The
+      count of available digits is called the <b>base</b> or <b>radix</b>.</p>
+      <p>The key idea is <b>positional value</b>: the same digit means different amounts
+      depending on where it sits. In 347 the 3 is not worth three — it is worth three hundred,
+      because it sits in the hundreds position.</p>
+      <p>Every base works this way. Only the size of each step changes: ×10 in decimal, ×2 in
+      binary, ×8 in octal, ×16 in hexadecimal.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b lang="ne">संख्या प्रणाली</b> भनेको तोकिएका अङ्कहरू प्रयोग गरेर संख्या लेख्ने तरिका हो। प्रयोग गर्न
+      मिल्ने अङ्कको सङ्ख्यालाई <b>base</b> वा <b>radix</b> भनिन्छ।</p>
+      <p lang="ne">मुख्य कुरा <b lang="ne">स्थानीय मान</b> हो: उही अङ्कले कहाँ बसेको छ त्यसअनुसार फरक मान बोक्छ। 347 मा
+      रहेको 3 को मान तीन होइन, तीन सय हो — किनभने त्यो सयको स्थानमा छ।</p>
+      <p lang="ne">हरेक base यसैगरी चल्छ। फरक केवल एक स्थानबाट अर्को स्थानमा जाँदा कति गुणा हुन्छ भन्नेमा हो:
+      decimal मा ×१०, binary मा ×२, octal मा ×८, hexadecimal मा ×१६।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 262" role="img" aria-labelledby="t-place">
+  <title id="t-place">The same digits mean different amounts depending on their position</title>
+  <text class="f-ttl" x="10" y="20">POSITIONAL VALUE — a digit's worth depends on WHERE it sits</text>
+
+  <text class="f-lbl-y" x="90" y="52" text-anchor="start">Decimal 3 4 7 &nbsp;(base 10)</text>
+  <g>
+    <rect class="f-box-y" x="90" y="64" width="120" height="72" rx="8"/>
+    <text class="f-val" x="150" y="96" style="font-size:22px">3</text>
+    <text class="f-lbl" x="150" y="120" style="font-size:10.5px">10²  =  100</text>
+    <text class="f-lbl-y" x="150" y="154" style="font-size:12px">300</text>
+  </g><g>
+    <rect class="f-box-y" x="240" y="64" width="120" height="72" rx="8"/>
+    <text class="f-val" x="300" y="96" style="font-size:22px">4</text>
+    <text class="f-lbl" x="300" y="120" style="font-size:10.5px">10¹  =  10</text>
+    <text class="f-lbl-y" x="300" y="154" style="font-size:12px">40</text>
+  </g><g>
+    <rect class="f-box-y" x="390" y="64" width="120" height="72" rx="8"/>
+    <text class="f-val" x="450" y="96" style="font-size:22px">7</text>
+    <text class="f-lbl" x="450" y="120" style="font-size:10.5px">10⁰  =  1</text>
+    <text class="f-lbl-y" x="450" y="154" style="font-size:12px">7</text>
+  </g>
+  <text class="f-code" x="556" y="104" text-anchor="start" style="font-size:13px">= 347</text>
+
+  <text class="f-lbl-y" x="90" y="192" text-anchor="start">Binary 1 0 1 &nbsp;(base 2) — same idea, different base</text>
+  <g>
+    <rect class="f-box" x="90" y="204" width="120" height="48" rx="8"/>
+    <text class="f-val" x="150" y="226" style="font-size:16px">1</text>
+    <text class="f-lbl" x="150" y="244" style="font-size:10px">2²  =  4  →  4</text>
+  </g><g>
+    <rect class="f-box" x="240" y="204" width="120" height="48" rx="8"/>
+    <text class="f-val" x="300" y="226" style="font-size:16px">0</text>
+    <text class="f-lbl" x="300" y="244" style="font-size:10px">2¹  =  2  →  0</text>
+  </g><g>
+    <rect class="f-box" x="390" y="204" width="120" height="48" rx="8"/>
+    <text class="f-val" x="450" y="226" style="font-size:16px">1</text>
+    <text class="f-lbl" x="450" y="244" style="font-size:10px">2⁰  =  1  →  1</text>
+  </g>
+  <text class="f-code" x="556" y="232" text-anchor="start" style="font-size:13px">= 5</text>
+</svg>
+    <figcaption><span class="t-en">The same rule in two bases. Multiply each digit by its place value and add.
+    </span><span class="np-cell" lang="ne">दुई base मा उही नियम। हरेक अङ्कलाई त्यसको स्थानीय मानले गुणा गरेर जोड्नुहोस्।</span></figcaption>
+  </figure>
+
+  <h2 class="topic" id="t12">1.2 &nbsp;The four number systems</h2>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 254" role="img" aria-labelledby="t-bases">
+  <title id="t-bases">The four number systems: decimal, binary, octal and hexadecimal</title>
+  <text class="f-ttl" x="10" y="20">THE FOUR NUMBER SYSTEMS — base, digits, and what each is for</text>
+  <g>
+    <rect class="f-box-d" x="16" y="40" width="668" height="42" rx="8"/>
+    <rect x="18" y="49" width="4" height="24" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="36" y="58" text-anchor="start" style="font-size:12px">DECIMAL</text>
+    <text class="f-lbl" x="36" y="74" text-anchor="start" style="font-size:10.5px">base 10</text>
+    <text class="f-code" x="208" y="67" text-anchor="start" style="font-size:12.5px">digits: 0 – 9</text>
+    <text class="f-lbl" x="384" y="67" text-anchor="start" style="font-size:11.5px">what people count in</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="90" width="668" height="42" rx="8"/>
+    <rect x="18" y="99" width="4" height="24" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="36" y="108" text-anchor="start" style="font-size:12px">BINARY</text>
+    <text class="f-lbl" x="36" y="124" text-anchor="start" style="font-size:10.5px">base 2</text>
+    <text class="f-code" x="208" y="117" text-anchor="start" style="font-size:12.5px">digits: 0, 1</text>
+    <text class="f-lbl" x="384" y="117" text-anchor="start" style="font-size:11.5px">what the machine actually stores</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="140" width="668" height="42" rx="8"/>
+    <rect x="18" y="149" width="4" height="24" rx="2" style="fill:var(--color-secondary)"/>
+    <text class="f-lbl-y" x="36" y="158" text-anchor="start" style="font-size:12px">OCTAL</text>
+    <text class="f-lbl" x="36" y="174" text-anchor="start" style="font-size:10.5px">base 8</text>
+    <text class="f-code" x="208" y="167" text-anchor="start" style="font-size:12.5px">digits: 0 – 7</text>
+    <text class="f-lbl" x="384" y="167" text-anchor="start" style="font-size:11.5px">a short way to write groups of 3 bits</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="190" width="668" height="42" rx="8"/>
+    <rect x="18" y="199" width="4" height="24" rx="2" style="fill:var(--color-error)"/>
+    <text class="f-lbl-y" x="36" y="208" text-anchor="start" style="font-size:12px">HEXADECIMAL</text>
+    <text class="f-lbl" x="36" y="224" text-anchor="start" style="font-size:10.5px">base 16</text>
+    <text class="f-code" x="208" y="217" text-anchor="start" style="font-size:12.5px">digits: 0 – 9, A – F</text>
+    <text class="f-lbl" x="384" y="217" text-anchor="start" style="font-size:11.5px">a short way to write groups of 4 bits</text>
+  </g>
+  <text class="f-lbl-y" x="350" y="244" style="font-size:11.5px">A number does not change value when you rewrite it in another base — only the notation changes.</text>
+</svg>
+    <figcaption><span class="t-en">Octal and hexadecimal exist for human convenience: writing 11111111 is
+    error-prone, writing FF is not.
+    </span><span class="np-cell" lang="ne">Octal र hexadecimal मान्छेको सुविधाका लागि हुन्: 11111111 लेख्दा गल्ती
+    हुन सक्छ, FF लेख्दा हुँदैन।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h3>The place-value converter</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: what each bit is actually worth, and how the same
+      number looks in all four bases at once.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: हरेक बिटको वास्तविक मान कति हो, र उही संख्या
+      चारै base मा एकैचोटि कस्तो देखिन्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="numlab" id="nl-convert" data-mode="convert" data-bits="8"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">What to notice</span>
+        <p>Switch on only the leftmost bit: the value is 128. Switch on only the rightmost: it is
+        1. <b>Each step to the left doubles the place value</b> — that single fact is all of
+        binary.</p>
+        <p>Now make 255 by switching every bit on. Look at the hexadecimal row: <b>FF</b>. Two
+        hex digits cover eight bits exactly, which is why memory addresses are written in hex.</p>
+        </div><span class="np-cell" lang="ne">सबैभन्दा बायाँको बिट मात्र खोल्नुहोस्: मान 128 हुन्छ। सबैभन्दा दायाँको
+        मात्र खोल्दा 1। <b lang="ne">बायाँ सर्दै जाँदा स्थानीय मान दोब्बर हुँदै जान्छ</b> — binary को सार यही हो।
+        अब सबै बिट खोलेर 255 बनाउनुहोस्, अनि hexadecimal हेर्नुहोस्: <b>FF</b>। दुई hex अङ्कले ठ्याक्कै
+        आठ बिट ओगट्छ, त्यसैले मेमोरी ठेगाना hex मा लेखिन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="topic" id="t13">1.3 &nbsp;Converting between bases</h2>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Decimal to binary — the division method</div>
+    <p><b>Question:</b> convert 45 to binary.</p>
+    <p><b>Method:</b> divide by 2 repeatedly, writing down the remainder each time. Stop when the
+    quotient is 0. Then <b>read the remainders upwards</b>.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">45 ÷ 2 = 22  remainder 1   ← read last
+22 ÷ 2 = 11  remainder 0
+11 ÷ 2 =  5  remainder 1
+ 5 ÷ 2 =  2  remainder 1
+ 2 ÷ 2 =  1  remainder 0
+ 1 ÷ 2 =  0  remainder 1   ← read first</div>
+    </div>
+    <p><b>Answer:</b> reading upwards, 45 = <b>101101</b>.</p>
+    <p class="wex-note"><span class="t-en">Check it with place values: 32 + 8 + 4 + 1 = 45. Always check — it takes
+    five seconds and catches the one mistake everyone makes, which is reading the remainders
+    downwards.
+    </span><span class="np-cell" lang="ne">स्थानीय मानले जाँच्नुहोस्: 32 + 8 + 4 + 1 = 45। सधैं जाँच्नुहोस् — पाँच
+    सेकेन्ड लाग्छ र सबैले गर्ने एउटै गल्ती (बाँकीलाई तलबाट माथि नपढी माथिबाट तल पढ्ने) समात्छ।</span></p>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Binary to decimal, and octal both ways</div>
+    <p><b>(a) 110101 to decimal.</b> Write the place values above the bits and add the ones that
+    are on:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">32 16  8  4  2  1
+ 1  1  0  1  0  1
+32+16 + 4 + 1 = 53</div>
+    </div>
+    <p><b>(b) Decimal 45 to octal.</b> Same division method, but divide by 8:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">45 ÷ 8 = 5  remainder 5
+ 5 ÷ 8 = 0  remainder 5      →  45 = 55 in octal</div>
+    </div>
+    <p><b>(c) Octal 55 to decimal.</b> Multiply by place values 8¹ and 8⁰:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">(5 × 8) + (5 × 1) = 40 + 5 = 45  ✓ back where we started</div>
+    </div>
+    <p class="wex-note"><span class="t-en">One method, any base: <b>divide by the base</b> going in,
+    <b>multiply by place values</b> coming out.
+    </span><span class="np-cell" lang="ne">एउटै तरिका, जुनसुकै base: भित्र जाँदा <b lang="ne">base ले भाग</b>, बाहिर आउँदा
+    <b lang="ne">स्थानीय मानले गुणा</b>।</span></p>
+  </div>
+
+  <h3 class="sub">1.3.2 &nbsp;Decimal fractions to binary</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The rule</span>
+      <p>For the part <i>after</i> the point, the method turns upside down: <b>multiply by 2</b>
+      instead of dividing, and collect the <b>integer part</b> of each result. Read the
+      collected digits <b>downwards</b>.</p>
+      <p>Stop when the fraction becomes 0, or when you have enough places. Some fractions never
+      end — 0.1 in decimal is a repeating binary fraction.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">नियम</span>
+      <p lang="ne">दशमलव बिन्दुपछिको भागका लागि तरिका उल्टिन्छ: भाग गर्नुको साटो <b lang="ne">2 ले गुणा</b> गर्ने, र
+      हरेक परिणामको <b lang="ne">पूर्णाङ्क भाग</b> टिप्ने। टिपेका अङ्कलाई <b lang="ne">माथिबाट तल</b> पढ्ने।</p>
+      <p lang="ne">भिन्न 0 भएपछि वा आवश्यक स्थान पुगेपछि रोक्नुहोस्। केही भिन्न कहिल्यै टुङ्गिँदैनन् — दशमलवको
+      0.1 binary मा दोहोरिइरहन्छ।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 3</span> Convert 6.625 to binary</div>
+    <p><b>Split it.</b> Do the whole part and the fraction separately, then join them.</p>
+    <p><b>Whole part 6:</b> 6 ÷ 2 = 3 r 0; 3 ÷ 2 = 1 r 1; 1 ÷ 2 = 0 r 1 → read up → <b>110</b></p>
+    <p><b>Fraction 0.625:</b></p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">0.625 × 2 = 1.25   integer part 1   ← read first
+0.25  × 2 = 0.5    integer part 0
+0.5   × 2 = 1.0    integer part 1   ← read last, fraction is now 0</div>
+    </div>
+    <p><b>Answer:</b> 6.625 = <b>110.101</b> in binary.</p>
+    <p class="wex-note"><span class="t-en">Check: 4 + 2 = 6, and after the point ½ + ⅛ = 0.5 + 0.125 = 0.625. ✓
+    </span><span class="np-cell" lang="ne">जाँच: 4 + 2 = 6, र बिन्दुपछि ½ + ⅛ = 0.625। ✓</span></p>
+  </div>
+
+  <h2 class="topic" id="t14">1.4 &amp; 1.5 &nbsp;1's complement and 2's complement</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Both definitions</span>
+      <p>The <b>1's complement</b> of a binary number is found by changing every 0 to 1 and every
+      1 to 0. Nothing else happens.</p>
+      <p>The <b>2's complement</b> is the 1's complement <b>plus 1</b>.</p>
+      <p>They exist so that a computer can represent negative numbers and, more importantly, so
+      that <b>subtraction can be done by the addition circuit</b>.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">दुवै परिभाषा</span>
+      <p lang="ne">कुनै binary संख्याको <b>1's complement</b> निकाल्न हरेक 0 लाई 1 र हरेक 1 लाई 0 बनाइन्छ।
+      अरू केही गरिँदैन।</p>
+      <p><b>2's complement</b> भनेको 1's complement <b lang="ne">मा 1 जोडेको</b> हो।</p>
+      <p lang="ne">यी ऋणात्मक संख्या देखाउन, र त्योभन्दा महत्त्वपूर्ण — <b lang="ne">घटाउलाई जोड्ने सर्किटले नै गर्न</b>
+      सकियोस् भनेर बनाइएका हुन्।</p>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">The 1's complement of 0101 is 1010. What is its 2's complement?
+      </span><span class="np-cell" lang="ne">0101 को 1's complement 1010 हो। यसको 2's complement कति हुन्छ?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">1010</button>
+      <button class="predict-opt" data-value="b">1011</button>
+      <button class="predict-opt" data-value="c">0110</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p>2's complement = 1's complement + 1, so 1010 + 1 = 1011. Step through the diagram below
+      and watch both stages happen in order.</p>
+      </div><span class="np-cell" lang="ne">2's complement = 1's complement + 1, त्यसैले 1010 + 1 = 1011।
+      तलको चित्रमा दुवै चरण क्रमैसँग हेर्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="dia" data-dia="twosComplement">
+  <div class="dia-stage"><svg viewBox="0 0 700 320" role="img" aria-labelledby="t-2c">
+  <title id="t-2c">Finding the 2's complement of 0101 by inverting the bits and adding one</title>
+  <text class="f-ttl" x="10" y="20">FINDING THE 2'S COMPLEMENT OF &nbsp;0 1 0 1</text>
+
+  <g id="tc-orig" class="dia-focus">
+    <text class="f-lbl-y" x="34" y="56" text-anchor="start" style="font-size:12px">Step 0 — the original number</text>
+    <rect class="f-box" x="34" y="68" width="48" height="46" rx="6"/>
+    <text class="f-val" x="58" y="98" style="font-size:18px">0</text><rect class="f-box" x="94" y="68" width="48" height="46" rx="6"/>
+    <text class="f-val" x="118" y="98" style="font-size:18px">1</text><rect class="f-box" x="154" y="68" width="48" height="46" rx="6"/>
+    <text class="f-val" x="178" y="98" style="font-size:18px">0</text><rect class="f-box" x="214" y="68" width="48" height="46" rx="6"/>
+    <text class="f-val" x="238" y="98" style="font-size:18px">1</text>
+    <text class="f-code" x="286" y="98" text-anchor="start" style="font-size:12.5px">= 5 in decimal</text>
+  </g>
+
+  <g id="tc-ones" class="dia-step">
+    <text class="f-lbl-y" x="34" y="150" text-anchor="start" style="font-size:12px">Step 1 — 1's complement: flip every bit</text>
+    <rect class="f-box-c" x="34" y="162" width="48" height="46" rx="6"/>
+    <text class="f-val" x="58" y="192" style="font-size:18px">1</text><rect class="f-box-c" x="94" y="162" width="48" height="46" rx="6"/>
+    <text class="f-val" x="118" y="192" style="font-size:18px">0</text><rect class="f-box-c" x="154" y="162" width="48" height="46" rx="6"/>
+    <text class="f-val" x="178" y="192" style="font-size:18px">1</text><rect class="f-box-c" x="214" y="162" width="48" height="46" rx="6"/>
+    <text class="f-val" x="238" y="192" style="font-size:18px">0</text>
+    <text class="f-code" x="286" y="192" text-anchor="start" style="font-size:12.5px">1 becomes 0, 0 becomes 1</text>
+  </g>
+
+  <g id="tc-add" class="dia-step">
+    <text class="f-lbl-y" x="34" y="244" text-anchor="start" style="font-size:12px">Step 2 — add 1 to that result</text>
+    <rect class="f-box-g" x="34" y="256" width="48" height="46" rx="6"/>
+    <text class="f-val" x="58" y="286" style="font-size:18px">1</text><rect class="f-box-g" x="94" y="256" width="48" height="46" rx="6"/>
+    <text class="f-val" x="118" y="286" style="font-size:18px">0</text><rect class="f-box-g" x="154" y="256" width="48" height="46" rx="6"/>
+    <text class="f-val" x="178" y="286" style="font-size:18px">1</text><rect class="f-box-g" x="214" y="256" width="48" height="46" rx="6"/>
+    <text class="f-val" x="238" y="286" style="font-size:18px">1</text>
+    <text class="f-code" x="286" y="280" text-anchor="start" style="font-size:12.5px">1010 + 1 = 1011</text>
+    <text class="f-lbl" x="286" y="298" text-anchor="start" style="font-size:10.5px">the 2's complement of 0101</text>
+  </g>
+
+  <g id="tc-why" class="dia-step">
+    <rect class="f-box-y" x="470" y="56" width="214" height="164" rx="10"/>
+    <text class="f-lbl-y" x="577" y="82" style="font-size:12px">WHY IT MATTERS</text>
+    <text class="f-lbl" x="577" y="108" style="font-size:11px">To work out A − B the machine</text>
+    <text class="f-lbl" x="577" y="126" style="font-size:11px">needs no subtractor at all.</text>
+    <text class="f-lbl-y" x="577" y="154" style="font-size:11.5px">A − B  =  A + (2's comp of B)</text>
+    <text class="f-lbl" x="577" y="182" style="font-size:11px">One adder circuit does both</text>
+    <text class="f-lbl" x="577" y="200" style="font-size:11px">jobs — simpler, cheaper.</text>
+  </g>
+</svg></div>
+  <div class="dia-controls">
+    <button type="button" data-dia-act="prev" data-ui="prev">&#9666; Prev</button>
+    <button type="button" data-dia-act="play" data-ui="play" aria-pressed="false">&#9654; Play</button>
+    <button type="button" data-dia-act="next" data-ui="next">Next &#9656;</button>
+    <button type="button" data-dia-act="reset" data-ui="reset">Reset</button>
+    <span class="dia-progress" aria-live="polite" data-dia-steps="4">step 0 / 4</span>
+  </div>
+  <div class="dia-caption" role="status">
+    <span class="dia-cap-en"></span>
+    <span class="dia-cap-ne np-cell" lang="ne"></span>
+  </div>
+</div>
+
+  <h2 class="topic" id="t16">1.6 – 1.8 &nbsp;Binary arithmetic</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The four addition rules</span>
+      <p>Binary addition has only four cases, and only the last one is new:</p>
+      <ul>
+        <li><code>0 + 0 = 0</code></li>
+        <li><code>0 + 1 = 1</code></li>
+        <li><code>1 + 0 = 1</code></li>
+        <li><code>1 + 1 = 10</code> — write 0 and <b>carry 1</b></li>
+      </ul>
+      <p>That last rule is not "one plus one is ten". It is two, written in binary — exactly as
+      9 + 1 = 10 in decimal means ten, not "one zero".</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">जोडका चार नियम</span>
+      <p lang="ne">Binary जोडमा चार अवस्था मात्र छन्, र नयाँ कुरा अन्तिममा मात्र छ:</p>
+      <ul>
+        <li><code>0 + 0 = 0</code></li>
+        <li><code>0 + 1 = 1</code></li>
+        <li><code>1 + 0 = 1</code></li>
+        <li><code>1 + 1 = 10</code> — 0 लेख्ने र <b lang="ne">1 क्यारी</b> लैजाने</li>
+      </ul>
+      <p lang="ne">अन्तिम नियमको अर्थ "एक जोड एक बराबर दस" होइन। त्यो <b lang="ne">दुई</b> हो, binary मा लेखिएको —
+      ठ्याक्कै जसरी दशमलवमा 9 + 1 = 10 को अर्थ दस हो, "एक शून्य" होइन।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne"><span class="t-en"> · </span>पाइला–पाइला हेर्नुहोस्</span></p>
+      <h3>Binary addition, one column at a time</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: where the carry comes from, and what happens to
+      the last one. Adding 1011 + 0110.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: क्यारी कहाँबाट आउँछ, र अन्तिम क्यारीको के हुन्छ।
+      1011 + 0110 जोड्दै।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="numlab" id="nl-add" data-mode="add" data-a="1011" data-b="0110"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">Why the carry is the whole difficulty</span>
+        <p>A carry is produced by one column and consumed by the <b>next column to the left</b>.
+        That is why you must work right to left, and why writing all four columns at once goes
+        wrong: column 3 cannot be answered until column 4 has been.</p>
+        <p>Watch the final step. The last carry has no column left to go into, so it becomes an
+        extra digit — the answer is five bits wide even though both inputs were four.</p>
+        </div><span class="np-cell" lang="ne">क्यारी एउटा स्तम्भले बनाउँछ र <b lang="ne">त्यसको बायाँको स्तम्भले</b> प्रयोग गर्छ।
+        त्यसैले दायाँबाट बायाँ जानुपर्छ। अन्तिम चरण हेर्नुहोस्: अन्तिम क्यारीलाई जाने स्तम्भ नहुँदा त्यो थप
+        अङ्क बन्छ — दुवै इनपुट चार बिटका भए पनि उत्तर पाँच बिटको हुन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 4</span> Binary subtraction, two ways</div>
+    <p><b>Question:</b> work out 1101 − 0110 (13 − 6, so the answer should be 7 = 0111).</p>
+    <p><b>Method A — direct borrowing.</b> The rule is <code>0 − 1</code> needs a borrow: borrow
+    1 from the left, which is worth <b>2</b> in this column, so <code>10 − 1 = 1</code>.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">  1101
+-  0110
+  ------
+  0111</div>
+    </div>
+    <p><b>Method B — add the 2's complement.</b> This is what the machine does.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">2's complement of 0110:  invert → 1001,  add 1 → 1010
+1101 + 1010 = 1 0111
+Discard the carry out of the last column → 0111</div>
+    </div>
+    <p><b>Answer:</b> 0111 = 7 by both methods.</p>
+    <p class="wex-note"><span class="t-en">In method B the final carry is thrown away, and that is not a mistake —
+    it is the signal that the answer is positive. Exam answers should say so.
+    </span><span class="np-cell" lang="ne">तरिका B मा अन्तिम क्यारी फालिन्छ, र त्यो गल्ती होइन — उत्तर धनात्मक छ भन्ने
+    सङ्केत हो। परीक्षामा यो लेख्नुहोस्।</span></p>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 5</span> Binary multiplication</div>
+    <p><b>Question:</b> multiply 101 × 11 (5 × 3, so the answer should be 15 = 1111).</p>
+    <p>Binary multiplication is easier than decimal, because each digit of the multiplier is
+    either 0 or 1. You are only ever copying the number or writing zeros, then shifting left.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">    101
+  ×  11
+  -----
+    101      ← 101 × 1
+   1010      ← 101 × 1, shifted one place left
+  -----
+   1111</div>
+    </div>
+    <p class="wex-note"><span class="t-en">The four multiplication rules are 0×0=0, 0×1=0, 1×0=0, 1×1=1 — exactly
+    the AND gate you meet in Unit 2.
+    </span><span class="np-cell" lang="ne">गुणाका चार नियम 0×0=0, 0×1=0, 1×0=0, 1×1=1 — ठ्याक्कै युनिट २ को
+    AND गेट जस्तै।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h3>Mistakes that cost marks here</h3>
+    <ul>
+      <li><span class="t-en"><b>Reading the remainders the wrong way.</b> In decimal→binary the <b>last</b>
+        remainder is the <b>first</b> digit. Reading downwards reverses the answer.
+        </span><span class="np-cell" lang="ne">बाँकीलाई उल्टो पढ्नु। decimal→binary मा <b lang="ne">अन्तिम</b> बाँकी नै
+        <b lang="ne">पहिलो</b> अङ्क हो।</span></li>
+      <li><span class="t-en"><b>Forgetting to add 1 for the 2's complement.</b> Inverting alone gives the 1's
+        complement, which is a different answer to a different question.
+        </span><span class="np-cell" lang="ne">2's complement मा 1 जोड्न बिर्सनु। उल्टाउनु मात्रले 1's complement
+        दिन्छ, जुन फरक प्रश्नको उत्तर हो।</span></li>
+      <li><span class="t-en"><b>Writing 1 + 1 = 2 in binary.</b> There is no digit 2 in base 2. It is 10.
+        </span><span class="np-cell" lang="ne">binary मा 1 + 1 = 2 लेख्नु। base 2 मा 2 भन्ने अङ्कै छैन। त्यो 10 हो।</span></li>
+      <li><span class="t-en"><b>Multiplying by 2 for the whole part of a fraction.</b> The whole part is
+        <i>divided</i>; only the part after the point is multiplied.
+        </span><span class="np-cell" lang="ne">भिन्नको पूर्णाङ्क भागलाई 2 ले गुणा गर्नु। पूर्णाङ्कलाई <i lang="ne">भाग</i> गर्ने हो;
+        बिन्दुपछिको भागलाई मात्र गुणा गर्ने।</span></li>
+    </ul>
+  </div>
+
+  <h2 class="topic" id="exam1">Exam focus — what is asked from this unit</h2>
+
+  <div class="exam-connect"><span class="t-en">
+    <b>This unit is 12 hours but only 7 marks</b> — it is the foundation the rest of the subject
+    stands on rather than a heavily examined topic in itself. Expect one conversion and one
+    arithmetic question. Both are pure method: show every division, every remainder and every
+    carry, because working carries marks even when the final answer slips.
+    </span><span class="np-cell" lang="ne">यो युनिट १२ घण्टाको भए पनि ७ अंक मात्र — यो बाँकी विषयको जग हो। प्रायः
+    एउटा रूपान्तरण र एउटा गणित प्रश्न आउँछ। दुवै विधिमा आधारित छन्: हरेक भाग, हरेक बाँकी र हरेक क्यारी
+    देखाउनुहोस्, किनकि अन्तिम उत्तर चुके पनि प्रक्रियाले अंक दिन्छ।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">Define number system and base with one example.
+    </span><span class="np-cell" lang="ne">संख्या प्रणाली र base को परिभाषा एउटा उदाहरणसहित दिनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a11">Show the answer</button>
+    <div class="ans" id="a11"><div class="t-en">
+      <p>A number system is a way of writing numbers using a fixed set of digits. The number of
+      digits available is called the base. For example the binary system has base 2 because it
+      uses only the digits 0 and 1.</p>
+      </div><span class="np-cell" lang="ne">संख्या प्रणाली भनेको तोकिएका अङ्कहरू प्रयोग गरेर संख्या लेख्ने तरिका हो।
+      प्रयोग हुने अङ्कको सङ्ख्यालाई base भनिन्छ। जस्तै binary प्रणालीको base 2 हो, किनभने यसले 0 र 1
+      मात्र प्रयोग गर्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Convert (57)<sub>10</sub> to binary and then to hexadecimal.
+    </span><span class="np-cell" lang="ne">(57)<sub>10</sub> लाई binary र त्यसपछि hexadecimal मा बदल्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a12">Show the answer</button>
+    <div class="ans" id="a12"><div class="t-en">
+      <div class="out">57 ÷ 2 = 28 r 1
+28 ÷ 2 = 14 r 0
+14 ÷ 2 =  7 r 0
+ 7 ÷ 2 =  3 r 1
+ 3 ÷ 2 =  1 r 1
+ 1 ÷ 2 =  0 r 1     read upwards → 111001</div>
+      <p>For hexadecimal, group the bits in fours from the right: <code>0011 1001</code> →
+      3 and 9 → <b>39</b>.</p>
+      <p>So (57)<sub>10</sub> = (111001)<sub>2</sub> = (39)<sub>16</sub>.</p>
+      </div><span class="np-cell" lang="ne">Hexadecimal का लागि दायाँबाट चार–चार बिट समूह बनाउनुहोस्: 0011 1001 →
+      3 र 9 → 39।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p><span class="t-en">Find the 2's complement of 10110 and explain its use.
+    </span><span class="np-cell" lang="ne">10110 को 2's complement निकाल्नुहोस् र यसको उपयोग बताउनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a13">Show the answer</button>
+    <div class="ans" id="a13"><div class="t-en">
+      <p>1's complement of 10110 = 01001. Adding 1 gives <b>01010</b>, which is the 2's
+      complement.</p>
+      <p>It is used to represent negative numbers and to perform subtraction using an adder:
+      A − B is computed as A + (2's complement of B), so no separate subtractor circuit is
+      needed.</p>
+      </div><span class="np-cell" lang="ne">10110 को 1's complement 01001 हो; 1 जोड्दा 01010 आउँछ। यो ऋणात्मक
+      संख्या देखाउन र adder ले नै घटाउ गर्न प्रयोग हुन्छ: A − B लाई A + (B को 2's complement)
+      भनेर गणना गरिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p><span class="t-en">Add (1101)<sub>2</sub> and (1011)<sub>2</sub>, showing every carry.
+    </span><span class="np-cell" lang="ne">(1101)<sub>2</sub> र (1011)<sub>2</sub> जोड्नुहोस्, हरेक क्यारी देखाउँदै।</span></p>
+    <button class="btn-ans" data-answer="a14">Show the answer</button>
+    <div class="ans" id="a14"><div class="t-en">
+      <div class="out">carry  1 1 1 1
+        1 1 0 1
+      + 1 0 1 1
+      ---------
+      1 1 0 0 0</div>
+      <p>Answer: <b>11000</b>. Check in decimal: 13 + 11 = 24, and 11000 = 16 + 8 = 24. ✓</p>
+      </div><span class="np-cell" lang="ne">उत्तर 11000। दशमलवमा जाँच: 13 + 11 = 24, र 11000 = 16 + 8 = 24। ✓</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick"><span class="t-en">Base = how many digits a system uses. Position gives a digit its value.
+        </span><span class="np-cell" lang="ne">Base = प्रणालीले कति अङ्क प्रयोग गर्छ। स्थानले अङ्कलाई मान दिन्छ।</span></li>
+      <li class="tick"><span class="t-en">Going in, divide by the base and read the remainders upwards; coming out,
+        multiply by place values.
+        </span><span class="np-cell" lang="ne">भित्र जाँदा base ले भाग गरेर बाँकी तलबाट माथि पढ्ने; बाहिर आउँदा
+        स्थानीय मानले गुणा गर्ने।</span></li>
+      <li class="tick"><span class="t-en">For a fraction, multiply by 2 and read the integer parts downwards.
+        </span><span class="np-cell" lang="ne">भिन्नका लागि 2 ले गुणा गरेर पूर्णाङ्क भाग माथिबाट तल पढ्ने।</span></li>
+      <li class="tick"><span class="t-en">1's complement = flip every bit. 2's complement = flip, then add 1.
+        </span><span class="np-cell" lang="ne">1's complement = हरेक बिट उल्टाउने। 2's complement = उल्टाएर 1 जोड्ने।</span></li>
+      <li class="tick"><span class="t-en">1 + 1 = 10: write 0, carry 1. Always work right to left.
+        </span><span class="np-cell" lang="ne">1 + 1 = 10: 0 लेख्ने, 1 क्यारी। सधैं दायाँबाट बायाँ।</span></li>
+      <li class="tick"><span class="t-en">A − B = A + (2's complement of B) — one adder does both jobs.
+        </span><span class="np-cell" lang="ne">A − B = A + (B को 2's complement) — एउटै adder ले दुवै काम गर्छ।</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="index.html"><span class="lab">◂ Previous</span><span class="ttl">Overview</span></a><a class="nx" href="unit2.html"><span class="lab">Next ▸</span><span class="ttl">Concept of Logic Gates</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-number.js"></script>
+<script src="../../assets/js/diagram.js"></script>
+<script src="../../assets/js/diagram-data.js"></script>
+</body>
+</html>

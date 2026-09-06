@@ -8,13 +8,12 @@ const validate = require('./validate.js');
 
 const w         = ctx.write;
 const baseCss   = ctx.css;
-const HERO      = ctx.hero;
 const SITE      = ctx.site;
 const OUTLINE   = ctx.syllabus;
-const CPP_PAGES = ctx.pages;
+const AUTHORED  = ctx.pages;   /* subject key -> { hero, pages[] } */
 
 /* Fail the build on a content-contract violation before writing anything. */
-validate({ site: SITE, syllabus: OUTLINE, pages: CPP_PAGES, diagrams: DIA, ctx: ctx });
+validate({ site: SITE, syllabus: OUTLINE, pages: AUTHORED, diagrams: DIA, ctx: ctx });
 
 /* ---------------------------------------------------------------
    Content pipeline.
@@ -34,11 +33,11 @@ function animatedDiagram(name, cfg){
   return `<div class="dia" data-dia="${name}">
   <div class="dia-stage">${cfg.svg}</div>
   <div class="dia-controls">
-    <button type="button" data-dia-act="prev" aria-label="Previous step">&#9666; Prev</button>
-    <button type="button" data-dia-act="play" aria-pressed="false">&#9654; Play</button>
-    <button type="button" data-dia-act="next" aria-label="Next step">Next &#9656;</button>
-    <button type="button" data-dia-act="reset">Reset</button>
-    <span class="dia-progress" aria-live="polite">step 0 / ${cfg.steps.length}</span>
+    <button type="button" data-dia-act="prev" data-ui="prev">&#9666; Prev</button>
+    <button type="button" data-dia-act="play" data-ui="play" aria-pressed="false">&#9654; Play</button>
+    <button type="button" data-dia-act="next" data-ui="next">Next &#9656;</button>
+    <button type="button" data-dia-act="reset" data-ui="reset">Reset</button>
+    <span class="dia-progress" aria-live="polite" data-dia-steps="${cfg.steps.length}">step 0 / ${cfg.steps.length}</span>
   </div>
   <div class="dia-caption" role="status">
     <span class="dia-cap-en"></span>
@@ -70,6 +69,11 @@ const siteCss = ctx.read('design/site.css');
 const uxCss   = ctx.read('design/learning-ux.css');
 /* Phase 2.5 motion layer — state language, educational transitions, diagram animation. */
 const motionCss = ctx.read('design/motion.css');
+/* Phase 3 Digital Design components — after motion so they can use the
+   shared state language, before the language layer so a mode still wins. */
+const digitalCss = ctx.read('design/digital.css');
+/* Phase 3 language layer — loaded last so a mode can hide anything above it. */
+const langCss = ctx.read('design/language.css');
 
 /* ---------------- nav builders ---------------- */
 function deskNav(root, activeGrade){
@@ -128,6 +132,36 @@ const FAVICON = 'data:image/svg+xml,' + encodeURIComponent(
    file inherits it without the author having to remember. */
 const NEPALI_CONTAINERS = /\b(np|np-cell|np-line|lead-np)\b/;
 const DEVANAGARI = /[ऀ-ॿ]/;
+
+/* ---------------- language modes (Phase 3) ----------------
+   English prose that sits beside an inline Nepali gloss gets a .t-en
+   handle so Nepali mode can hide it. Derived here rather than authored,
+   because it applies to 186 places across finished content. */
+const { pairEnglish } = require('./bilingual.js');
+
+/* The mode has to be on <html> before the first paint, or the page
+   renders bilingual and then visibly collapses to the chosen mode. That
+   means a tiny inline script — it cannot wait for an external file.
+
+   The storage key and the valid modes are duplicated from
+   LanguageService here, and a test asserts the two copies agree, because
+   a silent divergence would strand every student's saved preference. */
+const LANG_KEY = 'rgsc.lang.v1';
+const LANG_BOOTSTRAP =
+  `<script>(function(d){var m="bi";try{var v=localStorage.getItem(${JSON.stringify(LANG_KEY)});` +
+  `if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}` +
+  `d.documentElement.setAttribute("data-lang",m);})(document);</script>`;
+
+/* The switcher itself. A radiogroup, because the three modes are one
+   mutually exclusive choice; nav.js adds the keyboard behaviour and the
+   active state is driven from the <html> attribute so it is correct
+   before any script has run. Flags are deliberately not used — a
+   language is not a country. */
+const LANG_SWITCH = `<div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full">नेपाली</span><span class="ll-mini">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>`;
 
 /* HEADING LEVELS
    Lesson pages had no <h1> and skipped levels (h1 -> h3), so navigating by
@@ -188,7 +222,7 @@ function page(o){
     if (needed.indexOf('diagram-data.js') < 0) needed.push('diagram-data.js');
   }
   const js = needed.map(f => `<script src="${root}assets/js/${f}"></script>`).join('\n');
-  return markNepali(`<!DOCTYPE html>
+  return markNepali(pairEnglish(`<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -201,6 +235,7 @@ function page(o){
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${root}assets/css/style.css">
+${LANG_BOOTSTRAP}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -211,6 +246,7 @@ function page(o){
       <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
     </a>
     ${deskNav(root, o.grade)}
+    ${LANG_SWITCH}
     <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
       <span></span><span></span><span></span>
     </button>
@@ -220,7 +256,7 @@ ${mobileNav(root, o.grade, o.activeHref)}
 
 <div class="wrap">
 ${o.crumb ? `<nav class="crumb" aria-label="Breadcrumb">${o.crumb}</nav>` : ''}
-<main id="main">
+<main id="main"${o.subject ? ` data-subject="${o.subject}"` : ""}>
 ${normaliseHeadings(o.body)}
 </main>
 ${o.pager || ''}
@@ -231,11 +267,13 @@ ${o.pager || ''}
   <span class="np-cell">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
 </footer>
 </div>
+<script src="${root}assets/js/services/language.js"></script>
+<script src="${root}assets/js/services/strings.js"></script>
 <script src="${root}assets/js/nav.js"></script>
 ${js}
 </body>
 </html>
-`);
+`));
 }
 
 function crumb(parts){
@@ -247,7 +285,7 @@ function crumb(parts){
 }
 
 /* ---------------- assets ---------------- */
-w('assets/css/style.css', baseCss + siteCss + uxCss + motionCss);
+w('assets/css/style.css', baseCss + siteCss + uxCss + motionCss + digitalCss + langCss);
 
 /* Runtime modules ship verbatim from _source/runtime — what is in source
    control is exactly what the browser receives. */
@@ -440,25 +478,29 @@ Object.keys(OUTLINE).forEach(key => {
   }));
 });
 
-/* ---------------- the finished C++ subject ---------------- */
-(function(){
+/* ---------------- fully authored subjects ----------------
+   One pass per subject in the page map. Nothing here names a subject:
+   the hero, the chip labels, the totals and the crumb all come from the
+   subject's own entry, so a third authored subject is a config change
+   and a folder of lessons. */
+Object.entries(AUTHORED).forEach(([key, subject]) => {
   const root = '../../';
-  const gid = 'grade10', slug = 'oop-cpp';
+  const [gid, slug] = key.split('/');
   const g = SITE.find(x => x.id === gid);
   const s = g.subjects.find(x => x.slug === slug);
+  const PAGES = subject.pages;
+  const label = s.short;
+
+  const unitPages = PAGES.filter(p => typeof p.hrs === 'number');
+  const totalHrs = unitPages.reduce((a, p) => a + p.hrs, 0);
+  const totalMarks = PAGES.reduce((a, p) => a + (p.marks || 0), 0);
 
   function chipBar(current){
     let h = '<nav class="nav" style="margin-top:0">';
     h += `<a href="index.html"${current === 'index' ? ' style="color:var(--yellow);border-color:var(--yellow)"' : ''}>Overview</a>`;
-    CPP_PAGES.forEach(p => {
+    PAGES.forEach(p => {
       const on = current === p.file;
-      h += `<a href="${p.file}"${on ? ' style="color:var(--yellow);border-color:var(--yellow)"' : ''}>${p.n} · ${
-        p.file.startsWith('unit') ? p.title.replace('Concept of OOP using C++','OOP + C++')
-                                          .replace('Basic Introduction to Data Structure','Data Structure')
-                                          .replace('Abstraction and Encapsulation','Abstraction / Encapsulation')
-              : p.title.replace('Trace a Full Program','Trace a Program')
-                       .replace('Comparison Tables & Exam Terms','Tables & Terms')
-                       .replace('Self-Check Quiz','Quiz')}</a>`;
+      h += `<a href="${p.file}"${on ? ' style="color:var(--yellow);border-color:var(--yellow)"' : ''}>${p.n} · ${p.chip || p.title}</a>`;
     });
     h += '</nav>';
     return h;
@@ -466,35 +508,35 @@ Object.keys(OUTLINE).forEach(key => {
 
   /* subject overview */
   let ucards = '';
-  CPP_PAGES.forEach(p => {
+  PAGES.forEach(p => {
     ucards += `<a class="ucard" href="${p.file}">
-      <div class="top"><div class="badge">${p.n}</div><h4>${p.title}</h4></div>
-      <span class="np-cell">${p.np}</span>
+      <div class="top"><div class="badge">${p.n}</div>
+        <h4>${p.title}<span class="np-cell">${p.np}</span></h4></div>
       <span class="hrs">${p.hrs ? p.hrs + ' hrs · ' + p.marks + ' marks' : 'practice &amp; revision'}</span></a>`;
   });
 
   const overviewBody = `
-${HERO}
+${sectionHtml(subject.hero)}
 
 <section style="margin-top:34px">
   <div class="sec-head"><div class="sec-num">≡</div>
     <div><h2>Units and sections</h2><p class="sec-sub">युनिट र सेक्सनहरू</p></div>
-    <span class="marks">6 units · 64 hrs · 50 marks</span></div>
+    <span class="marks">${unitPages.length} units · ${totalHrs} hrs · ${totalMarks} marks</span></div>
   <div class="rule"></div>
   <div class="ucards">${ucards}</div>
 </section>`;
 
   w(`${gid}/${slug}/index.html`, page({
-    root, grade:gid, activeHref:`${gid}/${slug}`,
+    root, grade:gid, activeHref:`${gid}/${slug}`, subject:key,
     title:`${s.name} — ${g.label} | RGSC Study Board`,
-    desc:'Bilingual Class 10 notes, simulators, program tracer and quiz for Data Structure and OOP using C++.',
-    crumb: crumb([['Home', root + 'index.html'], [g.label, '../index.html'], ['DS &amp; OOP with C++']]),
+    desc:`Bilingual Class 10 notes, interactive simulations and a quiz for ${s.name}.`,
+    crumb: crumb([['Home', root + 'index.html'], [g.label, '../index.html'], [label]]),
     body: overviewBody
   }));
 
   /* one page per unit / section */
-  const order = [{ file:'index.html', title:'Overview' }].concat(CPP_PAGES);
-  CPP_PAGES.forEach((p, i) => {
+  const order = [{ file:'index.html', title:'Overview' }].concat(PAGES);
+  PAGES.forEach((p, i) => {
     const prev = order[i];               // because order is shifted by the overview entry
     const next = order[i + 2];
     let pager = '<div class="pager">';
@@ -509,16 +551,16 @@ ${HERO}
     const body = chipBar(p.file) + '\n' + p.sec.map(sectionHtml).join('\n\n');
 
     w(`${gid}/${slug}/${p.file}`, page({
-      root, grade:gid, activeHref:`${gid}/${slug}`,
-      title:`${p.title} — DS &amp; OOP with C++ | RGSC Study Board`,
+      root, grade:gid, activeHref:`${gid}/${slug}`, subject:key,
+      title:`${p.title} — ${label} | RGSC Study Board`,
       desc:`${p.title} explained in simple English with a Nepali explanation beside it.`,
       crumb: crumb([['Home', root + 'index.html'], [g.label, '../index.html'],
-                    ['DS &amp; OOP with C++', 'index.html'], [p.title]]),
+                    [label, 'index.html'], [p.title]]),
       body, pager,
       js: ['services/motion.js', 'code.js'].concat(p.js)
     }));
   });
-})();
+});
 
 /* ---------------- design-system reference (dev/QA only) ----------------
    Generated so a token change can be checked against every component at once.

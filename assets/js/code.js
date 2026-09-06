@@ -75,7 +75,7 @@ function runSteps(codeElId, codeLines, steps, conEl, guard, onDone){
 
   function render(s){
     renderCode(document.getElementById(codeElId), codeLines, s.line);
-    if (s.en) conLine(conEl, s.en);
+    if (s.en) conLine(conEl, s.en, 't-en');
     if (s.np) conLine(conEl, s.np, 'np');
     if (s.out) conLine(conEl, '  >> ' + s.out, '');
     if (s.act) s.act();
@@ -170,7 +170,11 @@ function runSteps(codeElId, codeLines, steps, conEl, guard, onDone){
         btn.addEventListener('click', function(){
           var open = target.classList.toggle('show');
           btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-          btn.textContent = open ? 'Hide the answer' : 'Show the answer';
+          var key = open ? 'hideAnswer' : 'showAnswer';
+        btn.setAttribute('data-ui', key);
+        btn.textContent = (typeof UIStrings !== 'undefined')
+          ? UIStrings.get(key)
+          : (open ? 'Hide the answer' : 'Show the answer');
         });
       })(toggles[k]);
     }
@@ -185,7 +189,10 @@ function runSteps(codeElId, codeLines, steps, conEl, guard, onDone){
       consoles[c].setAttribute('aria-live', 'polite');
       consoles[c].setAttribute('aria-atomic', 'false');
       if (!consoles[c].getAttribute('aria-label')){
-        consoles[c].setAttribute('aria-label', 'Simulation output');
+        consoles[c].setAttribute('data-ui', 'simOutput');
+        consoles[c].setAttribute('data-ui-aria', '');
+        consoles[c].setAttribute('aria-label',
+          (typeof UIStrings !== 'undefined') ? UIStrings.get('simOutput') : 'Simulation output');
       }
     }
   });

@@ -55,6 +55,7 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
 
   /* ---------- 2. syllabus outlines ---------- */
   const HOURS_PER_SUBJECT = 64;   // fixed by the CDC curriculum
+  const MARKS_PER_SUBJECT = 50;   // written external exam, per the specification grid
   Object.keys(syllabus || {}).forEach(key => {
     const units = syllabus[key];
     if (!subjectKeys.has(key)) {
@@ -84,30 +85,77 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
 
   /* every open subject should have either authored pages or an outline */
   subjectKeys.forEach(key => {
-    const authored = key === 'grade10/oop-cpp';
+    const authored = !!(pages && pages[key]);
     if (!authored && !syllabus[key]) W(`subject "${key}"`, 'has neither authored pages nor a syllabus outline');
   });
 
-  /* ---------- 3. page map ---------- */
-  const seenFile = new Set();
-  (pages || []).forEach((p, i) => {
-    const at = `pages[${i}]`;
-    if (!/^[a-z0-9-]+\.html$/.test(p.file || '')) E(at, `file "${p.file}" is not a safe page filename`);
-    if (seenFile.has(p.file)) E(at, `duplicate page file "${p.file}"`);
-    seenFile.add(p.file);
-    if (!p.title) E(at, 'missing title (English)');
-    if (!p.np)    E(at, `missing Nepali title for "${p.title || p.file}"`);
-    if (!Array.isArray(p.sec) || !p.sec.length) { E(at, 'must reference at least one content section'); return; }
+  /* ---------- 3. page maps ----------
+     One map per authored subject, keyed by the same `<grade>/<slug>` id
+     the site map and the question banks use. Filenames only have to be
+     unique within a subject — every subject has its own directory. */
+  Object.entries(pages || {}).forEach(([key, subject]) => {
+    if (!subjectKeys.has(key)){
+      E(`pages["${key}"]`, 'is not a subject in the site map');
+      return;
+    }
+    if (!subject || !Array.isArray(subject.pages) || !subject.pages.length){
+      E(`pages["${key}"]`, 'must have a non-empty pages array');
+      return;
+    }
+    if (!subject.hero) E(`pages["${key}"]`, 'missing hero section id for the subject overview');
+    else {
+      try { ctx.section(subject.hero); }
+      catch (e) { E(`pages["${key}"].hero`, e.message); }
+    }
 
-    p.sec.forEach(id => {
-      try { ctx.section(id); }
-      catch (e) { E(at, e.message); }
+    const seenFile = new Set();
+    subject.pages.forEach((p, i) => {
+      const at = `pages["${key}"][${i}]`;
+      if (!/^[a-z0-9-]+\.html$/.test(p.file || '')) E(at, `file "${p.file}" is not a safe page filename`);
+      if (seenFile.has(p.file)) E(at, `duplicate page file "${p.file}"`);
+      seenFile.add(p.file);
+      if (!p.title) E(at, 'missing title (English)');
+      if (!p.np)    E(at, `missing Nepali title for "${p.title || p.file}"`);
+      if (!Array.isArray(p.sec) || !p.sec.length) { E(at, 'must reference at least one content section'); return; }
+
+      p.sec.forEach(id => {
+        try { ctx.section(id); }
+        catch (e) { E(at, e.message); }
+      });
+
+      (p.js || []).forEach(f => {
+        const published = Object.values(ctx.RUNTIME_PUBLISHED).concat(['question-bank.js']);
+        if (!published.includes(f)) E(at, `references runtime module "${f}" which the build does not publish`);
+      });
     });
 
-    (p.js || []).forEach(f => {
-      const published = Object.values(ctx.RUNTIME_PUBLISHED).concat(['question-bank.js']);
-      if (!published.includes(f)) E(at, `references runtime module "${f}" which the build does not publish`);
-    });
+    /* A unit page claiming hours and marks is claiming to implement the
+       syllabus. Check it against the outline rather than trusting it —
+       a mistyped mark weight silently misleads a student about what to
+       revise hardest. */
+    const outline = syllabus[key];
+    if (outline){
+      const unitPages = subject.pages.filter(p => typeof p.hrs === 'number');
+      const hrs = unitPages.reduce((a, p) => a + p.hrs, 0);
+      const marks = subject.pages.reduce((a, p) => a + (p.marks || 0), 0);
+      const outlineHrs = outline.reduce((a, u) => a + u.h, 0);
+
+      if (unitPages.length > outline.length){
+        E(`pages["${key}"]`, `has ${unitPages.length} unit pages for only ${outline.length} syllabus units`);
+      } else if (unitPages.length < outline.length){
+        /* A subject under construction is a legitimate state; silently
+           shipping it as if it were finished is not. */
+        W(`pages["${key}"]`, `${unitPages.length} of ${outline.length} syllabus units authored — ` +
+          `the subject is incomplete`);
+      } else {
+        if (hrs !== outlineHrs){
+          E(`pages["${key}"]`, `unit pages total ${hrs} hrs but the syllabus outline totals ${outlineHrs}`);
+        }
+        if (marks !== MARKS_PER_SUBJECT){
+          E(`pages["${key}"]`, `unit marks total ${marks}, the specification grid gives ${MARKS_PER_SUBJECT}`);
+        }
+      }
+    }
   });
 
   /* ---------- 4. diagrams ---------- */
@@ -211,7 +259,14 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
       const which = `${at}: simulation ${i + 1}`;
       if (!/class="sim-head"/.test(raw))     E(which, 'missing .sim-head (title and objective)');
       if (!/class="sim-goal"/.test(raw))     E(which, 'missing .sim-goal — the student must know what they will learn');
-      if (!/class="sim-controls"/.test(raw)) E(which, 'missing .sim-controls');
+      /* Controls may be authored in the lesson or supplied by a component
+         that renders its own (the gate workbench builds its input
+         switches from the gate definition, so hand-authoring them would
+         be a copy that could drift out of step with the circuit). */
+      const SELF_CONTROLLED = /class="[^"]*\b(gatelab|comblab|kmap|cpu8085|numlab)\b/;
+      if (!/class="sim-controls"/.test(raw) && !SELF_CONTROLLED.test(raw)){
+        E(which, 'missing .sim-controls');
+      }
       if (!/class="sim-why"/.test(raw))      E(which, 'missing .sim-why — a simulation must explain why, not just show what');
     });
 
@@ -345,6 +400,191 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
     });
   });
 
+  /* ---------- 4f. THE LANGUAGE CONTRACT ----------
+     The product has three language modes. They work today because the
+     content that exists was written for them. Nothing in the build
+     stopped the NEXT subject, or the next component, from quietly
+     breaking one — which is the failure this section exists to prevent:
+
+         "Nepali mode works on the existing subject but breaks when
+          the next developer adds a component."
+
+     What is deliberately NOT enforced: that every English word has a
+     Nepali equivalent. Technical terminology stays in English on
+     purpose — see docs/LANGUAGE-SYSTEM.md §6. A validator that demanded
+     a translation of "Multiplexer" would teach authors to invent one.
+     ------------------------------------------------------------ */
+  const LANG_MODES = ['bi', 'ne', 'en'];
+
+  /* --- 4f.1 question banks carry both languages where they can --- */
+  Object.entries(ctx.questionBanks || {}).forEach(([subject, bank]) => {
+    if (!Array.isArray(bank)) { E(`questions["${subject}"]`, 'must be an array'); return; }
+    const seen = new Set();
+    bank.forEach((q, i) => {
+      const at = `questions["${subject}"][${i}]`;
+      if (!q || !q.id) { E(at, 'missing id'); return; }
+      if (seen.has(q.id)) E(at, `duplicate question id "${q.id}"`);
+      seen.add(q.id);
+
+      /* English is required everywhere. It is the exam's language, and
+         it is the fallback every mode can fall back to. */
+      if (!q.prompt || typeof q.prompt.en !== 'string' || !q.prompt.en.trim()){
+        E(at, `"${q.id}" has no English prompt`);
+      }
+      if (!q.explanation || typeof q.explanation.en !== 'string' || !q.explanation.en.trim()){
+        E(at, `"${q.id}" has no English explanation`);
+      }
+      /* An explanation is prose, never terminology, so it must be
+         bilingual — this is the field a Nepali-mode student relies on
+         most, because it is where the teaching happens. */
+      if (!q.explanation || typeof q.explanation.ne !== 'string' || !q.explanation.ne.trim()){
+        E(at, `"${q.id}" has no Nepali explanation — an explanation is prose, not terminology`);
+      }
+      /* A present-but-empty language key is worse than an absent one:
+         the fallback cannot see it and the student gets a blank. */
+      for (const field of ['prompt', 'explanation']){
+        const v = q[field];
+        if (!v) continue;
+        for (const k of Object.keys(v)){
+          if (!['en', 'ne'].includes(k)) E(at, `"${q.id}".${field} has unknown language key "${k}"`);
+          else if (typeof v[k] !== 'string') E(at, `"${q.id}".${field}.${k} is not a string`);
+          else if (v[k] === '' && k === 'en') E(at, `"${q.id}".${field}.en is empty`);
+        }
+      }
+      (q.options || []).forEach((o, j) => {
+        if (!o || typeof o.en !== 'string' || !o.en.trim()){
+          E(at, `"${q.id}" option ${j} has no English text`);
+        }
+        for (const k of Object.keys(o || {})){
+          if (!['en', 'ne'].includes(k)) E(at, `"${q.id}" option ${j} has unknown language key "${k}"`);
+        }
+      });
+    });
+  });
+
+  /* --- 4f.2 the runtime's language modes agree everywhere --- */
+  const langSvc = ctx.runtime['services/language.js'] || '';
+  const buildSrc = fs.readFileSync(path.join(ctx.SRC, 'build', 'index.js'), 'utf8');
+  const svcModes = (langSvc.match(/var MODES = \[([^\]]*)\]/) || [, ''])[1];
+  LANG_MODES.forEach(m => {
+    if (!svcModes.includes("'" + m + "'")) E('services/language.js', `mode "${m}" is missing`);
+    if (!buildSrc.includes('"' + m + '"')) E('build/index.js', `the pre-paint bootstrap does not accept mode "${m}"`);
+  });
+  const svcKey = (langSvc.match(/var KEY = '([^']+)'/) || [])[1];
+  const buildKey = (buildSrc.match(/const LANG_KEY = '([^']+)'/) || [])[1];
+  if (svcKey && buildKey && svcKey !== buildKey){
+    E('language', `the service stores under "${svcKey}" but the bootstrap reads "${buildKey}" — ` +
+      'every saved preference would be orphaned');
+  }
+
+  /* --- 4f.3 UI strings are bilingual and complete --- */
+  const strings = ctx.runtime['services/strings.js'] || '';
+  const tableSrc = strings.slice(strings.indexOf('var TABLE = {'), strings.indexOf('function mode()'));
+  const keys = [...tableSrc.matchAll(/^\s{4}([a-zA-Z][\w]*):\s*\{/gm)].map(m => m[1]);
+  if (!keys.length) E('services/strings.js', 'the UI string table is empty or unreadable');
+  keys.forEach(k => {
+    const entry = (tableSrc.match(new RegExp('\\b' + k + ':\\s*\\{([^}]*)\\}')) || [, ''])[1];
+    if (!/\ben:\s*'[^']+'/.test(entry)) E('services/strings.js', `UI string "${k}" has no English`);
+    if (!/\bne:\s*'[^']+'/.test(entry)) E('services/strings.js', `UI string "${k}" has no Nepali`);
+  });
+
+  /* --- 4f.4 a component may not ship a hard-coded control label ---
+     Every interactive runtime module is checked for a <button> whose
+     text is a bare English literal with no data-ui key. This is the
+     rule that makes the language contract inherit: a new component
+     either uses the string table or fails the build. */
+  /* Authored content sections ship controls too — the program tracer's
+     Prev/Next/Reset are in trace.html, not in a runtime module, and the
+     first version of this check scanned only runtime modules and let
+     them through. Found by looking at the tracer in Nepali mode. */
+  const contentDir = path.join(ctx.SRC, 'content');
+  const contentFiles = [];
+  (function walkContent(dir){
+    if (!fs.existsSync(dir)) return;
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })){
+      const f = path.join(dir, e.name);
+      if (e.isDirectory()) walkContent(f);
+      else if (e.name.endsWith('.html')) contentFiles.push(f);
+    }
+  })(contentDir);
+
+  /* Dev-only pages are not student-facing and may stay English. */
+  const CONTENT_EXEMPT = /(animation-showcase|design-system)\.html$/;
+  contentFiles.forEach(f => {
+    if (CONTENT_EXEMPT.test(f)) return;
+    const rel = path.relative(ctx.SRC, f).split(path.sep).join('/');
+    const html = fs.readFileSync(f, 'utf8').replace(/<!--[\s\S]*?-->/g, '');
+    for (const m of html.matchAll(/<button\b([^>]*)>([^<]{2,40})</g)){
+      const attrs = m[1], label = m[2].trim();
+      if (!label || /data-ui=/.test(attrs)) continue;
+      /* An explicit author decision that this label is content, not
+         chrome — a program title, a worked example's name. Better than a
+         standing warning, which teaches people to ignore warnings. */
+      if (/data-ui-content/.test(attrs)) continue;
+      if (/data-value=|class="opt|class="predict-opt|data-answer=/.test(attrs)) continue;
+      if (/^(&#?\w+;|\s|[+\-·▸◂])+$/.test(label)) continue;
+      /* A label that IS code is technical terminology, and the language
+         contract keeps terminology in English on purpose — `push()`,
+         `area(5)`, `p = &s; p->show()`. Translating a method name would
+         make the simulation lie about the C++ the student is learning.
+         See LANGUAGE-SYSTEM.md §5B. */
+      if (/\(\)|\(\d|->|&gt;|&amp;|::|;|=/.test(label)) continue;
+      /* A button whose label names specific CONTENT — "Program 2 ·
+         Multilevel Inheritance" — is not chrome. Heuristic: it carries a
+         separator and several words. Reported as a warning so an author
+         can decide, rather than blocked. */
+      if (/[·—–|]/.test(label) && label.split(/\s+/).length > 3){
+        W(rel, `control labelled "${label}" is unlabelled for language — ` +
+          'it looks like content rather than chrome, so this is a judgement call');
+        continue;
+      }
+      E(rel, `a control is labelled "${label}" with no data-ui key — ` +
+        'add one to services/strings.js so it follows the language mode');
+    }
+  });
+
+  const UI_EXEMPT = new Set(['showcase.js']);      // internal dev page
+  Object.entries(ctx.runtime).forEach(([name, src]) => {
+    if (!/^sim-|^quiz\.js$|^trace\.js$|^predict\.js$/.test(name)) return;
+    if (UI_EXEMPT.has(name)) return;
+    /* Comments carry markup-contract examples, which are documentation
+       rather than shipped controls. */
+    const code = src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+    for (const m of code.matchAll(/<button\b([^>]*)>([^<'"]{2,40}?)(?=['"]|<)/g)){
+      const attrs = m[1], label = m[2].trim();
+      if (!label) continue;
+      if (/data-ui=/.test(attrs)) continue;
+      /* A prediction option or a quiz option is CONTENT — its text is the
+         answer the student is choosing between, authored per lesson and
+         already bilingual through the content pipeline. Only chrome
+         belongs in the UI string table. */
+      if (/data-value=|class="opt|class="predict-opt/.test(attrs)) continue;
+      /* an entity-only label such as &#9666; carries no words */
+      if (/^(&#?\w+;|\s|[+\-·▸◂])+$/.test(label)) continue;
+      E(`runtime/${name}`,
+        `a control is labelled "${label}" with no data-ui key — ` +
+        'add one to services/strings.js so it follows the language mode');
+    }
+  });
+
+  /* --- 4f.5 the pairing transform must not swallow structure --- */
+  const bilingualSrc = fs.readFileSync(path.join(ctx.SRC, 'build', 'bilingual.js'), 'utf8');
+  /* Read the protected set itself. Searching the whole file for "'h1'"
+     would pass on the string appearing in any other list — which it
+     does, in BLOCK — and a check that cannot fail is worse than none. */
+  const neverWrap = (bilingualSrc.match(/const NEVER_WRAP_TAG = new Set\(\[([^\]]*)\]\)/) || [, ''])[1];
+  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].forEach(h => {
+    if (!neverWrap.includes("'" + h + "'")){
+      E('build/bilingual.js', `"${h}" is not in NEVER_WRAP_TAG — ` +
+        'a heading inside a .t-en wrapper disappears in Nepali mode');
+    }
+  });
+  if (!/run\.some\(holdsNepali\)/.test(bilingualSrc)){
+    E('build/bilingual.js',
+      'the locality rule is missing — a run containing Nepali would be wrapped, ' +
+      'hiding both languages at once');
+  }
+
   /* ---------- 5. runtime modules ---------- */
   Object.keys(ctx.RUNTIME_PUBLISHED).forEach(name => {
     if (!ctx.runtime[name]) E('runtime', `module "${name}" is empty or missing`);
@@ -363,7 +603,8 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
   }
   console.log('content validation: ' + subjectKeys.size + ' subjects, ' +
               Object.keys(syllabus || {}).length + ' outlines, ' +
-              (pages || []).length + ' authored pages, ' +
+              Object.values(pages || {}).reduce((a, x) => a + ((x && x.pages) || []).length, 0) +
+              ' authored pages across ' + Object.keys(pages || {}).length + ' subjects, ' +
               defined.size + ' diagrams — OK' +
               (warn.length ? ' (' + warn.length + ' warning(s))' : ''));
 };

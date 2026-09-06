@@ -167,7 +167,7 @@ function stkPeek(){
   if (stkGuard.busy) return;
   conClear(con);
   if (!stkArr.length){
-    conLine(con, 'peek(): the stack is empty, there is no top value.');
+    conLine(con, 'peek(): the stack is empty, there is no top value.', 't-en');
     conLine(con, 'peek(): स्ट्याक खाली छ, top मान छैन।', 'np');
     return;
   }
@@ -183,7 +183,7 @@ function stkReset(){
   stkArr = []; stkNext = 10; stkRender();
   conClear(document.getElementById('stackCon'));
   renderCode(document.getElementById('stackCode'), STACK_CODE, 0);
-  conLine(document.getElementById('stackCon'), 'Stack reset. top = -1 (empty).');
+  conLine(document.getElementById('stackCon'), 'Stack reset. top = -1 (empty).', 't-en');
   conLine(document.getElementById('stackCon'), 'स्ट्याक रिसेट भयो। top = -1 (खाली)।', 'np');
 }
 
@@ -286,7 +286,7 @@ function qFront(){
   if (qGuard.busy) return;
   conClear(con);
   if (!qArr.length){
-    conLine(con, 'front(): the queue is empty.');
+    conLine(con, 'front(): the queue is empty.', 't-en');
     conLine(con, 'front(): लाइन खाली छ।', 'np');
     return;
   }
@@ -301,7 +301,7 @@ function qReset(){
   qArr = []; qNext = 11; qRender();
   conClear(document.getElementById('queueCon'));
   renderCode(document.getElementById('queueCode'), QUEUE_CODE, 0);
-  conLine(document.getElementById('queueCon'), 'Queue reset. front = 0, rear = -1 (empty).');
+  conLine(document.getElementById('queueCon'), 'Queue reset. front = 0, rear = -1 (empty).', 't-en');
   conLine(document.getElementById('queueCon'), 'लाइन रिसेट भयो। front = 0, rear = -1 (खाली)।', 'np');
 }
 

@@ -53,7 +53,7 @@ test('validation rejects an unknown diagram reference', () => {
 
 test('validation rejects a page pointing at content that does not exist', () => {
   const broken = JSON.parse(JSON.stringify(pages));
-  broken[0].sec = ['does-not-exist'];
+  broken['grade10/oop-cpp'].pages[0].sec = ['does-not-exist'];
   assert.throws(
     () => validate({ site, syllabus, pages: broken, diagrams, ctx }),
     /no content found for section/
@@ -105,7 +105,8 @@ test('every diagram in the library is used by some lesson', () => {
   }
   const orphans = Object.keys(diagrams).filter(d => !used.has(d));
   assert.deepStrictEqual(orphans, [], 'diagrams defined but never used');
-  assert.strictEqual(Object.keys(diagrams).length, 22, 'expected 22 diagrams');
+  assert.ok(Object.keys(diagrams).length >= 22,
+    'the library should only grow, found ' + Object.keys(diagrams).length);
 });
 
 test('every authored lesson resolves through the content layer', () => {

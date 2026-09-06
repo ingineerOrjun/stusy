@@ -26,8 +26,18 @@ const refsOf = html => [...html.matchAll(/(?:href|src)="([^"]+)"/g)].map(m => m[
 const isLocal = r => !/^(https?:|data:|#|mailto:)/.test(r);
 
 test('the expected number of pages exists', () => {
-  assert.strictEqual(htmlFiles.length, 20, 'expected 20 student pages, found ' + htmlFiles.length);
-  assert.strictEqual(allHtml.length, 22, 'expected 22 generated pages (20 student + 2 dev)');
+  /* Derived from the config rather than hard-coded, so authoring a unit
+     does not mean editing this test:
+       1 home + 1 page per open grade + 1 per subject + 1 per authored page  */
+  const site = require('../_source/config/site.js');
+  const pages = require('../_source/config/pages.js');
+  const openGrades = site.filter(g => g.status === 'open');
+  const subjects = openGrades.reduce((a, g) => a + g.subjects.length, 0);
+  const authored = Object.values(pages).reduce((a, s) => a + s.pages.length, 0);
+  const expected = 1 + openGrades.length + subjects + authored;
+  assert.strictEqual(htmlFiles.length, expected,
+    'expected ' + expected + ' student pages, found ' + htmlFiles.length);
+  assert.strictEqual(allHtml.length, expected + 2, 'plus the two dev-only pages');
 });
 
 test('every internal link resolves', () => {
@@ -69,7 +79,7 @@ test('every page carries the shared navigation chrome', () => {
     assert.match(html, /id="hamBtn"/,             rel + ': no hamburger button');
     assert.match(html, /id="mobilePanel"/,        rel + ': no mobile panel');
     assert.match(html, /class="skip"/,            rel + ': no skip-to-content link');
-    assert.match(html, /<main id="main">/,        rel + ': no main landmark');
+    assert.match(html, /<main id="main"[ >]/,     rel + ': no main landmark');
   }
 });
 

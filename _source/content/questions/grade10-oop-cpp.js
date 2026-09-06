@@ -18,20 +18,25 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "Which data structure follows the LIFO (Last In, First Out) principle?"
+      "en": "Which data structure follows the LIFO (Last In, First Out) principle?",
+      "ne": "कुन डाटा स्ट्रक्चरले LIFO (Last In, First Out) सिद्धान्त पछ्याउँछ?"
     },
     "options": [
       {
-        "en": "Queue"
+        "en": "Queue",
+        "ne": "Queue (क्यू)"
       },
       {
-        "en": "Stack"
+        "en": "Stack",
+        "ne": "Stack (स्ट्याक)"
       },
       {
-        "en": "Tree"
+        "en": "Tree",
+        "ne": "Tree (ट्री)"
       },
       {
-        "en": "Graph"
+        "en": "Graph",
+        "ne": "Graph (ग्राफ)"
       }
     ],
     "answer": 1,
@@ -49,7 +54,8 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "If no access specifier is written inside a C++ class, the members are by default:"
+      "en": "If no access specifier is written inside a C++ class, the members are by default:",
+      "ne": "C++ क्लासभित्र कुनै access specifier नलेखिएमा मेम्बरहरू पूर्वनिर्धारित रूपमा के हुन्छन्?"
     },
     "options": [
       {
@@ -80,20 +86,25 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "Which of the following is NOT a linear data structure?"
+      "en": "Which of the following is NOT a linear data structure?",
+      "ne": "तलमध्ये कुन linear डाटा स्ट्रक्चर होइन?"
     },
     "options": [
       {
-        "en": "Array"
+        "en": "Array",
+        "ne": "Array (एरे)"
       },
       {
-        "en": "Stack"
+        "en": "Stack",
+        "ne": "Stack (स्ट्याक)"
       },
       {
-        "en": "Queue"
+        "en": "Queue",
+        "ne": "Queue (क्यू)"
       },
       {
-        "en": "Tree"
+        "en": "Tree",
+        "ne": "Tree (ट्री)"
       }
     ],
     "answer": 3,
@@ -111,20 +122,25 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "A constructor in C++ has:"
+      "en": "A constructor in C++ has:",
+      "ne": "C++ मा constructor को के हुन्छ?"
     },
     "options": [
       {
-        "en": "return type void"
+        "en": "return type void",
+        "ne": "return type void हुन्छ"
       },
       {
-        "en": "the same return type as the class"
+        "en": "the same return type as the class",
+        "ne": "क्लासकै जस्तै return type हुन्छ"
       },
       {
-        "en": "no return type at all"
+        "en": "no return type at all",
+        "ne": "कुनै return type नै हुँदैन"
       },
       {
-        "en": "int as its return type"
+        "en": "int as its return type",
+        "ne": "return type int हुन्छ"
       }
     ],
     "answer": 2,
@@ -142,7 +158,8 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "Which symbol is written before a destructor name?"
+      "en": "Which symbol is written before a destructor name?",
+      "ne": "Destructor को नाम अगाडि कुन चिन्ह लेखिन्छ?"
     },
     "options": [
       {
@@ -173,20 +190,25 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "Function overloading is an example of which type of polymorphism?"
+      "en": "Function overloading is an example of which type of polymorphism?",
+      "ne": "Function overloading कुन किसिमको polymorphism को उदाहरण हो?"
     },
     "options": [
       {
-        "en": "Run-time polymorphism"
+        "en": "Run-time polymorphism",
+        "ne": "Run-time polymorphism"
       },
       {
-        "en": "Compile-time polymorphism"
+        "en": "Compile-time polymorphism",
+        "ne": "Compile-time polymorphism"
       },
       {
-        "en": "Dynamic binding"
+        "en": "Dynamic binding",
+        "ne": "Dynamic binding"
       },
       {
-        "en": "Late binding"
+        "en": "Late binding",
+        "ne": "Late binding"
       }
     ],
     "answer": 1,
@@ -204,20 +226,25 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "Function overriding is possible only when there is:"
+      "en": "Function overriding is possible only when there is:",
+      "ne": "Function overriding कहिले मात्र सम्भव हुन्छ?"
     },
     "options": [
       {
-        "en": "operator overloading"
+        "en": "operator overloading",
+        "ne": "operator overloading हुँदा"
       },
       {
-        "en": "inheritance"
+        "en": "inheritance",
+        "ne": "inheritance हुँदा"
       },
       {
-        "en": "a friend function"
+        "en": "a friend function",
+        "ne": "friend function हुँदा"
       },
       {
-        "en": "a static member"
+        "en": "a static member",
+        "ne": "static member हुँदा"
       }
     ],
     "answer": 1,
@@ -235,20 +262,25 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "In multilevel inheritance Animal → Dog → Puppy, when a Puppy object is created, which constructor runs FIRST?"
+      "en": "In multilevel inheritance Animal → Dog → Puppy, when a Puppy object is created, which constructor runs FIRST?",
+      "ne": "Multilevel inheritance Animal → Dog → Puppy मा Puppy अब्जेक्ट बन्दा कुन constructor सबैभन्दा पहिले चल्छ?"
     },
     "options": [
       {
-        "en": "Puppy constructor"
+        "en": "Puppy constructor",
+        "ne": "Puppy को constructor"
       },
       {
-        "en": "Dog constructor"
+        "en": "Dog constructor",
+        "ne": "Dog को constructor"
       },
       {
-        "en": "Animal constructor"
+        "en": "Animal constructor",
+        "ne": "Animal को constructor"
       },
       {
-        "en": "All three run at the same time"
+        "en": "All three run at the same time",
+        "ne": "तीनै एकैचोटि चल्छन्"
       }
     ],
     "answer": 2,
@@ -266,20 +298,25 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "Which operator is used to define a member function outside its class?"
+      "en": "Which operator is used to define a member function outside its class?",
+      "ne": "क्लास बाहिर member function परिभाषित गर्न कुन अपरेटर प्रयोग हुन्छ?"
     },
     "options": [
       {
-        "en": "Dot operator (.)"
+        "en": "Dot operator (.)",
+        "ne": "Dot अपरेटर (.)"
       },
       {
-        "en": "Arrow operator (->)"
+        "en": "Arrow operator (->)",
+        "ne": "Arrow अपरेटर (->)"
       },
       {
-        "en": "Scope resolution operator (::)"
+        "en": "Scope resolution operator (::)",
+        "ne": "Scope resolution अपरेटर (::)"
       },
       {
-        "en": "Insertion operator (<<)"
+        "en": "Insertion operator (<<)",
+        "ne": "Insertion अपरेटर (<<)"
       }
     ],
     "answer": 2,
@@ -297,20 +334,25 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "A collection of related records of the same entity is called a:"
+      "en": "A collection of related records of the same entity is called a:",
+      "ne": "एउटै entity का सम्बन्धित record हरूको सङ्ग्रहलाई के भनिन्छ?"
     },
     "options": [
       {
-        "en": "Field"
+        "en": "Field",
+        "ne": "Field (फिल्ड)"
       },
       {
-        "en": "Record"
+        "en": "Record",
+        "ne": "Record (रेकर्ड)"
       },
       {
-        "en": "File"
+        "en": "File",
+        "ne": "File (फाइल)"
       },
       {
-        "en": "Attribute"
+        "en": "Attribute",
+        "ne": "Attribute (एट्रिब्युट)"
       }
     ],
     "answer": 2,
@@ -328,7 +370,8 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "Which keyword makes run-time polymorphism possible in C++?"
+      "en": "Which keyword makes run-time polymorphism possible in C++?",
+      "ne": "C++ मा run-time polymorphism सम्भव बनाउने keyword कुन हो?"
     },
     "options": [
       {
@@ -359,20 +402,25 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "Which statement about a class and an object is TRUE?"
+      "en": "Which statement about a class and an object is TRUE?",
+      "ne": "क्लास र अब्जेक्टबारे कुन भनाइ सही हो?"
     },
     "options": [
       {
-        "en": "A class takes memory, an object does not"
+        "en": "A class takes memory, an object does not",
+        "ne": "क्लासले मेमोरी लिन्छ, अब्जेक्टले लिँदैन"
       },
       {
-        "en": "An object takes memory, a class does not"
+        "en": "An object takes memory, a class does not",
+        "ne": "अब्जेक्टले मेमोरी लिन्छ, क्लासले लिँदैन"
       },
       {
-        "en": "Both take memory"
+        "en": "Both take memory",
+        "ne": "दुवैले मेमोरी लिन्छन्"
       },
       {
-        "en": "Neither takes memory"
+        "en": "Neither takes memory",
+        "ne": "दुवैले मेमोरी लिँदैनन्"
       }
     ],
     "answer": 1,
@@ -390,20 +438,25 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "In a queue, insertion and deletion are done at which ends?"
+      "en": "In a queue, insertion and deletion are done at which ends?",
+      "ne": "Queue मा राख्ने र झिक्ने काम कुन–कुन छेउबाट हुन्छ?"
     },
     "options": [
       {
-        "en": "Insert at front, delete at rear"
+        "en": "Insert at front, delete at rear",
+        "ne": "front बाट राख्ने, rear बाट झिक्ने"
       },
       {
-        "en": "Insert at rear, delete at front"
+        "en": "Insert at rear, delete at front",
+        "ne": "rear बाट राख्ने, front बाट झिक्ने"
       },
       {
-        "en": "Both at the front"
+        "en": "Both at the front",
+        "ne": "दुवै front बाट"
       },
       {
-        "en": "Both at the rear"
+        "en": "Both at the rear",
+        "ne": "दुवै rear बाट"
       }
     ],
     "answer": 1,
@@ -421,20 +474,25 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "Binding data members and member functions together in one unit and hiding the data from outside is called:"
+      "en": "Binding data members and member functions together in one unit and hiding the data from outside is called:",
+      "ne": "डाटा मेम्बर र मेम्बर फङ्सनलाई एउटै एकाइमा बाँधेर बाहिरबाट डाटा लुकाउने कामलाई के भनिन्छ?"
     },
     "options": [
       {
-        "en": "Abstraction"
+        "en": "Abstraction",
+        "ne": "Abstraction (एब्स्ट्र्याक्सन)"
       },
       {
-        "en": "Inheritance"
+        "en": "Inheritance",
+        "ne": "Inheritance (इनहेरिटेन्स)"
       },
       {
-        "en": "Encapsulation"
+        "en": "Encapsulation",
+        "ne": "Encapsulation (इनक्याप्सुलेसन)"
       },
       {
-        "en": "Polymorphism"
+        "en": "Polymorphism",
+        "ne": "Polymorphism (पोलिमर्फिज्म)"
       }
     ],
     "answer": 2,
@@ -452,7 +510,8 @@ module.exports = [
     "type": "single-choice",
     "examRelevant": true,
     "prompt": {
-      "en": "What is the output of this program?<br><span class=\"mono\" style=\"color:var(--blue);font-size:.85rem\">class A { public: A(){cout&lt;&lt;\"A\";} ~A(){cout&lt;&lt;\"X\";} };<br>int main(){ A a1; A a2; return 0; }</span>"
+      "en": "What is the output of this program?<br><span class=\"mono\" style=\"color:var(--blue);font-size:.85rem\">class A { public: A(){cout&lt;&lt;\"A\";} ~A(){cout&lt;&lt;\"X\";} };<br>int main(){ A a1; A a2; return 0; }</span>",
+      "ne": "यो प्रोग्रामको आउटपुट के हुन्छ?"
     },
     "options": [
       {

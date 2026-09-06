@@ -1,0 +1,351 @@
+<section id="dd-u3">
+  <div class="sec-head">
+    <div class="sec-num">3</div>
+    <div>
+      <h2>Boolean Algebra and Karnaugh Map</h2>
+      <p class="sec-sub">बुलियन बीजगणित र के–म्याप</p>
+    </div>
+    <span class="marks">10 hrs · 6 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>State the Boolean laws and use them to simplify an expression.</li>
+      <li>Write the SOP form from a truth table.</li>
+      <li>Write the POS form from the same truth table.</li>
+      <li>Simplify an expression step by step, naming the law at each step.</li>
+      <li>Simplify a 2-, 3- or 4-variable expression with a Karnaugh map, and say why a group is or is not legal.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: बुलियन नियमहरू भन्न र प्रयोग गर्न, ट्रुथ टेबलबाट SOP र POS
+    लेख्न, हरेक चरणमा नियमको नाम दिँदै सरलीकरण गर्न, र के–म्यापबाट सरल बनाउँदै कुन समूह किन मिल्छ वा
+    मिल्दैन भन्न सक्नुहुनेछ।</span>
+  </div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Why this unit exists</span>
+      <p><b>Boolean algebra</b> is the algebra of 0 and 1. It has only three operations —
+      AND (·), OR (+) and NOT (′) — and it exists to answer one practical question:
+      <b>can this circuit be built with fewer gates?</b></p>
+      <p>Fewer gates means less silicon, less power and less delay. Every simplification you do
+      here is a real saving in a real chip.</p>
+      <p>Careful: <code>+</code> does <b>not</b> mean ordinary addition. In Boolean algebra
+      <code>1 + 1 = 1</code>, because OR asks "is at least one of them 1?"</p>
+    </div>
+    <div class="np"><span class="tag">यो युनिट किन</span>
+      <p><b>बुलियन बीजगणित</b> ० र १ को बीजगणित हो। यसमा तीन क्रिया मात्र छन् — AND (·), OR (+)
+      र NOT (′) — र यो एउटै व्यावहारिक प्रश्नको उत्तर दिन बनेको हो:
+      <b>के यो सर्किट कम गेटले बनाउन सकिन्छ?</b></p>
+      <p>कम गेट भनेको कम सिलिकन, कम बिजुली र कम ढिलाइ। यहाँ गरिने हरेक सरलीकरण वास्तविक चिपमा
+      वास्तविक बचत हो।</p>
+      <p>ध्यान दिनुहोस्: <code>+</code> को अर्थ साधारण जोड <b>होइन</b>। बुलियन बीजगणितमा
+      <code>1 + 1 = 1</code> हुन्छ, किनभने OR ले "कम्तीमा एउटा 1 छ?" भनी सोध्छ।</p>
+    </div>
+  </div>
+
+  <h3 class="topic" id="t31">3.1 &nbsp;Boolean relationships and laws</h3>
+
+  <figure class="fig">
+    {{dia:boolLaws}}
+    <figcaption>Every law has an OR form and an AND form. Learn one column and swap
+    <code>+</code> with <code>·</code> to get the other — that halves the memorising.
+    <span class="np-cell">हरेक नियमको OR रूप र AND रूप हुन्छ। एउटा स्तम्भ सिकेर <code>+</code> र
+    <code>·</code> साट्नुहोस् — घोक्नुपर्ने आधा हुन्छ।</span></figcaption>
+  </figure>
+
+  <div class="callout">
+    <b>The two laws that do the actual work.</b>
+    <b>Complement</b> <code>A + A′ = 1</code> is how a variable disappears.
+    <b>Absorption</b> <code>A + A′B = A + B</code> is how a whole term shrinks.
+    Almost every simplification in an SEE paper is one of these two, set up by the distributive law.
+    <span class="np-cell">काम गर्ने दुई नियम: <b>Complement</b> <code>A + A′ = 1</code> ले चल हराउँछ,
+    <b>Absorption</b> <code>A + A′B = A + B</code> ले पूरै पद खुम्च्याउँछ। SEE का प्रायः सबै सरलीकरण
+    यिनै दुईमा आधारित हुन्छन्।</span>
+  </div>
+
+  <h3 class="topic" id="t32">3.2 &amp; 3.3 &nbsp;Sum of Products and Product of Sums</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Both forms, one table</span>
+      <p><b>SOP (Sum of Products)</b> is built from the rows where the output is <b>1</b>. Each
+      such row gives one <b>product term</b> (variables ANDed), and the terms are ORed together.
+      Inside a 1-row, a variable that is <b>0</b> appears complemented.</p>
+      <p><b>POS (Product of Sums)</b> is built from the rows where the output is <b>0</b>. Each
+      such row gives one <b>sum term</b> (variables ORed), and the terms are ANDed together.
+      Inside a 0-row, a variable that is <b>1</b> appears complemented.</p>
+      <p>The two rules are mirror images. The one students get wrong is which value gets the
+      complement — it swaps between the two forms.</p>
+    </div>
+    <div class="np"><span class="tag">दुवै रूप, एउटै तालिका</span>
+      <p><b>SOP (Sum of Products)</b> आउटपुट <b>1</b> भएका पङ्क्तिबाट बन्छ। हरेक त्यस्तो पङ्क्तिले
+      एउटा <b>product पद</b> (चलहरू AND गरिएका) दिन्छ, र पदहरू OR ले जोडिन्छन्। 1 भएको पङ्क्तिभित्र
+      <b>0</b> भएको चल पूरक रूपमा लेखिन्छ।</p>
+      <p><b>POS (Product of Sums)</b> आउटपुट <b>0</b> भएका पङ्क्तिबाट बन्छ। हरेकले एउटा
+      <b>sum पद</b> (चलहरू OR गरिएका) दिन्छ, र पदहरू AND ले जोडिन्छन्। 0 भएको पङ्क्तिभित्र
+      <b>1</b> भएको चल पूरक रूपमा लेखिन्छ।</p>
+      <p>दुवै नियम आमनेसामने ऐना जस्ता हुन्। विद्यार्थीले बिराउने कुरा एउटै हो — कुन मानले पूरक पाउँछ
+      भन्ने, किनभने त्यो दुई रूपबीच साटिन्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:sopPos}}
+    <figcaption>The same four rows produce both forms. SOP reads the 1s, POS reads the 0s.
+    <span class="np-cell">उही चार पङ्क्तिले दुवै रूप दिन्छन्। SOP ले 1 पढ्छ, POS ले 0।</span></figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Writing SOP and POS from a truth table</div>
+    <p><b>Question:</b> a function of three variables is 1 for the input combinations 001, 011
+    and 111. Write its SOP and POS forms.</p>
+    <p><b>SOP — take the 1-rows.</b> In each row, a 0 means the variable is complemented:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">001  →  A'B'C
+011  →  A'BC
+111  →  ABC
+
+F = A'B'C + A'BC + ABC</div>
+    </div>
+    <p><b>POS — take the 0-rows</b> (000, 010, 100, 101, 110). In each, a <b>1</b> means the
+    variable is complemented:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">000  →  (A + B + C)
+010  →  (A + B' + C)
+100  →  (A' + B + C)
+101  →  (A' + B + C')
+110  →  (A' + B' + C)
+
+F = (A+B+C)(A+B'+C)(A'+B+C)(A'+B+C')(A'+B'+C)</div>
+    </div>
+    <p class="wex-note">Notice the SOP is much shorter here, because there are only three 1s and
+    five 0s. Choose whichever form has fewer rows — the answer is the same function either way.
+    <span class="np-cell">यहाँ SOP छोटो छ, किनभने 1 तीन र 0 पाँच छन्। जुन रूपमा कम पङ्क्ति हुन्छ त्यही
+    छान्नुहोस् — दुवैले उही फङ्सन दिन्छन्।</span></p>
+  </div>
+
+  <h3 class="topic" id="t34">3.4 &nbsp;Algebraic simplification</h3>
+
+  {{dia:simplify}}
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Simplify F = A'BC + AB'C + ABC' + ABC</div>
+    <p><b>Step 1 — group terms that share a factor.</b> The last two both contain AB:</p>
+    <div class="out">F = A'BC + AB'C + AB(C' + C)</div>
+    <p><b>Step 2 — apply the complement law</b> C' + C = 1:</p>
+    <div class="out">F = A'BC + AB'C + AB</div>
+    <p><b>Step 3 — take C out of the first two terms:</b></p>
+    <div class="out">F = C(A'B + AB') + AB</div>
+    <p><b>Answer:</b> <code>F = C(A′B + AB′) + AB</code>, and since <code>A′B + AB′</code> is the
+    definition of XOR this can also be written <code>F = C(A ⊕ B) + AB</code>.</p>
+    <p class="wex-note">Marks come from the <b>named steps</b>, not the final line. Write
+    "complement law" or "distributive law" beside each step and you keep the marks even if the
+    last line slips.
+    <span class="np-cell">अंक अन्तिम लाइनले होइन, <b>नाम दिइएका चरण</b>ले दिन्छ। हरेक चरणको छेउमा
+    "complement law" वा "distributive law" लेख्नुहोस्।</span></p>
+  </div>
+
+  <h3 class="topic" id="t35">Karnaugh map — simplifying by picture</h3>
+
+  <div class="callout an">
+    <b>Where this sits in the syllabus.</b> The unit is titled "Boolean algebra and Karnaugh Map"
+    and competency 3 names the K-map, but the numbered content list stops at algebraic
+    simplification. It is taught here because the title and the competency both require it.
+    <span class="np-cell">यो युनिटको नाम नै "Boolean algebra and Karnaugh Map" हो र competency ३
+    ले पनि के–म्याप तोकेको छ, त्यसैले यहाँ सिकाइएको हो।</span>
+  </div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">What a K-map is</span>
+      <p>A <b>Karnaugh map</b> is a truth table redrawn as a grid, arranged so that
+      <b>neighbouring cells differ in exactly one variable</b>. That is why the headings run
+      00, 01, <b>11, 10</b> — not 00, 01, 10, 11.</p>
+      <p>Because neighbours differ by one variable, a group of adjacent 1s lets that one variable
+      cancel. Grouping is therefore the complement law applied by eye instead of on paper.</p>
+      <p><b>The four rules of grouping:</b> only 1s; size 1, 2, 4 or 8; a rectangle (edges wrap
+      round); and always as large as possible.</p>
+    </div>
+    <div class="np"><span class="tag">के–म्याप भनेको के</span>
+      <p><b>Karnaugh map</b> भनेको ट्रुथ टेबललाई ग्रिडमा फेरि कोरेको हो, तर यसरी मिलाइएको कि
+      <b>छिमेकी कक्षमा ठ्याक्कै एउटा चल मात्र फरक होस्</b>। त्यसैले हेडिङ 00, 01, <b>11, 10</b>
+      हुन्छ — 00, 01, 10, 11 होइन।</p>
+      <p>छिमेकीमा एउटै चल फरक हुने भएकाले छेउछाउका 1 को समूहले त्यही चल काट्न दिन्छ। समूह बनाउनु
+      भनेको complement नियमलाई कागजमा नभई आँखाले लागू गर्नु हो।</p>
+      <p><b>समूहका चार नियम:</b> 1 मात्र; आकार 1, 2, 4 वा 8; आयत (किनारा वरिपरि जोडिन्छन्); र
+      सधैं सक्ने जति ठूलो।</p>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="c">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>Which of these is <b>not</b> a legal K-map group?
+      <span class="np-cell">तलमध्ये कुन के–म्याप समूह <b>मान्य होइन</b>?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Two 1s side by side</button>
+      <button class="predict-opt" data-value="b">Four 1s at the four corners</button>
+      <button class="predict-opt" data-value="c">Three 1s in a row</button>
+    </div>
+    <div class="predict-feedback">
+      <p>A group must hold a power of two — 1, 2, 4 or 8 cells. Three is not a power of two,
+      so a group of three is never allowed no matter how it is shaped. The four corners
+      <i>are</i> legal, because the left and right edges wrap round and so do the top and
+      bottom. Try both in the tool below.</p>
+      <span class="np-cell">समूहमा दुईको घात जति कक्ष हुनुपर्छ — 1, 2, 4 वा 8। तीन दुईको घात होइन,
+      त्यसैले तीनको समूह जुनसुकै आकारमा भए पनि मिल्दैन। चार कुनाचाहिँ मिल्छ, किनभने किनाराहरू वरिपरि
+      जोडिन्छन्। तलको उपकरणमा दुवै प्रयास गर्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h4>The Karnaugh map workbench</h4>
+      <p class="sim-goal">What you will learn: which groups are legal, why, and what term each
+      one produces. The tool checks your group against the real rules and tells you which one
+      you broke.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: कुन समूह मान्य हुन्छ, किन, र प्रत्येकले कुन पद
+      दिन्छ। उपकरणले तपाईंको समूहलाई वास्तविक नियमसँग जाँचेर कुन नियम भङ्ग भयो भन्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="kmap" id="km-main" data-vars="3" data-minterms="0,1,2,3,5,7"></div>
+      <div class="sim-why">
+        <span class="h">How to use it</span>
+        <p>The map starts loaded with F = Σm(0,1,2,3,5,7). Leave it as it is, switch to
+        <b>select group</b> mode, and try to cover every 1 with as few groups as possible.</p>
+        <p><b>Try this first:</b> select just two cells of the top row and press Check. The tool
+        accepts the shape but refuses the group, because the whole row of four is available and
+        a bigger group removes more variables. That is rule 4, and it is the rule that separates
+        a correct answer from a simplified one.</p>
+        <span class="np-cell">म्यापमा सुरुदेखि F = Σm(0,1,2,3,5,7) राखिएको छ। <b>select group</b>
+        मोडमा गएर सबै 1 लाई कम्ती समूहले ढाक्ने प्रयास गर्नुहोस्।
+        <b>पहिले यसो गर्नुहोस्:</b> माथिल्लो पङ्क्तिका दुई कक्ष छानेर Check थिच्नुहोस्। उपकरणले आकार
+        त स्वीकार्छ तर समूह अस्वीकार गर्छ, किनभने चारै कक्षको ठूलो समूह उपलब्ध छ। यही नियम ४ हो।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 3</span> Simplify F = Σm(0, 1, 2, 3, 5, 7) with a K-map</div>
+    <p><b>Step 1 — draw a 3-variable map</b> with columns BC in Gray order 00, 01, 11, 10 and
+    rows A = 0, 1. Put a 1 in each of the six cells listed.</p>
+    <p><b>Step 2 — find the largest groups.</b></p>
+    <ul>
+      <li>The entire <b>A = 0 row</b> is four 1s (minterms 0, 1, 3, 2). A is the only variable
+      that stays the same across it, and it stays 0, so this group gives <code>A′</code>.</li>
+      <li>Minterms <b>1, 3, 5, 7</b> form the two middle columns. In all four, C is 1, so this
+      group gives <code>C</code>.</li>
+    </ul>
+    <p><b>Step 3 — OR the terms together.</b></p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">F = A' + C</div>
+    </div>
+    <p class="wex-note">Six minterms became two letters. Doing this algebraically takes about
+    eight lines; the map takes one look. That is what the K-map is for.
+    <span class="np-cell">छ वटा minterm दुई अक्षरमा झर्‍यो। बीजगणितले गर्दा आठ लाइन लाग्छ; म्यापले
+    एक नजरमै। के–म्याप यसैका लागि हो।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Labelling the map 00, 01, 10, 11.</b> That ordering breaks adjacency, and every
+        group taken from it is wrong. It must be <b>00, 01, 11, 10</b>.
+        <span class="np-cell">म्यापलाई 00, 01, 10, 11 लेख्नु। यसले adjacency नै भत्काउँछ र सबै
+        समूह गलत हुन्छन्। 00, 01, 11, 10 नै हुनुपर्छ।</span></li>
+      <li><b>Taking small groups.</b> A pair inside an available block of four is not wrong
+        arithmetic, but it is not simplified, and the mark is for simplifying.
+        <span class="np-cell">सानो समूह लिनु। चारको ब्लक हुँदाहुँदै दुईको समूह लिनु गणितीय रूपमा गलत
+        छैन, तर सरल भएन — अंक सरलीकरणकै हो।</span></li>
+      <li><b>Forgetting that the edges wrap.</b> The leftmost and rightmost columns are
+        neighbours, and so are the top and bottom rows.
+        <span class="np-cell">किनारा वरिपरि जोडिन्छन् भन्ने बिर्सनु। सबैभन्दा बायाँ र दायाँ स्तम्भ
+        छिमेकी हुन्, त्यसै गरी माथिल्लो र तल्लो पङ्क्ति पनि।</span></li>
+      <li><b>Confusing the SOP and POS complement rule.</b> In a 1-row a <b>0</b> is
+        complemented; in a 0-row a <b>1</b> is complemented.
+        <span class="np-cell">SOP र POS को पूरक नियम मिसाउनु। 1 भएको पङ्क्तिमा <b>0</b> पूरक हुन्छ;
+        0 भएको पङ्क्तिमा <b>1</b>।</span></li>
+    </ul>
+  </div>
+
+  <h3 class="topic" id="exam3">Exam focus — what is asked from this unit</h3>
+
+  <div class="exam-connect">
+    <b>10 hours, 6 marks</b> — the smallest weight in the subject, and the questions are
+    predictable: state some laws, simplify one expression, or simplify one function with a K-map.
+    All three are method questions. Show every step with its law named, and draw the map with its
+    Gray-code headings even if you can see the answer.
+    <span class="np-cell">१० घण्टा, ६ अंक — विषयकै सबैभन्दा कम भार, र प्रश्न अनुमान गर्न सकिने खालका:
+    केही नियम भन्नुहोस्, एउटा अभिव्यक्ति सरल बनाउनुहोस्, वा के–म्यापबाट सरल बनाउनुहोस्। तीनै विधिका
+    प्रश्न हुन्। हरेक चरण नियमको नामसहित देखाउनुहोस्।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>State any four laws of Boolean algebra.
+    <span class="np-cell">बुलियन बीजगणितका कुनै चार नियम लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a31">Show the answer</button>
+    <div class="ans" id="a31">
+      <p>Identity: <code>A + 0 = A</code> and <code>A · 1 = A</code><br>
+      Null: <code>A + 1 = 1</code> and <code>A · 0 = 0</code><br>
+      Complement: <code>A + A′ = 1</code> and <code>A · A′ = 0</code><br>
+      Idempotent: <code>A + A = A</code> and <code>A · A = A</code></p>
+      <span class="np-cell">कुनै चार लेखे पुग्छ, तर हरेकको दुवै रूप (OR र AND) लेख्दा उत्तर पूरा
+      देखिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p>Simplify <code>F = AB + A(B + C) + B(B + C)</code>.
+    <span class="np-cell"><code>F = AB + A(B + C) + B(B + C)</code> लाई सरल बनाउनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a32">Show the answer</button>
+    <div class="ans" id="a32">
+      <div class="out">F = AB + AB + AC + BB + BC     expand (distributive law)
+F = AB + AC + B + BC           A+A = A, and B·B = B (idempotent)
+F = AB + AC + B                B + BC = B (absorption)
+F = B + AC                     AB + B = B (absorption)</div>
+      <p><b>Answer: F = B + AC.</b></p>
+      <span class="np-cell">हरेक चरणमा प्रयोग गरेको नियमको नाम लेख्नुहोस् — अंक त्यहीँ छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>Simplify <code>F(A,B,C) = Σm(0, 2, 4, 5, 6)</code> using a Karnaugh map.
+    <span class="np-cell">के–म्याप प्रयोग गरी <code>F(A,B,C) = Σm(0, 2, 4, 5, 6)</code> सरल बनाउनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a33">Show the answer</button>
+    <div class="ans" id="a33">
+      <p>Draw a 2×4 map, columns BC = 00, 01, 11, 10 and rows A = 0, 1. Place 1s at
+      m0, m2, m4, m5, m6.</p>
+      <p><b>Group 1:</b> m0, m2, m4, m6 — the two outer columns (BC = 00 and BC = 10), wrapping
+      round the edge. C is 0 in all four, so this gives <code>C′</code>.</p>
+      <p><b>Group 2:</b> m4, m5 — adjacent in the A = 1 row. A is 1 and B is 0 throughout, so
+      this gives <code>AB′</code>.</p>
+      <div class="out">F = C' + AB'</div>
+      <span class="np-cell">पहिलो समूह किनारा जोडिएको चार कक्षको हो र <code>C′</code> दिन्छ; दोस्रो
+      दुई कक्षको हो र <code>AB′</code> दिन्छ। उत्तर <code>F = C′ + AB′</code>।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick">Boolean + means OR, · means AND, ′ means NOT. 1 + 1 = 1.
+        <span class="np-cell">बुलियनमा + = OR, · = AND, ′ = NOT। 1 + 1 = 1।</span></li>
+      <li class="tick">Every law has an OR form and an AND form — learn one and swap the operator.
+        <span class="np-cell">हरेक नियमको OR र AND रूप हुन्छ — एउटा सिकेर अपरेटर साट्नुहोस्।</span></li>
+      <li class="tick">SOP reads the 1-rows and complements the 0s; POS reads the 0-rows and complements the 1s.
+        <span class="np-cell">SOP ले 1 भएका पङ्क्ति पढ्छ र 0 लाई पूरक बनाउँछ; POS ले 0 भएका पङ्क्ति
+        पढ्छ र 1 लाई पूरक बनाउँछ।</span></li>
+      <li class="tick">Name the law at every simplification step — that is where the marks are.
+        <span class="np-cell">सरलीकरणको हरेक चरणमा नियमको नाम लेख्नुहोस् — अंक त्यहीँ छ।</span></li>
+      <li class="tick">K-map headings are Gray-coded: 00, 01, 11, 10.
+        <span class="np-cell">के–म्यापका हेडिङ Gray code मा: 00, 01, 11, 10।</span></li>
+      <li class="tick">Groups hold only 1s, are a power of two in size, are rectangles, wrap at the edges, and must be as large as possible.
+        <span class="np-cell">समूहमा 1 मात्र, आकार दुईको घात, आयत, किनारा वरिपरि जोडिने, र सक्ने जति ठूलो।</span></li>
+    </ul>
+  </div>
+</section>

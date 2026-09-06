@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>Abstraction and Encapsulation — DS &amp; OOP with C++ | RGSC Study Board</title>
+<title>Abstraction and Encapsulation — DS & OOP with C++ | RGSC Study Board</title>
 <meta name="description" content="Abstraction and Encapsulation explained in simple English with a Nepali explanation beside it.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -20,17 +21,22 @@
       <span class="brand-mark">RG</span>
       <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
     </a>
-    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
     <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
-<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html" class="on">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
 
 <div class="wrap">
-<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DS &amp; OOP with C++</a> <span class="sep">/</span> <span>Abstraction and Encapsulation</span></nav>
-<main id="main">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DS & OOP with C++</a> <span class="sep">/</span> <span>Abstraction and Encapsulation</span></nav>
+<main id="main" data-subject="grade10/oop-cpp">
 <nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Data Structure</a><a href="unit2.html">2 · OOP + C++</a><a href="unit3.html">3 · Class and Object</a><a href="unit4.html" style="color:var(--yellow);border-color:var(--yellow)">4 · Abstraction / Encapsulation</a><a href="unit5.html">5 · Inheritance</a><a href="unit6.html">6 · Polymorphism</a><a href="trace.html">▶ · Trace a Program</a><a href="tables.html">≠ · Tables & Terms</a><a href="quiz.html">? · Quiz</a></nav>
 <section id="u4">
   <div class="sec-head">
@@ -44,7 +50,7 @@
   <div class="rule"></div>
 
   <div class="outcomes">
-    <h2>By the end of this unit you can…</h2>
+    <h2>By the end of this unit you can…</h2><div class="t-en">
     <ol>
       <li>Define abstraction and list its advantages.</li>
       <li>Define encapsulation and list its advantages.</li>
@@ -52,7 +58,7 @@
       <li>Explain clearly how the two differ — the question students most often get wrong.</li>
       <li>Explain what an abstract class and a pure virtual function are.</li>
     </ol>
-    <p class="np-cell" lang="ne"><b lang="ne">यो युनिट सकिँदा:</b> दुवैको परिभाषा, फाइदा, C++ प्रोग्राम, दुईबीचको फरक,
+    </div><p class="np-cell" lang="ne"><b lang="ne">यो युनिट सकिँदा:</b> दुवैको परिभाषा, फाइदा, C++ प्रोग्राम, दुईबीचको फरक,
     र abstract class के हो भन्न सक्नुहुनेछ।</p>
   </div>
 
@@ -85,7 +91,7 @@
   <title id="t-abs">Abstraction hides how something works behind a simple interface</title>
   <defs><marker id="a-abs" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#ffd76e"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
   <text class="f-ttl" x="10" y="18">ABSTRACTION — you see the buttons, not the circuit</text>
 
   <rect class="f-box" x="40" y="60" width="150" height="150" rx="10"/>
@@ -104,7 +110,7 @@
   <text class="f-lbl" x="380" y="94" style="font-size:10px">interface / abstraction layer</text>
   <line class="f-ln" x1="300" y1="106" x2="460" y2="106" stroke-dasharray="4 3"/>
   <text class="f-lbl" x="380" y="132" style="font-size:10px">you cannot see past this</text>
-  <text class="f-lbl" x="380" y="172" style="font-size:26px" fill="#ffd76e">🔒</text>
+  <text class="f-lbl" x="380" y="172" style="font-size:26px;fill:var(--color-primary)">🔒</text>
 
   <rect class="f-box-c" x="500" y="60" width="190" height="150" rx="10"/>
   <text class="f-lbl-y" x="595" y="86">HIDDEN INSIDE</text>
@@ -112,25 +118,25 @@
   <text class="f-lbl" x="595" y="132" style="font-size:10px">spark timing</text>
   <text class="f-lbl" x="595" y="152" style="font-size:10px">temperature control</text>
   <text class="f-lbl" x="595" y="172" style="font-size:10px">400 lines of code</text>
-  <text class="f-lbl" x="595" y="196" style="font-size:10px" fill="#ff8f7a">can change any time</text>
+  <text class="f-lbl" x="595" y="196" style="font-size:10px;fill:var(--color-error)">can change any time</text>
 
   <text class="f-lbl-y" x="360" y="246">Because the buttons never change, the hidden code CAN be rewritten without breaking your program.</text>
 </svg>
-    <figcaption>You get simple, safe buttons. The complicated part stays behind a wall you cannot
+    <figcaption><span class="t-en">You get simple, safe buttons. The complicated part stays behind a wall you cannot
       see past — and because the buttons never change, the hidden part can be rewritten freely.
-      <span class="np-cell" lang="ne">तपाईंलाई सजिलो र सुरक्षित बटन मात्र दिइन्छ। जटिल भाग नदेखिने पर्खाल
+      </span><span class="np-cell" lang="ne">तपाईंलाई सजिलो र सुरक्षित बटन मात्र दिइन्छ। जटिल भाग नदेखिने पर्खाल
       पछाडि रहन्छ — बटन नफेरिने भएकाले भित्रको कोड जहिले पनि बदल्न सकिन्छ।</span>
     </figcaption>
   </figure>
 
-  <div class="callout an">
+  <div class="callout an"><div class="t-en">
     <div class="h">Real-world analogy — driving a car</div>
     <p>To drive, you use the <b>steering wheel, accelerator and brake</b>. You do not need to know
     about fuel injection, spark timing or the gearbox ratios.</p>
     <p>The car <b>abstracts</b> all of that away. If the manufacturer redesigns the entire engine
     next year, <b>you still drive it the same way</b> — because the interface (the controls) did
     not change. That is the real benefit of abstraction in programming too.</p>
-    <span class="np-cell" lang="ne"><b lang="ne">उदाहरण — गाडी चलाउनु।</b> तपाईंलाई स्टेरिङ, एक्सिलेटर र ब्रेक मात्र
+    </div><span class="np-cell" lang="ne"><b lang="ne">उदाहरण — गाडी चलाउनु।</b> तपाईंलाई स्टेरिङ, एक्सिलेटर र ब्रेक मात्र
     चाहिन्छ; इन्जिन भित्र के हुन्छ थाहा पाउनु पर्दैन। भोलि कम्पनीले पूरै इन्जिन फेरे पनि
     <b lang="ne">तपाईंले उसैगरी चलाउनुहुन्छ</b> — किनकि नियन्त्रण (interface) फेरिएन। प्रोग्रामिङमा पनि
     abstraction को साँचो फाइदा यही हो।</span>
@@ -188,10 +194,10 @@ int main() {
       <span class="wex-lbl">Output</span>
       <pre class="out">25</pre>
     </div>
-    <p class="wex-note">The user calls one simple function and gets the answer. <i>How</i> it is
+    <p class="wex-note"><span class="t-en">The user calls one simple function and gets the answer. <i>How</i> it is
     calculated — the private <span class="term">square()</span> helper — is completely hidden.
     That is abstraction.
-    <span class="np-cell" lang="ne">प्रयोगकर्ताले एउटा सजिलो फङ्सन बोलाएर जवाफ पाउँछ। <i lang="ne">कसरी</i> गणना भयो —
+    </span><span class="np-cell" lang="ne">प्रयोगकर्ताले एउटा सजिलो फङ्सन बोलाएर जवाफ पाउँछ। <i lang="ne">कसरी</i> गणना भयो —
     private <span class="term">square()</span> — पूरै लुकेको छ। यही abstraction हो।</span></p>
   </div>
 
@@ -271,10 +277,10 @@ int main() {
   <title id="t-enc">Encapsulation puts private data inside a capsule guarded by public functions</title>
   <defs><marker id="a-enc" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
-    <path d="M0,0 L10,5 L0,10 z" fill="#9ae6a0"/></marker></defs>
+    <path d="M0,0 L10,5 L0,10 z"/ style="fill:var(--color-success)"></marker></defs>
   <text class="f-ttl" x="10" y="20">ENCAPSULATION — private data wrapped in a capsule of public functions</text>
 
-  <rect x="208" y="54" width="392" height="192" rx="96" fill="rgba(154,230,160,.05)" style="stroke:#9ae6a0;stroke-width:1.8"/>
+  <rect x="208" y="54" width="392" height="192" rx="96" fill="rgba(154,230,160,.05)" style="stroke:var(--color-success);stroke-width:1.8"/>
   <text class="f-lbl-y" x="404" y="84" style="font-size:13px">class Account</text>
 
   <rect class="f-box-c" x="322" y="98" width="164" height="60" rx="10"/>
@@ -288,24 +294,24 @@ int main() {
   <text class="f-lbl" x="404" y="234" style="font-size:10.5px;letter-spacing:.6px">PUBLIC — the only way in or out</text>
 
   <text class="f-lbl" x="16" y="72" text-anchor="start" style="font-size:10px;letter-spacing:1.2px">CODE OUTSIDE THE CLASS</text>
-  <path d="M16,80 L120,80" style="stroke:#4c7368;stroke-width:1;stroke-dasharray:4 4;fill:none"/>
+  <path d="M16,80 L120,80" style="stroke:var(--color-border-strong);stroke-width:1;stroke-dasharray:4 4;fill:none"/>
 
-  <text class="f-lbl" x="16" y="118" text-anchor="start" fill="#ff8f7a" style="font-weight:700">BLOCKED</text>
-  <text class="f-code" x="16" y="135" style="font-size:10.5px" fill="#ff8f7a">a.balance = -500</text>
-  <path class="f-arr" style="stroke:#ff8f7a" d="M134,124 L196,124"/>
-  <circle cx="208" cy="124" r="9.5" fill="rgba(255,143,122,.18)" style="stroke:#ff8f7a;stroke-width:1.6"/>
-  <text x="208" y="128.5" text-anchor="middle" fill="#ff8f7a" style="font-size:11px;font-weight:700">✕</text>
+  <text class="f-lbl" x="16" y="118" text-anchor="start" style="font-weight:700;fill:var(--color-error)">BLOCKED</text>
+  <text class="f-code" x="16" y="135" style="font-size:10.5px;fill:var(--color-error)">a.balance = -500</text>
+  <path class="f-arr" style="stroke:var(--color-error)" d="M134,124 L196,124"/>
+  <circle cx="208" cy="124" r="9.5" fill="rgba(255,143,122,.18)" style="stroke:var(--color-error);stroke-width:1.6"/>
+  <text x="208" y="128.5" text-anchor="middle" style="font-size:11px;font-weight:700;fill:var(--color-error)">✕</text>
 
-  <text class="f-lbl" x="16" y="192" text-anchor="start" fill="#9ae6a0" style="font-weight:700">ALLOWED</text>
-  <text class="f-code" x="16" y="209" style="font-size:10.5px" fill="#9ae6a0">a.setBalance(5000)</text>
-  <path class="f-arr" marker-end="url(#a-enc)" style="stroke:#9ae6a0" d="M134,198 L246,198"/>
+  <text class="f-lbl" x="16" y="192" text-anchor="start" style="font-weight:700;fill:var(--color-success)">ALLOWED</text>
+  <text class="f-code" x="16" y="209" style="font-size:10.5px;fill:var(--color-success)">a.setBalance(5000)</text>
+  <path class="f-arr" marker-end="url(#a-enc)" style="stroke:var(--color-success)" d="M134,198 L246,198"/>
 
   <text class="f-lbl-y" x="320" y="272">The setter can REFUSE a bad value — a negative balance never gets in.</text>
   <text class="f-lbl" x="320" y="290">That is why data hiding protects the program.</text>
 </svg>
-    <figcaption>The private data sits in a capsule. The only way in is through a public function
+    <figcaption><span class="t-en">The private data sits in a capsule. The only way in is through a public function
       that can refuse a bad value.
-      <span class="np-cell" lang="ne">private डाटा क्याप्सुल भित्र हुन्छ। भित्र पस्ने एक मात्र बाटो public
+      </span><span class="np-cell" lang="ne">private डाटा क्याप्सुल भित्र हुन्छ। भित्र पस्ने एक मात्र बाटो public
       फङ्सन हो, जसले गलत मान अस्वीकार गर्न सक्छ।</span>
     </figcaption>
   </figure>
@@ -345,10 +351,10 @@ int main() {
       <pre class="out">Invalid amount rejected
 Balance = 5000</pre>
     </div>
-    <p class="wex-note">This is the whole point of encapsulation. If
+    <p class="wex-note"><span class="t-en">This is the whole point of encapsulation. If
     <span class="term">balance</span> were public, <span class="term">a.balance = -500;</span> would
     have silently corrupted the account. The setter is a <b>guard</b> at the only door.
-    <span class="np-cell" lang="ne">encapsulation को मुख्य उद्देश्य यही हो। <span class="term">balance</span>
+    </span><span class="np-cell" lang="ne">encapsulation को मुख्य उद्देश्य यही हो। <span class="term">balance</span>
     public भएको भए <span class="term">a.balance = -500;</span> ले चुपचाप खाता बिगार्थ्यो। setter
     एउटै ढोकामा उभिएको <b lang="ne">पहरेदार</b> हो।</span></p>
   </div>
@@ -379,14 +385,14 @@ Balance = 5000</pre>
   <!-- ============ COMPARISON ============ -->
   <h2 class="topic" id="t4c">The difference students always get wrong</h2>
 
-  <div class="callout">
+  <div class="callout"><div class="t-en">
     <div class="h">Say it in one line each</div>
     <p><b>Abstraction hides the complexity — the "how".</b><br>
     <b>Encapsulation hides the data — the "what".</b></p>
     <p>Abstraction is a <b>design</b> idea: decide what to show. Encapsulation is an
     <b>implementation</b> idea: actually protect the data using
     <span class="term">private</span> plus getters and setters.</p>
-    <span class="np-cell" lang="ne"><b>Abstraction</b> ले जटिलता ("कसरी" गर्ने) लुकाउँछ।
+    </div><span class="np-cell" lang="ne"><b>Abstraction</b> ले जटिलता ("कसरी" गर्ने) लुकाउँछ।
     <b>Encapsulation</b> ले डाटा ("के" छ) लुकाउँछ। एउटा <b lang="ne">डिजाइन</b> को कुरा, अर्को
     <b lang="ne">कार्यान्वयन/सुरक्षा</b> को कुरा।</span>
   </div>
@@ -404,14 +410,14 @@ Balance = 5000</pre>
     </table>
   </div>
 
-  <div class="mistake">
+  <div class="mistake"><div class="t-en">
     <div class="h">Common mistake</div>
     Writing "both hide something, so they are the same". They are <b>not</b>. In the
     <span class="term">Account</span> example above, <b>encapsulation</b> is
     <span class="term">balance</span> being private. <b>Abstraction</b> is the user being given only
     <span class="term">setBalance()</span> and <span class="term">getBalance()</span> and never
     needing to know what happens inside them.
-    <span class="np-cell" lang="ne">"दुवैले केही लुकाउँछन्, त्यसैले उस्तै हुन्" भन्नु गलत।
+    </div><span class="np-cell" lang="ne">"दुवैले केही लुकाउँछन्, त्यसैले उस्तै हुन्" भन्नु गलत।
     माथिको <span class="term">Account</span> उदाहरणमा — <span class="term">balance</span> private
     हुनु <b>encapsulation</b> हो; प्रयोगकर्तालाई <span class="term">setBalance()</span> र
     <span class="term">getBalance()</span> मात्र दिनु र भित्र के हुन्छ थाहा नदिनु
@@ -422,7 +428,7 @@ Balance = 5000</pre>
   <h2 class="topic" id="exam4">Exam focus — questions asked from this unit</h2>
 
   <div class="exam-connect">
-    <p class="lead-in" lang="ne">SEE exam connection · परीक्षा जोड</p>
+    <p class="lead-in"><span class="t-en">SEE exam connection</span><span class="t-ne"><span class="t-en"> · </span>परीक्षा जोड</span></p>
     <p>Abstraction versus encapsulation is the comparison examiners return to. Learn the one-line difference exactly.</p>
     <span class="np-cell" lang="ne">Abstraction र Encapsulation को भिन्नता परीक्षकले पटक–पटक सोध्छन्। एक वाक्यको फरक ठ्याक्कै सिक्नुहोस्।</span>
   </div>
@@ -430,20 +436,20 @@ Balance = 5000</pre>
   <div class="examq">
     <div class="q-h">Q1 · Define abstraction. Write any three advantages. <span class="mk">[4 marks]</span></div>
     <button class="btn-ans" data-answer="d1">Show the answer</button>
-    <div class="ans" id="d1">
+    <div class="ans" id="d1"><div class="t-en">
       <p>Abstraction is the process of showing only the essential features of an object to the user
       while hiding the internal implementation details of how the work is done.</p>
       <p>Advantages: it reduces complexity for the user; it increases security because internal
       details cannot be misused; and the internal code can be changed later without affecting the
       programs that use the class.</p>
-      <span class="np-cell" lang="ne">परिभाषा + कुनै तीन फाइदा। गाडीको उदाहरण दिए झन् राम्रो।</span>
+      </div><span class="np-cell" lang="ne">परिभाषा + कुनै तीन फाइदा। गाडीको उदाहरण दिए झन् राम्रो।</span>
     </div>
   </div>
 
   <div class="examq">
     <div class="q-h">Q2 · What is encapsulation? Write a C++ program to demonstrate it. <span class="mk">[5 marks]</span></div>
     <button class="btn-ans" data-answer="d2">Show the answer</button>
-    <div class="ans" id="d2">
+    <div class="ans" id="d2"><div class="t-en">
       <p>Encapsulation is the process of binding data members and member functions together into a
       single unit called a class, and hiding the data from direct outside access by declaring it
       private. It is also known as data hiding.</p>
@@ -451,37 +457,37 @@ Balance = 5000</pre>
       a private <span class="term">balance</span>, a public
       <span class="term">setBalance()</span> and a public <span class="term">getBalance()</span>,
       with <span class="term">main()</span> creating an object and using the two functions.</p>
-      <span class="np-cell" lang="ne">परिभाषा + माथिको Example 3 कै प्रोग्राम लेख्नुहोस्।</span>
+      </div><span class="np-cell" lang="ne">परिभाषा + माथिको Example 3 कै प्रोग्राम लेख्नुहोस्।</span>
     </div>
   </div>
 
   <div class="examq">
     <div class="q-h">Q3 · Differentiate between abstraction and encapsulation. <span class="mk">[4 marks]</span></div>
     <button class="btn-ans" data-answer="d3">Show the answer</button>
-    <div class="ans" id="d3">
+    <div class="ans" id="d3"><div class="t-en">
       <p>Abstraction hides the complexity or implementation — the "how" — and is a design-level
       concept achieved through abstract classes and access specifiers; it focuses on what an object
       does. Encapsulation hides the data — the "what" — and is an implementation-level concept
       achieved by making data private and providing public getters and setters; it focuses on
       protecting the data.</p>
-      <span class="np-cell" lang="ne">तालिकाको रूपमा चार हरफ लेख्नुहोस्: के लुकाउँछ, कुन तह, कसरी हासिल हुन्छ, केमा ध्यान।</span>
+      </div><span class="np-cell" lang="ne">तालिकाको रूपमा चार हरफ लेख्नुहोस्: के लुकाउँछ, कुन तह, कसरी हासिल हुन्छ, केमा ध्यान।</span>
     </div>
   </div>
 
   <div class="examq">
     <div class="q-h">Q4 · What is an abstract class? <span class="mk">[2 marks]</span></div>
     <button class="btn-ans" data-answer="d4">Show the answer</button>
-    <div class="ans" id="d4">
+    <div class="ans" id="d4"><div class="t-en">
       <p>An abstract class is a class that contains at least one pure virtual function — a virtual
       function with no body, declared using <span class="term">= 0</span>. An object of an abstract
       class cannot be created; it exists only to be inherited, and every derived class must provide
       a definition for the pure virtual function.</p>
-      <span class="np-cell" lang="ne">pure virtual function भएको क्लास; यसको अब्जेक्ट बन्दैन।</span>
+      </div><span class="np-cell" lang="ne">pure virtual function भएको क्लास; यसको अब्जेक्ट बन्दैन।</span>
     </div>
   </div>
 
   <div class="keypoints">
-    <h2 lang="ne">Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा</h2>
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
     <ul>
       <li><b>Abstraction</b> = show essential features, hide implementation (<b>the "how"</b>).</li>
       <li><b>Encapsulation</b> = bind data + functions together and hide the data (<b>the "what"</b>).</li>
@@ -496,13 +502,15 @@ Balance = 5000</pre>
 
 </main>
 <div class="pager"><a href="unit3.html"><span class="lab">◂ Previous</span><span class="ttl">Class and Object</span></a><a class="nx" href="unit5.html"><span class="lab">Next ▸</span><span class="ttl">Inheritance</span></a></div>
-<footer>
+<footer><span class="t-en">
   <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
   Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
   Works fully offline. No login, no server, no internet needed (web fonts are optional).
-  <span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
 </footer>
 </div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
 <script src="../../assets/js/nav.js"></script>
 <script src="../../assets/js/services/motion.js"></script>
 <script src="../../assets/js/code.js"></script>

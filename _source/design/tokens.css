@@ -19,11 +19,12 @@
   --board-2:#172b25;
   --panel:#19302a;
   --line:#2c4a41;
+  --line-strong:#5d7b72;   /* WCAG 1.4.11: 3.03:1 on --panel — for CONTROL borders only */
   --line-soft:#24403a;
 
   --chalk-white:#eef5f2;
   --chalk-dim:#a1b8b1;
-  --chalk-faint:#7e948e;
+  --chalk-faint:#819791;   /* WCAG 1.4.3: 4.52:1 on --panel. Was #7e948e = 4.35:1 */
 
   --yellow:#ffd76e;
   --blue:#7fd1ff;
@@ -47,6 +48,10 @@
   --color-surface-elevated:  var(--board-2);
   --color-border:            var(--line);
   --color-border-soft:       var(--line-soft);
+  /* Non-text contrast (WCAG 1.4.11) applies to the boundary of a control,
+     not to a decorative rule. --color-border stays quiet for dividers;
+     anything a student can click, type into or focus uses this instead. */
+  --color-border-strong:     var(--line-strong);
 
   --color-text:              var(--chalk-white);
   --color-text-muted:        var(--chalk-dim);

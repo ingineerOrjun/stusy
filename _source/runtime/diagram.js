@@ -122,7 +122,10 @@
     var s = n > 0 ? this.cfg.steps[n - 1] : null;
     if (this.capEn) this.capEn.textContent = s ? s.en : (this.cfg.intro ? this.cfg.intro.en : '');
     if (this.capNe) this.capNe.textContent = s ? s.ne : (this.cfg.intro ? this.cfg.intro.ne : '');
-    if (this.progress) this.progress.textContent = 'step ' + n + ' / ' + this.cfg.steps.length;
+    if (this.progress){
+      var word = (typeof UIStrings !== 'undefined') ? UIStrings.get('stepOf') : 'step';
+      this.progress.textContent = word + ' ' + n + ' / ' + this.cfg.steps.length;
+    }
 
     var prev = this.root.querySelector('[data-dia-act="prev"]');
     var next = this.root.querySelector('[data-dia-act="next"]');
@@ -213,6 +216,16 @@
   ready(function(){
     mount();
     document.addEventListener('click', onClick);
+    /* The step counter composes a word with numbers ("step 3 / 5"), so it
+       cannot be a plain data-ui key. Re-apply the CURRENT step on a
+       language change — state-driven, so the student stays where they
+       were and only the wording changes. */
+    document.addEventListener('languagechange', function(){
+      for (var name in instances){
+        if (!Object.prototype.hasOwnProperty.call(instances, name)) continue;
+        instances[name].forEach(function(d){ d.applyTo(d.step); });
+      }
+    });
   });
 
   global.DiagramRuntime = {

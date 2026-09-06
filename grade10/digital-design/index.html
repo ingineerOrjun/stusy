@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Digital Design & Microprocessor — Grade 10 | RGSC Study Board</title>
-<meta name="description" content="Full CDC syllabus outline for Digital Design & Microprocessor, Grade 10.">
+<meta name="description" content="Bilingual Class 10 notes, interactive simulations and a quiz for Digital Design & Microprocessor.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -20,86 +21,161 @@
       <span class="brand-mark">RG</span>
       <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
     </a>
-    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
     <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
-<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html" class="on">Digital Design<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html" class="on">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
 
 <div class="wrap">
 <nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <span>Digital Design</span></nav>
-<main id="main">
+<main id="main" data-subject="grade10/digital-design">
 
-<div class="pagehead">
-  <div class="eyebrow">Grade 10 · Subject outline</div>
-  <h1>Digital Design & Microprocessor</h1>
-  <p class="np-line" lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</p>
-  <div class="meta"><span class="status out">syllabus outline</span>
-    <span class="pill y">5 units</span>
-    <span class="pill b">64 theory hrs</span>
-    <span class="pill">4 credit hrs · 128 working hrs</span></div>
+<div class="hero">
+  <div class="herogrid">
+    <div>
+      <div class="eyebrow">Grade 10 · Subject 4 · CDC Nepal 2078</div>
+      <h1>Digital Design <span style="color:var(--yellow)">&amp; Microprocessor</span></h1><div class="t-en">
+      <p class="lead">Everything a computer does is 0 and 1 moving through gates. This subject
+      shows you that machine from the inside — how numbers are written in binary, how gates
+      decide, how circuits add, and how the 8085 microprocessor runs an instruction.</p>
+      </div><p class="lead-np" lang="ne">कम्प्युटरले गर्ने सबै काम ० र १ हुँदै गेटबाट बग्ने कुरा हो। यो विषयले त्यही
+      मेसिन भित्रबाट देखाउँछ — संख्या binary मा कसरी लेखिन्छ, गेटले कसरी निर्णय गर्छ, सर्किटले कसरी
+      जोड्छ, र 8085 माइक्रोप्रोसेसरले एउटा निर्देशन कसरी चलाउँछ।</p>
+      <div class="meta">
+        <span class="pill y">5 units · 64 hrs</span>
+        <span class="pill b">50 marks</span>
+        <span class="pill c">Interactive gates &amp; circuits</span>
+        <span class="pill">Bilingual</span>
+      </div>
+    </div>
+    <div class="vizbox">
+      
+<svg viewBox="0 0 700 366" role="img" aria-labelledby="t-gsym">
+  <title id="t-gsym">The six logic gate symbols with their Boolean expressions</title>
+  <text class="f-ttl" x="10" y="20">LOGIC GATE SYMBOLS — the shapes and expressions to memorise</text>
+  
+  <g>
+    <rect class="f-box-d" x="16" y="44" width="212" height="140" rx="10"/>
+    <text class="f-lbl-y" x="122" y="66" style="font-size:12.5px">NOT (Inverter)</text>
+    <path class="f-wire" d="M46,108 L82,108"/><text class="f-pin" x="38" y="112.5" text-anchor="end">A</text>
+    <g transform="translate(78,78)"><path class="f-gate" d="M0,0 L60,30 L0,60 Z"/><circle class="f-gate" cx="66.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M151,108 L198,108"/>
+    <text class="f-pin" x="206" y="112.5">Y</text>
+    <text class="f-code" x="122" y="172" text-anchor="middle" style="font-size:12px">Y = A'</text>
+  </g>
+  <g>
+    <rect class="f-box-d" x="246" y="44" width="212" height="140" rx="10"/>
+    <text class="f-lbl-y" x="352" y="66" style="font-size:12.5px">AND</text>
+    <path class="f-wire" d="M276,93 L312,93"/><text class="f-pin" x="268" y="97.5" text-anchor="end">A</text><path class="f-wire" d="M276,123 L312,123"/><text class="f-pin" x="268" y="127.5" text-anchor="end">B</text>
+    <g transform="translate(308,78)"><path class="f-gate" d="M0,0 L40,0 A30,30 0 0 1 40,60 L0,60 Z"/></g>
+    <path class="f-wire" d="M378,108 L428,108"/>
+    <text class="f-pin" x="436" y="112.5">Y</text>
+    <text class="f-code" x="352" y="172" text-anchor="middle" style="font-size:12px">Y = A · B</text>
+  </g>
+  <g>
+    <rect class="f-box-d" x="476" y="44" width="212" height="140" rx="10"/>
+    <text class="f-lbl-y" x="582" y="66" style="font-size:12.5px">OR</text>
+    <path class="f-wire" d="M506,93 L550,93"/><text class="f-pin" x="498" y="97.5" text-anchor="end">A</text><path class="f-wire" d="M506,123 L550,123"/><text class="f-pin" x="498" y="127.5" text-anchor="end">B</text>
+    <g transform="translate(538,78)"><path class="f-gate" d="M0,0 Q25,30 0,60 Q50,60 75,30 Q50,0 0,0 Z"/></g>
+    <path class="f-wire" d="M613,108 L658,108"/>
+    <text class="f-pin" x="666" y="112.5">Y</text>
+    <text class="f-code" x="582" y="172" text-anchor="middle" style="font-size:12px">Y = A + B</text>
+  </g>
+  <g>
+    <rect class="f-box-d" x="16" y="200" width="212" height="140" rx="10"/>
+    <text class="f-lbl-y" x="122" y="222" style="font-size:12.5px">NAND</text>
+    <path class="f-wire" d="M46,249 L82,249"/><text class="f-pin" x="38" y="253.5" text-anchor="end">A</text><path class="f-wire" d="M46,279 L82,279"/><text class="f-pin" x="38" y="283.5" text-anchor="end">B</text>
+    <g transform="translate(78,234)"><path class="f-gate" d="M0,0 L40,0 A30,30 0 0 1 40,60 L0,60 Z"/><circle class="f-gate" cx="76.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M161,264 L198,264"/>
+    <text class="f-pin" x="206" y="268.5">Y</text>
+    <text class="f-code" x="122" y="328" text-anchor="middle" style="font-size:12px">Y = (A · B)'</text>
+  </g>
+  <g>
+    <rect class="f-box-d" x="246" y="200" width="212" height="140" rx="10"/>
+    <text class="f-lbl-y" x="352" y="222" style="font-size:12.5px">NOR</text>
+    <path class="f-wire" d="M276,249 L320,249"/><text class="f-pin" x="268" y="253.5" text-anchor="end">A</text><path class="f-wire" d="M276,279 L320,279"/><text class="f-pin" x="268" y="283.5" text-anchor="end">B</text>
+    <g transform="translate(308,234)"><path class="f-gate" d="M0,0 Q25,30 0,60 Q50,60 75,30 Q50,0 0,0 Z"/><circle class="f-gate" cx="81.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M396,264 L428,264"/>
+    <text class="f-pin" x="436" y="268.5">Y</text>
+    <text class="f-code" x="352" y="328" text-anchor="middle" style="font-size:12px">Y = (A + B)'</text>
+  </g>
+  <g>
+    <rect class="f-box-d" x="476" y="200" width="212" height="140" rx="10"/>
+    <text class="f-lbl-y" x="582" y="222" style="font-size:12.5px">XOR</text>
+    <path class="f-wire" d="M506,249 L558,249"/><text class="f-pin" x="498" y="253.5" text-anchor="end">A</text><path class="f-wire" d="M506,279 L558,279"/><text class="f-pin" x="498" y="283.5" text-anchor="end">B</text>
+    <g transform="translate(538,234)"><path class="f-gate" d="M8,0 Q33,30 8,60 Q58,60 83,30 Q58,0 8,0 Z"/><path class="f-gate f-gate-open" d="M0,0 Q25,30 0,60"/></g>
+    <path class="f-wire" d="M621,264 L658,264"/>
+    <text class="f-pin" x="666" y="268.5">Y</text>
+    <text class="f-code" x="582" y="328" text-anchor="middle" style="font-size:12px">Y = A ⊕ B</text>
+  </g>
+</svg>
+    </div>
+  </div>
 </div>
 
 <div class="pair">
-  <div class="en"><span class="tag">What this page is</span>
-    <p>This is the <b>complete official syllabus</b> for this subject, taken straight from the
-    CDC Computer Engineering curriculum (2078). Use it as your revision checklist — everything the
-    written exam can ask comes from this list.</p>
-    <p>Full bilingual notes, simulators and a quiz for this subject are being written next, in the
-    same style as <a href="../../grade10/oop-cpp/index.html">Data Structure &amp; OOP using C++</a>.</p>
+  <div class="en"><span class="tag">How to use this subject</span>
+    <p>This is not a page of notes to read once. Every unit has something you can
+    <b>change and watch</b> — toggle a gate's inputs, group cells on a K-map, step an instruction
+    through the 8085. Use those first, then read the explanation. The explanation makes far more
+    sense after you have seen the thing move.</p>
+    <p>Each unit ends with <b>exam-style questions and a model answer</b>, and every question
+    tells you its mark value so you know how much to write.</p>
   </div>
-  <div class="np" lang="ne"><span class="tag" lang="ne">यो पेज के हो</span>
-    <p lang="ne">यो CDC कम्प्युटर इन्जिनियरिङ पाठ्यक्रम (२०७८) बाट सिधै लिइएको यस विषयको
-    <b lang="ne">पूरा आधिकारिक सिलेबस</b> हो। यसैलाई दोहोर्‍याउने चेकलिस्ट बनाउनुहोस् — लिखित परीक्षामा
-    सोधिने सबै कुरा यही सूचीबाट आउँछ।</p>
-    <p lang="ne">यस विषयका पूरा द्विभाषिक नोट्स, सिमुलेटर र क्विज क्रमशः लेखिँदैछन् —
-    <a href="../../grade10/oop-cpp/index.html" lang="ne">डाटा स्ट्रक्चर र OOP (C++)</a> कै शैलीमा।</p>
+  <div class="np" lang="ne"><span class="tag" lang="ne">यो विषय कसरी प्रयोग गर्ने</span>
+    <p lang="ne">यो एक पटक पढेर छाड्ने नोट होइन। हरेक युनिटमा <b lang="ne">आफैं बदलेर हेर्न मिल्ने</b> कुरा छ — गेटको
+    इनपुट बदल्ने, K-map मा सेल समूह बनाउने, 8085 मा निर्देशन एक–एक पाइला चलाउने। पहिले तिनै
+    चलाउनुहोस्, अनि व्याख्या पढ्नुहोस्। चलेको देखेपछि व्याख्या धेरै सजिलो लाग्छ।</p>
+    <p lang="ne">हरेक युनिटको अन्त्यमा <b lang="ne">परीक्षा शैलीका प्रश्न र नमुना उत्तर</b> छन्, र हरेक प्रश्नमा कति अंकको
+    हो लेखिएको छ — कति लेख्ने भन्ने थाहा होस् भनेर।</p>
   </div>
 </div>
 
-<section style="margin-top:26px">
+
+<section style="margin-top:34px">
   <div class="sec-head"><div class="sec-num">≡</div>
-    <div><h2>Units and contents</h2><p class="sec-sub" lang="ne">युनिट र विषयवस्तु</p></div>
-    <span class="marks">64 hrs total</span></div>
+    <div><h2>Units and sections</h2><p class="sec-sub" lang="ne">युनिट र सेक्सनहरू</p></div>
+    <span class="marks">5 units · 64 hrs · 50 marks</span></div>
   <div class="rule"></div>
-  <div class="outline">
-      <div class="oh"><div class="badge">1</div>
-        <div><h3>Number System and Binary Arithmetic Operations</h3><span class="np-cell" lang="ne">संख्या प्रणाली र बाइनरी गणित</span></div>
-        <span class="marks" style="margin-left:auto">12 hrs</span></div>
-      <ul><li>Numbering concept</li><li>Types of numbering system — Decimal, Binary, Octal, Hexadecimal</li><li>Decimal integer to binary and binary to decimal conversion</li><li>Decimal fractions to binary conversion</li><li>Octal to decimal and decimal to octal conversion</li><li>1's complement</li><li>2's complement</li><li>Binary addition</li><li>Binary subtraction</li><li>Binary multiplication</li></ul>
-    </div><div class="outline">
-      <div class="oh"><div class="badge">2</div>
-        <div><h3>Concept of Logic Gates</h3><span class="np-cell" lang="ne">लजिक गेटको अवधारणा</span></div>
-        <span class="marks" style="margin-left:auto">14 hrs</span></div>
-      <ul><li>Notations</li><li>Concept of gate and truth table</li><li>Inverter, OR gate, AND gate, NOR gate, NAND gate</li><li>Universal gates</li><li>De-Morgan's theorem</li></ul>
-    </div><div class="outline">
-      <div class="oh"><div class="badge">3</div>
-        <div><h3>Boolean Algebra and Karnaugh Map</h3><span class="np-cell" lang="ne">बुलियन बीजगणित र के–म्याप</span></div>
-        <span class="marks" style="margin-left:auto">10 hrs</span></div>
-      <ul><li>Boolean relationships and simplification</li><li>Sum of Products (SOP)</li><li>Product of Sums (POS)</li><li>Algebraic simplification</li></ul>
-    </div><div class="outline">
-      <div class="oh"><div class="badge">4</div>
-        <div><h3>Binary Arithmetic and Combinational Logic</h3><span class="np-cell" lang="ne">बाइनरी गणित र कम्बिनेसनल लजिक</span></div>
-        <span class="marks" style="margin-left:auto">13 hrs</span></div>
-      <ul><li>Half adder</li><li>Binary adder</li><li>Half subtractor</li><li>Full Adder</li><li>Full Subtractor</li><li>Code converters</li><li>Decoder</li><li>Encoder</li><li>Multiplexer</li><li>Demultiplexer</li></ul>
-    </div><div class="outline">
-      <div class="oh"><div class="badge">5</div>
-        <div><h3>Introduction to Microprocessor and its Components</h3><span class="np-cell" lang="ne">माइक्रोप्रोसेसर र यसका भाग</span></div>
-        <span class="marks" style="margin-left:auto">15 hrs</span></div>
-      <ul><li>Definition of Microprocessor and its applications</li><li>Types of Microprocessor</li><li>Input / Output</li><li>Memory</li><li>Processing unit</li><li>Arithmetic and logical unit, control unit, Registers</li><li>8085 bus structure and internal architecture</li><li>Pin configuration of 8085</li><li>Description of each block — Registers, flags, data and address bus, timing and control with interrupts</li><li>Introduction to Addressing modes</li></ul>
-    </div>
+  <div class="ucards"><a class="ucard" href="unit1.html">
+      <div class="top"><div class="badge">1</div>
+        <h3><span class="t-en">Number System and Binary Arithmetic</span><span class="np-cell" lang="ne">संख्या प्रणाली र बाइनरी गणित</span></h3></div>
+      <span class="hrs">12 hrs · 7 marks</span></a><a class="ucard" href="unit2.html">
+      <div class="top"><div class="badge">2</div>
+        <h3><span class="t-en">Concept of Logic Gates</span><span class="np-cell" lang="ne">लजिक गेटको अवधारणा</span></h3></div>
+      <span class="hrs">14 hrs · 15 marks</span></a><a class="ucard" href="unit3.html">
+      <div class="top"><div class="badge">3</div>
+        <h3><span class="t-en">Boolean Algebra and Karnaugh Map</span><span class="np-cell" lang="ne">बुलियन बीजगणित र के–म्याप</span></h3></div>
+      <span class="hrs">10 hrs · 6 marks</span></a><a class="ucard" href="unit4.html">
+      <div class="top"><div class="badge">4</div>
+        <h3><span class="t-en">Binary Arithmetic and Combinational Logic</span><span class="np-cell" lang="ne">बाइनरी गणित र कम्बिनेसनल लजिक</span></h3></div>
+      <span class="hrs">13 hrs · 7 marks</span></a><a class="ucard" href="unit5.html">
+      <div class="top"><div class="badge">5</div>
+        <h3><span class="t-en">Introduction to Microprocessor</span><span class="np-cell" lang="ne">माइक्रोप्रोसेसर र यसका भाग</span></h3></div>
+      <span class="hrs">15 hrs · 15 marks</span></a><a class="ucard" href="quiz.html">
+      <div class="top"><div class="badge">?</div>
+        <h3><span class="t-en">Self-Check Quiz</span><span class="np-cell" lang="ne">आफैं जाँच्ने क्विज</span></h3></div>
+      <span class="hrs">practice &amp; revision</span></a></div>
 </section>
 </main>
 
-<footer>
+<footer><span class="t-en">
   <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
   Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
   Works fully offline. No login, no server, no internet needed (web fonts are optional).
-  <span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
 </footer>
 </div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
 <script src="../../assets/js/nav.js"></script>
 
 </body>

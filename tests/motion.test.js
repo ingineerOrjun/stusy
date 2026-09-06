@@ -140,9 +140,11 @@ const animated = Object.keys(diagrams).filter(n => typeof diagrams[n] !== 'strin
 const staticOnes = Object.keys(diagrams).filter(n => typeof diagrams[n] === 'string');
 
 test('the library is mostly static, by deliberate decision', () => {
-  assert.strictEqual(Object.keys(diagrams).length, 22, 'diagram count changed');
-  assert.ok(staticOnes.length >= 18,
-    'most diagrams should stay static — taxonomies and comparisons revise better as stills');
+  const total = Object.keys(diagrams).length;
+  assert.ok(total >= 22, 'the library should only grow, found ' + total);
+  assert.ok(staticOnes.length / total >= 0.75,
+    'most diagrams should stay static — taxonomies and comparisons revise better as stills; ' +
+    'only ' + staticOnes.length + ' of ' + total + ' are static');
   assert.ok(animated.length >= 2, 'expected the high-value diagrams to be animated');
 });
 
@@ -310,4 +312,46 @@ test('diagram colours reference tokens, not raw hex', () => {
     assert.ok(rule.includes('var(--color-'),
       cls + ' should use a semantic colour token, found: ' + rule.slice(0, 60));
   }
+});
+
+/* ---------------------------------------------- diagram colour tokens */
+
+test('no diagram carries a raw hex colour', () => {
+  /* Phase 3.1 moved 129 colour references onto the token system. A raw
+     hex reintroduced here would sit outside the design system and could
+     not follow a palette change. */
+  const offenders = [];
+  for (const [name, d] of Object.entries(diagrams)){
+    const svg = typeof d === 'string' ? d : d.svg;
+    const hex = svg.match(/#[0-9a-fA-F]{6}\b/g) || [];
+    if (hex.length) offenders.push(name + ': ' + [...new Set(hex)].join(', '));
+  }
+  assert.deepStrictEqual(offenders, []);
+});
+
+test('a diagram colour is declared where it can actually win', () => {
+  /* THE BUG THIS GUARDS.
+
+     `fill="var(--color-error)"` is a presentation attribute, specificity
+     0. `.f-lbl { fill: ... }` is 0,1,0 and beats it. Measured before the
+     fix: 54 colour cues across the library never rendered — labels
+     meaning "blocked" and "allowed" both showed as neutral grey, and
+     colour is carrying the meaning in those figures.
+
+     Third instance of this trap in the project, after font-size and
+     text-anchor. Declaring it in style= is what makes it win. */
+  const offenders = [];
+  for (const [name, d] of Object.entries(diagrams)){
+    const svg = typeof d === 'string' ? d : d.svg;
+    for (const m of svg.matchAll(/<(text|circle|rect|path|line|ellipse|polygon)\b([^>]*)>/g)){
+      const attrs = m[2];
+      /* Only elements that also carry a class can be overridden. */
+      if (!/class="/.test(attrs)) continue;
+      const bad = attrs.match(/\s(fill|stroke)="(?!none)/);
+      if (bad) offenders.push(name + ': <' + m[1] + ' class=' +
+        (attrs.match(/class="([^"]*)"/) || [, '?'])[1] + '> sets ' + bad[1] + ' as an attribute');
+    }
+  }
+  assert.deepStrictEqual(offenders, [],
+    'a classed element must declare its colour in style=, not as an attribute');
 });

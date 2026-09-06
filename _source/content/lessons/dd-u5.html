@@ -1,0 +1,419 @@
+<section id="dd-u5">
+  <div class="sec-head">
+    <div class="sec-num">5</div>
+    <div>
+      <h2>Introduction to Microprocessor</h2>
+      <p class="sec-sub">माइक्रोप्रोसेसर र यसका भाग</p>
+    </div>
+    <span class="marks">15 hrs · 15 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Define a microprocessor and list where they are used.</li>
+      <li>Classify microprocessors and say what makes the 8085 an 8-bit processor.</li>
+      <li>Draw and label the block diagram of a microprocessor system.</li>
+      <li>Describe the ALU, control unit, registers, flags and the three buses.</li>
+      <li>Name the 8085's pin groups and its interrupts.</li>
+      <li>Explain the instruction cycle in order, and identify an addressing mode.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: माइक्रोप्रोसेसरको परिभाषा र प्रयोग भन्न, वर्गीकरण गर्न,
+    ब्लक डायग्राम कोर्न, ALU, control unit, register, flag र तीन bus वर्णन गर्न, 8085 का pin समूह र
+    interrupt नाम लिन, र निर्देशन चक्र क्रमैसँग बताउन सक्नुहुनेछ।</span>
+  </div>
+
+  <h3 class="topic" id="t51">5.1 &amp; 5.2 &nbsp;What a microprocessor is</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>microprocessor</b> is a single integrated circuit that contains the arithmetic
+      logic unit, the control unit and the registers of a computer — that is, the whole central
+      processing unit on one chip.</p>
+      <p>It fetches instructions from memory, decodes them and executes them. On its own it does
+      nothing useful: it needs memory and input/output devices around it to become a working
+      system.</p>
+      <p><b>Applications:</b> computers and laptops, mobile phones, washing machines, traffic
+      lights, calculators, cars, medical instruments — anything that follows a stored set of
+      instructions.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>माइक्रोप्रोसेसर</b> भनेको एउटै एकीकृत सर्किट (IC) हो, जसभित्र कम्प्युटरको arithmetic logic
+      unit, control unit र register हुन्छन् — अर्थात् पूरै केन्द्रीय प्रोसेसिङ इकाई एउटै चिपमा।</p>
+      <p>यसले मेमोरीबाट निर्देशन झिक्छ, बुझ्छ र चलाउँछ। एक्लै यसले केही गर्न सक्दैन: काम गर्ने प्रणाली
+      बन्न वरिपरि मेमोरी र इनपुट/आउटपुट यन्त्र चाहिन्छ।</p>
+      <p><b>प्रयोग:</b> कम्प्युटर र ल्यापटप, मोबाइल फोन, वासिङ मेसिन, ट्राफिक बत्ती, क्याल्कुलेटर, कार,
+      चिकित्सा उपकरण — भण्डारण गरिएका निर्देशन पछ्याउने जुनसुकै यन्त्र।</p>
+    </div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Classified by</th><th>Types</th><th>What it means</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Word length</td><td>4-bit, 8-bit, 16-bit, 32-bit, 64-bit</td>
+            <td>how many bits it handles at once — the <b>8085 is 8-bit</b>
+              <span class="np-cell">एकैचोटि कति बिट सम्हाल्छ — 8085 8-बिटको हो</span></td></tr>
+        <tr><td>Instruction set</td><td>CISC, RISC</td>
+            <td>many complex instructions, or few simple fast ones
+              <span class="np-cell">धेरै जटिल निर्देशन, कि थोरै सरल र छिटो</span></td></tr>
+        <tr><td>Purpose</td><td>General purpose, microcontroller, DSP</td>
+            <td>a computer's CPU, a whole system on one chip, or signal work
+              <span class="np-cell">कम्प्युटरको CPU, एउटै चिपमा पूरै प्रणाली, वा सिग्नलको काम</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="topic" id="t53">5.3 – 5.6 &nbsp;The blocks of a microprocessor system</h3>
+
+  <figure class="fig">
+    {{dia:cpuBlocks}}
+    <figcaption>This diagram is worth learning to draw from memory. Label the three blocks inside
+    the CPU, the two outside it, and all three buses with their widths.
+    <span class="np-cell">यो चित्र सम्झेर कोर्न सिक्नु फाइदाजनक छ। CPU भित्रका तीन ब्लक, बाहिरका दुई,
+    र तीनै bus लाई चौडाइसहित नाम लेख्नुहोस्।</span></figcaption>
+  </figure>
+
+  <div class="pair">
+    <div class="en"><span class="tag">What each block does</span>
+      <p><b>ALU</b> — performs all arithmetic (add, subtract) and all logic (AND, OR, NOT,
+      compare). It is the only part that calculates.</p>
+      <p><b>Control Unit</b> — decodes the instruction and tells every other block what to do and
+      when. It calculates nothing itself; it directs.</p>
+      <p><b>Registers</b> — very fast storage inside the CPU. The <b>accumulator (A)</b> holds
+      one operand and receives the result; <b>B, C, D, E, H, L</b> are general purpose; the
+      <b>Program Counter (PC)</b> holds the address of the next instruction; the
+      <b>Instruction Register (IR)</b> holds the instruction being carried out; the
+      <b>Stack Pointer (SP)</b> holds the top of the stack.</p>
+      <p><b>Memory</b> — holds the program and the data, one byte per address.
+      <b>Input/output</b> — everything outside: keyboard, display, ports.</p>
+    </div>
+    <div class="np"><span class="tag">हरेक ब्लकको काम</span>
+      <p><b>ALU</b> — सबै गणित (जोड, घटाउ) र सबै तर्क (AND, OR, NOT, तुलना) गर्छ। गणना गर्ने एउटै
+      भाग यही हो।</p>
+      <p><b>Control Unit</b> — निर्देशन बुझेर अरू हरेक ब्लकलाई कहिले के गर्ने भन्छ। यसले आफैं गणना
+      गर्दैन; निर्देशन दिन्छ।</p>
+      <p><b>Registers</b> — CPU भित्रकै अति छिटो भण्डारण। <b>accumulator (A)</b> ले एउटा operand
+      राख्छ र नतिजा पाउँछ; <b>B, C, D, E, H, L</b> सामान्य प्रयोजनका; <b>Program Counter (PC)</b>
+      ले अर्को निर्देशनको ठेगाना राख्छ; <b>Instruction Register (IR)</b> ले चलिरहेको निर्देशन;
+      <b>Stack Pointer (SP)</b> ले stack को टुप्पो।</p>
+      <p><b>Memory</b> — प्रोग्राम र डाटा, प्रति ठेगाना एक बाइट। <b>Input/output</b> — बाहिरका
+      सबै यन्त्र।</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>The three buses in one line each.</b>
+    The <b>address bus</b> says WHERE — 16 bits, one way, CPU to memory.
+    The <b>data bus</b> carries WHAT — 8 bits, both ways.
+    The <b>control bus</b> says WHEN and WHICH WAY — read, write, timing.
+    <span class="np-cell">तीन bus, एक–एक वाक्यमा: <b>address bus</b> ले कहाँ भन्छ — १६ बिट, एकतर्फी;
+    <b>data bus</b> ले के बोक्छ — ८ बिट, दुवैतर्फ; <b>control bus</b> ले कहिले र कुन दिशामा भन्छ।</span>
+  </div>
+
+  <h3 class="topic" id="t57">5.7 &nbsp;The instruction cycle</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Why this comes first</span>
+      <p>The blocks above only make sense once you have watched them work. Every instruction a
+      processor ever runs goes through the same cycle:</p>
+      <p><b>FETCH</b> — the PC's address goes onto the address bus, and memory returns the
+      instruction on the data bus into the IR.<br>
+      <b>DECODE</b> — the control unit works out what the instruction means.<br>
+      <b>EXECUTE</b> — the ALU or the registers do the work.<br>
+      <b>STORE</b> — if there is a result to keep, it is written back.</p>
+      <p>Then the cycle repeats, for as long as the processor is powered.</p>
+    </div>
+    <div class="np"><span class="tag">यो पहिले किन</span>
+      <p>माथिका ब्लक काम गरेको हेरेपछि मात्र बुझिन्छन्। प्रोसेसरले चलाउने हरेक निर्देशन उही चक्रबाट
+      जान्छ:</p>
+      <p><b>FETCH</b> — PC को ठेगाना address bus मा जान्छ, मेमोरीले निर्देशन data bus बाट IR मा
+      फर्काउँछ।<br>
+      <b>DECODE</b> — control unit ले निर्देशनको अर्थ निकाल्छ।<br>
+      <b>EXECUTE</b> — ALU वा register ले काम गर्छ।<br>
+      <b>STORE</b> — राख्नुपर्ने नतिजा भए फेरि लेखिन्छ।</p>
+      <p>अनि प्रोसेसरमा बिजुली भएसम्म यही चक्र दोहोरिन्छ।</p>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="a">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>Which register holds the address of the <b>next</b> instruction to be fetched?
+      <span class="np-cell">झिक्नुपर्ने <b>अर्को</b> निर्देशनको ठेगाना कुन रजिस्टरमा हुन्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Program Counter (PC)</button>
+      <button class="predict-opt" data-value="b">Instruction Register (IR)</button>
+      <button class="predict-opt" data-value="c">Accumulator (A)</button>
+    </div>
+    <div class="predict-feedback">
+      <p>The PC holds the <b>address</b> of the next instruction; the IR holds the
+      <b>instruction itself</b> once it has arrived. Watch the simulation below — the PC moves
+      on during FETCH, before the instruction has even been decoded.</p>
+      <span class="np-cell">PC ले अर्को निर्देशनको <b>ठेगाना</b> राख्छ; IR ले आइसकेको
+      <b>निर्देशन आफैं</b>। तलको सिमुलेसनमा हेर्नुहोस् — निर्देशन decode हुनुअघि नै FETCH मा PC
+      अगाडि सर्छ।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step-by-step simulation</span><span class="t-ne"><span class="t-en"> · </span>पाइला–पाइला सिमुलेसन</span></p>
+      <h4>Run three instructions through the 8085</h4>
+      <p class="sim-goal">What you will learn: which block is working at each stage, what the
+      buses are carrying, and when the flags change.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: हरेक चरणमा कुन ब्लकले काम गर्छ, bus ले के बोकिरहेको
+      छ, र flag कहिले बदलिन्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="cpu8085" id="cpu-main"></div>
+      <div class="sim-why">
+        <span class="h">What to watch for</span>
+        <p><b>The PC moves during FETCH, not at the end.</b> By the time the instruction is being
+        decoded, the processor already knows where the next one lives.</p>
+        <p><b>The ALU lights up only during EXECUTE of ADD B.</b> MVI and STA never touch it —
+        moving data is not arithmetic, and this is why the ALU is drawn as one block among
+        several rather than as the whole processor.</p>
+        <p><b>The flags change only when the ALU produces a result.</b> After ADD B the answer is
+        08H: not zero, not negative, no carry out — so all three flags read 0.</p>
+        <span class="np-cell"><b>PC FETCH मै सर्छ</b>, अन्त्यमा होइन। <b>ALU ADD B को EXECUTE मा
+        मात्र बल्छ</b> — MVI र STA ले छुँदैनन्, किनभने डाटा सार्नु गणित होइन।
+        <b>ALU ले नतिजा दिँदा मात्र flag बदलिन्छन्।</b></span>
+        <p><b>One simplification, so you are not caught out:</b> the first instruction's FETCH is
+        shown as two steps — the address going out, then the instruction coming back — because
+        that is the part worth seeing once. For the second and third instructions both halves are
+        shown as a single FETCH step. Nothing else is compressed.</p>
+        <span class="np-cell"><b>एउटा सरलीकरण, अन्योल नहोस् भनेर:</b> पहिलो निर्देशनको FETCH लाई दुई
+        चरणमा देखाइएको छ — ठेगाना बाहिर जाने, अनि निर्देशन फर्केर आउने — किनभने एक पटक हेर्न लायक कुरा
+        त्यही हो। दोस्रो र तेस्रो निर्देशनमा दुवै भाग एउटै FETCH चरणमा देखाइएको छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="topic" id="t59">5.9 &nbsp;Flags and interrupts</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The flag register</span>
+      <p>A <b>flag</b> is a single bit that records something about the last ALU result. The 8085
+      has five:</p>
+      <ul>
+        <li><b>S — Sign:</b> 1 if the result is negative.</li>
+        <li><b>Z — Zero:</b> 1 if the result is exactly zero.</li>
+        <li><b>CY — Carry:</b> 1 if the result produced a carry out.</li>
+        <li><b>AC — Auxiliary Carry:</b> a carry from bit 3 to bit 4, used in BCD arithmetic.</li>
+        <li><b>P — Parity:</b> 1 if the result has an even number of 1s.</li>
+      </ul>
+      <p>Flags exist so the program can make decisions: "jump if zero" reads Z.</p>
+    </div>
+    <div class="np"><span class="tag">Flag रजिस्टर</span>
+      <p><b>Flag</b> भनेको एउटा बिट हो, जसले पछिल्लो ALU नतिजाबारे केही कुरा टिपेर राख्छ। 8085 मा
+      पाँच छन्:</p>
+      <ul>
+        <li><b>S — Sign:</b> नतिजा ऋणात्मक भए 1।</li>
+        <li><b>Z — Zero:</b> नतिजा ठ्याक्कै शून्य भए 1।</li>
+        <li><b>CY — Carry:</b> क्यारी बाहिर निस्किए 1।</li>
+        <li><b>AC — Auxiliary Carry:</b> बिट ३ बाट ४ मा गएको क्यारी, BCD गणितमा प्रयोग हुन्छ।</li>
+        <li><b>P — Parity:</b> नतिजामा 1 को सङ्ख्या जोर भए 1।</li>
+      </ul>
+      <p>Flag हुनुको कारण: प्रोग्रामले निर्णय गर्न सकोस् — "शून्य भए जम्प गर" ले Z पढ्छ।</p>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Interrupts</span>
+      <p>An <b>interrupt</b> is a signal that asks the processor to stop what it is doing, attend
+      to something urgent, and then return to exactly where it left off.</p>
+      <p>The 8085 has five: <b>TRAP</b> (highest priority, cannot be disabled),
+      <b>RST 7.5</b>, <b>RST 6.5</b>, <b>RST 5.5</b> and <b>INTR</b> (lowest priority).</p>
+      <p>Learn the priority order — it is the part that gets asked.</p>
+    </div>
+    <div class="np"><span class="tag">Interrupt</span>
+      <p><b>Interrupt</b> भनेको त्यस्तो सङ्केत हो, जसले प्रोसेसरलाई गरिरहेको काम रोकेर जरुरी कामतिर
+      ध्यान दिन र त्यसपछि ठ्याक्कै जहाँ छाडेको थियो त्यहीँ फर्कन भन्छ।</p>
+      <p>8085 मा पाँच छन्: <b>TRAP</b> (सर्वोच्च प्राथमिकता, बन्द गर्न मिल्दैन),
+      <b>RST 7.5</b>, <b>RST 6.5</b>, <b>RST 5.5</b> र <b>INTR</b> (सबैभन्दा कम)।</p>
+      <p>प्राथमिकताको क्रम सम्झनुहोस् — सोधिने भाग त्यही हो।</p>
+    </div>
+  </div>
+
+  <h3 class="topic" id="t58">5.8 &nbsp;Pin configuration of the 8085</h3>
+
+  <figure class="fig">
+    {{dia:pins8085}}
+    <figcaption>Forty pins, six groups. Questions ask what a group is for, not the number of an
+    individual pin.
+    <span class="np-cell">चालीस pin, छ समूह। प्रश्नले समूह केका लागि हो भन्ने सोध्छ, कुनै एउटा pin
+    को नम्बर होइन।</span></figcaption>
+  </figure>
+
+  <div class="callout an">
+    <b>Why AD0–AD7 are shared.</b> A 16-bit address and an 8-bit data value would need 24 pins.
+    The 8085 saves eight of them by sending the lower address byte and the data over the
+    <i>same</i> eight lines at different moments. The <b>ALE</b> pin goes high to say "these
+    lines are carrying an address right now" — that is the whole meaning of the word
+    <b>multiplexed</b> in the phrase "multiplexed address/data bus".
+    <span class="np-cell">AD0–AD7 किन साझा: १६-बिट ठेगाना र ८-बिट डाटालाई २४ pin चाहिन्थ्यो।
+    8085 ले तल्लो ठेगाना बाइट र डाटा उही आठ लाइनबाट फरक–फरक क्षणमा पठाएर आठ pin बचाउँछ।
+    <b>ALE</b> pin ले "अहिले यी लाइनमा ठेगाना छ" भन्छ — "multiplexed" शब्दको अर्थ यही हो।</span>
+  </div>
+
+  <h3 class="topic" id="t510">5.10 &nbsp;Addressing modes</h3>
+
+  <figure class="fig">
+    {{dia:addressModes}}
+    <figcaption>The mode describes where the operand is found, not what the instruction does.
+    <span class="np-cell">Mode ले operand कहाँ भेटिन्छ भन्ने बताउँछ, निर्देशनले के गर्छ भन्ने होइन।</span></figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Identify the addressing mode of each instruction</div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">MVI B, 20H   → Immediate.  20H is written inside the instruction.
+LDA 2050H    → Direct.     the address 2050H is given in full.
+MOV A, C     → Register.   both operands are named registers.
+MOV A, M     → Register indirect.  M means "the memory location
+                            whose address is in the HL pair".
+CMA          → Implicit.   the operand (the accumulator) is
+                            understood without being written.</div>
+    </div>
+    <p class="wex-note">The trick for telling <b>direct</b> from <b>register indirect</b>: direct
+    writes the address in the instruction; indirect keeps it in a register pair, so you have to
+    look there first.
+    <span class="np-cell"><b>Direct</b> र <b>register indirect</b> छुट्याउने तरिका: direct ले ठेगाना
+    निर्देशनमै लेख्छ; indirect ले register pair मा राख्छ, त्यसैले पहिले त्यहाँ हेर्नुपर्छ।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Saying the PC holds the current instruction.</b> It holds the <b>address</b> of the
+        next one. The IR holds the instruction.
+        <span class="np-cell">PC ले चलिरहेको निर्देशन राख्छ भन्नु। यसले अर्कोको <b>ठेगाना</b>
+        राख्छ; निर्देशन IR मा हुन्छ।</span></li>
+      <li><b>Drawing the address bus as two-way.</b> It is one way only — the CPU always chooses
+        the address.
+        <span class="np-cell">Address bus लाई दुईतर्फी कोर्नु। यो एकतर्फी मात्र हो।</span></li>
+      <li><b>Confusing the 8-bit data bus with the 16-bit address bus.</b> 8 bits of data make
+        the 8085 an 8-bit processor; 16 address lines give it 64 KB of memory.
+        <span class="np-cell">८-बिट data bus र १६-बिट address bus मिसाउनु। ८ बिट डाटाले 8085 लाई
+        ८-बिट प्रोसेसर बनाउँछ; १६ ठेगाना लाइनले ६४ KB मेमोरी दिन्छ।</span></li>
+      <li><b>Putting TRAP anywhere but first.</b> TRAP has the highest priority and cannot be
+        masked.
+        <span class="np-cell">TRAP लाई पहिलो बाहेक अन्त राख्नु। TRAP कै प्राथमिकता सर्वोच्च हो र
+        यसलाई बन्द गर्न मिल्दैन।</span></li>
+    </ul>
+  </div>
+
+  <h3 class="topic" id="exam5">Exam focus — what is asked from this unit</h3>
+
+  <div class="exam-connect">
+    <b>15 hours and 15 marks — joint highest in the subject, with Unit 2.</b> The block diagram
+    is the single most valuable thing to be able to draw. After that: the definition, the three
+    buses with their widths, the function of each register, the five flags, the five interrupts
+    in priority order, and the instruction cycle in sequence. Almost all of it is recall, so it
+    rewards revision directly.
+    <span class="np-cell">१५ घण्टा र १५ अंक — युनिट २ सँगै विषयकै सबैभन्दा बढी। कोर्न सक्नुपर्ने
+    सबैभन्दा महत्त्वपूर्ण कुरा ब्लक डायग्राम हो। त्यसपछि: परिभाषा, तीन bus र तिनका चौडाइ, हरेक
+    register को काम, पाँच flag, प्राथमिकताक्रममा पाँच interrupt, र निर्देशन चक्र। प्रायः सबै
+    सम्झनामा आधारित छ।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>Define a microprocessor and list any four applications.
+    <span class="np-cell">माइक्रोप्रोसेसरको परिभाषा दिनुहोस् र कुनै चार प्रयोग लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a51">Show the answer</button>
+    <div class="ans" id="a51">
+      <p>A microprocessor is a single integrated circuit containing the ALU, the control unit and
+      the registers of a computer — the entire central processing unit on one chip. It fetches,
+      decodes and executes instructions stored in memory.</p>
+      <p>Applications: computers, mobile phones, washing machines, traffic light controllers,
+      calculators, cars.</p>
+      <span class="np-cell">माइक्रोप्रोसेसर भनेको ALU, control unit र register समेटिएको एउटै IC हो —
+      पूरै CPU एउटै चिपमा। यसले मेमोरीका निर्देशन झिक्छ, बुझ्छ र चलाउँछ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">5 marks</span> Practice question</div>
+    <p>Draw the block diagram of a microprocessor system and explain the function of each block.
+    <span class="np-cell">माइक्रोप्रोसेसर प्रणालीको ब्लक डायग्राम कोर्नुहोस् र हरेक ब्लकको काम
+    व्याख्या गर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a52">Show the answer</button>
+    <div class="ans" id="a52">
+      <p>Draw the CPU as one box containing three blocks — ALU, Control Unit and Registers —
+      with Memory and Input/Output outside it, joined by three buses.</p>
+      <p><b>ALU:</b> performs all arithmetic and logical operations.<br>
+      <b>Control Unit:</b> decodes instructions and directs every other block.<br>
+      <b>Registers:</b> fast internal storage — accumulator, general purpose registers, PC, IR,
+      SP and the flag register.<br>
+      <b>Memory:</b> stores the program and the data.<br>
+      <b>Input/Output:</b> connects the system to the outside world.<br>
+      <b>Buses:</b> address (16-bit, one way), data (8-bit, both ways), control (timing and
+      read/write signals).</p>
+      <span class="np-cell">CPU भित्र ALU, Control Unit र Registers; बाहिर Memory र Input/Output;
+      तीन bus ले जोड्छन्। हरेकको काम माथि लेखिएझैं।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>Explain the instruction cycle of a microprocessor.
+    <span class="np-cell">माइक्रोप्रोसेसरको निर्देशन चक्र व्याख्या गर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a53">Show the answer</button>
+    <div class="ans" id="a53">
+      <p><b>Fetch:</b> the Program Counter puts the address of the next instruction on the
+      address bus; memory returns the instruction on the data bus into the Instruction Register,
+      and the PC is incremented.</p>
+      <p><b>Decode:</b> the control unit reads the Instruction Register and determines what
+      operation is required and which operands it needs.</p>
+      <p><b>Execute:</b> the ALU or the registers carry out the operation, and the flags are
+      updated from the result.</p>
+      <p><b>Store:</b> if the instruction produces a result to be kept, it is written back to a
+      register or to memory. The cycle then repeats for the next instruction.</p>
+      <span class="np-cell">Fetch → Decode → Execute → Store, अनि यही क्रम अर्को निर्देशनका लागि
+      दोहोरिन्छ। हरेक चरणमा कुन भागले काम गर्छ लेख्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>Name the flags of the 8085 and state when each is set. List its interrupts in order of
+    priority.
+    <span class="np-cell">8085 का flag र ती कहिले सेट हुन्छन् लेख्नुहोस्। Interrupt लाई
+    प्राथमिकताक्रममा राख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a54">Show the answer</button>
+    <div class="ans" id="a54">
+      <p><b>Flags:</b> Sign (S) set when the result is negative; Zero (Z) set when the result is
+      zero; Carry (CY) set when a carry is produced; Auxiliary Carry (AC) set on a carry from
+      bit 3 to bit 4; Parity (P) set when the result contains an even number of 1s.</p>
+      <p><b>Interrupts, highest priority first:</b> TRAP, RST 7.5, RST 6.5, RST 5.5, INTR.
+      TRAP is non-maskable — it cannot be disabled by software.</p>
+      <span class="np-cell">Flag: S, Z, CY, AC, P। Interrupt प्राथमिकताक्रममा: TRAP, RST 7.5,
+      RST 6.5, RST 5.5, INTR। TRAP लाई सफ्टवेयरले बन्द गर्न सक्दैन।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick">A microprocessor is the whole CPU — ALU, control unit and registers — on one chip.
+        <span class="np-cell">माइक्रोप्रोसेसर भनेको पूरै CPU — ALU, control unit र register — एउटै चिपमा।</span></li>
+      <li class="tick">Address bus 16-bit one way; data bus 8-bit both ways; control bus for timing.
+        <span class="np-cell">Address bus १६-बिट एकतर्फी; data bus ८-बिट दुवैतर्फ; control bus समयका लागि।</span></li>
+      <li class="tick">PC holds the address of the next instruction; IR holds the current one.
+        <span class="np-cell">PC ले अर्को निर्देशनको ठेगाना; IR ले चलिरहेको निर्देशन।</span></li>
+      <li class="tick">FETCH → DECODE → EXECUTE → STORE, repeating for every instruction.
+        <span class="np-cell">FETCH → DECODE → EXECUTE → STORE, हरेक निर्देशनका लागि दोहोरिन्छ।</span></li>
+      <li class="tick">Five flags: S, Z, CY, AC, P — all set by the ALU from its last result.
+        <span class="np-cell">पाँच flag: S, Z, CY, AC, P — सबै ALU ले पछिल्लो नतिजाबाट सेट गर्छ।</span></li>
+      <li class="tick">Interrupts by priority: TRAP, RST 7.5, RST 6.5, RST 5.5, INTR.
+        <span class="np-cell">Interrupt प्राथमिकताक्रम: TRAP, RST 7.5, RST 6.5, RST 5.5, INTR।</span></li>
+      <li class="tick">The addressing mode says where the operand is, not what the instruction does.
+        <span class="np-cell">Addressing mode ले operand कहाँ छ भन्छ, निर्देशनले के गर्छ भन्ने होइन।</span></li>
+    </ul>
+  </div>
+</section>

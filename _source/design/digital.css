@@ -1,0 +1,657 @@
+
+/* ============================================================
+   DIGITAL DESIGN — specialised educational visualizations
+
+   Phase 3. Same product language as every other lesson (tokens,
+   spacing, type scale, state colours); specialised only where the
+   subject genuinely needs a shape the rest of the product does not
+   have — a signal that is on or off, a truth table wired to a circuit,
+   a K-map grid, a bus carrying a value.
+
+   Loaded after motion.css so it can use the shared state language, and
+   before language.css so a mode still wins over everything here.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. SIGNAL — the one idea the whole subject rests on
+
+   A wire is either carrying 1 or it is not. That is a binary state, so
+   it gets a binary treatment: dim and thin for 0, bright and thick for
+   1. Colour alone would fail a colour-blind student and fail in print,
+   so width and opacity carry the same information.
+   ------------------------------------------------------------ */
+.gl-wire{
+  stroke: var(--color-border);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke var(--dur-fast) var(--ease-out),
+              stroke-width var(--dur-fast) var(--ease-out);
+}
+.gl-wire.hi{ stroke: var(--color-success); stroke-width: 3.4; }
+
+.g-body{
+  fill: rgba(127,209,255,.07);
+  stroke: var(--color-secondary);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+.g-open{ fill: none; }
+
+.gl-pin{
+  fill: var(--color-text-muted);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.gl-lamp{
+  fill: rgba(0,0,0,.35);
+  stroke: var(--color-border);
+  stroke-width: 2;
+  transition: fill var(--dur-fast) var(--ease-out), stroke var(--dur-fast) var(--ease-out);
+}
+.gl-lamp.on{ fill: rgba(154,230,160,.30); stroke: var(--color-success); }
+.gl-lampv{
+  fill: var(--color-text);
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Static figures use the same gate vocabulary as the workbench, so a
+   symbol the student memorises from a figure is the symbol they toggle
+   in the simulation. Same classes, one appearance. */
+.fig svg .f-gate, .dia-stage svg .f-gate{
+  fill: rgba(127,209,255,.07);
+  stroke: var(--color-secondary);
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+.fig svg .f-gate-open, .dia-stage svg .f-gate-open{ fill: none; }
+.fig svg .f-wire, .dia-stage svg .f-wire{
+  stroke: var(--color-text-muted);
+  stroke-width: 1.8;
+  fill: none;
+  stroke-linecap: round;
+}
+.fig svg .f-pin, .dia-stage svg .f-pin{
+  fill: var(--color-text-muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* A bar over a letter is the exam's notation for NOT. In HTML it can be
+   drawn properly rather than approximated with a combining character,
+   which renders unevenly across the Devanagari and Latin fallbacks. */
+.ovl{ text-decoration: overline; text-decoration-thickness: 1.5px; }
+
+/* ------------------------------------------------------------
+   2. THE WORKBENCH
+   ------------------------------------------------------------ */
+.gatelab{
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-lg);
+  background: var(--color-surface);
+  box-shadow: var(--elev-2);
+  padding: var(--sp-4);
+  margin-block: var(--space-block);
+}
+
+.gl-pick{
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px dashed var(--color-border);
+  margin-bottom: var(--sp-4);
+}
+.gl-gate{
+  font-family: var(--mono); font-size: var(--fs-xs); font-weight: 700;
+  letter-spacing: .8px;
+  color: var(--color-text-muted);
+  background: var(--color-surface-sunken);
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: 999px;
+  padding: var(--sp-2) var(--sp-4);
+  cursor: pointer;
+}
+.gl-gate:hover{ color: var(--color-secondary); border-color: var(--color-secondary); }
+.gl-gate[aria-selected="true"]{
+  color: #12241f;
+  background: linear-gradient(150deg, var(--color-primary), #e0a93f);
+  border-color: transparent;
+}
+
+.gl-main{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--sp-5);
+  align-items: start;
+}
+.gl-main > *{ min-width: 0; }
+
+.gl-title{ margin-bottom: var(--sp-2); }
+.gl-title b{ color: var(--color-primary); font-size: var(--fs-base); }
+/* The Nepali name is a second line, not a suffix — inline it read as
+   one run-together word ("ANDएन्ड"). */
+.gl-title .np-cell{ display: block; margin-top: 2px; }
+.gl-expr{
+  display: block; margin-top: var(--sp-1);
+  font-family: var(--mono); font-size: var(--fs-sm);
+  color: var(--color-secondary);
+}
+.gl-svg{ width: 100%; height: auto; display: block; max-width: 420px; }
+
+.gl-toggles{
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px dashed var(--color-border);
+}
+.gl-toggles .sim-controls-label{ width: 100%; margin-bottom: var(--sp-1); }
+
+/* An input is a switch, and it should look like one: the value is the
+   thing that changes, so the value is what is emphasised. */
+.gl-in{
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  padding: var(--sp-2) var(--sp-3);
+  cursor: pointer;
+  min-height: 44px;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.gl-in:hover{ border-color: var(--color-secondary); }
+.gl-in-n{ font-family: var(--mono); font-size: var(--fs-sm); color: var(--color-text-muted); }
+.gl-in-v{
+  font-family: var(--mono); font-size: var(--fs-lg); font-weight: 700; line-height: 1;
+  color: var(--color-text-muted);
+  min-width: 1.2em; text-align: center;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.gl-in.on{ border-color: var(--color-success); background: rgba(154,230,160,.10); }
+.gl-in.on .gl-in-v{ color: var(--color-success); }
+
+/* ------------------------------------------------------------
+   3. THE TRUTH TABLE
+
+   Wired to the circuit: the row the student's inputs select is the row
+   that lights. That link is the lesson, so the highlight is strong
+   enough to find without hunting.
+   ------------------------------------------------------------ */
+.gl-tt{
+  width: 100%;
+  /* base.css sets a 560px floor on every table so wide comparison tables
+     scroll rather than crush. A truth table has three narrow columns and
+     must not inherit that — it was overflowing its own grid column. */
+  min-width: 0;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+}
+.gl-tt caption{
+  caption-side: top; text-align: left;
+  font-family: var(--sans); font-size: var(--fs-xs);
+  letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--color-text-subtle);
+  padding-bottom: var(--sp-2);
+}
+.gl-tt th, .gl-tt td{
+  border: 1px solid var(--color-border);
+  padding: var(--sp-2) var(--sp-3);
+  text-align: center;
+}
+.gl-tt th{
+  color: var(--color-primary);
+  background: var(--color-surface-sunken);
+  font-weight: 700;
+}
+.gl-tt td{ color: var(--color-text-muted); }
+.gl-tt .gl-y{ color: var(--color-text); font-weight: 700; }
+
+.gl-tt tbody tr{ transition: background var(--dur-fast) var(--ease-out); }
+.gl-tt tbody tr.is-active{ background: rgba(255,215,110,.14); }
+.gl-tt tbody tr.is-active td{ color: var(--color-primary); }
+.gl-tt tbody tr.is-active .gl-y{ color: var(--color-primary); }
+/* A row highlight that is only a background colour disappears in
+   high-contrast mode and in print. Give it an edge as well. */
+.gl-tt tbody tr.is-active td:first-child{ box-shadow: inset 3px 0 0 var(--color-primary); }
+
+.gl-say{
+  margin-top: var(--sp-4);
+  border-left: 3px solid var(--color-primary);
+  background: rgba(255,215,110,.06);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+}
+.gl-say-en{ display: block; }
+.gl-say-ne{ display: block; margin-top: var(--sp-2); }
+
+/* ------------------------------------------------------------
+   4. RESPONSIVE
+   Below the two-column threshold the circuit sits above its table
+   rather than shrinking both into illegibility.
+   ------------------------------------------------------------ */
+@media (max-width: 720px){
+  .gl-main{ grid-template-columns: 1fr; gap: var(--sp-4); }
+  .gl-svg{ max-width: 100%; }
+}
+
+/* ------------------------------------------------------------
+   5. REDUCED MOTION
+   Every transition here is a state change, not decoration, so under
+   reduced motion the states still change — instantly.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce){
+  .gl-wire, .gl-lamp, .gl-in, .gl-in-v, .gl-tt tbody tr{ transition: none; }
+}
+
+/* ============================================================
+   UNIT 1 — NUMBER WORKBENCH
+   ============================================================ */
+
+/* ---- place-value converter ---- */
+.numlab{ font-size: var(--fs-sm); }
+
+.nl-bits{
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  justify-content: center;
+}
+/* A bit switch shows three things at once: which power of two it is,
+   whether it is on, and what it is worth. The place value is the fact
+   the student is here to learn, so it is not hidden behind a hover. */
+.nl-bit{
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  min-width: 58px; min-height: 44px;
+  padding: var(--sp-2) var(--sp-1);
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.nl-bit:hover{ border-color: var(--color-secondary); }
+.nl-pow{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-subtle); }
+.nl-val{
+  font-family: var(--mono); font-size: var(--fs-lg); font-weight: 700; line-height: 1;
+  color: var(--color-text-muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.nl-place{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-subtle); }
+.nl-bit.on{ border-color: var(--color-success); background: rgba(154,230,160,.10); }
+.nl-bit.on .nl-val{ color: var(--color-success); }
+.nl-bit.on .nl-place{ color: var(--color-success); }
+
+.nl-sum{
+  margin-top: var(--sp-4);
+  border-left: 3px solid var(--color-primary);
+  background: rgba(255,215,110,.06);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-3) var(--sp-4);
+  font-family: var(--mono); font-size: var(--fs-sm);
+}
+.nl-sum-en{ display: block; }
+.nl-sum-ne{ display: block; margin-top: var(--sp-2); font-family: var(--deva); }
+
+.nl-out{ margin-top: var(--sp-4); display: grid; gap: var(--sp-2); }
+.nl-row{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.2fr);
+  gap: var(--sp-3);
+  align-items: baseline;
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-sm);
+  background: var(--color-surface-sunken);
+}
+.nl-row > *{ min-width: 0; }
+.nl-name{ color: var(--color-text-muted); }
+.nl-name .np-cell{ display: block; font-size: var(--fs-xs); }
+.nl-base{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-subtle); }
+.nl-num{
+  font-family: var(--mono); font-size: var(--fs-base); font-weight: 700;
+  color: var(--color-primary); text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* ---- binary column adder ---- */
+.nl-add-grid{
+  display: grid;
+  grid-template-columns: auto repeat(var(--cols), minmax(28px, 40px));
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+}
+.nl-lab{
+  font-family: var(--sans); font-size: var(--fs-xs);
+  color: var(--color-text-subtle); text-align: right; padding-right: var(--sp-2);
+}
+.nl-lab-sum{ color: var(--color-primary); font-weight: 700; }
+.nl-cell{
+  text-align: center;
+  padding: var(--sp-2) 0;
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+  border-radius: var(--r-sm);
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.nl-carry{ font-size: var(--fs-sm); color: var(--color-error); min-height: 1.4em; }
+.nl-sumc{
+  border-top: 1.5px solid var(--color-border);
+  color: var(--color-text); font-weight: 700; min-height: 1.6em;
+}
+.nl-blank{ visibility: hidden; }
+.nl-cell.is-active{ background: rgba(255,215,110,.16); color: var(--color-primary); }
+
+.nl-progress{
+  font-family: var(--mono); font-size: var(--fs-xs);
+  color: var(--color-text-subtle); align-self: center;
+}
+.nl-say{
+  margin-top: var(--sp-4);
+  border-left: 3px solid var(--color-secondary);
+  background: rgba(127,209,255,.06);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+}
+.nl-say-en{ display: block; }
+.nl-say-ne{ display: block; margin-top: var(--sp-2); }
+
+@media (max-width: 480px){
+  .nl-bit{ min-width: 46px; }
+  .nl-row{ grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .nl-base{ display: none; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .nl-bit, .nl-val, .nl-cell{ transition: none; }
+}
+
+/* ============================================================
+   UNIT 3 — KARNAUGH MAP
+   ============================================================ */
+.kmap{ font-size: var(--fs-sm); }
+.km-head{ margin-bottom: var(--sp-3); }
+.km-vars{ font-family: var(--mono); font-size: var(--fs-xs); letter-spacing: 1px;
+          text-transform: uppercase; color: var(--color-text-subtle); }
+.km-head .np-cell{ display: block; margin-top: 2px; }
+
+.km-wrap{ overflow-x: auto; }
+.km-grid{
+  border-collapse: separate; border-spacing: 4px;
+  min-width: 0;                       /* base.css sets a 560px floor on tables */
+  width: auto; margin: 0 auto;
+}
+.km-cap{
+  caption-side: top; text-align: left;
+  font-family: var(--sans); font-size: var(--fs-xs);
+  color: var(--color-text-subtle); padding-bottom: var(--sp-3);
+  max-width: 52ch;
+}
+.km-cap .np-cell{ display: block; margin-top: 3px; }
+
+.km-h{
+  font-family: var(--mono); font-size: var(--fs-xs);
+  color: var(--color-primary); font-weight: 700;
+  padding: var(--sp-1) var(--sp-2); text-align: center;
+}
+.km-corner{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-subtle); }
+.km-corner span{ display: block; }
+.km-corner span:first-child{ text-align: left; }
+.km-corner span:last-child{ text-align: right; }
+
+.km-cell{ padding: 0; }
+.km-btn{
+  width: 100%; min-width: 56px; min-height: 56px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.km-btn:hover{ border-color: var(--color-secondary); }
+.km-v{ font-family: var(--mono); font-size: var(--fs-lg); font-weight: 700; line-height: 1;
+       color: var(--color-text-muted); }
+.km-m{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-subtle); }
+
+.km-cell.is-one .km-btn{ border-color: var(--color-success); background: rgba(154,230,160,.10); }
+.km-cell.is-one .km-v{ color: var(--color-success); }
+/* A selection in progress and an accepted group must not look the same —
+   one is a proposal, the other is a decision. */
+.km-cell.is-selected .km-btn{
+  border-color: var(--color-secondary);
+  background: rgba(127,209,255,.18);
+  box-shadow: 0 0 0 2px rgba(127,209,255,.35);
+}
+.km-cell.is-grouped .km-btn{
+  border-color: var(--color-primary);
+  background: rgba(255,215,110,.14);
+}
+
+.km-verdict{
+  margin-top: var(--sp-4);
+  border-left: 3px solid var(--color-border);
+  background: var(--color-surface-sunken);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+  min-height: 1.2em;
+}
+.km-verdict.is-success{ border-left-color: var(--color-success); background: rgba(154,230,160,.08); }
+.km-verdict.is-error{ border-left-color: var(--color-error); background: rgba(255,143,122,.08); }
+.km-v-en{ display: block; }
+.km-v-ne{ display: block; margin-top: var(--sp-2); }
+
+.km-result{
+  margin-top: var(--sp-3);
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border: 1.5px dashed var(--color-primary);
+  border-radius: var(--r-md);
+  background: rgba(255,215,110,.05);
+}
+.km-r-lab{ font-family: var(--mono); font-size: var(--fs-xs); letter-spacing: 1px;
+           text-transform: uppercase; color: var(--color-text-subtle); }
+.km-r-lab .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+.km-expr{
+  font-family: var(--mono); font-size: var(--fs-lg); font-weight: 700;
+  color: var(--color-primary); overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce){ .km-btn{ transition: none; } }
+
+/* A control label that carries a Nepali gloss must break, or the two
+   languages run together as one sentence. */
+.sim-controls-label .np-cell{ display: block; margin-top: 3px; text-transform: none; letter-spacing: 0; }
+
+/* The caption belongs to the grid, so it is centred with it rather than
+   floating against the left edge of a much wider container. */
+.km-cap{ margin: 0 auto; }
+.km-grid{ margin-inline: auto; }
+
+/* ============================================================
+   UNIT 4 — COMBINATIONAL CIRCUIT WORKBENCH
+   Reuses the gate workbench's vocabulary (.gl-in, .gl-tt, .gl-say) so
+   a student who learned that interface already knows this one.
+   ============================================================ */
+.comblab{ font-size: var(--fs-sm); }
+.cb-main{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--sp-5);
+  align-items: start;
+}
+.cb-main > *{ min-width: 0; }
+
+.cb-io{
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: var(--sp-3);
+  align-items: start;
+  margin-top: var(--sp-3);
+}
+.cb-io > *{ min-width: 0; }
+.cb-col{ display: flex; flex-direction: column; gap: var(--sp-2); }
+.cb-h{
+  font-family: var(--mono); font-size: var(--fs-xs);
+  letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+.cb-h .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+.cb-arrow{ align-self: center; color: var(--color-text-subtle); font-size: 1.4rem; }
+
+/* An output is read, not pressed, so it is a panel rather than a button. */
+.cb-out{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--sp-1) var(--sp-3);
+  align-items: center;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  padding: var(--sp-2) var(--sp-3);
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.cb-out-n{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-muted);
+           letter-spacing: .6px; }
+.cb-out-v{
+  font-family: var(--mono); font-size: var(--fs-lg); font-weight: 700; line-height: 1;
+  color: var(--color-text-muted); text-align: center; min-width: 1.2em;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.cb-out-e{
+  grid-column: 1 / -1;
+  font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-secondary);
+  overflow-wrap: anywhere;
+}
+.cb-out.on{ border-color: var(--color-success); background: rgba(154,230,160,.10); }
+.cb-out.on .cb-out-v{ color: var(--color-success); }
+
+@media (max-width: 760px){
+  .cb-main{ grid-template-columns: 1fr; }
+  .cb-io{ grid-template-columns: 1fr; }
+  .cb-arrow{ transform: rotate(90deg); justify-self: center; }
+}
+@media (prefers-reduced-motion: reduce){ .cb-out, .cb-out-v{ transition: none; } }
+
+/* ============================================================
+   UNIT 5 — 8085 INSTRUCTION CYCLE
+   ============================================================ */
+.cpu8085{ font-size: var(--fs-sm); }
+
+.cpu-h{
+  font-family: var(--mono); font-size: var(--fs-xs);
+  letter-spacing: 1.2px; text-transform: uppercase; color: var(--color-text-subtle);
+}
+.cpu-h .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+
+.cpu-prog{
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  padding: var(--sp-3) var(--sp-4);
+  margin-bottom: var(--sp-4);
+}
+.cpu-line{
+  display: grid; grid-template-columns: auto 1fr; gap: var(--sp-4);
+  font-family: var(--mono); font-size: var(--fs-sm);
+  padding: var(--sp-1) var(--sp-2);
+  border-radius: var(--r-sm);
+  color: var(--color-text-muted);
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.cpu-line:first-of-type{ margin-top: var(--sp-2); }
+.cpu-addr{ color: var(--color-text-subtle); }
+.cpu-line.is-active{ background: rgba(255,215,110,.14); color: var(--color-primary); }
+.cpu-line.is-active .cpu-addr{ color: var(--color-primary); }
+
+/* The four stages read as a sequence, so they are laid out as one. */
+.cpu-stages{
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+.cpu-stage{
+  font-family: var(--mono); font-size: var(--fs-xs); font-weight: 700; letter-spacing: 1px;
+  color: var(--color-text-subtle);
+  border: 1.5px solid var(--color-border);
+  border-radius: 999px;
+  padding: var(--sp-2) var(--sp-4);
+  transition: color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.cpu-stage + .cpu-stage{ position: relative; }
+.cpu-stage.is-active{
+  color: #12241f;
+  background: linear-gradient(150deg, var(--color-primary), #e0a93f);
+  border-color: transparent;
+}
+
+.cpu-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--sp-3);
+}
+.cpu-cell{
+  display: flex; flex-direction: column; gap: 3px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  padding: var(--sp-3);
+  min-width: 0;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.cpu-n{ font-family: var(--sans); font-size: var(--fs-xs); color: var(--color-text-muted); }
+.cpu-n .np-cell{ display: block; }
+.cpu-sub{ font-size: var(--fs-xs); color: var(--color-text-subtle); }
+.cpu-v{
+  font-family: var(--mono); font-size: var(--fs-base); font-weight: 700;
+  color: var(--color-text); overflow-wrap: anywhere;
+}
+.cpu-bus .cpu-v{ color: var(--color-secondary); }
+
+/* "Active" here means this block is doing something in the current
+   stage — the thing the student is meant to be looking at. */
+.cpu-cell.is-active{
+  border-color: var(--color-primary);
+  background: rgba(255,215,110,.12);
+}
+.cpu-cell.is-active .cpu-v{ color: var(--color-primary); }
+
+.cpu-flagset{ display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: 2px; }
+.cpu-flagset span{
+  font-family: var(--mono); font-size: var(--fs-xs);
+  border: 1px solid var(--color-border); border-radius: var(--r-sm);
+  padding: 2px var(--sp-2); color: var(--color-text-subtle);
+}
+.cpu-flagset span.on{
+  border-color: var(--color-error); color: var(--color-error);
+  background: rgba(255,143,122,.10);
+}
+
+.cpu-progress{ font-family: var(--mono); font-size: var(--fs-xs);
+               color: var(--color-text-subtle); align-self: center; }
+.cpu-say{
+  margin-top: var(--sp-4);
+  border-left: 3px solid var(--color-primary);
+  background: rgba(255,215,110,.06);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+}
+.cpu-say-en{ display: block; }
+.cpu-say-ne{ display: block; margin-top: var(--sp-2); }
+
+@media (prefers-reduced-motion: reduce){
+  .cpu-cell, .cpu-stage, .cpu-line{ transition: none; }
+}

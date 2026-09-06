@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Concept of Logic Gates — Digital Design | RGSC Study Board</title>
+<meta name="description" content="Concept of Logic Gates explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html" class="on">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">Digital Design</a> <span class="sep">/</span> <span>Concept of Logic Gates</span></nav>
+<main id="main" data-subject="grade10/digital-design">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Number Systems</a><a href="unit2.html" style="color:var(--yellow);border-color:var(--yellow)">2 · Logic Gates</a><a href="unit3.html">3 · Boolean / K-map</a><a href="unit4.html">4 · Combinational Logic</a><a href="unit5.html">5 · Microprocessor</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="dd-u2">
+  <div class="sec-head">
+    <div class="sec-num">2</div>
+    <div>
+      <h1>Concept of Logic Gates</h1>
+      <p class="sec-sub" lang="ne">लजिक गेटको अवधारणा</p>
+    </div>
+    <span class="marks">14 hrs · 15 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2><div class="t-en">
+    <ol>
+      <li>Draw the symbol of every basic gate from memory.</li>
+      <li>Write the Boolean expression for each gate.</li>
+      <li>Complete the truth table of any gate without memorising it.</li>
+      <li>Explain why NAND and NOR are called universal gates.</li>
+      <li>State De Morgan's two theorems and prove them with a truth table.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: हरेक गेटको चिन्ह सम्झेर कोर्न, त्यसको बुलियन अभिव्यक्ति लेख्न,
+    ट्रुथ टेबल आफैं भर्न, NAND र NOR किन universal हुन् भन्न, र डी–मर्गनका दुवै नियम प्रमाणसहित
+    सुनाउन सक्नुहुनेछ।</span>
+  </div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>logic gate</b> is a basic electronic circuit that takes one or more binary
+      inputs (0 or 1) and produces a single binary output, decided by a fixed rule.</p>
+      <p>0 means <b>low voltage / false / off</b>. 1 means <b>high voltage / true / on</b>.
+      Every digital device you own is built from these gates and nothing else.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b lang="ne">लजिक गेट</b> भनेको त्यस्तो आधारभूत इलेक्ट्रोनिक सर्किट हो, जसले एक वा बढी
+      binary इनपुट (० वा १) लिएर, तोकिएको नियमअनुसार एउटा मात्र binary आउटपुट दिन्छ।</p>
+      <p lang="ne">० को अर्थ <b lang="ne">कम भोल्टेज / असत्य / बन्द</b>, र १ को अर्थ <b lang="ne">बढी भोल्टेज / सत्य / खुला</b>।
+      तपाईंले चलाउने हरेक डिजिटल यन्त्र यिनै गेटबाट बनेको हुन्छ।</p>
+    </div>
+  </div>
+
+  <h2 class="topic" id="t21">2.1 &nbsp;Notations — three ways to write the same gate</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Why three notations</span>
+      <p>The exam can ask for a gate in any of three forms, and they mean exactly the same thing:</p>
+      <ol>
+        <li>the <b>symbol</b> — the shape you draw;</li>
+        <li>the <b>Boolean expression</b> — the algebra you write, such as <code>Y = A · B</code>;</li>
+        <li>the <b>truth table</b> — every possible input with its output.</li>
+      </ol>
+      <p>A bar over a letter, <span class="ovl">A</span>, means NOT A. Some books write it
+      <code>A'</code> instead. Both are correct and both appear in question papers.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">तीन किसिमको नोटेसन किन</span>
+      <p lang="ne">परीक्षामा एउटै गेटलाई तीनमध्ये कुनै पनि रूपमा सोध्न सकिन्छ, र तीनैको अर्थ एउटै हो:</p>
+      <ol>
+        <li><b>symbol</b> — कोर्ने आकार;</li>
+        <li><b>Boolean expression</b> — लेख्ने बीजगणित, जस्तै <code>Y = A · B</code>;</li>
+        <li><b>truth table</b> — सम्भव सबै इनपुट र तिनको आउटपुट।</li>
+      </ol>
+      <p lang="ne">अक्षरमाथिको धर्को, जस्तै <span class="ovl">A</span>, को अर्थ NOT A हो। कतै <code>A'</code>
+      पनि लेखिन्छ। दुवै सही हुन् र दुवै प्रश्नपत्रमा आउँछन्।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 366" role="img" aria-labelledby="t-gsym">
+  <title id="t-gsym">The six logic gate symbols with their Boolean expressions</title>
+  <text class="f-ttl" x="10" y="20">LOGIC GATE SYMBOLS — the shapes and expressions to memorise</text>
+  
+  <g>
+    <rect class="f-box-d" x="16" y="44" width="212" height="140" rx="10"/>
+    <text class="f-lbl-y" x="122" y="66" style="font-size:12.5px">NOT (Inverter)</text>
+    <path class="f-wire" d="M46,108 L82,108"/><text class="f-pin" x="38" y="112.5" text-anchor="end">A</text>
+    <g transform="translate(78,78)"><path class="f-gate" d="M0,0 L60,30 L0,60 Z"/><circle class="f-gate" cx="66.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M151,108 L198,108"/>
+    <text class="f-pin" x="206" y="112.5">Y</text>
+    <text class="f-code" x="122" y="172" text-anchor="middle" style="font-size:12px">Y = A'</text>
+  </g>
+  <g>
+    <rect class="f-box-d" x="246" y="44" width="212" height="140" rx="10"/>
+    <text class="f-lbl-y" x="352" y="66" style="font-size:12.5px">AND</text>
+    <path class="f-wire" d="M276,93 L312,93"/><text class="f-pin" x="268" y="97.5" text-anchor="end">A</text><path class="f-wire" d="M276,123 L312,123"/><text class="f-pin" x="268" y="127.5" text-anchor="end">B</text>
+    <g transform="translate(308,78)"><path class="f-gate" d="M0,0 L40,0 A30,30 0 0 1 40,60 L0,60 Z"/></g>
+    <path class="f-wire" d="M378,108 L428,108"/>
+    <text class="f-pin" x="436" y="112.5">Y</text>
+    <text class="f-code" x="352" y="172" text-anchor="middle" style="font-size:12px">Y = A · B</text>
+  </g>
+  <g>
+    <rect class="f-box-d" x="476" y="44" width="212" height="140" rx="10"/>
+    <text class="f-lbl-y" x="582" y="66" style="font-size:12.5px">OR</text>
+    <path class="f-wire" d="M506,93 L550,93"/><text class="f-pin" x="498" y="97.5" text-anchor="end">A</text><path class="f-wire" d="M506,123 L550,123"/><text class="f-pin" x="498" y="127.5" text-anchor="end">B</text>
+    <g transform="translate(538,78)"><path class="f-gate" d="M0,0 Q25,30 0,60 Q50,60 75,30 Q50,0 0,0 Z"/></g>
+    <path class="f-wire" d="M613,108 L658,108"/>
+    <text class="f-pin" x="666" y="112.5">Y</text>
+    <text class="f-code" x="582" y="172" text-anchor="middle" style="font-size:12px">Y = A + B</text>
+  </g>
+  <g>
+    <rect class="f-box-d" x="16" y="200" width="212" height="140" rx="10"/>
+    <text class="f-lbl-y" x="122" y="222" style="font-size:12.5px">NAND</text>
+    <path class="f-wire" d="M46,249 L82,249"/><text class="f-pin" x="38" y="253.5" text-anchor="end">A</text><path class="f-wire" d="M46,279 L82,279"/><text class="f-pin" x="38" y="283.5" text-anchor="end">B</text>
+    <g transform="translate(78,234)"><path class="f-gate" d="M0,0 L40,0 A30,30 0 0 1 40,60 L0,60 Z"/><circle class="f-gate" cx="76.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M161,264 L198,264"/>
+    <text class="f-pin" x="206" y="268.5">Y</text>
+    <text class="f-code" x="122" y="328" text-anchor="middle" style="font-size:12px">Y = (A · B)'</text>
+  </g>
+  <g>
+    <rect class="f-box-d" x="246" y="200" width="212" height="140" rx="10"/>
+    <text class="f-lbl-y" x="352" y="222" style="font-size:12.5px">NOR</text>
+    <path class="f-wire" d="M276,249 L320,249"/><text class="f-pin" x="268" y="253.5" text-anchor="end">A</text><path class="f-wire" d="M276,279 L320,279"/><text class="f-pin" x="268" y="283.5" text-anchor="end">B</text>
+    <g transform="translate(308,234)"><path class="f-gate" d="M0,0 Q25,30 0,60 Q50,60 75,30 Q50,0 0,0 Z"/><circle class="f-gate" cx="81.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M396,264 L428,264"/>
+    <text class="f-pin" x="436" y="268.5">Y</text>
+    <text class="f-code" x="352" y="328" text-anchor="middle" style="font-size:12px">Y = (A + B)'</text>
+  </g>
+  <g>
+    <rect class="f-box-d" x="476" y="200" width="212" height="140" rx="10"/>
+    <text class="f-lbl-y" x="582" y="222" style="font-size:12.5px">XOR</text>
+    <path class="f-wire" d="M506,249 L558,249"/><text class="f-pin" x="498" y="253.5" text-anchor="end">A</text><path class="f-wire" d="M506,279 L558,279"/><text class="f-pin" x="498" y="283.5" text-anchor="end">B</text>
+    <g transform="translate(538,234)"><path class="f-gate" d="M8,0 Q33,30 8,60 Q58,60 83,30 Q58,0 8,0 Z"/><path class="f-gate f-gate-open" d="M0,0 Q25,30 0,60"/></g>
+    <path class="f-wire" d="M621,264 L658,264"/>
+    <text class="f-pin" x="666" y="268.5">Y</text>
+    <text class="f-code" x="582" y="328" text-anchor="middle" style="font-size:12px">Y = A ⊕ B</text>
+  </g>
+</svg>
+    <figcaption><span class="t-en">The six symbols and their expressions. Learn to draw these — "draw the symbol
+    and write the truth table of a NAND gate" is a standard question.
+    </span><span class="np-cell" lang="ne">छ वटा चिन्ह र तिनका अभिव्यक्ति। यी कोर्न सिक्नुहोस् — "NAND गेटको चिन्ह
+    कोर्नुहोस् र ट्रुथ टेबल लेख्नुहोस्" भन्ने प्रश्न पटक–पटक आउँछ।</span></figcaption>
+  </figure>
+
+  <div class="callout"><span class="t-en">
+    <b>How to tell the shapes apart in one line each.</b>
+    AND has a <b>flat back and a round nose</b> — D-shaped.
+    OR has a <b>curved back and a pointed nose</b>.
+    NOT is a <b>triangle</b>.
+    A small circle on the nose means <b>"and then invert"</b> — that circle is the whole
+    difference between AND and NAND, and between OR and NOR.
+    </span><span class="np-cell" lang="ne">आकार छुट्याउने सजिलो तरिका: AND को पछाडि सम्म र नाक गोलो (D जस्तो);
+    OR को पछाडि खुम्चिएको र नाक चुच्चो; NOT त्रिकोण। नाकमा सानो गोलो छ भने त्यसको अर्थ
+    "अनि उल्टाउने" — यही गोलोले मात्र AND लाई NAND र OR लाई NOR बनाउँछ।</span>
+  </div>
+
+  <h2 class="topic" id="t22">2.2 &nbsp;The concept of a gate and its truth table</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">What a truth table is</span>
+      <p>A gate has a fixed rule, so its behaviour can be listed completely. That list is the
+      <b>truth table</b>: one row for every possible combination of inputs, and the output for
+      each.</p>
+      <p>With <b>n inputs there are 2<sup>n</sup> rows</b> — 2 inputs give 4 rows, 3 inputs give
+      8 rows. Write the input columns counting up in binary (00, 01, 10, 11) and you can never
+      miss a row.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">ट्रुथ टेबल भनेको के</span>
+      <p lang="ne">गेटको नियम निश्चित हुने भएकाले त्यसको पूरा व्यवहार सूचीबद्ध गर्न सकिन्छ। त्यही सूची नै
+      <b lang="ne">ट्रुथ टेबल</b> हो: इनपुटका सम्भव हरेक जोडीको एउटा पङ्क्ति, र प्रत्येकको आउटपुट।</p>
+      <p><b lang="ne">n इनपुट भए 2<sup>n</sup> पङ्क्ति</b> हुन्छन् — २ इनपुटमा ४, ३ इनपुटमा ८। इनपुट स्तम्भलाई
+      binary मा गन्दै (००, ०१, १०, ११) लेख्नुभयो भने कुनै पङ्क्ति छुट्दैन।</p>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A NAND gate has A = 1 and B = 1. What is the output Y?
+      </span><span class="np-cell" lang="ne">NAND गेटमा A = 1 र B = 1 छ। आउटपुट Y कति हुन्छ?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Y = 1</button>
+      <button class="predict-opt" data-value="b">Y = 0</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p>Do the AND first: 1 · 1 = 1. Then the circle on the nose inverts it: Y = 0.
+      NAND is the only gate that gives 0 when both inputs are 1 — check it in the workbench below.</p>
+      </div><span class="np-cell" lang="ne">पहिले AND गर्नुहोस्: १ · १ = १। अनि नाकको गोलोले उल्टाउँछ: Y = ०।
+      दुवै इनपुट १ हुँदा ० दिने एउटै गेट NAND हो — तलको प्रयोगशालामा जाँच्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h3>The gate workbench</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: how each gate turns its inputs into an output,
+      and which row of the truth table your inputs are pointing at.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: हरेक गेटले इनपुटलाई कसरी आउटपुटमा बदल्छ, र
+      तपाईंको इनपुटले ट्रुथ टेबलको कुन पङ्क्ति देखाइरहेको छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="gatelab" id="gl-main" data-gates="NOT,AND,OR,NAND,NOR,XOR" data-gate="AND"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Pick a gate, then click <b>A</b> and <b>B</b> to change the inputs. Watch three things
+        move together: the wire lights up when it carries 1, the lamp shows the output, and the
+        matching row of the truth table is highlighted.</p>
+        <p><b>Try this:</b> set A = 1, B = 0 and step through all six gates without changing the
+        inputs. The same inputs give a different answer in every gate — that difference <i>is</i>
+        the gate.</p>
+        </div><span class="np-cell" lang="ne">गेट छान्नुहोस्, अनि <b>A</b> र <b>B</b> थिचेर इनपुट बदल्नुहोस्। तीन कुरा
+        सँगै चल्छन्: १ बग्दा तार बल्छ, बत्तीले आउटपुट देखाउँछ, र ट्रुथ टेबलको मिल्दो पङ्क्ति उज्यालो हुन्छ।
+        <b lang="ne">यसो गरेर हेर्नुहोस्:</b> A = 1, B = 0 राखेर इनपुट नबदली छैटै गेट पालैपालो हेर्नुहोस्।
+        उही इनपुटले हरेक गेटमा फरक उत्तर दिन्छ — त्यही फरक नै गेट हो।</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub">Reading each gate in one sentence</h3>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Gate</th><th>Expression</th><th>Output is 1 when…</th><th>Remember it as</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>NOT</td><td><code>Y = <span class="ovl">A</span></code></td>
+            <td>the input is 0</td>
+            <td><span class="t-en">reverses</span><span class="np-cell" lang="ne">उल्टाउँछ</span></td></tr>
+        <tr><td>AND</td><td><code>Y = A · B</code></td>
+            <td>ALL inputs are 1</td>
+            <td><span class="t-en">strict — one 0 spoils it</span><span class="np-cell" lang="ne">कडा — एउटा ० भए पुग्छ</span></td></tr>
+        <tr><td>OR</td><td><code>Y = A + B</code></td>
+            <td>AT LEAST ONE input is 1</td>
+            <td><span class="t-en">generous</span><span class="np-cell" lang="ne">उदार</span></td></tr>
+        <tr><td>NAND</td><td><code>Y = <span class="ovl">A · B</span></code></td>
+            <td>NOT all inputs are 1</td>
+            <td><span class="t-en">AND, then flip</span><span class="np-cell" lang="ne">AND अनि उल्टो</span></td></tr>
+        <tr><td>NOR</td><td><code>Y = <span class="ovl">A + B</span></code></td>
+            <td>ALL inputs are 0</td>
+            <td><span class="t-en">OR, then flip</span><span class="np-cell" lang="ne">OR अनि उल्टो</span></td></tr>
+        <tr><td>XOR</td><td><code>Y = A ⊕ B</code></td>
+            <td>the inputs are DIFFERENT</td>
+            <td><span class="t-en">"odd one out"</span><span class="np-cell" lang="ne">फरक भए मात्र</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout an"><span class="t-en">
+    <b>XOR is not in the numbered syllabus list, but you need it.</b>
+    The SUM output of a half adder (Unit 4.1) <i>is</i> an XOR gate, so it is taught here rather
+    than sprung on you later.
+    </span><span class="np-cell" lang="ne">XOR सिलेबसको क्रमबद्ध सूचीमा छैन, तर चाहिन्छ। Half adder (युनिट ४.१) को
+    SUM भनेकै XOR गेट हो, त्यसैले पछि अचानक आउनुभन्दा यहीँ सिकाइएको हो।</span>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Filling a truth table you have not memorised</div>
+    <p><b>Question:</b> complete the truth table of a NOR gate.</p>
+    <p><b>Step 1 — write the rows.</b> Two inputs, so 2² = 4 rows. Count up in binary:
+    00, 01, 10, 11. Now no row can be missed.</p>
+    <p><b>Step 2 — do the easy gate first.</b> NOR is OR then NOT, so find OR:
+    0, 1, 1, 1.</p>
+    <p><b>Step 3 — invert every answer.</b> 1, 0, 0, 0.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">A B → Y : 0 0 → 1 &nbsp;|&nbsp; 0 1 → 0 &nbsp;|&nbsp; 1 0 → 0 &nbsp;|&nbsp; 1 1 → 0</div>
+    </div>
+    <p class="wex-note"><span class="t-en">You never have to memorise NAND and NOR tables. Work out AND or OR,
+    then flip. That is one rule instead of four tables.
+    </span><span class="np-cell" lang="ne">NAND र NOR का टेबल घोक्नु पर्दैन। पहिले AND वा OR निकाल्नुहोस्, अनि
+    उल्टाउनुहोस्। चार टेबल घोक्नुभन्दा एउटा नियम सजिलो।</span></p>
+  </div>
+
+  <h2 class="topic" id="t226">2.2.6 &nbsp;Universal gates</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition</span>
+      <p>A <b>universal gate</b> is a gate from which every other logic gate can be built.
+      <b>NAND and NOR are the two universal gates.</b></p>
+      <p>This matters in real manufacturing: a factory that can make one kind of gate reliably
+      and cheaply can build any circuit at all from it, instead of producing six different
+      components.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा</span>
+      <p><b>Universal gate</b> भनेको त्यस्तो गेट हो जसबाट अरू सबै लजिक गेट बनाउन सकिन्छ।
+      <b lang="ne">NAND र NOR — यी दुई universal गेट हुन्।</b></p>
+      <p lang="ne">यसको महत्त्व उत्पादनमा छ: एउटै किसिमको गेट सस्तो र भरपर्दो गरी बनाउन सक्ने कारखानाले
+      छ किसिमका पार्ट्स नबनाई त्यसैबाट जुनसुकै सर्किट बनाउन सक्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 500" role="img" aria-labelledby="t-nandu">
+  <title id="t-nandu">NOT, AND and OR each built from NAND gates only</title>
+  <text class="f-ttl" x="10" y="20">WHY NAND IS CALLED UNIVERSAL — every other gate can be built from it</text>
+
+  <g>
+    <text class="f-lbl-y" x="16" y="58" text-anchor="start">1 &nbsp;NOT — join both inputs of one NAND</text>
+    <text class="f-pin" x="42" y="110.5" text-anchor="end">A</text>
+    <path class="f-wire" d="M50,106 L74,106"/>
+    <path class="f-wire" d="M74,91 L74,121"/>
+    <path class="f-wire" d="M74,91 L104,91"/>
+    <path class="f-wire" d="M74,121 L104,121"/>
+    <g transform="translate(100,76)"><path class="f-gate" d="M0,0 L40,0 A30,30 0 0 1 40,60 L0,60 Z"/><circle class="f-gate" cx="76.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M183,106 L233,106"/>
+    <text class="f-code" x="241" y="110" style="font-size:12px">(A · A)' = A'</text>
+  </g>
+
+  <g>
+    <text class="f-lbl-y" x="16" y="188" text-anchor="start">2 &nbsp;AND — a NAND, then a second NAND used as a NOT</text>
+    <text class="f-pin" x="42" y="225.5" text-anchor="end">A</text>
+    <text class="f-pin" x="42" y="255.5" text-anchor="end">B</text>
+    <path class="f-wire" d="M50,221 L104,221"/>
+    <path class="f-wire" d="M50,251 L104,251"/>
+    <g transform="translate(100,206)"><path class="f-gate" d="M0,0 L40,0 A30,30 0 0 1 40,60 L0,60 Z"/><circle class="f-gate" cx="76.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M183,236 L206,236"/>
+    <path class="f-wire" d="M206,221 L206,251"/>
+    <path class="f-wire" d="M206,221 L244,221"/>
+    <path class="f-wire" d="M206,251 L244,251"/>
+    <g transform="translate(240,206)"><path class="f-gate" d="M0,0 L40,0 A30,30 0 0 1 40,60 L0,60 Z"/><circle class="f-gate" cx="76.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M323,236 L373,236"/>
+    <text class="f-code" x="381" y="240" style="font-size:12px">((A · B)')' = A · B</text>
+  </g>
+
+  <g>
+    <text class="f-lbl-y" x="16" y="302" text-anchor="start">3 &nbsp;OR — invert each input first, then NAND them (De Morgan)</text>
+    <text class="f-pin" x="42" y="354.5" text-anchor="end">A</text>
+    <path class="f-wire" d="M50,350 L70,350"/>
+    <path class="f-wire" d="M70,335 L70,365"/>
+    <path class="f-wire" d="M70,335 L104,335"/>
+    <path class="f-wire" d="M70,365 L104,365"/>
+    <g transform="translate(100,320)"><path class="f-gate" d="M0,0 L40,0 A30,30 0 0 1 40,60 L0,60 Z"/><circle class="f-gate" cx="76.5" cy="30" r="6.5"/></g>
+    <text class="f-pin" x="42" y="434.5" text-anchor="end">B</text>
+    <path class="f-wire" d="M50,430 L70,430"/>
+    <path class="f-wire" d="M70,415 L70,445"/>
+    <path class="f-wire" d="M70,415 L104,415"/>
+    <path class="f-wire" d="M70,445 L104,445"/>
+    <g transform="translate(100,400)"><path class="f-gate" d="M0,0 L40,0 A30,30 0 0 1 40,60 L0,60 Z"/><circle class="f-gate" cx="76.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M183,350 L226,350"/>
+    <path class="f-wire" d="M226,350 L226,375"/>
+    <path class="f-wire" d="M226,375 L254,375"/>
+    <path class="f-wire" d="M183,430 L226,430"/>
+    <path class="f-wire" d="M226,430 L226,405"/>
+    <path class="f-wire" d="M226,405 L254,405"/>
+    <g transform="translate(250,360)"><path class="f-gate" d="M0,0 L40,0 A30,30 0 0 1 40,60 L0,60 Z"/><circle class="f-gate" cx="76.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M333,390 L383,390"/>
+    <text class="f-code" x="391" y="394" style="font-size:12px">(A' · B')' = A + B</text>
+    <text class="f-lbl" x="391" y="414" text-anchor="start">NOR is universal in exactly the same way.</text>
+  </g>
+</svg>
+    <figcaption><span class="t-en">NOT, AND and OR built from NAND gates only. Learn at least the NOT and the AND
+    construction — those two are the ones asked for.
+    </span><span class="np-cell" lang="ne">NAND बाटै बनाइएका NOT, AND र OR। कम्तीमा NOT र AND बनाउने तरिका
+    सिक्नुहोस् — प्रायः यी दुई नै सोधिन्छन्।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Check it yourself</span><span class="t-ne"><span class="t-en"> · </span>आफैं जाँच्नुहोस्</span></p>
+      <h3>Does NAND with both inputs joined really behave like NOT?</h3>
+      <p class="sim-goal"><span class="t-en">Set A and B to the <b>same</b> value — that is what joining the inputs
+      does. Read the output: it is always the opposite of the input.
+      </span><span class="np-cell" lang="ne">A र B लाई <b lang="ne">उही</b> मान दिनुहोस् — इनपुट जोड्नुको अर्थ त्यही हो।
+      आउटपुट हेर्नुहोस्: सधैं इनपुटको उल्टो आउँछ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="gatelab" id="gl-nand" data-gates="NAND,NOT" data-gate="NAND"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">Why does this work?</span>
+        <p>Joining the two inputs of a NAND means both of them always carry the same value —
+        so the gate only ever sees the rows <b>0 0</b> and <b>1 1</b>. In those two rows NAND
+        gives 1 and 0, which is exactly the NOT table.</p>
+        <p>Switch the picker to NOT and compare: same two rows, same two answers. One NAND with
+        its inputs tied together <i>is</i> an inverter.</p>
+        </div><span class="np-cell" lang="ne">NAND का दुई इनपुट जोड्दा दुवैमा सधैं उही मान जान्छ — त्यसैले गेटले
+        <b>0 0</b> र <b>1 1</b> पङ्क्ति मात्र देख्छ। ती दुई पङ्क्तिमा NAND ले 1 र 0 दिन्छ, जुन
+        ठ्याक्कै NOT को टेबल हो। पिकरबाट NOT छानेर तुलना गर्नुहोस्: उही दुई पङ्क्ति, उही दुई उत्तर।</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="topic" id="t23">2.3 &nbsp;De Morgan's theorems</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The two theorems</span>
+      <p><b>First theorem:</b> <code>(A · B)' = A' + B'</code><br>
+      The complement of a product equals the sum of the complements.</p>
+      <p><b>Second theorem:</b> <code>(A + B)' = A' · B'</code><br>
+      The complement of a sum equals the product of the complements.</p>
+      <p>In plain words, and this is how to remember it in the exam hall:
+      <b>break the bar, and change the sign.</b> A dot becomes a plus; a plus becomes a dot.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">दुई नियम</span>
+      <p><b lang="ne">पहिलो नियम:</b> <code>(A · B)' = A' + B'</code><br lang="ne">
+      गुणनफलको पूरक भनेको पूरकहरूको जोड हो।</p>
+      <p><b lang="ne">दोस्रो नियम:</b> <code>(A + B)' = A' · B'</code><br lang="ne">
+      जोडको पूरक भनेको पूरकहरूको गुणनफल हो।</p>
+      <p lang="ne">सजिलो भाषामा, र परीक्षामा यसैगरी सम्झनुहोस्:
+      <b lang="ne">बार फुटाउनुहोस्, अनि चिन्ह बदल्नुहोस्।</b> डट भए प्लस, प्लस भए डट।</p>
+    </div>
+  </div>
+
+  <div class="dia" data-dia="deMorgan">
+  <div class="dia-stage"><svg viewBox="0 0 700 430" role="img" aria-labelledby="t-dm">
+  <title id="t-dm">De Morgan's first law: NOT (A AND B) equals NOT A OR NOT B</title>
+  <text class="f-ttl" x="10" y="20">DE MORGAN'S FIRST LAW &nbsp;&nbsp; (A · B)' = A' + B'</text>
+
+  <g id="dm-left" class="dia-focus">
+    <text class="f-lbl-y" x="120" y="52" style="font-size:12px">NAND — invert AFTER the AND</text>
+    <text class="f-pin" x="34" y="90.5" text-anchor="end">A</text>
+    <text class="f-pin" x="34" y="120.5" text-anchor="end">B</text>
+    <path class="f-wire" d="M42,86 L96,86"/>
+    <path class="f-wire" d="M42,116 L96,116"/>
+    <g transform="translate(92,71)"><path class="f-gate" d="M0,0 L40,0 A30,30 0 0 1 40,60 L0,60 Z"/><circle class="f-gate" cx="76.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M175,101 L215,101"/>
+    <text class="f-code" x="223" y="105" style="font-size:12px">(A · B)'</text>
+  </g>
+
+  <g id="dm-bar" class="dia-step">
+    <path class="f-arr" style="stroke:var(--color-error)" d="M181,84 L181,68 L268,68"/>
+    <text class="f-lbl" x="276" y="72" text-anchor="start" style="font-size:11px;fill:var(--color-error)">this bubble is the bar over (A · B)</text>
+  </g>
+
+  <g id="dm-rule" class="dia-step">
+    <rect class="f-box-y" x="40" y="152" width="620" height="56" rx="10"/>
+    <text class="f-lbl-y" x="350" y="176" style="font-size:12.5px">THE RULE — break the bar, and change the sign</text>
+    <text class="f-code" x="350" y="196" text-anchor="middle" style="font-size:12.5px">(A · B)'  →  A' + B'&nbsp;&nbsp;&nbsp;·  becomes  +</text>
+  </g>
+
+  <g id="dm-right" class="dia-step">
+    <text class="f-lbl-y" x="150" y="248" style="font-size:12px">OR with inverted inputs — invert BEFORE the OR</text>
+    <text class="f-pin" x="34" y="286.5" text-anchor="end">A</text>
+    <text class="f-pin" x="34" y="336.5" text-anchor="end">B</text>
+    <path class="f-wire" d="M42,282 L54,282"/>
+    <g transform="translate(54,252)"><path class="f-gate" d="M0,0 L60,30 L0,60 Z"/><circle class="f-gate" cx="66.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M127,282 L166,282"/>
+    <path class="f-wire" d="M42,332 L54,332"/>
+    <g transform="translate(54,302)"><path class="f-gate" d="M0,0 L60,30 L0,60 Z"/><circle class="f-gate" cx="66.5" cy="30" r="6.5"/></g>
+    <path class="f-wire" d="M127,332 L166,332"/>
+    <path class="f-wire" d="M166,282 L166,292 L170,292"/>
+    <path class="f-wire" d="M166,332 L166,322 L170,322"/>
+    <g transform="translate(166,277)"><path class="f-gate" d="M0,0 Q25,30 0,60 Q50,60 75,30 Q50,0 0,0 Z"/></g>
+    <path class="f-wire" d="M241,307 L281,307"/>
+    <text class="f-code" x="289" y="311" style="font-size:12px">A' + B'</text>
+  </g>
+
+  <g id="dm-table" class="dia-step">
+    <text class="f-lbl-y" x="530" y="248" style="font-size:12px">Both columns match — the law holds</text>
+    <rect class="f-box-d" x="410" y="258" width="272" height="140" rx="8"/>
+    <text class="f-lbl" x="440" y="278" style="font-size:11px">A</text>
+    <text class="f-lbl" x="480" y="278" style="font-size:11px">B</text>
+    <text class="f-lbl-y" x="560" y="278" style="font-size:11px">(A · B)'</text>
+    <text class="f-lbl-y" x="645" y="278" style="font-size:11px">A' + B'</text>
+    <path class="f-wire" d="M418,286 L674,286"/>
+    <text class="f-val" x="440" y="306" style="font-size:12px">0</text>
+    <text class="f-val" x="480" y="306" style="font-size:12px">0</text>
+    <text class="f-val" x="560" y="306" style="font-size:12px">1</text>
+    <text class="f-val" x="645" y="306" style="font-size:12px">1</text>
+    <text class="f-val" x="440" y="330" style="font-size:12px">0</text>
+    <text class="f-val" x="480" y="330" style="font-size:12px">1</text>
+    <text class="f-val" x="560" y="330" style="font-size:12px">1</text>
+    <text class="f-val" x="645" y="330" style="font-size:12px">1</text>
+    <text class="f-val" x="440" y="354" style="font-size:12px">1</text>
+    <text class="f-val" x="480" y="354" style="font-size:12px">0</text>
+    <text class="f-val" x="560" y="354" style="font-size:12px">1</text>
+    <text class="f-val" x="645" y="354" style="font-size:12px">1</text>
+    <text class="f-val" x="440" y="378" style="font-size:12px">1</text>
+    <text class="f-val" x="480" y="378" style="font-size:12px">1</text>
+    <text class="f-val" x="560" y="378" style="font-size:12px">0</text>
+    <text class="f-val" x="645" y="378" style="font-size:12px">0</text>
+  </g>
+
+  <text class="f-lbl" x="350" y="420">The second law is the mirror image: (A + B)' = A' · B'</text>
+</svg></div>
+  <div class="dia-controls">
+    <button type="button" data-dia-act="prev" data-ui="prev">&#9666; Prev</button>
+    <button type="button" data-dia-act="play" data-ui="play" aria-pressed="false">&#9654; Play</button>
+    <button type="button" data-dia-act="next" data-ui="next">Next &#9656;</button>
+    <button type="button" data-dia-act="reset" data-ui="reset">Reset</button>
+    <span class="dia-progress" aria-live="polite" data-dia-steps="5">step 0 / 5</span>
+  </div>
+  <div class="dia-caption" role="status">
+    <span class="dia-cap-en"></span>
+    <span class="dia-cap-ne np-cell" lang="ne"></span>
+  </div>
+</div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Proving the second theorem by truth table</div>
+    <p><b>Question:</b> prove that <code>(A + B)' = A' · B'</code>.</p>
+    <p><b>Step 1 — build the columns you need:</b> A, B, A + B, (A + B)', A', B', A' · B'.</p>
+    <p><b>Step 2 — fill them row by row.</b></p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">A B | A+B | (A+B)' | A' B' | A'·B'
+0 0 |  0  |   1    | 1  1 |   1
+0 1 |  1  |   0    | 1  0 |   0
+1 0 |  1  |   0    | 0  1 |   0
+1 1 |  1  |   0    | 0  0 |   0</div>
+    </div>
+    <p><b>Step 3 — compare the two answer columns.</b> 1, 0, 0, 0 and 1, 0, 0, 0. They are
+    identical in all four rows, so the theorem is proved.</p>
+    <p class="wex-note"><span class="t-en">Two expressions are equal if and only if their truth tables match in
+    every row. That single sentence is what a "prove" question is asking for — always finish by
+    saying the columns are identical.
+    </span><span class="np-cell" lang="ne">दुई अभिव्यक्ति बराबर हुन्छन् भने तिनका ट्रुथ टेबल हरेक पङ्क्तिमा मिल्नुपर्छ।
+    "प्रमाणित गर्नुहोस्" भन्ने प्रश्नले खोजेको यही हो — अन्त्यमा "दुवै स्तम्भ उस्तै छन्" भनेर टुङ्ग्याउनुहोस्।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h3>Mistakes that cost marks here</h3>
+    <ul>
+      <li><span class="t-en"><b>Breaking the bar but forgetting to change the sign.</b> Writing
+        <code>(A · B)' = A' · B'</code> looks tidy and is wrong. Check it: with A = 1, B = 0 the
+        left side is 1 but the right side is 0.
+        </span><span class="np-cell" lang="ne">बार फुटाएर चिन्ह नबदल्नु। <code>(A · B)' = A' · B'</code> हेर्दा
+        मिल्दो देखिन्छ तर गलत हो। A = 1, B = 0 राखेर जाँच्नुहोस्: बायाँ १, दायाँ ०।</span></li>
+      <li><span class="t-en"><b>Confusing NAND with NOR.</b> NAND is 0 only when both inputs are 1; NOR is 1 only
+        when both inputs are 0. They are opposites of different gates, not of each other.
+        </span><span class="np-cell" lang="ne">NAND र NOR मिसाउनु। दुवै इनपुट १ हुँदा मात्र ० दिने NAND हो; दुवै ०
+        हुँदा मात्र १ दिने NOR हो।</span></li>
+      <li><span class="t-en"><b>Drawing AND with a pointed nose.</b> The marker is checking the shape. Flat back,
+        round nose = AND. Curved back, pointed nose = OR.
+        </span><span class="np-cell" lang="ne">AND लाई चुच्चो नाक भएको कोर्नु। परीक्षकले आकार नै हेर्छ।</span></li>
+      <li><span class="t-en"><b>Writing 2 rows for a 3-input gate.</b> It is 2<sup>n</sup> rows, not 2 rows —
+        3 inputs need 8.
+        </span><span class="np-cell" lang="ne">३ इनपुटको गेटलाई २ पङ्क्ति लेख्नु। 2<sup>n</sup> हुन्छ — ३ इनपुटमा ८।</span></li>
+    </ul>
+  </div>
+
+  <h2 class="topic" id="exam2">Exam focus — what is asked from this unit</h2>
+
+  <div class="exam-connect"><span class="t-en">
+    <b>This unit carries 15 of the 50 marks — the joint highest in the subject.</b>
+    Questions come in four shapes, and all four are drawing or table work rather than essays:
+    draw a symbol, complete a truth table, state and prove De Morgan, and explain why NAND is
+    universal. Practise on paper, because that is where the marks are.
+    </span><span class="np-cell" lang="ne">यो युनिटले ५० मध्ये १५ अंक बोक्छ — विषयकै सबैभन्दा बढी। प्रश्न चार किसिमका
+    आउँछन्, र चारै लेखाइभन्दा कोराइ र तालिकामा आधारित छन्: चिन्ह कोर्ने, ट्रुथ टेबल भर्ने,
+    डी–मर्गन प्रमाणित गर्ने, र NAND किन universal हो भन्ने। कागजमै अभ्यास गर्नुहोस्।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">Define a logic gate. </span><span class="np-cell" lang="ne">लजिक गेटको परिभाषा दिनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a21">Show the answer</button>
+    <div class="ans" id="a21"><div class="t-en">
+      <p>A logic gate is a basic electronic circuit that accepts one or more binary inputs
+      (0 or 1) and produces one binary output according to a fixed logical rule. It is the
+      building block of every digital circuit.</p>
+      </div><span class="np-cell" lang="ne">लजिक गेट भनेको एक वा बढी binary इनपुट (० वा १) लिएर तोकिएको तार्किक
+      नियमअनुसार एउटा binary आउटपुट दिने आधारभूत इलेक्ट्रोनिक सर्किट हो। यो हरेक डिजिटल
+      सर्किटको आधारभूत एकाइ हो।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Draw the symbol and write the truth table of a NAND gate.
+    </span><span class="np-cell" lang="ne">NAND गेटको चिन्ह कोर्नुहोस् र ट्रुथ टेबल लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a22">Show the answer</button>
+    <div class="ans" id="a22"><div class="t-en">
+      <p><b>Symbol:</b> the AND shape — flat back, round nose — with a small circle on the nose.
+      Label the inputs A and B and the output Y.</p>
+      <p><b>Expression:</b> <code>Y = <span class="ovl">A · B</span></code></p>
+      <div class="out">A B → Y : 0 0 → 1 &nbsp;|&nbsp; 0 1 → 1 &nbsp;|&nbsp; 1 0 → 1 &nbsp;|&nbsp; 1 1 → 0</div>
+      </div><span class="np-cell" lang="ne">चिन्ह: AND कै आकार (पछाडि सम्म, नाक गोलो) र नाकमा सानो गोलो।
+      इनपुट A, B र आउटपुट Y लेख्नुहोस्। दुवै इनपुट १ हुँदा मात्र आउटपुट ० हुन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Why are NAND and NOR called universal gates? Show how a NOT gate is made from a NAND gate.
+    </span><span class="np-cell" lang="ne">NAND र NOR लाई किन universal गेट भनिन्छ? NAND बाट NOT गेट कसरी बन्छ देखाउनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a23">Show the answer</button>
+    <div class="ans" id="a23"><div class="t-en">
+      <p>They are called universal because every other logic gate — NOT, AND, OR, XOR — can be
+      built using only that one type of gate. A circuit can therefore be manufactured from a
+      single component.</p>
+      <p><b>NOT from NAND:</b> connect both inputs of the NAND together and feed A into them.
+      The output is <code>(A · A)' = A'</code>, which is exactly NOT A.</p>
+      </div><span class="np-cell" lang="ne">अरू सबै गेट — NOT, AND, OR, XOR — एउटै किसिमको गेटबाट बनाउन सकिने
+      भएकाले universal भनिन्छ। NAND का दुवै इनपुट जोडेर A दिँदा आउटपुट <code>(A · A)' = A'</code>
+      हुन्छ, जुन NOT A नै हो।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">5 marks</span> Practice question</div>
+    <p><span class="t-en">State De Morgan's theorems and prove the first one using a truth table.
+    </span><span class="np-cell" lang="ne">डी–मर्गनका नियम भन्नुहोस् र पहिलो नियमलाई ट्रुथ टेबलबाट प्रमाणित गर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="a24">Show the answer</button>
+    <div class="ans" id="a24"><div class="t-en">
+      <p><b>First:</b> <code>(A · B)' = A' + B'</code> — the complement of a product is the sum
+      of the complements.<br>
+      <b>Second:</b> <code>(A + B)' = A' · B'</code> — the complement of a sum is the product of
+      the complements.</p>
+      <div class="out">A B | A·B | (A·B)' | A' B' | A'+B'
+0 0 |  0  |   1    | 1  1 |   1
+0 1 |  0  |   1    | 1  0 |   1
+1 0 |  0  |   1    | 0  1 |   1
+1 1 |  1  |   0    | 0  0 |   0</div>
+      <p>The columns <code>(A · B)'</code> and <code>A' + B'</code> are identical in all four
+      rows, so the theorem is proved.</p>
+      </div><span class="np-cell" lang="ne">दुवै स्तम्भ चारै पङ्क्तिमा उस्तै भएकाले नियम प्रमाणित भयो।
+      उत्तरको अन्त्यमा यही वाक्य लेख्न नबिर्सनुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick"><span class="t-en">A logic gate turns binary inputs into one binary output by a fixed rule.
+        </span><span class="np-cell" lang="ne">लजिक गेटले binary इनपुटलाई निश्चित नियमले एउटा binary आउटपुटमा बदल्छ।</span></li>
+      <li class="tick"><span class="t-en">Symbol, Boolean expression and truth table are three notations for the same gate.
+        </span><span class="np-cell" lang="ne">चिन्ह, बुलियन अभिव्यक्ति र ट्रुथ टेबल — एउटै गेटका तीन नोटेसन।</span></li>
+      <li class="tick"><span class="t-en">n inputs give 2<sup>n</sup> rows. Count the inputs up in binary and no row is missed.
+        </span><span class="np-cell" lang="ne">n इनपुटमा 2<sup>n</sup> पङ्क्ति। binary मा गन्नुभयो भने कुनै छुट्दैन।</span></li>
+      <li class="tick"><span class="t-en">AND needs every input to be 1; OR needs at least one; a nose circle inverts the answer.
+        </span><span class="np-cell" lang="ne">AND लाई सबै इनपुट १ चाहिन्छ; OR लाई एउटा भए पुग्छ; नाकको गोलोले उत्तर उल्टाउँछ।</span></li>
+      <li class="tick"><span class="t-en">NAND and NOR are universal — every other gate can be built from either one.
+        </span><span class="np-cell" lang="ne">NAND र NOR universal हुन् — अरू सबै गेट यीमध्ये एउटैबाट बनाउन सकिन्छ।</span></li>
+      <li class="tick"><span class="t-en">De Morgan: break the bar, change the sign. Prove it by matching truth tables.
+        </span><span class="np-cell" lang="ne">डी–मर्गन: बार फुटाउने, चिन्ह बदल्ने। ट्रुथ टेबल मिलाएर प्रमाणित गर्ने।</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit1.html"><span class="lab">◂ Previous</span><span class="ttl">Number System and Binary Arithmetic</span></a><a class="nx" href="unit3.html"><span class="lab">Next ▸</span><span class="ttl">Boolean Algebra and Karnaugh Map</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-gates.js"></script>
+<script src="../../assets/js/diagram.js"></script>
+<script src="../../assets/js/diagram-data.js"></script>
+</body>
+</html>

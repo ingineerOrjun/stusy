@@ -69,16 +69,30 @@
 
     /* The shape the current quiz UI renders. Keeping this projection in
        one place is what lets the bank carry rich metadata while the UI
-       stays simple. */
+       stays simple.
+
+       Every field is projected as a bilingual pair so one engine can
+       serve all three language modes. The UI renders both halves and the
+       language layer hides one; it never decides which language a
+       student is in, and it never re-renders when the mode changes —
+       which is why switching language mid-quiz cannot lose an answer.
+
+       A question with no Nepali yet projects an empty ne. That is a
+       content gap, not an engine failure: the empty half renders as
+       nothing in bilingual mode, and Nepali mode falls back to the
+       English so the student still gets a readable question. */
     toRenderModel: function (questions) {
+      function pair(o) { return { en: (o && o.en) || '', ne: (o && o.ne) || '' }; }
       return questions.map(function (q) {
         return {
           id: q.id,
-          q: q.prompt.en,
-          o: q.options.map(function (o) { return o.en; }),
-          a: q.answer,
-          e: q.explanation.en,
-          n: q.explanation.ne || ''
+          q:  pair(q.prompt),
+          o:  q.options.map(pair),
+          a:  q.answer,
+          e:  pair(q.explanation),
+          /* kept so an older caller reading .n still gets the Nepali
+             explanation rather than undefined */
+          n:  (q.explanation && q.explanation.ne) || ''
         };
       });
     },

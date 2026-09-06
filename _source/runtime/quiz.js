@@ -5,11 +5,62 @@
    and scores; it does not own the content. Swapping in a per-unit or
    shuffled quiz is a change to this one call.
    Bank: _source/content/questions/  ->  assets/js/question-bank.js */
-var QUIZ = QuizService.toRenderModel(
-  QuizService.getQuiz({ subject: 'grade10/oop-cpp' })
-);
+/* Which subject's bank, how many questions, and whether to draw a fresh
+   selection each attempt, all come from the page rather than from here —
+   so a second subject's quiz is a page, not a second engine.
+
+     <main data-subject="grade10/digital-design">
+     <div id="quizBox" data-limit="15" data-shuffle="true">
+
+   A bank bigger than the limit means a retake is a different paper,
+   which is the difference between practising and memorising an order. */
+function quizConfig(){
+  var box = document.getElementById('quizBox');
+  var main = document.querySelector('main[data-subject]');
+  var subject = (box && box.getAttribute('data-subject')) ||
+                (main && main.getAttribute('data-subject')) ||
+                'grade10/oop-cpp';
+  var limit = box && parseInt(box.getAttribute('data-limit'), 10);
+  return {
+    subject: subject,
+    limit: limit > 0 ? limit : undefined,
+    shuffle: !!(box && box.getAttribute('data-shuffle') === 'true')
+  };
+}
+
+var CFG = quizConfig();
+var QUIZ = QuizService.toRenderModel(QuizService.getQuiz(CFG));
 
 var answered = [], score = 0;
+
+function esc(s){
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/* Both halves are written into the DOM; the language layer shows the
+   right one. Rendering only the current language would mean re-rendering
+   on every switch, and re-rendering a quiz is how you lose a student's
+   answers. The Nepali half is omitted entirely when the bank has none,
+   so an untranslated question does not leave an empty box behind. */
+function bilingual(pair, enClass, neClass){
+  var hasEn = !!(pair && pair.en);
+  /* Identical halves are a value, not a translation — "1011" and "1011".
+     Showing it twice is noise on a screen that is already carrying two
+     languages, so the pair collapses to one. */
+  var hasNe = !!(pair && pair.ne) && pair.ne.trim() !== (pair.en || '').trim();
+  /* Without a Nepali half there is nothing for Nepali mode to fall back
+     to, so the English must not be tagged as hideable — otherwise the
+     mode would blank the question instead of translating it. An
+     untranslated question shows in English in every mode, which is
+     visibly a content gap rather than a broken quiz. */
+  var enCls = hasNe ? enClass : enClass.replace(/\bt-en\b/, '').trim();
+  var en = hasEn
+    ? '<span' + (enCls ? ' class="' + enCls + '"' : '') + '>' + esc(pair.en) + '</span>' : '';
+  var ne = hasNe
+    ? '<span class="' + neClass + '" lang="ne">' + esc(pair.ne) + '</span>' : '';
+  return en + ne;
+}
 
 function buildQuiz(){
   var box = document.getElementById('quizBox');
@@ -19,12 +70,13 @@ function buildQuiz(){
     var Q = QUIZ[i];
     h += '<div class="q" id="q' + i + '">';
     h += '<div class="qn">QUESTION ' + (i + 1) + ' OF ' + QUIZ.length + '</div>';
-    h += '<h4>' + Q.q + '</h4>';
+    h += '<h2 class="q-title">' + bilingual(Q.q, 't-en q-en', 't-ne q-ne') + '</h2>';
     for (var j = 0; j < Q.o.length; j++){
       h += '<button class="opt" id="o' + i + '_' + j + '" onclick="answer(' + i + ',' + j + ')">' +
-           String.fromCharCode(65 + j) + '. ' + Q.o[j] + '</button>';
+           '<span class="opt-key">' + String.fromCharCode(65 + j) + '.</span> ' +
+           bilingual(Q.o[j], 't-en', 't-ne') + '</button>';
     }
-    h += '<div class="expl" id="e' + i + '"></div>';
+    h += '<div class="expl" id="e' + i + '" role="status"></div>';
     h += '</div>';
   }
   box.innerHTML = h;
@@ -44,10 +96,20 @@ function answer(i, j){
     else if (k === j)  b.className = 'opt wrong';
   }
   if (j === correct) score++;
+  /* The verdict is bilingual too — a Nepali-mode student should not have
+     to read "Not correct" in English to find out they were wrong. */
+  var right = (j === correct);
+  var letter = String.fromCharCode(65 + correct);
+  var verdict = right
+    ? { en: 'Correct.', ne: 'ठिक भयो।' }
+    : { en: 'Not correct. The answer is ' + letter + '.',
+        ne: 'मिलेन। सही उत्तर ' + letter + ' हो।' };
+
   var e = document.getElementById('e' + i);
-  e.innerHTML = '<b style="color:' + (j === correct ? 'var(--green)' : 'var(--coral)') + '">' +
-                (j === correct ? 'Correct. ' : 'Not correct. The answer is ' + String.fromCharCode(65 + correct) + '. ') +
-                '</b>' + Q.e + '<span class="np-cell">' + Q.n + '</span>';
+  e.innerHTML =
+    '<b style="color:' + (right ? 'var(--green)' : 'var(--coral)') + '">' +
+    bilingual(verdict, 't-en', 't-ne') + '</b> ' +
+    bilingual(Q.e, 't-en', 't-ne np-cell');
   e.className = 'expl show';
 
   var done = 0;
@@ -73,6 +135,9 @@ function showScore(){
 }
 
 function resetQuiz(){
+  /* Draw again when the bank is shuffled, so a second attempt is a new
+     paper rather than the same fifteen questions in the same order. */
+  if (CFG.shuffle) QUIZ = QuizService.toRenderModel(QuizService.getQuiz(CFG));
   buildQuiz();
   document.getElementById('quiz').scrollIntoView({behavior:'smooth'});
 }

@@ -281,6 +281,7 @@ function loadProg(i){
   document.getElementById('progDesc').textContent   = P.desc;
   document.getElementById('progDescNp').textContent = P.descNp;
   resetTrace();
+  document.addEventListener('languagechange', function(){ updateUI(); });
 }
 
 function resetTrace(){
@@ -289,7 +290,7 @@ function resetTrace(){
   var P = PROGS[curProg];
   renderCode(document.getElementById('traceCode'), P.code, 0);
   conClear(document.getElementById('traceCon'));
-  conLine(document.getElementById('traceCon'), '(console is empty — nothing has been printed yet)', 'muted');
+  conLine(document.getElementById('traceCon'), '(console is empty — nothing has been printed yet)', 'muted t-en');
   document.getElementById('traceCapEn').innerHTML = 'Press <b>Next &#9656;</b> to run the first line.';
   document.getElementById('traceCapNp').innerHTML = 'पहिलो लाइन चलाउन <b>Next &#9656;</b> थिच्नुहोस्।';
   updateBar();
@@ -311,7 +312,7 @@ function stepTrace(dir){
   for (var i = 0; i < curStep; i++){
     if (P.steps[i].out){ conLine(con, P.steps[i].out); any = true; }
   }
-  if (!any) conLine(con, '(console is empty — nothing has been printed yet)', 'muted');
+  if (!any) conLine(con, '(console is empty — nothing has been printed yet)', 'muted t-en');
 
   var s = P.steps[curStep - 1];
   document.getElementById('traceCapEn').innerHTML =
@@ -323,8 +324,12 @@ function stepTrace(dir){
 
 function updateBar(){
   var P = PROGS[curProg];
-  document.getElementById('stepLbl').textContent = 'step ' + curStep + ' / ' + P.steps.length;
-  document.getElementById('stepFill').style.width = (curStep / P.steps.length * 100) + '%';
+  var stepWord = (typeof UIStrings !== 'undefined') ? UIStrings.get('stepOf') : 'step';
+  document.getElementById('stepLbl').textContent = stepWord + ' ' + curStep + ' / ' + P.steps.length;
+  /* scaleX rather than width: the bar is drawn full size and scaled,
+     so the browser composites instead of re-running layout. */
+  document.getElementById('stepFill').style.transform =
+    'scaleX(' + (curStep / P.steps.length) + ')';
   document.getElementById('btnPrev').disabled = (curStep === 0);
   document.getElementById('btnNext').disabled = (curStep === P.steps.length);
 }

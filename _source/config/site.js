@@ -66,7 +66,8 @@ module.exports = [
         "slug": "digital-design",
         "name": "Digital Design & Microprocessor",
         "short": "Digital Design",
-        "np": "डिजिटल डिजाइन र माइक्रोप्रोसेसर"
+        "np": "डिजिटल डिजाइन र माइक्रोप्रोसेसर",
+        "done": true
       }
     ]
   },
