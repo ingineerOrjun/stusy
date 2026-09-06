@@ -589,9 +589,16 @@ test('a runtime label with a Nepali twin hides its English half in Nepali mode',
         const node = stack.pop();
         const parent = stack[stack.length - 1];
         if (node.isNe){
+          /* Only a real element parent means anything. The stream is
+             stitched from string literals, so a gloss that lands at the
+             root has no DOM parent to be beside — its "English" is just
+             everything the stitching swept up on the way. Reporting
+             that is reporting a defect that is not there, which Phase
+             3.1 established is itself a defect. Every gloss in a real
+             page has an element parent. */
           const en = parent.en.replace(/[^A-Za-z ]/g, ' ').replace(/\s+/g, ' ').trim();
-          if (en.length >= 3 && !TERMINOLOGY.test(parent.cls)){
-            bad.push(f + ' <' + (parent.cls || '?') + '>: ' + en.slice(0, 46));
+          if (parent.tag && en.length >= 3 && !TERMINOLOGY.test(parent.cls)){
+            bad.push(f + ' <' + (parent.cls || parent.tag) + '>: ' + en.slice(0, 46));
           }
         } else if (!/\bt-en\b/.test(node.cls)){
           parent.en += node.en;              // hidden runs contribute nothing
@@ -600,7 +607,8 @@ test('a runtime label with a Nepali twin hides its English half in Nepali mode',
       }
       if (m[0].endsWith('/>') || /^(br|img|input|hr)$/i.test(m[1])) continue;
       const cls = (m[2].match(/class="([^"]*)"/) || [, ''])[1];
-      stack.push({ cls, en: '', isNe: /\b(np-cell|np-line|t-ne)\b/.test(cls) });
+      stack.push({ tag: m[1].toLowerCase(), cls, en: '',
+                   isNe: /\b(np-cell|np-line|t-ne)\b/.test(cls) });
     }
   }
 

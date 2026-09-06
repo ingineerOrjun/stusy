@@ -219,3 +219,150 @@ this audit were corrected.
 | `data-answer` means two different things — the model-answer target id on `.btn-ans`, and the correct value on `.predict` | Harmless today; the answer-toggle wiring skips the prediction boxes because `getElementById` returns null. It would collide if a page ever had an element whose id equals a prediction's answer letter. |
 | 63 inline `onclick` handlers | Forces `script-src 'unsafe-inline'`. Not an accessibility issue; recorded in PHASE-3.1-AUDIT.md M6 |
 | Static diagrams expose one `<title>` and no `<desc>` | A screen-reader user gets one sentence for a figure that may carry a truth table |
+
+---
+
+# Accessibility-tree verification — Phase 4.1
+
+**Added after Phase 4**, when the question "you said screen-reader
+behaviour is unverified — verify it" was put directly.
+
+## What was actually done, and what still was not
+
+A screen reader was still not available, and **none was run**. What *is*
+now inspected is the **accessibility tree**: the structure the browser
+computes and hands to assistive technology. That tree is the raw
+material a screen reader reads out, so inspecting it is strictly more
+than the DOM assertions Phase 3.1 proved insufficient — and strictly
+less than listening.
+
+The instrument is [`tests/manual/a11y-tree.js`](../tests/manual/a11y-tree.js),
+run in a real browser against every page in all three language modes.
+It checks the accessible name of every control (computed the way the
+spec says, descendants included), roles, states, live regions,
+landmarks, label relationships, duplicate ids, focusable elements hidden
+from AT, unnamed figures, and tables without header cells.
+
+> ### WCAG 2.1 AA IS STILL NOT CLAIMED
+>
+> A page that passes this audit has **no structural reason** for a
+> screen reader to fail. That is a real, checkable property. It is not
+> the same as a person completing a lesson by ear, and the difference is
+> not a formality.
+
+**Still NOT VERIFIED**, unchanged:
+
+- What a screen reader actually announces, in what order, and whether it
+  makes sense out loud.
+- Whether a student can complete a task — run a query, judge a drill
+  case — using only audio.
+- Colour as a colour-blind student perceives it.
+- Layout at 200% and 400% zoom.
+
+## What the audit found
+
+Four defects, none of which the 265-test suite could see.
+
+### A1 — an announcement nobody could use
+
+**Found:** the SQL simulator wrapped its entire pipeline *and* its
+result table in `role="status"`. Measured in the browser: **44 words
+announced in one burst** in single-language mode, **73 in bilingual** —
+after every run.
+
+A listener cannot stop that, cannot re-read part of it, and hears it
+again on the next run. It is the kind of defect that is invisible to
+every check that does not ask "what does this sound like?"
+
+**Fixed:** the announcement is now a one-line outcome —
+*"3 rows, 1 column returned."*, **5 words** — and the detail sits in a
+named `role="region"` the listener navigates to when they want it.
+Errors still announce their reason in full, because an error's reason is
+the thing worth hearing.
+
+### A2 — options with no context
+
+**Found:** several predictions offer bare values as options — `10`,
+`20`, `30`. Read aloud in isolation that is *"10, button"*. The question
+was a separate heading, and tabbing in from elsewhere skipped it.
+
+**Fixed:** the option container is now `role="group"` named by the
+question via `aria-labelledby`, so entering the group announces what is
+being asked. The same fix was applied to the decision drill.
+
+### A3 — the group name that silently did not attach
+
+**Found while fixing A2:** `predict.js` looked for the question with
+`querySelector('h4')`. The build's heading normaliser rewrites that
+heading to whatever keeps the page outline unbroken — on the built page
+it is an `h3`. The lookup found nothing, so the group got `role="group"`
+and **no name at all**, which is worse than before the fix.
+
+This is the class of bug that only appears against the built page. The
+source looked right.
+
+**Fixed:** any heading level is accepted.
+
+### A4 — a label that read as one word
+
+**Found:** the drill rendered `"1:11:1"` — the English and Nepali labels
+of an option are both `1:1`, so both rendered and ran together. This is
+the same collision Phase 3.1 fixed on the gate workbench (`ANDएन्ड`),
+reappearing in a new component.
+
+**Fixed** with the rule that phase established: identical halves are a
+**value, not a translation**, so they collapse to one unwrapped label
+shown in every mode.
+
+## Two corrections to this audit itself
+
+The tool reported defects that were not there, twice. Phase 3.1's rule
+is that a test which reports a phantom defect is itself a defect, so
+both were fixed rather than tolerated.
+
+- **Numeric options were flagged as "labelled only by a symbol".** A
+  value like `1:1` or `10` *is* a usable name once its group is named by
+  the question. The check now looks at the group before flagging, and
+  still catches a genuinely unnamed `▸`.
+
+- **`tests/language.test.js` had a latent bug of its own.** Its walker
+  pushed elements without a `tag`, so glosses landing at the synthetic
+  root were attributed to text the literal-stitching had swept up. It
+  had been catching real defects for the wrong reason. Fixed, and
+  re-proved by breaking the guarded thing and watching it fail with a
+  precise message.
+
+## Results after the fixes
+
+| Check | Scope | Result |
+| --- | --- | --- |
+| Accessibility-tree audit | all pages × 3 modes | **clean** |
+| Controls with no accessible name | site-wide | **0** |
+| Controls named only by a symbol | site-wide | **0** |
+| Broken `aria-labelledby` / `describedby` | site-wide | **0** |
+| Duplicate ids | site-wide | **0** |
+| Focusable elements inside `aria-hidden` | site-wide | **0** |
+| Pages with exactly one `main` landmark | 36 | **36** |
+| Figures with a `<title>` | 53 | **53** |
+| Longest single announcement | SQL run | **5 words** (was 44) |
+
+Eleven of these are now held by `tests/a11y.test.js` in the automated
+suite, so the structural facts cannot regress between browser audits.
+
+## What to do when a screen reader is available
+
+The audit narrows what needs listening to, it does not replace it. In
+priority order:
+
+1. **The SQL simulator.** Run a query, then an error. Is the summary
+   enough? Is the pipeline reachable and readable after it?
+2. **The decision drills.** Does committing an answer announce the
+   verdict, and is the reason findable without hunting?
+3. **The quiz.** Answer a question and confirm the explanation is
+   announced once, not twice in two languages.
+4. **The animated diagrams.** Step through one and check the caption is
+   announced without the whole figure being re-read.
+5. **Bilingual mode generally.** Both languages are in the DOM. A reader
+   set to English will meet Devanagari. `lang="ne"` is set on every
+   Nepali element, which is what a reader needs to switch voice — but
+   whether it does so gracefully is exactly the unknown.

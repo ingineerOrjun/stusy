@@ -126,12 +126,12 @@ module.exports = {
       { file: 'unit1.html', n: '1',
         title: 'Introduction to Database System', np: 'डाटाबेस प्रणालीको परिचय',
         chip: 'Introduction', hrs: 6, marks: 5,
-        sec: ['db-u1'], js: ['services/simulation.js', 'predict.js'] },
+        sec: ['db-u1'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js'] },
 
       { file: 'unit2.html', n: '2',
         title: 'Entity Relationship Model (ER-Model)', np: 'ई–आर मोडेल',
         chip: 'ER Model', hrs: 10, marks: 8,
-        sec: ['db-u2'], js: ['services/simulation.js', 'predict.js', 'sim-table.js', 'sim-er.js'] },
+        sec: ['db-u2'], js: ['services/simulation.js', 'predict.js', 'sim-table.js', 'sim-er.js', 'sim-drill.js'] },
 
       { file: 'unit3.html', n: '3',
         title: 'Relational Model', np: 'रिलेसनल मोडेल',
@@ -146,17 +146,17 @@ module.exports = {
       { file: 'unit5.html', n: '5',
         title: 'Relational Database Design', np: 'रिलेसनल डाटाबेस डिजाइन',
         chip: 'Normalization', hrs: 8, marks: 6,
-        sec: ['db-u5'], js: ['services/simulation.js', 'predict.js'] },
+        sec: ['db-u5'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js'] },
 
       { file: 'unit6.html', n: '6',
         title: 'Database Transaction', np: 'डाटाबेस ट्रान्ज्याक्सन',
         chip: 'Transaction', hrs: 8, marks: 6,
-        sec: ['db-u6'], js: ['services/simulation.js', 'predict.js'] },
+        sec: ['db-u6'], js: ['services/simulation.js', 'predict.js', 'sim-concurrency.js'] },
 
       { file: 'unit7.html', n: '7',
         title: 'Database Backup, Recovery and Security', np: 'ब्याकअप, रिकभरी र सुरक्षा',
         chip: 'Backup & Security', hrs: 8, marks: 6,
-        sec: ['db-u7'], js: ['services/simulation.js', 'predict.js'] },
+        sec: ['db-u7'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js'] },
 
       { file: 'quiz.html', n: '?',
         title: 'Self-Check Quiz', np: 'आफैं जाँच्ने क्विज',

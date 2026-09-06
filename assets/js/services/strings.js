@@ -62,6 +62,8 @@
     modeSelect:  { en: 'Mode: select group', ne: 'मोड: समूह छान्ने' },
 
     /* announced to assistive technology, never displayed */
+    queryResult: { en: 'Query result and the stages that produced it',
+                   ne: 'क्वेरीको नतिजा र त्यो बनाउने चरणहरू' },
     simOutput:   { en: 'Simulation output', ne: 'सिमुलेसनको आउटपुट' },
     stepOf:      { en: 'step',              ne: 'चरण' }
   };

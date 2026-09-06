@@ -112,16 +112,44 @@ const AUDIT = String(function audit(){
                       ib.y + ib.height <= ob.y + ob.height + 0.5;
         if (!boxed) continue;
         if (ob.width * ob.height <= ib.width * ib.height * 1.2) continue;
+
+        /* CORNERS ARE THE WRONG PROBE FOR A CURVED INNER SHAPE.
+
+           A double ellipse — the notation for a multivalued attribute —
+           is two concentric ellipses. The inner one is entirely inside
+           the outer, but the corners of its BOUNDING BOX are not: for
+           rx 53 inside rx 60, the corner lands at 1.34 on the outer
+           ellipse's containment scale while the ellipse itself peaks at
+           0.78. Probing corners reported that as escaping at 4/4
+           corners, which was a defect in this audit rather than in the
+           figure.
+
+           So a curved inner shape is probed around its own outline
+           instead of at the corners of a box it never touches. */
+        const curved = inner.tagName === 'circle' || inner.tagName === 'ellipse';
+        let probes;
+        if (curved){
+          const cx = ib.x + ib.width / 2, cy = ib.y + ib.height / 2;
+          const rx = ib.width / 2, ry = ib.height / 2;
+          probes = [];
+          for (let d = 0; d < 360; d += 15){
+            const t = d * Math.PI / 180;
+            probes.push([cx + rx * Math.cos(t), cy + ry * Math.sin(t)]);
+          }
+        } else {
+          probes = [[ib.x, ib.y], [ib.x + ib.width, ib.y],
+                    [ib.x, ib.y + ib.height], [ib.x + ib.width, ib.y + ib.height]];
+        }
+
         let escaped = 0;
-        const corners = [[ib.x, ib.y], [ib.x + ib.width, ib.y],
-                         [ib.x, ib.y + ib.height], [ib.x + ib.width, ib.y + ib.height]];
-        for (const [px, py] of corners){
+        for (const [px, py] of probes){
           try { if (!outer.isPointInFill(new DOMPoint(px, py))) escaped++; } catch (e) { /* not fillable */ }
         }
         if (escaped){
           issues.push('BREAKS-OUT: ' + inner.tagName + '.' + (inner.getAttribute('class') || '-') +
                       ' escapes ' + outer.tagName + '.' + (outer.getAttribute('class') || '-') +
-                      ' at ' + escaped + '/4 corners');
+                      ' at ' + escaped + '/' + probes.length +
+                      (curved ? ' points on its outline' : ' corners'));
         }
       }
     }

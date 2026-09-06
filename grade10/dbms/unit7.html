@@ -107,7 +107,7 @@
 
   <figure class="fig">
     
-<svg viewBox="0 0 700 208" role="img" aria-labelledby="t-backup">
+<svg viewBox="0 0 700 242" role="img" aria-labelledby="t-backup">
   <title id="t-backup">Types and methods of database backup: physical and logical, full, incremental and differential</title>
   <text class="f-ttl" x="10" y="20">BACKUP — two TYPES, three METHODS</text>
   <text class="f-lbl-y" x="175" y="44" style="font-size:12px">TYPES — what is copied</text>
@@ -127,24 +127,24 @@
   </g>
 
 <g>
-    <rect class="f-box-d" x="356" y="56" width="328" height="34" rx="7"/>
-    <rect x="358" y="62" width="4" height="22" rx="2" style="fill:var(--color-primary)"/>
+    <rect class="f-box-d" x="356" y="56" width="328" height="38" rx="7"/>
+    <rect x="358" y="63" width="4" height="24" rx="2" style="fill:var(--color-primary)"/>
     <text class="f-lbl-y" x="376" y="71" text-anchor="start" style="font-size:11.5px">FULL</text>
-    <text class="f-lbl" x="376" y="84" text-anchor="start" style="font-size:10.5px">everything, every time — slow but simple</text>
+    <text class="f-lbl" x="376" y="87" text-anchor="start" style="font-size:10.5px">everything, every time — slow but simple</text>
   </g><g>
-    <rect class="f-box-d" x="356" y="96" width="328" height="34" rx="7"/>
-    <rect x="358" y="102" width="4" height="22" rx="2" style="fill:var(--color-primary)"/>
-    <text class="f-lbl-y" x="376" y="111" text-anchor="start" style="font-size:11.5px">INCREMENTAL</text>
-    <text class="f-lbl" x="376" y="124" text-anchor="start" style="font-size:10.5px">only what changed since the LAST backup</text>
+    <rect class="f-box-d" x="356" y="100" width="328" height="38" rx="7"/>
+    <rect x="358" y="107" width="4" height="24" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="376" y="115" text-anchor="start" style="font-size:11.5px">INCREMENTAL</text>
+    <text class="f-lbl" x="376" y="131" text-anchor="start" style="font-size:10.5px">only what changed since the LAST backup</text>
   </g><g>
-    <rect class="f-box-d" x="356" y="136" width="328" height="34" rx="7"/>
-    <rect x="358" y="142" width="4" height="22" rx="2" style="fill:var(--color-primary)"/>
-    <text class="f-lbl-y" x="376" y="151" text-anchor="start" style="font-size:11.5px">DIFFERENTIAL</text>
-    <text class="f-lbl" x="376" y="164" text-anchor="start" style="font-size:10.5px">everything changed since the last FULL backup</text>
+    <rect class="f-box-d" x="356" y="144" width="328" height="38" rx="7"/>
+    <rect x="358" y="151" width="4" height="24" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="376" y="159" text-anchor="start" style="font-size:11.5px">DIFFERENTIAL</text>
+    <text class="f-lbl" x="376" y="175" text-anchor="start" style="font-size:10.5px">everything changed since the last FULL backup</text>
   </g>
 
-  <text class="f-lbl-y" x="350" y="176">Incremental and differential differ on ONE word: since the last BACKUP, or since the last FULL backup.</text>
-  <text class="f-lbl" x="350" y="196" style="font-size:11px">That one word is the whole exam question.</text>
+  <text class="f-lbl-y" x="350" y="212">Incremental and differential differ on ONE word: since the last BACKUP, or since the last FULL backup.</text>
+  <text class="f-lbl" x="350" y="230" style="font-size:11px">That one word is the whole exam question.</text>
 </svg>
     <figcaption><span class="t-en">Incremental and differential differ by one word — since the last <i>backup</i>, or
     since the last <i>full</i> backup. That one word is the whole exam question.
@@ -304,6 +304,31 @@ T3  REDO   it has a COMMIT record</div>
     atomicity ले आधा ट्रान्ज्याक्सन बाँच्न दिँदैन।</span></p>
   </div>
 
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3>Redo or undo? Decide from the log</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to apply the one test that decides it, and to stop
+      being distracted by how much work a transaction had already done.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: तय गर्ने एउटै जाँच लागू गर्न, र ट्रान्ज्याक्सनले
+      कति काम गरिसकेको थियो भन्नेमा नअल्मलिन।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-recov" data-set="recovery"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Before you press an answer, find the COMMIT record — or confirm there isn't one. That
+        is the whole decision. Do not read the writes.</p>
+        <p>Case 2 has two writes and no commit; case 3 has a commit and almost no work. They go
+        opposite ways, and that pair is the point: <b>the amount of work is never the test.</b></p>
+        </div><span class="np-cell" lang="ne">उत्तर थिच्नुअघि COMMIT रेकर्ड खोज्नुहोस् — वा छैन भनी पक्का
+        गर्नुहोस्। पूरा निर्णय त्यति नै हो। लेखाइ नपढ्नुहोस्। केस २ मा दुई पटक लेखिएको छ तर commit
+        छैन; केस ३ मा commit छ तर झन्डै केही लेखिएको छैन। दुवै विपरीत दिशामा जान्छन् —
+        <b lang="ne">कति काम भयो भन्ने कहिल्यै जाँच होइन।</b></span>
+      </div>
+    </div>
+  </div>
+
   <h2 class="topic" id="db-t76">7.6 &amp; 7.7 &nbsp;Database security</h2>
 
   <div class="pair">
@@ -348,6 +373,54 @@ T3  REDO   it has a COMMIT record</div>
     इनपुट बाकसमा SQL टाइप गर्दा प्रोग्रामले चलाइदिनु, जसले login फारमलाई पूरै तालिका पढ्ने बाटो
     बनाइदिन्छ; <b>Malware</b>; <b lang="ne">अधिकारको दुरुपयोग</b>; <b lang="ne">कमजोर पासवर्ड</b> र
     <b lang="ne">encrypt नगरिएको backup</b> — भित्र पस्ने सबैभन्दा सजिला र सबैभन्दा बिर्सिने दुई बाटा।</span>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Choosing a backup schedule, and counting the cost</div>
+    <p><b>Question:</b> a school database changes a little every day. A full backup takes 2 hours;
+    each day's changes take 10 minutes to copy. Compare an incremental and a differential schedule
+    for a Sunday-to-Saturday week, and say which restores faster after a Saturday failure.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working — incremental</span>
+      <div class="out">Sun   FULL           2 hrs
+Mon   changes since Sun          10 min
+Tue   changes since Mon          10 min
+Wed   changes since Tue          10 min
+Thu   changes since Wed          10 min
+Fri   changes since Thu          10 min
+Sat   changes since Fri          10 min
+
+To restore: FULL + all 6 incrementals = 7 files, in order</div>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working — differential</span>
+      <div class="out">Sun   FULL           2 hrs
+Mon   changes since Sun          10 min
+Tue   changes since Sun          20 min
+Wed   changes since Sun          30 min
+Thu   changes since Sun          40 min
+Fri   changes since Sun          50 min
+Sat   changes since Sun          60 min
+
+To restore: FULL + Saturday's only = 2 files</div>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">Incremental   fastest to TAKE (10 min every day)
+              slowest to RESTORE (7 files, in order)
+
+Differential  slower to take, growing each day
+              fastest to RESTORE (2 files)
+
+Differential restores faster after a Saturday failure.</div>
+    </div>
+    <p class="wex-note"><span class="t-en">The trade is always the same shape: <b>time spent every day, against time
+    spent on the one day it goes wrong.</b> An incremental schedule is cheap all week and expensive
+    exactly when you are already in trouble — which is why many real systems accept the larger
+    daily cost of a differential.
+    </span><span class="np-cell" lang="ne">सन्तुलन सधैं उही आकारको हुन्छ: <b lang="ne">हरेक दिन लाग्ने समय, बनाम बिग्रने त्यो
+    एक दिनमा लाग्ने समय।</b> Incremental हप्तैभरि सस्तो हुन्छ र ठ्याक्कै समस्या परेकै दिन महँगो —
+    त्यसैले धेरै वास्तविक प्रणालीले differential को दैनिक भार स्वीकार गर्छन्।</span></p>
   </div>
 
   <div class="mistake">
@@ -490,6 +563,7 @@ DIFFERENTIAL  copies everything changed since the last FULL backup
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/services/simulation.js"></script>
 <script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
 <script src="../../assets/js/diagram.js"></script>
 <script src="../../assets/js/diagram-data.js"></script>
 </body>

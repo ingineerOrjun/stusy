@@ -93,7 +93,7 @@
 
   <figure class="fig">
     
-<svg viewBox="0 0 700 210" role="img" aria-labelledby="t-dbladder">
+<svg viewBox="0 0 700 226" role="img" aria-labelledby="t-dbladder">
   <title id="t-dbladder">Data becomes information, information is stored in a database, and a DBMS is the software that manages it</title>
   <defs><marker id="a-dbladder" viewBox="0 0 10 10" refX="9" refY="5"
     markerWidth="6" markerHeight="6" orient="auto">
@@ -128,7 +128,7 @@
     <text class="f-code" x="440" y="182" text-anchor="start" style="font-size:12px">MySQL, Oracle, MS Access</text>
     
   </g>
-  <text class="f-lbl-y" x="350" y="196">The commonest slip: calling the DBMS "the database". The database is the data; the DBMS is the program that looks after it.</text>
+  <text class="f-lbl-y" x="350" y="214">The commonest slip: calling the DBMS "the database". The database is the data; the DBMS is the program that looks after it.</text>
 </svg>
     <figcaption><span class="t-en">Each word is built on the one before it. Getting the order right is most of the
     answer to "differentiate between…".
@@ -152,6 +152,33 @@
       loses the mark in a "differentiate" question.</p>
       </div><span class="np-cell" lang="ne">MySQL <b>DBMS</b> हो — सफ्टवेयर। <b lang="ne">डाटाबेस</b> भनेको त्यसले व्यवस्थापन
       गर्ने data को सङ्ग्रह हो। "MySQL एउटा डाटाबेस हो" भन्नु यस युनिटको सबैभन्दा सामान्य गल्ती हो।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3>Sort each one: data, information, database or DBMS?</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to separate the four words on real examples, so the
+      "differentiate between…" question is answered from recognition rather than from a memorised
+      sentence.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: वास्तविक उदाहरणमा चारै शब्द छुट्याउन — ताकि
+      "फरक छुट्याउनुहोस्" भन्ने प्रश्न घोकेको वाक्यबाट होइन, चिनेरै उत्तर दिन सकियोस्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-terms" data-set="dbterms"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Two of the five cases are software and two are content. Before you answer, ask one
+        question: <b>could I install this?</b> If yes it is a DBMS; if it is something the DBMS
+        stores or produces, it is one of the other three.</p>
+        <p>Then separate data from information by asking whether it means anything on its own.
+        <code>78</code> does not. "Ram scored 78" does.</p>
+        </div><span class="np-cell" lang="ne">पाँचमध्ये दुई सफ्टवेयर हुन्, दुई सामग्री। उत्तर दिनुअघि एउटा प्रश्न
+        सोध्नुहोस्: <b lang="ne">के यो install गर्न मिल्छ?</b> मिल्छ भने DBMS; DBMS ले राख्ने वा दिने कुरा
+        भए बाँकी तीनमध्ये एक। अनि आफैंमा अर्थ लाग्छ कि लाग्दैन सोधेर data र information
+        छुट्याउनुहोस्।</span>
+      </div>
     </div>
   </div>
 
@@ -391,6 +418,41 @@ DATABASE vs DBMS
     लेख्ने गल्ती हुँदैन — यो प्रश्न प्रायः त्यसैगरी आधा उत्तर हुन्छ।</span></p>
   </div>
 
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Deciding which level a change belongs to</div>
+    <p><b>Question:</b> for each change, say which level of the three-level architecture it happens
+    at, and which kind of data independence protects the level above it.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">"The database is moved to a faster disk."
+   INTERNAL level — how the bytes are stored.
+   Physical data independence means the tables
+   above it do not change.
+
+"A new column 'email' is added to Student."
+   CONCEPTUAL level — what data exists.
+   Logical data independence means a teacher's
+   view that never showed email is unaffected.
+
+"The class teacher is given a screen showing
+ only name and marks."
+   EXTERNAL level — what one user sees.
+   Nothing below it changes at all.</div>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">disk change     → internal   (physical independence)
+new column      → conceptual (logical independence)
+new user screen → external   (no effect below)</div>
+    </div>
+    <p class="wex-note"><span class="t-en">Work from the bottom up: <b>is this about the disk, about what data exists,
+    or about who sees it?</b> Those three questions map onto the three levels exactly, and the
+    independence is always named after the level <i>below</i> the boundary it protects.
+    </span><span class="np-cell" lang="ne">तलबाट माथि सोच्नुहोस्: <b lang="ne">यो डिस्कको कुरा हो, कुन data छ भन्ने कुरा हो,
+    कि कसले देख्छ भन्ने कुरा हो?</b> यी तीन प्रश्न ठ्याक्कै तीन तहमा मिल्छन्, र independence को नाम
+    सधैं आफूले जोगाउने सीमाको <i lang="ne">तल्लो</i> तहबाट राखिन्छ।</span></p>
+  </div>
+
   <div class="mistake">
     <h3>Mistakes that cost marks here</h3>
     <ul>
@@ -519,6 +581,7 @@ DATABASE vs DBMS
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/services/simulation.js"></script>
 <script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
 <script src="../../assets/js/diagram.js"></script>
 <script src="../../assets/js/diagram-data.js"></script>
 </body>

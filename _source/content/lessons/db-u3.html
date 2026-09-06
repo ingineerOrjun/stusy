@@ -224,6 +224,41 @@ Treats  ( doctor_id, patient_id )
     </div>
   </div>
 
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Labelling a table with the right term for every part</div>
+    <p><b>Question:</b> for the table below, state the relation name, the degree, the cardinality,
+    the primary key, and the domain of <code>marks</code>.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Given</span>
+      <div class="out">Student
+┌────┬───────┬───────┬──────────┐
+│ id │ name  │ marks │ class_id │
+├────┼───────┼───────┼──────────┤
+│  1 │ Ram   │  78   │    10    │
+│  2 │ Sita  │  91   │    10    │
+│  3 │ Hari  │  55   │    11    │
+└────┴───────┴───────┴──────────┘</div>
+    </div>
+    <p><b>Count sideways for degree, downwards for cardinality.</b> That one sentence prevents the
+    only mistake this question invites:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">Relation name    Student
+Degree           4    (id, name, marks, class_id — count COLUMNS)
+Cardinality      3    (three tuples — count ROWS)
+Primary key      id   (unique, and never NULL)
+Domain of marks  whole numbers 0–100
+Attribute        one column, e.g. name
+Tuple            one row, e.g. (2, Sita, 91, 10)</div>
+    </div>
+    <p class="wex-note">Write the two counts with the words "columns" and "rows" beside them, as
+    above. A marker reading "Degree 4, Cardinality 3" cannot tell whether you knew which was which
+    or guessed; "Degree 4 columns, Cardinality 3 rows" removes the doubt.
+    <span class="np-cell">दुई गणनासँगै "स्तम्भ" र "पङ्क्ति" शब्द लेख्नुहोस्। "Degree ४,
+    Cardinality ३" मात्र लेखे परीक्षकले जानेर लेखेको कि अनुमान गरेको भन्न सक्दैनन्; शब्द थपे
+    शङ्का हट्छ।</span></p>
+  </div>
+
   <div class="mistake">
     <h4>Mistakes that cost marks here</h4>
     <ul>

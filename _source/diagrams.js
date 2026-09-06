@@ -1791,11 +1791,11 @@ ${[
     <rect x="${x + 2}" y="60" width="4" height="24" rx="2" style="fill:var(${s[3]})"/>
     <text class="f-lbl-y" x="${x + 73}" y="74" style="font-size:13px">${s[0]}</text>
     <text class="f-lbl" x="${x + 73}" y="94" style="font-size:11.5px">${s[1]}</text>
-    <text class="f-code" x="${x + 73}" y="120" style="font-size:13px">${s[2]}</text>
+    <text class="f-code" x="${x + 73}" y="120" text-anchor="middle" style="font-size:13px">${s[2]}</text>
     ${i < 3 ? `<line class="f-arr" x1="${x + 148}" y1="92" x2="${x + 172}" y2="92" marker-end="url(#a-sqlpipe)"/>` : ''}
   </g>`;
 }).join('')}
-  <text class="f-code" x="350" y="164" style="font-size:12.5px">SELECT name FROM Student WHERE marks &gt; 60 ORDER BY marks DESC;</text>
+  <text class="f-code" x="350" y="164" text-anchor="middle" style="font-size:12px">SELECT name FROM Student WHERE marks &gt; 60 ORDER BY marks DESC;</text>
   <text class="f-lbl-y" x="350" y="188">WHERE removes rows. SELECT removes columns. ORDER BY removes nothing — it only rearranges.</text>
 </svg>`;
 
@@ -1847,7 +1847,7 @@ ${[
 /* 1.1 — the four words students are asked to distinguish, arranged as
    a ladder so the ORDER of the definitions carries the meaning. */
 D.dbLadder = `
-<svg viewBox="0 0 700 210" role="img" aria-labelledby="t-dbladder">
+<svg viewBox="0 0 700 226" role="img" aria-labelledby="t-dbladder">
   <title id="t-dbladder">Data becomes information, information is stored in a database, and a DBMS is the software that manages it</title>
   ${ah('a-dbladder')}
   <text class="f-ttl" x="10" y="20">FOUR WORDS, IN ORDER — each one is built on the one before it</text>
@@ -1867,7 +1867,7 @@ ${[
     ${i < 3 ? `<line class="f-arr" x1="26" y1="${y + 34}" x2="26" y2="${y + 38}" marker-end="url(#a-dbladder)"/>` : ''}
   </g>`;
 }).join('')}
-  <text class="f-lbl-y" x="350" y="196">The commonest slip: calling the DBMS "the database". The database is the data; the DBMS is the program that looks after it.</text>
+  <text class="f-lbl-y" x="350" y="214">The commonest slip: calling the DBMS "the database". The database is the data; the DBMS is the program that looks after it.</text>
 </svg>`;
 
 /* 1.2 and 1.3 — the file system's four problems, each paired with the
@@ -2145,11 +2145,11 @@ D.normalForms = {
   <text class="f-ttl" x="10" y="20">NORMALISATION — each step removes ONE named problem</text>
 
   <g id="nf-0">
-    <rect class="f-box-d" x="16" y="36" width="668" height="52" rx="7"/>
-    <rect x="18" y="44" width="4" height="36" rx="2" style="fill:var(--color-error)"/>
+    <rect class="f-box-d" x="16" y="36" width="668" height="58" rx="7"/>
+    <rect x="18" y="44" width="4" height="42" rx="2" style="fill:var(--color-error)"/>
     <text class="f-lbl-y" x="36" y="54" text-anchor="start" style="font-size:11.5px">UNNORMALISED</text>
     <text class="f-code" x="36" y="72" text-anchor="start" style="font-size:11px">Student( id, name, class_id, class_room, subjects: "Maths, Science" )</text>
-    <text class="f-lbl" x="36" y="84" text-anchor="start" style="font-size:10.5px">one cell holds two subjects, and the room repeats on every row of that class</text>
+    <text class="f-lbl" x="36" y="88" text-anchor="start" style="font-size:10.5px">one cell holds two subjects, and the room repeats on every row of that class</text>
   </g>
 
   <g id="nf-1">
@@ -2207,10 +2207,13 @@ D.acidProps = `
   <text class="f-lbl-y" x="330" y="42" style="font-size:11.5px">PROMISE</text>
   <text class="f-lbl-y" x="560" y="42" style="font-size:11.5px">WITHOUT IT</text>
 ${[
-  ['ATOMICITY', 'all of it happens, or none of it', 'money leaves one account and never arrives'],
-  ['CONSISTENCY', 'the database obeys its rules before and after', 'a student row points at a class that does not exist'],
-  ['ISOLATION', 'concurrent transactions do not see each other half-done', 'two clerks read the same balance and both subtract'],
-  ['DURABILITY', 'once committed, it survives a crash', 'the power fails and yesterday’s fees are gone']
+  /* Three columns share 668px. Each string is kept inside the width its
+     column actually has — the first version ran the middle column into
+     the third, which the geometry audit caught as text over text. */
+  ['ATOMICITY', 'all of it happens, or none of it', 'money leaves an account, arrives nowhere'],
+  ['CONSISTENCY', 'the rules hold before and after', 'a row points at a class that is not there'],
+  ['ISOLATION', 'no transaction sees another mid-way', 'two clerks subtract from one balance'],
+  ['DURABILITY', 'once committed, it survives a crash', 'a power cut erases confirmed work']
 ].map(function (r, i){
   const y = 54 + i * 38;
   return `<g>
@@ -2242,7 +2245,7 @@ D.txnStates = {
   </g>
   <g id="tx-2">
     <rect class="f-box-d" x="190" y="90" width="150" height="42" rx="7"/>
-    <text class="f-lbl-y" x="265" y="110" style="font-size:11.5px">PARTIALLY</text>
+    <text class="f-lbl-y" x="265" y="106" style="font-size:11.5px">PARTIALLY</text>
     <text class="f-lbl-y" x="265" y="124" style="font-size:11.5px">COMMITTED</text>
     <line class="f-arr" x1="142" y1="111" x2="186" y2="111" marker-end="url(#a-txn)"/>
   </g>
@@ -2293,7 +2296,7 @@ D.txnStates = {
    --------------------------------------------------------------- */
 
 D.backupTypes = `
-<svg viewBox="0 0 700 208" role="img" aria-labelledby="t-backup">
+<svg viewBox="0 0 700 242" role="img" aria-labelledby="t-backup">
   <title id="t-backup">Types and methods of database backup: physical and logical, full, incremental and differential</title>
   <text class="f-ttl" x="10" y="20">BACKUP — two TYPES, three METHODS</text>
   <text class="f-lbl-y" x="175" y="44" style="font-size:12px">TYPES — what is copied</text>
@@ -2317,17 +2320,17 @@ ${[
   ['INCREMENTAL', 'only what changed since the LAST backup'],
   ['DIFFERENTIAL', 'everything changed since the last FULL backup']
 ].map(function (r, i){
-  const y = 56 + i * 40;
+  const y = 56 + i * 44;
   return `<g>
-    <rect class="f-box-d" x="356" y="${y}" width="328" height="34" rx="7"/>
-    <rect x="358" y="${y + 6}" width="4" height="22" rx="2" style="fill:var(--color-primary)"/>
+    <rect class="f-box-d" x="356" y="${y}" width="328" height="38" rx="7"/>
+    <rect x="358" y="${y + 7}" width="4" height="24" rx="2" style="fill:var(--color-primary)"/>
     <text class="f-lbl-y" x="376" y="${y + 15}" text-anchor="start" style="font-size:11.5px">${r[0]}</text>
-    <text class="f-lbl" x="376" y="${y + 28}" text-anchor="start" style="font-size:10.5px">${r[1]}</text>
+    <text class="f-lbl" x="376" y="${y + 31}" text-anchor="start" style="font-size:10.5px">${r[1]}</text>
   </g>`;
 }).join('')}
 
-  <text class="f-lbl-y" x="350" y="176">Incremental and differential differ on ONE word: since the last BACKUP, or since the last FULL backup.</text>
-  <text class="f-lbl" x="350" y="196" style="font-size:11px">That one word is the whole exam question.</text>
+  <text class="f-lbl-y" x="350" y="212">Incremental and differential differ on ONE word: since the last BACKUP, or since the last FULL backup.</text>
+  <text class="f-lbl" x="350" y="230" style="font-size:11px">That one word is the whole exam question.</text>
 </svg>`;
 
 /* 7.5 — redo and undo. ANIMATED, because they run in opposite

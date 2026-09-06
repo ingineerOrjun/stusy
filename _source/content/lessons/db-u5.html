@@ -195,6 +195,66 @@ Problem removed: transitive dependency</div>
     बुझेको देखिन्छ।</span></p>
   </div>
 
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Which normal form does this table break?</h4>
+      <p class="sim-goal">What you will learn: to spot the FIRST rule a table breaks, which is the
+      whole skill the exam question tests. Knowing the three definitions is not the same as being
+      able to apply them to a table you have not seen.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: तालिकाले <b>पहिले</b> कुन नियम तोड्छ भनी चिन्न —
+      परीक्षाले जाँच्ने सीप यही हो। तीन परिभाषा जान्नु र नदेखेको तालिकामा लागू गर्न सक्नु फरक
+      कुरा हुन्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-nf" data-set="normalforms"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Work down the forms <b>in order</b> every time: is every cell atomic? then is there a
+        partial dependency? then a transitive one? The first "no" is your answer, and a table that
+        breaks 1NF is not yet worth testing against 2NF.</p>
+        <p>Read the reason even when you are right. On the last case nothing is wrong at all —
+        recognising a table that is <i>already</i> in 3NF is as examinable as fixing one that is
+        not.</p>
+        <span class="np-cell">सधैं <b>क्रमैसँग</b> हेर्नुहोस्: हरेक कक्ष अविभाज्य छ? अनि partial
+        निर्भरता छ? अनि transitive? पहिलो "छैन" नै उत्तर हो। सही भए पनि कारण पढ्नुहोस् — अन्तिम
+        केसमा केही गलत छैन, र <i>पहिले नै</i> 3NF मा भएको तालिका चिन्न सक्नु पनि उत्तिकै
+        सोधिन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Naming the dependency before you split</div>
+    <p><b>Question:</b> in <code>Enrol( student_id, course_id, student_name, course_fee )</code>
+    with the key <code>(student_id, course_id)</code>, name every dependency and say which normal
+    form fails.</p>
+    <p><b>Step 1 — write the dependencies out.</b> This is the step students skip, and it is where
+    the marks are:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">student_id                → student_name
+course_id                 → course_fee
+(student_id, course_id)   → nothing else</div>
+    </div>
+    <p><b>Step 2 — test each against the key.</b> Both <code>student_name</code> and
+    <code>course_fee</code> depend on <b>half</b> the key, not the whole of it. Two partial
+    dependencies.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">Fails 2NF — partial dependency (two of them).
+
+Enrol  ( student_id, course_id )
+Student( student_id, student_name )
+Course ( course_id,  course_fee )</div>
+    </div>
+    <p class="wex-note">Notice the key is composite, which is what makes a partial dependency
+    possible at all. If the key had been a single column, this table would already have been in
+    2NF and you would have gone straight to looking for a transitive dependency.
+    <span class="np-cell">कुञ्जी composite छ — त्यसैले partial निर्भरता सम्भव भयो। कुञ्जी एउटै
+    स्तम्भको भएको भए यो तालिका पहिले नै 2NF मा हुन्थ्यो र सिधै transitive निर्भरता खोज्नुपर्थ्यो।</span></p>
+  </div>
+
   <div class="mistake">
     <h4>Mistakes that cost marks here</h4>
     <ul>

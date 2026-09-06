@@ -23,19 +23,19 @@ for the most recent report.
 | | |
 | --- | --- |
 | Pages | 34 student pages + 2 internal |
-| Internal links | 1,485, all resolving |
+| Internal links | 1,490, all resolving |
 | Language modes | 3 — bilingual (default), Nepali-led, English |
 | Subjects with full notes | 3 of 8 (Grade 9 + 10) |
 | Subjects with syllabus outline | 5 of 8 |
-| Written content | 49,812 words |
+| Written content | 52,101 words |
 | Hand-drawn SVG diagrams | 53 (42 static, 11 animated) |
-| Worked examples | 43 |
+| Worked examples | 49 |
 | Exam-style questions | 65, each with a model answer |
-| Interactive components | 18 simulations, 19 runtime modules + 6 services |
+| Interactive components | 23 simulations, 21 runtime modules + 6 services |
 | Traceable C++ programs | 3 (58 steps) |
 | Question bank | 121, tagged by unit, topic and difficulty |
 | Prediction exercises | 15, commit-before-reveal |
-| Automated tests | 265 |
+| Automated tests | 286 |
 | Runtime dependencies | none |
 
 ## Works offline, permanently
@@ -66,7 +66,7 @@ npm run check
 ```
 
 That runs `npm run build` (writes all 28 pages and assets, failing loudly on any
-content-contract violation) followed by `npm test` (265 tests covering the build,
+content-contract violation) followed by `npm test` (286 tests covering the build,
 links, the content contract, the runtime, the storage layer and the design system).
 
 **There are no dependencies to install.** Node 20+ is the only requirement.
@@ -83,7 +83,7 @@ grade9/  grade10/          Subject index + one folder per subject
     quiz.html                15-question self-check
 assets/css  assets/js      One stylesheet, seventeen scripts
 _source/                   Source — config, content, design, runtime, build
-tests/                     265 automated tests (npm test)
+tests/                     286 automated tests (npm test)
 docs/                      Architecture, security, accessibility, decisions
 ```
 

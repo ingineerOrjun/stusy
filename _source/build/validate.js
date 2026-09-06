@@ -263,7 +263,8 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
          that renders its own (the gate workbench builds its input
          switches from the gate definition, so hand-authoring them would
          be a copy that could drift out of step with the circuit). */
-      const SELF_CONTROLLED = /class="[^"]*\b(gatelab|comblab|kmap|cpu8085|numlab|sqllab|dbtable|erlab)\b/;
+      const SELF_CONTROLLED =
+        /class="[^"]*\b(gatelab|comblab|kmap|cpu8085|numlab|sqllab|dbtable|erlab|drill|conclab)\b/;
       if (!/class="sim-controls"/.test(raw) && !SELF_CONTROLLED.test(raw)){
         E(which, 'missing .sim-controls');
       }

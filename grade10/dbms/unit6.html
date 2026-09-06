@@ -127,6 +127,67 @@
     </div>
   </div>
 
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h3>Watch a withdrawal disappear</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: how two people can each do everything correctly and
+      still lose one of the two withdrawals — and what a lock changes.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: दुई जनाले सबै सही गर्दा पनि दुई निकासीमध्ये एक
+      कसरी हराउँछ — र lock ले के फरक पार्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="conclab" id="cc-lost"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">What to notice</span>
+        <p>Step through <b>Both at once</b> and watch the three boxes. At step 2 both clerks hold
+        5000 — and that is already the bug, four steps before anything looks wrong.</p>
+        <p>The arithmetic is never wrong. Clerk 2 computes 5000 − 2000 = 3000 correctly; the value
+        they started from was simply out of date by then. <b>Nobody makes a mistake and the money
+        is still lost.</b> That is what makes this hard to believe from a definition.</p>
+        <p>Now switch to <b>One at a time</b>. The lock forces clerk 2 to read <i>after</i> clerk 1
+        has written, so they start from 4000 and the final balance is 2000. Same two
+        transactions, same arithmetic, different order.</p>
+        </div><span class="np-cell" lang="ne"><b lang="ne">दुवै एकैचोटि</b> मा चरण–चरण जानुहोस् र तीन बाकस हेर्नुहोस्।
+        चरण २ मै दुवै कर्मचारीसँग ५००० छ — केही बिग्रेको देखिनुभन्दा चार चरण अगाडि नै समस्या
+        सुरु भइसक्यो। गणित कहिल्यै गलत हुँदैन; कर्मचारी २ ले सुरु गरेको मान मात्र पुरानो भइसकेको
+        थियो। <b lang="ne">कसैले गल्ती गर्दैन, तैपनि पैसा हराउँछ।</b> अब <b lang="ne">एक–एक गरी</b> मा जानुहोस्:
+        lock ले कर्मचारी २ लाई कर्मचारी १ ले लेखेपछि मात्र पढ्न दिन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Reading a concurrency problem from a schedule</div>
+    <p><b>Question:</b> two transactions run on a balance of 5000. State the final balance, the
+    correct balance, and name the problem.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Schedule</span>
+      <div class="out">T1: read  balance          (5000)
+T2: read  balance          (5000)
+T1: balance = 5000 − 1000  (4000)
+T2: balance = 5000 − 2000  (3000)
+T1: write balance          (4000)
+T2: write balance          (3000)</div>
+    </div>
+    <p><b>Step 1 — find where the two reads happen.</b> Both read before either writes, so both
+    are working from 5000.</p>
+    <p><b>Step 2 — find the last write.</b> T2 writes last, so T2's value survives and T1's is
+    overwritten.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">Final balance   3000
+Correct balance 2000  (5000 − 1000 − 2000)
+Problem         lost update
+Prevented by    locking — T2 must wait until
+                T1 has written and released</div>
+    </div>
+    <p class="wex-note"><span class="t-en">The giveaway in any schedule is <b>two reads before the first write</b>.
+    Look for that pattern and you can name the problem without tracing the arithmetic at all.
+    </span><span class="np-cell" lang="ne">कुनै पनि schedule मा सङ्केत यही हो: <b lang="ne">पहिलो write अघि दुई read</b>।
+    यो ढाँचा भेटे गणित नै नगरी समस्याको नाम भन्न सकिन्छ।</span></p>
+  </div>
+
   <h2 class="topic" id="db-t63">6.3 &nbsp;ACID properties</h2>
 
   <figure class="fig">
@@ -142,25 +203,25 @@
     <rect x="18" y="60" width="4" height="20" rx="2" style="fill:var(--color-primary)"/>
     <text class="f-lbl-y" x="36" y="75" text-anchor="start" style="font-size:11.5px">ATOMICITY</text>
     <text class="f-lbl" x="216" y="75" text-anchor="start" style="font-size:11px">all of it happens, or none of it</text>
-    <text class="f-lbl" x="448" y="75" text-anchor="start" style="font-size:10.5px">money leaves one account and never arrives</text>
+    <text class="f-lbl" x="448" y="75" text-anchor="start" style="font-size:10.5px">money leaves an account, arrives nowhere</text>
   </g><g>
     <rect class="f-box-d" x="16" y="92" width="668" height="32" rx="7"/>
     <rect x="18" y="98" width="4" height="20" rx="2" style="fill:var(--color-primary)"/>
     <text class="f-lbl-y" x="36" y="113" text-anchor="start" style="font-size:11.5px">CONSISTENCY</text>
-    <text class="f-lbl" x="216" y="113" text-anchor="start" style="font-size:11px">the database obeys its rules before and after</text>
-    <text class="f-lbl" x="448" y="113" text-anchor="start" style="font-size:10.5px">a student row points at a class that does not exist</text>
+    <text class="f-lbl" x="216" y="113" text-anchor="start" style="font-size:11px">the rules hold before and after</text>
+    <text class="f-lbl" x="448" y="113" text-anchor="start" style="font-size:10.5px">a row points at a class that is not there</text>
   </g><g>
     <rect class="f-box-d" x="16" y="130" width="668" height="32" rx="7"/>
     <rect x="18" y="136" width="4" height="20" rx="2" style="fill:var(--color-primary)"/>
     <text class="f-lbl-y" x="36" y="151" text-anchor="start" style="font-size:11.5px">ISOLATION</text>
-    <text class="f-lbl" x="216" y="151" text-anchor="start" style="font-size:11px">concurrent transactions do not see each other half-done</text>
-    <text class="f-lbl" x="448" y="151" text-anchor="start" style="font-size:10.5px">two clerks read the same balance and both subtract</text>
+    <text class="f-lbl" x="216" y="151" text-anchor="start" style="font-size:11px">no transaction sees another mid-way</text>
+    <text class="f-lbl" x="448" y="151" text-anchor="start" style="font-size:10.5px">two clerks subtract from one balance</text>
   </g><g>
     <rect class="f-box-d" x="16" y="168" width="668" height="32" rx="7"/>
     <rect x="18" y="174" width="4" height="20" rx="2" style="fill:var(--color-primary)"/>
     <text class="f-lbl-y" x="36" y="189" text-anchor="start" style="font-size:11.5px">DURABILITY</text>
     <text class="f-lbl" x="216" y="189" text-anchor="start" style="font-size:11px">once committed, it survives a crash</text>
-    <text class="f-lbl" x="448" y="189" text-anchor="start" style="font-size:10.5px">the power fails and yesterday’s fees are gone</text>
+    <text class="f-lbl" x="448" y="189" text-anchor="start" style="font-size:10.5px">a power cut erases confirmed work</text>
   </g>
   <text class="f-lbl-y" x="350" y="210">A transaction is not "a change". It is a change that carries all four of these promises.</text>
 </svg>
@@ -210,7 +271,7 @@
   </g>
   <g id="tx-2">
     <rect class="f-box-d" x="190" y="90" width="150" height="42" rx="7"/>
-    <text class="f-lbl-y" x="265" y="110" style="font-size:11.5px">PARTIALLY</text>
+    <text class="f-lbl-y" x="265" y="106" style="font-size:11.5px">PARTIALLY</text>
     <text class="f-lbl-y" x="265" y="124" style="font-size:11.5px">COMMITTED</text>
     <line class="f-arr" x1="142" y1="111" x2="186" y2="111" marker-end="url(#a-txn)"/>
   </g>
@@ -447,6 +508,7 @@ Final states: COMMITTED and ABORTED.</div>
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/services/simulation.js"></script>
 <script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-concurrency.js"></script>
 <script src="../../assets/js/diagram.js"></script>
 <script src="../../assets/js/diagram-data.js"></script>
 </body>

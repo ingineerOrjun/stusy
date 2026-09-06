@@ -258,3 +258,99 @@ The pattern in every rejection is the same: **interaction earns its place when
 the student must change an input and see a consequence they could not have
 predicted.** Where the content is a fact, a list or a procedure with one right
 order, static or animated presentation is clearer and cheaper.
+
+---
+
+## 6. Added in Phase 4.1 — two more components, and a reversal
+
+Phase 4 rejected five interaction candidates and shipped **four of seven
+DBMS units read-only**, with a single worked example each. That was a
+defensible reading of "do not over-interact" and a poor product: a unit
+with no interaction and one example is a page of notes.
+
+Two of those rejections were re-examined and **one was reversed**.
+
+### 6.1 Decision drill — `drill`
+
+**File:** `_source/runtime/sim-drill.js`
+
+**The reversal.** Phase 4 rejected "a normalization workbench — drag
+columns between tables", and that rejection still stands. But a
+**diagnostic** interaction is a different thing from a manipulation one,
+and the rejection had quietly covered both.
+
+Several SEE questions are neither recall nor calculation. They are
+judgements made against a rule:
+
+> this table — which normal form does it break?
+> this log — redo or undo?
+> this pair of sentences — 1:M or M:N?
+
+A student who knows the rule can still get these wrong, because the
+skill is applying it to a case they have not seen. That skill comes from
+doing it several times with immediate reasons — which is exactly what a
+quiz does not give, because a quiz asks once, scores, and moves on.
+
+**Why one component and not three.** The three units need the same
+interaction and differ only in their cases. A lesson picks a set; a
+future unit adds a set, not a component.
+
+```html
+<div class="drill" data-set="normalforms"></div>
+```
+
+| `data-set` | Unit | The judgement |
+| --- | --- | --- |
+| `dbterms` | 1 | data, information, database or DBMS? |
+| `cardinality` | 2 | 1:1, 1:M or M:N? |
+| `normalforms` | 5 | which normal form does this break? |
+| `recovery` | 7 | redo or undo? |
+
+**Design rules the sets follow**, all four enforced by
+`tests/dbms.test.js`: at least four cases; at least two different
+answers used (a set where every case answers the same thing teaches
+button-pressing); a bilingual reason of at least twelve words on every
+case; and every answer id must exist among the options — an answer that
+matches no option would mark every attempt wrong, silently.
+
+The `normalforms` set is additionally checked against the rules the unit
+states: the 1NF case must really show a cell holding two values, the 2NF
+case must really have a composite key, and the set must contain a table
+that is **already correct** — recognising one is as examinable as fixing
+one.
+
+### 6.2 Concurrency stepper — `conclab`
+
+**File:** `_source/runtime/sim-concurrency.js`
+
+**Not the rejected simulator.** Phase 4 rejected "a transaction
+concurrency simulator — interleave two transactions" as beyond the
+syllabus, and a general one still is. This plays exactly **two fixed
+schedules of the same two transactions**, interleaved and then
+serialised, because 6.2 asks for the lost-update problem by name. There
+is nothing to configure and no scheduling to explore.
+
+**The misconception it solves.** Students are told "two users at once
+can corrupt the data" and picture something violent. The truth is harder
+to accept: **nobody does anything wrong.** Two clerks each read a
+correct balance, each subtract correctly, each write correctly — and one
+withdrawal vanishes.
+
+That is impossible to believe from a sentence and obvious once you have
+watched it. The component shows three numbers at once — what each clerk
+is holding, and what the database actually says — and at step 4 all
+three disagree, four steps before anything looks wrong.
+
+Switching to the locked schedule runs the same two withdrawals in a
+different order and ends at the correct balance. Same arithmetic,
+different result: that comparison is the lesson.
+
+The arithmetic is asserted by tests, including that both schedules run
+the *same* two withdrawals — without that, the comparison proves
+nothing.
+
+### 6.3 Still not built
+
+The other three rejections stand unchanged, for the reasons in §5: the
+backup timeline, the ACID failure simulator, and the from-scratch schema
+designer. Nothing about them has changed.

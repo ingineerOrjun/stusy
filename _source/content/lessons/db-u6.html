@@ -87,6 +87,67 @@
     </div>
   </div>
 
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h4>Watch a withdrawal disappear</h4>
+      <p class="sim-goal">What you will learn: how two people can each do everything correctly and
+      still lose one of the two withdrawals — and what a lock changes.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: दुई जनाले सबै सही गर्दा पनि दुई निकासीमध्ये एक
+      कसरी हराउँछ — र lock ले के फरक पार्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="conclab" id="cc-lost"></div>
+      <div class="sim-why">
+        <span class="h">What to notice</span>
+        <p>Step through <b>Both at once</b> and watch the three boxes. At step 2 both clerks hold
+        5000 — and that is already the bug, four steps before anything looks wrong.</p>
+        <p>The arithmetic is never wrong. Clerk 2 computes 5000 − 2000 = 3000 correctly; the value
+        they started from was simply out of date by then. <b>Nobody makes a mistake and the money
+        is still lost.</b> That is what makes this hard to believe from a definition.</p>
+        <p>Now switch to <b>One at a time</b>. The lock forces clerk 2 to read <i>after</i> clerk 1
+        has written, so they start from 4000 and the final balance is 2000. Same two
+        transactions, same arithmetic, different order.</p>
+        <span class="np-cell"><b>दुवै एकैचोटि</b> मा चरण–चरण जानुहोस् र तीन बाकस हेर्नुहोस्।
+        चरण २ मै दुवै कर्मचारीसँग ५००० छ — केही बिग्रेको देखिनुभन्दा चार चरण अगाडि नै समस्या
+        सुरु भइसक्यो। गणित कहिल्यै गलत हुँदैन; कर्मचारी २ ले सुरु गरेको मान मात्र पुरानो भइसकेको
+        थियो। <b>कसैले गल्ती गर्दैन, तैपनि पैसा हराउँछ।</b> अब <b>एक–एक गरी</b> मा जानुहोस्:
+        lock ले कर्मचारी २ लाई कर्मचारी १ ले लेखेपछि मात्र पढ्न दिन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Reading a concurrency problem from a schedule</div>
+    <p><b>Question:</b> two transactions run on a balance of 5000. State the final balance, the
+    correct balance, and name the problem.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Schedule</span>
+      <div class="out">T1: read  balance          (5000)
+T2: read  balance          (5000)
+T1: balance = 5000 − 1000  (4000)
+T2: balance = 5000 − 2000  (3000)
+T1: write balance          (4000)
+T2: write balance          (3000)</div>
+    </div>
+    <p><b>Step 1 — find where the two reads happen.</b> Both read before either writes, so both
+    are working from 5000.</p>
+    <p><b>Step 2 — find the last write.</b> T2 writes last, so T2's value survives and T1's is
+    overwritten.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">Final balance   3000
+Correct balance 2000  (5000 − 1000 − 2000)
+Problem         lost update
+Prevented by    locking — T2 must wait until
+                T1 has written and released</div>
+    </div>
+    <p class="wex-note">The giveaway in any schedule is <b>two reads before the first write</b>.
+    Look for that pattern and you can name the problem without tracing the arithmetic at all.
+    <span class="np-cell">कुनै पनि schedule मा सङ्केत यही हो: <b>पहिलो write अघि दुई read</b>।
+    यो ढाँचा भेटे गणित नै नगरी समस्याको नाम भन्न सकिन्छ।</span></p>
+  </div>
+
   <h3 class="topic" id="db-t63">6.3 &nbsp;ACID properties</h3>
 
   <figure class="fig">

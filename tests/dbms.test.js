@@ -341,3 +341,129 @@ test('aggregate functions are absent from the DBMS content', () => {
     }
   }
 });
+
+/* ---------------------------------------------------- decision drill */
+
+const Drill = require(path.join(SRC, 'runtime', 'sim-drill.js'));
+const ConcLab = require(path.join(SRC, 'runtime', 'sim-concurrency.js'));
+
+test('every drill case has exactly one answer, and it is one of the options', () => {
+  /* A drill marks a student. An answer id that matches no option would
+     mark every attempt wrong, silently. */
+  for (const [name, set] of Object.entries(Drill.SETS)){
+    const ids = set.options.map(o => o.id);
+    assert.ok(set.cases.length >= 4, name + ': a drill of fewer than 4 cases is not practice');
+    for (const c of set.cases){
+      assert.ok(ids.includes(c.answer),
+        name + ': answer "' + c.answer + '" is not one of ' + ids.join(', '));
+      assert.ok(c.pre && c.pre.trim(), name + ': a case with no evidence to judge');
+    }
+  }
+});
+
+test('a drill exercises more than one answer', () => {
+  /* A set whose every case has the same answer teaches the student to
+     press the same button, which is worse than no drill. */
+  for (const [name, set] of Object.entries(Drill.SETS)){
+    const used = new Set(set.cases.map(c => c.answer));
+    assert.ok(used.size >= 2,
+      name + ': every case answers "' + [...used][0] + '" — that is not a judgement');
+  }
+});
+
+test('every drill case explains itself in both languages', () => {
+  for (const [name, set] of Object.entries(Drill.SETS)){
+    assert.ok(set.title.en && set.title.ne, name + ': title is not bilingual');
+    assert.ok(set.lead.en && set.lead.ne, name + ': lead is not bilingual');
+    for (const o of set.options) assert.ok(o.label.en && o.label.ne, name + ': an option is not bilingual');
+    for (const c of set.cases){
+      assert.ok(c.why.en && c.why.ne, name + ': a case has no bilingual reason');
+      assert.ok(/[ऀ-ॿ]/.test(c.why.ne), name + ': the Nepali reason is not in Devanagari');
+      assert.ok(c.why.en.split(/\s+/).length >= 12,
+        name + ': a reason too short to teach anything — "' + c.why.en + '"');
+    }
+  }
+});
+
+test('the normal-form drill agrees with the rules the unit states', () => {
+  /* Spot-check the judgements themselves. A drill that marks a correct
+     answer wrong teaches a rule that does not exist. */
+  const nf = Drill.SETS.normalforms;
+  const byAnswer = {};
+  nf.cases.forEach(c => { (byAnswer[c.answer] = byAnswer[c.answer] || []).push(c); });
+
+  assert.ok(byAnswer['1nf'], 'a 1NF case must exist');
+  assert.match(byAnswer['1nf'][0].pre, /"[^"]*,[^"]*"/,
+    'the 1NF case must actually show a cell holding two values');
+  assert.match(byAnswer['2nf'][0].pre, /key\s*=\s*\(\s*\w+\s*,/,
+    'a partial dependency needs a COMPOSITE key, or 2NF cannot fail');
+  assert.ok(byAnswer['ok'], 'a drill with no already-correct case teaches that something is always wrong');
+});
+
+test('the recovery drill turns only on the COMMIT record', () => {
+  for (const c of Drill.SETS.recovery.cases){
+    const committed = /COMMIT/.test(c.pre);
+    assert.strictEqual(c.answer, committed ? 'redo' : 'undo',
+      'a log ' + (committed ? 'with' : 'without') + ' a COMMIT record must be ' +
+      (committed ? 'redone' : 'undone') + ': ' + c.pre.replace(/\n/g, ' | '));
+  }
+});
+
+/* ---------------------------------------------------- concurrency */
+
+test('the interleaved schedule really does lose an update', () => {
+  /* The component teaches by arithmetic, so the arithmetic is checked.
+     If a later edit made the numbers agree, the lesson would quietly
+     become "concurrency is fine". */
+  const steps = ConcLab.SCHEDULES.interleaved.steps;
+  const final = steps[steps.length - 1].bal;
+  assert.strictEqual(final, 3000, 'the interleaved run must end at the WRONG balance');
+  assert.strictEqual(5000 - 1000 - 2000, 2000, 'the correct balance is 2000');
+  assert.ok(steps.some(s => s.lost), 'the losing step must be marked, so the UI can show it');
+});
+
+test('the locked schedule gets the right answer from the same two transactions', () => {
+  const steps = ConcLab.SCHEDULES.locked.steps;
+  assert.strictEqual(steps[steps.length - 1].bal, 2000,
+    'with locking the balance must be correct');
+
+  /* and it must be the SAME work — same two withdrawals, or the
+     comparison proves nothing */
+  const amounts = s => s.map(x => x.act).join(' ').match(/\d+/g).map(Number).sort();
+  assert.deepStrictEqual(
+    amounts(ConcLab.SCHEDULES.interleaved.steps).filter(n => n === 1000 || n === 2000),
+    amounts(steps).filter(n => n === 1000 || n === 2000),
+    'both schedules must run the same two withdrawals');
+});
+
+test('both clerks read the same value before either writes — that is the bug', () => {
+  const steps = ConcLab.SCHEDULES.interleaved.steps;
+  const firstWrite = steps.findIndex(s => s.wrote);
+  const readsBefore = steps.slice(0, firstWrite).filter(s => /read/.test(s.act));
+  assert.strictEqual(readsBefore.length, 2,
+    'two reads before the first write is the pattern the lesson names');
+});
+
+test('every concurrency step is narrated in both languages', () => {
+  for (const [name, s] of Object.entries(ConcLab.SCHEDULES)){
+    assert.ok(s.label.en && s.label.ne, name + ': label is not bilingual');
+    for (const st of s.steps){
+      assert.ok(st.en && st.ne, name + ': a step has no bilingual narration');
+      assert.ok(/[ऀ-ॿ]/.test(st.ne), name + ': the Nepali narration is not in Devanagari');
+    }
+  }
+});
+
+test('every DBMS unit now offers something to do, not only to read', () => {
+  /* Four units shipped read-only in Phase 4. That was a defensible
+     reading of "do not over-interact" and a poor product: a unit with
+     no interaction and one worked example is a page of notes. */
+  const dir = path.join(SRC, 'content', 'lessons');
+  for (const f of fs.readdirSync(dir).filter(n => /^db-u\d\.html$/.test(n))){
+    const html = fs.readFileSync(path.join(dir, f), 'utf8');
+    const sims = (html.match(/<div class="sim">/g) || []).length;
+    const wex = (html.match(/class="wex"/g) || []).length;
+    assert.ok(sims >= 1, f + ' has no interactive component');
+    assert.ok(wex >= 2, f + ' has only ' + wex + ' worked example');
+  }
+});

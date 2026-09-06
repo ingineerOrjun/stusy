@@ -158,6 +158,31 @@ T3  REDO   it has a COMMIT record</div>
     atomicity ले आधा ट्रान्ज्याक्सन बाँच्न दिँदैन।</span></p>
   </div>
 
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Redo or undo? Decide from the log</h4>
+      <p class="sim-goal">What you will learn: to apply the one test that decides it, and to stop
+      being distracted by how much work a transaction had already done.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: तय गर्ने एउटै जाँच लागू गर्न, र ट्रान्ज्याक्सनले
+      कति काम गरिसकेको थियो भन्नेमा नअल्मलिन।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-recov" data-set="recovery"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Before you press an answer, find the COMMIT record — or confirm there isn't one. That
+        is the whole decision. Do not read the writes.</p>
+        <p>Case 2 has two writes and no commit; case 3 has a commit and almost no work. They go
+        opposite ways, and that pair is the point: <b>the amount of work is never the test.</b></p>
+        <span class="np-cell">उत्तर थिच्नुअघि COMMIT रेकर्ड खोज्नुहोस् — वा छैन भनी पक्का
+        गर्नुहोस्। पूरा निर्णय त्यति नै हो। लेखाइ नपढ्नुहोस्। केस २ मा दुई पटक लेखिएको छ तर commit
+        छैन; केस ३ मा commit छ तर झन्डै केही लेखिएको छैन। दुवै विपरीत दिशामा जान्छन् —
+        <b>कति काम भयो भन्ने कहिल्यै जाँच होइन।</b></span>
+      </div>
+    </div>
+  </div>
+
   <h3 class="topic" id="db-t76">7.6 &amp; 7.7 &nbsp;Database security</h3>
 
   <div class="pair">
@@ -202,6 +227,54 @@ T3  REDO   it has a COMMIT record</div>
     इनपुट बाकसमा SQL टाइप गर्दा प्रोग्रामले चलाइदिनु, जसले login फारमलाई पूरै तालिका पढ्ने बाटो
     बनाइदिन्छ; <b>Malware</b>; <b>अधिकारको दुरुपयोग</b>; <b>कमजोर पासवर्ड</b> र
     <b>encrypt नगरिएको backup</b> — भित्र पस्ने सबैभन्दा सजिला र सबैभन्दा बिर्सिने दुई बाटा।</span>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Choosing a backup schedule, and counting the cost</div>
+    <p><b>Question:</b> a school database changes a little every day. A full backup takes 2 hours;
+    each day's changes take 10 minutes to copy. Compare an incremental and a differential schedule
+    for a Sunday-to-Saturday week, and say which restores faster after a Saturday failure.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working — incremental</span>
+      <div class="out">Sun   FULL           2 hrs
+Mon   changes since Sun          10 min
+Tue   changes since Mon          10 min
+Wed   changes since Tue          10 min
+Thu   changes since Wed          10 min
+Fri   changes since Thu          10 min
+Sat   changes since Fri          10 min
+
+To restore: FULL + all 6 incrementals = 7 files, in order</div>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working — differential</span>
+      <div class="out">Sun   FULL           2 hrs
+Mon   changes since Sun          10 min
+Tue   changes since Sun          20 min
+Wed   changes since Sun          30 min
+Thu   changes since Sun          40 min
+Fri   changes since Sun          50 min
+Sat   changes since Sun          60 min
+
+To restore: FULL + Saturday's only = 2 files</div>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">Incremental   fastest to TAKE (10 min every day)
+              slowest to RESTORE (7 files, in order)
+
+Differential  slower to take, growing each day
+              fastest to RESTORE (2 files)
+
+Differential restores faster after a Saturday failure.</div>
+    </div>
+    <p class="wex-note">The trade is always the same shape: <b>time spent every day, against time
+    spent on the one day it goes wrong.</b> An incremental schedule is cheap all week and expensive
+    exactly when you are already in trouble — which is why many real systems accept the larger
+    daily cost of a differential.
+    <span class="np-cell">सन्तुलन सधैं उही आकारको हुन्छ: <b>हरेक दिन लाग्ने समय, बनाम बिग्रने त्यो
+    एक दिनमा लाग्ने समय।</b> Incremental हप्तैभरि सस्तो हुन्छ र ठ्याक्कै समस्या परेकै दिन महँगो —
+    त्यसैले धेरै वास्तविक प्रणालीले differential को दैनिक भार स्वीकार गर्छन्।</span></p>
   </div>
 
   <div class="mistake">

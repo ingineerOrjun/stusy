@@ -153,6 +153,34 @@
     </div>
   </div>
 
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Read the sentence, name the cardinality</h4>
+      <p class="sim-goal">What you will learn: to test both directions every time, which is the
+      one habit that separates a right answer from a guess.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: सधैं दुवै दिशा जाँच्ने बानी — सही उत्तर र
+      अनुमानबीचको फरक यही एउटा बानीले पार्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-card" data-set="cardinality"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>For each case, read the two sentences as two separate questions: <b>how many on the
+        right for one on the left?</b> and then <b>how many on the left for one on the right?</b>
+        Only after both do you have a cardinality.</p>
+        <p>The last two cases are the ones worth slowing down for. One uses softer wording —
+        "may be treated by several" is still "many". The other describes a relationship between
+        entities that also relate in other ways: judge the relationship that is <i>named</i>, not
+        the entities.</p>
+        <span class="np-cell">हरेक केसमा दुई वाक्यलाई दुई छुट्टै प्रश्न मानेर पढ्नुहोस्:
+        <b>बायाँको एउटालाई दायाँ कति?</b> अनि <b>दायाँको एउटालाई बायाँ कति?</b> दुवैपछि मात्र
+        cardinality थाहा हुन्छ। अन्तिम दुई केसमा बिस्तारै जानुहोस् — एउटामा शब्द नरम छ, अर्कोमा
+        <i>नाम दिइएको</i> सम्बन्ध हेर्नुपर्छ, इन्टिटी होइन।</span>
+      </div>
+    </div>
+  </div>
+
   <div class="wex">
     <div class="wex-h"><span class="wex-n">Example 1</span> Choosing the cardinality from a sentence</div>
     <p><b>Question:</b> decide the mapping cardinality for each, and give the reason.</p>
@@ -210,6 +238,41 @@
       <p>Foreign key NULL हुन <i>सक्छ</i> — गीताको कक्षा अझै छैन — र दोहोरिन पनि <i>सक्छ</i>,
       किनभने धेरै विद्यार्थीको कक्षा एउटै हुन्छ। Primary key ले यी दुवै गर्न पाउँदैन।</p>
     </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Identifying every key in a table</div>
+    <p><b>Question:</b> a <code>Student</code> table holds <code>roll</code>, <code>reg_no</code>,
+    <code>name</code>, <code>class_id</code>. Both <code>roll</code> and <code>reg_no</code> are
+    unique. <code>class_id</code> exists in the <code>Class</code> table. Name every key.</p>
+    <p><b>Step 1 — find everything that identifies a row uniquely.</b> These are the super keys,
+    and there are many, because adding spare columns to a unique column keeps it unique:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">{roll}                    unique  ✓
+{reg_no}                  unique  ✓
+{roll, name}              unique  ✓  (roll alone was enough)
+{reg_no, class_id}        unique  ✓  (reg_no alone was enough)
+{name}                    NOT unique — two students may share a name</div>
+    </div>
+    <p><b>Step 2 — strip out the spare columns.</b> A super key with nothing unnecessary left in it
+    is a <b>candidate key</b>: <code>{roll}</code> and <code>{reg_no}</code>.</p>
+    <p><b>Step 3 — choose one.</b> The school uses <code>roll</code>, so that is the
+    <b>primary key</b>. The candidate key not chosen becomes the <b>alternate key</b>.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">Super keys      {roll}, {reg_no}, {roll, name}, … many
+Candidate keys  {roll}, {reg_no}
+Primary key     {roll}          (chosen)
+Alternate key   {reg_no}        (the one not chosen)
+Foreign key     {class_id} → Class.class_id</div>
+    </div>
+    <p class="wex-note">The examiner is checking that you know these are <b>nested</b>, not five
+    unrelated things. Every primary key is a candidate key, and every candidate key is a super key.
+    Saying so in one line is often worth a mark by itself.
+    <span class="np-cell">परीक्षकले यी पाँच असम्बन्धित कुरा होइनन्, <b>एकभित्र अर्को</b> हुन् भन्ने
+    जान्नुभएको छ कि छैन हेर्छन्। हरेक primary key एउटा candidate key हो, र हरेक candidate key एउटा
+    super key। यही एक हरफले प्रायः एक अंक दिन्छ।</span></p>
   </div>
 
   <div class="mistake">

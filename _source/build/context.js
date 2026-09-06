@@ -100,6 +100,8 @@ const RUNTIME_PUBLISHED = {
   'sim-table.js': 'sim-table.js',
   'sim-sql.js': 'sim-sql.js',
   'sim-er.js': 'sim-er.js',
+  'sim-drill.js': 'sim-drill.js',
+  'sim-concurrency.js': 'sim-concurrency.js',
   'services/motion.js': 'services/motion.js',
   'core.js': 'code.js',
   'diagram.js': 'diagram.js',

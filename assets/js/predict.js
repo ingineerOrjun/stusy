@@ -93,6 +93,31 @@
         }
         continue;
       }
+      /* Tie the option group to the question it answers.
+
+         Several predictions offer bare values as options — "10", "20",
+         "30" for a stack question. Read aloud in isolation that is
+         "10, button", which tells a listener nothing: the question is
+         a separate heading above, and tabbing in from anywhere else
+         skips it. Naming the group with the question means the
+         question is announced when focus enters the options.
+
+         Found with tests/manual/a11y-tree.js on oop-cpp/unit1. */
+      var group = b.querySelector('.predict-options');
+      /* Any heading level — the build's heading normaliser rewrites the
+         authored h4 to whatever keeps the page's outline unbroken, so
+         looking for h4 specifically found nothing on the built page and
+         left the group unnamed. Caught by the accessibility-tree audit,
+         not by the source. */
+      var qn = b.querySelector('h1,h2,h3,h4,h5,h6');
+      if (group && !group.getAttribute('role')){
+        group.setAttribute('role', 'group');
+        if (qn){
+          if (!qn.id) qn.id = (b.id || 'predict') + '-q' + i;
+          group.setAttribute('aria-labelledby', qn.id);
+        }
+      }
+
       var opts = b.querySelectorAll('.predict-opt');
       for (var j = 0; j < opts.length; j++){
         opts[j].setAttribute('type', 'button');

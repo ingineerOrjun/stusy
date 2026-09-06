@@ -290,8 +290,18 @@
          '<button type="button" class="coral" data-sq-act="reset" data-ui="reset">Reset</button>' +
          '</div>';
 
-    /* the pipeline — the actual lesson */
-    h += '<div class="sq-out" role="status">' + this.outputHtml() + '</div>';
+    /* WHAT A SCREEN READER HEARS AFTER A RUN
+       The pipeline plus the result table is 44 words in one language
+       and 73 in bilingual mode. Announcing all of that on every run
+       gives a listener something they cannot stop, cannot re-read a
+       part of, and hear again on the next run. Measured with
+       tests/manual/a11y-tree.js, which is how it was found at all.
+
+       So the announcement is a one-line outcome, and the detail is a
+       named region the listener navigates to when they want it. */
+    h += '<p class="sq-summary" role="status"></p>';
+    h += '<div class="sq-out" role="region" data-ui="queryResult" data-ui-aria>' +
+         this.outputHtml() + '</div>';
 
     this.root.innerHTML = h;
     if (global.UIStrings && global.UIStrings.apply) global.UIStrings.apply(this.root);
@@ -301,6 +311,31 @@
   SqlLab.prototype.id = function (s){
     if (!this._id) this._id = this.root.id || ('sq' + Math.floor(Math.random() * 1e6));
     return this._id + '-' + s;
+  };
+
+  /* The one line that is actually announced. Short enough to hear on
+     every run, and specific enough to be worth hearing. */
+  SqlLab.prototype.summaryHtml = function (){
+    if (this.error){
+      return '<span class="t-en">Query not run. ' + esc(this.error.en) + '</span>' +
+             '<span class="np-cell" lang="ne">क्वेरी चलेन। ' + esc(this.error.ne) + '</span>';
+    }
+    if (!this.out) return '';
+
+    if (this.out.kind === 'result'){
+      var r = this.out.rows.length, c = this.out.columns.length;
+      return '<span class="t-en">' + r + (r === 1 ? ' row' : ' rows') + ', ' +
+                 c + (c === 1 ? ' column' : ' columns') + ' returned.</span>' +
+             '<span class="np-cell" lang="ne">' + r + ' पङ्क्ति, ' + c + ' स्तम्भ फर्कियो।</span>';
+    }
+    if (this.out.kind === 'dropped'){
+      return '<span class="t-en">Table ' + esc(this.out.table) + ' removed.</span>' +
+             '<span class="np-cell" lang="ne">' + esc(this.out.table) + ' तालिका हट्यो।</span>';
+    }
+    var n = this.out.affected;
+    return '<span class="t-en">' + n + (n === 1 ? ' row' : ' rows') + ' changed in ' +
+               esc(this.out.table) + '.</span>' +
+           '<span class="np-cell" lang="ne">' + esc(this.out.table) + ' मा ' + n + ' पङ्क्ति बदलियो।</span>';
   };
 
   SqlLab.prototype.outputHtml = function (){
@@ -370,6 +405,13 @@
        caret and the scroll position all survive a run. */
     var out = this.root.querySelector('.sq-out');
     if (out) out.innerHTML = this.outputHtml();
+
+    /* The summary is written last and separately, so the announcement
+       fires once, after the detail is already in place for a listener
+       who then navigates to it. */
+    var sum = this.root.querySelector('.sq-summary');
+    if (sum) sum.innerHTML = this.summaryHtml();
+
     if (r.ok && r.result.changed) this.refreshDbView();
   };
 
