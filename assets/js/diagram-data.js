@@ -279,3 +279,168 @@ DiagramRuntime.register("rippleCarry", {
     }
   ]
 });
+
+DiagramRuntime.register("dbArchitecture", {
+  "intro": {
+    "en": "Three levels, and what each one hides.",
+    "ne": "तीन तह, र हरेकले के लुकाउँछ।"
+  },
+  "steps": [
+    {
+      "show": "#arch-3",
+      "focus": "#arch-3",
+      "en": "Start at the bottom. The INTERNAL level is how the data physically sits on the disk — files, blocks, indexes.",
+      "ne": "तलबाट सुरु। INTERNAL तह भनेको डिस्कमा डाटा भौतिक रूपमा कसरी बस्छ — फाइल, ब्लक, इन्डेक्स।"
+    },
+    {
+      "show": "#arch-2",
+      "focus": "#arch-2",
+      "en": "Above it, the CONCEPTUAL level says WHAT data exists and how it relates — the tables and keys. It does not care how the disk stores them.",
+      "ne": "माथि CONCEPTUAL तहले कुन डाटा छ र कसरी सम्बन्धित छ भन्छ — तालिका र कुञ्जी। डिस्कले कसरी राख्छ भन्ने वास्ता गर्दैन।"
+    },
+    {
+      "show": "#arch-1",
+      "focus": "#arch-1",
+      "en": "At the top, the EXTERNAL level is what each user sees. A teacher sees marks; a clerk sees addresses. Neither sees the whole database.",
+      "ne": "सबैभन्दा माथि EXTERNAL तह — हरेक प्रयोगकर्ताले देख्ने कुरा। शिक्षकले अंक, कर्मचारीले ठेगाना। कसैले पूरै डाटाबेस देख्दैन।"
+    },
+    {
+      "show": "#arch-4",
+      "focus": "#arch-4",
+      "en": "The gaps between the levels are DATA INDEPENDENCE. Change the disk storage and the tables do not change; change a table and a user's view can stay the same.",
+      "ne": "तहबीचका खाली ठाउँ नै DATA INDEPENDENCE हुन्। डिस्क भण्डारण बदल्दा तालिका बदलिँदैन; तालिका बदल्दा प्रयोगकर्ताको view उही रहन सक्छ।"
+    }
+  ]
+});
+
+DiagramRuntime.register("erToRelational", {
+  "intro": {
+    "en": "Turning an ER diagram into tables, one rule at a time.",
+    "ne": "ER चित्रलाई तालिकामा बदल्ने — एक पटकमा एउटा नियम।"
+  },
+  "steps": [
+    {
+      "show": "#e2r-1",
+      "focus": "#e2r-1",
+      "en": "Start from the ER diagram: two entities and one relationship, many-to-many.",
+      "ne": "ER चित्रबाट सुरु: दुई इन्टिटी र एउटा सम्बन्ध, धेरै–धेरै।"
+    },
+    {
+      "show": "#e2r-2",
+      "focus": "#e2r-2",
+      "en": "Rule 1: every entity becomes a table. STUDENT becomes Student, and its key attribute becomes the primary key.",
+      "ne": "नियम १: हरेक इन्टिटी तालिका बन्छ। STUDENT बाट Student, र यसको कुञ्जी एट्रिब्युट प्राथमिक कुञ्जी बन्छ।"
+    },
+    {
+      "show": "#e2r-3",
+      "focus": "#e2r-3",
+      "en": "The same rule again for COURSE. Every attribute becomes a column.",
+      "ne": "COURSE लाई पनि उही नियम। हरेक एट्रिब्युट स्तम्भ बन्छ।"
+    },
+    {
+      "show": "#e2r-4",
+      "focus": "#e2r-4",
+      "en": "Rule 2: a MANY-TO-MANY relationship becomes a table of its own, holding the primary key of each side as a foreign key. This third table is the one students forget.",
+      "ne": "नियम २: धेरै–धेरै सम्बन्ध आफैं एउटा तालिका बन्छ, जसमा दुवैतर्फको प्राथमिक कुञ्जी foreign key भएर बस्छ। विद्यार्थीले बिर्सने तेस्रो तालिका यही हो।"
+    }
+  ]
+});
+
+DiagramRuntime.register("normalForms", {
+  "intro": {
+    "en": "One badly designed table, normalised to 3NF step by step.",
+    "ne": "नराम्रो डिजाइनको एउटा तालिकालाई चरण–चरणमा 3NF सम्म।"
+  },
+  "steps": [
+    {
+      "show": "#nf-0",
+      "focus": "#nf-0",
+      "en": "The starting table has two faults: one cell holds two subjects, and class_room is repeated on every row of the same class.",
+      "ne": "सुरुको तालिकामा दुई दोष छन्: एउटै कक्षमा दुई विषय, र उही कक्षाका हरेक पङ्क्तिमा class_room दोहोरिन्छ।"
+    },
+    {
+      "show": "#nf-1",
+      "focus": "#nf-1",
+      "en": "1NF: make every cell hold ONE value. Split the subject list into separate rows. The repeating group is gone.",
+      "ne": "1NF: हरेक कक्षमा एउटै मान राख्नुहोस्। विषयको सूचीलाई छुट्टै पङ्क्तिमा बाँड्नुहोस्। दोहोरिने समूह हट्यो।"
+    },
+    {
+      "show": "#nf-2",
+      "focus": "#nf-2",
+      "en": "2NF: the key is now (id, subject), but name depends on id alone — a PARTIAL dependency. Split it out into two tables.",
+      "ne": "2NF: कुञ्जी अब (id, subject) हो, तर name id मा मात्र निर्भर छ — PARTIAL निर्भरता। दुई तालिकामा छुट्याउनुहोस्।"
+    },
+    {
+      "show": "#nf-3",
+      "focus": "#nf-3",
+      "en": "3NF: class_room depends on class_id, which depends on id — a TRANSITIVE dependency. Move it to its own Class table. Now every column depends on the key, the whole key, and nothing but the key.",
+      "ne": "3NF: class_room, class_id मा निर्भर छ र class_id, id मा — TRANSITIVE निर्भरता। छुट्टै Class तालिकामा सार्नुहोस्। अब हरेक स्तम्भ कुञ्जीमा मात्र निर्भर हुन्छ।"
+    }
+  ]
+});
+
+DiagramRuntime.register("txnStates", {
+  "intro": {
+    "en": "A transaction from start to finish, including the path that fails.",
+    "ne": "ट्रान्ज्याक्सन सुरुदेखि अन्त्यसम्म, असफल हुने बाटोसहित।"
+  },
+  "steps": [
+    {
+      "show": "#tx-1",
+      "focus": "#tx-1",
+      "en": "ACTIVE — the transaction has started and its statements are running.",
+      "ne": "ACTIVE — ट्रान्ज्याक्सन सुरु भयो र यसका कथन चलिरहेका छन्।"
+    },
+    {
+      "show": "#tx-2",
+      "focus": "#tx-2",
+      "en": "PARTIALLY COMMITTED — the last statement has run, but the changes are not yet safely on disk.",
+      "ne": "PARTIALLY COMMITTED — अन्तिम कथन चल्यो, तर परिवर्तन अझै डिस्कमा सुरक्षित छैन।"
+    },
+    {
+      "show": "#tx-3",
+      "focus": "#tx-3",
+      "en": "COMMITTED — the changes are permanent. This is the only state that keeps the work, and durability is the promise that a crash now cannot undo it.",
+      "ne": "COMMITTED — परिवर्तन स्थायी भयो। काम बाँच्ने एउटै अवस्था यही हो, र अब crash भए पनि नहराओस् भन्ने वचन नै durability हो।"
+    },
+    {
+      "show": "#tx-4",
+      "focus": "#tx-4",
+      "en": "FAILED — something went wrong, at any point. A transaction can fail from ACTIVE or from PARTIALLY COMMITTED.",
+      "ne": "FAILED — जुनसुकै बेला केही बिग्रियो। ACTIVE वा PARTIALLY COMMITTED दुवैबाट असफल हुन सक्छ।"
+    },
+    {
+      "show": "#tx-5",
+      "focus": "#tx-5",
+      "en": "ABORTED — the database rolls back every change the transaction made, so it is as if it never ran. That is atomicity doing its job.",
+      "ne": "ABORTED — डाटाबेसले ट्रान्ज्याक्सनले गरेका सबै परिवर्तन फिर्ता लैजान्छ, चलेकै थिएन जस्तो। atomicity ले गर्ने काम यही हो।"
+    }
+  ]
+});
+
+DiagramRuntime.register("recoveryLog", {
+  "intro": {
+    "en": "The log, and the two directions recovery runs in.",
+    "ne": "लग, र रिकभरी चल्ने दुई दिशा।"
+  },
+  "steps": [
+    {
+      "show": "#rc-1",
+      "focus": "#rc-1",
+      "en": "The log records every action in order. T1 committed; T2 had written but not committed when the crash came.",
+      "ne": "लगले हरेक काम क्रमैसँग लेख्छ। T1 commit भयो; T2 ले लेखेको थियो तर commit हुनुअघि नै crash भयो।"
+    },
+    {
+      "show": "#rc-2",
+      "focus": "#rc-2",
+      "en": "REDO reads forwards and replays every transaction that has a COMMIT record. T1 promised durability, so its work is put back.",
+      "ne": "REDO ले अगाडि पढ्दै COMMIT भएका सबै ट्रान्ज्याक्सन फेरि चलाउँछ। T1 ले durability को वचन दिएको थियो, त्यसैले काम फर्किन्छ।"
+    },
+    {
+      "show": "#rc-3",
+      "focus": "#rc-3",
+      "en": "UNDO reads backwards and rolls back every transaction with no COMMIT record. T2 is erased completely — atomicity means half of it may not survive.",
+      "ne": "UNDO ले पछाडि पढ्दै COMMIT नभएका सबै फिर्ता लैजान्छ। T2 पूरै मेटिन्छ — atomicity को अर्थ आधा काम बाँच्न पाउँदैन भन्ने हो।"
+    }
+  ]
+});

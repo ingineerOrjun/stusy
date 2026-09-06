@@ -1,0 +1,329 @@
+<section id="db-u7">
+  <div class="sec-head">
+    <div class="sec-num">7</div>
+    <div>
+      <h2>Database Backup, Recovery and Security</h2>
+      <p class="sec-sub">ब्याकअप, रिकभरी र सुरक्षा</p>
+    </div>
+    <span class="marks">8 hrs · 6 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Define backup and say why it is not optional.</li>
+      <li>Distinguish physical from logical backup.</li>
+      <li>List the reasons a database fails.</li>
+      <li>Compare full, incremental and differential backup.</li>
+      <li>Explain recovery, and say when redo is used and when undo is used.</li>
+      <li>State the measures that make a database secure, and name common threats.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: backup को परिभाषा दिन र किन अनिवार्य छ भन्न, physical र
+    logical backup छुट्याउन, डाटाबेस बिग्रने कारण सूचीबद्ध गर्न, full–incremental–differential तुलना
+    गर्न, recovery व्याख्या गर्न र redo–undo कहिले प्रयोग हुन्छ भन्न, र सुरक्षाका उपाय तथा सामान्य
+    खतरा नाम लिन सक्नुहुनेछ।</span>
+  </div>
+
+  <h3 class="topic" id="db-t71">7.1 – 7.3 &nbsp;Backup, and what it protects against</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>backup</b> is a copy of the database kept separately, so that the data can be
+      restored if the original is lost, damaged or corrupted.</p>
+      <p>Two types, and the difference is <b>what</b> is copied:</p>
+      <p><b>Physical backup</b> — a copy of the actual database files as they sit on the disk. It
+      is fast to take and fast to restore, but tied to the same kind of system.</p>
+      <p><b>Logical backup</b> — a copy of the SQL statements that would rebuild the database:
+      the CREATE TABLEs and the INSERTs. It is slower, but it is readable and can be restored onto
+      a different system.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Backup</b> भनेको डाटाबेसको छुट्टै राखिएको प्रतिलिपि हो, ताकि मूल हराए, बिग्रिए वा
+      भ्रष्ट भए data फर्काउन सकियोस्।</p>
+      <p>दुई प्रकार, र फरक <b>के</b> प्रतिलिपि गरिन्छ भन्नेमा छ:</p>
+      <p><b>Physical backup</b> — डिस्कमा जस्ताको तस्तै रहेका डाटाबेस फाइलको प्रतिलिपि। लिन र
+      फर्काउन छिटो, तर उस्तै प्रणालीमा मात्र।</p>
+      <p><b>Logical backup</b> — डाटाबेस पुनर्निर्माण गर्ने SQL कथनहरूको प्रतिलिपि: CREATE TABLE र
+      INSERT। ढिलो हुन्छ, तर पढ्न मिल्ने र फरक प्रणालीमा पनि फर्काउन सकिने।</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>7.3 — Why a database fails.</b>
+    <b>Hardware failure</b> — a disk dies.
+    <b>Software failure</b> — a bug in the DBMS or the operating system.
+    <b>Human error</b> — a DELETE without a WHERE, or a DROP on the wrong table.
+    <b>Power failure</b> — a transaction stops halfway.
+    <b>Natural disaster</b> — fire, flood, earthquake.
+    <b>Malicious attack</b> — deliberate damage or theft.
+    <span class="np-cell">डाटाबेस बिग्रने कारण: <b>हार्डवेयर</b> बिग्रनु — डिस्क बिग्रियो;
+    <b>सफ्टवेयर</b> — DBMS वा OS मा त्रुटि; <b>मानवीय गल्ती</b> — WHERE नभएको DELETE, वा गलत तालिकामा
+    DROP; <b>बिजुली</b> — ट्रान्ज्याक्सन बीचमै रोकिनु; <b>प्राकृतिक प्रकोप</b> — आगलागी, बाढी, भूकम्प;
+    <b>नियतवश आक्रमण</b> — जानाजान बिगार्नु वा चोर्नु।</span>
+  </div>
+
+  <h3 class="topic" id="db-t74">7.4 &nbsp;Methods of backup</h3>
+
+  <figure class="fig">
+    {{dia:backupTypes}}
+    <figcaption>Incremental and differential differ by one word — since the last <i>backup</i>, or
+    since the last <i>full</i> backup. That one word is the whole exam question.
+    <span class="np-cell">Incremental र differential एउटै शब्दले फरक पर्छन् — अघिल्लो <i>backup</i>
+    देखि, कि अघिल्लो <i>full</i> backup देखि। परीक्षाको प्रश्न त्यही एउटा शब्दमा छ।</span></figcaption>
+  </figure>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>A full backup is taken on Sunday. Differential backups run Monday to Friday. The disk
+      fails on Friday evening. How many backup files are needed to restore?
+      <span class="np-cell">आइतबार full backup लिइयो। सोमबारदेखि शुक्रबारसम्म differential backup।
+      शुक्रबार साँझ डिस्क बिग्रियो। फर्काउन कति backup फाइल चाहिन्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">One — Friday's</button>
+      <button class="predict-opt" data-value="b">Two — Sunday's and Friday's</button>
+      <button class="predict-opt" data-value="c">Six — all of them</button>
+    </div>
+    <div class="predict-feedback">
+      <p><b>Two.</b> A differential backup holds everything that changed since the last
+      <b>full</b> backup, so Friday's already contains Monday to Thursday's changes as well. You
+      need the full backup plus the most recent differential.</p>
+      <p>Had they been <b>incremental</b>, the answer would be <b>six</b> — each incremental holds
+      only what changed since the previous backup, so every one is needed, in order. That is the
+      trade: differential takes more space, incremental takes more restoring.</p>
+      <span class="np-cell"><b>दुई।</b> Differential ले अघिल्लो <b>full</b> backup देखिका सबै
+      परिवर्तन राख्छ, त्यसैले शुक्रबारकोमा सोम–बिहीका पनि छन्। Full र सबैभन्दा नयाँ differential
+      चाहिन्छ। <b>Incremental</b> भएको भए उत्तर <b>छ</b> हुन्थ्यो। सन्तुलन यही हो: differential ले
+      ठाउँ बढी लिन्छ, incremental ले फर्काउन समय।</span>
+    </div>
+  </div>
+
+  <h3 class="topic" id="db-t75">7.5 &nbsp;Recovery — redo and undo</h3>
+
+  {{dia:recoveryLog}}
+
+  <div class="pair">
+    <div class="en"><span class="tag">One log, two directions</span>
+      <p><b>Recovery</b> is the process of restoring the database to a correct, consistent state
+      after a failure. The tool it uses is the <b>log</b> — a file in which the DBMS records every
+      change <i>before</i> it is applied.</p>
+      <p>After a crash the recovery manager reads the log and sorts every transaction into one of
+      two piles, by a single test: <b>is there a COMMIT record?</b></p>
+      <p><b>REDO</b> — the transaction committed, so its work must exist. The log is read
+      <b>forwards</b> and the changes are applied again. This delivers <b>durability</b>.</p>
+      <p><b>UNDO</b> — the transaction did not commit, so its half-finished work must not survive.
+      The log is read <b>backwards</b> and the changes are reversed. This delivers
+      <b>atomicity</b>.</p>
+    </div>
+    <div class="np"><span class="tag">एउटै लग, दुई दिशा</span>
+      <p><b>Recovery</b> भनेको असफलतापछि डाटाबेसलाई सही र सङ्गत अवस्थामा फर्काउने प्रक्रिया हो।
+      यसले प्रयोग गर्ने साधन <b>log</b> हो — DBMS ले हरेक परिवर्तन लागू गर्नु <i>अघि</i> लेख्ने फाइल।</p>
+      <p>Crash पछि recovery manager ले log पढेर हरेक ट्रान्ज्याक्सनलाई एउटै जाँचबाट दुई थुप्रोमा
+      छुट्याउँछ: <b>COMMIT रेकर्ड छ कि छैन?</b></p>
+      <p><b>REDO</b> — commit भएको थियो, त्यसैले काम रहनुपर्छ। Log <b>अगाडिबाट</b> पढेर परिवर्तन
+      फेरि लागू गरिन्छ। यसले <b>durability</b> दिन्छ।</p>
+      <p><b>UNDO</b> — commit भएको थिएन, त्यसैले आधा काम बाँच्नु हुँदैन। Log <b>पछाडिबाट</b> पढेर
+      परिवर्तन उल्टाइन्छ। यसले <b>atomicity</b> दिन्छ।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Deciding redo or undo from a log</div>
+    <p><b>Question:</b> the log below survives a crash. State what recovery does with T1, T2 and
+    T3, and give the reason.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Given</span>
+      <div class="out">T1 start
+T1 write A
+T1 COMMIT
+T2 start
+T2 write B
+T3 start
+T3 write C
+T3 COMMIT
+-- CRASH --</div>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">T1  REDO   it has a COMMIT record, so its work must exist
+T2  UNDO   no COMMIT record — it was still running
+T3  REDO   it has a COMMIT record</div>
+    </div>
+    <p class="wex-note">Do not read the order or the amount of work done. The <b>only</b> question
+    is whether a COMMIT record appears before the crash. T2 had written B — real work, on its way
+    to the disk — and it is still discarded entirely, because atomicity does not allow half a
+    transaction to survive.
+    <span class="np-cell">क्रम वा कति काम भयो भन्ने नहेर्नुहोस्। <b>एउटै</b> प्रश्न हो — crash अघि
+    COMMIT रेकर्ड छ कि छैन। T2 ले B लेखिसकेको थियो — साँच्चिकै काम — तर पूरै हटाइन्छ, किनभने
+    atomicity ले आधा ट्रान्ज्याक्सन बाँच्न दिँदैन।</span></p>
+  </div>
+
+  <h3 class="topic" id="db-t76">7.6 &amp; 7.7 &nbsp;Database security</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">What security actually protects</span>
+      <p><b>Database security</b> is the protection of a database from unauthorised access,
+      malicious damage and accidental loss. It has three separate jobs, and answers that name all
+      three score better than answers that describe one at length.</p>
+      <p><b>Authentication</b> — proving <i>who</i> a user is, usually with a username and
+      password.</p>
+      <p><b>Authorisation</b> — deciding <i>what</i> that user is allowed to do, which is what
+      GRANT and REVOKE control. Authentication without authorisation is a door with a lock and no
+      rooms.</p>
+      <p><b>Encryption</b> — storing the data so that it is unreadable even to someone who obtains
+      the file. It protects against the theft that gets past the first two.</p>
+      <p>Add <b>regular backup</b> and an <b>audit trail</b> — a record of who did what — and you
+      have the full set of measures.</p>
+    </div>
+    <div class="np"><span class="tag">सुरक्षाले साँच्चै के जोगाउँछ</span>
+      <p><b>डाटाबेस सुरक्षा</b> भनेको अनधिकृत पहुँच, नियतवश बिगार र आकस्मिक क्षतिबाट डाटाबेसको
+      संरक्षण हो। यसका तीन छुट्टै काम छन्, र तीनै नाम लिने उत्तरले एउटालाई लामो लेख्नेभन्दा बढी
+      अंक पाउँछ।</p>
+      <p><b>Authentication</b> — प्रयोगकर्ता <i>को</i> हो भनी प्रमाणित गर्ने, प्रायः प्रयोगकर्ता नाम
+      र पासवर्डबाट।</p>
+      <p><b>Authorisation</b> — त्यो प्रयोगकर्ताले <i>के</i> गर्न पाउने भन्ने तय गर्ने, जुन GRANT र
+      REVOKE ले नियन्त्रण गर्छन्।</p>
+      <p><b>Encryption</b> — फाइल नै पाएको मान्छेले पनि पढ्न नसक्ने गरी data राख्ने।</p>
+      <p><b>नियमित backup</b> र <b>audit trail</b> — कसले के गर्‍यो भन्ने अभिलेख — थपेपछि उपायहरूको
+      पूरा सूची बन्छ।</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>7.7 — Common threats.</b>
+    <b>Unauthorised access</b> — someone reads or changes data they should not.
+    <b>SQL injection</b> — a user types SQL into an input box and the program runs it, so a login
+    form becomes a way to read the whole table.
+    <b>Malware</b> — software that damages or steals the data.
+    <b>Privilege abuse</b> — a legitimate user doing more than their job needs.
+    <b>Weak passwords</b> and <b>unencrypted backups</b> — the two easiest ways in, and the two
+    most often forgotten.
+    <span class="np-cell">सामान्य खतरा: <b>अनधिकृत पहुँच</b>; <b>SQL injection</b> — प्रयोगकर्ताले
+    इनपुट बाकसमा SQL टाइप गर्दा प्रोग्रामले चलाइदिनु, जसले login फारमलाई पूरै तालिका पढ्ने बाटो
+    बनाइदिन्छ; <b>Malware</b>; <b>अधिकारको दुरुपयोग</b>; <b>कमजोर पासवर्ड</b> र
+    <b>encrypt नगरिएको backup</b> — भित्र पस्ने सबैभन्दा सजिला र सबैभन्दा बिर्सिने दुई बाटा।</span>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Treating backup and recovery as the same thing.</b> Backup is the copy taken
+        beforehand; recovery is the process of using it, plus the log, after a failure.
+        <span class="np-cell">Backup र recovery लाई एउटै मान्नु। Backup पहिले लिइने प्रतिलिपि हो;
+        recovery असफलतापछि त्यो र log प्रयोग गर्ने प्रक्रिया।</span></li>
+      <li><b>Swapping incremental and differential.</b> Incremental is since the last
+        <i>backup</i>; differential is since the last <i>full</i> backup.
+        <span class="np-cell">Incremental र differential साट्नु। Incremental अघिल्लो
+        <i>backup</i> देखि; differential अघिल्लो <i>full</i> backup देखि।</span></li>
+      <li><b>Saying redo is used for failed transactions.</b> It is the opposite — redo is for
+        <i>committed</i> ones, undo is for uncommitted ones.
+        <span class="np-cell">असफल ट्रान्ज्याक्सनलाई redo भन्नु। उल्टो हो — redo commit
+        <i>भएका</i> लाई, undo commit नभएकालाई।</span></li>
+      <li><b>Confusing authentication with authorisation.</b> Authentication is <i>who you
+        are</i>; authorisation is <i>what you may do</i>.
+        <span class="np-cell">Authentication र authorisation मिसाउनु। Authentication भनेको
+        <i>तपाईं को</i>; authorisation भनेको <i>के गर्न पाउने</i>।</span></li>
+    </ul>
+  </div>
+
+  <h3 class="topic" id="db-exam7">Exam focus — what is asked from this unit</h3>
+
+  <div class="exam-connect">
+    <b>Everything in this unit is answered from memory, so the work is done before the exam, not
+    in it.</b> The three questions that recur are: define backup and state its types; compare the
+    backup methods; and explain recovery with redo and undo. Each is a short, structured answer —
+    a definition, then a list, then one line per item. Learn the lists as lists and you can write
+    them out in two minutes.
+    <span class="np-cell">यस युनिटका सबै उत्तर सम्झेर लेख्ने हुन्, त्यसैले काम परीक्षामा होइन,
+    अघि नै सकिन्छ। दोहोरिने तीन प्रश्न: backup को परिभाषा र प्रकार; backup विधिको तुलना; र redo–undo
+    सहित recovery को व्याख्या। हरेक छोटो र संरचित उत्तर हो — परिभाषा, अनि सूची, अनि प्रति बुँदा एक
+    हरफ।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>What is database backup? Name its two types.
+    <span class="np-cell">डाटाबेस backup के हो? यसका दुई प्रकार नाम लिनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba71">Show the answer</button>
+    <div class="ans" id="dba71">
+      <p>A <b>backup</b> is a copy of the database stored separately so that the data can be
+      restored if the original is lost, damaged or corrupted.</p>
+      <p>Its two types are <b>physical backup</b> (a copy of the actual database files) and
+      <b>logical backup</b> (a copy of the SQL statements needed to rebuild the database).</p>
+      <span class="np-cell">परिभाषा र दुई प्रकार, प्रत्येकको एक हरफको व्याख्यासहित।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p>Differentiate between full, incremental and differential backup.
+    <span class="np-cell">Full, incremental र differential backup बीचको फरक लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba72">Show the answer</button>
+    <div class="ans" id="dba72">
+      <div class="out">FULL          copies the entire database every time
+              slowest to take, simplest to restore
+              needs 1 file to restore
+
+INCREMENTAL   copies only what changed since the LAST backup
+              fastest to take, slowest to restore
+              needs the full backup + EVERY incremental
+
+DIFFERENTIAL  copies everything changed since the last FULL backup
+              grows each day, quick to restore
+              needs the full backup + the LATEST differential only</div>
+      <p>One mark each. Stating how many files a restore needs is what proves you have understood
+      the difference rather than memorised two similar sentences.</p>
+      <span class="np-cell">एक–एक अंक। फर्काउन कति फाइल चाहिन्छ भनेर लेख्नुले घोकेको होइन, बुझेको
+      देखाउँछ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p>What is database recovery? Explain redo and undo.
+    <span class="np-cell">डाटाबेस recovery के हो? Redo र undo व्याख्या गर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba73">Show the answer</button>
+    <div class="ans" id="dba73">
+      <p><b>Recovery</b> is the process of restoring a database to a correct and consistent state
+      after a failure, using the log — a file recording every change before it is applied.</p>
+      <p><b>REDO</b> re-applies the changes of transactions that <b>had committed</b> before the
+      failure. The log is read forwards. This enforces durability.</p>
+      <p><b>UNDO</b> reverses the changes of transactions that <b>had not committed</b>. The log is
+      read backwards. This enforces atomicity.</p>
+      <p>The presence or absence of a COMMIT record in the log decides which one a transaction
+      gets.</p>
+      <span class="np-cell">परिभाषा, redo, undo — र कुन लागू हुने भन्ने COMMIT रेकर्डले तय गर्छ भन्ने
+      वाक्य नछुटाउनुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick">A backup is a separate copy taken in advance; recovery is the process of
+        using it after a failure. They are not the same thing.
+        <span class="np-cell">Backup पहिले लिइने छुट्टै प्रतिलिपि हो; recovery असफलतापछि त्यो
+        प्रयोग गर्ने प्रक्रिया। दुई फरक कुरा हुन्।</span></li>
+      <li class="tick">Physical backup copies the files; logical backup copies the SQL that would
+        rebuild them.
+        <span class="np-cell">Physical backup ले फाइल, logical backup ले पुनर्निर्माण गर्ने SQL
+        प्रतिलिपि गर्छ।</span></li>
+      <li class="tick">Incremental = since the last backup. Differential = since the last FULL
+        backup. Restoring needs every incremental, but only the latest differential.
+        <span class="np-cell">Incremental = अघिल्लो backup देखि। Differential = अघिल्लो FULL backup
+        देखि। फर्काउन सबै incremental चाहिन्छ, तर differential भने पछिल्लो एउटै।</span></li>
+      <li class="tick">Redo re-applies committed transactions and gives durability. Undo reverses
+        uncommitted ones and gives atomicity. The COMMIT record decides which.
+        <span class="np-cell">Redo ले commit भएका फेरि लागू गर्छ — durability। Undo ले commit
+        नभएका उल्टाउँछ — atomicity। COMMIT रेकर्डले तय गर्छ।</span></li>
+      <li class="tick">Security has three jobs: authentication (who you are), authorisation (what
+        you may do) and encryption (unreadable if stolen).
+        <span class="np-cell">सुरक्षाका तीन काम: authentication (को हो), authorisation (के गर्न
+        पाउने), encryption (चोरिए पनि नपढिने)।</span></li>
+      <li class="tick">Common threats: unauthorised access, SQL injection, malware, privilege
+        abuse, weak passwords and unencrypted backups.
+        <span class="np-cell">सामान्य खतरा: अनधिकृत पहुँच, SQL injection, malware, अधिकारको
+        दुरुपयोग, कमजोर पासवर्ड र encrypt नगरिएको backup।</span></li>
+    </ul>
+  </div>
+</section>

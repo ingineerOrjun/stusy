@@ -1,0 +1,306 @@
+<section id="db-u6">
+  <div class="sec-head">
+    <div class="sec-num">6</div>
+    <div>
+      <h2>Database Transaction</h2>
+      <p class="sec-sub">डाटाबेस ट्रान्ज्याक्सन</p>
+    </div>
+    <span class="marks">8 hrs · 6 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Define a transaction and explain why a bank transfer must be one.</li>
+      <li>Explain what concurrency is and name a problem it causes.</li>
+      <li>State and explain the four ACID properties.</li>
+      <li>Draw the states of a transaction, including the path that fails.</li>
+      <li>Say what COMMIT and ROLLBACK each do.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: ट्रान्ज्याक्सनको परिभाषा दिन र बैंक रकम सार्दा किन एउटै
+    ट्रान्ज्याक्सन हुनुपर्छ भन्न, concurrency के हो र यसले ल्याउने समस्या नाम लिन, ACID का चार गुण
+    व्याख्या गर्न, असफल हुने बाटोसहित अवस्था कोर्न, र COMMIT–ROLLBACK ले के गर्छ भन्न सक्नुहुनेछ।</span>
+  </div>
+
+  <h3 class="topic" id="db-t61">6.1 &nbsp;What a transaction is</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>transaction</b> is a single logical unit of work made up of one or more database
+      operations, which must be carried out <b>completely or not at all</b>.</p>
+      <p>The standard example is a bank transfer of Rs 1000 from Ram to Sita. It is two
+      operations:</p>
+      <div class="out">1.  Ram's balance   = Ram's balance   − 1000
+2.  Sita's balance  = Sita's balance  + 1000</div>
+      <p>Neither line is a transfer on its own. If the power fails between them, Rs 1000 has left
+      Ram's account and arrived nowhere. Grouping them into one transaction is the promise that
+      this cannot happen: <b>either both lines take effect, or neither does.</b></p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>ट्रान्ज्याक्सन</b> भनेको एक वा बढी डाटाबेस कार्य मिलेर बनेको एउटै तार्किक काम हो, जुन
+      <b>पूरै हुनुपर्छ वा बिल्कुल हुनुहुँदैन</b>।</p>
+      <p>सामान्य उदाहरण: रामबाट सीतालाई रु १००० पठाउनु। यो दुई काम हो।</p>
+      <p>कुनै एक हरफ आफैंमा रकम सार्नु होइन। दुईबीच बिजुली गयो भने रु १००० रामको खाताबाट निस्क्यो
+      तर कतै पुगेन। दुवैलाई एउटै ट्रान्ज्याक्सनमा राख्नु भनेको यस्तो हुन नदिने वचन हो:
+      <b>या दुवै लागू हुन्छन्, या कुनै पनि हुँदैन।</b></p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>COMMIT and ROLLBACK.</b>
+    <b>COMMIT</b> makes every change of the transaction permanent — after it, the work survives a
+    crash. <b>ROLLBACK</b> undoes every change the transaction made, returning the database to the
+    state it was in before the transaction began. Exactly one of the two ends a transaction.
+    <span class="np-cell">
+    <b>COMMIT</b> ले ट्रान्ज्याक्सनका सबै परिवर्तन स्थायी बनाउँछ — त्यसपछि crash भए पनि काम बाँच्छ।
+    <b>ROLLBACK</b> ले गरेका सबै परिवर्तन फिर्ता लैजान्छ र डाटाबेसलाई सुरुको अवस्थामा पुर्‍याउँछ।
+    ट्रान्ज्याक्सन यी दुईमध्ये ठ्याक्कै एउटाले टुङ्गिन्छ।</span>
+  </div>
+
+  <h3 class="topic" id="db-t62">6.2 &nbsp;Concurrency</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Why two users at once is a problem</span>
+      <p><b>Concurrency</b> is several transactions running at the same time. A database with one
+      user at a time would be safe and useless — a bank has thousands of users at once — so
+      concurrency is necessary, and the DBMS must control it.</p>
+      <p>The classic failure is the <b>lost update</b>. Two clerks both read a balance of 5000.
+      One subtracts 1000 and writes 4000. The other, working from the value it read <i>before</i>
+      that, subtracts 2000 and writes 3000. The first withdrawal has vanished — the balance should
+      be 2000.</p>
+      <p>Nothing was written incorrectly. Each clerk did correct arithmetic on a value that was
+      correct when they read it. The fault is entirely in the <b>interleaving</b>, which is why
+      the DBMS controls it with <b>locks</b>: a row being changed is locked until the transaction
+      ends.</p>
+    </div>
+    <div class="np"><span class="tag">एकैचोटि दुई प्रयोगकर्ता किन समस्या</span>
+      <p><b>Concurrency</b> भनेको धेरै ट्रान्ज्याक्सन एकैचोटि चल्नु हो। एक पटकमा एक जना मात्र
+      चलाउने डाटाबेस सुरक्षित त होला, तर काम लाग्दैन — बैंकमा हजारौं प्रयोगकर्ता एकैचोटि हुन्छन् —
+      त्यसैले concurrency चाहिन्छ, र DBMS ले नियन्त्रण गर्नुपर्छ।</p>
+      <p>क्लासिक समस्या <b>lost update</b> हो। दुई कर्मचारीले ५००० मौज्दात पढे। एउटाले १०००
+      घटाएर ४००० लेख्यो। अर्कोले, त्योभन्दा <i>अघि</i> पढेको मानबाट २००० घटाएर ३००० लेख्यो। पहिलो
+      निकासी हरायो — मौज्दात २००० हुनुपर्थ्यो।</p>
+      <p>कसैले गलत लेखेको होइन। दुवैले पढ्दाको सही मानमा सही गणित गरे। दोष पूरै <b>क्रम मिसिनु</b>
+      मा छ, त्यसैले DBMS ले <b>lock</b> ले नियन्त्रण गर्छ: बदलिँदै गरेको पङ्क्ति ट्रान्ज्याक्सन
+      नसकिँदासम्म बन्द रहन्छ।</p>
+    </div>
+  </div>
+
+  <h3 class="topic" id="db-t63">6.3 &nbsp;ACID properties</h3>
+
+  <figure class="fig">
+    {{dia:acidProps}}
+    <figcaption>Learn each property by the disaster it prevents. A definition you can attach to a
+    failure is a definition you can reproduce under pressure.
+    <span class="np-cell">हरेक गुणलाई त्यसले रोक्ने विपत्तिबाट सम्झनुहोस्। असफलतासँग जोडिएको
+    परिभाषा परीक्षामा सजिलै सम्झिन्छ।</span></figcaption>
+  </figure>
+
+  <div class="predict" data-answer="c">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>A transfer has debited Ram but the power fails before Sita is credited. Which ACID
+      property guarantees the money is not lost?
+      <span class="np-cell">रकम सार्दा रामको खाताबाट कटिसक्यो तर सीताको खातामा जम्मा हुनुअघि बिजुली
+      गयो। पैसा नहराओस् भन्ने कुन ACID गुणले सुनिश्चित गर्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Durability</button>
+      <button class="predict-opt" data-value="b">Isolation</button>
+      <button class="predict-opt" data-value="c">Atomicity</button>
+    </div>
+    <div class="predict-feedback">
+      <p><b>Atomicity.</b> The transaction never committed, so on restart the database rolls the
+      debit back — as if the transfer never began. Durability is the opposite promise: it protects
+      work that <i>did</i> commit. The test is always the same — <b>had it committed?</b>
+      No → atomicity rolls it back. Yes → durability keeps it.</p>
+      <span class="np-cell"><b>Atomicity।</b> ट्रान्ज्याक्सन commit नै भएको थिएन, त्यसैले पुनः सुरु
+      हुँदा डाटाबेसले कटौती फिर्ता लैजान्छ — सुरु नै नभएको जस्तो। Durability उल्टो वचन हो: यसले
+      commit <i>भइसकेको</i> काम जोगाउँछ। जाँच सधैं एउटै — <b>commit भएको थियो?</b>
+      थिएन → atomicity ले फिर्ता। थियो → durability ले जोगाउँछ।</span>
+    </div>
+  </div>
+
+  <h3 class="topic" id="db-t64">6.4 &nbsp;States of a transaction</h3>
+
+  {{dia:txnStates}}
+
+  <div class="pair">
+    <div class="en"><span class="tag">Reading the state diagram</span>
+      <p>A transaction begins in <b>ACTIVE</b> and stays there while its statements run. When the
+      last statement finishes it moves to <b>PARTIALLY COMMITTED</b> — the work is done in memory
+      but not yet safely on disk.</p>
+      <p>From there, if all is well it reaches <b>COMMITTED</b> and the changes are permanent. If
+      anything goes wrong — at any point, from either of the first two states — it moves to
+      <b>FAILED</b>, and from FAILED it is rolled back to <b>ABORTED</b>.</p>
+      <p>An aborted transaction leaves no trace. The database is exactly as it was before the
+      transaction started, which is atomicity being enforced.</p>
+      <p><b>Only COMMITTED and ABORTED are final.</b> Every transaction ends in one of them.</p>
+    </div>
+    <div class="np"><span class="tag">अवस्था चित्र पढ्ने तरिका</span>
+      <p>ट्रान्ज्याक्सन <b>ACTIVE</b> बाट सुरु हुन्छ र कथन चलेसम्म त्यहीँ रहन्छ। अन्तिम कथन सकिएपछि
+      <b>PARTIALLY COMMITTED</b> मा जान्छ — काम मेमोरीमा सकियो तर डिस्कमा सुरक्षित भइसकेको छैन।</p>
+      <p>त्यहाँबाट सबै ठीक भए <b>COMMITTED</b> मा पुग्छ र परिवर्तन स्थायी हुन्छ। केही बिग्रियो भने —
+      पहिलो दुई अवस्थामध्ये जुनसुकैबाट — <b>FAILED</b> मा जान्छ, र FAILED बाट फिर्ता लगिएर
+      <b>ABORTED</b> हुन्छ।</p>
+      <p>Abort भएको ट्रान्ज्याक्सनले कुनै चिन्ह छाड्दैन। डाटाबेस सुरु हुनुअघिकै अवस्थामा रहन्छ —
+      यही atomicity लागू भएको हो।</p>
+      <p><b>COMMITTED र ABORTED मात्र अन्तिम अवस्था हुन्।</b> हरेक ट्रान्ज्याक्सन यीमध्ये एउटामा
+      टुङ्गिन्छ।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Tracing a transfer through the states</div>
+    <p><b>Question:</b> Ram has 5000 and Sita has 2000. A transaction transfers 1000 from Ram to
+    Sita, but the system crashes immediately after the first update. Trace the states and state
+    the final balances.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">BEGIN                          → ACTIVE
+UPDATE Ram   SET bal = 4000   → ACTIVE  (written in memory)
+-- CRASH before the second update --
+                               → FAILED
+recovery rolls the change back → ABORTED
+
+Final: Ram 5000, Sita 2000</div>
+    </div>
+    <p><b>Why 5000, not 4000.</b> The transaction never reached COMMITTED, so nothing it did is
+    allowed to survive. On restart, recovery finds no COMMIT record in the log and undoes the
+    change. Atomicity is the property being enforced.</p>
+    <p class="wex-note">If the crash had come <i>after</i> COMMIT, the answer would be Ram 4000 and
+    Sita 3000 — and the property being enforced would be durability instead. The COMMIT record is
+    the only thing that decides which.
+    <span class="np-cell">Crash COMMIT <i>पछि</i> आएको भए उत्तर राम ४००० र सीता ३००० हुन्थ्यो — र
+    लागू हुने गुण durability हुन्थ्यो। कुन हो भन्ने तय गर्ने एउटै कुरा COMMIT रेकर्ड हो।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Leaving FAILED and ABORTED out of the state diagram.</b> The failure path is half the
+        diagram and usually half the marks.
+        <span class="np-cell">अवस्था चित्रमा FAILED र ABORTED नराख्नु। असफल बाटो चित्रको आधा हो र
+        प्रायः अंकको पनि आधा।</span></li>
+      <li><b>Confusing atomicity with durability.</b> Atomicity protects an <i>uncommitted</i>
+        transaction by undoing it; durability protects a <i>committed</i> one by keeping it.
+        <span class="np-cell">Atomicity र durability मिसाउनु। Atomicity ले commit <i>नभएको</i>
+        फिर्ता लैजान्छ; durability ले commit <i>भएको</i> जोगाउँछ।</span></li>
+      <li><b>Describing a transaction as "one SQL statement".</b> It is one logical unit of work,
+        which is usually several statements.
+        <span class="np-cell">ट्रान्ज्याक्सनलाई "एउटा SQL कथन" भन्नु। यो एउटा तार्किक काम हो, जसमा
+        प्रायः धेरै कथन हुन्छन्।</span></li>
+      <li><b>Saying concurrency is bad and should be avoided.</b> It is necessary; what must be
+        avoided is <i>uncontrolled</i> concurrency.
+        <span class="np-cell">Concurrency नराम्रो हो, हटाउनुपर्छ भन्नु। यो आवश्यक हो; हटाउनुपर्ने
+        कुरा <i>अनियन्त्रित</i> concurrency हो।</span></li>
+    </ul>
+  </div>
+
+  <h3 class="topic" id="db-exam6">Exam focus — what is asked from this unit</h3>
+
+  <div class="exam-connect">
+    <b>Two questions come from this unit almost every year.</b> The first asks you to explain the
+    ACID properties — four marks, one per property, and each answer is one clear sentence plus an
+    example of what goes wrong without it. The second asks for the transaction state diagram,
+    where the marks are for including the <b>failure path</b>, which is the half most answers
+    leave out.
+    <span class="np-cell">यस युनिटबाट प्रायः हरेक वर्ष दुई प्रश्न आउँछन्। पहिलोले ACID गुण व्याख्या
+    गर्न भन्छ — चार अंक, हरेकलाई एक, र हरेक उत्तर एउटा स्पष्ट वाक्य र नभए के बिग्रन्छ भन्ने उदाहरण।
+    दोस्रोले ट्रान्ज्याक्सनको अवस्था चित्र माग्छ, जहाँ अंक <b>असफल बाटो</b> समावेश गरेकोमा हुन्छ —
+    प्रायः उत्तरमा छुट्ने आधा त्यही हो।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>What is a transaction? Give an example.
+    <span class="np-cell">ट्रान्ज्याक्सन के हो? एउटा उदाहरण दिनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba61">Show the answer</button>
+    <div class="ans" id="dba61">
+      <p>A <b>transaction</b> is a single logical unit of work consisting of one or more database
+      operations, which must be executed completely or not at all.</p>
+      <p><b>Example:</b> transferring Rs 1000 from one bank account to another. It is two
+      operations — a debit and a credit — and both must happen, or neither.</p>
+      <span class="np-cell">परिभाषा र बैंक रकम सार्ने उदाहरण। "पूरै वा बिल्कुल होइन" भन्ने वाक्यांश
+      नछुटाउनुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>Explain the ACID properties of a transaction.
+    <span class="np-cell">ट्रान्ज्याक्सनका ACID गुण व्याख्या गर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba62">Show the answer</button>
+    <div class="ans" id="dba62">
+      <div class="out">ATOMICITY
+  All operations of the transaction happen, or none do.
+  Without it: money leaves one account and arrives nowhere.
+
+CONSISTENCY
+  The database obeys all its rules before and after.
+  Without it: a student row points at a class that does not exist.
+
+ISOLATION
+  Concurrent transactions do not see each other's partial work.
+  Without it: two clerks read the same balance and both subtract.
+
+DURABILITY
+  Once committed, changes survive any later failure.
+  Without it: a power cut erases work already confirmed.</div>
+      <p>One mark per property. Naming the property, stating the promise and giving the failure it
+      prevents is a complete answer to each.</p>
+      <span class="np-cell">हरेक गुणलाई एक अंक। नाम, वचन र नभए के बिग्रन्छ — यत्ति भए पूरा उत्तर।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p>Draw the state transition diagram of a transaction and name the final states.
+    <span class="np-cell">ट्रान्ज्याक्सनको अवस्था परिवर्तन चित्र कोरेर अन्तिम अवस्थाका नाम
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba63">Show the answer</button>
+    <div class="ans" id="dba63">
+      <div class="out">   ACTIVE ──→ PARTIALLY COMMITTED ──→ COMMITTED
+      │                  │
+      └──────→ FAILED ←──┘
+                 │
+                 ↓
+              ABORTED
+
+Final states: COMMITTED and ABORTED.</div>
+      <p>One mark for ACTIVE → PARTIALLY COMMITTED → COMMITTED, one for the FAILED → ABORTED path
+      from both earlier states, and one for naming the two final states.</p>
+      <span class="np-cell">पहिलो लहरलाई एक अंक, दुवै अवस्थाबाट FAILED → ABORTED बाटोलाई एक, र दुई
+      अन्तिम अवस्थाका नाम लेखेकोमा एक।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick">A transaction is one logical unit of work that must happen completely or not
+        at all.
+        <span class="np-cell">ट्रान्ज्याक्सन भनेको एउटै तार्किक काम हो — पूरै हुनुपर्ने वा बिल्कुल
+        नहुनुपर्ने।</span></li>
+      <li class="tick">COMMIT makes the changes permanent; ROLLBACK undoes them. One of the two
+        ends every transaction.
+        <span class="np-cell">COMMIT ले परिवर्तन स्थायी बनाउँछ; ROLLBACK ले फिर्ता लैजान्छ। हरेक
+        ट्रान्ज्याक्सन यीमध्ये एउटाले टुङ्गिन्छ।</span></li>
+      <li class="tick">ACID: Atomicity (all or nothing), Consistency (rules always hold), Isolation
+        (no half-done work is visible), Durability (committed work survives a crash).
+        <span class="np-cell">ACID: Atomicity (सबै वा केही होइन), Consistency (नियम सधैं पालना),
+        Isolation (आधा काम नदेखिने), Durability (commit भएको crash पछि पनि रहने)।</span></li>
+      <li class="tick">Atomicity undoes an uncommitted transaction; durability keeps a committed
+        one. The COMMIT record decides which applies.
+        <span class="np-cell">Atomicity ले commit नभएको फिर्ता लैजान्छ; durability ले commit भएको
+        राख्छ। COMMIT रेकर्डले तय गर्छ।</span></li>
+      <li class="tick">States: ACTIVE → PARTIALLY COMMITTED → COMMITTED, or → FAILED → ABORTED.
+        Only COMMITTED and ABORTED are final.
+        <span class="np-cell">अवस्था: ACTIVE → PARTIALLY COMMITTED → COMMITTED, वा → FAILED →
+        ABORTED। अन्तिम अवस्था COMMITTED र ABORTED मात्र।</span></li>
+      <li class="tick">Concurrency is necessary, not optional. Uncontrolled concurrency causes the
+        lost update problem; locks prevent it.
+        <span class="np-cell">Concurrency आवश्यक हो, वैकल्पिक होइन। अनियन्त्रित भए lost update
+        समस्या आउँछ; lock ले रोक्छ।</span></li>
+    </ul>
+  </div>
+</section>

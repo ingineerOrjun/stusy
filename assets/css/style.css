@@ -2027,6 +2027,533 @@ svg text[text-anchor="middle"]{ text-anchor: middle; }
 }
 
 /* ============================================================
+   DBMS — specialised educational visualizations
+
+   Phase 4. Same product language as every other lesson (tokens,
+   spacing, type scale, state colours); specialised only where the
+   subject needs a shape the rest of the product does not have — a
+   relation with a named degree and cardinality, an ER notation, a
+   query pipeline.
+
+   Loaded after digital.css so it shares that layer's state language,
+   and before language.css so a mode still wins over everything here.
+
+   THREE RULES THIS FILE KEEPS
+
+   1. Nothing below --fs-xs (12px). The design system says that is the
+      floor and Phase 3.1 spent a section enforcing it.
+   2. Every table scrolls inside its own container. A relation with six
+      columns must not push a 320px phone sideways.
+   3. Colour never carries meaning alone. A primary key is marked by a
+      badge that says PK, not by being gold.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. THE RELATION — Unit 3
+
+   The table is the subject's one idea, so it is drawn as an object
+   with edges rather than as loose rows: a student is meant to see a
+   bounded thing that has a degree and a cardinality.
+   ------------------------------------------------------------ */
+.dt-wrap{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 10px 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+}
+.dt{
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 0;                       /* beats the global table min-width */
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+}
+.dt-name{
+  caption-side: top;
+  text-align: left;
+  padding: 8px 10px 6px;
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  letter-spacing: .04em;
+}
+.dt th,
+.dt td{
+  border: 1px solid var(--color-border);
+  padding: 6px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+.dt th{
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: var(--fw-medium);
+  vertical-align: top;
+}
+.dt td{ color: var(--color-text-muted); }
+.dt tbody tr:nth-child(even) td{ background: rgba(255,255,255,.014); }
+
+/* NULL is a value to be read, not a blank cell. Showing it empty is
+   how "NULL means zero" gets learned. */
+.dt-null{
+  color: var(--color-text-subtle);
+  font-style: italic;
+  font-size: var(--fs-xs);
+}
+.dt-empty td{ text-align: center; color: var(--color-text-subtle); font-style: italic; }
+
+/* Key badges. The word does the work; the colour only reinforces it. */
+.dt-badge{
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 5px;
+  border-radius: var(--r-sm);
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  line-height: 1.5;
+  vertical-align: middle;
+}
+.dt-pk{ background: var(--color-primary); color: var(--color-background); }
+.dt-fk{ background: var(--color-secondary); color: var(--color-background); }
+.dt-type{
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-normal);
+  color: var(--color-text-subtle);
+}
+
+/* What a chosen term points at. The outline is what carries it — a
+   background tint alone disappears against a dark board for a student
+   with low vision. */
+.dt th.is-mark,
+.dt td.is-mark{
+  background: rgba(255, 215, 110, .13);
+  box-shadow: inset 0 0 0 2px var(--color-primary);
+  color: var(--color-text);
+}
+.dt tr.is-mark td{ background: rgba(255, 215, 110, .10); }
+.dt tr.is-mark td.is-mark{ background: rgba(255, 215, 110, .20); }
+
+/* Degree and cardinality, side by side and always visible, because the
+   whole difficulty is that they are two different numbers. */
+.dt-counts{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 6px 2px 0;
+  font-size: var(--fs-xs);
+  color: var(--color-text-subtle);
+}
+.dt-count b{
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  color: var(--color-primary);
+}
+/* In bilingual mode the two halves of this label sit in one line box,
+   so without this they render as "degreeस्तम्भ" — the same collision
+   Phase 3.1 fixed on the gate workbench title. Stacking them also
+   keeps the Devanagari on its own baseline, which it needs. */
+.dt-count .np-cell{ display: block; }
+
+.dt-terms{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.dt-term{ font-size: var(--fs-xs); }
+.dt-term[aria-pressed="true"]{
+  background: var(--color-primary);
+  color: var(--color-background);
+  border-color: var(--color-primary);
+}
+.dt-tables{ display: flex; flex-wrap: wrap; gap: 14px; }
+.dt-tables > .dt-wrap{ flex: 1 1 260px; margin: 0; }
+
+.dt-keys{
+  margin: 12px 0 0;
+  padding-left: 0;
+  list-style: none;
+  font-size: var(--fs-sm);
+}
+.dt-keys li{
+  margin: 6px 0;
+  padding-left: 4px;
+  color: var(--color-text-muted);
+  line-height: var(--lh-base);
+}
+.dt-say{
+  display: block;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-surface);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+  color: var(--color-text);
+  min-height: 1.2em;
+}
+.dt-say .np-cell{ display: block; margin-top: 4px; }
+
+/* ------------------------------------------------------------
+   2. ER NOTATION — Unit 2
+   ------------------------------------------------------------ */
+.er-picker{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.er-pick{ font-size: var(--fs-xs); }
+.er-pick code{
+  font-size: var(--fs-xs);
+  color: inherit;
+  background: none;
+  padding: 0;
+  margin-right: 4px;
+}
+.er-pick[aria-pressed="true"]{
+  background: var(--color-primary);
+  color: var(--color-background);
+  border-color: var(--color-primary);
+}
+
+.er-figure{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 0;
+}
+.er-svg{
+  display: block;
+  width: 100%;
+  min-width: 460px;                    /* below this the notation stops being readable */
+  height: auto;
+}
+.er-entity{
+  fill: var(--color-surface);
+  stroke: var(--color-secondary);
+  stroke-width: 2;
+}
+.er-rel{
+  fill: var(--color-surface);
+  stroke: var(--color-primary);
+  stroke-width: 2;
+}
+.er-attr{
+  fill: var(--color-surface);
+  stroke: var(--color-border-strong);
+  stroke-width: 1.5;
+}
+.er-entity.is-focus,
+.er-rel.is-focus,
+.er-attr.is-focus{
+  fill: rgba(255, 215, 110, .16);
+  stroke: var(--color-primary);
+  stroke-width: 3;
+}
+.er-line{ stroke: var(--color-border-strong); stroke-width: 1.5; }
+.er-name{
+  fill: var(--color-text);
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+.er-rel-name{ font-size: 12px; fill: var(--color-primary); }
+.er-attr-name{
+  fill: var(--color-text-muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  text-anchor: middle;
+}
+.er-key{ text-decoration: underline; }   /* the notation for a key attribute */
+.er-card{
+  fill: var(--color-primary);
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+/* The occurrences — the half a static ER diagram cannot show. */
+.er-occ{
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+}
+.er-occ-head{
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-bottom: 8px;
+}
+.er-occ-head .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+.er-occ-list{ margin: 0; padding: 0; list-style: none; }
+.er-occ-row{
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--color-border-soft);
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+}
+.er-occ-row:last-child{ border-bottom: 0; }
+.er-occ-l{
+  min-width: 62px;
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+.er-occ-arrow{ color: var(--color-text-subtle); }
+.er-occ-r{ color: var(--color-text-muted); }
+.er-occ-r b{ color: var(--color-text); font-weight: 600; }
+/* A row that fans out to several is the visible form of "many". */
+.er-occ-row.is-many .er-occ-arrow{ color: var(--color-primary); }
+.er-occ-note{
+  margin: 10px 0 0;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+  color: var(--color-text-muted);
+}
+.er-occ-note .np-cell{ display: block; margin-top: 4px; }
+
+.er-say{
+  display: block;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-surface);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+}
+.er-say .np-cell{ display: block; margin-top: 4px; }
+.er-shape{
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+.er-tables{
+  display: block;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+  color: var(--color-text-muted);
+}
+.er-tables-h,
+.er-junction-h{
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-bottom: 6px;
+}
+.er-tables-h .np-cell,
+.er-junction-h .np-cell,
+.er-tables .np-cell{ display: block; text-transform: none; letter-spacing: 0; margin-top: 4px; }
+.er-junction{ margin-top: 12px; }
+
+/* ------------------------------------------------------------
+   3. SQL SIMULATOR — Unit 4
+   ------------------------------------------------------------ */
+.sq-h{
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-bottom: 6px;
+}
+.sq-h .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+
+.sq-db{ margin-bottom: 14px; }
+.sq-db-tables{ display: flex; flex-wrap: wrap; gap: 14px; }
+.sq-db-tables > .dt-wrap{ flex: 1 1 240px; margin: 0; }
+.sq-gone{
+  flex: 1 1 240px;
+  padding: 14px;
+  border: 1px dashed var(--color-error);
+  border-radius: var(--r-md);
+  color: var(--color-error);
+  font-size: var(--fs-sm);
+}
+.sq-gone .np-cell{ display: block; margin-top: 4px; }
+
+.sq-examples{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.sq-eg{ font-size: var(--fs-xs); text-align: left; }
+
+.sq-editor{ margin-bottom: 10px; }
+.sq-lab{
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-bottom: 6px;
+}
+.sq-lab .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+.sq-input{
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  color: var(--color-text);
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  resize: vertical;
+}
+.sq-input:focus{
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-color: var(--color-primary);
+}
+.sq-scope{
+  margin: 6px 0 0;
+  font-size: var(--fs-xs);
+  color: var(--color-text-subtle);
+  line-height: var(--lh-base);
+}
+.sq-scope .np-cell{ display: block; margin-top: 3px; }
+
+/* THE PIPELINE — the actual lesson. Each stage is a step with the row
+   count it produced, so a student watches the number fall. */
+.sq-pipe{
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: sqstep;
+}
+.sq-step{
+  display: grid;
+  grid-template-columns: 76px 1fr auto;
+  gap: 4px 10px;
+  align-items: baseline;
+  padding: 8px 10px;
+  border-left: 3px solid var(--color-secondary);
+  background: var(--color-surface);
+  margin-bottom: 4px;
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+}
+.sq-step.is-warn{ border-left-color: var(--color-error); }
+.sq-stage{
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  color: var(--color-secondary);
+}
+.sq-step.is-warn .sq-stage{ color: var(--color-error); }
+.sq-step-say{ color: var(--color-text-muted); }
+.sq-step-say .np-cell{ display: block; margin-top: 3px; }
+.sq-count{
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+}
+
+.sq-result{ margin-top: 14px; }
+.sq-dropped{
+  padding: 12px;
+  border: 1px dashed var(--color-error);
+  border-radius: var(--r-md);
+  color: var(--color-error);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+}
+.sq-dropped .np-cell{ display: block; margin-top: 4px; }
+
+/* A refusal is teaching, so it is dressed as a note, not as a crash. */
+.sq-err{
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-warning);
+  border-left-width: 3px;
+  border-radius: var(--r-md);
+  background: var(--color-surface);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+  color: var(--color-text);
+}
+.sq-err-h{
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--color-warning);
+  margin-bottom: 6px;
+}
+.sq-err-h .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+.sq-err-ne{ display: block; margin-top: 5px; }
+
+/* ------------------------------------------------------------
+   4. NARROW SCREENS
+
+   At 320px a two-column grid is one column, and the pipeline step
+   stacks so the sentence keeps a readable measure.
+   ------------------------------------------------------------ */
+@media (max-width: 560px){
+  .sq-step{
+    grid-template-columns: 1fr auto;
+  }
+  .sq-stage{ grid-column: 1 / -1; }
+  .dt-tables > .dt-wrap,
+  .sq-db-tables > .dt-wrap{ flex: 1 1 100%; }
+  .er-occ-l{ min-width: 52px; }
+}
+
+/* ------------------------------------------------------------
+   5. REDUCED MOTION
+
+   The only transition here is the one that carries meaning — the
+   highlight moving as a student picks a term. A student who has asked
+   for less motion gets the same information instantly.
+   ------------------------------------------------------------ */
+.dt th, .dt td{
+  transition: background var(--dur-fast) var(--ease-standard),
+              box-shadow var(--dur-fast) var(--ease-standard);
+}
+.er-entity, .er-rel, .er-attr{
+  transition: fill var(--dur-base) var(--ease-standard),
+              stroke var(--dur-base) var(--ease-standard);
+}
+@media (prefers-reduced-motion: reduce){
+  .dt th, .dt td,
+  .er-entity, .er-rel, .er-attr{ transition: none; }
+}
+
+/* ============================================================
    LANGUAGE LAYER — Phase 3
 
    Three modes over one DOM. Both languages are always present; this

@@ -72,6 +72,7 @@ const motionCss = ctx.read('design/motion.css');
 /* Phase 3 Digital Design components — after motion so they can use the
    shared state language, before the language layer so a mode still wins. */
 const digitalCss = ctx.read('design/digital.css');
+const dbmsCss    = ctx.read('design/dbms.css');
 /* Phase 3 language layer — loaded last so a mode can hide anything above it. */
 const langCss = ctx.read('design/language.css');
 
@@ -285,7 +286,7 @@ function crumb(parts){
 }
 
 /* ---------------- assets ---------------- */
-w('assets/css/style.css', baseCss + siteCss + uxCss + motionCss + digitalCss + langCss);
+w('assets/css/style.css', baseCss + siteCss + uxCss + motionCss + digitalCss + dbmsCss + langCss);
 
 /* Runtime modules ship verbatim from _source/runtime — what is in source
    control is exactly what the browser receives. */

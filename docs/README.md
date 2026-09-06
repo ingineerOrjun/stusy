@@ -1,6 +1,6 @@
 # Documentation index
 
-Thirty-one documents accumulated over four phases, plus this index. This is the map.
+Thirty-five documents accumulated over five phases, plus this index. This is the map.
 
 **If you read only one thing:** [`ARCHITECTURE.md`](ARCHITECTURE.md) for how
 the system is put together, then the contract for whatever you are about to
@@ -47,6 +47,7 @@ it records; do not follow its rules.
 | [ACCESSIBILITY-AUDIT.md](ACCESSIBILITY-AUDIT.md) | Measured contrast and keyboard results, and an explicit list of what was **not** verified |
 | [PHASE-3-CURRICULUM-MAP.md](PHASE-3-CURRICULUM-MAP.md) | The CDC syllabus mapped to pages, with every ambiguity recorded rather than guessed |
 | [DIGITAL-DESIGN-DECISIONS.md](DIGITAL-DESIGN-DECISIONS.md) | Subject-level decisions: terminology, notation, what the syllabus left open |
+| [PHASE-4-DBMS-CURRICULUM-MAP.md](PHASE-4-DBMS-CURRICULUM-MAP.md) | The DBMS syllabus mapped to pages, with six documented ambiguities |
 
 ## Phase records — historical, do not update
 
@@ -59,6 +60,7 @@ Read these to find out *why* something is the way it is.
 | 2.5 — visualization and motion | [ANIMATION-AUDIT](PHASE-2.5-ANIMATION-AUDIT.md) | [D](PHASE-2.5-DECISIONS.md) | [report](PHASE-2.5-COMPLETION-REPORT.md) |
 | 3 — language system and Digital Design | — | [DIGITAL-DESIGN-DECISIONS](DIGITAL-DESIGN-DECISIONS.md) | [report](PHASE-3-COMPLETION-REPORT.md) |
 | 3.1 — foundation consolidation | [AUDIT](PHASE-3.1-AUDIT.md) | [D](PHASE-3.1-DECISIONS.md) | [report](PHASE-3.1-COMPLETION-REPORT.md) |
+| 4 — Database Management System | [CURRICULUM-MAP](PHASE-4-DBMS-CURRICULUM-MAP.md) | [SIMULATION-SPEC](DBMS-SIMULATION-SPEC.md) · [CONTENT-GUIDELINES](DBMS-CONTENT-GUIDELINES.md) | [report](PHASE-4-COMPLETION-REPORT.md) |
 
 ## Two things every document here agrees on
 

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Introduction to Database System — DBMS | RGSC Study Board</title>
+<meta name="description" content="Introduction to Database System explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html" class="on">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DBMS</a> <span class="sep">/</span> <span>Introduction to Database System</span></nav>
+<main id="main" data-subject="grade10/dbms">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html" style="color:var(--yellow);border-color:var(--yellow)">1 · Introduction</a><a href="unit2.html">2 · ER Model</a><a href="unit3.html">3 · Relational Model</a><a href="unit4.html">4 · SQL</a><a href="unit5.html">5 · Normalization</a><a href="unit6.html">6 · Transaction</a><a href="unit7.html">7 · Backup & Security</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="db-u1">
+  <div class="sec-head">
+    <div class="sec-num">1</div>
+    <div>
+      <h1>Introduction to Database System</h1>
+      <p class="sec-sub" lang="ne">डाटाबेस प्रणालीको परिचय</p>
+    </div>
+    <span class="marks">6 hrs · 5 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2><div class="t-en">
+    <ol>
+      <li>Define data, information, database and DBMS, and say how each differs from the next.</li>
+      <li>State the limitations of the file system and how a database answers each one.</li>
+      <li>List the advantages and the disadvantages of a database system.</li>
+      <li>Give real applications of database systems.</li>
+      <li>Name the types of database user and what each one does.</li>
+      <li>Draw and explain the three-level DBMS architecture and data independence.</li>
+      <li>Compare the four database models, and define schema and instance.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: data, information, database र DBMS को परिभाषा दिन र फरक छुट्याउन,
+    फाइल प्रणालीका सीमा र डाटाबेसले तिनको के जवाफ दिन्छ भन्न, फाइदा–बेफाइदा सूचीबद्ध गर्न, वास्तविक
+    प्रयोग बताउन, प्रयोगकर्ताका प्रकार नाम लिन, तीन तहको संरचना कोरेर व्याख्या गर्न, र चार डाटाबेस
+    मोडेल तुलना गर्न सक्नुहुनेछ।</span>
+  </div>
+
+  <h2 class="topic" id="db-t11">1.1 &nbsp;Data, information, database, DBMS</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p><b>Data</b> is raw, unprocessed facts. On their own they carry no meaning:
+      <code>78</code>, <code>Ram</code>, <code>10</code>.</p>
+      <p><b>Information</b> is data that has been processed and given meaning: <i>"Ram scored 78 in
+      class 10."</i> The same facts, now useful.</p>
+      <p>A <b>database</b> is a collection of related data, organised so it can be stored and
+      retrieved efficiently.</p>
+      <p>A <b>DBMS (Database Management System)</b> is the <i>software</i> that creates, manages
+      and controls access to a database — MySQL, Oracle, MS Access.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Data</b> भनेको काँचो, प्रशोधन नगरिएको तथ्य हो। एक्लै यसको अर्थ हुँदैन:
+      <code>78</code>, <code>Ram</code>, <code>10</code>।</p>
+      <p><b>Information</b> भनेको प्रशोधन गरेर अर्थ दिइएको data हो: <i lang="ne">"रामले कक्षा १० मा ७८ अंक
+      ल्याए।"</i> उही तथ्य, अब काम लाग्ने।</p>
+      <p><b>Database</b> भनेको सम्बन्धित data को सङ्ग्रह हो, जुन राख्न र झिक्न सजिलो हुने गरी
+      व्यवस्थित गरिएको हुन्छ।</p>
+      <p><b>DBMS (Database Management System)</b> भनेको डाटाबेस बनाउने, व्यवस्थापन गर्ने र पहुँच
+      नियन्त्रण गर्ने <i lang="ne">सफ्टवेयर</i> हो — MySQL, Oracle, MS Access।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 210" role="img" aria-labelledby="t-dbladder">
+  <title id="t-dbladder">Data becomes information, information is stored in a database, and a DBMS is the software that manages it</title>
+  <defs><marker id="a-dbladder" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
+  <text class="f-ttl" x="10" y="20">FOUR WORDS, IN ORDER — each one is built on the one before it</text>
+<g>
+    <rect class="f-box-d" x="16" y="40" width="668" height="34" rx="7"/>
+    <rect x="18" y="47" width="4" height="20" rx="2" style="fill:var(--color-secondary)"/>
+    <text class="f-lbl-y" x="36" y="62" text-anchor="start" style="font-size:12.5px">DATA</text>
+    <text class="f-lbl" x="150" y="62" text-anchor="start" style="font-size:11.5px">raw facts, no meaning yet</text>
+    <text class="f-code" x="440" y="62" text-anchor="start" style="font-size:12px">78, Ram, 10</text>
+    <line class="f-arr" x1="26" y1="74" x2="26" y2="78" marker-end="url(#a-dbladder)"/>
+  </g><g>
+    <rect class="f-box-d" x="16" y="80" width="668" height="34" rx="7"/>
+    <rect x="18" y="87" width="4" height="20" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="36" y="102" text-anchor="start" style="font-size:12.5px">INFORMATION</text>
+    <text class="f-lbl" x="150" y="102" text-anchor="start" style="font-size:11.5px">data given meaning</text>
+    <text class="f-code" x="440" y="102" text-anchor="start" style="font-size:12px">Ram scored 78 in class 10</text>
+    <line class="f-arr" x1="26" y1="114" x2="26" y2="118" marker-end="url(#a-dbladder)"/>
+  </g><g>
+    <rect class="f-box-d" x="16" y="120" width="668" height="34" rx="7"/>
+    <rect x="18" y="127" width="4" height="20" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="36" y="142" text-anchor="start" style="font-size:12.5px">DATABASE</text>
+    <text class="f-lbl" x="150" y="142" text-anchor="start" style="font-size:11.5px">that information, stored and organised</text>
+    <text class="f-code" x="440" y="142" text-anchor="start" style="font-size:12px">the Student table</text>
+    <line class="f-arr" x1="26" y1="154" x2="26" y2="158" marker-end="url(#a-dbladder)"/>
+  </g><g>
+    <rect class="f-box-d" x="16" y="160" width="668" height="34" rx="7"/>
+    <rect x="18" y="167" width="4" height="20" rx="2" style="fill:var(--color-error)"/>
+    <text class="f-lbl-y" x="36" y="182" text-anchor="start" style="font-size:12.5px">DBMS</text>
+    <text class="f-lbl" x="150" y="182" text-anchor="start" style="font-size:11.5px">the SOFTWARE that manages the database</text>
+    <text class="f-code" x="440" y="182" text-anchor="start" style="font-size:12px">MySQL, Oracle, MS Access</text>
+    
+  </g>
+  <text class="f-lbl-y" x="350" y="196">The commonest slip: calling the DBMS "the database". The database is the data; the DBMS is the program that looks after it.</text>
+</svg>
+    <figcaption><span class="t-en">Each word is built on the one before it. Getting the order right is most of the
+    answer to "differentiate between…".
+    </span><span class="np-cell" lang="ne">हरेक शब्द अघिल्लोमाथि बनेको छ। "फरक छुट्याउनुहोस्" भन्ने प्रश्नको प्रायः
+    पूरै उत्तर यही क्रममा छ।</span></figcaption>
+  </figure>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A school stores its student records in MySQL. Which of these is the DATABASE?
+      </span><span class="np-cell" lang="ne">एउटा विद्यालयले विद्यार्थीको रेकर्ड MySQL मा राख्छ। यीमध्ये कुन
+      डाटाबेस हो?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">MySQL</button>
+      <button class="predict-opt" data-value="b">The stored student records</button>
+      <button class="predict-opt" data-value="c">The computer it runs on</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p>MySQL is the <b>DBMS</b> — the software. The <b>database</b> is the collection of data it
+      manages. Saying "MySQL is a database" is the single most common slip in this unit, and it
+      loses the mark in a "differentiate" question.</p>
+      </div><span class="np-cell" lang="ne">MySQL <b>DBMS</b> हो — सफ्टवेयर। <b lang="ne">डाटाबेस</b> भनेको त्यसले व्यवस्थापन
+      गर्ने data को सङ्ग्रह हो। "MySQL एउटा डाटाबेस हो" भन्नु यस युनिटको सबैभन्दा सामान्य गल्ती हो।</span>
+    </div>
+  </div>
+
+  <h2 class="topic" id="db-t12">1.2 &amp; 1.3 &nbsp;Why the file system was not enough</h2>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 246" role="img" aria-labelledby="t-filevsdb">
+  <title id="t-filevsdb">Four limitations of the file system and how a database system answers each one</title>
+  <text class="f-ttl" x="10" y="20">WHY THE DATABASE REPLACED THE FILE SYSTEM</text>
+  <text class="f-lbl-y" x="180" y="42" style="font-size:12px">FILE SYSTEM — the problem</text>
+  <text class="f-lbl-y" x="520" y="42" style="font-size:12px">DATABASE SYSTEM — the answer</text>
+<g>
+    <rect class="f-box-d" x="16" y="54" width="332" height="38" rx="7"/>
+    <rect class="f-box-d" x="356" y="54" width="328" height="38" rx="7"/>
+    <rect x="18" y="62" width="4" height="22" rx="2" style="fill:var(--color-error)"/>
+    <rect x="358" y="62" width="4" height="22" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="36" y="71" text-anchor="start" style="font-size:11.5px">Data redundancy</text>
+    <text class="f-lbl" x="36" y="85" text-anchor="start" style="font-size:10.5px">the same address stored in three files</text>
+    <text class="f-lbl" x="376" y="78" text-anchor="start" style="font-size:11.5px">stored once, referenced everywhere</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="98" width="332" height="38" rx="7"/>
+    <rect class="f-box-d" x="356" y="98" width="328" height="38" rx="7"/>
+    <rect x="18" y="106" width="4" height="22" rx="2" style="fill:var(--color-error)"/>
+    <rect x="358" y="106" width="4" height="22" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="36" y="115" text-anchor="start" style="font-size:11.5px">Data inconsistency</text>
+    <text class="f-lbl" x="36" y="129" text-anchor="start" style="font-size:10.5px">one copy updated, two left stale</text>
+    <text class="f-lbl" x="376" y="122" text-anchor="start" style="font-size:11.5px">one copy, so it cannot disagree</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="142" width="332" height="38" rx="7"/>
+    <rect class="f-box-d" x="356" y="142" width="328" height="38" rx="7"/>
+    <rect x="18" y="150" width="4" height="22" rx="2" style="fill:var(--color-error)"/>
+    <rect x="358" y="150" width="4" height="22" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="36" y="159" text-anchor="start" style="font-size:11.5px">Data isolation</text>
+    <text class="f-lbl" x="36" y="173" text-anchor="start" style="font-size:10.5px">files in different formats, hard to combine</text>
+    <text class="f-lbl" x="376" y="166" text-anchor="start" style="font-size:11.5px">one structure, queried together</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="186" width="332" height="38" rx="7"/>
+    <rect class="f-box-d" x="356" y="186" width="328" height="38" rx="7"/>
+    <rect x="18" y="194" width="4" height="22" rx="2" style="fill:var(--color-error)"/>
+    <rect x="358" y="194" width="4" height="22" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="36" y="203" text-anchor="start" style="font-size:11.5px">No concurrent control</text>
+    <text class="f-lbl" x="36" y="217" text-anchor="start" style="font-size:10.5px">two people writing at once corrupts it</text>
+    <text class="f-lbl" x="376" y="210" text-anchor="start" style="font-size:11.5px">transactions keep it correct</text>
+  </g>
+  <text class="f-lbl-y" x="350" y="240">Learn them as PAIRS. A question asking for limitations is really asking you to show you know what a database fixes.</text>
+</svg>
+    <figcaption><span class="t-en">Learn these as pairs. A question asking for the limitations of the file system is
+    really asking what a database fixes.
+    </span><span class="np-cell" lang="ne">यिनलाई जोडीमा सम्झनुहोस्। फाइल प्रणालीका सीमा सोध्नु भनेको डाटाबेसले के
+    सुधार्छ भनी सोध्नु हो।</span></figcaption>
+  </figure>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Advantages and disadvantages</span>
+      <p><b>Advantages:</b> redundancy is controlled; data stays consistent; data is shared between
+      users; security and access control are possible; backup and recovery are built in; standards
+      can be enforced.</p>
+      <p><b>Disadvantages — and they are real:</b> a DBMS is expensive to buy and to run; it needs
+      powerful hardware; it needs trained staff; and because everything is in one place, a failure
+      affects everything at once.</p>
+      <p>An answer that lists only advantages is an incomplete answer. Examiners ask for both.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">फाइदा र बेफाइदा</span>
+      <p><b lang="ne">फाइदा:</b> दोहोरोपन नियन्त्रण हुन्छ; data एकरूप रहन्छ; प्रयोगकर्ताबीच साझेदारी हुन्छ;
+      सुरक्षा र पहुँच नियन्त्रण सम्भव हुन्छ; backup र recovery भित्रै हुन्छ; मानक लागू गर्न सकिन्छ।</p>
+      <p><b lang="ne">बेफाइदा — र यी साँच्चिकै हुन्:</b> DBMS किन्न र चलाउन महँगो हुन्छ; बलियो हार्डवेयर
+      चाहिन्छ; तालिम पाएका कर्मचारी चाहिन्छन्; र सबै एकै ठाउँमा हुने भएकाले एउटै बिग्रँदा सबै
+      प्रभावित हुन्छ।</p>
+      <p lang="ne">फाइदा मात्र लेखेको उत्तर अपूरो हुन्छ। परीक्षकले दुवै सोध्छन्।</p>
+    </div>
+  </div>
+
+  <div class="callout"><span class="t-en">
+    <b>1.4 — Where database systems are used.</b>
+    Banking (accounts and transactions), airlines and bus booking (seats), schools and universities
+    (students, marks, fees), hospitals (patient records), telecom (call records), online shops
+    (products, orders), and government records — citizenship, land, voter rolls.
+    </span><span class="np-cell" lang="ne">डाटाबेस प्रणालीको प्रयोग: बैंकिङ (खाता र कारोबार), हवाई तथा बस टिकट (सिट),
+    विद्यालय र विश्वविद्यालय (विद्यार्थी, अंक, शुल्क), अस्पताल (बिरामीको रेकर्ड), टेलिकम (कल रेकर्ड),
+    अनलाइन पसल (सामान, अर्डर), र सरकारी अभिलेख — नागरिकता, जग्गा, मतदाता नामावली।</span>
+  </div>
+
+  <h2 class="topic" id="db-t15">1.5 &nbsp;Types of database user</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Four users, four jobs</span>
+      <p><b>Database Administrator (DBA)</b> — has complete control. Creates the database, grants
+      and revokes permission, takes backups, tunes performance. One person, or a small team.</p>
+      <p><b>Database Designer</b> — decides what entities and relationships the database needs,
+      before it is built.</p>
+      <p><b>Application Programmer</b> — writes the programs that read and write the database
+      through SQL.</p>
+      <p><b>End User</b> — uses those programs. A <i>naive</i> end user works through a form or a
+      menu and never sees SQL; a <i>sophisticated</i> end user writes their own queries.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">चार प्रयोगकर्ता, चार काम</span>
+      <p><b>Database Administrator (DBA)</b> — पूर्ण नियन्त्रण। डाटाबेस बनाउने, अधिकार दिने–खोस्ने,
+      backup लिने, कार्यसम्पादन सुधार्ने।</p>
+      <p><b>Database Designer</b> — बन्नुअघि नै कुन इन्टिटी र सम्बन्ध चाहिन्छ भन्ने तय गर्ने।</p>
+      <p><b>Application Programmer</b> — SQL मार्फत डाटाबेस पढ्ने–लेख्ने प्रोग्राम लेख्ने।</p>
+      <p><b>End User</b> — ती प्रोग्राम चलाउने। <i>naive</i> प्रयोगकर्ताले फारम वा मेनुबाट काम गर्छ र
+      SQL देख्दैन; <i>sophisticated</i> प्रयोगकर्ताले आफैं क्वेरी लेख्छ।</p>
+    </div>
+  </div>
+
+  <h2 class="topic" id="db-t16">1.6 &nbsp;DBMS architecture</h2>
+
+  <div class="dia" data-dia="dbArchitecture">
+  <div class="dia-stage">
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-dbarch">
+  <title id="t-dbarch">The three-level DBMS architecture: external, conceptual and internal, with data independence between them</title>
+  <text class="f-ttl" x="10" y="20">THE THREE-LEVEL ARCHITECTURE</text>
+
+  <g id="arch-1">
+    <rect class="f-box-d" x="120" y="40" width="460" height="56" rx="8"/>
+    <text class="f-lbl-y" x="350" y="62" style="font-size:13px">EXTERNAL LEVEL (View level)</text>
+    <text class="f-lbl" x="350" y="82" style="font-size:11.5px">what each user is allowed to see — a teacher's view, a clerk's view</text>
+  </g>
+  <g id="arch-2">
+    <rect class="f-box-d" x="120" y="122" width="460" height="56" rx="8"/>
+    <text class="f-lbl-y" x="350" y="144" style="font-size:13px">CONCEPTUAL LEVEL (Logical level)</text>
+    <text class="f-lbl" x="350" y="164" style="font-size:11.5px">what data exists and how it relates — tables, columns, keys</text>
+  </g>
+  <g id="arch-3">
+    <rect class="f-box-d" x="120" y="204" width="460" height="56" rx="8"/>
+    <text class="f-lbl-y" x="350" y="226" style="font-size:13px">INTERNAL LEVEL (Physical level)</text>
+    <text class="f-lbl" x="350" y="246" style="font-size:11.5px">how the bytes are actually stored on the disk</text>
+  </g>
+  <g id="arch-4">
+    <text class="f-lbl-y" x="350" y="112" style="font-size:11px">logical data independence</text>
+    <text class="f-lbl-y" x="350" y="194" style="font-size:11px">physical data independence</text>
+  </g>
+  <text class="f-lbl" x="350" y="284" style="font-size:11px">A change at one level does not force a change at the level above. That is the whole purpose.</text>
+</svg></div>
+  <div class="dia-controls">
+    <button type="button" data-dia-act="prev" data-ui="prev">&#9666; Prev</button>
+    <button type="button" data-dia-act="play" data-ui="play" aria-pressed="false">&#9654; Play</button>
+    <button type="button" data-dia-act="next" data-ui="next">Next &#9656;</button>
+    <button type="button" data-dia-act="reset" data-ui="reset">Reset</button>
+    <span class="dia-progress" aria-live="polite" data-dia-steps="4">step 0 / 4</span>
+  </div>
+  <div class="dia-caption" role="status">
+    <span class="dia-cap-en"></span>
+    <span class="dia-cap-ne np-cell" lang="ne"></span>
+  </div>
+</div>
+
+  <div class="callout an"><span class="t-en">
+    <b>Data independence in one sentence each.</b>
+    <b>Physical data independence</b> — you can change how the data is stored on disk without
+    changing the tables. <b>Logical data independence</b> — you can change the tables without
+    changing what a user sees. Physical is the easier of the two to achieve; logical is harder,
+    because a user's view is built directly on the tables.
+    </span><span class="np-cell" lang="ne">एक–एक वाक्यमा: <b>Physical data independence</b> — डिस्कमा data कसरी
+    राखिन्छ त्यो बदल्दा तालिका बदल्नु पर्दैन। <b>Logical data independence</b> — तालिका बदल्दा
+    प्रयोगकर्ताले देख्ने कुरा बदल्नु पर्दैन। पहिलो हासिल गर्न सजिलो, दोस्रो गाह्रो।</span>
+  </div>
+
+  <h2 class="topic" id="db-t17">1.7 &amp; 1.8 &nbsp;Database models, schema and instance</h2>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 200" role="img" aria-labelledby="t-dbmodels">
+  <title id="t-dbmodels">Four database models: hierarchical, network, relational and object-oriented</title>
+  <text class="f-ttl" x="10" y="20">FOUR DATABASE MODELS — how the data is arranged</text>
+<g>
+    <rect class="f-box-d" x="16" y="38" width="668" height="32" rx="7"/>
+    <rect x="18" y="44" width="4" height="20" rx="2" style="fill:var(--color-border-strong)"/>
+    <text class="f-lbl-y" x="36" y="59" text-anchor="start" style="font-size:12px">HIERARCHICAL</text>
+    <text class="f-lbl" x="215" y="59" text-anchor="start" style="font-size:11.5px">a tree — one parent, many children</text>
+    <text class="f-lbl" x="450" y="59" text-anchor="start" style="font-size:11px">a child has ONE parent only</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="76" width="668" height="32" rx="7"/>
+    <rect x="18" y="82" width="4" height="20" rx="2" style="fill:var(--color-border-strong)"/>
+    <text class="f-lbl-y" x="36" y="97" text-anchor="start" style="font-size:12px">NETWORK</text>
+    <text class="f-lbl" x="215" y="97" text-anchor="start" style="font-size:11.5px">a graph — many-to-many allowed</text>
+    <text class="f-lbl" x="450" y="97" text-anchor="start" style="font-size:11px">a child may have SEVERAL parents</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="114" width="668" height="32" rx="7"/>
+    <rect x="18" y="120" width="4" height="20" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="36" y="135" text-anchor="start" style="font-size:12px">RELATIONAL</text>
+    <text class="f-lbl" x="215" y="135" text-anchor="start" style="font-size:11.5px">tables linked by keys</text>
+    <text class="f-lbl" x="450" y="135" text-anchor="start" style="font-size:11px">the model this syllabus teaches</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="152" width="668" height="32" rx="7"/>
+    <rect x="18" y="158" width="4" height="20" rx="2" style="fill:var(--color-border-strong)"/>
+    <text class="f-lbl-y" x="36" y="173" text-anchor="start" style="font-size:12px">OBJECT-ORIENTED</text>
+    <text class="f-lbl" x="215" y="173" text-anchor="start" style="font-size:11.5px">objects with data and methods</text>
+    <text class="f-lbl" x="450" y="173" text-anchor="start" style="font-size:11px">used where data is complex</text>
+  </g>
+  <text class="f-lbl-y" x="350" y="196">Hierarchical and network differ on ONE point: how many parents a record may have. That is the examinable difference.</text>
+</svg>
+    <figcaption><span class="t-en">Hierarchical and network are separated by one question: how many parents may a
+    record have?
+    </span><span class="np-cell" lang="ne">Hierarchical र network लाई एउटै प्रश्नले छुट्याउँछ: एउटा रेकर्डका कति
+    parent हुन सक्छन्?</span></figcaption>
+  </figure>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Schema and instance</span>
+      <p>A <b>schema</b> is the <b>structure</b> of the database — the table names, the columns and
+      their types, the keys and the constraints. It is designed once and changes rarely.</p>
+      <p>An <b>instance</b> is the <b>data actually in the database at a given moment</b>. It
+      changes every time a row is inserted, updated or deleted.</p>
+      <p>The same schema has a different instance every day. The schema of the Student table does
+      not change when a new student joins — only its instance does.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">Schema र instance</span>
+      <p><b>Schema</b> भनेको डाटाबेसको <b lang="ne">संरचना</b> हो — तालिकाका नाम, स्तम्भ र तिनका टाइप, कुञ्जी
+      र बन्धन। एक पटक डिजाइन हुन्छ र विरलै बदलिन्छ।</p>
+      <p><b>Instance</b> भनेको <b lang="ne">कुनै क्षणमा डाटाबेसमा साँच्चै भएको data</b> हो। पङ्क्ति थपिँदा,
+      बदलिँदा वा हट्दा हरेक पटक फेरिन्छ।</p>
+      <p lang="ne">उही schema को instance हरेक दिन फरक हुन्छ। नयाँ विद्यार्थी भर्ना हुँदा Student तालिकाको
+      schema बदलिँदैन — instance मात्र बदलिन्छ।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Distinguishing the four terms in one answer</div>
+    <p><b>Question:</b> differentiate between data and information, and between database and DBMS,
+    with one example each. <i>(4 marks)</i></p>
+    <div class="wex-out">
+      <span class="wex-lbl">Model answer</span>
+      <div class="out">DATA vs INFORMATION
+  Data        raw facts with no meaning       78
+  Information processed data with meaning     Ram scored 78
+
+DATABASE vs DBMS
+  Database    the organised collection of data   the Student table
+  DBMS        the software that manages it       MySQL</div>
+    </div>
+    <p class="wex-note"><span class="t-en">Four marks, four lines. Answer in a two-column layout like this and you
+    cannot accidentally define only one side of the pair — which is how this question is usually
+    half-answered.
+    </span><span class="np-cell" lang="ne">चार अंक, चार हरफ। यसरी दुई स्तम्भमा लेख्नुभयो भने जोडीको एउटा पक्ष मात्र
+    लेख्ने गल्ती हुँदैन — यो प्रश्न प्रायः त्यसैगरी आधा उत्तर हुन्छ।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h3>Mistakes that cost marks here</h3>
+    <ul>
+      <li><span class="t-en"><b>Calling the DBMS "the database".</b> The database is the data; the DBMS is the
+        program. MySQL is a DBMS.
+        </span><span class="np-cell" lang="ne">DBMS लाई "डाटाबेस" भन्नु। डाटाबेस भनेको data, DBMS भनेको प्रोग्राम।</span></li>
+      <li><span class="t-en"><b>Listing advantages when the question says advantages AND disadvantages.</b> Half the
+        question, half the marks.
+        </span><span class="np-cell" lang="ne">फाइदा र बेफाइदा दुवै सोधिएको ठाउँमा फाइदा मात्र लेख्नु। आधा प्रश्न,
+        आधा अंक।</span></li>
+      <li><span class="t-en"><b>Mixing up schema and instance.</b> Adding a student changes the instance, not the
+        schema.
+        </span><span class="np-cell" lang="ne">Schema र instance मिसाउनु। विद्यार्थी थप्दा instance बदलिन्छ, schema
+        होइन।</span></li>
+      <li><span class="t-en"><b>Drawing the three-level architecture upside down.</b> External is at the top, nearest
+        the user; internal is at the bottom, nearest the disk.
+        </span><span class="np-cell" lang="ne">तीन तहको चित्र उल्टो कोर्नु। External माथि — प्रयोगकर्तानजिक;
+        internal तल — डिस्कनजिक।</span></li>
+    </ul>
+  </div>
+
+  <h2 class="topic" id="db-exam1">Exam focus — what is asked from this unit</h2>
+
+  <div class="exam-connect"><span class="t-en">
+    <b>This unit is short — 6 hours — but it supplies the definitions the whole subject is built
+    on.</b> Almost every question here is either <b>define</b>, <b>differentiate</b> or
+    <b>list</b>. All three are answered from memory, so the work is learning the exact wording
+    rather than reasoning it out in the hall. The three-level architecture is the one diagram from
+    this unit you may be asked to draw.
+    </span><span class="np-cell" lang="ne">यो युनिट छोटो छ — ६ घण्टा — तर पूरै विषय यसैका परिभाषामाथि बनेको छ।
+    यहाँका प्रायः सबै प्रश्न <b lang="ne">परिभाषा दिने</b>, <b lang="ne">फरक छुट्याउने</b> वा <b lang="ne">सूची बनाउने</b> हुन्।
+    तीनै सम्झेर लेख्ने भएकाले ठ्याक्कै शब्द याद गर्नु नै काम हो। यस युनिटबाट कोर्न सकिने चित्र
+    तीन तहको संरचना हो।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">Define database and DBMS. </span><span class="np-cell" lang="ne">डाटाबेस र DBMS को परिभाषा दिनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba11">Show the answer</button>
+    <div class="ans" id="dba11"><div class="t-en">
+      <p>A <b>database</b> is a collection of related data organised so that it can be stored and
+      retrieved efficiently.</p>
+      <p>A <b>DBMS</b> is the software that creates, manages and controls access to a database.
+      Examples: MySQL, Oracle, MS Access.</p>
+      </div><span class="np-cell" lang="ne">दुवैको परिभाषा र DBMS का दुई उदाहरण लेख्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Explain the three-level architecture of a DBMS with a diagram.
+    </span><span class="np-cell" lang="ne">चित्रसहित DBMS को तीन तहको संरचना व्याख्या गर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba12">Show the answer</button>
+    <div class="ans" id="dba12"><div class="t-en">
+      <div class="out">   EXTERNAL LEVEL     what each user sees
+        ↑                 logical data independence
+   CONCEPTUAL LEVEL   what data exists, and how it relates
+        ↑                 physical data independence
+   INTERNAL LEVEL     how the data is stored on disk</div>
+      <p>One mark for the diagram with all three levels in the right order, and one mark for
+      explaining each level. Mentioning data independence between the levels is what turns a
+      three-mark answer into a four-mark one.</p>
+      </div><span class="np-cell" lang="ne">तीनै तह सही क्रममा भएको चित्रलाई एक अंक, हरेक तहको व्याख्यालाई एक–एक।
+      तहबीचको data independence उल्लेख गर्दा तीन अंकको उत्तर चार अंकको बन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p><span class="t-en">State any three limitations of the traditional file system.
+    </span><span class="np-cell" lang="ne">परम्परागत फाइल प्रणालीका कुनै तीन सीमा लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba13">Show the answer</button>
+    <div class="ans" id="dba13"><div class="t-en">
+      <p><b>Data redundancy</b> — the same fact is stored in several files.
+      <b>Data inconsistency</b> — one copy is updated and the others are left stale.
+      <b>Data isolation</b> — data sits in different files and formats, so combining it is hard.
+      <b>No concurrency control</b> — two users writing at once can corrupt the file.
+      <b>Weak security</b> — access cannot be controlled at the level of individual records.</p>
+      <p>Any three, each named and explained in one line.</p>
+      </div><span class="np-cell" lang="ne">कुनै तीन — नाम दिएर एक–एक हरफमा व्याख्या गर्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick"><span class="t-en">Data → information → database → DBMS. Each is built on the one before, and
+        the DBMS is software, not data.
+        </span><span class="np-cell" lang="ne">Data → information → database → DBMS। हरेक अघिल्लोमाथि बनेको, र DBMS
+        सफ्टवेयर हो, data होइन।</span></li>
+      <li class="tick"><span class="t-en">The file system's four problems are redundancy, inconsistency, isolation and
+        no concurrency control. A database answers each one.
+        </span><span class="np-cell" lang="ne">फाइल प्रणालीका चार समस्या: दोहोरोपन, असङ्गति, अलगाव, र समवर्ती
+        नियन्त्रणको अभाव। डाटाबेसले हरेकको जवाफ दिन्छ।</span></li>
+      <li class="tick"><span class="t-en">A database system also has real costs: money, hardware, trained staff, and
+        one point of failure.
+        </span><span class="np-cell" lang="ne">डाटाबेस प्रणालीका वास्तविक लागत पनि छन्: पैसा, हार्डवेयर, तालिम पाएका
+        कर्मचारी, र एउटै ठाउँमा जोखिम।</span></li>
+      <li class="tick"><span class="t-en">Users: DBA, designer, application programmer, end user.
+        </span><span class="np-cell" lang="ne">प्रयोगकर्ता: DBA, डिजाइनर, एप्लिकेसन प्रोग्रामर, end user।</span></li>
+      <li class="tick"><span class="t-en">Three levels: external (what a user sees), conceptual (what data exists),
+        internal (how it is stored). The gaps between them are data independence.
+        </span><span class="np-cell" lang="ne">तीन तह: external (प्रयोगकर्ताले देख्ने), conceptual (कुन data छ),
+        internal (कसरी राखिएको)। बीचका खाली ठाउँ नै data independence हुन्।</span></li>
+      <li class="tick"><span class="t-en">Schema is the structure and rarely changes; instance is today's data and
+        changes constantly.
+        </span><span class="np-cell" lang="ne">Schema संरचना हो, विरलै बदलिन्छ; instance आजको data हो, निरन्तर
+        बदलिन्छ।</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="index.html"><span class="lab">◂ Previous</span><span class="ttl">Overview</span></a><a class="nx" href="unit2.html"><span class="lab">Next ▸</span><span class="ttl">Entity Relationship Model (ER-Model)</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/diagram.js"></script>
+<script src="../../assets/js/diagram-data.js"></script>
+</body>
+</html>

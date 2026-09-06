@@ -22,20 +22,20 @@ for the most recent report.
 
 | | |
 | --- | --- |
-| Pages | 26 student pages + 2 internal |
-| Internal links | 1,102, all resolving |
+| Pages | 34 student pages + 2 internal |
+| Internal links | 1,485, all resolving |
 | Language modes | 3 — bilingual (default), Nepali-led, English |
-| Subjects with full notes | 2 of 8 (Grade 9 + 10) |
-| Subjects with syllabus outline | 6 of 8 — 46 units, 284 topics |
-| Written content | 32,281 words |
-| Hand-drawn SVG diagrams | 38 (32 static, 6 animated) |
-| Worked examples | 34 |
-| Exam-style questions | 43, each with a model answer |
-| Interactive components | 10 simulations, 15 runtime modules + 6 services |
+| Subjects with full notes | 3 of 8 (Grade 9 + 10) |
+| Subjects with syllabus outline | 5 of 8 |
+| Written content | 49,812 words |
+| Hand-drawn SVG diagrams | 53 (42 static, 11 animated) |
+| Worked examples | 43 |
+| Exam-style questions | 65, each with a model answer |
+| Interactive components | 18 simulations, 19 runtime modules + 6 services |
 | Traceable C++ programs | 3 (58 steps) |
-| Question bank | 69, tagged by unit, topic and difficulty |
-| Prediction exercises | 8, commit-before-reveal |
-| Automated tests | 202 |
+| Question bank | 121, tagged by unit, topic and difficulty |
+| Prediction exercises | 15, commit-before-reveal |
+| Automated tests | 265 |
 | Runtime dependencies | none |
 
 ## Works offline, permanently
@@ -66,7 +66,7 @@ npm run check
 ```
 
 That runs `npm run build` (writes all 28 pages and assets, failing loudly on any
-content-contract violation) followed by `npm test` (202 tests covering the build,
+content-contract violation) followed by `npm test` (265 tests covering the build,
 links, the content contract, the runtime, the storage layer and the design system).
 
 **There are no dependencies to install.** Node 20+ is the only requirement.
@@ -83,7 +83,7 @@ grade9/  grade10/          Subject index + one folder per subject
     quiz.html                15-question self-check
 assets/css  assets/js      One stylesheet, seventeen scripts
 _source/                   Source — config, content, design, runtime, build
-tests/                     202 automated tests (npm test)
+tests/                     265 automated tests (npm test)
 docs/                      Architecture, security, accessibility, decisions
 ```
 
@@ -92,7 +92,7 @@ docs/                      Architecture, security, accessibility, decisions
 
 ## Documentation
 
-Thirty-one documents, indexed by what you are trying to do:
+Thirty-five documents, indexed by what you are trying to do:
 **[docs/README.md](docs/README.md)**.
 
 The short version — contracts describe how the system works now and must be

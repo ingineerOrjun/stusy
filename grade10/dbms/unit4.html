@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>SQL — Structured Query Language — DBMS | RGSC Study Board</title>
+<meta name="description" content="SQL — Structured Query Language explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html" class="on">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DBMS</a> <span class="sep">/</span> <span>SQL — Structured Query Language</span></nav>
+<main id="main" data-subject="grade10/dbms">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Introduction</a><a href="unit2.html">2 · ER Model</a><a href="unit3.html">3 · Relational Model</a><a href="unit4.html" style="color:var(--yellow);border-color:var(--yellow)">4 · SQL</a><a href="unit5.html">5 · Normalization</a><a href="unit6.html">6 · Transaction</a><a href="unit7.html">7 · Backup & Security</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="db-u4">
+  <div class="sec-head">
+    <div class="sec-num">4</div>
+    <div>
+      <h1>SQL — Structured Query Language</h1>
+      <p class="sec-sub" lang="ne">एसक्युएल — संरचित क्वेरी भाषा</p>
+    </div>
+    <span class="marks">14 hrs · 11 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2><div class="t-en">
+    <ol>
+      <li>Say what SQL is and sort any statement into DDL, DML or DCL.</li>
+      <li>Write CREATE TABLE, and state what ALTER, DROP and RENAME each do.</li>
+      <li>Write SELECT with WHERE, AND, OR and ORDER BY, and predict the result.</li>
+      <li>Write INSERT, UPDATE and DELETE, and say exactly how DELETE differs from DROP.</li>
+      <li>State the purpose and syntax of GRANT and REVOKE.</li>
+      <li>Name the five joins and say which rows each one keeps.</li>
+      <li>Define a view and say why one is useful.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: SQL के हो भन्न र कुनै पनि कथनलाई DDL, DML वा DCL मा छुट्याउन,
+    CREATE TABLE लेख्न, WHERE–AND–OR–ORDER BY सहितको SELECT लेखेर नतिजा अनुमान गर्न, INSERT–UPDATE–DELETE
+    लेख्न र DELETE कसरी DROP भन्दा फरक छ भन्न, GRANT–REVOKE को उद्देश्य भन्न, पाँच join मध्ये कसले कुन
+    पङ्क्ति राख्छ भन्न, र view को परिभाषा दिन सक्नुहुनेछ।</span>
+  </div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p><b>SQL (Structured Query Language)</b> is the standard language used to define, manipulate
+      and control the data held in a relational database.</p>
+      <p>It is not a programming language in the ordinary sense. You do not tell it <i>how</i> to
+      find the rows — you state <i>what</i> you want, and the DBMS works out how. That is why one
+      line of SQL can replace a page of loops.</p>
+      <p>Almost every SQL statement is one sentence ending in a semicolon, and almost every one
+      begins with a verb: <code>SELECT</code>, <code>INSERT</code>, <code>CREATE</code>,
+      <code>DROP</code>. Reading the verb first tells you what is about to change.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>SQL (Structured Query Language)</b> रिलेसनल डाटाबेसमा रहेको डाटा परिभाषित गर्न, चलाउन र
+      नियन्त्रण गर्न प्रयोग हुने मानक भाषा हो।</p>
+      <p lang="ne">यो साधारण अर्थमा प्रोग्रामिङ भाषा होइन। पङ्क्ति <i lang="ne">कसरी</i> खोज्ने भन्नु पर्दैन — तपाईं
+      <i lang="ne">के</i> चाहियो भन्नुहुन्छ, कसरी निकाल्ने भन्ने DBMS ले हेर्छ। त्यसैले SQL को एक हरफले
+      पूरा पानाको loop को काम गर्छ।</p>
+      <p lang="ne">प्रायः हरेक SQL कथन एउटा वाक्य हो, अन्त्यमा अर्धविराम। र प्रायः हरेक क्रियापदबाट सुरु हुन्छ:
+      <code>SELECT</code>, <code>INSERT</code>, <code>CREATE</code>, <code>DROP</code>। पहिलो शब्द
+      पढ्नेबित्तिकै के बदलिन लागेको हो थाहा हुन्छ।</p>
+    </div>
+  </div>
+
+  <h2 class="topic" id="db-t41">4.1 &nbsp;The three families of SQL</h2>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 232" role="img" aria-labelledby="t-sqlfam">
+  <title id="t-sqlfam">The three families of SQL statements: DDL changes structure, DML changes data, DCL changes permission</title>
+  <text class="f-ttl" x="10" y="20">THE THREE FAMILIES OF SQL — sort a statement by WHAT IT CHANGES</text>
+<g>
+    <rect class="f-box-d" x="16" y="40" width="216" height="150" rx="8"/>
+    <rect x="18" y="52" width="4" height="26" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="36" y="64" text-anchor="start" style="font-size:14px">DDL</text>
+    <text class="f-lbl" x="36" y="80" text-anchor="start" style="font-size:11px">Data Definition</text>
+    <text class="f-lbl" x="36" y="102" text-anchor="start" style="font-size:11.5px">changes the STRUCTURE</text>
+    <text class="f-code" x="36" y="126" text-anchor="start" style="font-size:12.5px">CREATE</text><text class="f-code" x="36" y="146" text-anchor="start" style="font-size:12.5px">ALTER</text><text class="f-code" x="36" y="166" text-anchor="start" style="font-size:12.5px">DROP</text><text class="f-code" x="36" y="186" text-anchor="start" style="font-size:12.5px">RENAME</text>
+  </g><g>
+    <rect class="f-box-d" x="246" y="40" width="216" height="150" rx="8"/>
+    <rect x="248" y="52" width="4" height="26" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="266" y="64" text-anchor="start" style="font-size:14px">DML</text>
+    <text class="f-lbl" x="266" y="80" text-anchor="start" style="font-size:11px">Data Manipulation</text>
+    <text class="f-lbl" x="266" y="102" text-anchor="start" style="font-size:11.5px">changes the DATA inside</text>
+    <text class="f-code" x="266" y="126" text-anchor="start" style="font-size:12.5px">SELECT</text><text class="f-code" x="266" y="146" text-anchor="start" style="font-size:12.5px">INSERT</text><text class="f-code" x="266" y="166" text-anchor="start" style="font-size:12.5px">UPDATE</text><text class="f-code" x="266" y="186" text-anchor="start" style="font-size:12.5px">DELETE</text>
+  </g><g>
+    <rect class="f-box-d" x="476" y="40" width="216" height="150" rx="8"/>
+    <rect x="478" y="52" width="4" height="26" rx="2" style="fill:var(--color-secondary)"/>
+    <text class="f-lbl-y" x="496" y="64" text-anchor="start" style="font-size:14px">DCL</text>
+    <text class="f-lbl" x="496" y="80" text-anchor="start" style="font-size:11px">Data Control</text>
+    <text class="f-lbl" x="496" y="102" text-anchor="start" style="font-size:11.5px">changes WHO may use it</text>
+    <text class="f-code" x="496" y="126" text-anchor="start" style="font-size:12.5px">GRANT</text><text class="f-code" x="496" y="146" text-anchor="start" style="font-size:12.5px">REVOKE</text>
+  </g>
+  <text class="f-lbl-y" x="350" y="212">DROP removes the table. DELETE removes rows FROM the table. Different families, and only one is reversible by inserting again.</text>
+</svg>
+    <figcaption><span class="t-en">Sort by what a statement CHANGES, not by how it looks. This one classification
+    answers a whole family of exam questions.
+    </span><span class="np-cell" lang="ne">कथनले <b lang="ne">के बदल्छ</b> त्यसैअनुसार छुट्याउनुहोस्, हेराइअनुसार होइन। यही एउटा
+    वर्गीकरणले परीक्षाका धेरै प्रश्नको उत्तर दिन्छ।</span></figcaption>
+  </figure>
+
+  <div class="callout"><span class="t-en">
+    <b>The quickest way to classify a statement.</b>
+    Ask what would be lost if it ran. Structure gone → <b>DDL</b>. Rows changed → <b>DML</b>.
+    Somebody's permission changed → <b>DCL</b>.
+    </span><span class="np-cell" lang="ne">छुट्याउने छिटो तरिका: यो चल्यो भने के हराउँछ भनी सोध्नुहोस्। संरचना गयो →
+    <b>DDL</b>। पङ्क्ति बदलियो → <b>DML</b>। कसैको अधिकार बदलियो → <b>DCL</b>।</span>
+  </div>
+
+  <h2 class="topic" id="db-t43">4.3 &amp; 4.5 &nbsp;SELECT — asking the database a question</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The shape of every query</span>
+      <p>A <code>SELECT</code> answers one question: <b>which rows, and which columns of them?</b>
+      Those two choices are made by two different clauses, and mixing them up is the most common
+      mistake in this unit.</p>
+      <p><code>WHERE</code> chooses <b>rows</b>. It looks at each row in turn, tests the condition,
+      and keeps the row or drops it. It can never change which columns appear.</p>
+      <p><code>SELECT</code> chooses <b>columns</b>. It cannot remove a row.</p>
+      <p><code>ORDER BY</code> chooses <b>the order</b>. It removes nothing at all — a result with
+      three rows still has three rows after sorting.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">हरेक क्वेरीको बनावट</span>
+      <p><code>SELECT</code> ले एउटै प्रश्नको उत्तर दिन्छ: <b lang="ne">कुन पङ्क्ति, र तिनका कुन स्तम्भ?</b>
+      यी दुई छनोट फरक–फरक clause ले गर्छन्, र यिनै दुई मिसाउनु यस युनिटको सबैभन्दा सामान्य गल्ती हो।</p>
+      <p><code>WHERE</code> ले <b lang="ne">पङ्क्ति</b> छान्छ। हरेक पङ्क्ति हेरेर सर्त जाँच्छ, अनि राख्छ वा
+      हटाउँछ। कुन स्तम्भ देखिने भन्ने यसले बदल्न सक्दैन।</p>
+      <p><code>SELECT</code> ले <b lang="ne">स्तम्भ</b> छान्छ। पङ्क्ति हटाउन सक्दैन।</p>
+      <p><code>ORDER BY</code> ले <b lang="ne">क्रम</b> छान्छ। केही पनि हटाउँदैन — तीन पङ्क्ति भएको नतिजा
+      क्रम मिलाएपछि पनि तीनै पङ्क्तिको हुन्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 208" role="img" aria-labelledby="t-sqlpipe">
+  <title id="t-sqlpipe">A SELECT query runs in four stages: FROM chooses the table, WHERE chooses rows, SELECT chooses columns, ORDER BY sorts</title>
+  <defs><marker id="a-sqlpipe" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
+  <text class="f-ttl" x="10" y="20">HOW A SELECT ACTUALLY RUNS — four stages, in this order</text>
+<g>
+    <rect class="f-box-d" x="16" y="48" width="146" height="88" rx="8"/>
+    <rect x="18" y="60" width="4" height="24" rx="2" style="fill:var(--color-secondary)"/>
+    <text class="f-lbl-y" x="89" y="74" style="font-size:13px">FROM</text>
+    <text class="f-lbl" x="89" y="94" style="font-size:11.5px">which TABLE</text>
+    <text class="f-code" x="89" y="120" style="font-size:13px">4 rows</text>
+    <line class="f-arr" x1="164" y1="92" x2="188" y2="92" marker-end="url(#a-sqlpipe)"/>
+  </g><g>
+    <rect class="f-box-d" x="190" y="48" width="146" height="88" rx="8"/>
+    <rect x="192" y="60" width="4" height="24" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="263" y="74" style="font-size:13px">WHERE</text>
+    <text class="f-lbl" x="263" y="94" style="font-size:11.5px">which ROWS</text>
+    <text class="f-code" x="263" y="120" style="font-size:13px">3 rows</text>
+    <line class="f-arr" x1="338" y1="92" x2="362" y2="92" marker-end="url(#a-sqlpipe)"/>
+  </g><g>
+    <rect class="f-box-d" x="364" y="48" width="146" height="88" rx="8"/>
+    <rect x="366" y="60" width="4" height="24" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="437" y="74" style="font-size:13px">SELECT</text>
+    <text class="f-lbl" x="437" y="94" style="font-size:11.5px">which COLUMNS</text>
+    <text class="f-code" x="437" y="120" style="font-size:13px">3 rows</text>
+    <line class="f-arr" x1="512" y1="92" x2="536" y2="92" marker-end="url(#a-sqlpipe)"/>
+  </g><g>
+    <rect class="f-box-d" x="538" y="48" width="146" height="88" rx="8"/>
+    <rect x="540" y="60" width="4" height="24" rx="2" style="fill:var(--color-secondary)"/>
+    <text class="f-lbl-y" x="611" y="74" style="font-size:13px">ORDER BY</text>
+    <text class="f-lbl" x="611" y="94" style="font-size:11.5px">in what ORDER</text>
+    <text class="f-code" x="611" y="120" style="font-size:13px">3 rows</text>
+    
+  </g>
+  <text class="f-code" x="350" y="164" style="font-size:12.5px">SELECT name FROM Student WHERE marks &gt; 60 ORDER BY marks DESC;</text>
+  <text class="f-lbl-y" x="350" y="188">WHERE removes rows. SELECT removes columns. ORDER BY removes nothing — it only rearranges.</text>
+</svg>
+    <figcaption><span class="t-en">The order matters. WHERE runs before SELECT, which is why a query can filter on a
+    column it never displays.
+    </span><span class="np-cell" lang="ne">क्रमको महत्त्व छ। WHERE, SELECT भन्दा पहिले चल्छ — त्यसैले क्वेरीले नदेखाउने
+    स्तम्भमा पनि छान्न सक्छ।</span></figcaption>
+  </figure>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">The Student table has 4 rows. You run
+      <code>SELECT name FROM Student WHERE marks &gt; 60;</code> and three students scored above 60.
+      How many rows and how many columns come back?
+      </span><span class="np-cell" lang="ne">Student तालिकामा ४ पङ्क्ति छन्।
+      <code>SELECT name FROM Student WHERE marks &gt; 60;</code> चलाउनुहुन्छ, र ६० भन्दा माथि तीन जनाले
+      ल्याएका छन्। कति पङ्क्ति र कति स्तम्भ फर्किन्छ?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">4 rows, 1 column</button>
+      <button class="predict-opt" data-value="b">3 rows, 1 column</button>
+      <button class="predict-opt" data-value="c">3 rows, 4 columns</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p>Two separate cuts. <b>WHERE</b> takes 4 rows down to 3. <b>SELECT name</b> takes 4 columns
+      down to 1. Neither clause does the other one's job. Run it in the simulator below and watch
+      both numbers change.</p>
+      </div><span class="np-cell" lang="ne">दुई फरक कटाइ। <b>WHERE</b> ले ४ पङ्क्तिलाई ३ बनाउँछ। <b>SELECT name</b>
+      ले ४ स्तम्भलाई १ बनाउँछ। एउटाले अर्कोको काम गर्दैन। तलको सिमुलेटरमा चलाएर दुवै सङ्ख्या
+      बदलिएको हेर्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h3>The SQL simulator</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: how a query narrows the data in stages, so you can
+      work out a result on paper before you ever run it.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: क्वेरीले डाटालाई चरण–चरणमा कसरी साँघुरो पार्छ,
+      जसले गर्दा नचलाईकनै कागजमा नतिजा निकाल्न सक्नुहुन्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="sqllab" id="sq-select" data-tables="Student,Class" data-examples="basic"
+           data-query="SELECT name FROM Student WHERE marks > 60;"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">What to notice</span>
+        <p>Run the query as it stands and read the pipeline. <b>FROM 4 → WHERE 3</b>: one student
+        was dropped. Now change <code>&gt; 60</code> to <code>&gt; 90</code> and run it again —
+        the WHERE line says 3 of 4 rows are dropped, and the result has one row.</p>
+        <p>Now delete the whole <code>WHERE</code> clause. The row count stops falling. That is the
+        proof that WHERE is the only clause doing the filtering.</p>
+        <p>Finally, add <code>ORDER BY marks DESC</code>. Watch the last number: it does not
+        change. <b>Sorting never removes a row.</b></p>
+        </div><span class="np-cell" lang="ne">जस्ताको तस्तै चलाएर pipeline पढ्नुहोस्। <b lang="ne">FROM ४ → WHERE ३</b>: एक जना
+        हटे। अब <code>&gt; 60</code> लाई <code>&gt; 90</code> बनाएर फेरि चलाउनुहोस् — WHERE ले ४ मध्ये
+        ३ हटेको भन्छ, नतिजामा एक पङ्क्ति आउँछ। अब पूरै <code>WHERE</code> मेटाउनुहोस्: सङ्ख्या घट्न
+        छाड्छ — छान्ने काम WHERE ले मात्र गर्छ भन्ने प्रमाण यही हो। अन्त्यमा
+        <code>ORDER BY marks DESC</code> थप्नुहोस्: अन्तिम सङ्ख्या बदलिँदैन।
+        <b lang="ne">क्रम मिलाउँदा पङ्क्ति कहिल्यै हट्दैन।</b></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Reading a query the way the database reads it</div>
+    <p><b>Question:</b> the Student table holds Ram 78 (class 10), Sita 91 (class 10), Hari 55
+    (class 11) and Gita 64 (no class). What does this return?</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Query</span>
+      <div class="out">SELECT name, marks
+FROM Student
+WHERE marks &gt; 60 AND class_id = 10
+ORDER BY marks DESC;</div>
+    </div>
+    <p><b>Step 1 — FROM.</b> Start with all 4 rows of Student.</p>
+    <p><b>Step 2 — WHERE.</b> Test each row against <code>marks &gt; 60 AND class_id = 10</code>.
+    Both halves must hold, because AND narrows:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">Ram   78 &gt; 60 ✓   class 10 ✓   keep
+Sita  91 &gt; 60 ✓   class 10 ✓   keep
+Hari  55 &gt; 60 ✗                drop
+Gita  64 &gt; 60 ✓   class NULL ✗ drop</div>
+    </div>
+    <p><b>Step 3 — SELECT.</b> Keep only the columns <code>name</code> and <code>marks</code>.</p>
+    <p><b>Step 4 — ORDER BY.</b> Sort by marks, largest first.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">name   marks
+Sita   91
+Ram    78</div>
+    </div>
+    <p class="wex-note"><span class="t-en">Gita is dropped for a reason worth remembering: her class_id is
+    <b>NULL</b>, and NULL is not equal to anything — not even to 10. A comparison against NULL is
+    never true.
+    </span><span class="np-cell" lang="ne">गीता हट्नुको कारण सम्झनलायक छ: उनको class_id <b>NULL</b> छ, र NULL कुनै पनि
+    कुरासँग बराबर हुँदैन — १० सँग पनि होइन। NULL सँगको तुलना कहिल्यै सत्य हुँदैन।</span></p>
+  </div>
+
+  <h2 class="topic" id="db-t42">4.2 &nbsp;DDL — building and removing the structure</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The four DDL statements</span>
+      <p><b>CREATE TABLE</b> makes a new, empty table. You name each column and give it a
+      <b>data type</b>, and you mark one column <code>PRIMARY KEY</code>.</p>
+      <p><b>ALTER TABLE</b> changes the structure of a table that already exists — adding a column,
+      removing one, changing a type. The rows stay.</p>
+      <p><b>DROP TABLE</b> removes the table completely: its rows <i>and</i> its structure. After a
+      DROP the name no longer exists.</p>
+      <p><b>RENAME</b> gives an existing table a new name. Nothing inside it changes.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">चार DDL कथन</span>
+      <p><b>CREATE TABLE</b> ले नयाँ, खाली तालिका बनाउँछ। हरेक स्तम्भको नाम र <b lang="ne">डाटा टाइप</b>
+      दिनुहुन्छ, र एउटालाई <code>PRIMARY KEY</code> तोक्नुहुन्छ।</p>
+      <p><b>ALTER TABLE</b> ले पहिले नै भएको तालिकाको संरचना बदल्छ — स्तम्भ थप्ने, हटाउने, टाइप
+      बदल्ने। पङ्क्ति भने रहन्छन्।</p>
+      <p><b>DROP TABLE</b> ले तालिका पूरै हटाउँछ: पङ्क्ति <i lang="ne">र</i> संरचना दुवै। DROP पछि त्यो नाम
+      नै रहँदैन।</p>
+      <p><b>RENAME</b> ले भएकै तालिकालाई नयाँ नाम दिन्छ। भित्रको केही बदलिँदैन।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Writing CREATE TABLE from a description</div>
+    <p><b>Question:</b> create a table <code>Teacher</code> holding a teacher id, a name of up to
+    30 characters, and the subject taught. The id identifies each teacher.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">CREATE TABLE Teacher (
+  teacher_id  INT PRIMARY KEY,
+  name        VARCHAR(30),
+  subject     VARCHAR(30)
+);</div>
+    </div>
+    <p class="wex-note"><span class="t-en">Three marks are usually available here and they are usually lost in the
+    same three places: forgetting the data types, forgetting <code>PRIMARY KEY</code>, and
+    forgetting the brackets round the whole column list. Write it in that order every time —
+    name, type, key — and you cannot leave one out.
+    </span><span class="np-cell" lang="ne">यहाँ प्रायः तीन अंक हुन्छन्, र प्रायः उही तीन ठाउँमा जान्छन्: डाटा टाइप
+    छुट्नु, <code>PRIMARY KEY</code> छुट्नु, र पूरै स्तम्भ सूचीको कोष्ठक छुट्नु। सधैं यही क्रममा
+    लेख्नुहोस् — नाम, टाइप, कुञ्जी — अनि केही छुट्दैन।</span></p>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h3>Changing the data — and the difference that costs marks</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: what INSERT, UPDATE and DELETE actually do to a
+      table, and why DELETE and DROP are not the same thing.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: INSERT, UPDATE र DELETE ले तालिकामा साँच्चै के
+      गर्छन्, र DELETE र DROP किन उस्तै होइनन्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="sqllab" id="sq-write" data-tables="Student" data-examples="write"
+           data-query="DELETE FROM Student WHERE marks < 60;"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">What to notice</span>
+        <p>Run <b>DELETE FROM Student WHERE marks &lt; 60</b>. One row goes; the table is still
+        there, still with its four columns. Now run <b>DROP TABLE Student</b>. The table itself
+        disappears — there is nothing left to select from.</p>
+        <p>Press <b>Reset</b>, then run <b>UPDATE Student SET marks = 80</b> with no WHERE. Every
+        row changes, and the step turns red to tell you so. In a real school database that single
+        missing WHERE would give every student the same mark.</p>
+        </div><span class="np-cell" lang="ne"><b>DELETE FROM Student WHERE marks &lt; 60</b> चलाउनुहोस्। एउटा पङ्क्ति
+        गयो; तालिका भने चारै स्तम्भसहित रहन्छ। अब <b>DROP TABLE Student</b> चलाउनुहोस्। तालिका नै
+        हरायो — अब केहीबाट select गर्न सकिँदैन। <b>Reset</b> थिचेर WHERE नराखी
+        <b>UPDATE Student SET marks = 80</b> चलाउनुहोस्। सबै पङ्क्ति बदलिन्छन्, र चरण रातो हुन्छ।
+        वास्तविक विद्यालय डाटाबेसमा त्यही एउटा छुटेको WHERE ले सबै विद्यार्थीलाई उही अंक दिन्थ्यो।</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="topic" id="db-t46">4.6 &nbsp;Joins — reading two tables as one</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Why a join is needed at all</span>
+      <p>A normalised database splits information across tables on purpose. The student's name is
+      in <code>Student</code>; the room is in <code>Class</code>. A question like "which room is
+      Ram taught in?" touches both, so the two must be read together. That is a <b>join</b>.</p>
+      <p>Every join starts the same way: a matching test, almost always
+      <code>foreign key = primary key</code>. What separates the five kinds is only this —
+      <b>what happens to the rows that did not match.</b></p>
+      <p><b>Inner</b> throws them away. <b>Left</b> keeps all of the left table.
+      <b>Right</b> keeps all of the right. <b>Full outer</b> keeps everything from both.
+      <b>Natural</b> is an inner join that finds the shared column by itself.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">Join किन चाहिन्छ</span>
+      <p lang="ne">Normalise गरिएको डाटाबेसले जानाजान सूचना धेरै तालिकामा बाँड्छ। विद्यार्थीको नाम
+      <code>Student</code> मा; कोठा <code>Class</code> मा। "राम कुन कोठामा पढ्छन्?" भन्ने प्रश्नले
+      दुवै छुन्छ, त्यसैले दुवैलाई सँगै पढ्नुपर्छ। त्यही नै <b>join</b> हो।</p>
+      <p lang="ne">हरेक join उही तरिकाले सुरु हुन्छ: मिलान जाँच, प्रायः जसो
+      <code>foreign key = primary key</code>। पाँच किसिमलाई छुट्याउने कुरा एउटै हो —
+      <b lang="ne">नमिलेका पङ्क्तिको के हुन्छ।</b></p>
+      <p><b>Inner</b> ले फालिदिन्छ। <b>Left</b> ले बायाँ तालिकाका सबै राख्छ। <b>Right</b> ले
+      दायाँका सबै। <b>Full outer</b> ले दुवैका सबै। <b>Natural</b> भनेको साझा स्तम्भ आफैं
+      खोज्ने inner join हो।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 216" role="img" aria-labelledby="t-joins">
+  <title id="t-joins">The five join types and which rows each one keeps: inner and natural keep only matches, left and right keep one whole side, full outer keeps everything</title>
+  <text class="f-ttl" x="10" y="20">THE FIVE JOINS — the shaded part is what survives</text>
+<g>
+    <text class="f-lbl-y" x="75" y="52" style="font-size:11.5px">INNER</text>
+    <path d="M75,85 A34,34 0 0 1 75,139 A34,34 0 0 1 75,85 Z" style="fill:var(--color-primary);opacity:.45"/>
+    <circle cx="54" cy="112" r="34" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <circle cx="96" cy="112" r="34" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl" x="40" y="116" style="font-size:11px">A</text>
+    <text class="f-lbl" x="110" y="116" style="font-size:11px">B</text>
+    <text class="f-lbl" x="75" y="172" style="font-size:10.5px">matches only</text>
+  </g><g>
+    <text class="f-lbl-y" x="213" y="52" style="font-size:11.5px">NATURAL</text>
+    <path d="M213,85 A34,34 0 0 1 213,139 A34,34 0 0 1 213,85 Z" style="fill:var(--color-primary);opacity:.45"/>
+    <circle cx="192" cy="112" r="34" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <circle cx="234" cy="112" r="34" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl" x="178" y="116" style="font-size:11px">A</text>
+    <text class="f-lbl" x="248" y="116" style="font-size:11px">B</text>
+    <text class="f-lbl" x="213" y="172" style="font-size:10.5px">matches, on the shared column</text>
+  </g><g>
+    <text class="f-lbl-y" x="351" y="52" style="font-size:11.5px">LEFT</text>
+    <circle cx="330" cy="112" r="34" style="fill:var(--color-primary);opacity:.45"/>
+    <circle cx="330" cy="112" r="34" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <circle cx="372" cy="112" r="34" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl" x="316" y="116" style="font-size:11px">A</text>
+    <text class="f-lbl" x="386" y="116" style="font-size:11px">B</text>
+    <text class="f-lbl" x="351" y="172" style="font-size:10.5px">all of A, plus matches</text>
+  </g><g>
+    <text class="f-lbl-y" x="489" y="52" style="font-size:11.5px">RIGHT</text>
+    <circle cx="510" cy="112" r="34" style="fill:var(--color-primary);opacity:.45"/>
+    <circle cx="468" cy="112" r="34" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <circle cx="510" cy="112" r="34" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl" x="454" y="116" style="font-size:11px">A</text>
+    <text class="f-lbl" x="524" y="116" style="font-size:11px">B</text>
+    <text class="f-lbl" x="489" y="172" style="font-size:10.5px">all of B, plus matches</text>
+  </g><g>
+    <text class="f-lbl-y" x="627" y="52" style="font-size:11.5px">FULL OUTER</text>
+    <circle cx="606" cy="112" r="34" style="fill:var(--color-primary);opacity:.45"/>
+            <circle cx="648" cy="112" r="34" style="fill:var(--color-primary);opacity:.45"/>
+    <circle cx="606" cy="112" r="34" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <circle cx="648" cy="112" r="34" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl" x="592" y="116" style="font-size:11px">A</text>
+    <text class="f-lbl" x="662" y="116" style="font-size:11px">B</text>
+    <text class="f-lbl" x="627" y="172" style="font-size:10.5px">everything from both</text>
+  </g>
+  <text class="f-lbl-y" x="350" y="200">Every join starts from the same matching test. They differ only in what they do with the rows that DID NOT match.</text>
+</svg>
+    <figcaption><span class="t-en">Learn the picture, not five separate definitions. The shaded area is the answer to
+    "which rows survive".
+    </span><span class="np-cell" lang="ne">पाँच फरक परिभाषा होइन, यही चित्र सम्झनुहोस्। छायाँ परेको भाग नै "कुन पङ्क्ति
+    बाँच्छ" भन्ने उत्तर हो।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h3>The same query, five joins</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: which rows each join keeps, by changing one word
+      and watching the result grow.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: एउटै शब्द बदलेर नतिजा बढेको हेर्दै कुन join ले
+      कुन पङ्क्ति राख्छ भन्ने।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="sqllab" id="sq-join" data-tables="Student,Class" data-examples="joins"
+           data-query="SELECT name, room FROM Student JOIN Class ON Student.class_id = Class.class_id;"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">What to notice</span>
+        <p>The teaching data has two deliberate gaps: <b>Gita has no class</b>, and
+        <b>room C-3 has no student</b>. Those two gaps are the whole lesson.</p>
+        <p>Press the join examples in order. <b>Inner</b> gives 3 rows — both gaps vanish.
+        <b>Left</b> gives 4 — Gita comes back with NULL for her room. <b>Right</b> gives 4 —
+        C-3 comes back with NULL for the name. <b>Full outer</b> gives 5 — both.</p>
+        <p>If your data has no unmatched rows, all five joins return the same answer and you learn
+        nothing from them. That is why this table was built with holes in it.</p>
+        </div><span class="np-cell" lang="ne">पढाइका लागि दुई ठाउँ जानाजान खाली छन्: <b lang="ne">गीताको कक्षा छैन</b>, र
+        <b lang="ne">कोठा C-3 मा विद्यार्थी छैनन्</b>। यी दुई खाली ठाउँ नै पूरा पाठ हुन्।
+        उदाहरण क्रमैसँग थिच्नुहोस्। <b>Inner</b> ले ३ पङ्क्ति — दुवै खाली ठाउँ हराउँछन्।
+        <b>Left</b> ले ४ — गीता कोठाको ठाउँमा NULL लिएर फर्किन्छिन्। <b>Right</b> ले ४ — C-3
+        नामको ठाउँमा NULL लिएर आउँछ। <b>Full outer</b> ले ५ — दुवै।
+        नमिल्ने पङ्क्ति नै नभए पाँचै join ले उही उत्तर दिन्छन् र केही सिकिँदैन।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 3</span> Which join produced this result?</div>
+    <p><b>Question:</b> a query on Student and Class returned four rows, and one of them had
+    <code>NULL</code> in the room column. Which join was used, and why?</p>
+    <p><b>Reasoning.</b> A NULL on the <i>right</i>-hand column means a left row survived with no
+    partner. An inner join would have dropped it, so it is not inner. A right join keeps
+    unmatched <i>right</i> rows, which would put the NULL on the left instead. A full outer join
+    would have returned five rows, not four.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">LEFT OUTER JOIN
+
+Reason: every Student row was kept, and Gita
+had no matching Class row, so her room is NULL.</div>
+    </div>
+    <p class="wex-note"><span class="t-en">Work backwards from <b>where the NULL is</b>. NULL on the right → left
+    join. NULL on the left → right join. NULLs on both sides → full outer. No NULLs and fewer rows
+    than either table → inner.
+    </span><span class="np-cell" lang="ne"><b lang="ne">NULL कता छ</b> भन्नेबाट उल्टो सोच्नुहोस्। दायाँ NULL → left join।
+    बायाँ NULL → right join। दुवैतिर NULL → full outer। NULL छैन र दुवै तालिकाभन्दा कम पङ्क्ति →
+    inner।</span></p>
+  </div>
+
+  <h2 class="topic" id="db-t44">4.4 &nbsp;DCL — who is allowed to use the data</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">GRANT and REVOKE</span>
+      <p>A school database is not read by one person. The class teacher may need to see marks; the
+      office may need to change addresses; a student should see neither. <b>DCL</b> is how a
+      database administrator sets those limits.</p>
+      <p><b>GRANT</b> gives a privilege to a user.
+      <b>REVOKE</b> takes it back.</p>
+      <div class="out">GRANT SELECT ON Student TO teacher;
+GRANT SELECT, UPDATE ON Student TO office;
+REVOKE UPDATE ON Student FROM office;</div>
+      <p>Read the shape once and it is easy to reproduce:
+      <b>GRANT <i>what</i> ON <i>which table</i> TO <i>whom</i></b>, and REVOKE with FROM.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">GRANT र REVOKE</span>
+      <p lang="ne">विद्यालयको डाटाबेस एक जनाले मात्र पढ्दैन। कक्षा शिक्षकलाई अंक हेर्नु पर्ला; कार्यालयलाई
+      ठेगाना बदल्नु पर्ला; विद्यार्थीले दुवै नहेरून्। यी सीमा तोक्ने काम <b>DCL</b> ले गर्छ।</p>
+      <p><b>GRANT</b> ले प्रयोगकर्तालाई अधिकार दिन्छ। <b>REVOKE</b> ले फिर्ता लिन्छ।</p>
+      <p lang="ne">बनावट एक पटक हेरे सम्झिन सजिलो छ:
+      <b>GRANT <i lang="ne">के</i> ON <i lang="ne">कुन तालिका</i> TO <i lang="ne">कसलाई</i></b>, र REVOKE मा FROM आउँछ।</p>
+      <p lang="ne">यो साइटमा प्रयोगकर्ता र सर्भर नभएकाले सिमुलेटरले यी कथन चलाउँदैन — परीक्षामा पनि यिनको
+      परिभाषा र वाक्यविन्यासबाटै सोधिन्छ।</p>
+    </div>
+  </div>
+
+  <h2 class="topic" id="db-t47">4.7 &nbsp;SQL View</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>view</b> is a stored SELECT statement that behaves like a table. It has a name and
+      columns and can be queried, but it holds no data of its own — it reads from the real tables
+      every time it is used.</p>
+      <div class="out">CREATE VIEW Passed AS
+  SELECT name, marks
+  FROM Student
+  WHERE marks &gt;= 40;</div>
+      <p>Now <code>SELECT * FROM Passed;</code> works as though Passed were a table.</p>
+      <p><b>Why views are used:</b> they hide complexity (a long join becomes one name), and they
+      restrict access — a teacher granted the view sees marks without being given the whole
+      Student table.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>View</b> भनेको संग्रह गरिएको SELECT कथन हो, जुन तालिकाजस्तै व्यवहार गर्छ। यसको नाम र
+      स्तम्भ हुन्छन् र query गर्न मिल्छ, तर आफ्नो डाटा हुँदैन — प्रयोग हुँदा हरेक पटक वास्तविक
+      तालिकाबाटै पढ्छ।</p>
+      <p lang="ne">अब <code>SELECT * FROM Passed;</code> ले Passed लाई तालिकाजस्तै मानेर चल्छ।</p>
+      <p><b lang="ne">View किन प्रयोग हुन्छ:</b> जटिलता लुकाउँछ (लामो join एउटा नाम बन्छ), र पहुँच सीमित
+      गर्छ — view मात्र दिइएको शिक्षकले पूरै Student तालिका नपाई अंक हेर्न पाउँछन्।</p>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h3>Mistakes that cost marks here</h3>
+    <ul>
+      <li><span class="t-en"><b>Using DELETE when the question says DROP.</b> <code>DELETE FROM Student;</code> empties
+        the table but leaves it standing — you can still insert into it tomorrow.
+        <code>DROP TABLE Student;</code> removes the table itself. One is DML, the other is DDL.
+        </span><span class="np-cell" lang="ne">DROP भनेको ठाउँमा DELETE लेख्नु। <code>DELETE FROM Student;</code> ले
+        तालिका खाली गर्छ तर तालिका रहन्छ। <code>DROP TABLE Student;</code> ले तालिका नै हटाउँछ।
+        एउटा DML, अर्को DDL।</span></li>
+      <li><span class="t-en"><b>Thinking WHERE chooses columns.</b> <code>WHERE marks &gt; 60</code> does not put marks
+        in the answer. Only the SELECT list decides which columns appear.
+        </span><span class="np-cell" lang="ne">WHERE ले स्तम्भ छान्छ भन्ने भ्रम। <code>WHERE marks &gt; 60</code> ले
+        marks लाई उत्तरमा राख्दैन। कुन स्तम्भ देखिने भन्ने SELECT ले मात्र तय गर्छ।</span></li>
+      <li><span class="t-en"><b>Writing UPDATE or DELETE without WHERE.</b> The statement is legal, so nothing warns
+        you — it simply changes every row. Write the WHERE clause first, then the SET.
+        </span><span class="np-cell" lang="ne">WHERE नराखी UPDATE वा DELETE लेख्नु। कथन वैध हुने भएकाले चेतावनी
+        आउँदैन — सबै पङ्क्ति बदलिन्छ। पहिले WHERE लेख्नुहोस्, अनि SET।</span></li>
+      <li><span class="t-en"><b>Comparing with NULL using =.</b> <code>WHERE class_id = NULL</code> matches nothing,
+        ever. NULL means "unknown", and nothing is equal to an unknown.
+        </span><span class="np-cell" lang="ne">NULL लाई = ले तुलना गर्नु। <code>WHERE class_id = NULL</code> ले
+        कहिल्यै केही मिलाउँदैन। NULL को अर्थ "थाहा छैन" हो, र थाहा नभएकोसँग केही बराबर हुँदैन।</span></li>
+      <li><span class="t-en"><b>Forgetting the quotes on text.</b> <code>WHERE name = Ram</code> asks the database for
+        a <i>column</i> called Ram. It must be <code>WHERE name = 'Ram'</code>.
+        </span><span class="np-cell" lang="ne">पाठमा उद्धरण चिन्ह छुटाउनु। <code>WHERE name = Ram</code> ले Ram नामको
+        <i lang="ne">स्तम्भ</i> खोज्छ। <code>WHERE name = 'Ram'</code> हुनुपर्छ।</span></li>
+    </ul>
+  </div>
+
+  <h2 class="topic" id="db-exam4">Exam focus — what is asked from this unit</h2>
+
+  <div class="exam-connect"><span class="t-en">
+    <b>This unit is the largest in the subject — 14 hours and the most marks.</b>
+    Questions come in three shapes: <b>classify</b> a statement as DDL, DML or DCL;
+    <b>write</b> a short query from a description; and <b>read</b> a query and state its result.
+    The writing questions are where the marks are, and they are marked on syntax as well as
+    logic — so practise on paper, with the semicolon.
+    </span><span class="np-cell" lang="ne">यो युनिट विषयकै सबैभन्दा ठूलो हो — १४ घण्टा र सबैभन्दा धेरै अंक।
+    प्रश्न तीन किसिमका आउँछन्: कथनलाई DDL, DML वा DCL मा <b lang="ne">छुट्याउने</b>; विवरणबाट छोटो क्वेरी
+    <b lang="ne">लेख्ने</b>; र क्वेरी <b lang="ne">पढेर</b> नतिजा भन्ने। अंक लेख्ने प्रश्नमा छन्, र तर्कसँगै
+    वाक्यविन्यास पनि जाँचिन्छ — त्यसैले अर्धविरामसहित कागजमै अभ्यास गर्नुहोस्।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">What is SQL? Name its three families of statements.
+    </span><span class="np-cell" lang="ne">SQL के हो? यसका तीन परिवारका नाम लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba41">Show the answer</button>
+    <div class="ans" id="dba41"><div class="t-en">
+      <p>SQL (Structured Query Language) is the standard language used to define, manipulate and
+      control the data in a relational database.</p>
+      <p>Its three families are <b>DDL</b> (Data Definition Language — CREATE, ALTER, DROP,
+      RENAME), <b>DML</b> (Data Manipulation Language — SELECT, INSERT, UPDATE, DELETE) and
+      <b>DCL</b> (Data Control Language — GRANT, REVOKE).</p>
+      </div><span class="np-cell" lang="ne">परिभाषा र तीनै परिवारका नाम — प्रत्येकको पूरा नाम र दुई–तीन उदाहरण
+      कथनसहित लेख्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p><span class="t-en">Write an SQL statement to create a table <code>Book</code> with a book id (the primary key),
+    a title of up to 50 characters and a price.
+    </span><span class="np-cell" lang="ne"><code>Book</code> तालिका बनाउने SQL लेख्नुहोस् — book id (प्राथमिक कुञ्जी),
+    बढीमा ५० अक्षरको शीर्षक, र मूल्य।</span></p>
+    <button class="btn-ans" data-answer="dba42">Show the answer</button>
+    <div class="ans" id="dba42"><div class="t-en">
+      <div class="out">CREATE TABLE Book (
+  book_id  INT PRIMARY KEY,
+  title    VARCHAR(50),
+  price    INT
+);</div>
+      <p>One mark for the CREATE TABLE line with brackets, one for the correct data types, one for
+      <code>PRIMARY KEY</code> on book_id.</p>
+      </div><span class="np-cell" lang="ne">कोष्ठकसहितको CREATE TABLE लाई एक अंक, सही डाटा टाइपलाई एक, र book_id मा
+      <code>PRIMARY KEY</code> लाई एक।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p><span class="t-en">A table <code>Employee(emp_id, name, dept, salary)</code> is given. Write a query to show
+    the name and salary of every employee in the "Sales" department earning more than 30000,
+    highest salary first.
+    </span><span class="np-cell" lang="ne"><code>Employee(emp_id, name, dept, salary)</code> तालिका दिइएको छ।
+    "Sales" विभागमा ३०००० भन्दा बढी तलब पाउने सबैको नाम र तलब, ठूलो तलब पहिले आउने गरी देखाउने
+    क्वेरी लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba43">Show the answer</button>
+    <div class="ans" id="dba43"><div class="t-en">
+      <div class="out">SELECT name, salary
+FROM Employee
+WHERE dept = 'Sales' AND salary &gt; 30000
+ORDER BY salary DESC;</div>
+      <p>Note the three things a marker looks for: quotes round <code>'Sales'</code> because it is
+      text, <code>AND</code> because both conditions must hold, and <code>DESC</code> because
+      "highest first" is not the default.</p>
+      </div><span class="np-cell" lang="ne">परीक्षकले हेर्ने तीन कुरा: पाठ भएकाले <code>'Sales'</code> मा उद्धरण
+      चिन्ह, दुवै सर्त चाहिने भएकाले <code>AND</code>, र "ठूलो पहिले" default नभएकाले
+      <code>DESC</code>।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p><span class="t-en">Differentiate between DELETE and DROP with an example of each.
+    </span><span class="np-cell" lang="ne">DELETE र DROP बीचको भिन्नता उदाहरणसहित लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba44">Show the answer</button>
+    <div class="ans" id="dba44"><div class="t-en">
+      <div class="out">DELETE                        DROP
+------                        ----
+DML                           DDL
+removes ROWS                  removes the TABLE
+structure stays               structure goes too
+can use WHERE                 no WHERE
+table can be refilled         table must be recreated
+
+DELETE FROM Student WHERE marks &lt; 40;
+DROP TABLE Student;</div>
+      <p>Any three clear differences earn the marks; the example statements make the answer
+      unambiguous.</p>
+      </div><span class="np-cell" lang="ne">स्पष्ट तीन भिन्नताले अंक दिन्छ; उदाहरण कथनले उत्तर अझ स्पष्ट बनाउँछ।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick"><span class="t-en">SQL defines, manipulates and controls data in a relational database. Three
+        families: DDL (structure), DML (data), DCL (permission).
+        </span><span class="np-cell" lang="ne">SQL ले रिलेसनल डाटाबेसको डाटा परिभाषित, सञ्चालन र नियन्त्रण गर्छ।
+        तीन परिवार: DDL (संरचना), DML (डाटा), DCL (अधिकार)।</span></li>
+      <li class="tick"><span class="t-en">A SELECT runs FROM → WHERE → SELECT → ORDER BY. WHERE picks rows, SELECT
+        picks columns, ORDER BY picks the order and removes nothing.
+        </span><span class="np-cell" lang="ne">SELECT यसरी चल्छ: FROM → WHERE → SELECT → ORDER BY। WHERE ले पङ्क्ति,
+        SELECT ले स्तम्भ, ORDER BY ले क्रम — र यसले केही हटाउँदैन।</span></li>
+      <li class="tick"><span class="t-en">AND narrows the result, OR widens it. Text values need single quotes.
+        </span><span class="np-cell" lang="ne">AND ले नतिजा साँघुरो, OR ले फराकिलो बनाउँछ। पाठ मानलाई एकल उद्धरण
+        चिन्ह चाहिन्छ।</span></li>
+      <li class="tick"><span class="t-en">DELETE removes rows and keeps the table; DROP removes the table itself.
+        This is the difference examiners ask for most.
+        </span><span class="np-cell" lang="ne">DELETE ले पङ्क्ति हटाउँछ, तालिका राख्छ; DROP ले तालिका नै हटाउँछ।
+        परीक्षकले सबैभन्दा धेरै सोध्ने भिन्नता यही हो।</span></li>
+      <li class="tick"><span class="t-en">UPDATE or DELETE without WHERE changes every row. It is legal, so nothing
+        warns you.
+        </span><span class="np-cell" lang="ne">WHERE नभएको UPDATE वा DELETE ले सबै पङ्क्ति बदल्छ। वैध हुने भएकाले
+        चेतावनी आउँदैन।</span></li>
+      <li class="tick"><span class="t-en">All five joins share one matching test; they differ only in what they keep
+        of the rows that did not match. NULL in the result tells you which join it was.
+        </span><span class="np-cell" lang="ne">पाँचै join को मिलान जाँच उही हो; फरक केवल नमिलेका पङ्क्तिको के गर्ने
+        भन्नेमा। नतिजाको NULL ले कुन join थियो भन्ने बताउँछ।</span></li>
+      <li class="tick"><span class="t-en">A view is a stored SELECT that behaves like a table but holds no data of
+        its own.
+        </span><span class="np-cell" lang="ne">View भनेको संग्रहित SELECT हो — तालिकाजस्तै व्यवहार गर्छ तर आफ्नो
+        डाटा हुँदैन।</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit3.html"><span class="lab">◂ Previous</span><span class="ttl">Relational Model</span></a><a class="nx" href="unit5.html"><span class="lab">Next ▸</span><span class="ttl">Relational Database Design</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sql-engine.js"></script>
+<script src="../../assets/js/sim-table.js"></script>
+<script src="../../assets/js/sim-sql.js"></script>
+</body>
+</html>

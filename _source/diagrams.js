@@ -1738,4 +1738,652 @@ D.addressModes = `
   <text class="f-lbl-y" x="350" y="272" style="font-size:11.5px">The mode is not about what the instruction does — it is about WHERE the data it needs is found.</text>
 </svg>`;
 
+
+/* ---------------------------------------------------------------
+   DBMS UNIT 4 — SQL
+   --------------------------------------------------------------- */
+
+/* 4.1 — the three families. A student is asked to CLASSIFY a statement
+   far more often than to write one, so the classification is the
+   figure: three columns, and what each family is allowed to touch. */
+D.sqlFamilies = `
+<svg viewBox="0 0 700 232" role="img" aria-labelledby="t-sqlfam">
+  <title id="t-sqlfam">The three families of SQL statements: DDL changes structure, DML changes data, DCL changes permission</title>
+  <text class="f-ttl" x="10" y="20">THE THREE FAMILIES OF SQL — sort a statement by WHAT IT CHANGES</text>
+${[
+  ['DDL', 'Data Definition', 'the STRUCTURE', ['CREATE', 'ALTER', 'DROP', 'RENAME'], '--color-primary'],
+  ['DML', 'Data Manipulation', 'the DATA inside', ['SELECT', 'INSERT', 'UPDATE', 'DELETE'], '--color-success'],
+  ['DCL', 'Data Control', 'WHO may use it', ['GRANT', 'REVOKE'], '--color-secondary']
+].map(function (f, i){
+  const x = 16 + i * 230;
+  return `<g>
+    <rect class="f-box-d" x="${x}" y="40" width="216" height="150" rx="8"/>
+    <rect x="${x + 2}" y="52" width="4" height="26" rx="2" style="fill:var(${f[4]})"/>
+    <text class="f-lbl-y" x="${x + 20}" y="64" text-anchor="start" style="font-size:14px">${f[0]}</text>
+    <text class="f-lbl" x="${x + 20}" y="80" text-anchor="start" style="font-size:11px">${f[1]}</text>
+    <text class="f-lbl" x="${x + 20}" y="102" text-anchor="start" style="font-size:11.5px">changes ${f[2]}</text>
+    ${f[3].map(function (s, k){
+      return `<text class="f-code" x="${x + 20}" y="${126 + k * 20}" text-anchor="start" style="font-size:12.5px">${s}</text>`;
+    }).join('')}
+  </g>`;
+}).join('')}
+  <text class="f-lbl-y" x="350" y="212">DROP removes the table. DELETE removes rows FROM the table. Different families, and only one is reversible by inserting again.</text>
+</svg>`;
+
+/* 4.3 and 4.5 — the pipeline. This is the figure the SQL simulator
+   animates: the same four stages, and the row count falling. Learning
+   the ORDER is what lets a student predict a result instead of
+   guessing it. */
+D.sqlPipeline = `
+<svg viewBox="0 0 700 208" role="img" aria-labelledby="t-sqlpipe">
+  <title id="t-sqlpipe">A SELECT query runs in four stages: FROM chooses the table, WHERE chooses rows, SELECT chooses columns, ORDER BY sorts</title>
+  ${ah('a-sqlpipe')}
+  <text class="f-ttl" x="10" y="20">HOW A SELECT ACTUALLY RUNS — four stages, in this order</text>
+${[
+  ['FROM', 'which TABLE', '4 rows', '--color-secondary'],
+  ['WHERE', 'which ROWS', '3 rows', '--color-primary'],
+  ['SELECT', 'which COLUMNS', '3 rows', '--color-success'],
+  ['ORDER BY', 'in what ORDER', '3 rows', '--color-secondary']
+].map(function (s, i){
+  const x = 16 + i * 174;
+  return `<g>
+    <rect class="f-box-d" x="${x}" y="48" width="146" height="88" rx="8"/>
+    <rect x="${x + 2}" y="60" width="4" height="24" rx="2" style="fill:var(${s[3]})"/>
+    <text class="f-lbl-y" x="${x + 73}" y="74" style="font-size:13px">${s[0]}</text>
+    <text class="f-lbl" x="${x + 73}" y="94" style="font-size:11.5px">${s[1]}</text>
+    <text class="f-code" x="${x + 73}" y="120" style="font-size:13px">${s[2]}</text>
+    ${i < 3 ? `<line class="f-arr" x1="${x + 148}" y1="92" x2="${x + 172}" y2="92" marker-end="url(#a-sqlpipe)"/>` : ''}
+  </g>`;
+}).join('')}
+  <text class="f-code" x="350" y="164" style="font-size:12.5px">SELECT name FROM Student WHERE marks &gt; 60 ORDER BY marks DESC;</text>
+  <text class="f-lbl-y" x="350" y="188">WHERE removes rows. SELECT removes columns. ORDER BY removes nothing — it only rearranges.</text>
+</svg>`;
+
+/* 4.6 — the five joins. The shaded region is the answer to "which rows
+   survive", which is the only thing that separates them. */
+D.joinTypes = `
+<svg viewBox="0 0 700 216" role="img" aria-labelledby="t-joins">
+  <title id="t-joins">The five join types and which rows each one keeps: inner and natural keep only matches, left and right keep one whole side, full outer keeps everything</title>
+  <text class="f-ttl" x="10" y="20">THE FIVE JOINS — the shaded part is what survives</text>
+${[
+  ['INNER', 'lens', 'matches only'],
+  ['NATURAL', 'lens', 'matches, on the shared column'],
+  ['LEFT', 'left', 'all of A, plus matches'],
+  ['RIGHT', 'right', 'all of B, plus matches'],
+  ['FULL OUTER', 'both', 'everything from both']
+].map(function (j, i){
+  const x = 6 + i * 138;
+  const c1 = x + 48, c2 = x + 90, mid = x + 69, cy = 112, r = 34;
+  const top = cy - 27, bot = cy + 27;
+  let fill = '';
+  if (j[1] === 'lens'){
+    fill = `<path d="M${mid},${top} A${r},${r} 0 0 1 ${mid},${bot} A${r},${r} 0 0 1 ${mid},${top} Z" style="fill:var(--color-primary);opacity:.45"/>`;
+  } else if (j[1] === 'left'){
+    fill = `<circle cx="${c1}" cy="${cy}" r="${r}" style="fill:var(--color-primary);opacity:.45"/>`;
+  } else if (j[1] === 'right'){
+    fill = `<circle cx="${c2}" cy="${cy}" r="${r}" style="fill:var(--color-primary);opacity:.45"/>`;
+  } else {
+    fill = `<circle cx="${c1}" cy="${cy}" r="${r}" style="fill:var(--color-primary);opacity:.45"/>
+            <circle cx="${c2}" cy="${cy}" r="${r}" style="fill:var(--color-primary);opacity:.45"/>`;
+  }
+  return `<g>
+    <text class="f-lbl-y" x="${mid}" y="52" style="font-size:11.5px">${j[0]}</text>
+    ${fill}
+    <circle cx="${c1}" cy="${cy}" r="${r}" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <circle cx="${c2}" cy="${cy}" r="${r}" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl" x="${c1 - 14}" y="${cy + 4}" style="font-size:11px">A</text>
+    <text class="f-lbl" x="${c2 + 14}" y="${cy + 4}" style="font-size:11px">B</text>
+    <text class="f-lbl" x="${mid}" y="172" style="font-size:10.5px">${j[2]}</text>
+  </g>`;
+}).join('')}
+  <text class="f-lbl-y" x="350" y="200">Every join starts from the same matching test. They differ only in what they do with the rows that DID NOT match.</text>
+</svg>`;
+
+
+/* ---------------------------------------------------------------
+   DBMS UNIT 1 — INTRODUCTION
+   --------------------------------------------------------------- */
+
+/* 1.1 — the four words students are asked to distinguish, arranged as
+   a ladder so the ORDER of the definitions carries the meaning. */
+D.dbLadder = `
+<svg viewBox="0 0 700 210" role="img" aria-labelledby="t-dbladder">
+  <title id="t-dbladder">Data becomes information, information is stored in a database, and a DBMS is the software that manages it</title>
+  ${ah('a-dbladder')}
+  <text class="f-ttl" x="10" y="20">FOUR WORDS, IN ORDER — each one is built on the one before it</text>
+${[
+  ['DATA', 'raw facts, no meaning yet', '78, Ram, 10', '--color-secondary'],
+  ['INFORMATION', 'data given meaning', 'Ram scored 78 in class 10', '--color-success'],
+  ['DATABASE', 'that information, stored and organised', 'the Student table', '--color-primary'],
+  ['DBMS', 'the SOFTWARE that manages the database', 'MySQL, Oracle, MS Access', '--color-error']
+].map(function (r, i){
+  const y = 40 + i * 40;
+  return `<g>
+    <rect class="f-box-d" x="16" y="${y}" width="668" height="34" rx="7"/>
+    <rect x="18" y="${y + 7}" width="4" height="20" rx="2" style="fill:var(${r[3]})"/>
+    <text class="f-lbl-y" x="36" y="${y + 22}" text-anchor="start" style="font-size:12.5px">${r[0]}</text>
+    <text class="f-lbl" x="150" y="${y + 22}" text-anchor="start" style="font-size:11.5px">${r[1]}</text>
+    <text class="f-code" x="440" y="${y + 22}" text-anchor="start" style="font-size:12px">${r[2]}</text>
+    ${i < 3 ? `<line class="f-arr" x1="26" y1="${y + 34}" x2="26" y2="${y + 38}" marker-end="url(#a-dbladder)"/>` : ''}
+  </g>`;
+}).join('')}
+  <text class="f-lbl-y" x="350" y="196">The commonest slip: calling the DBMS "the database". The database is the data; the DBMS is the program that looks after it.</text>
+</svg>`;
+
+/* 1.2 and 1.3 — the file system's four problems, each paired with the
+   database answer. This comparison IS the exam question. */
+D.fileVsDb = `
+<svg viewBox="0 0 700 246" role="img" aria-labelledby="t-filevsdb">
+  <title id="t-filevsdb">Four limitations of the file system and how a database system answers each one</title>
+  <text class="f-ttl" x="10" y="20">WHY THE DATABASE REPLACED THE FILE SYSTEM</text>
+  <text class="f-lbl-y" x="180" y="42" style="font-size:12px">FILE SYSTEM — the problem</text>
+  <text class="f-lbl-y" x="520" y="42" style="font-size:12px">DATABASE SYSTEM — the answer</text>
+${[
+  ['Data redundancy', 'the same address stored in three files', 'stored once, referenced everywhere'],
+  ['Data inconsistency', 'one copy updated, two left stale', 'one copy, so it cannot disagree'],
+  ['Data isolation', 'files in different formats, hard to combine', 'one structure, queried together'],
+  ['No concurrent control', 'two people writing at once corrupts it', 'transactions keep it correct']
+].map(function (r, i){
+  const y = 54 + i * 44;
+  return `<g>
+    <rect class="f-box-d" x="16" y="${y}" width="332" height="38" rx="7"/>
+    <rect class="f-box-d" x="356" y="${y}" width="328" height="38" rx="7"/>
+    <rect x="18" y="${y + 8}" width="4" height="22" rx="2" style="fill:var(--color-error)"/>
+    <rect x="358" y="${y + 8}" width="4" height="22" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="36" y="${y + 17}" text-anchor="start" style="font-size:11.5px">${r[0]}</text>
+    <text class="f-lbl" x="36" y="${y + 31}" text-anchor="start" style="font-size:10.5px">${r[1]}</text>
+    <text class="f-lbl" x="376" y="${y + 24}" text-anchor="start" style="font-size:11.5px">${r[2]}</text>
+  </g>`;
+}).join('')}
+  <text class="f-lbl-y" x="350" y="240">Learn them as PAIRS. A question asking for limitations is really asking you to show you know what a database fixes.</text>
+</svg>`;
+
+/* 1.6 — the three-level architecture. ANIMATED, because the lesson is
+   what each level HIDES from the one above it, and hiding is a
+   sequence, not a picture. */
+D.dbArchitecture = {
+  type: 'animated',
+  intro: { en: 'Three levels, and what each one hides.',
+           ne: 'तीन तह, र हरेकले के लुकाउँछ।' },
+  svg: `
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-dbarch">
+  <title id="t-dbarch">The three-level DBMS architecture: external, conceptual and internal, with data independence between them</title>
+  <text class="f-ttl" x="10" y="20">THE THREE-LEVEL ARCHITECTURE</text>
+
+  <g id="arch-1">
+    <rect class="f-box-d" x="120" y="40" width="460" height="56" rx="8"/>
+    <text class="f-lbl-y" x="350" y="62" style="font-size:13px">EXTERNAL LEVEL (View level)</text>
+    <text class="f-lbl" x="350" y="82" style="font-size:11.5px">what each user is allowed to see — a teacher's view, a clerk's view</text>
+  </g>
+  <g id="arch-2">
+    <rect class="f-box-d" x="120" y="122" width="460" height="56" rx="8"/>
+    <text class="f-lbl-y" x="350" y="144" style="font-size:13px">CONCEPTUAL LEVEL (Logical level)</text>
+    <text class="f-lbl" x="350" y="164" style="font-size:11.5px">what data exists and how it relates — tables, columns, keys</text>
+  </g>
+  <g id="arch-3">
+    <rect class="f-box-d" x="120" y="204" width="460" height="56" rx="8"/>
+    <text class="f-lbl-y" x="350" y="226" style="font-size:13px">INTERNAL LEVEL (Physical level)</text>
+    <text class="f-lbl" x="350" y="246" style="font-size:11.5px">how the bytes are actually stored on the disk</text>
+  </g>
+  <g id="arch-4">
+    <text class="f-lbl-y" x="350" y="112" style="font-size:11px">logical data independence</text>
+    <text class="f-lbl-y" x="350" y="194" style="font-size:11px">physical data independence</text>
+  </g>
+  <text class="f-lbl" x="350" y="284" style="font-size:11px">A change at one level does not force a change at the level above. That is the whole purpose.</text>
+</svg>`,
+  steps: [
+    { show: '#arch-3', focus: '#arch-3',
+      en: 'Start at the bottom. The INTERNAL level is how the data physically sits on the disk — files, blocks, indexes.',
+      ne: 'तलबाट सुरु। INTERNAL तह भनेको डिस्कमा डाटा भौतिक रूपमा कसरी बस्छ — फाइल, ब्लक, इन्डेक्स।' },
+    { show: '#arch-2', focus: '#arch-2',
+      en: 'Above it, the CONCEPTUAL level says WHAT data exists and how it relates — the tables and keys. It does not care how the disk stores them.',
+      ne: 'माथि CONCEPTUAL तहले कुन डाटा छ र कसरी सम्बन्धित छ भन्छ — तालिका र कुञ्जी। डिस्कले कसरी राख्छ भन्ने वास्ता गर्दैन।' },
+    { show: '#arch-1', focus: '#arch-1',
+      en: 'At the top, the EXTERNAL level is what each user sees. A teacher sees marks; a clerk sees addresses. Neither sees the whole database.',
+      ne: 'सबैभन्दा माथि EXTERNAL तह — हरेक प्रयोगकर्ताले देख्ने कुरा। शिक्षकले अंक, कर्मचारीले ठेगाना। कसैले पूरै डाटाबेस देख्दैन।' },
+    { show: '#arch-4', focus: '#arch-4',
+      en: 'The gaps between the levels are DATA INDEPENDENCE. Change the disk storage and the tables do not change; change a table and a user\'s view can stay the same.',
+      ne: 'तहबीचका खाली ठाउँ नै DATA INDEPENDENCE हुन्। डिस्क भण्डारण बदल्दा तालिका बदलिँदैन; तालिका बदल्दा प्रयोगकर्ताको view उही रहन सक्छ।' }
+  ]
+};
+
+/* 1.7 — the four database models, in the order they appeared. */
+D.dbModels = `
+<svg viewBox="0 0 700 200" role="img" aria-labelledby="t-dbmodels">
+  <title id="t-dbmodels">Four database models: hierarchical, network, relational and object-oriented</title>
+  <text class="f-ttl" x="10" y="20">FOUR DATABASE MODELS — how the data is arranged</text>
+${[
+  ['HIERARCHICAL', 'a tree — one parent, many children', 'a child has ONE parent only'],
+  ['NETWORK', 'a graph — many-to-many allowed', 'a child may have SEVERAL parents'],
+  ['RELATIONAL', 'tables linked by keys', 'the model this syllabus teaches'],
+  ['OBJECT-ORIENTED', 'objects with data and methods', 'used where data is complex']
+].map(function (r, i){
+  const y = 38 + i * 38;
+  return `<g>
+    <rect class="f-box-d" x="16" y="${y}" width="668" height="32" rx="7"/>
+    <rect x="18" y="${y + 6}" width="4" height="20" rx="2" style="fill:var(${i === 2 ? '--color-primary' : '--color-border-strong'})"/>
+    <text class="f-lbl-y" x="36" y="${y + 21}" text-anchor="start" style="font-size:12px">${r[0]}</text>
+    <text class="f-lbl" x="215" y="${y + 21}" text-anchor="start" style="font-size:11.5px">${r[1]}</text>
+    <text class="f-lbl" x="450" y="${y + 21}" text-anchor="start" style="font-size:11px">${r[2]}</text>
+  </g>`;
+}).join('')}
+  <text class="f-lbl-y" x="350" y="196">Hierarchical and network differ on ONE point: how many parents a record may have. That is the examinable difference.</text>
+</svg>`;
+
+/* ---------------------------------------------------------------
+   DBMS UNIT 2 — ER MODEL
+   --------------------------------------------------------------- */
+
+/* 2.2–2.4 — the notation a student must be able to draw from memory. */
+D.erSymbols = `
+<svg viewBox="0 0 700 268" role="img" aria-labelledby="t-ersym">
+  <title id="t-ersym">The ER diagram symbols: rectangle for entity, double rectangle for weak entity, ellipse for attribute, underlined for key, double for multivalued, dashed for derived, diamond for relationship</title>
+  <text class="f-ttl" x="10" y="20">ER SYMBOLS — learn to draw these from memory</text>
+
+  <g>
+    <rect x="40" y="44" width="112" height="44" rx="3" style="fill:var(--color-surface);stroke:var(--color-secondary);stroke-width:2"/>
+    <text class="f-lbl-y" x="96" y="70" style="font-size:12px">STUDENT</text>
+    <text class="f-lbl" x="96" y="106" style="font-size:11px">Entity — a real thing</text>
+    <text class="f-lbl" x="96" y="120" style="font-size:10.5px">becomes a TABLE</text>
+  </g>
+  <g>
+    <rect x="212" y="44" width="112" height="44" rx="3" style="fill:none;stroke:var(--color-secondary);stroke-width:2"/>
+    <rect x="217" y="49" width="102" height="34" rx="2" style="fill:var(--color-surface);stroke:var(--color-secondary);stroke-width:1.5"/>
+    <text class="f-lbl-y" x="268" y="70" style="font-size:12px">DEPENDENT</text>
+    <text class="f-lbl" x="268" y="106" style="font-size:11px">Weak entity</text>
+    <text class="f-lbl" x="268" y="120" style="font-size:10.5px">no key of its own</text>
+  </g>
+  <g>
+    <path d="M440,44 L516,66 L440,88 L364,66 Z" style="fill:var(--color-surface);stroke:var(--color-primary);stroke-width:2"/>
+    <text class="f-lbl-y" x="440" y="70" style="font-size:11px">ENROLS</text>
+    <text class="f-lbl" x="440" y="106" style="font-size:11px">Relationship</text>
+    <text class="f-lbl" x="440" y="120" style="font-size:10.5px">written as a verb</text>
+  </g>
+  <g>
+    <ellipse cx="608" cy="66" rx="58" ry="22" style="fill:var(--color-surface);stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl-y" x="608" y="70" style="font-size:11px">name</text>
+    <text class="f-lbl" x="608" y="106" style="font-size:11px">Attribute</text>
+    <text class="f-lbl" x="608" y="120" style="font-size:10.5px">becomes a COLUMN</text>
+  </g>
+
+  <g>
+    <ellipse cx="96" cy="164" rx="58" ry="22" style="fill:var(--color-surface);stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl-y" x="96" y="168" style="font-size:11px" text-decoration="underline">student_id</text>
+    <text class="f-lbl" x="96" y="204" style="font-size:11px">Key attribute</text>
+    <text class="f-lbl" x="96" y="218" style="font-size:10.5px">underlined — PRIMARY KEY</text>
+  </g>
+  <g>
+    <ellipse cx="268" cy="164" rx="60" ry="24" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <ellipse cx="268" cy="164" rx="53" ry="18" style="fill:var(--color-surface);stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl-y" x="268" y="168" style="font-size:11px">phone</text>
+    <text class="f-lbl" x="268" y="204" style="font-size:11px">Multivalued</text>
+    <text class="f-lbl" x="268" y="218" style="font-size:10.5px">can hold several values</text>
+  </g>
+  <g>
+    <ellipse cx="440" cy="164" rx="58" ry="22" style="fill:var(--color-surface);stroke:var(--color-border-strong);stroke-width:1.5;stroke-dasharray:5 4"/>
+    <text class="f-lbl-y" x="440" y="168" style="font-size:11px">age</text>
+    <text class="f-lbl" x="440" y="204" style="font-size:11px">Derived</text>
+    <text class="f-lbl" x="440" y="218" style="font-size:10.5px">worked out, not stored</text>
+  </g>
+  <g>
+    <ellipse cx="608" cy="164" rx="58" ry="22" style="fill:var(--color-surface);stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl-y" x="608" y="160" style="font-size:10.5px">address</text>
+    <text class="f-lbl" x="608" y="174" style="font-size:9.5px">city + ward</text>
+    <text class="f-lbl" x="608" y="204" style="font-size:11px">Composite</text>
+    <text class="f-lbl" x="608" y="218" style="font-size:10.5px">splits into smaller parts</text>
+  </g>
+
+  <text class="f-lbl-y" x="350" y="252">A drawing question is marked on the SHAPES. A rectangle where an ellipse belongs loses the mark even if the word is right.</text>
+</svg>`;
+
+/* 2.6 — the key family. Students are asked to distinguish these far
+   more often than to use them. */
+D.keyTypes = `
+<svg viewBox="0 0 700 220" role="img" aria-labelledby="t-keytypes">
+  <title id="t-keytypes">Types of keys in DBMS: super key, candidate key, primary key, alternate key, foreign key and composite key</title>
+  <text class="f-ttl" x="10" y="20">KEYS — each one is a narrowing of the one before</text>
+${[
+  ['SUPER KEY', 'ANY set of columns that identifies a row uniquely', '{id}, {id, name}, {id, name, marks}'],
+  ['CANDIDATE KEY', 'a super key with nothing spare in it', '{id}, {roll_no}'],
+  ['PRIMARY KEY', 'the ONE candidate key actually chosen', '{id}'],
+  ['ALTERNATE KEY', 'the candidate keys that were not chosen', '{roll_no}'],
+  ['FOREIGN KEY', 'a column pointing at another table’s primary key', 'Student.class_id → Class.class_id'],
+  ['COMPOSITE KEY', 'a key made of two or more columns together', '{student_id, course_id}']
+].map(function (r, i){
+  const y = 38 + i * 28;
+  return `<g>
+    <rect class="f-box-d" x="16" y="${y}" width="668" height="24" rx="6"/>
+    <rect x="18" y="${y + 4}" width="4" height="16" rx="2" style="fill:var(${i === 2 ? '--color-primary' : i === 4 ? '--color-secondary' : '--color-border-strong'})"/>
+    <text class="f-lbl-y" x="36" y="${y + 17}" text-anchor="start" style="font-size:11.5px">${r[0]}</text>
+    <text class="f-lbl" x="166" y="${y + 17}" text-anchor="start" style="font-size:11px">${r[1]}</text>
+    <text class="f-code" x="452" y="${y + 17}" text-anchor="start" style="font-size:11px">${r[2]}</text>
+  </g>`;
+}).join('')}
+  <text class="f-lbl-y" x="350" y="214">Every primary key is a candidate key, and every candidate key is a super key. The reverse is not true.</text>
+</svg>`;
+
+/* ---------------------------------------------------------------
+   DBMS UNIT 3 — RELATIONAL MODEL
+   --------------------------------------------------------------- */
+
+/* 3.4 — ER to tables. ANIMATED, because it is a procedure with an
+   order, and because the junction table appearing is the moment the
+   whole M:N rule becomes visible. */
+D.erToRelational = {
+  type: 'animated',
+  intro: { en: 'Turning an ER diagram into tables, one rule at a time.',
+           ne: 'ER चित्रलाई तालिकामा बदल्ने — एक पटकमा एउटा नियम।' },
+  svg: `
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-er2rel">
+  <title id="t-er2rel">Mapping an ER model to a relational model: each entity becomes a table, each attribute a column, and a many-to-many relationship becomes a third table</title>
+  <text class="f-ttl" x="10" y="20">ER MODEL → RELATIONAL MODEL</text>
+
+  <g id="e2r-1">
+    <rect x="40" y="40" width="120" height="44" rx="3" style="fill:var(--color-surface);stroke:var(--color-secondary);stroke-width:2"/>
+    <text class="f-lbl-y" x="100" y="66" style="font-size:12px">STUDENT</text>
+    <path d="M350,40 L410,62 L350,84 L290,62 Z" style="fill:var(--color-surface);stroke:var(--color-primary);stroke-width:2"/>
+    <text class="f-lbl-y" x="350" y="66" style="font-size:10.5px">ENROLS</text>
+    <rect x="540" y="40" width="120" height="44" rx="3" style="fill:var(--color-surface);stroke:var(--color-secondary);stroke-width:2"/>
+    <text class="f-lbl-y" x="600" y="66" style="font-size:12px">COURSE</text>
+    <line class="f-ln" x1="160" y1="62" x2="290" y2="62"/>
+    <line class="f-ln" x1="410" y1="62" x2="540" y2="62"/>
+    <text class="f-card" x="225" y="54" style="fill:var(--color-primary);font-size:14px;text-anchor:middle;font-weight:700">M</text>
+    <text class="f-card" x="475" y="54" style="fill:var(--color-primary);font-size:14px;text-anchor:middle;font-weight:700">N</text>
+  </g>
+
+  <g id="e2r-2">
+    <rect class="f-box-d" x="40" y="122" width="200" height="58" rx="7"/>
+    <text class="f-lbl-y" x="140" y="142" style="font-size:11.5px">Student</text>
+    <text class="f-code" x="140" y="160" style="font-size:11px">student_id (PK)</text>
+    <text class="f-code" x="140" y="174" style="font-size:11px">name</text>
+  </g>
+  <g id="e2r-3">
+    <rect class="f-box-d" x="460" y="122" width="200" height="58" rx="7"/>
+    <text class="f-lbl-y" x="560" y="142" style="font-size:11.5px">Course</text>
+    <text class="f-code" x="560" y="160" style="font-size:11px">course_id (PK)</text>
+    <text class="f-code" x="560" y="174" style="font-size:11px">title</text>
+  </g>
+  <g id="e2r-4">
+    <rect class="f-box-d" x="250" y="200" width="200" height="66" rx="7"/>
+    <rect x="252" y="208" width="4" height="50" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="350" y="222" style="font-size:11.5px">Enrolment</text>
+    <text class="f-code" x="350" y="240" style="font-size:11px">student_id (FK)</text>
+    <text class="f-code" x="350" y="254" style="font-size:11px">course_id (FK)</text>
+  </g>
+  <text class="f-lbl" x="350" y="288" style="font-size:11px">Two entities and one M:N relationship give THREE tables, not two.</text>
+</svg>`,
+  steps: [
+    { show: '#e2r-1', focus: '#e2r-1',
+      en: 'Start from the ER diagram: two entities and one relationship, many-to-many.',
+      ne: 'ER चित्रबाट सुरु: दुई इन्टिटी र एउटा सम्बन्ध, धेरै–धेरै।' },
+    { show: '#e2r-2', focus: '#e2r-2',
+      en: 'Rule 1: every entity becomes a table. STUDENT becomes Student, and its key attribute becomes the primary key.',
+      ne: 'नियम १: हरेक इन्टिटी तालिका बन्छ। STUDENT बाट Student, र यसको कुञ्जी एट्रिब्युट प्राथमिक कुञ्जी बन्छ।' },
+    { show: '#e2r-3', focus: '#e2r-3',
+      en: 'The same rule again for COURSE. Every attribute becomes a column.',
+      ne: 'COURSE लाई पनि उही नियम। हरेक एट्रिब्युट स्तम्भ बन्छ।' },
+    { show: '#e2r-4', focus: '#e2r-4',
+      en: 'Rule 2: a MANY-TO-MANY relationship becomes a table of its own, holding the primary key of each side as a foreign key. This third table is the one students forget.',
+      ne: 'नियम २: धेरै–धेरै सम्बन्ध आफैं एउटा तालिका बन्छ, जसमा दुवैतर्फको प्राथमिक कुञ्जी foreign key भएर बस्छ। विद्यार्थीले बिर्सने तेस्रो तालिका यही हो।' }
+  ]
+};
+
+/* ---------------------------------------------------------------
+   DBMS UNIT 5 — RELATIONAL DATABASE DESIGN
+   --------------------------------------------------------------- */
+
+/* 5.3 — normalization. ANIMATED, because it is a sequence of
+   decompositions and each step removes a NAMED anomaly. Seeing the
+   table split is the lesson; a final answer is not. */
+D.normalForms = {
+  type: 'animated',
+  intro: { en: 'One badly designed table, normalised to 3NF step by step.',
+           ne: 'नराम्रो डिजाइनको एउटा तालिकालाई चरण–चरणमा 3NF सम्म।' },
+  svg: `
+<svg viewBox="0 0 700 320" role="img" aria-labelledby="t-nf">
+  <title id="t-nf">Normalising a table: 1NF removes repeating groups, 2NF removes partial dependency, 3NF removes transitive dependency</title>
+  <text class="f-ttl" x="10" y="20">NORMALISATION — each step removes ONE named problem</text>
+
+  <g id="nf-0">
+    <rect class="f-box-d" x="16" y="36" width="668" height="52" rx="7"/>
+    <rect x="18" y="44" width="4" height="36" rx="2" style="fill:var(--color-error)"/>
+    <text class="f-lbl-y" x="36" y="54" text-anchor="start" style="font-size:11.5px">UNNORMALISED</text>
+    <text class="f-code" x="36" y="72" text-anchor="start" style="font-size:11px">Student( id, name, class_id, class_room, subjects: "Maths, Science" )</text>
+    <text class="f-lbl" x="36" y="84" text-anchor="start" style="font-size:10.5px">one cell holds two subjects, and the room repeats on every row of that class</text>
+  </g>
+
+  <g id="nf-1">
+    <rect class="f-box-d" x="16" y="100" width="668" height="46" rx="7"/>
+    <rect x="18" y="108" width="4" height="30" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="36" y="118" text-anchor="start" style="font-size:11.5px">1NF — every cell holds ONE value</text>
+    <text class="f-code" x="36" y="136" text-anchor="start" style="font-size:11px">Student( id, name, subject, class_id, class_room )  ← one row per subject</text>
+  </g>
+
+  <g id="nf-2">
+    <rect class="f-box-d" x="16" y="158" width="668" height="62" rx="7"/>
+    <rect x="18" y="166" width="4" height="46" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="36" y="176" text-anchor="start" style="font-size:11.5px">2NF — no PARTIAL dependency on part of a composite key</text>
+    <text class="f-code" x="36" y="194" text-anchor="start" style="font-size:11px">Student( id, name, class_id, class_room )</text>
+    <text class="f-code" x="36" y="210" text-anchor="start" style="font-size:11px">Takes( id, subject )</text>
+  </g>
+
+  <g id="nf-3">
+    <rect class="f-box-d" x="16" y="232" width="668" height="62" rx="7"/>
+    <rect x="18" y="240" width="4" height="46" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="36" y="250" text-anchor="start" style="font-size:11.5px">3NF — no TRANSITIVE dependency through a non-key column</text>
+    <text class="f-code" x="36" y="268" text-anchor="start" style="font-size:11px">Student( id, name, class_id )   Takes( id, subject )</text>
+    <text class="f-code" x="36" y="284" text-anchor="start" style="font-size:11px">Class( class_id, class_room )</text>
+  </g>
+
+  <text class="f-lbl" x="350" y="312" style="font-size:11px">Three steps, three named problems. Name the problem in your answer and the marks follow.</text>
+</svg>`,
+  steps: [
+    { show: '#nf-0', focus: '#nf-0',
+      en: 'The starting table has two faults: one cell holds two subjects, and class_room is repeated on every row of the same class.',
+      ne: 'सुरुको तालिकामा दुई दोष छन्: एउटै कक्षमा दुई विषय, र उही कक्षाका हरेक पङ्क्तिमा class_room दोहोरिन्छ।' },
+    { show: '#nf-1', focus: '#nf-1',
+      en: '1NF: make every cell hold ONE value. Split the subject list into separate rows. The repeating group is gone.',
+      ne: '1NF: हरेक कक्षमा एउटै मान राख्नुहोस्। विषयको सूचीलाई छुट्टै पङ्क्तिमा बाँड्नुहोस्। दोहोरिने समूह हट्यो।' },
+    { show: '#nf-2', focus: '#nf-2',
+      en: '2NF: the key is now (id, subject), but name depends on id alone — a PARTIAL dependency. Split it out into two tables.',
+      ne: '2NF: कुञ्जी अब (id, subject) हो, तर name id मा मात्र निर्भर छ — PARTIAL निर्भरता। दुई तालिकामा छुट्याउनुहोस्।' },
+    { show: '#nf-3', focus: '#nf-3',
+      en: '3NF: class_room depends on class_id, which depends on id — a TRANSITIVE dependency. Move it to its own Class table. Now every column depends on the key, the whole key, and nothing but the key.',
+      ne: '3NF: class_room, class_id मा निर्भर छ र class_id, id मा — TRANSITIVE निर्भरता। छुट्टै Class तालिकामा सार्नुहोस्। अब हरेक स्तम्भ कुञ्जीमा मात्र निर्भर हुन्छ।' }
+  ]
+};
+
+/* ---------------------------------------------------------------
+   DBMS UNIT 6 — TRANSACTION
+   --------------------------------------------------------------- */
+
+/* 6.3 — ACID. Each property is shown by the failure it prevents,
+   because that is how a student remembers which is which. */
+D.acidProps = `
+<svg viewBox="0 0 700 216" role="img" aria-labelledby="t-acid">
+  <title id="t-acid">The four ACID properties of a transaction: atomicity, consistency, isolation and durability, each shown by the failure it prevents</title>
+  <text class="f-ttl" x="10" y="20">ACID — learn each one by the DISASTER it prevents</text>
+  <text class="f-lbl-y" x="120" y="42" style="font-size:11.5px">PROPERTY</text>
+  <text class="f-lbl-y" x="330" y="42" style="font-size:11.5px">PROMISE</text>
+  <text class="f-lbl-y" x="560" y="42" style="font-size:11.5px">WITHOUT IT</text>
+${[
+  ['ATOMICITY', 'all of it happens, or none of it', 'money leaves one account and never arrives'],
+  ['CONSISTENCY', 'the database obeys its rules before and after', 'a student row points at a class that does not exist'],
+  ['ISOLATION', 'concurrent transactions do not see each other half-done', 'two clerks read the same balance and both subtract'],
+  ['DURABILITY', 'once committed, it survives a crash', 'the power fails and yesterday’s fees are gone']
+].map(function (r, i){
+  const y = 54 + i * 38;
+  return `<g>
+    <rect class="f-box-d" x="16" y="${y}" width="668" height="32" rx="7"/>
+    <rect x="18" y="${y + 6}" width="4" height="20" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="36" y="${y + 21}" text-anchor="start" style="font-size:11.5px">${r[0]}</text>
+    <text class="f-lbl" x="216" y="${y + 21}" text-anchor="start" style="font-size:11px">${r[1]}</text>
+    <text class="f-lbl" x="448" y="${y + 21}" text-anchor="start" style="font-size:10.5px">${r[2]}</text>
+  </g>`;
+}).join('')}
+  <text class="f-lbl-y" x="350" y="210">A transaction is not "a change". It is a change that carries all four of these promises.</text>
+</svg>`;
+
+/* 6.4 — the states. ANIMATED, because the states are a PATH and the
+   abort branch is the half students leave out of the diagram. */
+D.txnStates = {
+  type: 'animated',
+  intro: { en: 'A transaction from start to finish, including the path that fails.',
+           ne: 'ट्रान्ज्याक्सन सुरुदेखि अन्त्यसम्म, असफल हुने बाटोसहित।' },
+  svg: `
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="t-txn">
+  <title id="t-txn">The states of a transaction: active, partially committed, committed, failed and aborted</title>
+  ${ah('a-txn')}
+  <text class="f-ttl" x="10" y="20">STATES OF A TRANSACTION</text>
+
+  <g id="tx-1">
+    <rect class="f-box-d" x="20" y="90" width="120" height="42" rx="7"/>
+    <text class="f-lbl-y" x="80" y="116" style="font-size:12px">ACTIVE</text>
+  </g>
+  <g id="tx-2">
+    <rect class="f-box-d" x="190" y="90" width="150" height="42" rx="7"/>
+    <text class="f-lbl-y" x="265" y="110" style="font-size:11.5px">PARTIALLY</text>
+    <text class="f-lbl-y" x="265" y="124" style="font-size:11.5px">COMMITTED</text>
+    <line class="f-arr" x1="142" y1="111" x2="186" y2="111" marker-end="url(#a-txn)"/>
+  </g>
+  <g id="tx-3">
+    <rect class="f-box-d" x="392" y="90" width="130" height="42" rx="7"/>
+    <rect x="394" y="98" width="4" height="26" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="460" y="116" style="font-size:12px">COMMITTED</text>
+    <line class="f-arr" x1="342" y1="111" x2="388" y2="111" marker-end="url(#a-txn)"/>
+  </g>
+  <g id="tx-4">
+    <rect class="f-box-d" x="190" y="176" width="150" height="42" rx="7"/>
+    <rect x="192" y="184" width="4" height="26" rx="2" style="fill:var(--color-error)"/>
+    <text class="f-lbl-y" x="265" y="202" style="font-size:12px">FAILED</text>
+    <line class="f-arr" x1="80" y1="134" x2="80" y2="197" marker-end="url(#a-txn)"/>
+    <line class="f-ln" x1="80" y1="197" x2="186" y2="197"/>
+  </g>
+  <g id="tx-5">
+    <rect class="f-box-d" x="392" y="176" width="130" height="42" rx="7"/>
+    <rect x="394" y="184" width="4" height="26" rx="2" style="fill:var(--color-error)"/>
+    <text class="f-lbl-y" x="460" y="202" style="font-size:12px">ABORTED</text>
+    <line class="f-arr" x1="342" y1="197" x2="388" y2="197" marker-end="url(#a-txn)"/>
+    <text class="f-lbl" x="600" y="192" style="font-size:10.5px">rolled back —</text>
+    <text class="f-lbl" x="600" y="206" style="font-size:10.5px">as if it never ran</text>
+  </g>
+  <text class="f-lbl" x="350" y="66" style="font-size:11px">Only ONE of the two bottom-right boxes can be reached, and which one is decided the moment something goes wrong.</text>
+</svg>`,
+  steps: [
+    { show: '#tx-1', focus: '#tx-1',
+      en: 'ACTIVE — the transaction has started and its statements are running.',
+      ne: 'ACTIVE — ट्रान्ज्याक्सन सुरु भयो र यसका कथन चलिरहेका छन्।' },
+    { show: '#tx-2', focus: '#tx-2',
+      en: 'PARTIALLY COMMITTED — the last statement has run, but the changes are not yet safely on disk.',
+      ne: 'PARTIALLY COMMITTED — अन्तिम कथन चल्यो, तर परिवर्तन अझै डिस्कमा सुरक्षित छैन।' },
+    { show: '#tx-3', focus: '#tx-3',
+      en: 'COMMITTED — the changes are permanent. This is the only state that keeps the work, and durability is the promise that a crash now cannot undo it.',
+      ne: 'COMMITTED — परिवर्तन स्थायी भयो। काम बाँच्ने एउटै अवस्था यही हो, र अब crash भए पनि नहराओस् भन्ने वचन नै durability हो।' },
+    { show: '#tx-4', focus: '#tx-4',
+      en: 'FAILED — something went wrong, at any point. A transaction can fail from ACTIVE or from PARTIALLY COMMITTED.',
+      ne: 'FAILED — जुनसुकै बेला केही बिग्रियो। ACTIVE वा PARTIALLY COMMITTED दुवैबाट असफल हुन सक्छ।' },
+    { show: '#tx-5', focus: '#tx-5',
+      en: 'ABORTED — the database rolls back every change the transaction made, so it is as if it never ran. That is atomicity doing its job.',
+      ne: 'ABORTED — डाटाबेसले ट्रान्ज्याक्सनले गरेका सबै परिवर्तन फिर्ता लैजान्छ, चलेकै थिएन जस्तो। atomicity ले गर्ने काम यही हो।' }
+  ]
+};
+
+/* ---------------------------------------------------------------
+   DBMS UNIT 7 — BACKUP, RECOVERY AND SECURITY
+   --------------------------------------------------------------- */
+
+D.backupTypes = `
+<svg viewBox="0 0 700 208" role="img" aria-labelledby="t-backup">
+  <title id="t-backup">Types and methods of database backup: physical and logical, full, incremental and differential</title>
+  <text class="f-ttl" x="10" y="20">BACKUP — two TYPES, three METHODS</text>
+  <text class="f-lbl-y" x="175" y="44" style="font-size:12px">TYPES — what is copied</text>
+  <text class="f-lbl-y" x="520" y="44" style="font-size:12px">METHODS — how much is copied</text>
+
+  <g>
+    <rect class="f-box-d" x="16" y="56" width="332" height="40" rx="7"/>
+    <rect x="18" y="64" width="4" height="24" rx="2" style="fill:var(--color-secondary)"/>
+    <text class="f-lbl-y" x="36" y="74" text-anchor="start" style="font-size:11.5px">PHYSICAL</text>
+    <text class="f-lbl" x="36" y="88" text-anchor="start" style="font-size:10.5px">a copy of the actual database files on disk</text>
+  </g>
+  <g>
+    <rect class="f-box-d" x="16" y="104" width="332" height="40" rx="7"/>
+    <rect x="18" y="112" width="4" height="24" rx="2" style="fill:var(--color-secondary)"/>
+    <text class="f-lbl-y" x="36" y="122" text-anchor="start" style="font-size:11.5px">LOGICAL</text>
+    <text class="f-lbl" x="36" y="136" text-anchor="start" style="font-size:10.5px">a copy of the SQL that would rebuild it</text>
+  </g>
+
+${[
+  ['FULL', 'everything, every time — slow but simple'],
+  ['INCREMENTAL', 'only what changed since the LAST backup'],
+  ['DIFFERENTIAL', 'everything changed since the last FULL backup']
+].map(function (r, i){
+  const y = 56 + i * 40;
+  return `<g>
+    <rect class="f-box-d" x="356" y="${y}" width="328" height="34" rx="7"/>
+    <rect x="358" y="${y + 6}" width="4" height="22" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="376" y="${y + 15}" text-anchor="start" style="font-size:11.5px">${r[0]}</text>
+    <text class="f-lbl" x="376" y="${y + 28}" text-anchor="start" style="font-size:10.5px">${r[1]}</text>
+  </g>`;
+}).join('')}
+
+  <text class="f-lbl-y" x="350" y="176">Incremental and differential differ on ONE word: since the last BACKUP, or since the last FULL backup.</text>
+  <text class="f-lbl" x="350" y="196" style="font-size:11px">That one word is the whole exam question.</text>
+</svg>`;
+
+/* 7.5 — redo and undo. ANIMATED, because they run in opposite
+   directions on the same log, and direction is exactly what a static
+   picture cannot show. */
+D.recoveryLog = {
+  type: 'animated',
+  intro: { en: 'The log, and the two directions recovery runs in.',
+           ne: 'लग, र रिकभरी चल्ने दुई दिशा।' },
+  svg: `
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="t-recov">
+  <title id="t-recov">Database recovery using the log: redo reapplies committed transactions, undo rolls back uncommitted ones</title>
+  ${ah('a-recov')}
+  <text class="f-ttl" x="10" y="20">RECOVERY — one log, read in two directions</text>
+
+  <g id="rc-1">
+    <text class="f-lbl-y" x="80" y="52" style="font-size:11px">THE LOG</text>
+    ${['T1 start', 'T1 write', 'T1 COMMIT', 'T2 start', 'T2 write', '— CRASH —'].map(function (e, i){
+      const y = 62 + i * 26;
+      return `<g>
+        <rect class="f-box-d" x="16" y="${y}" width="240" height="22" rx="5"/>
+        <rect x="18" y="${y + 4}" width="4" height="14" rx="2" style="fill:var(${i === 2 ? '--color-success' : i === 5 ? '--color-error' : '--color-border-strong'})"/>
+        <text class="f-code" x="34" y="${y + 15}" text-anchor="start" style="font-size:11px">${e}</text>
+      </g>`;
+    }).join('')}
+  </g>
+
+  <g id="rc-2">
+    <rect class="f-box-d" x="300" y="70" width="384" height="62" rx="7"/>
+    <rect x="302" y="80" width="4" height="42" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="320" y="92" text-anchor="start" style="font-size:12px">REDO — forwards</text>
+    <text class="f-lbl" x="320" y="110" text-anchor="start" style="font-size:11px">T1 committed before the crash, so its work must exist.</text>
+    <text class="f-lbl" x="320" y="124" text-anchor="start" style="font-size:11px">Replay it from the log. This is DURABILITY.</text>
+  </g>
+
+  <g id="rc-3">
+    <rect class="f-box-d" x="300" y="148" width="384" height="62" rx="7"/>
+    <rect x="302" y="158" width="4" height="42" rx="2" style="fill:var(--color-error)"/>
+    <text class="f-lbl-y" x="320" y="170" text-anchor="start" style="font-size:12px">UNDO — backwards</text>
+    <text class="f-lbl" x="320" y="188" text-anchor="start" style="font-size:11px">T2 never committed, so its half-done work must vanish.</text>
+    <text class="f-lbl" x="320" y="202" text-anchor="start" style="font-size:11px">Roll it back from the log. This is ATOMICITY.</text>
+  </g>
+
+  <text class="f-lbl-y" x="350" y="238">The COMMIT record decides which of the two a transaction gets. Nothing else does.</text>
+</svg>`,
+  steps: [
+    { show: '#rc-1', focus: '#rc-1',
+      en: 'The log records every action in order. T1 committed; T2 had written but not committed when the crash came.',
+      ne: 'लगले हरेक काम क्रमैसँग लेख्छ। T1 commit भयो; T2 ले लेखेको थियो तर commit हुनुअघि नै crash भयो।' },
+    { show: '#rc-2', focus: '#rc-2',
+      en: 'REDO reads forwards and replays every transaction that has a COMMIT record. T1 promised durability, so its work is put back.',
+      ne: 'REDO ले अगाडि पढ्दै COMMIT भएका सबै ट्रान्ज्याक्सन फेरि चलाउँछ। T1 ले durability को वचन दिएको थियो, त्यसैले काम फर्किन्छ।' },
+    { show: '#rc-3', focus: '#rc-3',
+      en: 'UNDO reads backwards and rolls back every transaction with no COMMIT record. T2 is erased completely — atomicity means half of it may not survive.',
+      ne: 'UNDO ले पछाडि पढ्दै COMMIT नभएका सबै फिर्ता लैजान्छ। T2 पूरै मेटिन्छ — atomicity को अर्थ आधा काम बाँच्न पाउँदैन भन्ने हो।' }
+  ]
+};
+
 module.exports = D;

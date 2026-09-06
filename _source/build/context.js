@@ -96,6 +96,10 @@ const RUNTIME_PUBLISHED = {
   'sim-kmap.js': 'sim-kmap.js',
   'sim-comb.js': 'sim-comb.js',
   'sim-8085.js': 'sim-8085.js',
+  'sql-engine.js': 'sql-engine.js',
+  'sim-table.js': 'sim-table.js',
+  'sim-sql.js': 'sim-sql.js',
+  'sim-er.js': 'sim-er.js',
   'services/motion.js': 'services/motion.js',
   'core.js': 'code.js',
   'diagram.js': 'diagram.js',
@@ -136,7 +140,8 @@ const hero = read('content/sections/hero.html');
 
 const questionBanks = {
   'grade10/oop-cpp':        require('../content/questions/grade10-oop-cpp.js'),
-  'grade10/digital-design': require('../content/questions/grade10-digital-design.js')
+  'grade10/digital-design': require('../content/questions/grade10-digital-design.js'),
+  'grade10/dbms':           require('../content/questions/grade10-dbms.js')
 };
 
 module.exports = {

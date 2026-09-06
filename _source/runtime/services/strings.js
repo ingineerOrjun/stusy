@@ -47,6 +47,7 @@
     play:        { en: '▶ Play',   ne: '▶ चलाउनुहोस्' },
     pause:       { en: '⏸ Pause',  ne: '⏸ रोक्नुहोस्' },
     reset:       { en: 'Reset',         ne: 'रिसेट' },
+    run:         { en: 'Run the query', ne: 'क्वेरी चलाउनुहोस्' },
     restart:     { en: 'Start again',   ne: 'फेरि सुरु' },
 
     /* answering */

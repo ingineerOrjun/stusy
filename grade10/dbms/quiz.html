@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Self-Check Quiz — DBMS | RGSC Study Board</title>
+<meta name="description" content="Self-Check Quiz explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html" class="on">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DBMS</a> <span class="sep">/</span> <span>Self-Check Quiz</span></nav>
+<main id="main" data-subject="grade10/dbms">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Introduction</a><a href="unit2.html">2 · ER Model</a><a href="unit3.html">3 · Relational Model</a><a href="unit4.html">4 · SQL</a><a href="unit5.html">5 · Normalization</a><a href="unit6.html">6 · Transaction</a><a href="unit7.html">7 · Backup & Security</a><a href="quiz.html" style="color:var(--yellow);border-color:var(--yellow)">? · Quiz</a></nav>
+<section id="db-quiz">
+  <div class="sec-head">
+    <div class="sec-num">?</div>
+    <div>
+      <h1>Self-Check Quiz</h1>
+      <p class="sec-sub" lang="ne">आफैं जाँच्नुहोस्</p>
+    </div>
+    <span class="marks">12 questions</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">How this quiz works</span>
+      <p>Twelve questions are drawn from a larger bank each time, so <b>a second attempt is a
+      different paper</b> — you cannot pass by remembering the order of the answers.</p>
+      <p>The bank covers all seven units and mixes the kinds of thinking the exam asks for:
+      recalling a definition, telling apart two terms that sound alike, applying a rule to a
+      scenario, and reading a query or a table to work out what it produces.</p>
+      <p>Questions and options are given in both languages, and follow whichever language mode you
+      have chosen at the top of the page.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">यो क्विज कसरी चल्छ</span>
+      <p lang="ne">हरेक पटक ठूलो बैंकबाट १२ प्रश्न छानिन्छन्, त्यसैले <b lang="ne">दोस्रो पटक फरक प्रश्न आउँछन्</b> —
+      उत्तरको क्रम सम्झेर पास हुन मिल्दैन।</p>
+      <p lang="ne">बैंकले सातै युनिट समेट्छ र परीक्षाले खोज्ने सोचाइका किसिम मिसाउँछ: परिभाषा सम्झने, उस्तै
+      सुनिने दुई शब्द छुट्याउने, नियमलाई परिस्थितिमा लागू गर्ने, र क्वेरी वा तालिका पढेर नतिजा
+      निकाल्ने।</p>
+      <p lang="ne">प्रश्न र विकल्प दुवै भाषामा छन्, र पृष्ठको माथि तपाईंले छानेको भाषा मोडअनुसार देखिन्छन्।</p>
+    </div>
+  </div>
+
+  <div id="quizBox" data-limit="12" data-shuffle="true"></div>
+
+  <div class="score" id="scoreBox" role="status" style="display:none">
+    <div class="big" id="scoreNum">0 / 12</div>
+    <div id="scoreMsg"></div>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit7.html"><span class="lab">◂ Previous</span><span class="ttl">Database Backup, Recovery and Security</span></a><a class="nx" href="index.html"><span class="lab">Back ▸</span><span class="ttl">Subject overview</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/quiz.js"></script>
+<script src="../../assets/js/question-bank.js"></script>
+<script src="../../assets/js/quiz.js"></script>
+</body>
+</html>

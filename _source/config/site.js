@@ -60,7 +60,8 @@ module.exports = [
         "slug": "dbms",
         "name": "Database Management System",
         "short": "DBMS",
-        "np": "डाटाबेस व्यवस्थापन प्रणाली"
+        "np": "डाटाबेस व्यवस्थापन प्रणाली",
+        "done": true
       },
       {
         "slug": "digital-design",

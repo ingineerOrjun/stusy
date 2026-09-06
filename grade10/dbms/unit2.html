@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Entity Relationship Model (ER-Model) — DBMS | RGSC Study Board</title>
+<meta name="description" content="Entity Relationship Model (ER-Model) explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html" class="on">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DBMS</a> <span class="sep">/</span> <span>Entity Relationship Model (ER-Model)</span></nav>
+<main id="main" data-subject="grade10/dbms">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Introduction</a><a href="unit2.html" style="color:var(--yellow);border-color:var(--yellow)">2 · ER Model</a><a href="unit3.html">3 · Relational Model</a><a href="unit4.html">4 · SQL</a><a href="unit5.html">5 · Normalization</a><a href="unit6.html">6 · Transaction</a><a href="unit7.html">7 · Backup & Security</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="db-u2">
+  <div class="sec-head">
+    <div class="sec-num">2</div>
+    <div>
+      <h1>Entity Relationship Model (ER-Model)</h1>
+      <p class="sec-sub" lang="ne">ई–आर मोडेल</p>
+    </div>
+    <span class="marks">10 hrs · 8 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2><div class="t-en">
+    <ol>
+      <li>Say what the ER model is for and why a database is modelled before it is built.</li>
+      <li>Identify an entity, an entity set and a weak entity, and draw each symbol.</li>
+      <li>Name the types of attribute and recognise each from its symbol.</li>
+      <li>Identify a relationship and state its degree.</li>
+      <li>Explain 1:1, 1:M and M:N, and say what each one costs in tables.</li>
+      <li>Define super, candidate, primary, alternate, foreign and composite keys.</li>
+      <li>Draw a complete ER diagram for a small scenario.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: ER मोडेल किन चाहिन्छ भन्न, इन्टिटी–कमजोर इन्टिटी चिन्न र
+    चिन्ह कोर्न, एट्रिब्युटका प्रकार नाम लिन, सम्बन्ध र यसको degree भन्न, 1:1–1:M–M:N को अर्थ र
+    तालिकामा पर्ने असर भन्न, कुञ्जीका प्रकार परिभाषित गर्न, र सानो परिदृश्यको पूरा ER चित्र कोर्न
+    सक्नुहुनेछ।</span>
+  </div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Why model before you build</span>
+      <p>A database is expensive to change once it holds real data. The <b>ER model</b> is a
+      picture of the database drawn <i>before</i> any table exists, so that mistakes are found on
+      paper instead of after a year of records.</p>
+      <p>It is deliberately not SQL and not tables. It is a diagram of <b>things</b> and
+      <b>how they are connected</b>, in language a school clerk could check. Only once the picture
+      is agreed is it turned into tables — and that translation is Unit 3.</p>
+      <p>An ER diagram has exactly three kinds of shape: <b>rectangles</b> for things,
+      <b>ellipses</b> for their properties, and <b>diamonds</b> for the connections between them.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">बनाउनुअघि मोडेल किन</span>
+      <p lang="ne">वास्तविक data भरिसकेपछि डाटाबेस बदल्न महँगो पर्छ। <b lang="ne">ER मोडेल</b> भनेको कुनै तालिका
+      बन्नुभन्दा <i lang="ne">अघि</i> कोरिने डाटाबेसको चित्र हो, ताकि गल्ती वर्ष दिनको रेकर्डपछि होइन,
+      कागजमै भेटियोस्।</p>
+      <p lang="ne">यो जानाजान SQL पनि होइन, तालिका पनि होइन। यो <b lang="ne">वस्तु</b> र <b lang="ne">तिनका सम्बन्ध</b> को चित्र
+      हो — विद्यालयको कर्मचारीले पनि जाँच्न सक्ने भाषामा। चित्र मिलेपछि मात्र तालिकामा बदलिन्छ, र
+      त्यो अनुवाद युनिट ३ मा छ।</p>
+      <p lang="ne">ER चित्रमा ठ्याक्कै तीन किसिमका आकार हुन्छन्: वस्तुका लागि <b lang="ne">आयत</b>, तिनका गुणका लागि
+      <b lang="ne">दीर्घवृत्त</b>, र जोडाइका लागि <b lang="ne">चतुर्भुज</b>।</p>
+    </div>
+  </div>
+
+  <h2 class="topic" id="db-t22">2.2 – 2.4 &nbsp;The components of an ER diagram</h2>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 268" role="img" aria-labelledby="t-ersym">
+  <title id="t-ersym">The ER diagram symbols: rectangle for entity, double rectangle for weak entity, ellipse for attribute, underlined for key, double for multivalued, dashed for derived, diamond for relationship</title>
+  <text class="f-ttl" x="10" y="20">ER SYMBOLS — learn to draw these from memory</text>
+
+  <g>
+    <rect x="40" y="44" width="112" height="44" rx="3" style="fill:var(--color-surface);stroke:var(--color-secondary);stroke-width:2"/>
+    <text class="f-lbl-y" x="96" y="70" style="font-size:12px">STUDENT</text>
+    <text class="f-lbl" x="96" y="106" style="font-size:11px">Entity — a real thing</text>
+    <text class="f-lbl" x="96" y="120" style="font-size:10.5px">becomes a TABLE</text>
+  </g>
+  <g>
+    <rect x="212" y="44" width="112" height="44" rx="3" style="fill:none;stroke:var(--color-secondary);stroke-width:2"/>
+    <rect x="217" y="49" width="102" height="34" rx="2" style="fill:var(--color-surface);stroke:var(--color-secondary);stroke-width:1.5"/>
+    <text class="f-lbl-y" x="268" y="70" style="font-size:12px">DEPENDENT</text>
+    <text class="f-lbl" x="268" y="106" style="font-size:11px">Weak entity</text>
+    <text class="f-lbl" x="268" y="120" style="font-size:10.5px">no key of its own</text>
+  </g>
+  <g>
+    <path d="M440,44 L516,66 L440,88 L364,66 Z" style="fill:var(--color-surface);stroke:var(--color-primary);stroke-width:2"/>
+    <text class="f-lbl-y" x="440" y="70" style="font-size:11px">ENROLS</text>
+    <text class="f-lbl" x="440" y="106" style="font-size:11px">Relationship</text>
+    <text class="f-lbl" x="440" y="120" style="font-size:10.5px">written as a verb</text>
+  </g>
+  <g>
+    <ellipse cx="608" cy="66" rx="58" ry="22" style="fill:var(--color-surface);stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl-y" x="608" y="70" style="font-size:11px">name</text>
+    <text class="f-lbl" x="608" y="106" style="font-size:11px">Attribute</text>
+    <text class="f-lbl" x="608" y="120" style="font-size:10.5px">becomes a COLUMN</text>
+  </g>
+
+  <g>
+    <ellipse cx="96" cy="164" rx="58" ry="22" style="fill:var(--color-surface);stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl-y" x="96" y="168" style="font-size:11px" text-decoration="underline">student_id</text>
+    <text class="f-lbl" x="96" y="204" style="font-size:11px">Key attribute</text>
+    <text class="f-lbl" x="96" y="218" style="font-size:10.5px">underlined — PRIMARY KEY</text>
+  </g>
+  <g>
+    <ellipse cx="268" cy="164" rx="60" ry="24" style="fill:none;stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <ellipse cx="268" cy="164" rx="53" ry="18" style="fill:var(--color-surface);stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl-y" x="268" y="168" style="font-size:11px">phone</text>
+    <text class="f-lbl" x="268" y="204" style="font-size:11px">Multivalued</text>
+    <text class="f-lbl" x="268" y="218" style="font-size:10.5px">can hold several values</text>
+  </g>
+  <g>
+    <ellipse cx="440" cy="164" rx="58" ry="22" style="fill:var(--color-surface);stroke:var(--color-border-strong);stroke-width:1.5;stroke-dasharray:5 4"/>
+    <text class="f-lbl-y" x="440" y="168" style="font-size:11px">age</text>
+    <text class="f-lbl" x="440" y="204" style="font-size:11px">Derived</text>
+    <text class="f-lbl" x="440" y="218" style="font-size:10.5px">worked out, not stored</text>
+  </g>
+  <g>
+    <ellipse cx="608" cy="164" rx="58" ry="22" style="fill:var(--color-surface);stroke:var(--color-border-strong);stroke-width:1.5"/>
+    <text class="f-lbl-y" x="608" y="160" style="font-size:10.5px">address</text>
+    <text class="f-lbl" x="608" y="174" style="font-size:9.5px">city + ward</text>
+    <text class="f-lbl" x="608" y="204" style="font-size:11px">Composite</text>
+    <text class="f-lbl" x="608" y="218" style="font-size:10.5px">splits into smaller parts</text>
+  </g>
+
+  <text class="f-lbl-y" x="350" y="252">A drawing question is marked on the SHAPES. A rectangle where an ellipse belongs loses the mark even if the word is right.</text>
+</svg>
+    <figcaption><span class="t-en">A drawing question is marked on the shapes. A rectangle where an ellipse belongs
+    loses the mark even when the word inside it is right.
+    </span><span class="np-cell" lang="ne">कोर्ने प्रश्नमा आकार नै जाँचिन्छ। दीर्घवृत्त हुनुपर्ने ठाउँमा आयत कोर्दा
+    भित्रको शब्द सही भए पनि अंक जान्छ।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h3>Every ER component, one at a time</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: which shape belongs to which idea, and what each
+      one becomes when the diagram is turned into tables.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: कुन आकार कुन विचारको हो, र चित्र तालिकामा
+      बदलिँदा हरेक के बन्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="erlab" id="er-parts" data-model="student-course" data-mode="parts"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Press each component in turn and watch which part of the diagram lights up. Read the
+        shape name — that is what you have to draw in the exam — and then the sentence, which
+        tells you what the component becomes in a real table.</p>
+        <p>Pay attention to <b>weak entity</b>. "Weak" does not mean unimportant. It means the
+        thing cannot be identified without its owner: a dependant is identified by <i>which
+        employee</i> they belong to, plus their name.</p>
+        </div><span class="np-cell" lang="ne">हरेक भाग क्रमैसँग थिच्नुहोस् र चित्रको कुन भाग बल्छ हेर्नुहोस्।
+        आकारको नाम पढ्नुहोस् — परीक्षामा कोर्नुपर्ने त्यही हो — अनि वाक्य पढ्नुहोस्, जसले त्यो भाग
+        वास्तविक तालिकामा के बन्छ बताउँछ। <b lang="ne">कमजोर इन्टिटी</b> मा ध्यान दिनुहोस्। "कमजोर" को अर्थ
+        महत्त्वहीन होइन; मालिकविना चिनिन नसक्ने भन्ने हो।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout"><span class="t-en">
+    <b>Degree of a relationship</b> is how many entities take part in it — not how many rows.
+    <b>Unary</b> (one entity related to itself: an employee <i>manages</i> an employee),
+    <b>binary</b> (two entities — almost every relationship you will meet), <b>ternary</b> (three).
+    Degree and cardinality are different questions: degree counts entities, cardinality counts
+    how many rows link to how many.
+    </span><span class="np-cell" lang="ne">सम्बन्धको <b>degree</b> भनेको त्यसमा कति इन्टिटी सहभागी छन् भन्ने हो —
+    कति पङ्क्ति भन्ने होइन। <b>Unary</b> (एउटै इन्टिटी आफैंसँग), <b>binary</b> (दुई — प्रायः सबै),
+    <b>ternary</b> (तीन)। Degree र cardinality फरक प्रश्न हुन्: degree ले इन्टिटी गन्छ,
+    cardinality ले कति पङ्क्ति कतिसँग जोडिन्छ भन्ने।</span>
+  </div>
+
+  <h2 class="topic" id="db-t25">2.5 &nbsp;Mapping cardinalities</h2>
+
+  <div class="predict" data-answer="c">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A student may take many courses, and a course may be taken by many students. How many
+      TABLES will this relationship need?
+      </span><span class="np-cell" lang="ne">एउटा विद्यार्थीले धेरै विषय लिन सक्छ, र एउटा विषय धेरै विद्यार्थीले
+      लिन सक्छन्। यो सम्बन्धलाई कति <b lang="ne">तालिका</b> चाहिन्छ?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">One</button>
+      <button class="predict-opt" data-value="b">Two</button>
+      <button class="predict-opt" data-value="c">Three</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>Three.</b> Student, Course, and a third table holding one row for every enrolment. No
+      single foreign key can record "many on both sides" — a column holds one value, so it can
+      point at one row. The moment a relationship is many-to-many, a junction table is forced.
+      Switch the tool below to M:N and the third table appears.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">तीन।</b> Student, Course, र हरेक भर्नाका लागि एक पङ्क्ति राख्ने तेस्रो
+      तालिका। "दुवैतर्फ धेरै" लाई एउटै foreign key ले राख्न सक्दैन — स्तम्भले एउटा मान राख्छ, त्यसैले
+      एउटै पङ्क्ति देखाउँछ। सम्बन्ध धेरै–धेरै भएकै क्षण junction तालिका अनिवार्य हुन्छ। तलको औजारमा
+      M:N छान्नुहोस्, तेस्रो तालिका देखिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h3>The ER visualiser — what a cardinality actually means</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: the difference between one-to-many and many-to-many,
+      shown in rows rather than in notation — and why only one of them needs a third table.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: एक–धेरै र धेरै–धेरैको फरक, चिन्हमा होइन
+      पङ्क्तिमा देखेर — र किन तीमध्ये एउटालाई मात्र तेस्रो तालिका चाहिन्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="erlab" id="er-card" data-model="student-course" data-card="1:M"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">What to notice</span>
+        <p>The notation at the top barely changes between the three buttons — one letter. The
+        <b>rows underneath</b> change completely, and that is the real difference.</p>
+        <p>On <b>1:M</b>, read the note under the list: every course points back at exactly one
+        student. Now press <b>M:N</b>. The same note changes — Maths is now reached from two
+        students. <b>Both directions are "many"</b>, and that is the whole definition.</p>
+        <p>Only M:N produces a junction table. Watch it appear, and notice it holds nothing but two
+        foreign keys — one row per link, which is exactly what the relationship is.</p>
+        </div><span class="np-cell" lang="ne">माथिको चिन्ह तीन बटनबीच झन्डै बदलिँदैन — एउटा अक्षर मात्र।
+        <b lang="ne">तलका पङ्क्ति</b> भने पूरै बदलिन्छन्, र वास्तविक फरक त्यही हो।
+        <b>1:M</b> मा सूचीमुनिको टिप्पणी पढ्नुहोस्: हरेक विषयले ठ्याक्कै एउटा विद्यार्थी देखाउँछ।
+        अब <b>M:N</b> थिच्नुहोस् — Maths अब दुई विद्यार्थीबाट जोडिन्छ। <b lang="ne">दुवैतर्फ "धेरै"</b>,
+        र पूरा परिभाषा यही हो। M:N ले मात्र junction तालिका बनाउँछ; त्यसमा दुई foreign key बाहेक
+        केही हुँदैन।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Choosing the cardinality from a sentence</div>
+    <p><b>Question:</b> decide the mapping cardinality for each, and give the reason.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">"Each citizen has one citizenship number,
+ and each number belongs to one citizen."
+   → 1:1   both directions are "one"
+
+"A class contains many students,
+ but each student is in only one class."
+   → 1:M   many one way, one the other way
+
+"A student takes many courses,
+ and a course is taken by many students."
+   → M:N   many BOTH ways</div>
+    </div>
+    <p class="wex-note"><span class="t-en">Always test <b>both directions</b>. A sentence that only tells you one
+    direction has not told you the cardinality. "A class has many students" alone could be 1:M or
+    M:N — you have to ask whether a student can be in two classes.
+    </span><span class="np-cell" lang="ne">सधैं <b lang="ne">दुवै दिशा</b> जाँच्नुहोस्। एउटा दिशा मात्र बताउने वाक्यले
+    cardinality बताएकै हुँदैन। "एउटा कक्षामा धेरै विद्यार्थी" भन्ने मात्रले 1:M कि M:N भन्न मिल्दैन —
+    एउटा विद्यार्थी दुई कक्षामा हुन सक्छ कि भनी सोध्नुपर्छ।</span></p>
+  </div>
+
+  <h2 class="topic" id="db-t26">2.6 &nbsp;Keys in DBMS</h2>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 220" role="img" aria-labelledby="t-keytypes">
+  <title id="t-keytypes">Types of keys in DBMS: super key, candidate key, primary key, alternate key, foreign key and composite key</title>
+  <text class="f-ttl" x="10" y="20">KEYS — each one is a narrowing of the one before</text>
+<g>
+    <rect class="f-box-d" x="16" y="38" width="668" height="24" rx="6"/>
+    <rect x="18" y="42" width="4" height="16" rx="2" style="fill:var(--color-border-strong)"/>
+    <text class="f-lbl-y" x="36" y="55" text-anchor="start" style="font-size:11.5px">SUPER KEY</text>
+    <text class="f-lbl" x="166" y="55" text-anchor="start" style="font-size:11px">ANY set of columns that identifies a row uniquely</text>
+    <text class="f-code" x="452" y="55" text-anchor="start" style="font-size:11px">{id}, {id, name}, {id, name, marks}</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="66" width="668" height="24" rx="6"/>
+    <rect x="18" y="70" width="4" height="16" rx="2" style="fill:var(--color-border-strong)"/>
+    <text class="f-lbl-y" x="36" y="83" text-anchor="start" style="font-size:11.5px">CANDIDATE KEY</text>
+    <text class="f-lbl" x="166" y="83" text-anchor="start" style="font-size:11px">a super key with nothing spare in it</text>
+    <text class="f-code" x="452" y="83" text-anchor="start" style="font-size:11px">{id}, {roll_no}</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="94" width="668" height="24" rx="6"/>
+    <rect x="18" y="98" width="4" height="16" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="36" y="111" text-anchor="start" style="font-size:11.5px">PRIMARY KEY</text>
+    <text class="f-lbl" x="166" y="111" text-anchor="start" style="font-size:11px">the ONE candidate key actually chosen</text>
+    <text class="f-code" x="452" y="111" text-anchor="start" style="font-size:11px">{id}</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="122" width="668" height="24" rx="6"/>
+    <rect x="18" y="126" width="4" height="16" rx="2" style="fill:var(--color-border-strong)"/>
+    <text class="f-lbl-y" x="36" y="139" text-anchor="start" style="font-size:11.5px">ALTERNATE KEY</text>
+    <text class="f-lbl" x="166" y="139" text-anchor="start" style="font-size:11px">the candidate keys that were not chosen</text>
+    <text class="f-code" x="452" y="139" text-anchor="start" style="font-size:11px">{roll_no}</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="150" width="668" height="24" rx="6"/>
+    <rect x="18" y="154" width="4" height="16" rx="2" style="fill:var(--color-secondary)"/>
+    <text class="f-lbl-y" x="36" y="167" text-anchor="start" style="font-size:11.5px">FOREIGN KEY</text>
+    <text class="f-lbl" x="166" y="167" text-anchor="start" style="font-size:11px">a column pointing at another table’s primary key</text>
+    <text class="f-code" x="452" y="167" text-anchor="start" style="font-size:11px">Student.class_id → Class.class_id</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="178" width="668" height="24" rx="6"/>
+    <rect x="18" y="182" width="4" height="16" rx="2" style="fill:var(--color-border-strong)"/>
+    <text class="f-lbl-y" x="36" y="195" text-anchor="start" style="font-size:11.5px">COMPOSITE KEY</text>
+    <text class="f-lbl" x="166" y="195" text-anchor="start" style="font-size:11px">a key made of two or more columns together</text>
+    <text class="f-code" x="452" y="195" text-anchor="start" style="font-size:11px">{student_id, course_id}</text>
+  </g>
+  <text class="f-lbl-y" x="350" y="214">Every primary key is a candidate key, and every candidate key is a super key. The reverse is not true.</text>
+</svg>
+    <figcaption><span class="t-en">Each key is a narrowing of the one above it. Every primary key is a candidate key,
+    and every candidate key is a super key — but not the reverse.
+    </span><span class="np-cell" lang="ne">हरेक कुञ्जी माथिकोभन्दा साँघुरो हुँदै जान्छ। हरेक primary key एउटा candidate
+    key हो, र हरेक candidate key एउटा super key — तर उल्टो होइन।</span></figcaption>
+  </figure>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The two rules a primary key must obey</span>
+      <p>A primary key must be <b>unique</b> — no two rows may share its value — and it must be
+      <b>NOT NULL</b> — it can never be left empty. Those two rules are what allow a row to be
+      found reliably.</p>
+      <p>A <b>foreign key</b> is different in kind. It is not about identifying a row in its own
+      table; it is a column whose value <b>must already exist</b> as a primary key in another
+      table. That rule is what links two tables together, and it is called
+      <b>referential integrity</b>.</p>
+      <p>A foreign key <i>may</i> be NULL — Gita has no class yet — and it <i>may</i> repeat, since
+      many students share one class. A primary key may do neither.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">Primary key ले पालना गर्नुपर्ने दुई नियम</span>
+      <p>Primary key <b lang="ne">अद्वितीय</b> हुनुपर्छ — दुई पङ्क्तिको मान उही हुन नहुने — र
+      <b>NOT NULL</b> हुनुपर्छ — कहिल्यै खाली छाड्न नहुने। यी दुई नियमले नै पङ्क्ति भरपर्दो
+      रूपमा खोज्न दिन्छन्।</p>
+      <p><b>Foreign key</b> फरक किसिमको हो। यसले आफ्नै तालिकाको पङ्क्ति चिनाउँदैन; यो त्यस्तो स्तम्भ
+      हो जसको मान अर्को तालिकाको primary key मा <b lang="ne">पहिले नै हुनैपर्छ</b>। यही नियमले दुई तालिका
+      जोड्छ, र यसलाई <b>referential integrity</b> भनिन्छ।</p>
+      <p lang="ne">Foreign key NULL हुन <i lang="ne">सक्छ</i> — गीताको कक्षा अझै छैन — र दोहोरिन पनि <i lang="ne">सक्छ</i>,
+      किनभने धेरै विद्यार्थीको कक्षा एउटै हुन्छ। Primary key ले यी दुवै गर्न पाउँदैन।</p>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h3>Mistakes that cost marks here</h3>
+    <ul>
+      <li><span class="t-en"><b>Calling a weak entity "unimportant".</b> It means the entity has no key of its own and
+        must borrow its owner's. Draw it with a double rectangle.
+        </span><span class="np-cell" lang="ne">कमजोर इन्टिटीलाई "महत्त्वहीन" भन्नु। यसको अर्थ आफ्नो कुञ्जी नभएको र
+        मालिकको कुञ्जी लिनुपर्ने भन्ने हो। दोहोरो आयतले कोर्नुहोस्।</span></li>
+      <li><span class="t-en"><b>Answering "many students in a class" as M:N.</b> Check the other direction: a student
+        is in one class, so it is 1:M.
+        </span><span class="np-cell" lang="ne">"एउटा कक्षामा धेरै विद्यार्थी" लाई M:N भन्नु। अर्को दिशा जाँच्नुहोस्:
+        विद्यार्थी एउटै कक्षामा हुन्छ, त्यसैले 1:M।</span></li>
+      <li><span class="t-en"><b>Confusing degree with cardinality.</b> Degree counts the entities in a relationship;
+        cardinality counts how many rows link to how many.
+        </span><span class="np-cell" lang="ne">Degree र cardinality मिसाउनु। Degree ले सम्बन्धका इन्टिटी गन्छ;
+        cardinality ले कति पङ्क्ति कतिसँग जोडिन्छ भन्छ।</span></li>
+      <li><span class="t-en"><b>Underlining nothing in an ER diagram.</b> The key attribute must be underlined — that
+        is the notation for a primary key, and a marker looks for it.
+        </span><span class="np-cell" lang="ne">ER चित्रमा कुनै पनि नाममुनि रेखा नकोर्नु। कुञ्जी एट्रिब्युटमुनि रेखा
+        हुनैपर्छ — primary key को चिन्ह त्यही हो।</span></li>
+      <li><span class="t-en"><b>Writing a relationship as a noun.</b> A diamond holds a verb: ENROLS, TEACHES,
+        CONTAINS — not "enrolment".
+        </span><span class="np-cell" lang="ne">सम्बन्धलाई नामपदमा लेख्नु। चतुर्भुजभित्र क्रियापद हुन्छ: ENROLS,
+        TEACHES, CONTAINS — "enrolment" होइन।</span></li>
+    </ul>
+  </div>
+
+  <h2 class="topic" id="db-exam2">Exam focus — what is asked from this unit</h2>
+
+  <div class="exam-connect"><span class="t-en">
+    <b>This unit is examined mostly by drawing.</b> The commonest question gives you two or three
+    sentences describing a small system and asks for an ER diagram — entities, attributes with the
+    key underlined, a relationship named as a verb, and the cardinality marked on both lines.
+    Marks are given for each of those four things separately, so a diagram missing its
+    cardinalities still earns most of them. Draw it big, and label everything.
+    </span><span class="np-cell" lang="ne">यो युनिट प्रायः <b lang="ne">कोरेर</b> जाँचिन्छ। सामान्य प्रश्नले दुई–तीन वाक्यमा
+    सानो प्रणाली वर्णन गरेर ER चित्र माग्छ — इन्टिटी, कुञ्जीमुनि रेखासहितका एट्रिब्युट, क्रियापदमा
+    नाम दिइएको सम्बन्ध, र दुवै रेखामा cardinality। यी चार कुरालाई छुट्टाछुट्टै अंक हुन्छ, त्यसैले
+    cardinality छुटे पनि धेरैजसो अंक आउँछ। ठूलो कोर्नुहोस् र सबैमा नाम लेख्नुहोस्।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">Define entity and attribute with one example of each.
+    </span><span class="np-cell" lang="ne">इन्टिटी र एट्रिब्युटको परिभाषा एक–एक उदाहरणसहित दिनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba21">Show the answer</button>
+    <div class="ans" id="dba21"><div class="t-en">
+      <p>An <b>entity</b> is a real-world object or concept about which data is stored, and which
+      can be identified distinctly. Example: a STUDENT. It is drawn as a rectangle and becomes a
+      table.</p>
+      <p>An <b>attribute</b> is a property or characteristic of an entity. Example: the student's
+      <i>name</i>. It is drawn as an ellipse and becomes a column.</p>
+      </div><span class="np-cell" lang="ne">दुवैको परिभाषा, एक–एक उदाहरण, र चाहेमा कुन आकारले कोरिन्छ भन्ने पनि।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Explain the three mapping cardinalities with a suitable example of each.
+    </span><span class="np-cell" lang="ne">तीनै mapping cardinality लाई उपयुक्त उदाहरणसहित व्याख्या गर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba22">Show the answer</button>
+    <div class="ans" id="dba22"><div class="t-en">
+      <div class="out">ONE-TO-ONE (1:1)
+  Each A relates to at most one B, and each B to at most one A.
+  Example: a citizen and a citizenship number.
+
+ONE-TO-MANY (1:M)
+  One A relates to many B, but each B to only one A.
+  Example: a class contains many students; each student
+  is in one class.
+
+MANY-TO-MANY (M:N)
+  Many A relate to many B, in both directions.
+  Example: a student takes many courses, and a course
+  is taken by many students.
+  → needs a third (junction) table.</div>
+      <p>One mark per cardinality with its example, and the fourth for stating that M:N requires an
+      extra table.</p>
+      </div><span class="np-cell" lang="ne">हरेक cardinality र उदाहरणलाई एक–एक अंक, र M:N लाई थप तालिका चाहिन्छ
+      भनेकोमा चौथो अंक।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">A library keeps books and members. A member may borrow many books, and a book may be
+    borrowed by many members over time. Draw an ER diagram for this.
+    </span><span class="np-cell" lang="ne">एउटा पुस्तकालयले पुस्तक र सदस्यको अभिलेख राख्छ। एक सदस्यले धेरै पुस्तक लिन
+    सक्छन्, र एउटै पुस्तक समयक्रममा धेरै सदस्यले लिन सक्छन्। यसको ER चित्र कोर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba23">Show the answer</button>
+    <div class="ans" id="dba23"><div class="t-en">
+      <div class="out">  (member_id)  (name)        (book_id)  (title)
+       \     /                    \     /
+     ┌──────────┐   M  ◇ BORROWS ◇  N  ┌────────┐
+     │  MEMBER  │──────────────────────│  BOOK  │
+     └──────────┘                      └────────┘
+
+  member_id and book_id are UNDERLINED (key attributes)
+  BORROWS is written in a diamond, as a verb
+  M and N are marked on the two lines</div>
+      <p>One mark for the two entities as rectangles, one for the attributes as ellipses with the
+      keys underlined, one for the relationship in a diamond named as a verb, and one for the M:N
+      cardinality marked on both lines.</p>
+      </div><span class="np-cell" lang="ne">आयतमा दुई इन्टिटीलाई एक अंक, कुञ्जीमुनि रेखासहित दीर्घवृत्तका
+      एट्रिब्युटलाई एक, चतुर्भुजमा क्रियापद रूपको सम्बन्धलाई एक, र दुवै रेखामा M:N लेखेकोमा एक।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick"><span class="t-en">Rectangle = entity, ellipse = attribute, diamond = relationship. Double
+        rectangle = weak entity, double ellipse = multivalued, dashed ellipse = derived,
+        underlined = key.
+        </span><span class="np-cell" lang="ne">आयत = इन्टिटी, दीर्घवृत्त = एट्रिब्युट, चतुर्भुज = सम्बन्ध। दोहोरो आयत =
+        कमजोर इन्टिटी, दोहोरो दीर्घवृत्त = बहुमान, धर्के = व्युत्पन्न, मुनि रेखा = कुञ्जी।</span></li>
+      <li class="tick"><span class="t-en">Degree counts the entities in a relationship; cardinality counts how many
+        rows link to how many. They are different questions.
+        </span><span class="np-cell" lang="ne">Degree ले सम्बन्धका इन्टिटी गन्छ; cardinality ले कति पङ्क्ति कतिसँग
+        जोडिन्छ। दुई फरक प्रश्न हुन्।</span></li>
+      <li class="tick"><span class="t-en">Always test cardinality in BOTH directions. Many one way and one the other
+        is 1:M; many both ways is M:N.
+        </span><span class="np-cell" lang="ne">Cardinality सधैं दुवै दिशामा जाँच्नुहोस्। एकातिर धेरै र अर्कोतिर एक भए
+        1:M; दुवैतिर धेरै भए M:N।</span></li>
+      <li class="tick"><span class="t-en">M:N always needs a third table. 1:1 and 1:M do not.
+        </span><span class="np-cell" lang="ne">M:N लाई सधैं तेस्रो तालिका चाहिन्छ। 1:1 र 1:M लाई चाहिँदैन।</span></li>
+      <li class="tick"><span class="t-en">A primary key is unique and never NULL. A foreign key may be NULL and may
+        repeat, but its value must already exist in the table it points at.
+        </span><span class="np-cell" lang="ne">Primary key अद्वितीय हुन्छ र कहिल्यै NULL हुँदैन। Foreign key NULL
+        हुन र दोहोरिन सक्छ, तर यसको मान देखाइएको तालिकामा पहिले नै हुनुपर्छ।</span></li>
+      <li class="tick"><span class="t-en">Every primary key is a candidate key; every candidate key is a super key.
+        The reverse is not true.
+        </span><span class="np-cell" lang="ne">हरेक primary key एउटा candidate key हो; हरेक candidate key एउटा super
+        key। उल्टो होइन।</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit1.html"><span class="lab">◂ Previous</span><span class="ttl">Introduction to Database System</span></a><a class="nx" href="unit3.html"><span class="lab">Next ▸</span><span class="ttl">Relational Model</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-table.js"></script>
+<script src="../../assets/js/sim-er.js"></script>
+</body>
+</html>

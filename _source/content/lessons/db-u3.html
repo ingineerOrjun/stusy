@@ -1,0 +1,346 @@
+<section id="db-u3">
+  <div class="sec-head">
+    <div class="sec-num">3</div>
+    <div>
+      <h2>Relational Model</h2>
+      <p class="sec-sub">रिलेसनल मोडेल</p>
+    </div>
+    <span class="marks">10 hrs · 8 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>State what the relational model is and why almost every database uses it.</li>
+      <li>Label a given table with the correct term for every part of it.</li>
+      <li>Tell degree from cardinality without hesitating.</li>
+      <li>Define domain, relational instance and relational schema.</li>
+      <li>State the properties of a relation.</li>
+      <li>Convert an ER diagram into a set of tables, including the junction table an M:N
+        relationship forces.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: रिलेसनल मोडेल के हो र किन प्रायः सबै डाटाबेसले यही
+    प्रयोग गर्छन् भन्न, दिइएको तालिकाका हरेक भागलाई सही नाम दिन, degree र cardinality नअलमलिई
+    छुट्याउन, domain–instance–schema परिभाषित गर्न, रिलेसनका गुण भन्न, र ER चित्रलाई तालिकामा
+    बदल्न सक्नुहुनेछ।</span>
+  </div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>The <b>relational model</b> represents all data as <b>relations</b> — two-dimensional
+      tables of rows and columns — and represents the connections between them using
+      <b>keys</b> rather than pointers or links.</p>
+      <p>That is the whole idea, and its power is that it needs only one shape. A student, a
+      course, and the enrolment joining them are all the same kind of object: a table. Nothing
+      else has to be learned.</p>
+      <p>It was proposed by <b>E. F. Codd</b> in 1970 and is the model behind MySQL, Oracle,
+      PostgreSQL and MS Access.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>रिलेसनल मोडेल</b> ले सबै data लाई <b>रिलेसन</b> — पङ्क्ति र स्तम्भ भएका दुई आयामिक
+      तालिका — का रूपमा राख्छ, र तिनबीचको जोडाइ pointer वा link होइन, <b>कुञ्जी</b> ले देखाउँछ।</p>
+      <p>पूरा विचार यत्ति हो, र यसको बल एउटै आकार चाहिनुमा छ। विद्यार्थी, विषय, र दुवैलाई जोड्ने
+      भर्ना — तीनै उही किसिमका वस्तु हुन्: तालिका। अरू केही सिक्नु पर्दैन।</p>
+      <p>यो <b>E. F. Codd</b> ले सन् १९७० मा प्रस्ताव गरेका हुन्, र MySQL, Oracle, PostgreSQL तथा
+      MS Access यसैमा आधारित छन्।</p>
+    </div>
+  </div>
+
+  <h3 class="topic" id="db-t32">3.2 &nbsp;The vocabulary, on one table</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Nine words, six things</span>
+      <p>This topic is a list of terms, and lists of terms are what students confuse in the hall.
+      The pair that goes wrong most is <b>degree</b> and <b>cardinality</b>: they sound
+      interchangeable and they are not.</p>
+      <p><b>Degree</b> is the number of <b>columns</b>. <b>Cardinality</b> is the number of
+      <b>rows</b>. A table with 4 columns and 100 rows has degree 4 and cardinality 100 — the
+      numbers are usually nothing alike, so if you can remember which is which you can always
+      check your own answer.</p>
+      <p>Rather than memorising nine definitions, point at them. Use the tool below: choose a
+      word and the part of the table it names lights up.</p>
+    </div>
+    <div class="np"><span class="tag">नौ शब्द, छ वस्तु</span>
+      <p>यो टपिक शब्दहरूको सूची हो, र परीक्षा हलमा विद्यार्थीले अलमल्ने ठाउँ यस्तै सूची हुन्। सबैभन्दा
+      बढी बिग्रने जोडी <b>degree</b> र <b>cardinality</b> हो: सुन्दा उस्तै लाग्छ, तर होइन।</p>
+      <p><b>Degree</b> भनेको <b>स्तम्भ</b>को सङ्ख्या। <b>Cardinality</b> भनेको <b>पङ्क्ति</b>को
+      सङ्ख्या। ४ स्तम्भ र १०० पङ्क्ति भएको तालिकाको degree ४ र cardinality १०० हुन्छ — सङ्ख्या
+      प्रायः निकै फरक हुने भएकाले कुन हो सम्झे आफ्नै उत्तर जाँच्न सकिन्छ।</p>
+      <p>नौ परिभाषा घोक्नुभन्दा औंल्याएर हेर्नुहोस्। तलको औजारमा शब्द छान्नुहोस् — त्यसले जनाउने
+      भाग तालिकामा बल्छ।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h4>The relational table visualiser</h4>
+      <p class="sim-goal">What you will learn: which part of a table each term names, so the words
+      attach to something you can see instead of to each other.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: हरेक शब्दले तालिकाको कुन भाग जनाउँछ — शब्दहरू
+      एकआपसमा होइन, देखिने कुरामा टाँसिऊन् भनेर।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="dbtable" id="dt-vocab" data-table="Student" data-mode="vocab"></div>
+      <div class="sim-why">
+        <span class="h">What to notice</span>
+        <p>Press <b>Degree</b> and then <b>Cardinality</b> one after the other, and watch the
+        highlight turn from columns to rows. The two counts are printed under the table the whole
+        time — 4 and 4 here, which is unhelpfully equal, so read the word, not the number.</p>
+        <p>Now press <b>Relational schema</b>, then <b>Relational instance</b>. The schema
+        highlights the heading; the instance highlights the body. That is the whole distinction:
+        the heading is the design, the body is today's data.</p>
+        <p>Press the same button twice to clear it.</p>
+        <span class="np-cell"><b>Degree</b> र <b>Cardinality</b> एकपछि अर्को थिच्नुहोस् — उज्यालो
+        स्तम्भबाट पङ्क्तिमा सर्छ। दुवै गणना तालिकामुनि सधैं देखिन्छ। अब <b>Relational schema</b> र
+        <b>Relational instance</b> थिच्नुहोस्। Schema ले शीर्ष भाग, instance ले मुख्य भाग बाल्छ —
+        शीर्ष भनेको डिजाइन, मुख्य भाग भनेको आजको data। उही बटन दोहोर्‍याएर थिच्दा हट्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>3.3 — The properties of a relation.</b>
+    Every cell holds a <b>single, atomic value</b> — never a list.
+    <b>No two rows are identical</b> — the primary key guarantees it.
+    <b>The order of rows does not matter</b>, and neither does the order of columns — a table is a
+    set, not a list.
+    <b>Every value in a column comes from the same domain.</b>
+    <span class="np-cell">रिलेसनका गुण: हरेक कक्षमा <b>एउटै अविभाज्य मान</b> हुन्छ — सूची कहिल्यै
+    होइन। <b>दुई पङ्क्ति उस्तै हुँदैनन्</b> — primary key ले सुनिश्चित गर्छ। <b>पङ्क्तिको क्रमले
+    फरक पार्दैन</b>, स्तम्भको क्रमले पनि — तालिका सेट हो, सूची होइन। <b>एउटै स्तम्भका सबै मान
+    उही domain बाट आउँछन्।</b></span>
+  </div>
+
+  <div class="predict" data-answer="a">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>Two tables hold exactly the same four rows, but one lists them in a different order.
+      Are they the same relation?
+      <span class="np-cell">दुई तालिकामा ठ्याक्कै उही चार पङ्क्ति छन्, तर एउटामा क्रम फरक छ।
+      के ती एउटै रिलेसन हुन्?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Yes — order does not matter</button>
+      <button class="predict-opt" data-value="b">No — the order is part of the table</button>
+    </div>
+    <div class="predict-feedback">
+      <p><b>Yes.</b> A relation is a <i>set</i> of tuples, and a set has no order. This is why you
+      must write <code>ORDER BY</code> when you want a particular order — the database is under no
+      obligation to give you the rows in the order they were inserted, and without ORDER BY it may
+      give a different order each time.</p>
+      <span class="np-cell"><b>हो।</b> रिलेसन भनेको ट्युपलहरूको <i>सेट</i> हो, र सेटको क्रम हुँदैन।
+      त्यसैले निश्चित क्रम चाहिँदा <code>ORDER BY</code> लेख्नैपर्छ — डाटाबेसले भर्ना गरेकै क्रममा
+      दिनुपर्ने बाध्यता छैन।</span>
+    </div>
+  </div>
+
+  <h3 class="topic" id="db-t34">3.4 &nbsp;Mapping the ER model to the relational model</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Four rules, applied in order</span>
+      <p><b>1.</b> Every <b>entity</b> becomes a table. Its <b>key attribute</b> becomes the
+      primary key, and every other attribute becomes a column.</p>
+      <p><b>2.</b> A <b>1:M relationship</b> is recorded by putting the primary key of the "one"
+      side into the "many" side as a <b>foreign key</b>. No extra table.</p>
+      <p><b>3.</b> A <b>M:N relationship</b> becomes a <b>table of its own</b>, holding the primary
+      key of each side as a foreign key. Together those two columns form its composite primary
+      key.</p>
+      <p><b>4.</b> A <b>multivalued attribute</b> becomes a separate table too — a column can hold
+      only one value, so two phone numbers cannot live in one cell.</p>
+    </div>
+    <div class="np"><span class="tag">चार नियम, यही क्रममा</span>
+      <p><b>१.</b> हरेक <b>इन्टिटी</b> तालिका बन्छ। यसको <b>कुञ्जी एट्रिब्युट</b> primary key बन्छ,
+      र बाँकी हरेक एट्रिब्युट एउटा स्तम्भ।</p>
+      <p><b>२.</b> <b>1:M सम्बन्ध</b> लाई "एक" तर्फको primary key लाई "धेरै" तर्फ <b>foreign key</b>
+      बनाएर राखिन्छ। थप तालिका चाहिँदैन।</p>
+      <p><b>३.</b> <b>M:N सम्बन्ध</b> <b>आफैं एउटा तालिका</b> बन्छ, जसमा दुवैतर्फको primary key
+      foreign key भएर बस्छ। ती दुई स्तम्भ मिलेर composite primary key बन्छ।</p>
+      <p><b>४.</b> <b>बहुमान एट्रिब्युट</b> पनि छुट्टै तालिका बन्छ — स्तम्भले एउटै मान राख्ने भएकाले
+      दुई फोन नम्बर एउटै कक्षमा बस्न सक्दैनन्।</p>
+    </div>
+  </div>
+
+  {{dia:erToRelational}}
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Converting an ER diagram to tables</div>
+    <p><b>Question:</b> a hospital records DOCTORs (doctor_id, name) and PATIENTs (patient_id,
+    name). A doctor treats many patients, and a patient may be treated by many doctors. Convert
+    this to the relational model.</p>
+    <p><b>Step 1 — apply rule 1</b> to each entity:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">Doctor  ( doctor_id,  name )
+             PK
+
+Patient ( patient_id, name )
+             PK</div>
+    </div>
+    <p><b>Step 2 — decide the cardinality.</b> Many doctors to many patients, in both directions,
+    so it is <b>M:N</b>. Rule 3 applies: the relationship gets a table of its own.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">Doctor  ( doctor_id,  name )
+Patient ( patient_id, name )
+Treats  ( doctor_id, patient_id )
+            FK          FK
+          composite primary key = both columns together</div>
+    </div>
+    <p class="wex-note">Three tables from two entities. Marks are lost here by producing only two
+    and trying to squeeze the relationship into a single column — which cannot work, because a
+    column holds one value and this doctor has many patients.
+    <span class="np-cell">दुई इन्टिटीबाट तीन तालिका। यहाँ अंक जाने ठाउँ: दुई मात्र बनाएर सम्बन्धलाई
+    एउटै स्तम्भमा कोच्न खोज्नु — जुन सम्भव छैन, किनभने स्तम्भले एउटै मान राख्छ र यो डाक्टरका धेरै
+    बिरामी छन्।</span></p>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h4>Keys, and the rule that links two tables</h4>
+      <p class="sim-goal">What you will learn: how a foreign key in one table points at a primary
+      key in another, and what referential integrity actually forbids.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: एउटा तालिकाको foreign key ले अर्कोको primary key
+      लाई कसरी देखाउँछ, र referential integrity ले साँच्चै के निषेध गर्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="dbtable" id="dt-keys" data-tables="Student,Class" data-mode="keys"></div>
+      <div class="sim-why">
+        <span class="h">What to notice</span>
+        <p>Read the two badges. <b>PK</b> marks the column that identifies a row;
+        <b>FK</b> marks the column that points at another table.</p>
+        <p><code>Student.class_id</code> holds 10, 10 and 11 — values that all exist in
+        <code>Class.class_id</code>. That is <b>referential integrity</b>: a foreign key may not
+        hold a value that has no matching primary key. Inserting a student in class 15 would be
+        refused, because no class 15 exists.</p>
+        <p>Gita's <code>class_id</code> is <b>NULL</b>, and that is allowed. A foreign key may be
+        empty — it means "not assigned yet". It may not be <i>wrong</i>.</p>
+        <span class="np-cell">दुई ब्याज पढ्नुहोस्। <b>PK</b> ले पङ्क्ति चिनाउने स्तम्भ,
+        <b>FK</b> ले अर्को तालिका देखाउने स्तम्भ जनाउँछ। <code>Student.class_id</code> मा १०, १०, ११
+        छन् — सबै <code>Class.class_id</code> मा भएका मान। यही <b>referential integrity</b> हो।
+        कक्षा १५ मा विद्यार्थी थप्न खोजे अस्वीकार हुन्छ। गीताको <code>class_id</code> <b>NULL</b> छ,
+        र त्यो मिल्छ — foreign key खाली हुन पाउँछ, गलत हुन पाउँदैन।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Swapping degree and cardinality.</b> Degree counts columns; cardinality counts rows.
+        Check your answer against the table — the two numbers are almost never the same.
+        <span class="np-cell">Degree र cardinality साट्नु। Degree ले स्तम्भ, cardinality ले पङ्क्ति
+        गन्छ। तालिकासँग मिलाएर जाँच्नुहोस्।</span></li>
+      <li><b>Saying a relation may have duplicate rows.</b> It may not — that is one of the
+        defining properties.
+        <span class="np-cell">रिलेसनमा उही पङ्क्ति दोहोरिन सक्छ भन्नु। सक्दैन — यो परिभाषित गुण
+        मध्येको एक हो।</span></li>
+      <li><b>Turning an M:N relationship into two tables.</b> It needs three. The relationship
+        itself becomes a table.
+        <span class="np-cell">M:N सम्बन्धलाई दुई तालिका बनाउनु। तीन चाहिन्छ — सम्बन्ध आफैं तालिका
+        बन्छ।</span></li>
+      <li><b>Confusing schema with instance.</b> Inserting a row changes the instance. The schema
+        is unchanged.
+        <span class="np-cell">Schema र instance मिसाउनु। पङ्क्ति थप्दा instance बदलिन्छ, schema
+        होइन।</span></li>
+      <li><b>Putting a list in a cell.</b> "Maths, Science" in one cell breaks the atomic-value
+        property — and it is exactly what 1NF exists to fix, in Unit 5.
+        <span class="np-cell">एउटै कक्षमा सूची राख्नु। "Maths, Science" ले अविभाज्य मानको गुण
+        तोड्छ — र युनिट ५ को 1NF यही सुधार्न छ।</span></li>
+    </ul>
+  </div>
+
+  <h3 class="topic" id="db-exam3">Exam focus — what is asked from this unit</h3>
+
+  <div class="exam-connect">
+    <b>Two question shapes dominate here.</b> The first gives you a small table and asks you to
+    state its degree, its cardinality and its primary key — a few marks, quickly earned, provided
+    you do not swap the first two. The second gives you an ER diagram and asks you to convert it
+    to tables; the marks are for the right <i>number</i> of tables and for putting the foreign key
+    on the correct side.
+    <span class="np-cell">यहाँ दुई किसिमका प्रश्न हावी छन्। पहिलोले सानो तालिका दिएर degree,
+    cardinality र primary key सोध्छ — छिटो पाइने अंक, पहिला दुई नसाटे। दोस्रोले ER चित्र दिएर
+    तालिकामा बदल्न भन्छ; अंक सही <i>सङ्ख्या</i> का तालिका र foreign key सही तर्फ राखेकोमा हुन्छ।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>Define degree and cardinality of a relation.
+    <span class="np-cell">रिलेसनको degree र cardinality परिभाषित गर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba31">Show the answer</button>
+    <div class="ans" id="dba31">
+      <p>The <b>degree</b> of a relation is the number of attributes (columns) in it.</p>
+      <p>The <b>cardinality</b> of a relation is the number of tuples (rows) in it.</p>
+      <p>Example: a Student table with columns id, name, marks, class_id and 4 rows has degree 4
+      and cardinality 4.</p>
+      <span class="np-cell">दुवैको परिभाषा र एउटा उदाहरण। स्तम्भ = degree, पङ्क्ति = cardinality।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p>State any three properties of a relation.
+    <span class="np-cell">रिलेसनका कुनै तीन गुण लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba32">Show the answer</button>
+    <div class="ans" id="dba32">
+      <p><b>Atomic values</b> — every cell holds a single indivisible value, never a list.
+      <b>No duplicate tuples</b> — no two rows are identical, which the primary key guarantees.
+      <b>Order is not significant</b> — the rows and the columns may be listed in any order.
+      <b>Values come from a domain</b> — every value in a column is drawn from the same allowed
+      set. <b>Each attribute has a distinct name</b>.</p>
+      <p>Any three, each named and explained in one line.</p>
+      <span class="np-cell">कुनै तीन — नाम दिएर एक–एक हरफमा व्याख्या गर्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>A school has CLASS (class_id, room) and STUDENT (student_id, name). A class contains many
+    students, and each student belongs to one class. Convert this ER model to the relational
+    model and mark the keys.
+    <span class="np-cell">एउटा विद्यालयमा CLASS (class_id, room) र STUDENT (student_id, name) छन्।
+    एउटा कक्षामा धेरै विद्यार्थी हुन्छन्, र हरेक विद्यार्थी एउटै कक्षाको हुन्छ। यसलाई रिलेसनल
+    मोडेलमा बदलेर कुञ्जी देखाउनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba33">Show the answer</button>
+    <div class="ans" id="dba33">
+      <div class="out">Class   ( class_id,   room )
+             PK
+
+Student ( student_id, name, class_id )
+             PK                  FK → Class.class_id</div>
+      <p>The relationship is <b>1:M</b>, so rule 2 applies: no third table. The primary key of the
+      "one" side (Class) goes into the "many" side (Student) as a foreign key.</p>
+      <p>One mark per table, one for the primary keys, one for the foreign key on the correct
+      side. Putting <code>student_id</code> into Class instead would be wrong — a class has many
+      students, so that column could not hold them all.</p>
+      <span class="np-cell">सम्बन्ध <b>1:M</b> भएकाले नियम २ लाग्छ: तेस्रो तालिका चाहिँदैन। "एक"
+      तर्फ (Class) को primary key "धेरै" तर्फ (Student) मा foreign key भएर जान्छ। उल्टो गर्दा
+      गलत हुन्छ।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick">The relational model stores everything as tables and links them with keys,
+        not pointers. Proposed by E. F. Codd, 1970.
+        <span class="np-cell">रिलेसनल मोडेलले सबै कुरा तालिकामा राख्छ र pointer होइन, कुञ्जीले
+        जोड्छ। E. F. Codd, सन् १९७०।</span></li>
+      <li class="tick">Degree = number of columns. Cardinality = number of rows. Do not swap them.
+        <span class="np-cell">Degree = स्तम्भ सङ्ख्या। Cardinality = पङ्क्ति सङ्ख्या। नसाट्नुहोस्।</span></li>
+      <li class="tick">Schema is the structure; instance is the data in it right now.
+        <span class="np-cell">Schema संरचना हो; instance अहिलेको data।</span></li>
+      <li class="tick">A relation holds atomic values, no duplicate rows, and no significant order.
+        <span class="np-cell">रिलेसनमा अविभाज्य मान हुन्छन्, उही पङ्क्ति दोहोरिँदैन, र क्रमको
+        महत्त्व हुँदैन।</span></li>
+      <li class="tick">ER → tables: every entity a table; 1:M puts a foreign key in the many side;
+        M:N makes a third table; a multivalued attribute makes its own table.
+        <span class="np-cell">ER → तालिका: हरेक इन्टिटी एउटा तालिका; 1:M मा "धेरै" तर्फ foreign key;
+        M:N ले तेस्रो तालिका; बहुमान एट्रिब्युटले आफ्नै तालिका।</span></li>
+      <li class="tick">Referential integrity: a foreign key may be NULL, but it may never hold a
+        value that does not exist in the table it points at.
+        <span class="np-cell">Referential integrity: foreign key NULL हुन सक्छ, तर देखाइएको
+        तालिकामा नभएको मान कहिल्यै राख्न पाउँदैन।</span></li>
+    </ul>
+  </div>
+</section>

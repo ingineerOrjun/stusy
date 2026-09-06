@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Database Transaction — DBMS | RGSC Study Board</title>
+<meta name="description" content="Database Transaction explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html" class="on">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DBMS</a> <span class="sep">/</span> <span>Database Transaction</span></nav>
+<main id="main" data-subject="grade10/dbms">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Introduction</a><a href="unit2.html">2 · ER Model</a><a href="unit3.html">3 · Relational Model</a><a href="unit4.html">4 · SQL</a><a href="unit5.html">5 · Normalization</a><a href="unit6.html" style="color:var(--yellow);border-color:var(--yellow)">6 · Transaction</a><a href="unit7.html">7 · Backup & Security</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="db-u6">
+  <div class="sec-head">
+    <div class="sec-num">6</div>
+    <div>
+      <h1>Database Transaction</h1>
+      <p class="sec-sub" lang="ne">डाटाबेस ट्रान्ज्याक्सन</p>
+    </div>
+    <span class="marks">8 hrs · 6 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2><div class="t-en">
+    <ol>
+      <li>Define a transaction and explain why a bank transfer must be one.</li>
+      <li>Explain what concurrency is and name a problem it causes.</li>
+      <li>State and explain the four ACID properties.</li>
+      <li>Draw the states of a transaction, including the path that fails.</li>
+      <li>Say what COMMIT and ROLLBACK each do.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: ट्रान्ज्याक्सनको परिभाषा दिन र बैंक रकम सार्दा किन एउटै
+    ट्रान्ज्याक्सन हुनुपर्छ भन्न, concurrency के हो र यसले ल्याउने समस्या नाम लिन, ACID का चार गुण
+    व्याख्या गर्न, असफल हुने बाटोसहित अवस्था कोर्न, र COMMIT–ROLLBACK ले के गर्छ भन्न सक्नुहुनेछ।</span>
+  </div>
+
+  <h2 class="topic" id="db-t61">6.1 &nbsp;What a transaction is</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>transaction</b> is a single logical unit of work made up of one or more database
+      operations, which must be carried out <b>completely or not at all</b>.</p>
+      <p>The standard example is a bank transfer of Rs 1000 from Ram to Sita. It is two
+      operations:</p>
+      <div class="out">1.  Ram's balance   = Ram's balance   − 1000
+2.  Sita's balance  = Sita's balance  + 1000</div>
+      <p>Neither line is a transfer on its own. If the power fails between them, Rs 1000 has left
+      Ram's account and arrived nowhere. Grouping them into one transaction is the promise that
+      this cannot happen: <b>either both lines take effect, or neither does.</b></p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b lang="ne">ट्रान्ज्याक्सन</b> भनेको एक वा बढी डाटाबेस कार्य मिलेर बनेको एउटै तार्किक काम हो, जुन
+      <b lang="ne">पूरै हुनुपर्छ वा बिल्कुल हुनुहुँदैन</b>।</p>
+      <p lang="ne">सामान्य उदाहरण: रामबाट सीतालाई रु १००० पठाउनु। यो दुई काम हो।</p>
+      <p lang="ne">कुनै एक हरफ आफैंमा रकम सार्नु होइन। दुईबीच बिजुली गयो भने रु १००० रामको खाताबाट निस्क्यो
+      तर कतै पुगेन। दुवैलाई एउटै ट्रान्ज्याक्सनमा राख्नु भनेको यस्तो हुन नदिने वचन हो:
+      <b lang="ne">या दुवै लागू हुन्छन्, या कुनै पनि हुँदैन।</b></p>
+    </div>
+  </div>
+
+  <div class="callout"><span class="t-en">
+    <b>COMMIT and ROLLBACK.</b>
+    <b>COMMIT</b> makes every change of the transaction permanent — after it, the work survives a
+    crash. <b>ROLLBACK</b> undoes every change the transaction made, returning the database to the
+    state it was in before the transaction began. Exactly one of the two ends a transaction.
+    </span><span class="np-cell" lang="ne">
+    <b>COMMIT</b> ले ट्रान्ज्याक्सनका सबै परिवर्तन स्थायी बनाउँछ — त्यसपछि crash भए पनि काम बाँच्छ।
+    <b>ROLLBACK</b> ले गरेका सबै परिवर्तन फिर्ता लैजान्छ र डाटाबेसलाई सुरुको अवस्थामा पुर्‍याउँछ।
+    ट्रान्ज्याक्सन यी दुईमध्ये ठ्याक्कै एउटाले टुङ्गिन्छ।</span>
+  </div>
+
+  <h2 class="topic" id="db-t62">6.2 &nbsp;Concurrency</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Why two users at once is a problem</span>
+      <p><b>Concurrency</b> is several transactions running at the same time. A database with one
+      user at a time would be safe and useless — a bank has thousands of users at once — so
+      concurrency is necessary, and the DBMS must control it.</p>
+      <p>The classic failure is the <b>lost update</b>. Two clerks both read a balance of 5000.
+      One subtracts 1000 and writes 4000. The other, working from the value it read <i>before</i>
+      that, subtracts 2000 and writes 3000. The first withdrawal has vanished — the balance should
+      be 2000.</p>
+      <p>Nothing was written incorrectly. Each clerk did correct arithmetic on a value that was
+      correct when they read it. The fault is entirely in the <b>interleaving</b>, which is why
+      the DBMS controls it with <b>locks</b>: a row being changed is locked until the transaction
+      ends.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">एकैचोटि दुई प्रयोगकर्ता किन समस्या</span>
+      <p><b>Concurrency</b> भनेको धेरै ट्रान्ज्याक्सन एकैचोटि चल्नु हो। एक पटकमा एक जना मात्र
+      चलाउने डाटाबेस सुरक्षित त होला, तर काम लाग्दैन — बैंकमा हजारौं प्रयोगकर्ता एकैचोटि हुन्छन् —
+      त्यसैले concurrency चाहिन्छ, र DBMS ले नियन्त्रण गर्नुपर्छ।</p>
+      <p lang="ne">क्लासिक समस्या <b>lost update</b> हो। दुई कर्मचारीले ५००० मौज्दात पढे। एउटाले १०००
+      घटाएर ४००० लेख्यो। अर्कोले, त्योभन्दा <i lang="ne">अघि</i> पढेको मानबाट २००० घटाएर ३००० लेख्यो। पहिलो
+      निकासी हरायो — मौज्दात २००० हुनुपर्थ्यो।</p>
+      <p lang="ne">कसैले गलत लेखेको होइन। दुवैले पढ्दाको सही मानमा सही गणित गरे। दोष पूरै <b lang="ne">क्रम मिसिनु</b>
+      मा छ, त्यसैले DBMS ले <b>lock</b> ले नियन्त्रण गर्छ: बदलिँदै गरेको पङ्क्ति ट्रान्ज्याक्सन
+      नसकिँदासम्म बन्द रहन्छ।</p>
+    </div>
+  </div>
+
+  <h2 class="topic" id="db-t63">6.3 &nbsp;ACID properties</h2>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 216" role="img" aria-labelledby="t-acid">
+  <title id="t-acid">The four ACID properties of a transaction: atomicity, consistency, isolation and durability, each shown by the failure it prevents</title>
+  <text class="f-ttl" x="10" y="20">ACID — learn each one by the DISASTER it prevents</text>
+  <text class="f-lbl-y" x="120" y="42" style="font-size:11.5px">PROPERTY</text>
+  <text class="f-lbl-y" x="330" y="42" style="font-size:11.5px">PROMISE</text>
+  <text class="f-lbl-y" x="560" y="42" style="font-size:11.5px">WITHOUT IT</text>
+<g>
+    <rect class="f-box-d" x="16" y="54" width="668" height="32" rx="7"/>
+    <rect x="18" y="60" width="4" height="20" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="36" y="75" text-anchor="start" style="font-size:11.5px">ATOMICITY</text>
+    <text class="f-lbl" x="216" y="75" text-anchor="start" style="font-size:11px">all of it happens, or none of it</text>
+    <text class="f-lbl" x="448" y="75" text-anchor="start" style="font-size:10.5px">money leaves one account and never arrives</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="92" width="668" height="32" rx="7"/>
+    <rect x="18" y="98" width="4" height="20" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="36" y="113" text-anchor="start" style="font-size:11.5px">CONSISTENCY</text>
+    <text class="f-lbl" x="216" y="113" text-anchor="start" style="font-size:11px">the database obeys its rules before and after</text>
+    <text class="f-lbl" x="448" y="113" text-anchor="start" style="font-size:10.5px">a student row points at a class that does not exist</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="130" width="668" height="32" rx="7"/>
+    <rect x="18" y="136" width="4" height="20" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="36" y="151" text-anchor="start" style="font-size:11.5px">ISOLATION</text>
+    <text class="f-lbl" x="216" y="151" text-anchor="start" style="font-size:11px">concurrent transactions do not see each other half-done</text>
+    <text class="f-lbl" x="448" y="151" text-anchor="start" style="font-size:10.5px">two clerks read the same balance and both subtract</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="168" width="668" height="32" rx="7"/>
+    <rect x="18" y="174" width="4" height="20" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="36" y="189" text-anchor="start" style="font-size:11.5px">DURABILITY</text>
+    <text class="f-lbl" x="216" y="189" text-anchor="start" style="font-size:11px">once committed, it survives a crash</text>
+    <text class="f-lbl" x="448" y="189" text-anchor="start" style="font-size:10.5px">the power fails and yesterday’s fees are gone</text>
+  </g>
+  <text class="f-lbl-y" x="350" y="210">A transaction is not "a change". It is a change that carries all four of these promises.</text>
+</svg>
+    <figcaption><span class="t-en">Learn each property by the disaster it prevents. A definition you can attach to a
+    failure is a definition you can reproduce under pressure.
+    </span><span class="np-cell" lang="ne">हरेक गुणलाई त्यसले रोक्ने विपत्तिबाट सम्झनुहोस्। असफलतासँग जोडिएको
+    परिभाषा परीक्षामा सजिलै सम्झिन्छ।</span></figcaption>
+  </figure>
+
+  <div class="predict" data-answer="c">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A transfer has debited Ram but the power fails before Sita is credited. Which ACID
+      property guarantees the money is not lost?
+      </span><span class="np-cell" lang="ne">रकम सार्दा रामको खाताबाट कटिसक्यो तर सीताको खातामा जम्मा हुनुअघि बिजुली
+      गयो। पैसा नहराओस् भन्ने कुन ACID गुणले सुनिश्चित गर्छ?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Durability</button>
+      <button class="predict-opt" data-value="b">Isolation</button>
+      <button class="predict-opt" data-value="c">Atomicity</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>Atomicity.</b> The transaction never committed, so on restart the database rolls the
+      debit back — as if the transfer never began. Durability is the opposite promise: it protects
+      work that <i>did</i> commit. The test is always the same — <b>had it committed?</b>
+      No → atomicity rolls it back. Yes → durability keeps it.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">Atomicity।</b> ट्रान्ज्याक्सन commit नै भएको थिएन, त्यसैले पुनः सुरु
+      हुँदा डाटाबेसले कटौती फिर्ता लैजान्छ — सुरु नै नभएको जस्तो। Durability उल्टो वचन हो: यसले
+      commit <i lang="ne">भइसकेको</i> काम जोगाउँछ। जाँच सधैं एउटै — <b lang="ne">commit भएको थियो?</b>
+      थिएन → atomicity ले फिर्ता। थियो → durability ले जोगाउँछ।</span>
+    </div>
+  </div>
+
+  <h2 class="topic" id="db-t64">6.4 &nbsp;States of a transaction</h2>
+
+  <div class="dia" data-dia="txnStates">
+  <div class="dia-stage">
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="t-txn">
+  <title id="t-txn">The states of a transaction: active, partially committed, committed, failed and aborted</title>
+  <defs><marker id="a-txn" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
+  <text class="f-ttl" x="10" y="20">STATES OF A TRANSACTION</text>
+
+  <g id="tx-1">
+    <rect class="f-box-d" x="20" y="90" width="120" height="42" rx="7"/>
+    <text class="f-lbl-y" x="80" y="116" style="font-size:12px">ACTIVE</text>
+  </g>
+  <g id="tx-2">
+    <rect class="f-box-d" x="190" y="90" width="150" height="42" rx="7"/>
+    <text class="f-lbl-y" x="265" y="110" style="font-size:11.5px">PARTIALLY</text>
+    <text class="f-lbl-y" x="265" y="124" style="font-size:11.5px">COMMITTED</text>
+    <line class="f-arr" x1="142" y1="111" x2="186" y2="111" marker-end="url(#a-txn)"/>
+  </g>
+  <g id="tx-3">
+    <rect class="f-box-d" x="392" y="90" width="130" height="42" rx="7"/>
+    <rect x="394" y="98" width="4" height="26" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="460" y="116" style="font-size:12px">COMMITTED</text>
+    <line class="f-arr" x1="342" y1="111" x2="388" y2="111" marker-end="url(#a-txn)"/>
+  </g>
+  <g id="tx-4">
+    <rect class="f-box-d" x="190" y="176" width="150" height="42" rx="7"/>
+    <rect x="192" y="184" width="4" height="26" rx="2" style="fill:var(--color-error)"/>
+    <text class="f-lbl-y" x="265" y="202" style="font-size:12px">FAILED</text>
+    <line class="f-arr" x1="80" y1="134" x2="80" y2="197" marker-end="url(#a-txn)"/>
+    <line class="f-ln" x1="80" y1="197" x2="186" y2="197"/>
+  </g>
+  <g id="tx-5">
+    <rect class="f-box-d" x="392" y="176" width="130" height="42" rx="7"/>
+    <rect x="394" y="184" width="4" height="26" rx="2" style="fill:var(--color-error)"/>
+    <text class="f-lbl-y" x="460" y="202" style="font-size:12px">ABORTED</text>
+    <line class="f-arr" x1="342" y1="197" x2="388" y2="197" marker-end="url(#a-txn)"/>
+    <text class="f-lbl" x="600" y="192" style="font-size:10.5px">rolled back —</text>
+    <text class="f-lbl" x="600" y="206" style="font-size:10.5px">as if it never ran</text>
+  </g>
+  <text class="f-lbl" x="350" y="66" style="font-size:11px">Only ONE of the two bottom-right boxes can be reached, and which one is decided the moment something goes wrong.</text>
+</svg></div>
+  <div class="dia-controls">
+    <button type="button" data-dia-act="prev" data-ui="prev">&#9666; Prev</button>
+    <button type="button" data-dia-act="play" data-ui="play" aria-pressed="false">&#9654; Play</button>
+    <button type="button" data-dia-act="next" data-ui="next">Next &#9656;</button>
+    <button type="button" data-dia-act="reset" data-ui="reset">Reset</button>
+    <span class="dia-progress" aria-live="polite" data-dia-steps="5">step 0 / 5</span>
+  </div>
+  <div class="dia-caption" role="status">
+    <span class="dia-cap-en"></span>
+    <span class="dia-cap-ne np-cell" lang="ne"></span>
+  </div>
+</div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Reading the state diagram</span>
+      <p>A transaction begins in <b>ACTIVE</b> and stays there while its statements run. When the
+      last statement finishes it moves to <b>PARTIALLY COMMITTED</b> — the work is done in memory
+      but not yet safely on disk.</p>
+      <p>From there, if all is well it reaches <b>COMMITTED</b> and the changes are permanent. If
+      anything goes wrong — at any point, from either of the first two states — it moves to
+      <b>FAILED</b>, and from FAILED it is rolled back to <b>ABORTED</b>.</p>
+      <p>An aborted transaction leaves no trace. The database is exactly as it was before the
+      transaction started, which is atomicity being enforced.</p>
+      <p><b>Only COMMITTED and ABORTED are final.</b> Every transaction ends in one of them.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">अवस्था चित्र पढ्ने तरिका</span>
+      <p lang="ne">ट्रान्ज्याक्सन <b>ACTIVE</b> बाट सुरु हुन्छ र कथन चलेसम्म त्यहीँ रहन्छ। अन्तिम कथन सकिएपछि
+      <b>PARTIALLY COMMITTED</b> मा जान्छ — काम मेमोरीमा सकियो तर डिस्कमा सुरक्षित भइसकेको छैन।</p>
+      <p lang="ne">त्यहाँबाट सबै ठीक भए <b>COMMITTED</b> मा पुग्छ र परिवर्तन स्थायी हुन्छ। केही बिग्रियो भने —
+      पहिलो दुई अवस्थामध्ये जुनसुकैबाट — <b>FAILED</b> मा जान्छ, र FAILED बाट फिर्ता लगिएर
+      <b>ABORTED</b> हुन्छ।</p>
+      <p lang="ne">Abort भएको ट्रान्ज्याक्सनले कुनै चिन्ह छाड्दैन। डाटाबेस सुरु हुनुअघिकै अवस्थामा रहन्छ —
+      यही atomicity लागू भएको हो।</p>
+      <p><b lang="ne">COMMITTED र ABORTED मात्र अन्तिम अवस्था हुन्।</b> हरेक ट्रान्ज्याक्सन यीमध्ये एउटामा
+      टुङ्गिन्छ।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Tracing a transfer through the states</div>
+    <p><b>Question:</b> Ram has 5000 and Sita has 2000. A transaction transfers 1000 from Ram to
+    Sita, but the system crashes immediately after the first update. Trace the states and state
+    the final balances.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">BEGIN                          → ACTIVE
+UPDATE Ram   SET bal = 4000   → ACTIVE  (written in memory)
+-- CRASH before the second update --
+                               → FAILED
+recovery rolls the change back → ABORTED
+
+Final: Ram 5000, Sita 2000</div>
+    </div>
+    <p><b>Why 5000, not 4000.</b> The transaction never reached COMMITTED, so nothing it did is
+    allowed to survive. On restart, recovery finds no COMMIT record in the log and undoes the
+    change. Atomicity is the property being enforced.</p>
+    <p class="wex-note"><span class="t-en">If the crash had come <i>after</i> COMMIT, the answer would be Ram 4000 and
+    Sita 3000 — and the property being enforced would be durability instead. The COMMIT record is
+    the only thing that decides which.
+    </span><span class="np-cell" lang="ne">Crash COMMIT <i lang="ne">पछि</i> आएको भए उत्तर राम ४००० र सीता ३००० हुन्थ्यो — र
+    लागू हुने गुण durability हुन्थ्यो। कुन हो भन्ने तय गर्ने एउटै कुरा COMMIT रेकर्ड हो।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h3>Mistakes that cost marks here</h3>
+    <ul>
+      <li><span class="t-en"><b>Leaving FAILED and ABORTED out of the state diagram.</b> The failure path is half the
+        diagram and usually half the marks.
+        </span><span class="np-cell" lang="ne">अवस्था चित्रमा FAILED र ABORTED नराख्नु। असफल बाटो चित्रको आधा हो र
+        प्रायः अंकको पनि आधा।</span></li>
+      <li><span class="t-en"><b>Confusing atomicity with durability.</b> Atomicity protects an <i>uncommitted</i>
+        transaction by undoing it; durability protects a <i>committed</i> one by keeping it.
+        </span><span class="np-cell" lang="ne">Atomicity र durability मिसाउनु। Atomicity ले commit <i lang="ne">नभएको</i>
+        फिर्ता लैजान्छ; durability ले commit <i lang="ne">भएको</i> जोगाउँछ।</span></li>
+      <li><span class="t-en"><b>Describing a transaction as "one SQL statement".</b> It is one logical unit of work,
+        which is usually several statements.
+        </span><span class="np-cell" lang="ne">ट्रान्ज्याक्सनलाई "एउटा SQL कथन" भन्नु। यो एउटा तार्किक काम हो, जसमा
+        प्रायः धेरै कथन हुन्छन्।</span></li>
+      <li><span class="t-en"><b>Saying concurrency is bad and should be avoided.</b> It is necessary; what must be
+        avoided is <i>uncontrolled</i> concurrency.
+        </span><span class="np-cell" lang="ne">Concurrency नराम्रो हो, हटाउनुपर्छ भन्नु। यो आवश्यक हो; हटाउनुपर्ने
+        कुरा <i lang="ne">अनियन्त्रित</i> concurrency हो।</span></li>
+    </ul>
+  </div>
+
+  <h2 class="topic" id="db-exam6">Exam focus — what is asked from this unit</h2>
+
+  <div class="exam-connect"><span class="t-en">
+    <b>Two questions come from this unit almost every year.</b> The first asks you to explain the
+    ACID properties — four marks, one per property, and each answer is one clear sentence plus an
+    example of what goes wrong without it. The second asks for the transaction state diagram,
+    where the marks are for including the <b>failure path</b>, which is the half most answers
+    leave out.
+    </span><span class="np-cell" lang="ne">यस युनिटबाट प्रायः हरेक वर्ष दुई प्रश्न आउँछन्। पहिलोले ACID गुण व्याख्या
+    गर्न भन्छ — चार अंक, हरेकलाई एक, र हरेक उत्तर एउटा स्पष्ट वाक्य र नभए के बिग्रन्छ भन्ने उदाहरण।
+    दोस्रोले ट्रान्ज्याक्सनको अवस्था चित्र माग्छ, जहाँ अंक <b lang="ne">असफल बाटो</b> समावेश गरेकोमा हुन्छ —
+    प्रायः उत्तरमा छुट्ने आधा त्यही हो।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">What is a transaction? Give an example.
+    </span><span class="np-cell" lang="ne">ट्रान्ज्याक्सन के हो? एउटा उदाहरण दिनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba61">Show the answer</button>
+    <div class="ans" id="dba61"><div class="t-en">
+      <p>A <b>transaction</b> is a single logical unit of work consisting of one or more database
+      operations, which must be executed completely or not at all.</p>
+      <p><b>Example:</b> transferring Rs 1000 from one bank account to another. It is two
+      operations — a debit and a credit — and both must happen, or neither.</p>
+      </div><span class="np-cell" lang="ne">परिभाषा र बैंक रकम सार्ने उदाहरण। "पूरै वा बिल्कुल होइन" भन्ने वाक्यांश
+      नछुटाउनुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Explain the ACID properties of a transaction.
+    </span><span class="np-cell" lang="ne">ट्रान्ज्याक्सनका ACID गुण व्याख्या गर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba62">Show the answer</button>
+    <div class="ans" id="dba62"><div class="t-en">
+      <div class="out">ATOMICITY
+  All operations of the transaction happen, or none do.
+  Without it: money leaves one account and arrives nowhere.
+
+CONSISTENCY
+  The database obeys all its rules before and after.
+  Without it: a student row points at a class that does not exist.
+
+ISOLATION
+  Concurrent transactions do not see each other's partial work.
+  Without it: two clerks read the same balance and both subtract.
+
+DURABILITY
+  Once committed, changes survive any later failure.
+  Without it: a power cut erases work already confirmed.</div>
+      <p>One mark per property. Naming the property, stating the promise and giving the failure it
+      prevents is a complete answer to each.</p>
+      </div><span class="np-cell" lang="ne">हरेक गुणलाई एक अंक। नाम, वचन र नभए के बिग्रन्छ — यत्ति भए पूरा उत्तर।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p><span class="t-en">Draw the state transition diagram of a transaction and name the final states.
+    </span><span class="np-cell" lang="ne">ट्रान्ज्याक्सनको अवस्था परिवर्तन चित्र कोरेर अन्तिम अवस्थाका नाम
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba63">Show the answer</button>
+    <div class="ans" id="dba63"><div class="t-en">
+      <div class="out">   ACTIVE ──→ PARTIALLY COMMITTED ──→ COMMITTED
+      │                  │
+      └──────→ FAILED ←──┘
+                 │
+                 ↓
+              ABORTED
+
+Final states: COMMITTED and ABORTED.</div>
+      <p>One mark for ACTIVE → PARTIALLY COMMITTED → COMMITTED, one for the FAILED → ABORTED path
+      from both earlier states, and one for naming the two final states.</p>
+      </div><span class="np-cell" lang="ne">पहिलो लहरलाई एक अंक, दुवै अवस्थाबाट FAILED → ABORTED बाटोलाई एक, र दुई
+      अन्तिम अवस्थाका नाम लेखेकोमा एक।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick"><span class="t-en">A transaction is one logical unit of work that must happen completely or not
+        at all.
+        </span><span class="np-cell" lang="ne">ट्रान्ज्याक्सन भनेको एउटै तार्किक काम हो — पूरै हुनुपर्ने वा बिल्कुल
+        नहुनुपर्ने।</span></li>
+      <li class="tick"><span class="t-en">COMMIT makes the changes permanent; ROLLBACK undoes them. One of the two
+        ends every transaction.
+        </span><span class="np-cell" lang="ne">COMMIT ले परिवर्तन स्थायी बनाउँछ; ROLLBACK ले फिर्ता लैजान्छ। हरेक
+        ट्रान्ज्याक्सन यीमध्ये एउटाले टुङ्गिन्छ।</span></li>
+      <li class="tick"><span class="t-en">ACID: Atomicity (all or nothing), Consistency (rules always hold), Isolation
+        (no half-done work is visible), Durability (committed work survives a crash).
+        </span><span class="np-cell" lang="ne">ACID: Atomicity (सबै वा केही होइन), Consistency (नियम सधैं पालना),
+        Isolation (आधा काम नदेखिने), Durability (commit भएको crash पछि पनि रहने)।</span></li>
+      <li class="tick"><span class="t-en">Atomicity undoes an uncommitted transaction; durability keeps a committed
+        one. The COMMIT record decides which applies.
+        </span><span class="np-cell" lang="ne">Atomicity ले commit नभएको फिर्ता लैजान्छ; durability ले commit भएको
+        राख्छ। COMMIT रेकर्डले तय गर्छ।</span></li>
+      <li class="tick"><span class="t-en">States: ACTIVE → PARTIALLY COMMITTED → COMMITTED, or → FAILED → ABORTED.
+        Only COMMITTED and ABORTED are final.
+        </span><span class="np-cell" lang="ne">अवस्था: ACTIVE → PARTIALLY COMMITTED → COMMITTED, वा → FAILED →
+        ABORTED। अन्तिम अवस्था COMMITTED र ABORTED मात्र।</span></li>
+      <li class="tick"><span class="t-en">Concurrency is necessary, not optional. Uncontrolled concurrency causes the
+        lost update problem; locks prevent it.
+        </span><span class="np-cell" lang="ne">Concurrency आवश्यक हो, वैकल्पिक होइन। अनियन्त्रित भए lost update
+        समस्या आउँछ; lock ले रोक्छ।</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit5.html"><span class="lab">◂ Previous</span><span class="ttl">Relational Database Design</span></a><a class="nx" href="unit7.html"><span class="lab">Next ▸</span><span class="ttl">Database Backup, Recovery and Security</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/diagram.js"></script>
+<script src="../../assets/js/diagram-data.js"></script>
+</body>
+</html>

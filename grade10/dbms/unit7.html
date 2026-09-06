@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Database Backup, Recovery and Security — DBMS | RGSC Study Board</title>
+<meta name="description" content="Database Backup, Recovery and Security explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark">RG</span>
+      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html" class="on">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">DBMS</a> <span class="sep">/</span> <span>Database Backup, Recovery and Security</span></nav>
+<main id="main" data-subject="grade10/dbms">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Introduction</a><a href="unit2.html">2 · ER Model</a><a href="unit3.html">3 · Relational Model</a><a href="unit4.html">4 · SQL</a><a href="unit5.html">5 · Normalization</a><a href="unit6.html">6 · Transaction</a><a href="unit7.html" style="color:var(--yellow);border-color:var(--yellow)">7 · Backup & Security</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="db-u7">
+  <div class="sec-head">
+    <div class="sec-num">7</div>
+    <div>
+      <h1>Database Backup, Recovery and Security</h1>
+      <p class="sec-sub" lang="ne">ब्याकअप, रिकभरी र सुरक्षा</p>
+    </div>
+    <span class="marks">8 hrs · 6 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2><div class="t-en">
+    <ol>
+      <li>Define backup and say why it is not optional.</li>
+      <li>Distinguish physical from logical backup.</li>
+      <li>List the reasons a database fails.</li>
+      <li>Compare full, incremental and differential backup.</li>
+      <li>Explain recovery, and say when redo is used and when undo is used.</li>
+      <li>State the measures that make a database secure, and name common threats.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: backup को परिभाषा दिन र किन अनिवार्य छ भन्न, physical र
+    logical backup छुट्याउन, डाटाबेस बिग्रने कारण सूचीबद्ध गर्न, full–incremental–differential तुलना
+    गर्न, recovery व्याख्या गर्न र redo–undo कहिले प्रयोग हुन्छ भन्न, र सुरक्षाका उपाय तथा सामान्य
+    खतरा नाम लिन सक्नुहुनेछ।</span>
+  </div>
+
+  <h2 class="topic" id="db-t71">7.1 – 7.3 &nbsp;Backup, and what it protects against</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>backup</b> is a copy of the database kept separately, so that the data can be
+      restored if the original is lost, damaged or corrupted.</p>
+      <p>Two types, and the difference is <b>what</b> is copied:</p>
+      <p><b>Physical backup</b> — a copy of the actual database files as they sit on the disk. It
+      is fast to take and fast to restore, but tied to the same kind of system.</p>
+      <p><b>Logical backup</b> — a copy of the SQL statements that would rebuild the database:
+      the CREATE TABLEs and the INSERTs. It is slower, but it is readable and can be restored onto
+      a different system.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Backup</b> भनेको डाटाबेसको छुट्टै राखिएको प्रतिलिपि हो, ताकि मूल हराए, बिग्रिए वा
+      भ्रष्ट भए data फर्काउन सकियोस्।</p>
+      <p lang="ne">दुई प्रकार, र फरक <b lang="ne">के</b> प्रतिलिपि गरिन्छ भन्नेमा छ:</p>
+      <p><b>Physical backup</b> — डिस्कमा जस्ताको तस्तै रहेका डाटाबेस फाइलको प्रतिलिपि। लिन र
+      फर्काउन छिटो, तर उस्तै प्रणालीमा मात्र।</p>
+      <p><b>Logical backup</b> — डाटाबेस पुनर्निर्माण गर्ने SQL कथनहरूको प्रतिलिपि: CREATE TABLE र
+      INSERT। ढिलो हुन्छ, तर पढ्न मिल्ने र फरक प्रणालीमा पनि फर्काउन सकिने।</p>
+    </div>
+  </div>
+
+  <div class="callout"><span class="t-en">
+    <b>7.3 — Why a database fails.</b>
+    <b>Hardware failure</b> — a disk dies.
+    <b>Software failure</b> — a bug in the DBMS or the operating system.
+    <b>Human error</b> — a DELETE without a WHERE, or a DROP on the wrong table.
+    <b>Power failure</b> — a transaction stops halfway.
+    <b>Natural disaster</b> — fire, flood, earthquake.
+    <b>Malicious attack</b> — deliberate damage or theft.
+    </span><span class="np-cell" lang="ne">डाटाबेस बिग्रने कारण: <b lang="ne">हार्डवेयर</b> बिग्रनु — डिस्क बिग्रियो;
+    <b lang="ne">सफ्टवेयर</b> — DBMS वा OS मा त्रुटि; <b lang="ne">मानवीय गल्ती</b> — WHERE नभएको DELETE, वा गलत तालिकामा
+    DROP; <b lang="ne">बिजुली</b> — ट्रान्ज्याक्सन बीचमै रोकिनु; <b lang="ne">प्राकृतिक प्रकोप</b> — आगलागी, बाढी, भूकम्प;
+    <b lang="ne">नियतवश आक्रमण</b> — जानाजान बिगार्नु वा चोर्नु।</span>
+  </div>
+
+  <h2 class="topic" id="db-t74">7.4 &nbsp;Methods of backup</h2>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 208" role="img" aria-labelledby="t-backup">
+  <title id="t-backup">Types and methods of database backup: physical and logical, full, incremental and differential</title>
+  <text class="f-ttl" x="10" y="20">BACKUP — two TYPES, three METHODS</text>
+  <text class="f-lbl-y" x="175" y="44" style="font-size:12px">TYPES — what is copied</text>
+  <text class="f-lbl-y" x="520" y="44" style="font-size:12px">METHODS — how much is copied</text>
+
+  <g>
+    <rect class="f-box-d" x="16" y="56" width="332" height="40" rx="7"/>
+    <rect x="18" y="64" width="4" height="24" rx="2" style="fill:var(--color-secondary)"/>
+    <text class="f-lbl-y" x="36" y="74" text-anchor="start" style="font-size:11.5px">PHYSICAL</text>
+    <text class="f-lbl" x="36" y="88" text-anchor="start" style="font-size:10.5px">a copy of the actual database files on disk</text>
+  </g>
+  <g>
+    <rect class="f-box-d" x="16" y="104" width="332" height="40" rx="7"/>
+    <rect x="18" y="112" width="4" height="24" rx="2" style="fill:var(--color-secondary)"/>
+    <text class="f-lbl-y" x="36" y="122" text-anchor="start" style="font-size:11.5px">LOGICAL</text>
+    <text class="f-lbl" x="36" y="136" text-anchor="start" style="font-size:10.5px">a copy of the SQL that would rebuild it</text>
+  </g>
+
+<g>
+    <rect class="f-box-d" x="356" y="56" width="328" height="34" rx="7"/>
+    <rect x="358" y="62" width="4" height="22" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="376" y="71" text-anchor="start" style="font-size:11.5px">FULL</text>
+    <text class="f-lbl" x="376" y="84" text-anchor="start" style="font-size:10.5px">everything, every time — slow but simple</text>
+  </g><g>
+    <rect class="f-box-d" x="356" y="96" width="328" height="34" rx="7"/>
+    <rect x="358" y="102" width="4" height="22" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="376" y="111" text-anchor="start" style="font-size:11.5px">INCREMENTAL</text>
+    <text class="f-lbl" x="376" y="124" text-anchor="start" style="font-size:10.5px">only what changed since the LAST backup</text>
+  </g><g>
+    <rect class="f-box-d" x="356" y="136" width="328" height="34" rx="7"/>
+    <rect x="358" y="142" width="4" height="22" rx="2" style="fill:var(--color-primary)"/>
+    <text class="f-lbl-y" x="376" y="151" text-anchor="start" style="font-size:11.5px">DIFFERENTIAL</text>
+    <text class="f-lbl" x="376" y="164" text-anchor="start" style="font-size:10.5px">everything changed since the last FULL backup</text>
+  </g>
+
+  <text class="f-lbl-y" x="350" y="176">Incremental and differential differ on ONE word: since the last BACKUP, or since the last FULL backup.</text>
+  <text class="f-lbl" x="350" y="196" style="font-size:11px">That one word is the whole exam question.</text>
+</svg>
+    <figcaption><span class="t-en">Incremental and differential differ by one word — since the last <i>backup</i>, or
+    since the last <i>full</i> backup. That one word is the whole exam question.
+    </span><span class="np-cell" lang="ne">Incremental र differential एउटै शब्दले फरक पर्छन् — अघिल्लो <i>backup</i>
+    देखि, कि अघिल्लो <i>full</i> backup देखि। परीक्षाको प्रश्न त्यही एउटा शब्दमा छ।</span></figcaption>
+  </figure>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A full backup is taken on Sunday. Differential backups run Monday to Friday. The disk
+      fails on Friday evening. How many backup files are needed to restore?
+      </span><span class="np-cell" lang="ne">आइतबार full backup लिइयो। सोमबारदेखि शुक्रबारसम्म differential backup।
+      शुक्रबार साँझ डिस्क बिग्रियो। फर्काउन कति backup फाइल चाहिन्छ?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">One — Friday's</button>
+      <button class="predict-opt" data-value="b">Two — Sunday's and Friday's</button>
+      <button class="predict-opt" data-value="c">Six — all of them</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>Two.</b> A differential backup holds everything that changed since the last
+      <b>full</b> backup, so Friday's already contains Monday to Thursday's changes as well. You
+      need the full backup plus the most recent differential.</p>
+      <p>Had they been <b>incremental</b>, the answer would be <b>six</b> — each incremental holds
+      only what changed since the previous backup, so every one is needed, in order. That is the
+      trade: differential takes more space, incremental takes more restoring.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">दुई।</b> Differential ले अघिल्लो <b>full</b> backup देखिका सबै
+      परिवर्तन राख्छ, त्यसैले शुक्रबारकोमा सोम–बिहीका पनि छन्। Full र सबैभन्दा नयाँ differential
+      चाहिन्छ। <b>Incremental</b> भएको भए उत्तर <b lang="ne">छ</b> हुन्थ्यो। सन्तुलन यही हो: differential ले
+      ठाउँ बढी लिन्छ, incremental ले फर्काउन समय।</span>
+    </div>
+  </div>
+
+  <h2 class="topic" id="db-t75">7.5 &nbsp;Recovery — redo and undo</h2>
+
+  <div class="dia" data-dia="recoveryLog">
+  <div class="dia-stage">
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="t-recov">
+  <title id="t-recov">Database recovery using the log: redo reapplies committed transactions, undo rolls back uncommitted ones</title>
+  <defs><marker id="a-recov" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
+  <text class="f-ttl" x="10" y="20">RECOVERY — one log, read in two directions</text>
+
+  <g id="rc-1">
+    <text class="f-lbl-y" x="80" y="52" style="font-size:11px">THE LOG</text>
+    <g>
+        <rect class="f-box-d" x="16" y="62" width="240" height="22" rx="5"/>
+        <rect x="18" y="66" width="4" height="14" rx="2" style="fill:var(--color-border-strong)"/>
+        <text class="f-code" x="34" y="77" text-anchor="start" style="font-size:11px">T1 start</text>
+      </g><g>
+        <rect class="f-box-d" x="16" y="88" width="240" height="22" rx="5"/>
+        <rect x="18" y="92" width="4" height="14" rx="2" style="fill:var(--color-border-strong)"/>
+        <text class="f-code" x="34" y="103" text-anchor="start" style="font-size:11px">T1 write</text>
+      </g><g>
+        <rect class="f-box-d" x="16" y="114" width="240" height="22" rx="5"/>
+        <rect x="18" y="118" width="4" height="14" rx="2" style="fill:var(--color-success)"/>
+        <text class="f-code" x="34" y="129" text-anchor="start" style="font-size:11px">T1 COMMIT</text>
+      </g><g>
+        <rect class="f-box-d" x="16" y="140" width="240" height="22" rx="5"/>
+        <rect x="18" y="144" width="4" height="14" rx="2" style="fill:var(--color-border-strong)"/>
+        <text class="f-code" x="34" y="155" text-anchor="start" style="font-size:11px">T2 start</text>
+      </g><g>
+        <rect class="f-box-d" x="16" y="166" width="240" height="22" rx="5"/>
+        <rect x="18" y="170" width="4" height="14" rx="2" style="fill:var(--color-border-strong)"/>
+        <text class="f-code" x="34" y="181" text-anchor="start" style="font-size:11px">T2 write</text>
+      </g><g>
+        <rect class="f-box-d" x="16" y="192" width="240" height="22" rx="5"/>
+        <rect x="18" y="196" width="4" height="14" rx="2" style="fill:var(--color-error)"/>
+        <text class="f-code" x="34" y="207" text-anchor="start" style="font-size:11px">— CRASH —</text>
+      </g>
+  </g>
+
+  <g id="rc-2">
+    <rect class="f-box-d" x="300" y="70" width="384" height="62" rx="7"/>
+    <rect x="302" y="80" width="4" height="42" rx="2" style="fill:var(--color-success)"/>
+    <text class="f-lbl-y" x="320" y="92" text-anchor="start" style="font-size:12px">REDO — forwards</text>
+    <text class="f-lbl" x="320" y="110" text-anchor="start" style="font-size:11px">T1 committed before the crash, so its work must exist.</text>
+    <text class="f-lbl" x="320" y="124" text-anchor="start" style="font-size:11px">Replay it from the log. This is DURABILITY.</text>
+  </g>
+
+  <g id="rc-3">
+    <rect class="f-box-d" x="300" y="148" width="384" height="62" rx="7"/>
+    <rect x="302" y="158" width="4" height="42" rx="2" style="fill:var(--color-error)"/>
+    <text class="f-lbl-y" x="320" y="170" text-anchor="start" style="font-size:12px">UNDO — backwards</text>
+    <text class="f-lbl" x="320" y="188" text-anchor="start" style="font-size:11px">T2 never committed, so its half-done work must vanish.</text>
+    <text class="f-lbl" x="320" y="202" text-anchor="start" style="font-size:11px">Roll it back from the log. This is ATOMICITY.</text>
+  </g>
+
+  <text class="f-lbl-y" x="350" y="238">The COMMIT record decides which of the two a transaction gets. Nothing else does.</text>
+</svg></div>
+  <div class="dia-controls">
+    <button type="button" data-dia-act="prev" data-ui="prev">&#9666; Prev</button>
+    <button type="button" data-dia-act="play" data-ui="play" aria-pressed="false">&#9654; Play</button>
+    <button type="button" data-dia-act="next" data-ui="next">Next &#9656;</button>
+    <button type="button" data-dia-act="reset" data-ui="reset">Reset</button>
+    <span class="dia-progress" aria-live="polite" data-dia-steps="3">step 0 / 3</span>
+  </div>
+  <div class="dia-caption" role="status">
+    <span class="dia-cap-en"></span>
+    <span class="dia-cap-ne np-cell" lang="ne"></span>
+  </div>
+</div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">One log, two directions</span>
+      <p><b>Recovery</b> is the process of restoring the database to a correct, consistent state
+      after a failure. The tool it uses is the <b>log</b> — a file in which the DBMS records every
+      change <i>before</i> it is applied.</p>
+      <p>After a crash the recovery manager reads the log and sorts every transaction into one of
+      two piles, by a single test: <b>is there a COMMIT record?</b></p>
+      <p><b>REDO</b> — the transaction committed, so its work must exist. The log is read
+      <b>forwards</b> and the changes are applied again. This delivers <b>durability</b>.</p>
+      <p><b>UNDO</b> — the transaction did not commit, so its half-finished work must not survive.
+      The log is read <b>backwards</b> and the changes are reversed. This delivers
+      <b>atomicity</b>.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">एउटै लग, दुई दिशा</span>
+      <p><b>Recovery</b> भनेको असफलतापछि डाटाबेसलाई सही र सङ्गत अवस्थामा फर्काउने प्रक्रिया हो।
+      यसले प्रयोग गर्ने साधन <b>log</b> हो — DBMS ले हरेक परिवर्तन लागू गर्नु <i lang="ne">अघि</i> लेख्ने फाइल।</p>
+      <p lang="ne">Crash पछि recovery manager ले log पढेर हरेक ट्रान्ज्याक्सनलाई एउटै जाँचबाट दुई थुप्रोमा
+      छुट्याउँछ: <b lang="ne">COMMIT रेकर्ड छ कि छैन?</b></p>
+      <p><b>REDO</b> — commit भएको थियो, त्यसैले काम रहनुपर्छ। Log <b lang="ne">अगाडिबाट</b> पढेर परिवर्तन
+      फेरि लागू गरिन्छ। यसले <b>durability</b> दिन्छ।</p>
+      <p><b>UNDO</b> — commit भएको थिएन, त्यसैले आधा काम बाँच्नु हुँदैन। Log <b lang="ne">पछाडिबाट</b> पढेर
+      परिवर्तन उल्टाइन्छ। यसले <b>atomicity</b> दिन्छ।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Deciding redo or undo from a log</div>
+    <p><b>Question:</b> the log below survives a crash. State what recovery does with T1, T2 and
+    T3, and give the reason.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Given</span>
+      <div class="out">T1 start
+T1 write A
+T1 COMMIT
+T2 start
+T2 write B
+T3 start
+T3 write C
+T3 COMMIT
+-- CRASH --</div>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">T1  REDO   it has a COMMIT record, so its work must exist
+T2  UNDO   no COMMIT record — it was still running
+T3  REDO   it has a COMMIT record</div>
+    </div>
+    <p class="wex-note"><span class="t-en">Do not read the order or the amount of work done. The <b>only</b> question
+    is whether a COMMIT record appears before the crash. T2 had written B — real work, on its way
+    to the disk — and it is still discarded entirely, because atomicity does not allow half a
+    transaction to survive.
+    </span><span class="np-cell" lang="ne">क्रम वा कति काम भयो भन्ने नहेर्नुहोस्। <b lang="ne">एउटै</b> प्रश्न हो — crash अघि
+    COMMIT रेकर्ड छ कि छैन। T2 ले B लेखिसकेको थियो — साँच्चिकै काम — तर पूरै हटाइन्छ, किनभने
+    atomicity ले आधा ट्रान्ज्याक्सन बाँच्न दिँदैन।</span></p>
+  </div>
+
+  <h2 class="topic" id="db-t76">7.6 &amp; 7.7 &nbsp;Database security</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">What security actually protects</span>
+      <p><b>Database security</b> is the protection of a database from unauthorised access,
+      malicious damage and accidental loss. It has three separate jobs, and answers that name all
+      three score better than answers that describe one at length.</p>
+      <p><b>Authentication</b> — proving <i>who</i> a user is, usually with a username and
+      password.</p>
+      <p><b>Authorisation</b> — deciding <i>what</i> that user is allowed to do, which is what
+      GRANT and REVOKE control. Authentication without authorisation is a door with a lock and no
+      rooms.</p>
+      <p><b>Encryption</b> — storing the data so that it is unreadable even to someone who obtains
+      the file. It protects against the theft that gets past the first two.</p>
+      <p>Add <b>regular backup</b> and an <b>audit trail</b> — a record of who did what — and you
+      have the full set of measures.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">सुरक्षाले साँच्चै के जोगाउँछ</span>
+      <p><b lang="ne">डाटाबेस सुरक्षा</b> भनेको अनधिकृत पहुँच, नियतवश बिगार र आकस्मिक क्षतिबाट डाटाबेसको
+      संरक्षण हो। यसका तीन छुट्टै काम छन्, र तीनै नाम लिने उत्तरले एउटालाई लामो लेख्नेभन्दा बढी
+      अंक पाउँछ।</p>
+      <p><b>Authentication</b> — प्रयोगकर्ता <i lang="ne">को</i> हो भनी प्रमाणित गर्ने, प्रायः प्रयोगकर्ता नाम
+      र पासवर्डबाट।</p>
+      <p><b>Authorisation</b> — त्यो प्रयोगकर्ताले <i lang="ne">के</i> गर्न पाउने भन्ने तय गर्ने, जुन GRANT र
+      REVOKE ले नियन्त्रण गर्छन्।</p>
+      <p><b>Encryption</b> — फाइल नै पाएको मान्छेले पनि पढ्न नसक्ने गरी data राख्ने।</p>
+      <p><b lang="ne">नियमित backup</b> र <b>audit trail</b> — कसले के गर्‍यो भन्ने अभिलेख — थपेपछि उपायहरूको
+      पूरा सूची बन्छ।</p>
+    </div>
+  </div>
+
+  <div class="callout"><span class="t-en">
+    <b>7.7 — Common threats.</b>
+    <b>Unauthorised access</b> — someone reads or changes data they should not.
+    <b>SQL injection</b> — a user types SQL into an input box and the program runs it, so a login
+    form becomes a way to read the whole table.
+    <b>Malware</b> — software that damages or steals the data.
+    <b>Privilege abuse</b> — a legitimate user doing more than their job needs.
+    <b>Weak passwords</b> and <b>unencrypted backups</b> — the two easiest ways in, and the two
+    most often forgotten.
+    </span><span class="np-cell" lang="ne">सामान्य खतरा: <b lang="ne">अनधिकृत पहुँच</b>; <b>SQL injection</b> — प्रयोगकर्ताले
+    इनपुट बाकसमा SQL टाइप गर्दा प्रोग्रामले चलाइदिनु, जसले login फारमलाई पूरै तालिका पढ्ने बाटो
+    बनाइदिन्छ; <b>Malware</b>; <b lang="ne">अधिकारको दुरुपयोग</b>; <b lang="ne">कमजोर पासवर्ड</b> र
+    <b lang="ne">encrypt नगरिएको backup</b> — भित्र पस्ने सबैभन्दा सजिला र सबैभन्दा बिर्सिने दुई बाटा।</span>
+  </div>
+
+  <div class="mistake">
+    <h3>Mistakes that cost marks here</h3>
+    <ul>
+      <li><span class="t-en"><b>Treating backup and recovery as the same thing.</b> Backup is the copy taken
+        beforehand; recovery is the process of using it, plus the log, after a failure.
+        </span><span class="np-cell" lang="ne">Backup र recovery लाई एउटै मान्नु। Backup पहिले लिइने प्रतिलिपि हो;
+        recovery असफलतापछि त्यो र log प्रयोग गर्ने प्रक्रिया।</span></li>
+      <li><span class="t-en"><b>Swapping incremental and differential.</b> Incremental is since the last
+        <i>backup</i>; differential is since the last <i>full</i> backup.
+        </span><span class="np-cell" lang="ne">Incremental र differential साट्नु। Incremental अघिल्लो
+        <i>backup</i> देखि; differential अघिल्लो <i>full</i> backup देखि।</span></li>
+      <li><span class="t-en"><b>Saying redo is used for failed transactions.</b> It is the opposite — redo is for
+        <i>committed</i> ones, undo is for uncommitted ones.
+        </span><span class="np-cell" lang="ne">असफल ट्रान्ज्याक्सनलाई redo भन्नु। उल्टो हो — redo commit
+        <i lang="ne">भएका</i> लाई, undo commit नभएकालाई।</span></li>
+      <li><span class="t-en"><b>Confusing authentication with authorisation.</b> Authentication is <i>who you
+        are</i>; authorisation is <i>what you may do</i>.
+        </span><span class="np-cell" lang="ne">Authentication र authorisation मिसाउनु। Authentication भनेको
+        <i lang="ne">तपाईं को</i>; authorisation भनेको <i lang="ne">के गर्न पाउने</i>।</span></li>
+    </ul>
+  </div>
+
+  <h2 class="topic" id="db-exam7">Exam focus — what is asked from this unit</h2>
+
+  <div class="exam-connect"><span class="t-en">
+    <b>Everything in this unit is answered from memory, so the work is done before the exam, not
+    in it.</b> The three questions that recur are: define backup and state its types; compare the
+    backup methods; and explain recovery with redo and undo. Each is a short, structured answer —
+    a definition, then a list, then one line per item. Learn the lists as lists and you can write
+    them out in two minutes.
+    </span><span class="np-cell" lang="ne">यस युनिटका सबै उत्तर सम्झेर लेख्ने हुन्, त्यसैले काम परीक्षामा होइन,
+    अघि नै सकिन्छ। दोहोरिने तीन प्रश्न: backup को परिभाषा र प्रकार; backup विधिको तुलना; र redo–undo
+    सहित recovery को व्याख्या। हरेक छोटो र संरचित उत्तर हो — परिभाषा, अनि सूची, अनि प्रति बुँदा एक
+    हरफ।</span>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">What is database backup? Name its two types.
+    </span><span class="np-cell" lang="ne">डाटाबेस backup के हो? यसका दुई प्रकार नाम लिनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba71">Show the answer</button>
+    <div class="ans" id="dba71"><div class="t-en">
+      <p>A <b>backup</b> is a copy of the database stored separately so that the data can be
+      restored if the original is lost, damaged or corrupted.</p>
+      <p>Its two types are <b>physical backup</b> (a copy of the actual database files) and
+      <b>logical backup</b> (a copy of the SQL statements needed to rebuild the database).</p>
+      </div><span class="np-cell" lang="ne">परिभाषा र दुई प्रकार, प्रत्येकको एक हरफको व्याख्यासहित।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p><span class="t-en">Differentiate between full, incremental and differential backup.
+    </span><span class="np-cell" lang="ne">Full, incremental र differential backup बीचको फरक लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba72">Show the answer</button>
+    <div class="ans" id="dba72"><div class="t-en">
+      <div class="out">FULL          copies the entire database every time
+              slowest to take, simplest to restore
+              needs 1 file to restore
+
+INCREMENTAL   copies only what changed since the LAST backup
+              fastest to take, slowest to restore
+              needs the full backup + EVERY incremental
+
+DIFFERENTIAL  copies everything changed since the last FULL backup
+              grows each day, quick to restore
+              needs the full backup + the LATEST differential only</div>
+      <p>One mark each. Stating how many files a restore needs is what proves you have understood
+      the difference rather than memorised two similar sentences.</p>
+      </div><span class="np-cell" lang="ne">एक–एक अंक। फर्काउन कति फाइल चाहिन्छ भनेर लेख्नुले घोकेको होइन, बुझेको
+      देखाउँछ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">3 marks</span> Practice question</div>
+    <p><span class="t-en">What is database recovery? Explain redo and undo.
+    </span><span class="np-cell" lang="ne">डाटाबेस recovery के हो? Redo र undo व्याख्या गर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="dba73">Show the answer</button>
+    <div class="ans" id="dba73"><div class="t-en">
+      <p><b>Recovery</b> is the process of restoring a database to a correct and consistent state
+      after a failure, using the log — a file recording every change before it is applied.</p>
+      <p><b>REDO</b> re-applies the changes of transactions that <b>had committed</b> before the
+      failure. The log is read forwards. This enforces durability.</p>
+      <p><b>UNDO</b> reverses the changes of transactions that <b>had not committed</b>. The log is
+      read backwards. This enforces atomicity.</p>
+      <p>The presence or absence of a COMMIT record in the log decides which one a transaction
+      gets.</p>
+      </div><span class="np-cell" lang="ne">परिभाषा, redo, undo — र कुन लागू हुने भन्ने COMMIT रेकर्डले तय गर्छ भन्ने
+      वाक्य नछुटाउनुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick"><span class="t-en">A backup is a separate copy taken in advance; recovery is the process of
+        using it after a failure. They are not the same thing.
+        </span><span class="np-cell" lang="ne">Backup पहिले लिइने छुट्टै प्रतिलिपि हो; recovery असफलतापछि त्यो
+        प्रयोग गर्ने प्रक्रिया। दुई फरक कुरा हुन्।</span></li>
+      <li class="tick"><span class="t-en">Physical backup copies the files; logical backup copies the SQL that would
+        rebuild them.
+        </span><span class="np-cell" lang="ne">Physical backup ले फाइल, logical backup ले पुनर्निर्माण गर्ने SQL
+        प्रतिलिपि गर्छ।</span></li>
+      <li class="tick"><span class="t-en">Incremental = since the last backup. Differential = since the last FULL
+        backup. Restoring needs every incremental, but only the latest differential.
+        </span><span class="np-cell" lang="ne">Incremental = अघिल्लो backup देखि। Differential = अघिल्लो FULL backup
+        देखि। फर्काउन सबै incremental चाहिन्छ, तर differential भने पछिल्लो एउटै।</span></li>
+      <li class="tick"><span class="t-en">Redo re-applies committed transactions and gives durability. Undo reverses
+        uncommitted ones and gives atomicity. The COMMIT record decides which.
+        </span><span class="np-cell" lang="ne">Redo ले commit भएका फेरि लागू गर्छ — durability। Undo ले commit
+        नभएका उल्टाउँछ — atomicity। COMMIT रेकर्डले तय गर्छ।</span></li>
+      <li class="tick"><span class="t-en">Security has three jobs: authentication (who you are), authorisation (what
+        you may do) and encryption (unreadable if stolen).
+        </span><span class="np-cell" lang="ne">सुरक्षाका तीन काम: authentication (को हो), authorisation (के गर्न
+        पाउने), encryption (चोरिए पनि नपढिने)।</span></li>
+      <li class="tick"><span class="t-en">Common threats: unauthorised access, SQL injection, malware, privilege
+        abuse, weak passwords and unencrypted backups.
+        </span><span class="np-cell" lang="ne">सामान्य खतरा: अनधिकृत पहुँच, SQL injection, malware, अधिकारको
+        दुरुपयोग, कमजोर पासवर्ड र encrypt नगरिएको backup।</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit6.html"><span class="lab">◂ Previous</span><span class="ttl">Database Transaction</span></a><a class="nx" href="quiz.html"><span class="lab">Next ▸</span><span class="ttl">Self-Check Quiz</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/diagram.js"></script>
+<script src="../../assets/js/diagram-data.js"></script>
+</body>
+</html>
