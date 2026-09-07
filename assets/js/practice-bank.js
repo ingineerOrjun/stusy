@@ -283,6 +283,380 @@ GuidedPractice.register({
 });
 
 GuidedPractice.register({
+  "id": "dd.demorgan",
+  "subject": "grade10/digital-design",
+  "unit": "dd-u2",
+  "skill": {
+    "en": "Apply De Morgan's theorems to an expression",
+    "ne": "अभिव्यक्तिमा De Morgan का नियम लागू गर्नुहोस्"
+  },
+  "rule": {
+    "en": "Break the bar, and change the sign. A dot becomes a plus; a plus becomes a dot. Both, or neither — never one.",
+    "ne": "बार फुटाउनुहोस्, अनि चिन्ह बदल्नुहोस्। डट भए प्लस, प्लस भए डट। दुवै, कि केही पनि होइन — एउटा मात्र कहिल्यै होइन।"
+  },
+  "problems": [
+    {
+      "fade": "worked",
+      "ask": {
+        "en": "Simplify (A · B)' using De Morgan's first theorem.",
+        "ne": "De Morgan को पहिलो नियमले (A · B)' सरल बनाउनुहोस्।"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "Break the bar. What happens to each variable? Answer: complemented or unchanged",
+            "ne": "बार फुटाउनुहोस्। हरेक चरमा के हुन्छ? उत्तर: complemented वा unchanged"
+          },
+          "answer": "complemented",
+          "accept": [
+            "complement",
+            "inverted",
+            "negated"
+          ],
+          "why": {
+            "en": "Breaking the bar puts a complement on each variable separately: A becomes A' and B becomes B'.",
+            "ne": "बार फुटाउँदा हरेक चरमा छुट्टै complement लाग्छ: A को A' र B को B' हुन्छ।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "The sign between them was a dot. What does it become? Answer: + or ·",
+            "ne": "बीचको चिन्ह डट थियो। के हुन्छ? उत्तर: + वा ·"
+          },
+          "answer": "+",
+          "accept": [
+            "plus",
+            "or"
+          ],
+          "why": {
+            "en": "A dot becomes a plus. This is the half students forget — the bar is broken and the sign is left alone, which gives the wrong answer A' · B'.",
+            "ne": "डट प्लस हुन्छ। विद्यार्थीले बिर्सने यही आधा हो — बार फुटाएर चिन्ह त्यसै छोड्दा गलत उत्तर A' · B' आउँछ।"
+          }
+        }
+      ],
+      "result": "A'+B'",
+      "resultPrompt": {
+        "en": "Write the whole result",
+        "ne": "पूरा नतिजा लेख्नुहोस्"
+      },
+      "check": {
+        "en": "(A · B)' = A' + B'. Check it with A = 1, B = 0: the left side is (1 · 0)' = 0' = 1, and the right side is 0 + 1 = 1. ✓",
+        "ne": "(A · B)' = A' + B'। A = 1, B = 0 ले जाँच्नुहोस्: बायाँ (1 · 0)' = 1, दायाँ 0 + 1 = 1। ✓"
+      }
+    },
+    {
+      "fade": "partial",
+      "ask": {
+        "en": "Simplify (A + B)' using De Morgan's second theorem.",
+        "ne": "De Morgan को दोस्रो नियमले (A + B)' सरल बनाउनुहोस्।"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "Each variable becomes what? Answer: A' or A",
+            "ne": "हरेक चर के बन्छ? उत्तर: A' वा A"
+          },
+          "answer": "A'",
+          "accept": [
+            "a prime",
+            "complement"
+          ],
+          "why": {
+            "en": "The bar breaks onto each variable, so A becomes A' and B becomes B'.",
+            "ne": "बार हरेक चरमा फुट्छ, त्यसैले A को A' र B को B' हुन्छ।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "The plus becomes what? Answer: + or ·",
+            "ne": "प्लस के बन्छ? उत्तर: + वा ·"
+          },
+          "answer": "·",
+          "accept": [
+            ".",
+            "*",
+            "dot",
+            "and"
+          ],
+          "why": {
+            "en": "A plus becomes a dot. The two theorems are the same rule read in opposite directions.",
+            "ne": "प्लस डट हुन्छ। दुवै नियम उही कुरा उल्टो दिशाबाट पढेको हो।"
+          }
+        }
+      ],
+      "result": "A'·B'",
+      "resultPrompt": {
+        "en": "The whole result",
+        "ne": "पूरा नतिजा"
+      },
+      "check": {
+        "en": "(A + B)' = A' · B'. Check with A = 1, B = 0: left is (1 + 0)' = 0, right is 0 · 1 = 0. ✓",
+        "ne": "(A + B)' = A' · B'। A = 1, B = 0: बायाँ (1 + 0)' = 0, दायाँ 0 · 1 = 0। ✓"
+      }
+    },
+    {
+      "fade": "guided",
+      "ask": {
+        "en": "Simplify (A · B · C)' — three variables this time.",
+        "ne": "(A · B · C)' सरल बनाउनुहोस् — यसपटक तीन चर।"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "How many complements appear in the answer?",
+            "ne": "उत्तरमा कति वटा complement देखिन्छन्?"
+          },
+          "answer": "3",
+          "accept": [
+            "three"
+          ],
+          "why": {
+            "en": "One on each variable. The theorem does not care how many there are — the bar breaks onto every one of them.",
+            "ne": "हरेक चरमा एउटा। नियमले कति छन् भन्ने हेर्दैन — बार सबैमा फुट्छ।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "What sign joins them? Answer: + or ·",
+            "ne": "कुन चिन्हले जोड्छ? उत्तर: + वा ·"
+          },
+          "answer": "+",
+          "accept": [
+            "plus",
+            "or"
+          ],
+          "why": {
+            "en": "Every dot becomes a plus, however many there were.",
+            "ne": "जति नै भए पनि हरेक डट प्लस हुन्छ।"
+          }
+        }
+      ],
+      "result": "A'+B'+C'",
+      "resultPrompt": {
+        "en": "The whole result",
+        "ne": "पूरा नतिजा"
+      },
+      "check": {
+        "en": "The theorem extends to any number of variables. Two, three or ten: break the bar onto each, and turn every sign.",
+        "ne": "नियम जति चरमा पनि लागू हुन्छ। दुई, तीन वा दश: हरेकमा बार फुटाउनुहोस्, र हरेक चिन्ह बदल्नुहोस्।"
+      }
+    },
+    {
+      "fade": "independent",
+      "ask": {
+        "en": "Simplify (A' + B)' completely. Careful — one variable already carries a complement.",
+        "ne": "(A' + B)' पूरै सरल बनाउनुहोस्। ध्यान दिनुहोस् — एउटा चरमा पहिले नै complement छ।"
+      },
+      "steps": [],
+      "result": "A·B'",
+      "resultPrompt": {
+        "en": "The simplified expression",
+        "ne": "सरल बनाइएको अभिव्यक्ति"
+      },
+      "check": {
+        "en": "Break the bar: (A')' · B'. A double complement cancels — (A')' is just A — so the answer is A · B'. If you wrote A' · B', you broke the bar correctly and forgot that the complement already there cancels the new one.",
+        "ne": "बार फुटाउनुहोस्: (A')' · B'। दोहोरो complement काटिन्छ — (A')' भनेको A नै हो — त्यसैले उत्तर A · B' हो। A' · B' लेख्नुभयो भने बार त ठिकै फुटाउनुभयो, तर पहिले नै भएको complement ले नयाँलाई काट्छ भन्ने बिर्सनुभयो।"
+      }
+    },
+    {
+      "fade": "transfer",
+      "ask": {
+        "en": "A NAND gate has inputs A and B. Its output is (A · B)'. Using De Morgan, write that same output as an OR of two inverted inputs.",
+        "ne": "एउटा NAND गेटका इनपुट A र B छन्। यसको आउटपुट (A · B)' हो। De Morgan प्रयोग गरी उही आउटपुटलाई दुई उल्टाइएका इनपुटको OR रूपमा लेख्नुहोस्।"
+      },
+      "steps": [],
+      "result": "A'+B'",
+      "resultPrompt": {
+        "en": "The equivalent OR expression",
+        "ne": "बराबर हुने OR अभिव्यक्ति"
+      },
+      "check": {
+        "en": "A NAND gate IS an OR gate with both inputs inverted — that is what the first theorem says, drawn instead of written. This is why the same gate has two symbols in the notation sheet, and why NAND can build anything.",
+        "ne": "NAND गेट भनेकै दुवै इनपुट उल्टाइएको OR गेट हो — पहिलो नियमले भनेकै कुरा, लेखिएको होइन कोरिएको। त्यसैले notation मा एउटै गेटका दुई चिन्ह हुन्छन्, र त्यसैले NAND ले जे पनि बनाउन सक्छ।"
+      }
+    }
+  ]
+});
+
+GuidedPractice.register({
+  "id": "dd.addressing",
+  "subject": "grade10/digital-design",
+  "unit": "dd-u5",
+  "skill": {
+    "en": "Identify the addressing mode of an 8085 instruction",
+    "ne": "8085 निर्देशनको addressing mode पहिचान गर्नुहोस्"
+  },
+  "rule": {
+    "en": "The mode says WHERE the operand is found, not what the instruction does. Written inside the instruction → immediate. A full address given → direct. Both operands are registers → register. The address is held in a register pair → register indirect. Nothing written at all → implicit.",
+    "ne": "Mode ले operand कहाँ भेटिन्छ भन्ने बताउँछ, निर्देशनले के गर्छ भन्ने होइन। निर्देशनभित्रै लेखिएको → immediate। पूरा ठेगाना दिइएको → direct। दुवै operand register → register। ठेगाना register pair मा → register indirect। केही नलेखिएको → implicit।"
+  },
+  "problems": [
+    {
+      "fade": "worked",
+      "ask": {
+        "en": "MVI B, 20H — identify the addressing mode.",
+        "ne": "MVI B, 20H — addressing mode पहिचान गर्नुहोस्।"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "Where is the value 20H written? Answer: instruction or memory",
+            "ne": "20H कहाँ लेखिएको छ? उत्तर: instruction वा memory"
+          },
+          "answer": "instruction",
+          "accept": [
+            "in the instruction",
+            "inside"
+          ],
+          "why": {
+            "en": "20H is written in the instruction itself. Nothing has to be fetched from anywhere to find it.",
+            "ne": "20H निर्देशनमै लेखिएको छ। यो भेट्न कतैबाट केही ल्याउनु पर्दैन।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "So which mode is that?",
+            "ne": "त्यसैले यो कुन mode भयो?"
+          },
+          "answer": "immediate",
+          "accept": [
+            "immediate addressing"
+          ],
+          "why": {
+            "en": "Immediate: the operand is immediately available, in the instruction.",
+            "ne": "Immediate: operand निर्देशनमै, तुरुन्तै उपलब्ध।"
+          }
+        }
+      ],
+      "result": "immediate",
+      "resultPrompt": {
+        "en": "The addressing mode",
+        "ne": "कुन addressing mode"
+      },
+      "check": {
+        "en": "MVI stands for \"move immediate\", so the name of the instruction tells you the mode. Not every instruction is that generous.",
+        "ne": "MVI भनेको \"move immediate\" हो, त्यसैले निर्देशनकै नामले mode बताउँछ। हरेक निर्देशन यति उदार हुँदैन।"
+      }
+    },
+    {
+      "fade": "partial",
+      "ask": {
+        "en": "LDA 2050H — identify the addressing mode.",
+        "ne": "LDA 2050H — addressing mode पहिचान गर्नुहोस्।"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "Is 2050H a value to use, or an address to look in? Answer: value or address",
+            "ne": "2050H प्रयोग गर्ने मान हो कि हेर्ने ठेगाना? उत्तर: value वा address"
+          },
+          "answer": "address",
+          "accept": [
+            "an address",
+            "memory address"
+          ],
+          "why": {
+            "en": "2050H is a memory address. The instruction loads whatever is stored there, not the number 2050H itself.",
+            "ne": "2050H मेमोरी ठेगाना हो। निर्देशनले त्यहाँ राखिएको कुरा लोड गर्छ, 2050H सङ्ख्या आफैं होइन।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "Is that address written in full, or held in a register pair? Answer: written or register",
+            "ne": "त्यो ठेगाना पूरै लेखिएको छ कि register pair मा छ? उत्तर: written वा register"
+          },
+          "answer": "written",
+          "accept": [
+            "in full",
+            "in the instruction"
+          ],
+          "why": {
+            "en": "The full address appears in the instruction, so nothing has to be looked up first.",
+            "ne": "पूरा ठेगाना निर्देशनमै छ, त्यसैले पहिले कतै हेर्नु पर्दैन।"
+          }
+        }
+      ],
+      "result": "direct",
+      "resultPrompt": {
+        "en": "The addressing mode",
+        "ne": "कुन addressing mode"
+      },
+      "check": {
+        "en": "Direct: the address is given directly. Compare it with immediate — there, the VALUE was given directly; here, the ADDRESS is.",
+        "ne": "Direct: ठेगाना सिधै दिइएको। immediate सँग तुलना गर्नुहोस् — त्यहाँ MAN सिधै दिइएको थियो; यहाँ ठेगाना।"
+      }
+    },
+    {
+      "fade": "guided",
+      "ask": {
+        "en": "MOV A, C — identify the addressing mode.",
+        "ne": "MOV A, C — addressing mode पहिचान गर्नुहोस्।"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "How many memory locations does this instruction touch?",
+            "ne": "यो निर्देशनले कति मेमोरी ठाउँ छुन्छ?"
+          },
+          "answer": "0",
+          "accept": [
+            "zero",
+            "none"
+          ],
+          "why": {
+            "en": "A and C are both registers, inside the processor. Memory is not involved at all, which is why register-mode instructions are the fastest.",
+            "ne": "A र C दुवै प्रोसेसरभित्रका register हुन्। मेमोरी संलग्नै छैन, त्यसैले register mode का निर्देशन सबैभन्दा छिटो हुन्छन्।"
+          }
+        }
+      ],
+      "result": "register",
+      "resultPrompt": {
+        "en": "The addressing mode",
+        "ne": "कुन addressing mode"
+      },
+      "check": {
+        "en": "Register mode: both operands are named registers.",
+        "ne": "Register mode: दुवै operand नाम गरिएका register हुन्।"
+      }
+    },
+    {
+      "fade": "independent",
+      "ask": {
+        "en": "MOV A, M — identify the addressing mode. M means \"the memory location whose address is in the HL pair\".",
+        "ne": "MOV A, M — addressing mode पहिचान गर्नुहोस्। M भनेको \"HL pair मा ठेगाना भएको मेमोरी ठाउँ\" हो।"
+      },
+      "steps": [],
+      "result": "register indirect",
+      "resultPrompt": {
+        "en": "The addressing mode",
+        "ne": "कुन addressing mode"
+      },
+      "check": {
+        "en": "Register indirect. It looks like MOV A, C — two register names — but M is not a register holding the value; it is memory, and the ADDRESS of that memory is in HL. If you answered \"register\", that is the exact confusion this unit warns about: direct writes the address in the instruction, indirect keeps it in a register pair, so you have to look there first.",
+        "ne": "Register indirect। MOV A, C जस्तै — दुई register नाम — देखिन्छ, तर M मान बोक्ने register होइन; त्यो मेमोरी हो, र त्यसको ठेगाना HL मा छ। \"register\" भन्नुभयो भने यही युनिटले चेतावनी दिएको ठ्याक्कै अन्योल हो: direct ले ठेगाना निर्देशनमै लेख्छ, indirect ले register pair मा राख्छ।"
+      }
+    },
+    {
+      "fade": "transfer",
+      "ask": {
+        "en": "An instruction operates on the accumulator, and the accumulator is not written anywhere in the instruction — CMA is one. Which addressing mode is that?",
+        "ne": "एउटा निर्देशनले accumulator मा काम गर्छ, तर निर्देशनमा accumulator कतै लेखिएको छैन — CMA त्यस्तै हो। यो कुन addressing mode हो?"
+      },
+      "steps": [],
+      "result": "implicit",
+      "resultPrompt": {
+        "en": "The addressing mode",
+        "ne": "कुन addressing mode"
+      },
+      "check": {
+        "en": "Implicit — the operand is understood without being written. This question gave you a description rather than an instruction, which is the form the exam uses when it wants to know whether you learned the rule or the list.",
+        "ne": "Implicit — operand नलेखिकनै बुझिन्छ। यो प्रश्नले निर्देशन होइन विवरण दियो, र परीक्षाले नियम सिक्नुभयो कि सूची भन्ने जाँच्न यही रूप प्रयोग गर्छ।"
+      }
+    }
+  ]
+});
+
+GuidedPractice.register({
   "id": "db.normalform",
   "subject": "grade10/dbms",
   "unit": "db-u5",
@@ -755,6 +1129,183 @@ GuidedPractice.register({
       "check": {
         "en": "Y comes before X because the header says \"public Y, public X\" — the names are deliberately out of alphabetical order to catch exactly that. If you answered X Y Z, you sorted the names instead of reading the header.",
         "ne": "header मा \"public Y, public X\" लेखिएकाले Y, X भन्दा पहिले आउँछ — नाम जानीजानी वर्णक्रम बाहिर राखिएका छन्, यही समात्न। X Y Z भन्नुभयो भने header पढ्नुको सट्टा नाम क्रमबद्ध गर्नुभयो।"
+      }
+    }
+  ]
+});
+
+GuidedPractice.register({
+  "id": "oop.controlflow",
+  "subject": "grade10/oop-cpp",
+  "unit": "u2",
+  "skill": {
+    "en": "Predict how many times a control statement runs",
+    "ne": "control statement कति पटक चल्छ भनी अनुमान गर्नुहोस्"
+  },
+  "rule": {
+    "en": "An if…else ladder is checked from the TOP and stops at the first true condition. A while loop checks BEFORE it acts, so it can run zero times. A do…while acts BEFORE it checks, so it always runs at least once.",
+    "ne": "if…else ladder माथिबाट जाँचिन्छ र पहिलो सत्य सर्तमै रोकिन्छ। while ले काम गर्नुअघि जाँच्छ, त्यसैले शून्य पटक पनि चल्न सक्छ। do…while ले जाँच्नुअघि काम गर्छ, त्यसैले कम्तीमा एक पटक चल्छ नै।"
+  },
+  "problems": [
+    {
+      "fade": "worked",
+      "ask": {
+        "en": "int i = 0; while (i < 3) { cout << \"x\"; i++; } — how many times does the body run?",
+        "ne": "int i = 0; while (i < 3) { cout << \"x\"; i++; } — body कति पटक चल्छ?"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "Is the condition true before the first pass? Answer yes or no",
+            "ne": "पहिलो पटकअघि सर्त सत्य छ? yes वा no"
+          },
+          "answer": "yes",
+          "accept": [
+            "y",
+            "true"
+          ],
+          "why": {
+            "en": "i is 0 and 0 < 3 is true, so the body runs. A while loop checks first, and this check passed.",
+            "ne": "i = 0 र 0 < 3 सत्य छ, त्यसैले body चल्छ। while ले पहिले जाँच्छ, र यो जाँच पास भयो।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "What is i when the condition finally fails?",
+            "ne": "सर्त असफल हुँदा i कति हुन्छ?"
+          },
+          "answer": "3",
+          "accept": [
+            "three"
+          ],
+          "why": {
+            "en": "i goes 0, 1, 2, and after the third pass it is 3. 3 < 3 is false, so the loop stops there.",
+            "ne": "i ० , १ , २ हुँदै तेस्रो पटकपछि ३ हुन्छ। 3 < 3 असत्य, त्यसैले लूप रोकिन्छ।"
+          }
+        }
+      ],
+      "result": "3",
+      "resultPrompt": {
+        "en": "Number of times the body runs",
+        "ne": "body चल्ने पटक"
+      },
+      "check": {
+        "en": "Three: i was 0, 1 and 2. The value that FAILS the test is not a run — that is the off-by-one everyone meets once.",
+        "ne": "तीन पटक: i ० , १ र २ थियो। जाँच असफल गर्ने मान चलेको गनिँदैन — यही एक-कमी गल्ती सबैले एक पटक गर्छन्।"
+      }
+    },
+    {
+      "fade": "partial",
+      "ask": {
+        "en": "int marks = 78; if (marks >= 90) cout << \"A+\"; else if (marks >= 75) cout << \"A\"; else if (marks >= 60) cout << \"B\"; — what is printed?",
+        "ne": "int marks = 78; if (marks >= 90) cout << \"A+\"; else if (marks >= 75) cout << \"A\"; else if (marks >= 60) cout << \"B\"; — के छापिन्छ?"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "Does 78 pass the first test (marks >= 90)? yes or no",
+            "ne": "७८ पहिलो जाँच (marks >= 90) पास गर्छ? yes वा no"
+          },
+          "answer": "no",
+          "accept": [
+            "n",
+            "false"
+          ],
+          "why": {
+            "en": "78 >= 90 is false, so the ladder moves to the next condition.",
+            "ne": "78 >= 90 असत्य, त्यसैले ladder अर्को सर्तमा जान्छ।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "Does it pass the second (marks >= 75)? yes or no",
+            "ne": "दोस्रो (marks >= 75) पास गर्छ? yes वा no"
+          },
+          "answer": "yes",
+          "accept": [
+            "y",
+            "true"
+          ],
+          "why": {
+            "en": "78 >= 75 is true. The ladder stops at the FIRST true condition — the third is never even checked.",
+            "ne": "78 >= 75 सत्य। ladder पहिलो सत्य सर्तमै रोकिन्छ — तेस्रो जाँचिँदै जाँचिँदैन।"
+          }
+        }
+      ],
+      "result": "A",
+      "resultPrompt": {
+        "en": "What is printed",
+        "ne": "के छापिन्छ"
+      },
+      "check": {
+        "en": "78 is also >= 60, but that line never runs. An else-if ladder is not a list of independent tests — it is one decision with several branches.",
+        "ne": "७८ चाहिँ >= 60 पनि हो, तर त्यो लाइन कहिल्यै चल्दैन। else-if ladder छुट्टाछुट्टै जाँचको सूची होइन — धेरै हाँगा भएको एउटै निर्णय हो।"
+      }
+    },
+    {
+      "fade": "guided",
+      "ask": {
+        "en": "int n = 5; while (n > 0) { cout << n; n = n - 2; } — how many times does the body run?",
+        "ne": "int n = 5; while (n > 0) { cout << n; n = n - 2; } — body कति पटक चल्छ?"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "List the values n takes while the loop is running, separated by spaces",
+            "ne": "लूप चल्दा n ले लिने मानहरू खाली ठाउँले छुट्याएर लेख्नुहोस्"
+          },
+          "answer": "5 3 1",
+          "accept": [
+            "531"
+          ],
+          "why": {
+            "en": "n starts at 5 and drops by 2: 5, then 3, then 1. After 1 it becomes -1, and -1 > 0 is false.",
+            "ne": "n ५ बाट सुरु भई २ ले घट्छ: ५, ३, १। १ पछि -१ हुन्छ, र -1 > 0 असत्य।"
+          }
+        }
+      ],
+      "result": "3",
+      "resultPrompt": {
+        "en": "Number of times the body runs",
+        "ne": "body चल्ने पटक"
+      },
+      "check": {
+        "en": "Three. Counting a loop that does not step by 1 is where guessing stops working — write the values down.",
+        "ne": "तीन। १-१ गरी नबढ्ने लूप गन्दा अनुमान काम लाग्दैन — मानहरू लेखेर हेर्नुहोस्।"
+      }
+    },
+    {
+      "fade": "independent",
+      "ask": {
+        "en": "int j = 10; do { cout << \"run\"; } while (j < 5); — how many times does the body run?",
+        "ne": "int j = 10; do { cout << \"run\"; } while (j < 5); — body कति पटक चल्छ?"
+      },
+      "steps": [],
+      "result": "1",
+      "resultPrompt": {
+        "en": "Number of times the body runs",
+        "ne": "body चल्ने पटक"
+      },
+      "check": {
+        "en": "Once. The condition 10 < 5 is false from the start — but a do…while ACTS before it CHECKS, so the body has already run by the time the condition is tested. If you answered 0, you read it as a while loop: that is the exact difference this unit says gets tested.",
+        "ne": "एक पटक। सर्त 10 < 5 सुरुदेखि नै असत्य छ — तर do…while ले जाँच्नुअघि काम गर्छ, त्यसैले सर्त जाँच्दा body चलिसकेको हुन्छ। ० भन्नुभयो भने यसलाई while ठान्नुभयो: युनिटले \"यही जाँचिन्छ\" भनेको ठ्याक्कै यही फरक हो।"
+      }
+    },
+    {
+      "fade": "transfer",
+      "ask": {
+        "en": "for (int k = 10; k < 5; k++) { cout << \"run\"; } — how many times does the body run?",
+        "ne": "for (int k = 10; k < 5; k++) { cout << \"run\"; } — body कति पटक चल्छ?"
+      },
+      "steps": [],
+      "result": "0",
+      "resultPrompt": {
+        "en": "Number of times the body runs",
+        "ne": "body चल्ने पटक"
+      },
+      "check": {
+        "en": "Zero. A for loop checks its condition BEFORE the first pass, exactly like a while — so with k starting at 10 and the test k < 5, the body never runs. Same numbers as the do…while above and the opposite answer: the construct decides, not the values.",
+        "ne": "शून्य। for ले पहिलो पटकअघि नै सर्त जाँच्छ, ठ्याक्कै while जस्तै — त्यसैले k = 10 र जाँच k < 5 हुँदा body कहिल्यै चल्दैन। माथिको do…while सँग उही सङ्ख्या, उल्टो उत्तर: मानले होइन, construct ले निर्णय गर्छ।"
       }
     }
   ]

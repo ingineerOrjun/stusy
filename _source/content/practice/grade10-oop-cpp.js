@@ -168,5 +168,172 @@ module.exports = [
       }
     ]
   }
+,
+
+  /* ============================================================
+     UNIT 2 — PREDICTING WHAT A CONTROL STATEMENT PRINTS
+
+     14 marks and the broadest unit in the product: sixteen topics, from
+     the seven features of OOP through tokens and data types to the
+     control statements. Most of it is recall, and recall is already well
+     served — four worked examples, four comparison tables, a drill.
+
+     What is NOT served is the one procedural thing the unit teaches:
+     working out what a program prints. Example 4 is titled "while vs
+     do…while — the difference that gets tested", which is the unit
+     telling you where the marks are, and it is a worked example nobody
+     practises.
+
+     WHY OUTPUT AND NOT DEFINITIONS
+     A "choose the definition" exercise tests whether a sentence was
+     read. Predicting output tests whether the rule behind it was
+     understood, and it is the form the exam actually uses.
+
+     WHY NOT THE PROGRAM TRACER
+     The tracer walks one complete program step by step, which is a
+     different thing: it shows HOW execution proceeds. This asks the
+     student to predict WHERE it ends up, without stepping. Both are
+     useful; neither replaces the other.
+
+     SYLLABUS
+     CDC Grade 10, DS & OOP with C++ unit 2 — 2.9 Control Statements.
+     Nothing here uses a construct the unit has not introduced.
+     ============================================================ */
+  {
+    id: 'oop.controlflow',
+    subject: 'grade10/oop-cpp',
+    unit: 'u2',
+    skill: {
+      en: 'Predict how many times a control statement runs',
+      ne: 'control statement कति पटक चल्छ भनी अनुमान गर्नुहोस्'
+    },
+    rule: {
+      en: 'An if…else ladder is checked from the TOP and stops at the first true condition. ' +
+          'A while loop checks BEFORE it acts, so it can run zero times. ' +
+          'A do…while acts BEFORE it checks, so it always runs at least once.',
+      ne: 'if…else ladder माथिबाट जाँचिन्छ र पहिलो सत्य सर्तमै रोकिन्छ। ' +
+          'while ले काम गर्नुअघि जाँच्छ, त्यसैले शून्य पटक पनि चल्न सक्छ। ' +
+          'do…while ले जाँच्नुअघि काम गर्छ, त्यसैले कम्तीमा एक पटक चल्छ नै।'
+    },
+    problems: [
+      {
+        fade: 'worked',
+        ask: {
+          en: 'int i = 0; while (i < 3) { cout << "x"; i++; } — how many times does the body run?',
+          ne: 'int i = 0; while (i < 3) { cout << "x"; i++; } — body कति पटक चल्छ?'
+        },
+        steps: [
+          { prompt: { en: 'Is the condition true before the first pass? Answer yes or no',
+                      ne: 'पहिलो पटकअघि सर्त सत्य छ? yes वा no' },
+            answer: 'yes', accept: ['y', 'true'],
+            why: { en: 'i is 0 and 0 < 3 is true, so the body runs. A while loop checks first, ' +
+                       'and this check passed.',
+                   ne: 'i = 0 र 0 < 3 सत्य छ, त्यसैले body चल्छ। while ले पहिले जाँच्छ, र यो जाँच पास भयो।' } },
+          { prompt: { en: 'What is i when the condition finally fails?',
+                      ne: 'सर्त असफल हुँदा i कति हुन्छ?' },
+            answer: '3', accept: ['three'],
+            why: { en: 'i goes 0, 1, 2, and after the third pass it is 3. 3 < 3 is false, so the ' +
+                       'loop stops there.',
+                   ne: 'i ० , १ , २ हुँदै तेस्रो पटकपछि ३ हुन्छ। 3 < 3 असत्य, त्यसैले लूप रोकिन्छ।' } }
+        ],
+        result: '3',
+        resultPrompt: { en: 'Number of times the body runs', ne: 'body चल्ने पटक' },
+        check: { en: 'Three: i was 0, 1 and 2. The value that FAILS the test is not a run — that ' +
+                     'is the off-by-one everyone meets once.',
+                 ne: 'तीन पटक: i ० , १ र २ थियो। जाँच असफल गर्ने मान चलेको गनिँदैन — यही एक-कमी ' +
+                     'गल्ती सबैले एक पटक गर्छन्।' }
+      },
+
+      {
+        fade: 'partial',
+        ask: {
+          en: 'int marks = 78; if (marks >= 90) cout << "A+"; else if (marks >= 75) cout << "A"; ' +
+              'else if (marks >= 60) cout << "B"; — what is printed?',
+          ne: 'int marks = 78; if (marks >= 90) cout << "A+"; else if (marks >= 75) cout << "A"; ' +
+              'else if (marks >= 60) cout << "B"; — के छापिन्छ?'
+        },
+        steps: [
+          { prompt: { en: 'Does 78 pass the first test (marks >= 90)? yes or no',
+                      ne: '७८ पहिलो जाँच (marks >= 90) पास गर्छ? yes वा no' },
+            answer: 'no', accept: ['n', 'false'],
+            why: { en: '78 >= 90 is false, so the ladder moves to the next condition.',
+                   ne: '78 >= 90 असत्य, त्यसैले ladder अर्को सर्तमा जान्छ।' } },
+          { prompt: { en: 'Does it pass the second (marks >= 75)? yes or no',
+                      ne: 'दोस्रो (marks >= 75) पास गर्छ? yes वा no' },
+            answer: 'yes', accept: ['y', 'true'],
+            why: { en: '78 >= 75 is true. The ladder stops at the FIRST true condition — the ' +
+                       'third is never even checked.',
+                   ne: '78 >= 75 सत्य। ladder पहिलो सत्य सर्तमै रोकिन्छ — तेस्रो जाँचिँदै जाँचिँदैन।' } }
+        ],
+        result: 'A',
+        resultPrompt: { en: 'What is printed', ne: 'के छापिन्छ' },
+        check: { en: '78 is also >= 60, but that line never runs. An else-if ladder is not a list ' +
+                     'of independent tests — it is one decision with several branches.',
+                 ne: '७८ चाहिँ >= 60 पनि हो, तर त्यो लाइन कहिल्यै चल्दैन। else-if ladder छुट्टाछुट्टै ' +
+                     'जाँचको सूची होइन — धेरै हाँगा भएको एउटै निर्णय हो।' }
+      },
+
+      {
+        fade: 'guided',
+        ask: {
+          en: 'int n = 5; while (n > 0) { cout << n; n = n - 2; } — how many times does the body run?',
+          ne: 'int n = 5; while (n > 0) { cout << n; n = n - 2; } — body कति पटक चल्छ?'
+        },
+        steps: [
+          { prompt: { en: 'List the values n takes while the loop is running, separated by spaces',
+                      ne: 'लूप चल्दा n ले लिने मानहरू खाली ठाउँले छुट्याएर लेख्नुहोस्' },
+            answer: '5 3 1', accept: ['531'],
+            why: { en: 'n starts at 5 and drops by 2: 5, then 3, then 1. After 1 it becomes -1, ' +
+                       'and -1 > 0 is false.',
+                   ne: 'n ५ बाट सुरु भई २ ले घट्छ: ५, ३, १। १ पछि -१ हुन्छ, र -1 > 0 असत्य।' } }
+        ],
+        result: '3',
+        resultPrompt: { en: 'Number of times the body runs', ne: 'body चल्ने पटक' },
+        check: { en: 'Three. Counting a loop that does not step by 1 is where guessing stops ' +
+                     'working — write the values down.',
+                 ne: 'तीन। १-१ गरी नबढ्ने लूप गन्दा अनुमान काम लाग्दैन — मानहरू लेखेर हेर्नुहोस्।' }
+      },
+
+      {
+        fade: 'independent',
+        ask: {
+          en: 'int j = 10; do { cout << "run"; } while (j < 5); — how many times does the body run?',
+          ne: 'int j = 10; do { cout << "run"; } while (j < 5); — body कति पटक चल्छ?'
+        },
+        steps: [],
+        result: '1',
+        resultPrompt: { en: 'Number of times the body runs', ne: 'body चल्ने पटक' },
+        check: { en: 'Once. The condition 10 < 5 is false from the start — but a do…while ACTS ' +
+                     'before it CHECKS, so the body has already run by the time the condition is ' +
+                     'tested. If you answered 0, you read it as a while loop: that is the exact ' +
+                     'difference this unit says gets tested.',
+                 ne: 'एक पटक। सर्त 10 < 5 सुरुदेखि नै असत्य छ — तर do…while ले जाँच्नुअघि काम ' +
+                     'गर्छ, त्यसैले सर्त जाँच्दा body चलिसकेको हुन्छ। ० भन्नुभयो भने यसलाई while ' +
+                     'ठान्नुभयो: युनिटले "यही जाँचिन्छ" भनेको ठ्याक्कै यही फरक हो।' }
+      },
+
+      {
+        /* TRANSFER — same rule, different construct. A for loop is the
+           third form of the same idea, and a student who answered the
+           do…while correctly by memorising "at least once" cannot do
+           this one; a student who understands check-before-act can. */
+        fade: 'transfer',
+        ask: {
+          en: 'for (int k = 10; k < 5; k++) { cout << "run"; } — how many times does the body run?',
+          ne: 'for (int k = 10; k < 5; k++) { cout << "run"; } — body कति पटक चल्छ?'
+        },
+        steps: [],
+        result: '0',
+        resultPrompt: { en: 'Number of times the body runs', ne: 'body चल्ने पटक' },
+        check: { en: 'Zero. A for loop checks its condition BEFORE the first pass, exactly like a ' +
+                     'while — so with k starting at 10 and the test k < 5, the body never runs. ' +
+                     'Same numbers as the do…while above and the opposite answer: the construct ' +
+                     'decides, not the values.',
+                 ne: 'शून्य। for ले पहिलो पटकअघि नै सर्त जाँच्छ, ठ्याक्कै while जस्तै — त्यसैले ' +
+                     'k = 10 र जाँच k < 5 हुँदा body कहिल्यै चल्दैन। माथिको do…while सँग उही ' +
+                     'सङ्ख्या, उल्टो उत्तर: मानले होइन, construct ले निर्णय गर्छ।' }
+      }
+    ]
+  }
 
 ];

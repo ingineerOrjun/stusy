@@ -89,11 +89,24 @@
     return false;
   }
 
+  /* THE FIFTH LEVEL IS NOT MORE OF THE FOURTH.
+     `independent` asks the student to do the same procedure with no help.
+     `transfer` asks whether they can use the IDEA when something about
+     the situation has moved — the representation, the context, the
+     direction of the question. A student who can convert five decimal
+     numbers and cannot recognise the same rule stated as a circuit has
+     learned a procedure, not a concept, and only the fifth level can
+     tell those two apart.
+
+     Added in Phase 8. It is one more entry here and one more label; the
+     ordering rule the tests enforce simply grew by one, which is what a
+     level model being right looks like. */
   var LEVEL_LABEL = {
     worked:      { key: 'levelWorked',      en: 'Worked for you' },
     partial:     { key: 'levelPartial',     en: 'Some steps hidden' },
     guided:      { key: 'levelGuided',      en: 'Your turn, with prompts' },
-    independent: { key: 'levelIndependent', en: 'On your own' }
+    independent: { key: 'levelIndependent', en: 'On your own' },
+    transfer:    { key: 'levelTransfer',    en: 'Somewhere new' }
   };
 
   function Practice(root, skill){
@@ -266,12 +279,21 @@
     if (ok && this.at === this.skill.problems.length - 1){
       var done = this.root.querySelector('.gp-done');
       if (done){
-        /* §17: name the competence, do not throw confetti. */
-        done.innerHTML =
-          '<span class="t-en">You did the last one with no steps shown. That is the ' +
-          'version of this the exam asks for.</span>' +
-          '<span class="np-cell" lang="ne">अन्तिमचाहिँ कुनै चरण नदेखाई गर्नुभयो। ' +
-          'परीक्षामा यही रूप सोधिन्छ।</span>';
+        /* Name the competence, do not throw confetti — and name the
+           RIGHT one. "You did it with no steps shown" is true of an
+           independent problem and undersells a transfer problem, where
+           the student did something harder: used the rule after the
+           situation moved. Telling them the wrong thing they achieved is
+           a small lie that costs the message its weight. */
+        done.innerHTML = (p.fade === 'transfer')
+          ? '<span class="t-en">You used the rule in a situation it had not been shown in. ' +
+            'That is the difference between knowing a procedure and understanding it.</span>' +
+            '<span class="np-cell" lang="ne">नदेखाइएको अवस्थामा नियम लगाउनुभयो। ' +
+            'विधि जान्नु र बुझ्नुबीचको फरक यही हो।</span>'
+          : '<span class="t-en">You did the last one with no steps shown. That is the ' +
+            'version of this the exam asks for.</span>' +
+            '<span class="np-cell" lang="ne">अन्तिमचाहिँ कुनै चरण नदेखाई गर्नुभयो। ' +
+            'परीक्षामा यही रूप सोधिन्छ।</span>';
       }
     }
   };

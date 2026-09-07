@@ -73,6 +73,7 @@
     levelPartial:     { en: 'Some steps hidden',     ne: 'केही चरण लुकाइएका' },
     levelGuided:      { en: 'Your turn, with prompts', ne: 'तपाईंको पालो, सङ्केतसहित' },
     levelIndependent: { en: 'On your own',           ne: 'आफैंले' },
+    levelTransfer:    { en: 'Somewhere new',         ne: 'नयाँ ठाउँमा' },
     checkStep:        { en: 'Check',                 ne: 'जाँच्नुहोस्' },
     checkAnswer:      { en: 'Check the answer',      ne: 'उत्तर जाँच्नुहोस्' },
     nextProblem:      { en: 'Next problem ▸',        ne: 'अर्को प्रश्न ▸' },

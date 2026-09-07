@@ -74,7 +74,11 @@ test('every step can be marked, and every mark can be explained', () => {
 /* ---------------------------------------------- the fading itself */
 
 test('the scaffolding actually comes away, in order', () => {
-  const ORDER = ['worked', 'partial', 'guided', 'independent'];
+  /* `transfer` joined the ladder in Phase 8. It sits after `independent`
+     because it asks for less, not more: the same idea with something
+     about the situation moved. The ordering rule below is unchanged —
+     it simply has one more rung. */
+  const ORDER = ['worked', 'partial', 'guided', 'independent', 'transfer'];
   for (const s of BANK){
     const levels = s.problems.map(p => p.fade);
     for (const l of levels) assert.ok(ORDER.includes(l), s.id + ': unknown fade level "' + l + '"');
@@ -87,17 +91,28 @@ test('the scaffolding actually comes away, in order', () => {
     }
     assert.strictEqual(levels[0], 'worked',
       s.id + ': the first problem must demonstrate the procedure before asking for it');
-    assert.strictEqual(levels[levels.length - 1], 'independent',
-      s.id + ': the last problem must be unscaffolded, or nothing was faded');
+    /* The sequence must END unscaffolded. Either rung qualifies: an
+       independent problem asks for the same thing with no help, and a
+       transfer problem asks for the idea somewhere new. What is not
+       allowed is finishing while help is still being given. */
+    var end = levels[levels.length - 1];
+    assert.ok(end === 'independent' || end === 'transfer',
+      s.id + ': the last problem is "' + end + '" — the sequence ends while the student ' +
+      'is still being helped, so nothing was actually faded');
+    if (levels.indexOf('transfer') >= 0){
+      assert.ok(levels.indexOf('independent') >= 0,
+        s.id + ': a transfer problem without an independent one first asks a student to move ' +
+        'an idea they have never used unaided');
+    }
   }
 });
 
 test('the independent problem shows no steps at all', () => {
   for (const s of BANK){
     for (const p of s.problems){
-      if (p.fade !== 'independent') continue;
+      if (p.fade !== 'independent' && p.fade !== 'transfer') continue;
       assert.strictEqual((p.steps || []).length, 0,
-        s.id + ': the "on your own" problem still carries steps, so it is not on your own');
+        s.id + ': the "' + p.fade + '" problem still carries steps, so it is not unscaffolded');
     }
   }
 });
@@ -208,5 +223,129 @@ test('every practice block on a page has a skill behind it, and the reverse', ()
   }
   for (const id of known){
     assert.ok(used.has(id), 'skill "' + id + '" is authored but no page shows it');
+  }
+});
+
+/* ---------------------------------------------- the transfer rung */
+
+/* A transfer problem exists to ask whether the student can use the IDEA
+   when the situation moves. The failure it guards is the easy one to
+   write by accident: the same question with different numbers, which
+   tests the procedure again and calls it transfer. Measured as token
+   overlap against the independent problem it follows — a near-duplicate
+   shares almost every word. */
+test('a transfer problem is not the independent one with new numbers', () => {
+  const words = s => new Set(String(s).toLowerCase()
+    .replace(/[^a-z0-9'+·*<>=;{}()\s]/g, ' ')
+    .split(/\s+/).filter(w => w.length > 1));
+  for (const s of BANK){
+    const t = s.problems.find(p => p.fade === 'transfer');
+    if (!t) continue;
+    const ind = s.problems.find(p => p.fade === 'independent');
+    assert.ok(ind, s.id + ': a transfer problem with no independent problem before it');
+    const a = words(ind.ask.en), b = words(t.ask.en);
+    let shared = 0;
+    for (const w of b) if (a.has(w)) shared++;
+    const overlap = b.size ? shared / b.size : 1;
+    assert.ok(overlap < 0.8,
+      s.id + ': the transfer problem shares ' + Math.round(overlap * 100) + '% of its wording ' +
+      'with the independent one. Transfer means something moved — the representation, the ' +
+      'context, or the direction of the question — not just the numbers.');
+  }
+});
+
+/* The check text is where a transfer problem earns its place: it has to
+   say what moved, or the student learns a second answer instead of a
+   wider rule. */
+test('a transfer problem explains what changed', () => {
+  for (const s of BANK){
+    const t = s.problems.find(p => p.fade === 'transfer');
+    if (!t) continue;
+    assert.ok(t.check.en.trim().split(/\s+/).length >= 20,
+      s.id + ': the transfer problem\'s explanation is too short to say what moved');
+    bothLanguages(t.check, s.id + ' transfer.check');
+  }
+});
+
+/* ---------------------------------------------- the mathematics */
+
+/* Recomputing the answers is cheap and catches a typo that would
+   otherwise teach a student the wrong Boolean identity. The same
+   discipline as the decimal-to-binary check above. */
+test('every De Morgan answer is algebraically correct', () => {
+  /* A tiny evaluator for the expression forms this bank uses:
+     variables A B C, ' for complement, · or * for AND, + for OR,
+     and parentheses. */
+  function evaluate(expr, env){
+    let i = 0;
+    const src = String(expr).replace(/\s+/g, '');
+    function primary(){
+      let v;
+      if (src[i] === '('){ i++; v = orExpr(); if (src[i] !== ')') throw new Error('unbalanced'); i++; }
+      else { const name = src[i++]; if (!(name in env)) throw new Error('unknown var ' + name); v = env[name]; }
+      while (src[i] === "'"){ i++; v = v ? 0 : 1; }
+      return v;
+    }
+    function andExpr(){
+      let v = primary();
+      while (src[i] === '·' || src[i] === '*' || src[i] === '.'){ i++; v = (primary() && v) ? 1 : 0; }
+      return v;
+    }
+    function orExpr(){
+      let v = andExpr();
+      while (src[i] === '+'){ i++; const r = andExpr(); v = (v || r) ? 1 : 0; }
+      return v;
+    }
+    const out = orExpr();
+    if (i !== src.length) throw new Error('trailing input in ' + expr + ' at ' + i);
+    return out;
+  }
+
+  const skill = BANK.find(s => s.id === 'dd.demorgan');
+  assert.ok(skill, 'the De Morgan practice is gone');
+
+  /* Each problem states an expression in its ask and the equivalent in
+     its result. Pull the parenthesised expression out of the ask. */
+  let checked = 0;
+  for (const p of skill.problems){
+    const m = /\(([^)]*(?:\([^)]*\)[^)]*)*)\)'/.exec(p.ask.en);
+    if (!m) continue;                       /* the transfer problem is prose */
+    const left = '(' + m[1] + ")'";
+    const right = p.result;
+    const vars = [...new Set((left + right).match(/[A-C]/g) || [])];
+    for (let bits = 0; bits < (1 << vars.length); bits++){
+      const env = {};
+      vars.forEach((v, k) => { env[v] = (bits >> k) & 1; });
+      const l = evaluate(left, env), r = evaluate(right, env);
+      assert.strictEqual(l, r,
+        'De Morgan: ' + left + ' = ' + right + ' is false for ' +
+        vars.map(v => v + '=' + env[v]).join(', ') + ' — left ' + l + ', right ' + r);
+    }
+    checked++;
+  }
+  assert.ok(checked >= 4, 'expected at least 4 checkable identities, verified ' + checked);
+});
+
+/* A fade level the runtime does not know falls back to `guided`, so a
+   transfer problem would be labelled "Your turn, with prompts" and the
+   student would never be told the situation had moved. No error, no
+   crash — just the wrong sentence on the screen. */
+test('every fade level used in content has a label in the runtime', () => {
+  const src = fs.readFileSync(path.join(SRC, 'runtime', 'guided.js'), 'utf8');
+  const block = /var LEVEL_LABEL = \{([\s\S]*?)\n  \};/.exec(src);
+  assert.ok(block, 'LEVEL_LABEL is gone');
+  const labelled = new Set([...block[1].matchAll(/^\s*([a-z]+):/gm)].map(m => m[1]));
+  const used = new Set();
+  for (const s of BANK) for (const p of s.problems) used.add(p.fade);
+  for (const level of used){
+    assert.ok(labelled.has(level),
+      'content uses the fade level "' + level + '" and the runtime has no label for it — ' +
+      'it would silently fall back to the "guided" wording');
+  }
+  /* and every label must have a UIStrings key, or Nepali mode shows English */
+  const strings = fs.readFileSync(path.join(SRC, 'runtime', 'services', 'strings.js'), 'utf8');
+  for (const m of block[1].matchAll(/key: '([A-Za-z]+)'/g)){
+    assert.ok(new RegExp(m[1] + '\\s*:\\s*\\{[^}]*ne\\s*:').test(strings),
+      'UIStrings.' + m[1] + ' has no Nepali, so that level is labelled in English in Nepali mode');
   }
 });

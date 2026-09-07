@@ -34,7 +34,8 @@ module.exports = {
       { file: 'unit2.html', n: '2',
         title: 'Concept of OOP using C++', np: 'OOP को अवधारणा (C++)',
         chip: 'OOP + C++', hrs: 10, marks: 14,
-        sec: ['u2'], js: ['snippets.js', 'services/simulation.js', 'predict.js', 'sim-drill.js'] },
+        sec: ['u2'], js: ['snippets.js', 'services/simulation.js', 'predict.js', 'sim-drill.js',
+                          'guided.js', 'practice-bank.js'] },
 
       { file: 'unit3.html', n: '3',
         title: 'Class and Object', np: 'क्लास र अब्जेक्ट',
@@ -99,7 +100,8 @@ module.exports = {
       { file: 'unit2.html', n: '2',
         title: 'Concept of Logic Gates', np: 'लजिक गेटको अवधारणा',
         chip: 'Logic Gates', hrs: 14, marks: 15,
-        sec: ['dd-u2'], js: ['services/simulation.js', 'predict.js', 'sim-gates.js'] },
+        sec: ['dd-u2'], js: ['services/simulation.js', 'predict.js', 'sim-gates.js',
+                             'guided.js', 'practice-bank.js'] },
 
       { file: 'unit3.html', n: '3',
         title: 'Boolean Algebra and Karnaugh Map', np: 'बुलियन बीजगणित र के–म्याप',
@@ -114,7 +116,8 @@ module.exports = {
       { file: 'unit5.html', n: '5',
         title: 'Introduction to Microprocessor', np: 'माइक्रोप्रोसेसर र यसका भाग',
         chip: 'Microprocessor', hrs: 15, marks: 15,
-        sec: ['dd-u5'], js: ['services/simulation.js', 'predict.js', 'sim-8085.js'] },
+        sec: ['dd-u5'], js: ['services/simulation.js', 'predict.js', 'sim-8085.js',
+                             'guided.js', 'practice-bank.js'] },
 
       { file: 'revise.html', n: '↻',
         title: 'Your Revision', np: 'तपाईंको दोहोर्‍याइ',
