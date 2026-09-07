@@ -1,6 +1,6 @@
 # Documentation index
 
-Thirty-seven documents accumulated over six phases, plus this index. This is the map.
+Forty-one documents accumulated over seven phases of work, plus this index. This is the map.
 
 **If you read only one thing:** [`ARCHITECTURE.md`](ARCHITECTURE.md) for how
 the system is put together, then the contract for whatever you are about to
@@ -64,6 +64,7 @@ Read these to find out *why* something is the way it is.
 | 4 — Database Management System | [CURRICULUM-MAP](PHASE-4-DBMS-CURRICULUM-MAP.md) | [SIMULATION-SPEC](DBMS-SIMULATION-SPEC.md) · [CONTENT-GUIDELINES](DBMS-CONTENT-GUIDELINES.md) | [report](PHASE-4-COMPLETION-REPORT.md) |
 | 4.5 — content depth and interaction quality | [CONTENT-DEPTH-AUDIT](CONTENT-DEPTH-AUDIT.md) | — | [report](PHASE-4.5-CONTENT-QUALITY-REPORT.md) |
 | 5 — accessibility, performance, production gate | — | — | [report](PHASE-5-ACCESSIBILITY-QUALITY-REPORT.md) |
+| 6 — learning quality and content depth | [LEARNING-AUDIT](PHASE-6-LEARNING-AUDIT.md) | [LEARNING-ARCHITECTURE](PHASE-6-LEARNING-ARCHITECTURE.md) | [report](PHASE-6-COMPLETION-REPORT.md) |
 
 ## Two things every document here agrees on
 
