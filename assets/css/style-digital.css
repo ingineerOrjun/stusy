@@ -1396,6 +1396,45 @@ figure.fig.is-scrollable::after{
   .gp-field{ flex-wrap: wrap; }
 }
 
+/* ------------------------------------------------------------
+   MEMORY HOOK — the one line that survives to the exam hall
+
+   Sits at the end of a misconception block, because that is where it is
+   earned: the student has just read what the confusion is and why it is
+   wrong, and the hook is what they carry out of it. On its own it would
+   be a slogan; after the explanation it is a handle.
+
+   Styled to be findable when skimming for revision — a student
+   re-reading a unit the night before is looking for exactly these — but
+   quiet enough not to compete with the explanation it depends on.
+   ------------------------------------------------------------ */
+.hook{
+  display: block;
+  margin: var(--sp-3) 0 0;
+  padding: var(--sp-2) var(--sp-3);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  background: rgba(255,215,110,.07);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+  color: var(--color-text);
+}
+.hook::before{
+  content: "Remember";
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 2px;
+}
+/* In Nepali mode the label follows the mode, like every other control
+   word — see docs/LANGUAGE-SYSTEM.md §7. */
+[data-lang="ne"] .hook::before{ content: "सम्झनुहोस्"; font-family: var(--deva); letter-spacing: 0; }
+.hook b{ color: var(--color-primary); }
+.hook .np-cell{ display: block; margin-top: 4px; }
+
 /* ============================================================
    MOTION LAYER — Phase 2.5
 

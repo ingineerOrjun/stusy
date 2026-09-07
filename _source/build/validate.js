@@ -592,6 +592,50 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
       'hiding both languages at once');
   }
 
+  /* ---------- 4c. every misconception ends in something portable ----------
+     A misconception block explains a confusion at length, which is right
+     while the student is reading the unit and useless in the exam hall.
+     The memory hook is the one line they carry out — so a block without
+     one has done the hard half of the work and stopped before the half
+     that gets recalled.
+
+     Checked at build time rather than left to review because it is
+     exactly the kind of thing that is obvious when writing one unit and
+     forgotten across eighteen. */
+  (function checkHooks(){
+    const fs2 = require('fs');
+    const path2 = require('path');
+    const dir = path2.join(ctx.SRC, 'content', 'lessons');
+    if (!fs2.existsSync(dir)) return;
+    for (const file of fs2.readdirSync(dir).filter(f => f.endsWith('.html'))){
+      const html = fs2.readFileSync(path2.join(dir, file), 'utf8');
+      const blocks = (html.match(/<div class="mistake">/g) || []).length;
+      if (!blocks) continue;
+      const hooks = (html.match(/<p class="hook">/g) || []).length;
+      if (hooks < 1){
+        E('content/lessons/' + file,
+          'has ' + blocks + ' misconception block(s) and no memory hook — ' +
+          'the explanation is there and the line a student carries into the exam is not');
+      }
+      /* A hook only works if it is short. One that runs to a paragraph
+         is a summary wearing a hook's clothes. */
+      for (const m of html.matchAll(/<p class="hook">([\s\S]*?)<\/p>/g)){
+        const en = m[1].split(/<span class="np-cell">/)[0].replace(/<[^>]*>/g, '').trim();
+        const words = en.split(/\s+/).filter(Boolean).length;
+        if (words > 24){
+          E('content/lessons/' + file,
+            'a memory hook is ' + words + ' words long. It has to survive being recalled ' +
+            'under exam pressure — keep it under 24: "' + en.slice(0, 50) + '…"');
+        }
+        if (!/[ऀ-ॿ]/.test(m[1])){
+          E('content/lessons/' + file,
+            'a memory hook has no Nepali. The students most likely to need a hook are the ' +
+            'ones reading in Nepali: "' + en.slice(0, 50) + '…"');
+        }
+      }
+    }
+  })();
+
   /* ---------- 5. runtime modules ---------- */
   Object.keys(ctx.RUNTIME_PUBLISHED).forEach(name => {
     if (!ctx.runtime[name]) E('runtime', `module "${name}" is empty or missing`);
