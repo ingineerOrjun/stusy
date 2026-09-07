@@ -63,14 +63,19 @@ Read these to find out *why* something is the way it is.
 | 3.1 — foundation consolidation | [AUDIT](PHASE-3.1-AUDIT.md) | [D](PHASE-3.1-DECISIONS.md) | [report](PHASE-3.1-COMPLETION-REPORT.md) |
 | 4 — Database Management System | [CURRICULUM-MAP](PHASE-4-DBMS-CURRICULUM-MAP.md) | [SIMULATION-SPEC](DBMS-SIMULATION-SPEC.md) · [CONTENT-GUIDELINES](DBMS-CONTENT-GUIDELINES.md) | [report](PHASE-4-COMPLETION-REPORT.md) |
 | 4.5 — content depth and interaction quality | [CONTENT-DEPTH-AUDIT](CONTENT-DEPTH-AUDIT.md) | — | [report](PHASE-4.5-CONTENT-QUALITY-REPORT.md) |
+| 5 — accessibility, performance, production gate | — | — | [report](PHASE-5-ACCESSIBILITY-QUALITY-REPORT.md) |
 
 ## Two things every document here agrees on
 
-**WCAG 2.1 AA is not claimed.** Contrast is measured and the two failures found
-were fixed. Keyboard operation was tested by hand. But no screen reader was
-available in this environment, so the screen-reader experience is unverified,
-and a compliance claim would be a guess. See
-[ACCESSIBILITY-AUDIT.md](ACCESSIBILITY-AUDIT.md).
+**WCAG 2.1 AA is not claimed.** Phase 5 measured individual criteria and lists
+each one's status honestly: contrast on rendered pairs, keyboard traversal,
+focus, reflow at six widths, text resize, and use of colour across five state
+pairs — all measured, all passing after five contrast failures were fixed. But
+no screen reader is drivable in this environment, so **what a screen reader
+speaks is still unverified**, and a conformance claim would be a guess. See
+[PHASE-5-ACCESSIBILITY-QUALITY-REPORT.md](PHASE-5-ACCESSIBILITY-QUALITY-REPORT.md)
+§23 for the criterion-by-criterion status, and
+[ACCESSIBILITY-AUDIT.md](ACCESSIBILITY-AUDIT.md) for the earlier work.
 
 **No frame rate is quoted anywhere.** The only environment available for
 measuring it throttles `requestAnimationFrame`, so any number would be fiction.
