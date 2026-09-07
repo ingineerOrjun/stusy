@@ -65,6 +65,20 @@
     gotIt:              { en: 'Got it',   ne: 'आयो' },
     partly:             { en: 'Partly',   ne: 'आंशिक' },
     notYet:             { en: 'Not yet',  ne: 'अझै आएन' },
+
+    /* GUIDED PRACTICE — the level is named in words, so a student knows
+       help is being withdrawn on purpose rather than wondering where it
+       went. */
+    levelWorked:      { en: 'Worked for you',        ne: 'तपाईंका लागि गरिएको' },
+    levelPartial:     { en: 'Some steps hidden',     ne: 'केही चरण लुकाइएका' },
+    levelGuided:      { en: 'Your turn, with prompts', ne: 'तपाईंको पालो, सङ्केतसहित' },
+    levelIndependent: { en: 'On your own',           ne: 'आफैंले' },
+    checkStep:        { en: 'Check',                 ne: 'जाँच्नुहोस्' },
+    checkAnswer:      { en: 'Check the answer',      ne: 'उत्तर जाँच्नुहोस्' },
+    nextProblem:      { en: 'Next problem ▸',        ne: 'अर्को प्रश्न ▸' },
+    prevProblem:      { en: '◂ Previous',            ne: '◂ अघिल्लो' },
+    right:            { en: 'Right.',                ne: 'ठिक।' },
+    notRight:         { en: 'Not that.',             ne: 'त्यो होइन।' },
     tryAgain:    { en: 'Try again',       ne: 'फेरि प्रयास गर्नुहोस्' },
     check:       { en: 'Check this group', ne: 'यो समूह जाँच्नुहोस्' },
     clear:       { en: 'Clear selection',  ne: 'छनोट हटाउनुहोस्' },

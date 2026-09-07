@@ -124,7 +124,13 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
       });
 
       (p.js || []).forEach(f => {
-        const published = Object.values(ctx.RUNTIME_PUBLISHED).concat(['question-bank.js']);
+        /* The generated banks are content compiled into a list of
+           register() calls, so they are not in RUNTIME_PUBLISHED and
+           still have to be nameable from a page. Kept as an explicit
+           list rather than a pattern, so a typo in a page's js array is
+           still caught — which is the whole point of this check. */
+        const GENERATED = ['question-bank.js', 'practice-bank.js', 'diagram-data.js'];
+        const published = Object.values(ctx.RUNTIME_PUBLISHED).concat(GENERATED);
         if (!published.includes(f)) E(at, `references runtime module "${f}" which the build does not publish`);
       });
     });

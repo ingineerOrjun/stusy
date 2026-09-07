@@ -109,6 +109,7 @@ const RUNTIME_PUBLISHED = {
   'snippets.js': 'snippets.js',
   'predict.js': 'predict.js',
   'retrieval.js': 'retrieval.js',
+  'guided.js': 'guided.js',
   'sim-stackqueue.js': 'sim-stackqueue.js',
   'sim-dispatch.js': 'sim-dispatch.js',
   'trace.js': 'trace.js',
@@ -147,8 +148,17 @@ const questionBanks = {
   'grade10/dbms':           require('../content/questions/grade10-dbms.js')
 };
 
+/* Faded guided practice. Same shape as the question banks: content lives
+   in _source/content, the build generates a registration call, and the
+   runtime that consumes it never learns a subject's name. Adding a
+   subject's practice means adding a file here, not touching an engine. */
+const practiceBanks = [
+  require('../content/practice/grade10-digital-design.js')
+].reduce((all, bank) => all.concat(bank), []);
+
 module.exports = {
   questionBanks,
+  practiceBanks,
   ROOT, SRC, write, read,
   css,
   runtime, RUNTIME_PUBLISHED,

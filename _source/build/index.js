@@ -387,6 +387,12 @@ w('assets/js/diagram-data.js',
     JSON.stringify({ intro: DIA[n].intro, steps: DIA[n].steps }, null, 2) + ');'
   ).join('\n\n') + '\n');
 
+w('assets/js/practice-bank.js',
+  '/* GENERATED from _source/content/practice — do not edit by hand. */\n' +
+  ctx.practiceBanks.map(skill =>
+    'GuidedPractice.register(' + JSON.stringify(skill, null, 2) + ');'
+  ).join('\n\n') + '\n');
+
 w('assets/js/question-bank.js',
   '/* GENERATED from _source/content/questions — do not edit by hand. */\n' +
   Object.entries(ctx.questionBanks).map(([subject, qs]) =>

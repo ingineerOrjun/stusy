@@ -84,7 +84,10 @@ module.exports = {
       { file: 'unit1.html', n: '1',
         title: 'Number System and Binary Arithmetic', np: 'संख्या प्रणाली र बाइनरी गणित',
         chip: 'Number Systems', hrs: 12, marks: 7,
-        sec: ['dd-u1'], js: ['services/simulation.js', 'predict.js', 'sim-number.js'] },
+        /* guided.js before practice-bank.js: the bank is a list of
+           register() calls, so the registry has to exist first. */
+        sec: ['dd-u1'], js: ['services/simulation.js', 'predict.js', 'sim-number.js',
+                             'guided.js', 'practice-bank.js'] },
 
       { file: 'unit2.html', n: '2',
         title: 'Concept of Logic Gates', np: 'लजिक गेटको अवधारणा',
