@@ -313,6 +313,72 @@ function normaliseHeadings(html){
    the template ships to all 36 built pages, and this one mentioned
    <main> in its prose, which made every page look like it had two. */
 
+/* ---------------- Nepali headings ----------------
+   Applied at build time rather than authored inline, for the reason
+   every other central pass exists: the same four headings appear in
+   eighteen files, and a translation table is one place to be right
+   instead of 151.
+
+   THE SHAPE IT PRODUCES is the one the existing bilingual headings
+   already use:
+
+     <h3>1.3 &nbsp;<span class="t-en">Converting between bases</span
+        ><span class="t-ne"><span class="t-en"> — </span>एक base बाट
+        अर्कोमा बदल्ने</span></h3>
+
+   English mode shows the English; Nepali mode shows the Nepali; only
+   bilingual mode shows the em dash, because it is inside a nested .t-en.
+   Phase 3.1 recorded that a heading mixing both languages in ONE element
+   cannot be split by the mode — this is how it is avoided.
+
+   Leading numbering stays OUTSIDE both halves. "1.3" is the same in
+   every language and belongs to the outline, not to the sentence. */
+const HEADING_NE = require('../content/heading-ne.js');
+
+function markNepaliHeadings(html){
+  return html.replace(/<(h[1-6])([^>]*)>([\s\S]*?)<\/\1>/g, (whole, tag, attrs, inner) => {
+    /* Already bilingual, or carrying markup this pass must not disturb. */
+    if (/[ऀ-ॿ]/.test(inner)) return whole;
+    if (/class="t-en"|class="np-cell"/.test(inner)) return whole;
+
+    /* SPLIT THE OUTLINE NUMBER OFF, AT THE &nbsp; THAT ALWAYS SEPARATES IT.
+       "1.3 &nbsp;Converting between bases" must keep its 1.3 visible in
+       every language: the number is the unit's outline position, the
+       same in Nepali as in English, and a Nepali-mode heading reading
+       "एक base बाट अर्कोमा बदल्ने" with no number has lost its place in
+       the lesson.
+
+       Split on the entity rather than on a character class. The first
+       version of this used an alternation containing a bare `&`, which
+       matched the ampersand INSIDE &nbsp; and produced
+       `1.3 &<span class="t-en">nbsp;Converting…`. It also would have
+       eaten the leading 1 of "1's complement". The entity is an
+       unambiguous marker and every numbered heading in the product uses
+       one. */
+    let prefix = '';
+    let rest = inner;
+    const nb = inner.indexOf('&nbsp;');
+    /* Entities are stripped before looking for letters: "1.4 &amp; 1.5 "
+       is a number prefix, and the "amp" inside the entity is not a word. */
+    if (nb >= 0 && !/[A-Za-z]/.test(inner.slice(0, nb).replace(/&[a-z]+;/g, ''))){
+      prefix = inner.slice(0, nb + 6);
+      rest = inner.slice(nb + 6);
+    }
+
+    const flatten = s => s.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ')
+                          .replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+    /* The table may key on either form — with the outline number, as the
+       topic headings read, or without, as the sub-headings do. */
+    const ne = HEADING_NE[flatten(inner)] || HEADING_NE[flatten(rest)];
+    if (!ne) return whole;
+
+    return '<' + tag + attrs + '>' + prefix +
+           '<span class="t-en">' + rest.trim() + '</span>' +
+           '<span class="t-ne"><span class="t-en"> — </span>' + ne + '</span>' +
+           '</' + tag + '>';
+  });
+}
+
 /* HEADER SCOPE
    All 25 content tables are column-header-only, the one shape every
    screen reader infers correctly, so nothing is announced wrongly today.
@@ -390,7 +456,7 @@ ${mobileNav(root, o.grade, o.activeHref)}
 <div class="wrap">
 ${o.crumb ? `<nav class="crumb" aria-label="Breadcrumb">${o.crumb}</nav>` : ''}
 <main id="main" tabindex="-1"${o.subject ? ` data-subject="${o.subject}"` : ""}>
-${normaliseHeadings(o.body)}
+${normaliseHeadings(markNepaliHeadings(o.body))}
 </main>
 ${o.pager || ''}
 <footer>

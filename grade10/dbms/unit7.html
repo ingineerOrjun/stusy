@@ -42,7 +42,7 @@
   <div class="sec-head">
     <div class="sec-num">7</div>
     <div>
-      <h1>Database Backup, Recovery and Security</h1>
+      <h1><span class="t-en">Database Backup, Recovery and Security</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>डाटाबेस Backup, Recovery र Security</span></h1>
       <p class="sec-sub" lang="ne">ब्याकअप, रिकभरी र सुरक्षा</p>
     </div>
     <span class="marks">8 hrs · 6 marks</span>
@@ -52,7 +52,7 @@
   <aside class="prereq" aria-labelledby="prereq-h"><h2 class="prereq-h" id="prereq-h"><span class="t-en">You should already know</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>तपाईंलाई पहिले यति आउनुपर्छ</span></h2><ul class="prereq-list"><li class="prereq-item"><a class="prereq-link" href="unit6.html"><span class="prereq-n">6</span><span class="prereq-t"><span class="t-en">Database Transaction</span><span class="np-cell" lang="ne">डाटाबेस ट्रान्ज्याक्सन</span></span></a><p class="prereq-why"><span class="t-en">Recovery uses the log to redo committed transactions and undo uncommitted ones. "Committed" and "uncommitted" are Unit 6's transaction states.</span><span class="np-cell" lang="ne">Recovery ले log प्रयोग गरी commit भएका transaction redo र नभएका undo गर्छ। "Committed" र "uncommitted" युनिट ६ कै transaction अवस्था हुन्।</span></p></li></ul></aside>
 
   <div class="outcomes">
-    <h2>By the end of this unit you can…</h2><div class="t-en">
+    <h2><span class="t-en">By the end of this unit you can…</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो युनिट सकिँदा तपाईं यी कुरा गर्न सक्नुहुनेछ</span></h2><div class="t-en">
     <ol>
       <li>Define backup and say why it is not optional.</li>
       <li>Distinguish physical from logical backup.</li>
@@ -67,7 +67,7 @@
     खतरा नाम लिन सक्नुहुनेछ।</span>
   </div>
 
-  <h2 class="topic" id="db-t71">7.1 – 7.3 &nbsp;Backup, and what it protects against</h2>
+  <h2 class="topic" id="db-t71">7.1 – 7.3 &nbsp;<span class="t-en">Backup, and what it protects against</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>Backup, र यसले केबाट जोगाउँछ</span></h2>
 
   <div class="pair">
     <div class="en"><span class="tag">Definition — learn this wording</span>
@@ -105,7 +105,7 @@
     <b lang="ne">नियतवश आक्रमण</b> — जानाजान बिगार्नु वा चोर्नु।</span>
   </div>
 
-  <h2 class="topic" id="db-t74">7.4 &nbsp;Methods of backup</h2>
+  <h2 class="topic" id="db-t74">7.4 &nbsp;<span class="t-en">Methods of backup</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>Backup का तरिका</span></h2>
 
   <figure class="fig">
     
@@ -179,7 +179,7 @@
     </div>
   </div>
 
-  <h2 class="topic" id="db-t75">7.5 &nbsp;Recovery — redo and undo</h2>
+  <h2 class="topic" id="db-t75">7.5 &nbsp;<span class="t-en">Recovery — redo and undo</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>Recovery — redo र undo</span></h2>
 
   <div class="dia" data-dia="recoveryLog">
   <div class="dia-stage">
@@ -309,7 +309,7 @@ T3  REDO   it has a COMMIT record</div>
   <div class="sim">
     <div class="sim-head">
       <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
-      <h3>Redo or undo? Decide from the log</h3>
+      <h3><span class="t-en">Redo or undo? Decide from the log</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>Redo कि undo? Log हेरेर निर्णय गर्नुहोस्</span></h3>
       <p class="sim-goal"><span class="t-en">What you will learn: to apply the one test that decides it, and to stop
       being distracted by how much work a transaction had already done.
       </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: तय गर्ने एउटै जाँच लागू गर्न, र ट्रान्ज्याक्सनले
@@ -426,7 +426,7 @@ Differential restores faster after a Saturday failure.</div>
   </div>
 
   <div class="mistake">
-    <h3>Mistakes that cost marks here</h3>
+    <h3><span class="t-en">Mistakes that cost marks here</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यहाँ अङ्क गुमाउने गल्तीहरू</span></h3>
     <ul>
       <li><span class="t-en"><b>Treating backup and recovery as the same thing.</b> Backup is the copy taken
         beforehand; recovery is the process of using it, plus the log, after a failure.
@@ -449,7 +449,7 @@ Differential restores faster after a Saturday failure.</div>
       </span><span class="np-cell" lang="ne">Backup भनेको पहिले लिएको <b lang="ne">प्रतिलिपि</b>। Recovery भनेको पछि त्यसले <b lang="ne">गर्ने काम</b>।</span></p>
   </div>
 
-  <h2 class="topic" id="db-exam7">Exam focus — what is asked from this unit</h2>
+  <h2 class="topic" id="db-exam7"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>परीक्षा केन्द्रबिन्दु — यो युनिटबाट के सोधिन्छ</span></h2>
 
   <div class="exam-connect"><span class="t-en">
     <b>Everything in this unit is answered from memory, so the work is done before the exam, not

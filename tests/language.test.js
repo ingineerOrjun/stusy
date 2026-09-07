@@ -638,3 +638,100 @@ test('pairing leaves a run alone when the author already split it', () => {
   const plain = '<p>1.5.1 (a) Array<span class="t-ne"> — एरे</span></p>';
   assert.match(pairEnglish(plain), /<span class="t-en">1\.5\.1 \(a\) Array<\/span>/);
 });
+
+/* ============================================================
+   PHASE 8 — NEPALI HEADINGS
+
+   Prose has been bilingual since Phase 2; headings were not, and a
+   heading is how a page gets skimmed — by eye and by a screen-reader
+   user pressing H. Phase 5 measured the outline at 20% Nepali. These
+   guard the pass that raised it, and the two ways it can go wrong
+   without anything looking broken.
+   ============================================================ */
+
+test('instructional headings carry Nepali in the built pages', () => {
+  const pages = require(path.join(ROOT, '_source', 'config', 'pages.js'));
+  let total = 0, withNe = 0;
+  for (const [key, subject] of Object.entries(pages)){
+    for (const p of subject.pages){
+      if (typeof p.hrs !== 'number') continue;         /* unit pages only */
+      const f = path.join(ROOT, key, p.file);
+      if (!fs.existsSync(f)) continue;
+      const html = fs.readFileSync(f, 'utf8');
+      for (const m of html.matchAll(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/g)){
+        const text = m[1].replace(/<[^>]*>/g, '').trim();
+        if (!text) continue;
+        total++;
+        if (/[ऀ-ॿ]/.test(m[1])) withNe++;
+      }
+    }
+  }
+  const pct = Math.round(withNe / total * 100);
+  assert.ok(pct >= 70,
+    'only ' + pct + '% of unit-page headings carry Nepali (' + withNe + ' of ' + total + '). ' +
+    'A Nepali-medium student skimming by heading is reading an English outline over a ' +
+    'Nepali lesson.');
+});
+
+/* The outline number is the same in every language and belongs to the
+   lesson's structure, not to its sentence. A Nepali heading that reads
+   "एक base बाट अर्कोमा बदल्ने" with no 1.3 in front of it has lost its
+   place in the unit. */
+test('a translated heading keeps its outline number outside both languages', () => {
+  const pages = require(path.join(ROOT, '_source', 'config', 'pages.js'));
+  for (const [key, subject] of Object.entries(pages)){
+    for (const p of subject.pages){
+      if (typeof p.hrs !== 'number') continue;
+      const html = fs.readFileSync(path.join(ROOT, key, p.file), 'utf8');
+      for (const m of html.matchAll(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/g)){
+        const inner = m[1];
+        if (inner.indexOf('class="t-ne"') < 0) continue;
+        const num = /^([\d.]+(?:\s*(?:&amp;|–|-)\s*[\d.]+)*)\s*&nbsp;/.exec(inner);
+        if (!num) continue;                 /* unnumbered heading, nothing to check */
+        assert.ok(inner.indexOf('<span') > inner.indexOf('&nbsp;'),
+          key + '/' + p.file + ': the outline number is inside a language wrapper — ' +
+          inner.slice(0, 80));
+      }
+    }
+  }
+});
+
+/* The bug this guards produced `1.3 &<span class="t-en">nbsp;Converting…`
+   — a split through the middle of an HTML entity. It rendered as a
+   stray ampersand and the literal text "nbsp;" in the heading. */
+test('no heading was split through an HTML entity', () => {
+  const pages = require(path.join(ROOT, '_source', 'config', 'pages.js'));
+  for (const [key, subject] of Object.entries(pages)){
+    for (const p of subject.pages){
+      const f = path.join(ROOT, key, p.file);
+      if (!fs.existsSync(f)) continue;
+      const html = fs.readFileSync(f, 'utf8');
+      for (const m of html.matchAll(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/g)){
+        assert.ok(!/nbsp;/.test(m[1].replace(/&nbsp;/g, '')),
+          key + '/' + p.file + ': a heading contains a broken entity — ' + m[1].slice(0, 70));
+        assert.ok(!/&(?!nbsp;|amp;|lt;|gt;|quot;|#\d+;)/.test(m[1]),
+          key + '/' + p.file + ': a heading contains a bare & — ' + m[1].slice(0, 70));
+      }
+    }
+  }
+});
+
+/* Every translation must actually reach a page. A key nobody matches is
+   a translation written and silently thrown away. */
+test('every Nepali heading translation is used by at least one heading', () => {
+  const table = require(path.join(ROOT, '_source', 'content', 'heading-ne.js'));
+  const lessons = path.join(ROOT, '_source', 'content', 'lessons');
+  const all = fs.readdirSync(lessons).filter(f => f.endsWith('.html'))
+    .map(f => fs.readFileSync(path.join(lessons, f), 'utf8')).join('\n');
+  const headings = [...all.matchAll(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/g)]
+    .map(m => m[1].replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ')
+                  .replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim());
+  const seen = new Set(headings);
+  const unused = Object.keys(table).filter(k => {
+    if (seen.has(k)) return false;
+    /* the table may key without the outline number */
+    return !headings.some(h => h.replace(/^[\d.\s&–-]+/, '').trim() === k);
+  });
+  assert.deepStrictEqual(unused, [],
+    'these translations match no heading and were written for nothing: ' + unused.join(' | '));
+});
