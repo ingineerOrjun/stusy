@@ -116,6 +116,24 @@
 
     has: function (key){ return Object.prototype.hasOwnProperty.call(TABLE, key); },
 
+    /* WRITE TEXT AND SAY WHAT LANGUAGE IT IS IN.
+       apply() handles controls marked with data-ui, but a component that
+       COMPOSES a label — "चरण 3 / 4", a play/pause toggle, a gate that
+       changes its own wording — writes textContent itself and skips all
+       of that. Six such labels were still inheriting lang="en" in Nepali
+       mode after apply() was fixed.
+
+       This is the primitive those components should use instead. The
+       language is decided by the mode rather than by inspecting the
+       string, because that is what is actually true: in Nepali mode a
+       label built from this table is Nepali, digits and all. */
+    write: function (el, text){
+      if (!el) return;
+      el.textContent = text;
+      if (mode() === 'ne') el.setAttribute('lang', 'ne');
+      else if (el.removeAttribute) el.removeAttribute('lang');
+    },
+
     /* Label every [data-ui] element under `root`. Idempotent. */
     apply: function (root){
       var scope = root || (typeof document !== 'undefined' ? document : null);
@@ -128,6 +146,20 @@
            is a symbol or where there is no visible text at all. */
         if (els[i].hasAttribute('data-ui-aria')) els[i].setAttribute('aria-label', this.get(key));
         else els[i].textContent = this.get(key);
+        /* DECLARE THE LANGUAGE THIS LABEL IS ACTUALLY IN.
+           The document is lang="en". Every Nepali label written here —
+           रिसेट, अर्को ▸, चरण 0 / 4 — inherited that and was handed to an
+           English synthesiser. Phase 5 fixed 82 such runs in the CONTENT
+           and never reached the controls, because a control's Nepali is
+           not in the markup: it arrives from this table at runtime.
+
+           Measured in Nepali mode: 12 control labels on one page. Set
+           here rather than at every call site, so a component marks a
+           control with data-ui and still does not have to think about
+           it — which is the whole contract of this module. */
+        var lang = mode();
+        if (lang === 'ne') els[i].setAttribute('lang', 'ne');
+        else els[i].removeAttribute('lang');
       }
       return els.length;
     },

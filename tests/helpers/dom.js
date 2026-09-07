@@ -58,6 +58,7 @@ Element.prototype.appendChild = function(c){
 Element.prototype.setAttribute = function(k, v){ this.attrs[k] = String(v); };
 Element.prototype.getAttribute = function(k){ return k in this.attrs ? this.attrs[k] : null; };
 Element.prototype.hasAttribute = function(k){ return k in this.attrs; };
+Element.prototype.removeAttribute = function(k){ delete this.attrs[k]; };
 Element.prototype.addEventListener = function(){};
 Element.prototype.scrollIntoView = function(){};
 Element.prototype.querySelector = function(sel){

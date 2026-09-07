@@ -65,6 +65,15 @@
       ? global.UIStrings.get(key) : fallback;
   }
 
+  /* This component rewrites its own labels — the gate changes wording
+     when it opens — so it never goes through UIStrings.apply() and has
+     to declare the language itself. */
+  function say(el, key, fallback){
+    var text = ui(key, fallback);
+    if (typeof global.UIStrings !== 'undefined' && global.UIStrings.write) global.UIStrings.write(el, text);
+    else el.textContent = text;
+  }
+
   /* A question's identity has to survive a rebuild, so it is the answer
      id the author already wrote rather than an index into the page. */
   function idOf(box){
@@ -115,7 +124,7 @@
        already given it aria-controls and aria-expanded, and the CSS
        already styles it. Only what it SAYS and what it costs change. */
     btn.setAttribute('data-ui', 'revealAfterAttempt');
-    btn.textContent = ui('revealAfterAttempt', 'I have attempted it — show the answer');
+    say(btn, 'revealAfterAttempt', 'I have attempted it — show the answer');
     btn.setAttribute('aria-controls', id);
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('type', 'button');
@@ -144,7 +153,7 @@
       b.setAttribute('data-ui', g.key);
       b.setAttribute('data-grade', g.value);
       b.setAttribute('aria-pressed', 'false');
-      b.textContent = ui(g.key, g.key);
+      say(b, g.key, g.key);
       group.appendChild(b);
     });
 
@@ -168,7 +177,7 @@
       btn.setAttribute('aria-expanded', revealed ? 'true' : 'false');
       var key = revealed ? 'hideAnswer' : 'revealAfterAttempt';
       btn.setAttribute('data-ui', key);
-      btn.textContent = ui(key, revealed ? 'Hide the answer' : 'I have attempted it — show the answer');
+      say(btn, key, revealed ? 'Hide the answer' : 'I have attempted it — show the answer');
       judge.hidden = !revealed;
     });
 
@@ -190,7 +199,7 @@
     /* keep the label correct across a language switch */
     doc.addEventListener('languagechange', function (){
       var key = btn.getAttribute('data-ui');
-      if (key) btn.textContent = ui(key, btn.textContent);
+      if (key) say(btn, key, btn.textContent);
     });
   }
 

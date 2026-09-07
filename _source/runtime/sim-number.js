@@ -228,7 +228,9 @@
     if (prog){
       var word = (typeof UIStrings !== 'undefined' && LanguageService && LanguageService.get() === 'ne')
         ? 'स्तम्भ' : 'column';
-      prog.textContent = word + ' ' + Math.min(this.step, this.w) + ' / ' + this.w;
+      var line = word + ' ' + Math.min(this.step, this.w) + ' / ' + this.w;
+      if (typeof UIStrings !== 'undefined' && UIStrings.write) UIStrings.write(prog, line);
+      else prog.textContent = line;
     }
 
     var prev = this.root.querySelector('[data-nl-act="prev"]');

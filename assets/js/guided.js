@@ -50,6 +50,17 @@
       ? global.UIStrings.get(key) : fallback;
   }
 
+  /* A verdict is built into an HTML string rather than written to an
+     element, so UIStrings.write() cannot reach it. In Nepali mode "ठिक।"
+     would inherit the document's lang="en" and be read by an English
+     voice — the same defect Phase 5 fixed 82 times in the content. */
+  function uiTag(key, fallback){
+    var text = ui(key, fallback);
+    var ne = (typeof global.LanguageService !== 'undefined' &&
+              global.LanguageService.get() === 'ne');
+    return ne ? '<span lang="ne">' + esc(text) + '</span>' : esc(text);
+  }
+
   function esc(s){
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -233,7 +244,7 @@
     /* The word comes first, then the reason. Colour is never the only
        carrier — Phase 5 §7. */
     mark.innerHTML =
-      '<b class="gp-verdict">' + (ok ? ui('right', 'Right.') : ui('notRight', 'Not that.')) + '</b> ' +
+      '<b class="gp-verdict">' + (ok ? uiTag('right', 'Right.') : uiTag('notRight', 'Not that.')) + '</b> ' +
       pair(step.why);
   };
 
@@ -247,7 +258,7 @@
     this.root.querySelector('.gp-final').classList.toggle('is-right', ok);
     this.root.querySelector('.gp-final').classList.toggle('is-wrong', !ok);
     mark.innerHTML = '<b class="gp-verdict">' +
-      (ok ? ui('right', 'Right.') : ui('notRight', 'Not that.')) + '</b> ' +
+      (ok ? uiTag('right', 'Right.') : uiTag('notRight', 'Not that.')) + '</b> ' +
       (ok ? '' : '<span class="t-en">The answer is ' + esc(p.result) + '.</span>' +
                  '<span class="np-cell" lang="ne">उत्तर ' + esc(p.result) + ' हो।</span>');
     note.innerHTML = pair(p.check);

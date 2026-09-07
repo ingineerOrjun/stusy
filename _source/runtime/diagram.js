@@ -124,7 +124,11 @@
     if (this.capNe) this.capNe.textContent = s ? s.ne : (this.cfg.intro ? this.cfg.intro.ne : '');
     if (this.progress){
       var word = (typeof UIStrings !== 'undefined') ? UIStrings.get('stepOf') : 'step';
-      this.progress.textContent = word + ' ' + n + ' / ' + this.cfg.steps.length;
+      var line = word + ' ' + n + ' / ' + this.cfg.steps.length;
+      /* write() rather than textContent: in Nepali mode this reads
+         "चरण 3 / 4", and without a lang an English voice speaks it. */
+      if (typeof UIStrings !== 'undefined' && UIStrings.write) UIStrings.write(this.progress, line);
+      else this.progress.textContent = line;
     }
 
     var prev = this.root.querySelector('[data-dia-act="prev"]');

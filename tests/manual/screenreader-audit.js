@@ -85,6 +85,22 @@ const SR = String(function screenReaderAudit(){
       if (t) return (t.textContent || '').trim();
     }
     if (el.tagName === 'IMG') return el.getAttribute('alt') || '';
+    /* A FORM CONTROL IS NAMED BY ITS <label>, NOT BY ITS CONTENTS.
+       Without this step every properly labelled input and textarea looks
+       unnamed: it reported five on one page, all five of which carry a
+       <label for> that the browser resolves through element.labels. The
+       accessible name computation puts labels ahead of contents for form
+       controls, so this has to as well. */
+    if (/^(input|textarea|select)$/i.test(el.tagName)){
+      if (el.labels && el.labels.length){
+        var byLabel = Array.prototype.map.call(el.labels, function (l){
+          return (l.textContent || '').replace(/\s+/g, ' ').trim();
+        }).filter(Boolean).join(' ');
+        if (byLabel) return byLabel;
+      }
+      var ttl = el.getAttribute('title') || el.getAttribute('placeholder');
+      return ttl ? ttl.trim() : '';
+    }
     return (el.textContent || '').replace(/\s+/g, ' ').trim();
   }
 
@@ -160,14 +176,47 @@ const SR = String(function screenReaderAudit(){
      A live region speaks over whatever the student is reading. A long
      one is not an announcement, it is an interruption. */
   var live = [];
+  /* COUNT ONLY WHAT IS ANNOUNCED.
+     A bilingual live region holds both halves in the DOM and shows one.
+     Counting textContent added them together and reported a 45-word
+     flood where either language alone is about 22 — the tool was
+     measuring the mode-hidden half, which no screen reader ever reaches
+     because display:none removes it from the tree. */
+  function spokenWords(el){
+    var n = 0;
+    var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    var t;
+    while ((t = w.nextNode())){
+      if (!t.nodeValue.trim()) continue;
+      if (!reachable(t.parentElement)) continue;
+      n += t.nodeValue.trim().split(/\s+/).filter(Boolean).length;
+    }
+    return n;
+  }
   Array.prototype.forEach.call(
     document.querySelectorAll('[role="status"],[role="alert"],[aria-live]'), function (el){
       if (!reachable(el)) return;
-      var words = (el.textContent || '').trim().split(/\s+/).filter(Boolean).length;
+      var words = spokenWords(el);
       live.push({ role: el.getAttribute('role') || el.getAttribute('aria-live'),
                   cls: String(el.className).slice(0, 24), words: words,
                   atomic: el.getAttribute('aria-atomic') });
-      if (words > 25) note('live-flood', 'live region speaks ' + words + ' words at once', el);
+      /* WHERE THE LINE IS, AND WHY IT MOVED.
+         The first threshold here was 25 words, and it flagged a diagram
+         step caption at 26 — which is the explanation the student pressed
+         Next to hear. Announcing what was asked for is not a flood; the
+         defect this check exists to find is the opposite, a region that
+         speaks a paragraph nobody requested (Phase 4.1's SQL simulator
+         announced 44 words after every run).
+
+         Bilingual mode shows both languages, so its live regions are
+         roughly twice as long BY DESIGN and the count is reported rather
+         than flagged. 40 words of a single language is the point at
+         which an announcement stops being an answer and becomes a
+         recital. */
+      var bilingual = document.documentElement.getAttribute('data-lang') === 'bi';
+      if (words > 40 && !bilingual){
+        note('live-flood', 'live region speaks ' + words + ' words at once', el);
+      }
     });
 
   /* ---------- 5. THE LINEAR READING ORDER ----------

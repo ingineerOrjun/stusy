@@ -53,7 +53,8 @@ function fakeEl(key, aria){
     attrs,
     getAttribute(k){ return k in this.attrs ? this.attrs[k] : null; },
     hasAttribute(k){ return k in this.attrs; },
-    setAttribute(k, v){ this.attrs[k] = v; }
+    setAttribute(k, v){ this.attrs[k] = v; },
+    removeAttribute(k){ delete this.attrs[k]; }
   };
 }
 
@@ -189,4 +190,40 @@ test('every data-ui key used anywhere exists in the table', () => {
   assert.ok(used.size > 0, 'no data-ui keys found at all');
   const unknown = [...used].filter(k => !UIStrings.has(k));
   assert.deepStrictEqual(unknown, [], 'these keys are not in services/strings.js');
+});
+
+/* A control's Nepali does not exist in the markup — it arrives from the
+   table at runtime — so the build's Nepali tagging pass never sees it.
+   Measured in Nepali mode before this was fixed: 12 control labels on a
+   single page inheriting lang="en", handed to an English synthesiser.
+   Phase 5 fixed 82 such runs in the content and could not have reached
+   these. */
+test('a Nepali label declares that it is Nepali', () => {
+  const { UIStrings, doc } = load('ne');
+  const btn = fakeEl('reset');
+  doc._els = [btn];
+  UIStrings.apply(doc);
+  assert.strictEqual(btn.textContent, 'रिसेट');
+  assert.strictEqual(btn.getAttribute('lang'), 'ne',
+    'a Nepali control label with no lang is read by an English voice');
+});
+
+test('an English label does not claim to be Nepali', () => {
+  const { UIStrings, doc } = load('en');
+  const btn = fakeEl('reset');
+  btn.setAttribute('lang', 'ne');          /* left over from Nepali mode */
+  doc._els = [btn];
+  UIStrings.apply(doc);
+  assert.strictEqual(btn.textContent, 'Reset');
+  assert.strictEqual(btn.getAttribute('lang'), null,
+    'switching back to English left lang="ne" behind, so English is read with a Nepali voice');
+});
+
+test('bilingual mode takes the English label and no lang', () => {
+  const { UIStrings, doc } = load('bi');
+  const btn = fakeEl('reset');
+  doc._els = [btn];
+  UIStrings.apply(doc);
+  assert.strictEqual(btn.textContent, 'Reset');
+  assert.strictEqual(btn.getAttribute('lang'), null);
 });

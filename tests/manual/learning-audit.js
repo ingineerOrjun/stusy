@@ -50,9 +50,31 @@ function countClass(html, name){
   return n;
 }
 
+/* WHERE THE RETRIEVAL GATE ACTUALLY LIVES.
+   It is applied by retrieval.js at runtime, not authored into the
+   lesson, so reading the source alone reports every practice question as
+   reveal-only for ever — including after Phase 6 fixed exactly that.
+   A measurement that cannot see the fix is worse than no measurement, so
+   the built page is consulted for whether the gate is loaded. */
+const BUILT = (() => {
+  const map = {};
+  const cfg = require(path.join(ROOT, '_source', 'config', 'pages.js'));
+  for (const [key, subject] of Object.entries(cfg)){
+    for (const page of subject.pages){
+      const p = path.join(ROOT, key, page.file);
+      if (!fs.existsSync(p)) continue;
+      const html = fs.readFileSync(p, 'utf8');
+      for (const id of page.sec || []) map[id] = html;
+    }
+  }
+  return map;
+})();
+
 function analyse(file){
   const html = fs.readFileSync(path.join(LESSONS, file), 'utf8');
   const text = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
+  const built = BUILT[file.replace('.html', '')] || '';
+  const gated = built.indexOf('assets/js/retrieval.js') >= 0;
 
   /* headings carry the concept structure */
   const headings = [...html.matchAll(/<h[2-4][^>]*>([\s\S]*?)<\/h[2-4]>/g)]
@@ -80,9 +102,14 @@ function analyse(file){
     misconceptions: countClass(html, 'mistake'),
     examConnect:  countClass(html, 'exam-connect'),
     examQuestions: examq,
-    /* the distinction that matters */
-    revealOnly:   btnAns,
-    retrieval:    countClass(html, 'retrieval'),
+    /* THE DISTINCTION THAT MATTERS.
+       A question whose answer is behind a bare "Show the answer" is a
+       REVEAL. The same question behind the retrieval gate takes a
+       commitment first and asks for a self-grade after, which is a
+       different thing done to memory. Both look identical in the lesson
+       source; the difference is whether the page loads the gate. */
+    revealOnly:   gated ? 0 : btnAns,
+    retrieval:    gated ? examq : countClass(html, 'retrieval'),
     keypoints:    countClass(html, 'keypoints'),
     memoryHook:   countClass(html, 'hook'),
 
