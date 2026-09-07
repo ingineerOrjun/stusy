@@ -266,3 +266,35 @@ test('wide content is reachable by keyboard when it scrolls', () => {
   assert.match(core, /setAttribute\('tabindex',\s*'0'\)/,
     'a scrollable region must be focusable so it can be scrolled without a mouse');
 });
+
+/* FAKE INTERACTIVITY
+   A block headed "Interactive experiment" that offers nothing to press
+   is worse than no block: the student presses, nothing happens, and
+   concludes they have misread the lesson. Phase 4.5 named this and
+   looked for it by reading source; Phase 5 found one by pressing the
+   controls in a browser — the keys mode of the table visualiser draws
+   two relations and states a rule in prose, and has no controls at all.
+
+   This guard is deliberately narrow. It knows one control-less mode by
+   name rather than pretending to infer interactivity from markup, which
+   it cannot do: the controls are written by a runtime after the build.
+   Widen the list when another mode turns out to be a figure. */
+test('a block promising an experiment has something to operate', () => {
+  const STATIC_MODES = [/data-mode="keys"/];
+  const files = fs.readdirSync(path.join(SRC, 'content', 'lessons'))
+    .filter(f => f.endsWith('.html'));
+  for (const f of files){
+    const html = fs.readFileSync(path.join(SRC, 'content', 'lessons', f), 'utf8');
+    /* each <div class="sim"> ... up to the next one */
+    const blocks = html.split(/<div class="sim">/).slice(1);
+    for (const block of blocks){
+      if (!/sim-kicker[\s\S]{0,120}Interactive experiment/.test(block)) continue;
+      const body = block.split(/<div class="sim">/)[0];
+      for (const re of STATIC_MODES){
+        assert.ok(!re.test(body),
+          f + ': a "Interactive experiment" block contains ' + re.source +
+          ', which renders no controls — label it as a worked example instead');
+      }
+    }
+  }
+});

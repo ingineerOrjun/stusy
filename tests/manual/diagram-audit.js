@@ -224,8 +224,12 @@ if (require.main === module){
     body += '<figure class="fig" data-name="' + n + '">' +
             (typeof d === 'string' ? d : d.svg) + '</figure>\n';
   }
+  /* style-all.css, not style.css: Phase 5 split the sheet per subject,
+     and this page holds every figure in the product. Measuring the gate
+     figures against a stylesheet without digital.css would measure
+     unstyled SVG and call it a defect. */
   const html = '<!doctype html><html lang="en"><head><meta charset="utf-8">' +
-    '<link rel="stylesheet" href="/assets/css/style.css"><title>Diagram geometry audit</title>' +
+    '<link rel="stylesheet" href="/assets/css/style-all.css"><title>Diagram geometry audit</title>' +
     '</head><body class="page"><main>' + body + '</main><script>window.AUDIT = ' + AUDIT +
     ';<\/script></body></html>';
   const out = path.join(ROOT, '__diagram-audit.html');

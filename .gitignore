@@ -6,3 +6,5 @@ Thumbs.db
 tests/manual/__sr-inject.js
 tests/manual/__contrast-inject.js
 tests/manual/__kb-inject.js
+tests/manual/__colour-inject.js
+tests/manual/__interact-inject.js
