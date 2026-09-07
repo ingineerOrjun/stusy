@@ -1,6 +1,6 @@
 # Documentation index
 
-Forty-one documents accumulated over seven phases of work, plus this index. This is the map.
+Forty-four documents accumulated over eight phases of work, plus this index. This is the map.
 
 **If you read only one thing:** [`ARCHITECTURE.md`](ARCHITECTURE.md) for how
 the system is put together, then the contract for whatever you are about to
@@ -65,6 +65,7 @@ Read these to find out *why* something is the way it is.
 | 4.5 — content depth and interaction quality | [CONTENT-DEPTH-AUDIT](CONTENT-DEPTH-AUDIT.md) | — | [report](PHASE-4.5-CONTENT-QUALITY-REPORT.md) |
 | 5 — accessibility, performance, production gate | — | — | [report](PHASE-5-ACCESSIBILITY-QUALITY-REPORT.md) |
 | 6 — learning quality and content depth | [LEARNING-AUDIT](PHASE-6-LEARNING-AUDIT.md) | [LEARNING-ARCHITECTURE](PHASE-6-LEARNING-ARCHITECTURE.md) | [report](PHASE-6-COMPLETION-REPORT.md) |
+| 7 — revision intelligence and prerequisites | [CONTENT-AUDIT](PHASE-7-CONTENT-AUDIT.md) | [LEARNING-ARCHITECTURE](PHASE-7-LEARNING-ARCHITECTURE.md) | [report](PHASE-7-COMPLETION-REPORT.md) |
 
 ## Two things every document here agrees on
 
