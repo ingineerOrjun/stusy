@@ -153,7 +153,9 @@ const questionBanks = {
    runtime that consumes it never learns a subject's name. Adding a
    subject's practice means adding a file here, not touching an engine. */
 const practiceBanks = [
-  require('../content/practice/grade10-digital-design.js')
+  require('../content/practice/grade10-digital-design.js'),
+  require('../content/practice/grade10-dbms.js'),
+  require('../content/practice/grade10-oop-cpp.js')
 ].reduce((all, bank) => all.concat(bank), []);
 
 module.exports = {

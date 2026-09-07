@@ -281,3 +281,481 @@ GuidedPractice.register({
     }
   ]
 });
+
+GuidedPractice.register({
+  "id": "db.normalform",
+  "subject": "grade10/dbms",
+  "unit": "db-u5",
+  "skill": {
+    "en": "Name the normal form, then name the dependency that blocks the next one",
+    "ne": "नर्मल फर्म पहिचान गर्नुहोस्, अनि अर्को फर्ममा जान नदिने dependency नाम लिनुहोस्"
+  },
+  "rule": {
+    "en": "1NF: no repeating groups — every cell holds one value. 2NF: 1NF and no PARTIAL dependency — no non-key column depends on only part of a composite key. 3NF: 2NF and no TRANSITIVE dependency — no non-key column depends on another non-key column.",
+    "ne": "1NF: दोहोरिने समूह छैन — हरेक कक्षमा एउटै मान। 2NF: 1NF र PARTIAL dependency छैन — कुनै non-key स्तम्भ composite key को एक भागमा मात्र निर्भर छैन। 3NF: 2NF र TRANSITIVE dependency छैन — कुनै non-key स्तम्भ अर्को non-key स्तम्भमा निर्भर छैन।"
+  },
+  "problems": [
+    {
+      "fade": "worked",
+      "ask": {
+        "en": "Student(roll, name, subject1, subject2, subject3). Which normal form is it in, and what must change?",
+        "ne": "Student(roll, name, subject1, subject2, subject3)। यो कुन नर्मल फर्ममा छ, र के बदल्नुपर्छ?"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "Does any column hold a repeating group? Answer yes or no",
+            "ne": "कुनै स्तम्भमा दोहोरिने समूह छ? yes वा no"
+          },
+          "answer": "yes",
+          "accept": [
+            "y"
+          ],
+          "why": {
+            "en": "subject1, subject2 and subject3 are the same fact repeated across three columns. That is a repeating group.",
+            "ne": "subject1, subject2, subject3 एउटै तथ्य तीन स्तम्भमा दोहोरिएको हो। यो दोहोरिने समूह हो।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "So which normal form is it in? Answer 0NF, 1NF, 2NF or 3NF",
+            "ne": "त्यसैले यो कुन फर्ममा छ? 0NF, 1NF, 2NF वा 3NF"
+          },
+          "answer": "0NF",
+          "accept": [
+            "0nf",
+            "none",
+            "unnormalised",
+            "unnormalized"
+          ],
+          "why": {
+            "en": "A table with a repeating group has not reached 1NF yet.",
+            "ne": "दोहोरिने समूह भएको तालिका अझै 1NF मा पुगेको छैन।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "Which form does splitting the repeated columns into rows reach?",
+            "ne": "दोहोरिएका स्तम्भलाई पङ्क्तिमा छुट्याउँदा कुन फर्म आइपुग्छ?"
+          },
+          "answer": "1NF",
+          "accept": [
+            "1nf"
+          ],
+          "why": {
+            "en": "Student(roll, name, subject) with one subject per row holds one value in every cell, which is exactly what 1NF asks.",
+            "ne": "Student(roll, name, subject) — प्रति पङ्क्ति एउटा subject राख्दा हरेक कक्षमा एउटै मान हुन्छ, जुन 1NF ले माग्ने कुरा हो।"
+          }
+        }
+      ],
+      "result": "1NF",
+      "resultPrompt": {
+        "en": "After the fix, which form is the table in?",
+        "ne": "सच्याएपछि तालिका कुन फर्ममा हुन्छ?"
+      },
+      "check": {
+        "en": "The repeating group is what 1NF forbids. Nothing about keys has been examined yet — that is the next question, not this one.",
+        "ne": "दोहोरिने समूह नै 1NF ले निषेध गर्ने कुरा हो। key बारे अझै केही हेरिएको छैन — त्यो अर्को प्रश्न हो।"
+      }
+    },
+    {
+      "fade": "partial",
+      "ask": {
+        "en": "Marks(roll, subject, student_name, marks) — the key is (roll, subject). It is already in 1NF. Which form is it in, and why can it go no further?",
+        "ne": "Marks(roll, subject, student_name, marks) — key (roll, subject) हो। यो 1NF मा छ। यो कुन फर्ममा छ, र किन अगाडि बढ्न सक्दैन?"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "student_name depends on which part of the key? Answer roll, subject or both",
+            "ne": "student_name key को कुन भागमा निर्भर छ? roll, subject वा both"
+          },
+          "answer": "roll",
+          "accept": [
+            "roll"
+          ],
+          "why": {
+            "en": "A student's name is fixed by their roll number alone. The subject has nothing to do with it.",
+            "ne": "विद्यार्थीको नाम roll ले मात्र निश्चित हुन्छ। subject को यसमा कुनै भूमिका छैन।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "A non-key column depending on PART of a composite key is called what? Answer partial or transitive",
+            "ne": "composite key को एक भागमा मात्र निर्भर non-key स्तम्भलाई के भनिन्छ? partial वा transitive"
+          },
+          "answer": "partial",
+          "accept": [
+            "partial dependency"
+          ],
+          "why": {
+            "en": "Part of the key, so partial. Transitive is the other one — a non-key column depending on another NON-KEY column.",
+            "ne": "key को एक भाग, त्यसैले partial। transitive अर्को हो — non-key स्तम्भ अर्को NON-KEY स्तम्भमा निर्भर।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "A partial dependency breaks which form? Answer 2NF or 3NF",
+            "ne": "partial dependency ले कुन फर्म भङ्ग गर्छ? 2NF वा 3NF"
+          },
+          "answer": "2NF",
+          "accept": [
+            "2nf"
+          ],
+          "why": {
+            "en": "2NF is exactly \"1NF and no partial dependency\". So the table stops at 1NF.",
+            "ne": "2NF भनेकै \"1NF र partial dependency छैन\" हो। त्यसैले तालिका 1NF मै रोकिन्छ।"
+          }
+        }
+      ],
+      "result": "1NF",
+      "resultPrompt": {
+        "en": "Which form is this table in?",
+        "ne": "यो तालिका कुन फर्ममा छ?"
+      },
+      "check": {
+        "en": "It reaches 1NF and stops there, because student_name depends on roll alone. Splitting Student(roll, student_name) away takes it to 2NF.",
+        "ne": "यो 1NF सम्म पुगेर रोकिन्छ, किनभने student_name roll मा मात्र निर्भर छ। Student(roll, student_name) छुट्याएपछि 2NF मा पुग्छ।"
+      }
+    },
+    {
+      "fade": "guided",
+      "ask": {
+        "en": "Book(book_id, title, publisher_id, publisher_city) — the key is book_id alone. Which form is it in?",
+        "ne": "Book(book_id, title, publisher_id, publisher_city) — key book_id मात्र हो। यो कुन फर्ममा छ?"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "Repeating group? yes or no",
+            "ne": "दोहोरिने समूह? yes वा no"
+          },
+          "answer": "no",
+          "accept": [
+            "n"
+          ],
+          "why": {
+            "en": "Every cell holds one value, so 1NF is satisfied.",
+            "ne": "हरेक कक्षमा एउटै मान छ, त्यसैले 1NF पुगेको छ।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "Can there be a partial dependency here? yes or no",
+            "ne": "यहाँ partial dependency हुन सक्छ? yes वा no"
+          },
+          "answer": "no",
+          "accept": [
+            "n"
+          ],
+          "why": {
+            "en": "The key is a single column. A partial dependency needs a COMPOSITE key to be partial to, so 2NF is automatic here.",
+            "ne": "key एउटै स्तम्भ हो। partial dependency हुन COMPOSITE key चाहिन्छ, त्यसैले यहाँ 2NF आफैं पुग्छ।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "publisher_city depends on which column?",
+            "ne": "publisher_city कुन स्तम्भमा निर्भर छ?"
+          },
+          "answer": "publisher_id",
+          "accept": [
+            "publisher id",
+            "publisherid"
+          ],
+          "why": {
+            "en": "The city belongs to the publisher, not to the book. And publisher_id is not the key.",
+            "ne": "सहर प्रकाशकको हो, पुस्तकको होइन। र publisher_id key होइन।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "A non-key column depending on another non-key column is called what?",
+            "ne": "non-key स्तम्भ अर्को non-key स्तम्भमा निर्भर हुनुलाई के भनिन्छ?"
+          },
+          "answer": "transitive",
+          "accept": [
+            "transitive dependency"
+          ],
+          "why": {
+            "en": "book_id → publisher_id → publisher_city. The dependency travels through a middle column, so it is transitive, and 3NF forbids it.",
+            "ne": "book_id → publisher_id → publisher_city। निर्भरता बीचको स्तम्भबाट जान्छ, त्यसैले transitive, र 3NF ले यसलाई निषेध गर्छ।"
+          }
+        }
+      ],
+      "result": "2NF",
+      "resultPrompt": {
+        "en": "So which form is Book in?",
+        "ne": "त्यसैले Book कुन फर्ममा छ?"
+      },
+      "check": {
+        "en": "1NF yes, 2NF yes (single-column key), 3NF no — the transitive dependency stops it. Split Publisher(publisher_id, publisher_city) away to reach 3NF.",
+        "ne": "1NF छ, 2NF छ (एउटै स्तम्भको key), 3NF छैन — transitive dependency ले रोक्छ। Publisher(publisher_id, publisher_city) छुट्याएपछि 3NF मा पुगिन्छ।"
+      }
+    },
+    {
+      "fade": "independent",
+      "ask": {
+        "en": "Order(order_id, product_id, quantity, product_name) — the key is (order_id, product_id). Which normal form is it in? Answer 1NF, 2NF or 3NF.",
+        "ne": "Order(order_id, product_id, quantity, product_name) — key (order_id, product_id) हो। यो कुन नर्मल फर्ममा छ? 1NF, 2NF वा 3NF।"
+      },
+      "steps": [],
+      "result": "1NF",
+      "resultPrompt": {
+        "en": "Normal form",
+        "ne": "नर्मल फर्म"
+      },
+      "check": {
+        "en": "product_name depends on product_id alone — part of the composite key. That is a partial dependency, so 2NF fails and the table stops at 1NF. If you answered 2NF, you probably checked for a transitive dependency and missed the partial one: always test the key BEFORE the non-key columns.",
+        "ne": "product_name product_id मा मात्र निर्भर छ — composite key को एक भाग। यो partial dependency हो, त्यसैले 2NF पुग्दैन र तालिका 1NF मै रोकिन्छ। 2NF भन्नुभयो भने सम्भवतः transitive खोज्दै partial छुटाउनुभयो: सधैं non-key भन्दा पहिले key जाँच्नुहोस्।"
+      }
+    }
+  ]
+});
+
+GuidedPractice.register({
+  "id": "oop.ctororder",
+  "subject": "grade10/oop-cpp",
+  "unit": "u5",
+  "skill": {
+    "en": "Work out the order constructors and destructors run in",
+    "ne": "constructor र destructor कुन क्रममा चल्छन् भन्ने पत्ता लगाउनुहोस्"
+  },
+  "rule": {
+    "en": "Construction goes BASE FIRST, down to the most derived class. Destruction is the exact reverse: the most derived class is destroyed first. For multiple inheritance, bases run in the order they are LISTED after the colon.",
+    "ne": "निर्माण BASE बाट सुरु भई सबैभन्दा derived कक्षासम्म जान्छ। विनाश ठ्याक्कै उल्टो: सबैभन्दा derived कक्षा पहिले नष्ट हुन्छ। multiple inheritance मा base हरू colon पछि जुन क्रममा लेखिएका छन् त्यही क्रममा चल्छन्।"
+  },
+  "problems": [
+    {
+      "fade": "worked",
+      "ask": {
+        "en": "class Animal { }; class Dog : public Animal { }; You write: Dog d; — which constructor runs first?",
+        "ne": "class Animal { }; class Dog : public Animal { }; तपाईं लेख्नुहुन्छ: Dog d; — कुन constructor पहिले चल्छ?"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "Which constructor runs first?",
+            "ne": "कुन constructor पहिले चल्छ?"
+          },
+          "answer": "Animal",
+          "accept": [
+            "animal()"
+          ],
+          "why": {
+            "en": "The base is built first. A derived object cannot exist until the part it inherits already does.",
+            "ne": "base पहिले बन्छ। derived वस्तु त्यतिन्जेल हुनै सक्दैन जब सम्म आफूले पाएको भाग बनेको हुँदैन।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "Which constructor runs second?",
+            "ne": "कुन constructor दोस्रोमा चल्छ?"
+          },
+          "answer": "Dog",
+          "accept": [
+            "dog()"
+          ],
+          "why": {
+            "en": "Dog is the most derived class, so it is built last — on top of a finished Animal.",
+            "ne": "Dog सबैभन्दा derived हो, त्यसैले अन्तिममा — तयार भइसकेको Animal माथि बन्छ।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "When d goes out of scope, which destructor runs FIRST?",
+            "ne": "d को scope सकिँदा कुन destructor पहिले चल्छ?"
+          },
+          "answer": "~Dog",
+          "accept": [
+            "dog",
+            "~dog()",
+            "~dog"
+          ],
+          "why": {
+            "en": "Destruction is the exact reverse of construction, so the most derived class goes first.",
+            "ne": "विनाश निर्माणको ठ्याक्कै उल्टो हो, त्यसैले सबैभन्दा derived पहिले जान्छ।"
+          }
+        }
+      ],
+      "result": "Animal Dog ~Dog ~Animal",
+      "resultPrompt": {
+        "en": "Write the whole order, separated by spaces",
+        "ne": "पूरा क्रम लेख्नुहोस्, खाली ठाउँले छुट्याएर"
+      },
+      "check": {
+        "en": "Down the chain to build, back up the chain to destroy. That one sentence answers every question of this shape.",
+        "ne": "बनाउन तल, नष्ट गर्न माथि। यही एउटा वाक्यले यस्तै आकारका सबै प्रश्नको उत्तर दिन्छ।"
+      }
+    },
+    {
+      "fade": "partial",
+      "ask": {
+        "en": "class A { }; class B : public A { }; class C : public B { }; You write: C obj; — multilevel inheritance. Give the construction order.",
+        "ne": "class A { }; class B : public A { }; class C : public B { }; तपाईं लेख्नुहुन्छ: C obj; — multilevel inheritance। निर्माणको क्रम दिनुहोस्।"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "First constructor",
+            "ne": "पहिलो constructor"
+          },
+          "answer": "A",
+          "accept": [
+            "a()"
+          ],
+          "why": {
+            "en": "A is at the top of the chain, so it is built first — even though the object you declared is a C.",
+            "ne": "A शृङ्खलाको सबैभन्दा माथि छ, त्यसैले पहिले बन्छ — तपाईंले घोषणा गरेको वस्तु C भए पनि।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "Second constructor",
+            "ne": "दोस्रो constructor"
+          },
+          "answer": "B",
+          "accept": [
+            "b()"
+          ],
+          "why": {
+            "en": "B sits between A and C, so it is built once A is finished.",
+            "ne": "B, A र C को बीचमा छ, त्यसैले A सकिएपछि बन्छ।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "Third constructor",
+            "ne": "तेस्रो constructor"
+          },
+          "answer": "C",
+          "accept": [
+            "c()"
+          ],
+          "why": {
+            "en": "C is the most derived, so it is built last.",
+            "ne": "C सबैभन्दा derived हो, त्यसैले अन्तिममा बन्छ।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "First destructor",
+            "ne": "पहिलो destructor"
+          },
+          "answer": "~C",
+          "accept": [
+            "c",
+            "~c()",
+            "~c"
+          ],
+          "why": {
+            "en": "Reverse of construction: the last one built is the first one destroyed.",
+            "ne": "निर्माणको उल्टो: अन्तिममा बनेको पहिले नष्ट हुन्छ।"
+          }
+        }
+      ],
+      "result": "A B C ~C ~B ~A",
+      "resultPrompt": {
+        "en": "The whole order",
+        "ne": "पूरा क्रम"
+      },
+      "check": {
+        "en": "Multilevel changes nothing about the rule — it just makes the chain longer. A B C going down, ~C ~B ~A coming back.",
+        "ne": "multilevel ले नियम बदल्दैन — शृङ्खला मात्र लामो बनाउँछ। तल जाँदा A B C, फर्किँदा ~C ~B ~A।"
+      }
+    },
+    {
+      "fade": "guided",
+      "ask": {
+        "en": "class Father { }; class Mother { }; class Child : public Father, public Mother { }; You write: Child c; — multiple inheritance. Give the construction order.",
+        "ne": "class Father { }; class Mother { }; class Child : public Father, public Mother { }; तपाईं लेख्नुहुन्छ: Child c; — multiple inheritance। निर्माणको क्रम दिनुहोस्।"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "First",
+            "ne": "पहिलो"
+          },
+          "answer": "Father",
+          "accept": [
+            "father()"
+          ],
+          "why": {
+            "en": "With two bases, the one written FIRST after the colon is constructed first. Father is listed before Mother.",
+            "ne": "दुई base हुँदा colon पछि पहिले लेखिएको पहिले बन्छ। Father, Mother भन्दा अगाडि लेखिएको छ।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "Second",
+            "ne": "दोस्रो"
+          },
+          "answer": "Mother",
+          "accept": [
+            "mother()"
+          ],
+          "why": {
+            "en": "Second in the list, second to be constructed. Note this has nothing to do with alphabetical order — swap the list and the order swaps.",
+            "ne": "सूचीमा दोस्रो, बन्नमा पनि दोस्रो। यो वर्णक्रमसँग सम्बन्धित छैन — सूची बदल्नुहोस्, क्रम बदलिन्छ।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "Third",
+            "ne": "तेस्रो"
+          },
+          "answer": "Child",
+          "accept": [
+            "child()"
+          ],
+          "why": {
+            "en": "Both bases are ready, so the derived class is built on top of them.",
+            "ne": "दुवै base तयार भए, त्यसैले derived कक्षा तीमाथि बन्छ।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "First destructor",
+            "ne": "पहिलो destructor"
+          },
+          "answer": "~Child",
+          "accept": [
+            "child",
+            "~child()",
+            "~child"
+          ],
+          "why": {
+            "en": "Reverse again. The derived class goes first, then Mother, then Father.",
+            "ne": "फेरि उल्टो। derived पहिले, अनि Mother, अनि Father।"
+          }
+        }
+      ],
+      "result": "Father Mother Child ~Child ~Mother ~Father",
+      "resultPrompt": {
+        "en": "The whole order",
+        "ne": "पूरा क्रम"
+      },
+      "check": {
+        "en": "The order of the bases comes from the class header, not from anything else. That is the single fact this question is testing.",
+        "ne": "base हरूको क्रम class header बाट आउँछ, अरू कतैबाट होइन। यही एउटै तथ्य यो प्रश्नले जाँच्छ।"
+      }
+    },
+    {
+      "fade": "independent",
+      "ask": {
+        "en": "class X { }; class Y { }; class Z : public Y, public X { }; You write: Z z; — write the full construction and destruction order, separated by spaces, using ~ for destructors.",
+        "ne": "class X { }; class Y { }; class Z : public Y, public X { }; तपाईं लेख्नुहुन्छ: Z z; — निर्माण र विनाशको पूरा क्रम लेख्नुहोस्, खाली ठाउँले छुट्याएर, destructor लाई ~ राखेर।"
+      },
+      "steps": [],
+      "result": "Y X Z ~Z ~X ~Y",
+      "resultPrompt": {
+        "en": "Full order",
+        "ne": "पूरा क्रम"
+      },
+      "check": {
+        "en": "Y comes before X because the header says \"public Y, public X\" — the names are deliberately out of alphabetical order to catch exactly that. If you answered X Y Z, you sorted the names instead of reading the header.",
+        "ne": "header मा \"public Y, public X\" लेखिएकाले Y, X भन्दा पहिले आउँछ — नाम जानीजानी वर्णक्रम बाहिर राखिएका छन्, यही समात्न। X Y Z भन्नुभयो भने header पढ्नुको सट्टा नाम क्रमबद्ध गर्नुभयो।"
+      }
+    }
+  ]
+});

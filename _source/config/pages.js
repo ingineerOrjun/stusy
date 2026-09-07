@@ -49,7 +49,8 @@ module.exports = {
       { file: 'unit5.html', n: '5',
         title: 'Inheritance', np: 'इनहेरिटेन्स',
         chip: 'Inheritance', hrs: 10, marks: 7,
-        sec: ['u5'], js: ['snippets.js', 'services/simulation.js', 'predict.js', 'sim-drill.js'] },
+        sec: ['u5'], js: ['snippets.js', 'services/simulation.js', 'predict.js', 'sim-drill.js',
+                             'guided.js', 'practice-bank.js'] },
 
       { file: 'unit6.html', n: '6',
         title: 'Polymorphism', np: 'पोलिमर्फिज्म',
@@ -149,7 +150,8 @@ module.exports = {
       { file: 'unit5.html', n: '5',
         title: 'Relational Database Design', np: 'रिलेसनल डाटाबेस डिजाइन',
         chip: 'Normalization', hrs: 8, marks: 6,
-        sec: ['db-u5'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js'] },
+        sec: ['db-u5'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                                'guided.js', 'practice-bank.js'] },
 
       { file: 'unit6.html', n: '6',
         title: 'Database Transaction', np: 'डाटाबेस ट्रान्ज्याक्सन',
