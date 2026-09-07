@@ -12,7 +12,26 @@ const ROOT = path.resolve(__dirname, '..');
 const SRC = path.join(ROOT, '_source');
 const css = fs.readFileSync(path.join(ROOT, 'assets/css/style.css'), 'utf8');
 const LESSONS = ['u1','u2','u3','u4','u5','u6'];
-const UNIT_PAGES = LESSONS.map((_, i) => path.join(ROOT, 'grade10/oop-cpp', 'unit' + (i + 1) + '.html'));
+/* EVERY authored unit page, in every subject.
+
+   This was `grade10/oop-cpp/unit1..6` — a hardcoded list written in
+   Phase 2, when OOP was the only subject. Two flagship subjects have
+   been added since and this whole file silently never looked at them:
+   heading order, learning objectives, simulation completeness and exam
+   framing were all being checked against one subject out of three.
+
+   Derived from the page map now, so a fourth subject is covered the day
+   it is added rather than the day someone notices. */
+const UNIT_PAGES = (() => {
+  const pages = require(path.join(ROOT, '_source', 'config', 'pages.js'));
+  const out = [];
+  for (const [key, subject] of Object.entries(pages)){
+    for (const page of subject.pages){
+      if (typeof page.hrs === 'number') out.push(path.join(ROOT, key, page.file));
+    }
+  }
+  return out;
+})();
 
 function allPages(){
   const out = [];
@@ -141,7 +160,17 @@ test('every unit frames its exam questions as part of the lesson', () => {
     const html = fs.readFileSync(f, 'utf8');
     assert.match(html, /class="exam-connect"/,
       path.basename(f) + ': exam questions are not connected to the concept');
-    assert.match(html, /SEE exam connection/, path.basename(f) + ': no SEE framing');
+
+    /* The landmark a student navigates to. This used to require the
+       literal "SEE exam connection", which only the OOP units carry —
+       the other two subjects head the section "Exam focus …" instead.
+       The test passed only because it had never been shown them.
+
+       "Exam focus" is the phrase all 18 units share and the one that
+       appears as the heading, so that is the real convention. The extra
+       OOP kicker is harmless and not worth churning 12 files to
+       duplicate. */
+    assert.match(html, /Exam focus/, path.basename(f) + ': no exam-focus landmark');
   }
 });
 
@@ -175,7 +204,17 @@ test('every simulation container is complete', () => {
       const block = raw.slice(0, 12000);
       assert.match(block, /class="sim-head"/,     rel + ': simulation has no header');
       assert.match(block, /class="sim-goal"/,     rel + ': simulation does not say what will be learned');
-      assert.match(block, /class="sim-controls"/, rel + ': simulation has no labelled controls');
+      /* Controls may be authored, or rendered by a component that builds
+         its own from its data — the gate workbench derives its input
+         switches from the gate definition, and the drill renders Next
+         only once the student has answered. Hand-authoring either would
+         be a copy that drifts. Same exemption the build validator
+         applies, kept in step with it deliberately. */
+      const SELF_CONTROLLED =
+        /class="[^"]*\b(gatelab|comblab|kmap|cpu8085|numlab|sqllab|dbtable|erlab|drill|conclab)\b/;
+      if (!SELF_CONTROLLED.test(block)){
+        assert.match(block, /class="sim-controls"/, rel + ': simulation has no labelled controls');
+      }
       assert.match(block, /class="sim-why"/,      rel + ': simulation does not explain why');
     }
   }

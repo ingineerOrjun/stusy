@@ -555,6 +555,44 @@ REVOKE UPDATE ON Student FROM office;</div>
     </div>
   </div>
 
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 4</span> Writing a view, and saying why it is worth having</div>
+    <p><b>Question:</b> the office should be able to see each student's name and class room, but
+    must not see marks. Write a view that gives them exactly that, and state two reasons a view is
+    better here than handing over the tables.</p>
+    <p><b>Step 1 — write the query first.</b> A view is a stored SELECT, so start with the SELECT
+    that returns the right columns:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">SELECT Student.name, Class.room
+FROM Student
+JOIN Class ON Student.class_id = Class.class_id;</div>
+    </div>
+    <p><b>Step 2 — wrap it in CREATE VIEW and give it a name:</b></p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">CREATE VIEW StudentRoom AS
+  SELECT Student.name, Class.room
+  FROM Student
+  JOIN Class ON Student.class_id = Class.class_id;
+
+Now:  SELECT * FROM StudentRoom;
+      behaves exactly as though StudentRoom were a table.
+
+Two reasons a view is better than the tables:
+  1. SECURITY   marks are not in the view, so the office
+                cannot read them even by accident
+  2. SIMPLICITY the join is written once; the office never
+                needs to know the two tables are separate</div>
+    </div>
+    <p class="wex-note"><span class="t-en">The view holds <b>no data of its own</b>. Change a room in the Class table
+    and the next <code>SELECT * FROM StudentRoom</code> shows the new value immediately — that is
+    the sentence to write when a question asks how a view differs from a copy of a table.
+    </span><span class="np-cell" lang="ne">View सँग <b lang="ne">आफ्नो data हुँदैन</b>। Class तालिकामा कोठा बदल्नुहोस्, अर्को
+    पटक <code>SELECT * FROM StudentRoom</code> गर्दा नयाँ मान तुरुन्तै देखिन्छ — view र तालिकाको
+    प्रतिलिपि कसरी फरक हुन् भनी सोध्दा यही वाक्य लेख्नुहोस्।</span></p>
+  </div>
+
   <div class="mistake">
     <h3>Mistakes that cost marks here</h3>
     <ul>

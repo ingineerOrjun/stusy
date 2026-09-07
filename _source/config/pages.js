@@ -34,22 +34,22 @@ module.exports = {
       { file: 'unit2.html', n: '2',
         title: 'Concept of OOP using C++', np: 'OOP को अवधारणा (C++)',
         chip: 'OOP + C++', hrs: 10, marks: 14,
-        sec: ['u2'], js: ['snippets.js'] },
+        sec: ['u2'], js: ['snippets.js', 'services/simulation.js', 'predict.js', 'sim-drill.js'] },
 
       { file: 'unit3.html', n: '3',
         title: 'Class and Object', np: 'क्लास र अब्जेक्ट',
         chip: 'Class and Object', hrs: 7, marks: 2,
-        sec: ['u3'], js: ['snippets.js'] },
+        sec: ['u3'], js: ['snippets.js', 'services/simulation.js', 'predict.js', 'sim-drill.js'] },
 
       { file: 'unit4.html', n: '4',
         title: 'Abstraction and Encapsulation', np: 'एब्स्ट्र्याक्सन र इनक्याप्सुलेसन',
         chip: 'Abstraction / Encapsulation', hrs: 7, marks: 5,
-        sec: ['u4'], js: ['snippets.js'] },
+        sec: ['u4'], js: ['snippets.js', 'services/simulation.js', 'predict.js', 'sim-drill.js'] },
 
       { file: 'unit5.html', n: '5',
         title: 'Inheritance', np: 'इनहेरिटेन्स',
         chip: 'Inheritance', hrs: 10, marks: 7,
-        sec: ['u5'], js: ['snippets.js'] },
+        sec: ['u5'], js: ['snippets.js', 'services/simulation.js', 'predict.js', 'sim-drill.js'] },
 
       { file: 'unit6.html', n: '6',
         title: 'Polymorphism', np: 'पोलिमर्फिज्म',

@@ -92,6 +92,65 @@
     </div>
   </div>
 
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-inhwhat">
+  <title id="t-inhwhat">What a derived class inherits from its base class, and what it does not: public and protected members are reachable, private members exist in the object but cannot be used by the derived class</title>
+  <defs><marker id="a-inhwhat" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
+  <text class="f-ttl" x="10" y="20">WHAT IS INHERITED — and the one thing that is not</text>
+
+  <!-- base class -->
+  <rect class="f-box-d" x="30" y="46" width="270" height="156" rx="8"/>
+  <text class="f-lbl-y" x="165" y="68" style="font-size:13px">BASE CLASS — Animal</text>
+
+  <rect class="f-box-g" x="46" y="80" width="238" height="30" rx="5"/>
+  <text class="f-code" x="60" y="100" text-anchor="start" style="font-size:12px">public:    eat()</text>
+  <text class="f-lbl" x="272" y="100" text-anchor="end" style="font-size:10.5px">inherited</text>
+
+  <rect class="f-box-g" x="46" y="116" width="238" height="30" rx="5"/>
+  <text class="f-code" x="60" y="136" text-anchor="start" style="font-size:12px">protected: age</text>
+  <text class="f-lbl" x="272" y="136" text-anchor="end" style="font-size:10.5px">inherited</text>
+
+  <rect class="f-box-d" x="46" y="152" width="238" height="30" rx="5"
+        style="stroke:var(--color-error);stroke-dasharray:4 3"/>
+  <text class="f-code" x="60" y="172" text-anchor="start" style="font-size:12px;fill:var(--color-error)">private:   secret</text>
+  <text class="f-lbl" x="272" y="172" text-anchor="end" style="font-size:10.5px;fill:var(--color-error)">NOT usable</text>
+
+  <!-- two arrows through, one blocked -->
+  <line class="f-arr" x1="304" y1="95" x2="392" y2="95" marker-end="url(#a-inhwhat)"/>
+  <line class="f-arr" x1="304" y1="131" x2="392" y2="131" marker-end="url(#a-inhwhat)"/>
+  <line x1="304" y1="167" x2="360" y2="167"
+        style="stroke:var(--color-error);stroke-width:2;stroke-dasharray:5 4"/>
+  <line x1="352" y1="159" x2="368" y2="175" style="stroke:var(--color-error);stroke-width:2.5"/>
+  <line x1="368" y1="159" x2="352" y2="175" style="stroke:var(--color-error);stroke-width:2.5"/>
+
+  <!-- derived class -->
+  <rect class="f-box-d" x="396" y="46" width="270" height="156" rx="8"/>
+  <text class="f-lbl-y" x="531" y="68" style="font-size:13px">DERIVED CLASS — Dog</text>
+
+  <rect class="f-box-g" x="412" y="80" width="238" height="30" rx="5"/>
+  <text class="f-code" x="426" y="100" text-anchor="start" style="font-size:12px">eat()      — reused</text>
+
+  <rect class="f-box-g" x="412" y="116" width="238" height="30" rx="5"/>
+  <text class="f-code" x="426" y="136" text-anchor="start" style="font-size:12px">age        — reused</text>
+
+  <rect class="f-box-g" x="412" y="152" width="238" height="30" rx="5"
+        style="stroke:var(--color-secondary)"/>
+  <text class="f-code" x="426" y="172" text-anchor="start" style="font-size:12px;fill:var(--color-secondary)">bark()     — its own</text>
+
+  <text class="f-lbl-y" x="350" y="228">The private member still EXISTS inside every Dog object. The derived class simply cannot reach it directly.</text>
+  <text class="f-lbl" x="350" y="252" style="font-size:11.5px">That is the whole difference between private and protected — and the only reason protected exists.</text>
+  <text class="f-code" x="350" y="278" style="font-size:12px" text-anchor="middle">Dog IS-A Animal  ·  if you cannot say "IS-A", inheritance is the wrong tool</text>
+</svg>
+    <figcaption><span class="t-en">The two arrows that get through and the one that does not. A derived class reuses
+    public and protected members; a private member still exists inside every object but the child
+    cannot reach it.
+    </span><span class="np-cell" lang="ne">दुई तीर पुग्छन्, एउटा पुग्दैन। Derived क्लासले public र protected मेम्बर
+    पुनः प्रयोग गर्छ; private मेम्बर हरेक अब्जेक्टभित्र हुन्छ तर छोराले छुन पाउँदैन।</span></figcaption>
+  </figure>
+
   <div class="callout an"><div class="t-en">
     <div class="h">Real-world analogy — a family</div>
     <p>A <b>child</b> inherits eye colour, surname and blood group from a <b>parent</b>, and also
@@ -453,6 +512,56 @@ int main() {
   </div>
 
   <!-- ============ CONSTRUCTOR ORDER ============ -->
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><code>class B : public A</code><span class="t-en">, and <code>class C : public B</code>.
+      What is this called?
+      </span><span class="np-cell" lang="ne"><code>class B : public A</code>, र <code>class C : public B</code>।
+      यसलाई के भनिन्छ?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Multiple inheritance</button>
+      <button class="predict-opt" data-value="b">Multilevel inheritance</button>
+      <button class="predict-opt" data-value="c">Hierarchical inheritance</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>Multilevel.</b> It is a chain: C from B, B from A. Every class here has exactly
+      <b>one</b> parent — the chain simply has more than one level. <b>Multiple</b> means one class
+      with <i>two</i> parents (<code>class C : public A, public B</code>), which is a different
+      picture entirely. Count parents, not levels.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">Multilevel।</b> यो शृंखला हो: C, B बाट र B, A बाट। यहाँ हरेक
+      क्लासको <b lang="ne">एउटै</b> बाबु छ — शृंखलामा तह मात्र धेरै छन्। <b>Multiple</b> भनेको एउटै क्लासका
+      <i lang="ne">दुई</i> बाबु हुनु हो। तह होइन, बाबु गन्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3>Name the type of inheritance from the code</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to tell the five types apart quickly — the paper
+      gives you code or a diagram and asks for the name, and multilevel versus multiple is where
+      the mark is lost.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: पाँच प्रकार छिटो छुट्याउन — परीक्षामा कोड वा
+      चित्र दिएर नाम सोधिन्छ, र अंक multilevel र multiple बीचमै गुम्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-inher" data-set="inhertype"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Two counts settle almost every case. <b>How many parents does any one class have?</b>
+        More than one → multiple. <b>How many children does one base have?</b> More than one →
+        hierarchical. A chain where each class has one parent but there is more than one level →
+        multilevel.</p>
+        <p>Case 5 mixes two shapes on purpose, because a real question sometimes does. Read the
+        reason for how to answer when a diagram is not purely one type.</p>
+        </div><span class="np-cell" lang="ne">दुई गणनाले प्रायः सबै केस मिलाउँछन्। <b lang="ne">कुनै एउटा क्लासका कति बाबु
+        छन्?</b> एकभन्दा बढी → multiple। <b lang="ne">एउटा base का कति छोरा छन्?</b> एकभन्दा बढी →
+        hierarchical। हरेकको एउटै बाबु तर धेरै तह भएको शृंखला → multilevel। केस ५ मा जानाजान दुई
+        आकार मिसिएका छन्।</span>
+      </div>
+    </div>
+  </div>
+
   <h2 class="topic" id="t5c">Constructor and destructor order — asked very often</h2>
 
   <figure class="fig">
@@ -674,6 +783,9 @@ A destructor</pre>
 <script src="../../assets/js/services/motion.js"></script>
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/snippets.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
 <script src="../../assets/js/diagram.js"></script>
 <script src="../../assets/js/diagram-data.js"></script>
 </body>

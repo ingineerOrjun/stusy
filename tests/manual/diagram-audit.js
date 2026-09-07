@@ -37,6 +37,21 @@
 'use strict';
 
 const AUDIT = String(function audit(){
+  /* MEASURE AFTER THE FONT HAS LOADED, OR MEASURE THE WRONG TEXT.
+
+     Every check here compares text boxes against geometry, and a text
+     box is a different size in the fallback font than in the loaded
+     one. Phase 4.1 ran this behind a fixed 900 ms wait and reported 53
+     figures clean; run again after `document.fonts.ready`, the same
+     tree reported a real overlap in `grayCode` that had been there all
+     along.
+
+     A fixed delay is a guess about font loading. This is the fact. */
+  if (document.fonts && document.fonts.status !== 'loaded'){
+    return { error: 'fonts not ready — await document.fonts.ready, then run AUDIT() again',
+             fontStatus: document.fonts.status };
+  }
+
   const figs = [...document.querySelectorAll('figure.fig')];
   const report = [];
 
@@ -216,7 +231,9 @@ if (require.main === module){
   const out = path.join(ROOT, '__diagram-audit.html');
   fs.writeFileSync(out, html, 'utf8');
   console.log('wrote ' + path.relative(ROOT, out) + ' with ' + Object.keys(D).length + ' figures');
-  console.log('serve the repo root, open it, and run:  JSON.stringify(AUDIT(), null, 1)');
+  console.log('serve the repo root, open it, and run:');
+  console.log('  await document.fonts.ready; JSON.stringify(AUDIT(), null, 1)');
+  console.log('  (AUDIT refuses to measure before the font has loaded — it would measure the wrong text)');
   console.log('DELETE the page when finished — a stray file in the site root fails the page-count test.');
 }
 

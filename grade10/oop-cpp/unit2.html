@@ -261,10 +261,59 @@
     यसले <b lang="ne">माथिबाट तल (top-down)</b> सोच्छ। OOP मा <b lang="ne">अब्जेक्ट</b> मुख्य हुन्छ, डाटा
     <b>private</b> राखेर लुकाइन्छ, र <b lang="ne">तलबाट माथि (bottom-up)</b> सोच्छ। ठूलो प्रोग्रामका लागि
     OOP राम्रो।</p>
-  </div><span class="t-en">
+  </div>
 
   <!-- ============ 2.5 ============ -->
-  </span><h2 class="topic" id="t25">2.5 &nbsp;Tokens and Character Set</h2>
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A driver uses a steering wheel without knowing how the engine works.
+      Which feature of OOP does that describe?
+      </span><span class="np-cell" lang="ne">चालकले इन्जिन कसरी चल्छ नजानीकनै स्टेयरिङ चलाउँछन्। यसले OOP को कुन
+      विशेषता जनाउँछ?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Encapsulation</button>
+      <button class="predict-opt" data-value="b">Abstraction</button>
+      <button class="predict-opt" data-value="c">Inheritance</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>Abstraction.</b> Complexity is hidden and only what you need is shown. The test that
+      separates the two: <b>abstraction hides COMPLEXITY, encapsulation hides DATA.</b> A private
+      variable with a getter is encapsulation; a dashboard that shows speed without the mechanism
+      is abstraction. Unit 4 spends a whole section on this pair — it is asked most years.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">Abstraction।</b> जटिलता लुकाइएको छ र चाहिने कुरा मात्र देखाइएको छ।
+      छुट्याउने जाँच: <b lang="ne">abstraction ले जटिलता लुकाउँछ, encapsulation ले डाटा।</b> Getter सहितको
+      private चल encapsulation हो; संयन्त्र नदेखाई गति देखाउने ड्यासबोर्ड abstraction हो।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3>Name the feature from what the program does</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to name an OOP feature from a described situation,
+      which is how this unit is actually examined — not by reciting the list.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: वर्णन गरिएको परिस्थितिबाट OOP विशेषताको नाम दिन —
+      यो युनिट यसरी नै जाँचिन्छ, सूची घोकेर होइन।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-oopfeat" data-set="oopfeature"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>For each case ask one question before you answer: <b>what is being hidden?</b> Data
+        hidden behind functions is encapsulation. Complexity hidden behind a simple interface is
+        abstraction. A class taking members from another is inheritance. One name behaving in more
+        than one form is polymorphism.</p>
+        <p>Two cases are both polymorphism — one decided by the compiler, one decided while the
+        program runs. Read the reasons: the exam asks you to name which kind.</p>
+        </div><span class="np-cell" lang="ne">उत्तर दिनुअघि एउटै प्रश्न सोध्नुहोस्: <b lang="ne">के लुकाइँदै छ?</b>
+        फङ्सनपछाडि लुकेको डाटा = encapsulation। सरल अन्तरमुखपछाडि लुकेको जटिलता = abstraction।
+        अर्कोका मेम्बर लिने क्लास = inheritance। एउटै नाम धेरै रूपमा = polymorphism। दुई केस
+        polymorphism कै हुन् — एउटा compiler ले, अर्को चल्दै गर्दा तय हुन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="topic" id="t25">2.5 &nbsp;Tokens and Character Set</h2>
 
   <div class="pair">
     <div class="en">
@@ -623,5 +672,8 @@ do {
 <script src="../../assets/js/services/motion.js"></script>
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/snippets.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
 </body>
 </html>

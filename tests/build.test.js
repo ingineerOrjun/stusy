@@ -8,6 +8,7 @@ const crypto = require('node:crypto');
 
 const ROOT = path.resolve(__dirname, '..');
 const BUILD = path.join(ROOT, '_source', 'build', 'index.js');
+const SRC   = path.join(ROOT, '_source');
 
 /* The 20 pages that must always exist. This list is the regression baseline
    recorded in docs/PHASE-1-BASELINE.md. */
@@ -115,15 +116,52 @@ test('build is deterministic — rebuilding changes nothing', () => {
 });
 
 test('every unit page carries its diagrams', () => {
+  /* This used to hold a hardcoded figure count per OOP unit. That
+     guarded almost nothing — it broke the moment a figure was added on
+     purpose, and it never looked at the other two subjects at all.
+
+     The real invariant is a relationship: every {{dia:name}} written in
+     a source section must arrive in the built page as that diagram, and
+     no placeholder may survive. Derived from the source, so it needs no
+     maintenance and covers every subject automatically. */
   build();
-  const expected = { unit1: 9, unit2: 2, unit3: 3, unit4: 2, unit5: 3, unit6: 3 };
-  for (const [unit, count] of Object.entries(expected)){
-    const html = fs.readFileSync(path.join(ROOT, 'grade10/oop-cpp', unit + '.html'), 'utf8');
-    const found = (html.match(/<figure class="fig"/g) || []).length;
-    assert.strictEqual(found, count, `${unit}.html should have ${count} figures, found ${found}`);
-    assert.ok(!html.includes('{{dia:'), unit + '.html has an uninjected diagram placeholder');
-    assert.ok(!html.includes('missing diagram'), unit + '.html references a missing diagram');
+  const DIA = require(path.join(SRC, 'diagrams.js'));
+  const pages = require(path.join(SRC, 'config', 'pages.js'));
+
+  const titleOf = name => {
+    const svg = typeof DIA[name] === 'string' ? DIA[name] : (DIA[name] && DIA[name].svg) || '';
+    return (svg.match(/<title[^>]*>([\s\S]*?)<\/title>/) || [, ''])[1].trim();
+  };
+
+  let checked = 0;
+  for (const [key, subject] of Object.entries(pages)){
+    for (const page of subject.pages){
+      const built = fs.readFileSync(path.join(ROOT, key, page.file), 'utf8');
+
+      const wanted = new Set();
+      for (const sec of page.sec){
+        for (const dir of ['lessons', 'sections']){
+          const f = path.join(SRC, 'content', dir, sec + '.html');
+          if (!fs.existsSync(f)) continue;
+          const src = fs.readFileSync(f, 'utf8');
+          for (const m of src.matchAll(/\{\{dia:([a-zA-Z0-9_]+)\}\}/g)) wanted.add(m[1]);
+        }
+      }
+
+      for (const name of wanted){
+        assert.ok(DIA[name], page.file + ' references diagram "' + name + '" which does not exist');
+        const title = titleOf(name);
+        assert.ok(title, 'diagram "' + name + '" has no <title>');
+        assert.ok(built.includes(title),
+          key + '/' + page.file + ' should carry diagram "' + name + '" but its title is not in the page');
+        checked++;
+      }
+
+      assert.ok(!built.includes('{{dia:'), page.file + ' has an uninjected diagram placeholder');
+      assert.ok(!built.includes('missing diagram'), page.file + ' references a missing diagram');
+    }
   }
+  assert.ok(checked >= 40, 'expected to verify many diagram injections, checked ' + checked);
 });
 
 test('the legacy artifact is no longer a build input', () => {

@@ -310,6 +310,113 @@
     </div>
   </div>
 
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 258" role="img" aria-labelledby="t-flagreg">
+  <title id="t-flagreg">The 8085 flag register: five flags — sign, zero, auxiliary carry, parity and carry — held in an eight bit register with three unused bits</title>
+  <text class="f-ttl" x="10" y="20">THE 8085 FLAG REGISTER — five flags in eight bits</text>
+
+<g>
+    <rect class="f-box-g" x="16" y="40" width="76" height="54" rx="6"
+          />
+    <text class="f-lbl-y" x="54" y="66" style="font-size:15px;fill:var(--color-primary)">S</text>
+    <text class="f-lbl" x="54" y="85" style="font-size:10.5px">D7</text>
+  </g><g>
+    <rect class="f-box-g" x="100" y="40" width="76" height="54" rx="6"
+          />
+    <text class="f-lbl-y" x="138" y="66" style="font-size:15px;fill:var(--color-success)">Z</text>
+    <text class="f-lbl" x="138" y="85" style="font-size:10.5px">D6</text>
+  </g><g>
+    <rect class="f-box-d" x="184" y="40" width="76" height="54" rx="6"
+          style="opacity:.5;stroke-dasharray:4 3"/>
+    <text class="f-lbl-y" x="222" y="66" style="font-size:15px;opacity:.5">·</text>
+    <text class="f-lbl" x="222" y="85" style="font-size:10.5px;opacity:.5">D5</text>
+  </g><g>
+    <rect class="f-box-g" x="268" y="40" width="76" height="54" rx="6"
+          />
+    <text class="f-lbl-y" x="306" y="66" style="font-size:15px;fill:var(--color-secondary)">AC</text>
+    <text class="f-lbl" x="306" y="85" style="font-size:10.5px">D4</text>
+  </g><g>
+    <rect class="f-box-d" x="352" y="40" width="76" height="54" rx="6"
+          style="opacity:.5;stroke-dasharray:4 3"/>
+    <text class="f-lbl-y" x="390" y="66" style="font-size:15px;opacity:.5">·</text>
+    <text class="f-lbl" x="390" y="85" style="font-size:10.5px;opacity:.5">D3</text>
+  </g><g>
+    <rect class="f-box-g" x="436" y="40" width="76" height="54" rx="6"
+          />
+    <text class="f-lbl-y" x="474" y="66" style="font-size:15px;fill:var(--color-primary)">P</text>
+    <text class="f-lbl" x="474" y="85" style="font-size:10.5px">D2</text>
+  </g><g>
+    <rect class="f-box-d" x="520" y="40" width="76" height="54" rx="6"
+          style="opacity:.5;stroke-dasharray:4 3"/>
+    <text class="f-lbl-y" x="558" y="66" style="font-size:15px;opacity:.5">·</text>
+    <text class="f-lbl" x="558" y="85" style="font-size:10.5px;opacity:.5">D1</text>
+  </g><g>
+    <rect class="f-box-g" x="604" y="40" width="76" height="54" rx="6"
+          />
+    <text class="f-lbl-y" x="642" y="66" style="font-size:15px;fill:var(--color-error)">CY</text>
+    <text class="f-lbl" x="642" y="85" style="font-size:10.5px">D0</text>
+  </g>
+
+  <text class="f-lbl" x="350" y="112" style="font-size:11px">D7 is the most significant bit, D0 the least — the same order you write any 8-bit number in</text>
+
+<g>
+    <text class="f-lbl-y" x="30" y="130" text-anchor="start" style="font-size:11.5px">S — Sign</text>
+    <text class="f-lbl" x="176" y="130" text-anchor="start" style="font-size:11px">set to 1 when the result is negative (D7 of the result is 1)</text>
+  </g><g>
+    <text class="f-lbl-y" x="30" y="152" text-anchor="start" style="font-size:11.5px">Z — Zero</text>
+    <text class="f-lbl" x="176" y="152" text-anchor="start" style="font-size:11px">set to 1 when the result is exactly 00H</text>
+  </g><g>
+    <text class="f-lbl-y" x="30" y="174" text-anchor="start" style="font-size:11.5px">AC — Aux Carry</text>
+    <text class="f-lbl" x="176" y="174" text-anchor="start" style="font-size:11px">set when a carry leaves bit 3 — used only by the DAA instruction</text>
+  </g><g>
+    <text class="f-lbl-y" x="30" y="196" text-anchor="start" style="font-size:11.5px">P — Parity</text>
+    <text class="f-lbl" x="176" y="196" text-anchor="start" style="font-size:11px">set to 1 when the result contains an EVEN number of 1s</text>
+  </g><g>
+    <text class="f-lbl-y" x="30" y="218" text-anchor="start" style="font-size:11.5px">CY — Carry</text>
+    <text class="f-lbl" x="176" y="218" text-anchor="start" style="font-size:11px">set when the result carries out of bit 7, or borrows into it</text>
+  </g>
+
+  <text class="f-lbl-y" x="350" y="248">Three bits are unused. A flag is SET by the result of the last arithmetic or logic instruction — not by a data transfer.</text>
+</svg>
+    <figcaption><span class="t-en">Five flags in an eight-bit register — and the three bits that are not used, which
+    is the part the list above cannot show. Learn the positions: a question may ask which bit
+    holds the carry flag.
+    </span><span class="np-cell" lang="ne">आठ बिटको रजिस्टरमा पाँच flag — र प्रयोगमा नआउने तीन बिट, जुन माथिको
+    सूचीले देखाउन सक्दैन। स्थान सम्झनुहोस्: carry flag कुन बिटमा छ भनी सोध्न सकिन्छ।</span></figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Working out which flags are set</div>
+    <p><b>Question:</b> the accumulator holds <code>A0H</code> and <code>60H</code> is added to it.
+    State the value left in the accumulator and the state of the CY, Z, S and P flags.</p>
+    <p><b>Step 1 — do the addition in binary.</b> Never try to set the flags from the hex:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">  A0H = 1010 0000
++ 60H = 0110 0000
+  ----------------
+  1 0000 0000      ← a ninth bit falls out</div>
+    </div>
+    <p><b>Step 2 — read each flag from that result.</b> Take them one at a time:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">A  = 00H
+
+CY = 1   the addition carried out of bit 7
+Z  = 1   the eight bits left in A are all zero
+S  = 0   bit 7 of the result is 0, so not negative
+P  = 1   the result has ZERO 1s, and zero is even</div>
+    </div>
+    <p class="wex-note"><span class="t-en">Two traps live in this one question. The carry is <b>not</b> part of the
+    accumulator — A holds 00H and the ninth bit lives in CY alone. And parity counts the
+    <b>1s in the result</b>, so a result of zero has even parity and sets P. Students routinely
+    answer P = 0 here.
+    </span><span class="np-cell" lang="ne">यही प्रश्नमा दुई पासो छन्। Carry accumulator को भाग <b lang="ne">होइन</b> — A मा
+    00H छ र नवौं बिट CY मा मात्र। र parity ले <b lang="ne">नतिजाका 1</b> गन्छ, त्यसैले शून्य नतिजाको parity
+    जोर हुन्छ र P = 1 हुन्छ। विद्यार्थीले प्रायः P = 0 लेख्छन्।</span></p>
+  </div>
+
   <div class="pair">
     <div class="en"><span class="tag">Interrupts</span>
       <p>An <b>interrupt</b> is a signal that asks the processor to stop what it is doing, attend

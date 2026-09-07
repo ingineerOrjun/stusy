@@ -160,6 +160,249 @@
       ]
     },
 
+    /* ---- OOP u2: which feature of OOP is this? ----
+       2.2 lists the features and 2.4 compares structured with OOP. Both
+       are recall-and-apply questions in the paper: a scenario is
+       described and the student names the feature. Naming it from a
+       description is the skill; reading the list is not. */
+    oopfeature: {
+      title: { en: 'Which feature of OOP is this?', ne: 'यो OOP को कुन विशेषता हो?' },
+      lead: {
+        en: 'Each case describes something a program does. Name the OOP feature responsible. Two of them are the pair students swap most often — read what is being HIDDEN and what is being IGNORED.',
+        ne: 'हरेक केसले प्रोग्रामले गर्ने कुरा वर्णन गर्छ। जिम्मेवार OOP विशेषताको नाम दिनुहोस्। दुईवटा त्यस्ता छन् जुन विद्यार्थीले सबैभन्दा बढी साट्छन् — के लुकाइँदै छ र के बेवास्ता गरिँदै छ, त्यो पढ्नुहोस्।'
+      },
+      options: [
+        { id: 'encap', label: { en: 'Encapsulation', ne: 'Encapsulation' } },
+        { id: 'abstr', label: { en: 'Abstraction', ne: 'Abstraction' } },
+        { id: 'inher', label: { en: 'Inheritance', ne: 'Inheritance' } },
+        { id: 'poly', label: { en: 'Polymorphism', ne: 'Polymorphism' } }
+      ],
+      cases: [
+        {
+          pre: 'A class keeps marks as a private member and\nprovides setMarks() and getMarks() to reach it.',
+          answer: 'encap',
+          why: {
+            en: 'Data and the functions that work on it are wrapped together in one class, and the data is protected from direct access. That wrapping is encapsulation. The private keyword is its usual sign.',
+            ne: 'डाटा र त्यसमा काम गर्ने फङ्सन एउटै क्लासमा बाँधिएका छन्, र डाटा सिधै पहुँचबाट जोगिएको छ। यही बाँधाइ नै encapsulation हो। private शब्द यसको सामान्य सङ्केत हो।'
+          }
+        },
+        {
+          pre: 'A driver uses the steering wheel and brake\nwithout knowing how the engine works.',
+          answer: 'abstr',
+          why: {
+            en: 'Only the necessary detail is shown and the internal working is hidden. That is abstraction — it hides COMPLEXITY. Encapsulation hides DATA. This pair is the one students swap.',
+            ne: 'आवश्यक कुरा मात्र देखाइएको छ र भित्रको काम लुकाइएको छ। यही abstraction हो — यसले जटिलता लुकाउँछ। Encapsulation ले डाटा लुकाउँछ। विद्यार्थीले साट्ने जोडी यही हो।'
+          }
+        },
+        {
+          pre: 'class Dog : public Animal { ... };\nDog reuses eat() and sleep() written in Animal.',
+          answer: 'inher',
+          why: {
+            en: 'One class acquires the members of another, so common code is written once and reused. The IS-A test confirms it: a Dog IS-A Animal.',
+            ne: 'एउटा क्लासले अर्कोका मेम्बर प्राप्त गर्छ, त्यसैले साझा कोड एक पटक लेखेर पुनः प्रयोग हुन्छ। IS-A जाँचले पुष्टि गर्छ: Dog एक प्रकारको Animal हो।'
+          }
+        },
+        {
+          pre: 'area(int) and area(int, int) both exist.\nThe compiler picks one from the arguments given.',
+          answer: 'poly',
+          why: {
+            en: 'One name behaving in more than one form. This is compile-time polymorphism (function overloading) — the compiler decides which to call from the argument list.',
+            ne: 'एउटै नाम एकभन्दा बढी रूपमा चल्नु। यो compile-time polymorphism (function overloading) हो — कुन चलाउने भन्ने compiler ले आर्गुमेन्ट हेरेर तय गर्छ।'
+          }
+        },
+        {
+          pre: 'A base class pointer calls speak().\nAt run time the DERIVED version executes.',
+          answer: 'poly',
+          why: {
+            en: 'Also polymorphism, but run-time — function overriding with a virtual function. Same name, form chosen while the program runs rather than while it compiles.',
+            ne: 'यो पनि polymorphism, तर run-time — virtual फङ्सनसहितको function overriding। उही नाम, तर रूप compile गर्दा होइन, चल्दै गर्दा छानिन्छ।'
+          }
+        },
+        {
+          pre: 'A Circle class and a Square class both\ninherit draw() from a Shape class.',
+          answer: 'inher',
+          why: {
+            en: 'Two classes acquiring members from one base is hierarchical inheritance. If the question had asked which draw() runs through a Shape pointer, the answer would have been polymorphism instead.',
+            ne: 'दुई क्लासले एउटै base बाट मेम्बर लिनु hierarchical inheritance हो। Shape pointer बाट कुन draw() चल्छ भनी सोधेको भए उत्तर polymorphism हुन्थ्यो।'
+          }
+        }
+      ]
+    },
+
+    /* ---- OOP u3: is this member reachable here? ----
+       3.2 gives the access table. A table is a lookup; the exam asks the
+       student to APPLY it, usually inside a derived class where
+       protected and private differ. */
+    accessspec: {
+      title: { en: 'Can this line reach that member?', ne: 'यो हरफले त्यो मेम्बरमा पुग्न सक्छ?' },
+      lead: {
+        en: 'A member is declared in a base class and used somewhere. Decide whether the line compiles. The place students lose the mark is inside a derived class, where private and protected behave differently.',
+        ne: 'Base क्लासमा घोषित मेम्बर कतै प्रयोग भएको छ। त्यो हरफ compile हुन्छ कि हुँदैन छान्नुहोस्। अंक गुम्ने ठाउँ derived क्लासभित्र हो, जहाँ private र protected फरक व्यवहार गर्छन्।'
+      },
+      options: [
+        { id: 'yes', label: { en: 'Yes — it compiles', ne: 'हुन्छ — compile हुन्छ' } },
+        { id: 'no', label: { en: 'No — error', ne: 'हुँदैन — त्रुटि' } }
+      ],
+      cases: [
+        {
+          pre: 'class A { private: int x; };\n\nint main(){ A a;  a.x = 5; }',
+          answer: 'no',
+          why: {
+            en: 'A private member is reachable only from inside its own class. main() is outside, so this is an error. Private is the default for a class, which is why forgetting to write public is such a common mistake.',
+            ne: 'Private मेम्बरमा आफ्नै क्लासभित्रबाट मात्र पुग्न सकिन्छ। main() बाहिर छ, त्यसैले त्रुटि हो। क्लासमा default नै private हुने भएकाले public लेख्न बिर्सनु सामान्य गल्ती हो।'
+          }
+        },
+        {
+          pre: 'class A { protected: int x; };\nclass B : public A { void f(){ x = 5; } };',
+          answer: 'yes',
+          why: {
+            en: 'Protected is reachable from a derived class. This is the ONLY difference between protected and private, and it is what protected exists for.',
+            ne: 'Protected मा derived क्लासबाट पुग्न सकिन्छ। Protected र private बीचको एउटै फरक यही हो, र protected हुनुको कारण पनि यही हो।'
+          }
+        },
+        {
+          pre: 'class A { private: int x; };\nclass B : public A { void f(){ x = 5; } };',
+          answer: 'no',
+          why: {
+            en: 'A derived class does NOT inherit access to a private member. It exists inside the object, but B cannot touch it directly — the callout in 5.1 calls it the parent\'s personal diary. Change private to protected and it compiles.',
+            ne: 'Derived क्लासले private मेम्बरमा पहुँच पाउँदैन। त्यो अब्जेक्टभित्र छ, तर B ले सिधै छुन सक्दैन — ५.१ को उदाहरणमा यसलाई बाबुको व्यक्तिगत डायरी भनिएको छ। private लाई protected बनाए compile हुन्छ।'
+          }
+        },
+        {
+          pre: 'class A { protected: int x; };\n\nint main(){ A a;  a.x = 5; }',
+          answer: 'no',
+          why: {
+            en: 'Protected helps a DERIVED class, not the outside world. From main() it behaves exactly like private. Students who learn "protected is less strict" often miss this.',
+            ne: 'Protected ले derived क्लासलाई सहयोग गर्छ, बाहिरी संसारलाई होइन। main() बाट यो ठ्याक्कै private जस्तै हुन्छ। "Protected कम कडा हो" भनेर सिकेकाहरू यहीँ चुक्छन्।'
+          }
+        },
+        {
+          pre: 'class A { public: int x; };\n\nint main(){ A a;  a.x = 5; }',
+          answer: 'yes',
+          why: {
+            en: 'Public is reachable from anywhere. This is the case that makes the other four meaningful — without it the table would just say "no".',
+            ne: 'Public मा जहाँबाट पनि पुग्न सकिन्छ। यही केसले बाँकी चारलाई अर्थपूर्ण बनाउँछ — नत्र तालिकाले "हुँदैन" मात्र भन्थ्यो।'
+          }
+        }
+      ]
+    },
+
+    /* ---- OOP u4: abstraction or encapsulation? ----
+       The unit names this as the misconception and has a callout for it,
+       but nothing that makes the student decide. */
+    absencap: {
+      title: { en: 'Abstraction or encapsulation?', ne: 'Abstraction कि encapsulation?' },
+      lead: {
+        en: 'The pair the paper asks you to differentiate almost every year. One test settles every case: is complexity being hidden, or is data being protected?',
+        ne: 'परीक्षामा झन्डै हरेक वर्ष फरक छुट्याउन भनिने जोडी। एउटै जाँचले सबै केस मिलाउँछ: जटिलता लुकाइँदै छ, कि डाटा जोगाइँदै छ?'
+      },
+      options: [
+        { id: 'abstr', label: { en: 'Abstraction', ne: 'Abstraction' } },
+        { id: 'encap', label: { en: 'Encapsulation', ne: 'Encapsulation' } }
+      ],
+      cases: [
+        {
+          pre: 'You press a mobile phone\'s power button.\nYou do not know what the circuit does.',
+          answer: 'abstr',
+          why: {
+            en: 'Complexity is hidden and only the necessary interface is shown. Abstraction answers "what does it do?" and hides "how".',
+            ne: 'जटिलता लुकाइएको छ र आवश्यक अन्तरमुख मात्र देखाइएको छ। Abstraction ले "के गर्छ?" भन्छ र "कसरी" लुकाउँछ।'
+          }
+        },
+        {
+          pre: 'int balance is private.\nGetters and setters control every change to it.',
+          answer: 'encap',
+          why: {
+            en: 'Data is bound with its functions and protected from direct access. Encapsulation answers "who may touch this?" The private keyword is its usual sign.',
+            ne: 'डाटा आफ्ना फङ्सनसँग बाँधिएको र सिधै पहुँचबाट जोगिएको छ। Encapsulation ले "यसलाई कसले छुन पाउँछ?" भन्छ। private शब्द यसको सङ्केत हो।'
+          }
+        },
+        {
+          pre: 'An abstract class declares draw() = 0 and\nleaves every derived class to implement it.',
+          answer: 'abstr',
+          why: {
+            en: 'The class states WHAT must exist without saying HOW. A pure virtual function is abstraction in its strongest form.',
+            ne: 'क्लासले के हुनुपर्छ भन्छ, कसरी भन्दैन। Pure virtual फङ्सन abstraction को सबैभन्दा बलियो रूप हो।'
+          }
+        },
+        {
+          pre: 'All the data and functions of a Student are\nplaced together inside one class.',
+          answer: 'encap',
+          why: {
+            en: 'Binding data and functions into a single unit IS the definition of encapsulation — the wrapping itself, before any hiding.',
+            ne: 'डाटा र फङ्सनलाई एउटै इकाइमा बाँध्नु नै encapsulation को परिभाषा हो — लुकाउनुभन्दा अघि, बाँध्ने काम आफैंमा।'
+          }
+        },
+        {
+          pre: 'A car\'s dashboard shows speed but not how\nthe speedometer measures it.',
+          answer: 'abstr',
+          why: {
+            en: 'Necessary information shown, mechanism hidden. If instead the question said the speed value could not be changed from outside, that would be encapsulation.',
+            ne: 'आवश्यक जानकारी देखाइएको, संयन्त्र लुकाइएको। बरु "गति बाहिरबाट बदल्न मिल्दैन" भनेको भए त्यो encapsulation हुन्थ्यो।'
+          }
+        }
+      ]
+    },
+
+    /* ---- OOP u5: which type of inheritance? ----
+       5.5 draws the five types. The paper asks the student to IDENTIFY
+       one from a description or to draw it — practice, not reading. */
+    inhertype: {
+      title: { en: 'Which type of inheritance?', ne: 'यो कुन प्रकारको inheritance हो?' },
+      lead: {
+        en: 'Count the classes and count the arrows. One base with many children is not the same as one child with many parents, and multilevel is not multiple.',
+        ne: 'क्लास गन्नुहोस् र तीर गन्नुहोस्। एउटा base का धेरै छोरा र एउटा छोराका धेरै बाबु फरक कुरा हुन्, र multilevel भनेको multiple होइन।'
+      },
+      options: [
+        { id: 'single', label: { en: 'Single', ne: 'Single' } },
+        { id: 'multiple', label: { en: 'Multiple', ne: 'Multiple' } },
+        { id: 'multilevel', label: { en: 'Multilevel', ne: 'Multilevel' } },
+        { id: 'hier', label: { en: 'Hierarchical', ne: 'Hierarchical' } }
+      ],
+      cases: [
+        {
+          pre: 'class B : public A { };\nclass C : public B { };\n\n    A  →  B  →  C',
+          answer: 'multilevel',
+          why: {
+            en: 'A chain: C derives from B, and B derives from A. Each class has ONE parent, but the chain has more than one level. Students call this "multiple" — it is not, because no class here has two parents.',
+            ne: 'एउटा शृंखला: C, B बाट र B, A बाट आउँछ। हरेक क्लासको एउटै बाबु छ, तर शृंखलामा एकभन्दा बढी तह छन्। विद्यार्थीले यसलाई "multiple" भन्छन् — होइन, किनभने कुनै क्लासका दुई बाबु छैनन्।'
+          }
+        },
+        {
+          pre: 'class C : public A, public B { };\n\n    A     B\n     \\   /\n       C',
+          answer: 'multiple',
+          why: {
+            en: 'ONE class with TWO base classes. This is the only type where a single class has more than one parent, and it is the one C++ allows while Java does not.',
+            ne: 'एउटै क्लासका दुई base क्लास। एउटै क्लासका एकभन्दा बढी बाबु हुने प्रकार यही मात्र हो, र C++ ले दिने तर Java ले नदिने पनि यही हो।'
+          }
+        },
+        {
+          pre: 'class Dog : public Animal { };\nclass Cat : public Animal { };\n\n      Animal\n      /    \\\n    Dog    Cat',
+          answer: 'hier',
+          why: {
+            en: 'ONE base with MANY derived classes — the branches go downwards from a single parent. Compare with multiple, where the arrows converge upwards into one child.',
+            ne: 'एउटै base बाट धेरै derived क्लास — हाँगा एउटै बाबुबाट तल जान्छन्। Multiple सँग तुलना गर्नुहोस्, जहाँ तीर माथितिर एउटै छोरामा मिल्छन्।'
+          }
+        },
+        {
+          pre: 'class Dog : public Animal { };\n\n    Animal  →  Dog',
+          answer: 'single',
+          why: {
+            en: 'One base, one derived, one arrow. Every other type is built from this one, which is why it is worth being able to name it quickly.',
+            ne: 'एउटा base, एउटा derived, एउटा तीर। बाँकी सबै प्रकार यसैबाट बन्छन्, त्यसैले छिटो नाम दिन सक्नु काम लाग्छ।'
+          }
+        },
+        {
+          pre: 'class B : public A { };\nclass C : public A { };\nclass D : public B { };',
+          answer: 'hier',
+          why: {
+            en: 'Read the widest shape first. A has two children (B and C), which makes the diagram hierarchical; D hanging under B adds a level but does not change what the whole picture is called. A paper asking for ONE name wants the dominant shape — and a hybrid is what you call it if the question allows.',
+            ne: 'पहिले सबैभन्दा फराकिलो आकार हेर्नुहोस्। A का दुई छोरा (B र C) छन्, त्यसैले चित्र hierarchical हो; B मुनिको D ले तह थप्छ तर पूरै चित्रको नाम बदल्दैन। एउटै नाम मागिएमा प्रमुख आकार भन्नुहोस् — प्रश्नले दिए hybrid पनि भन्न सकिन्छ।'
+          }
+        }
+      ]
+    },
+
     /* ---- Unit 1: data, information, database or DBMS? ---- */
     dbterms: {
       title: { en: 'Data, information, database or DBMS?', ne: 'Data, information, database कि DBMS?' },
@@ -416,7 +659,13 @@
         if (global.SimulationService){
           global.SimulationService.register({
             id: 'drill:' + (root.id || ('drill' + n)),
-            subject: 'grade10/dbms', unit: root.getAttribute('data-set') || 'drill',
+            /* The component is subject-agnostic: it drills a rule, and a
+               rule belongs to whatever subject declared it. The page
+               says which, so a second subject reuses this rather than
+               registering everything under the one it was written for. */
+            subject: (document.querySelector('main[data-subject]') || { getAttribute: function (){ return null; } })
+                       .getAttribute('data-subject') || 'grade10/dbms',
+            unit: root.getAttribute('data-set') || 'drill',
             title: { en: 'Decision drill', ne: 'निर्णय अभ्यास' },
             mounts: function (){ return !!root.parentNode; },
             reset: function (){ d.reset(); },

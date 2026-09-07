@@ -1636,7 +1636,8 @@ D.grayCode = `
     return `<rect class="f-box-g" x="${`${60+i*70}`}" y="136" width="52" height="40" rx="6"/>
     <text class="f-val" x="${86+i*70}" y="162" style="font-size:15px">${b}</text>`;}).join('')}
   <path class="f-arr" style="stroke:var(--color-success)" d="M86,108 L86,132"/>
-  <text class="f-lbl" x="86" y="124" style="font-size:9px;fill:var(--color-success)">copy</text>
+  <text class="f-lbl" x="80" y="124"
+        style="font-size:9px;fill:var(--color-success);text-anchor:end">copy</text>
   ${[0,1,2].map(function(i){
     const a = 86 + i*70, b = 86 + (i+1)*70;
     return `<path class="f-arr" style="stroke:var(--color-primary)" d="M${a+6},110 L${b-6},128"/>
@@ -2388,5 +2389,113 @@ D.recoveryLog = {
       ne: 'UNDO ले पछाडि पढ्दै COMMIT नभएका सबै फिर्ता लैजान्छ। T2 पूरै मेटिन्छ — atomicity को अर्थ आधा काम बाँच्न पाउँदैन भन्ने हो।' }
   ]
 };
+
+
+/* ---------------------------------------------------------------
+   PHASE 4.5 — figures for two concepts that had only prose
+   --------------------------------------------------------------- */
+
+/* u5 5.1 — inheritance introduced by 417 words with no figure. The unit
+   states in a callout that a derived class does NOT get everything, and
+   never draws it. That omission IS the misconception: students answer
+   "the child gets all the members of the parent". So the figure is
+   built around the line the private member cannot cross. */
+D.inheritWhat = `
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-inhwhat">
+  <title id="t-inhwhat">What a derived class inherits from its base class, and what it does not: public and protected members are reachable, private members exist in the object but cannot be used by the derived class</title>
+  ${ah('a-inhwhat')}
+  <text class="f-ttl" x="10" y="20">WHAT IS INHERITED — and the one thing that is not</text>
+
+  <!-- base class -->
+  <rect class="f-box-d" x="30" y="46" width="270" height="156" rx="8"/>
+  <text class="f-lbl-y" x="165" y="68" style="font-size:13px">BASE CLASS — Animal</text>
+
+  <rect class="f-box-g" x="46" y="80" width="238" height="30" rx="5"/>
+  <text class="f-code" x="60" y="100" text-anchor="start" style="font-size:12px">public:    eat()</text>
+  <text class="f-lbl" x="272" y="100" text-anchor="end" style="font-size:10.5px">inherited</text>
+
+  <rect class="f-box-g" x="46" y="116" width="238" height="30" rx="5"/>
+  <text class="f-code" x="60" y="136" text-anchor="start" style="font-size:12px">protected: age</text>
+  <text class="f-lbl" x="272" y="136" text-anchor="end" style="font-size:10.5px">inherited</text>
+
+  <rect class="f-box-d" x="46" y="152" width="238" height="30" rx="5"
+        style="stroke:var(--color-error);stroke-dasharray:4 3"/>
+  <text class="f-code" x="60" y="172" text-anchor="start" style="font-size:12px;fill:var(--color-error)">private:   secret</text>
+  <text class="f-lbl" x="272" y="172" text-anchor="end" style="font-size:10.5px;fill:var(--color-error)">NOT usable</text>
+
+  <!-- two arrows through, one blocked -->
+  <line class="f-arr" x1="304" y1="95" x2="392" y2="95" marker-end="url(#a-inhwhat)"/>
+  <line class="f-arr" x1="304" y1="131" x2="392" y2="131" marker-end="url(#a-inhwhat)"/>
+  <line x1="304" y1="167" x2="360" y2="167"
+        style="stroke:var(--color-error);stroke-width:2;stroke-dasharray:5 4"/>
+  <line x1="352" y1="159" x2="368" y2="175" style="stroke:var(--color-error);stroke-width:2.5"/>
+  <line x1="368" y1="159" x2="352" y2="175" style="stroke:var(--color-error);stroke-width:2.5"/>
+
+  <!-- derived class -->
+  <rect class="f-box-d" x="396" y="46" width="270" height="156" rx="8"/>
+  <text class="f-lbl-y" x="531" y="68" style="font-size:13px">DERIVED CLASS — Dog</text>
+
+  <rect class="f-box-g" x="412" y="80" width="238" height="30" rx="5"/>
+  <text class="f-code" x="426" y="100" text-anchor="start" style="font-size:12px">eat()      — reused</text>
+
+  <rect class="f-box-g" x="412" y="116" width="238" height="30" rx="5"/>
+  <text class="f-code" x="426" y="136" text-anchor="start" style="font-size:12px">age        — reused</text>
+
+  <rect class="f-box-g" x="412" y="152" width="238" height="30" rx="5"
+        style="stroke:var(--color-secondary)"/>
+  <text class="f-code" x="426" y="172" text-anchor="start" style="font-size:12px;fill:var(--color-secondary)">bark()     — its own</text>
+
+  <text class="f-lbl-y" x="350" y="228">The private member still EXISTS inside every Dog object. The derived class simply cannot reach it directly.</text>
+  <text class="f-lbl" x="350" y="252" style="font-size:11.5px">That is the whole difference between private and protected — and the only reason protected exists.</text>
+  <text class="f-code" x="350" y="278" style="font-size:12px" text-anchor="middle">Dog IS-A Animal  ·  if you cannot say "IS-A", inheritance is the wrong tool</text>
+</svg>`;
+
+/* dd-u5 5.9 — the flag register is examinable as a drawing and was
+   described only in prose. Five flags in one 8-bit register, with the
+   three bits that are not used, because "why are there only five" is
+   the question a student asks and the prose did not answer. */
+D.flagRegister = `
+<svg viewBox="0 0 700 258" role="img" aria-labelledby="t-flagreg">
+  <title id="t-flagreg">The 8085 flag register: five flags — sign, zero, auxiliary carry, parity and carry — held in an eight bit register with three unused bits</title>
+  <text class="f-ttl" x="10" y="20">THE 8085 FLAG REGISTER — five flags in eight bits</text>
+
+${[
+  ['S',  'D7', 'Sign',      '1 if the result is negative',        '--color-primary'],
+  ['Z',  'D6', 'Zero',      '1 if the result is exactly zero',    '--color-success'],
+  ['',   'D5', '—',         'not used',                            ''],
+  ['AC', 'D4', 'Aux Carry', 'carry out of bit 3, used by DAA',    '--color-secondary'],
+  ['',   'D3', '—',         'not used',                            ''],
+  ['P',  'D2', 'Parity',    '1 if the result has an EVEN number of 1s', '--color-primary'],
+  ['',   'D1', '—',         'not used',                            ''],
+  ['CY', 'D0', 'Carry',     '1 if the result carried out of bit 7', '--color-error']
+].map(function (f, i){
+  const x = 16 + i * 84;
+  const used = !!f[0];
+  return `<g>
+    <rect class="${used ? 'f-box-g' : 'f-box-d'}" x="${x}" y="40" width="76" height="54" rx="6"
+          ${used ? '' : 'style="opacity:.5;stroke-dasharray:4 3"'}/>
+    <text class="f-lbl-y" x="${x + 38}" y="66" style="font-size:15px${used ? ';fill:var(' + f[4] + ')' : ';opacity:.5'}">${f[0] || '·'}</text>
+    <text class="f-lbl" x="${x + 38}" y="85" style="font-size:10.5px${used ? '' : ';opacity:.5'}">${f[1]}</text>
+  </g>`;
+}).join('')}
+
+  <text class="f-lbl" x="350" y="112" style="font-size:11px">D7 is the most significant bit, D0 the least — the same order you write any 8-bit number in</text>
+
+${[
+  ['S — Sign',       'set to 1 when the result is negative (D7 of the result is 1)'],
+  ['Z — Zero',       'set to 1 when the result is exactly 00H'],
+  ['AC — Aux Carry', 'set when a carry leaves bit 3 — used only by the DAA instruction'],
+  ['P — Parity',     'set to 1 when the result contains an EVEN number of 1s'],
+  ['CY — Carry',     'set when the result carries out of bit 7, or borrows into it']
+].map(function (r, i){
+  const y = 130 + i * 22;
+  return `<g>
+    <text class="f-lbl-y" x="30" y="${y}" text-anchor="start" style="font-size:11.5px">${r[0]}</text>
+    <text class="f-lbl" x="176" y="${y}" text-anchor="start" style="font-size:11px">${r[1]}</text>
+  </g>`;
+}).join('')}
+
+  <text class="f-lbl-y" x="350" y="248">Three bits are unused. A flag is SET by the result of the last arithmetic or logic instruction — not by a data transfer.</text>
+</svg>`;
 
 module.exports = D;

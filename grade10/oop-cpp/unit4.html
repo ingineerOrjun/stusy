@@ -425,6 +425,59 @@ Balance = 5000</pre>
   </div>
 
   <!-- ---------- EXAM FOCUS ---------- -->
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A bank class keeps <code>balance</code> private and offers
+      <code>deposit()</code> and <code>withdraw()</code>. Someone writes
+      <code>account.balance = -5000;</code>. What happens?
+      </span><span class="np-cell" lang="ne">बैंक क्लासले <code>balance</code> private राखेको छ र
+      <code>deposit()</code> तथा <code>withdraw()</code> दिन्छ। कसैले
+      <code>account.balance = -5000;</code> लेख्यो। के हुन्छ?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">The balance becomes −5000</button>
+      <button class="predict-opt" data-value="b">It will not compile</button>
+      <button class="predict-opt" data-value="c">It compiles but is ignored</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>It will not compile.</b> The compiler refuses before the program ever runs — which is
+      the point. Encapsulation is not a warning or a convention; the private keyword makes the
+      invalid change <b>impossible to write</b>.</p>
+      <p>That is the answer to "why bother with getters and setters?". Every change now goes
+      through <code>withdraw()</code>, which is a single place to refuse a negative balance. Say
+      this in an exam answer and you have shown the purpose, not just the definition.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">Compile नै हुँदैन।</b> प्रोग्राम चल्नुअघि नै compiler ले अस्वीकार
+      गर्छ — मुख्य कुरा यही हो। Encapsulation चेतावनी वा परम्परा होइन; private शब्दले गलत परिवर्तन
+      <b lang="ne">लेख्नै नसकिने</b> बनाउँछ। "Getter–setter किन चाहियो?" को उत्तर यही हो: हरेक परिवर्तन
+      <code>withdraw()</code> हुँदै जान्छ, जहाँ ऋणात्मक मौज्दात एकै ठाउँमा रोक्न सकिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3>Abstraction or encapsulation? Decide, then check</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to settle the pair with one question instead of two
+      remembered definitions — which is what you will have time for in the hall.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: दुई घोकेका परिभाषाको सट्टा एउटै प्रश्नले यो
+      जोडी छुट्याउन — परीक्षा हलमा त्यति नै समय हुन्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-absencap" data-set="absencap"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">The one question that settles it</span>
+        <p><b>Is complexity being hidden, or is data being protected?</b> Complexity → abstraction.
+        Data → encapsulation. Every case in this drill answers to that one test, and so does every
+        version of this question the paper asks.</p>
+        <p>Watch case 5 in particular. The situation barely changes — a dashboard showing speed —
+        but the reason given changes the answer. The examiner is testing the <i>reason</i>, not
+        the scenario.</p>
+        </div><span class="np-cell" lang="ne"><b lang="ne">जटिलता लुकाइँदै छ, कि डाटा जोगाइँदै छ?</b> जटिलता → abstraction।
+        डाटा → encapsulation। यस अभ्यासका सबै केस यही एउटै जाँचले मिल्छन्। केस ५ विशेष हेर्नुहोस्:
+        परिस्थिति उस्तै छ तर दिइएको कारणले उत्तर बदल्छ — परीक्षकले <i lang="ne">कारण</i> जाँच्छन्।</span>
+      </div>
+    </div>
+  </div>
+
   <h2 class="topic" id="exam4">Exam focus — questions asked from this unit</h2>
 
   <div class="exam-connect">
@@ -515,5 +568,8 @@ Balance = 5000</pre>
 <script src="../../assets/js/services/motion.js"></script>
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/snippets.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
 </body>
 </html>

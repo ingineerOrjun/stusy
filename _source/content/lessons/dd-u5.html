@@ -221,6 +221,46 @@
     </div>
   </div>
 
+  <figure class="fig">
+    {{dia:flagRegister}}
+    <figcaption>Five flags in an eight-bit register — and the three bits that are not used, which
+    is the part the list above cannot show. Learn the positions: a question may ask which bit
+    holds the carry flag.
+    <span class="np-cell">आठ बिटको रजिस्टरमा पाँच flag — र प्रयोगमा नआउने तीन बिट, जुन माथिको
+    सूचीले देखाउन सक्दैन। स्थान सम्झनुहोस्: carry flag कुन बिटमा छ भनी सोध्न सकिन्छ।</span></figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Working out which flags are set</div>
+    <p><b>Question:</b> the accumulator holds <code>A0H</code> and <code>60H</code> is added to it.
+    State the value left in the accumulator and the state of the CY, Z, S and P flags.</p>
+    <p><b>Step 1 — do the addition in binary.</b> Never try to set the flags from the hex:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">  A0H = 1010 0000
++ 60H = 0110 0000
+  ----------------
+  1 0000 0000      ← a ninth bit falls out</div>
+    </div>
+    <p><b>Step 2 — read each flag from that result.</b> Take them one at a time:</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">A  = 00H
+
+CY = 1   the addition carried out of bit 7
+Z  = 1   the eight bits left in A are all zero
+S  = 0   bit 7 of the result is 0, so not negative
+P  = 1   the result has ZERO 1s, and zero is even</div>
+    </div>
+    <p class="wex-note">Two traps live in this one question. The carry is <b>not</b> part of the
+    accumulator — A holds 00H and the ninth bit lives in CY alone. And parity counts the
+    <b>1s in the result</b>, so a result of zero has even parity and sets P. Students routinely
+    answer P = 0 here.
+    <span class="np-cell">यही प्रश्नमा दुई पासो छन्। Carry accumulator को भाग <b>होइन</b> — A मा
+    00H छ र नवौं बिट CY मा मात्र। र parity ले <b>नतिजाका 1</b> गन्छ, त्यसैले शून्य नतिजाको parity
+    जोर हुन्छ र P = 1 हुन्छ। विद्यार्थीले प्रायः P = 0 लेख्छन्।</span></p>
+  </div>
+
   <div class="pair">
     <div class="en"><span class="tag">Interrupts</span>
       <p>An <b>interrupt</b> is a signal that asks the processor to stop what it is doing, attend

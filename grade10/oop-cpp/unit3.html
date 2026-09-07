@@ -246,6 +246,58 @@
   </div>
 
   <!-- ============ 3.3 ============ -->
+  <div class="predict" data-answer="c">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A class is written with no access specifier at all:
+      <code>class A { int x; };</code>. What is <code>x</code>?
+      </span><span class="np-cell" lang="ne">कुनै access specifier नलेखी क्लास बनाइयो:
+      <code>class A { int x; };</code>। <code>x</code> के हुन्छ?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">public</button>
+      <button class="predict-opt" data-value="b">protected</button>
+      <button class="predict-opt" data-value="c">private</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>Private.</b> In a <code>class</code> the default is private, so <code>x</code> cannot
+      be reached from outside — and this is why a beginner's first program often fails to compile
+      with "member is inaccessible" when they forgot to write <code>public:</code>.</p>
+      <p>Note the trap: in a <code>struct</code> the default is <b>public</b> instead. Same
+      language, opposite default — and that difference is worth a mark when the question gives you
+      a struct.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">Private।</b> <code>class</code> मा default private हुन्छ, त्यसैले
+      <code>x</code> बाहिरबाट पुग्न सकिँदैन — <code>public:</code> लेख्न बिर्सँदा सुरुका
+      प्रोग्राममा "member is inaccessible" आउनुको कारण यही हो। ध्यान दिनुहोस्:
+      <code>struct</code> मा default <b>public</b> हुन्छ। उही भाषा, उल्टो default।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3>Does this line compile?</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to apply the access table instead of reciting it —
+      especially inside a derived class, where <code>private</code> and <code>protected</code>
+      stop behaving the same.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: पहुँच तालिका घोक्नुभन्दा लागू गर्न — विशेष गरी
+      derived क्लासभित्र, जहाँ <code>private</code> र <code>protected</code> फरक हुन्छन्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-access" data-set="accessspec"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">What to notice</span>
+        <p>Cases 2 and 3 are the same code with one word changed — <code>protected</code> becomes
+        <code>private</code> — and the answer flips. That single word is the entire difference
+        between the two specifiers, and it only shows up inside a derived class.</p>
+        <p>Case 4 is the one that catches people who learned "protected is less strict". From
+        outside the class, <b>protected behaves exactly like private.</b></p>
+        </div><span class="np-cell" lang="ne">केस २ र ३ मा एउटै कोड छ, एउटै शब्द फरक — <code>protected</code> बाट
+        <code>private</code> — र उत्तर उल्टिन्छ। दुई specifier बीचको पूरा फरक त्यही शब्द हो, र त्यो
+        derived क्लासभित्र मात्र देखिन्छ। केस ४ ले "protected कम कडा हो" भन्ने भ्रम भत्काउँछ:
+        क्लासबाहिरबाट <b lang="ne">protected ठ्याक्कै private जस्तै हुन्छ।</b></span>
+      </div>
+    </div>
+  </div>
+
   <h2 class="topic" id="t33">3.3 &nbsp;Declaring a Class and its Objects</h2>
 
   <div class="wex">
@@ -593,5 +645,8 @@ Area = 24</pre>
 <script src="../../assets/js/services/motion.js"></script>
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/snippets.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
 </body>
 </html>

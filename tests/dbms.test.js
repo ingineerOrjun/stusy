@@ -467,3 +467,108 @@ test('every DBMS unit now offers something to do, not only to read', () => {
     assert.ok(wex >= 2, f + ' has only ' + wex + ' worked example');
   }
 });
+
+/* ---------------------------------------------------- Phase 4.5 */
+
+test('the drill component is subject-agnostic', () => {
+  /* It was written for DBMS and registered everything under
+     'grade10/dbms'. Four OOP units use it now, so the page says which
+     subject a drill belongs to. A hardcoded subject would file every
+     OOP drill under DBMS in the simulation registry. */
+  const src = fs.readFileSync(path.join(SRC, 'runtime', 'sim-drill.js'), 'utf8');
+  assert.match(src, /main\[data-subject\]/,
+    'the drill must read the subject from the page');
+});
+
+test('every drill set is complete, bilingual and actually a judgement', () => {
+  /* The same four rules the DBMS sets are held to, applied to all eight
+     now that OOP has four of its own. */
+  for (const [name, set] of Object.entries(Drill.SETS)){
+    const ids = set.options.map(o => o.id);
+
+    assert.ok(set.cases.length >= 4, name + ': fewer than 4 cases is not practice');
+    assert.ok(new Set(set.cases.map(c => c.answer)).size >= 2,
+      name + ': every case has the same answer — that is not a judgement');
+
+    assert.ok(set.title.en && set.title.ne, name + ': title is not bilingual');
+    assert.ok(set.lead.en && set.lead.ne, name + ': lead is not bilingual');
+
+    for (const o of set.options){
+      assert.ok(o.label.en && o.label.ne, name + ': an option is not bilingual');
+    }
+    for (const c of set.cases){
+      assert.ok(ids.includes(c.answer),
+        name + ': answer "' + c.answer + '" is not one of ' + ids.join(', '));
+      assert.ok(c.pre && c.pre.trim(), name + ': a case with no evidence to judge');
+      assert.ok(c.why.en && c.why.ne, name + ': a case has no bilingual reason');
+      assert.ok(/[ऀ-ॿ]/.test(c.why.ne), name + ': the Nepali reason is not in Devanagari');
+      assert.ok(c.why.en.split(/\s+/).length >= 12,
+        name + ': a reason too short to teach — "' + c.why.en.slice(0, 40) + '"');
+    }
+  }
+});
+
+test('the OOP drills agree with the rules those units teach', () => {
+  /* Spot-check the judgements. A drill that marks a correct answer wrong
+     teaches a rule that does not exist. */
+  const acc = Drill.SETS.accessspec;
+
+  /* private is unreachable from a derived class; protected is not.
+     That single difference is the whole point of the set. */
+  const derived = acc.cases.filter(c => /class B\s*:\s*public A/.test(c.pre));
+  assert.ok(derived.length >= 2, 'the set must contrast private and protected inside a derived class');
+  for (const c of derived){
+    const isPrivate = /private:/.test(c.pre);
+    assert.strictEqual(c.answer, isPrivate ? 'no' : 'yes',
+      'a ' + (isPrivate ? 'private' : 'protected') + ' member in a derived class: ' +
+      c.pre.replace(/\n/g, ' | '));
+  }
+
+  /* multilevel is a chain; multiple is one class with two bases */
+  const inh = Drill.SETS.inhertype;
+  for (const c of inh.cases){
+    const twoBases = /public A,\s*public B/.test(c.pre);
+    if (twoBases) assert.strictEqual(c.answer, 'multiple',
+      'a class with two base classes is multiple inheritance');
+  }
+
+  /* abstraction hides complexity, encapsulation hides data */
+  const ae = Drill.SETS.absencap;
+  assert.ok(ae.cases.some(c => c.answer === 'abstr') && ae.cases.some(c => c.answer === 'encap'),
+    'the pair drill must contain both answers');
+  for (const c of ae.cases){
+    if (/private/.test(c.pre)) assert.strictEqual(c.answer, 'encap',
+      'a private member with accessors is encapsulation');
+  }
+});
+
+test('no authored unit is read-only', () => {
+  /* THE FINDING OF PHASE 4.5. Four OOP units — 28 of that subject's 50
+     marks — had no simulation and no prediction, because the check that
+     caught this in DBMS was never run against the subject built first.
+
+     Held here so it cannot happen again to any subject, including ones
+     that do not exist yet. */
+  const pages = require(path.join(SRC, 'config', 'pages.js'));
+  const thin = [];
+  for (const [key, subject] of Object.entries(pages)){
+    for (const page of subject.pages){
+      if (typeof page.hrs !== 'number') continue;      /* quiz and reference pages */
+      let sims = 0, predicts = 0, wex = 0;
+      for (const sec of page.sec){
+        const f = path.join(SRC, 'content', 'lessons', sec + '.html');
+        if (!fs.existsSync(f)) continue;
+        const html = fs.readFileSync(f, 'utf8');
+        sims += (html.match(/<div class="sim">/g) || []).length;
+        predicts += (html.match(/class="predict"/g) || []).length;
+        wex += (html.match(/class="wex"/g) || []).length;
+      }
+      if (!sims || !predicts || wex < 2){
+        thin.push(key + '/' + page.file + ' (' + page.marks + ' marks): ' +
+          sims + ' sim, ' + predicts + ' prediction, ' + wex + ' worked example');
+      }
+    }
+  }
+  assert.deepStrictEqual(thin, [],
+    'these units give the student nothing to do but read');
+});
