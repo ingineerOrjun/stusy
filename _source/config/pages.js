@@ -67,6 +67,12 @@ module.exports = {
         chip: 'Tables & Terms',
         sec: ['tables', 'terms'], js: [] },
 
+      { file: 'revise.html', n: '↻',
+        title: 'Your Revision', np: 'तपाईंको दोहोर्‍याइ',
+        chip: 'Revision',
+        sec: ['revise'], js: ['services/progress.js', 'services/revision.js',
+                              'learning-map.js', 'revise.js'] },
+
       { file: 'quiz.html', n: '?',
         title: 'Self-Check Quiz', np: 'आफैं जाँच्ने क्विज',
         chip: 'Quiz',
@@ -109,6 +115,12 @@ module.exports = {
         title: 'Introduction to Microprocessor', np: 'माइक्रोप्रोसेसर र यसका भाग',
         chip: 'Microprocessor', hrs: 15, marks: 15,
         sec: ['dd-u5'], js: ['services/simulation.js', 'predict.js', 'sim-8085.js'] },
+
+      { file: 'revise.html', n: '↻',
+        title: 'Your Revision', np: 'तपाईंको दोहोर्‍याइ',
+        chip: 'Revision',
+        sec: ['revise'], js: ['services/progress.js', 'services/revision.js',
+                              'learning-map.js', 'revise.js'] },
 
       { file: 'quiz.html', n: '?',
         title: 'Self-Check Quiz', np: 'आफैं जाँच्ने क्विज',
@@ -162,6 +174,12 @@ module.exports = {
         title: 'Database Backup, Recovery and Security', np: 'ब्याकअप, रिकभरी र सुरक्षा',
         chip: 'Backup & Security', hrs: 8, marks: 6,
         sec: ['db-u7'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js'] },
+
+      { file: 'revise.html', n: '↻',
+        title: 'Your Revision', np: 'तपाईंको दोहोर्‍याइ',
+        chip: 'Revision',
+        sec: ['revise'], js: ['services/progress.js', 'services/revision.js',
+                              'learning-map.js', 'revise.js'] },
 
       { file: 'quiz.html', n: '?',
         title: 'Self-Check Quiz', np: 'आफैं जाँच्ने क्विज',

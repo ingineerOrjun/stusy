@@ -619,3 +619,198 @@ figure.fig.is-scrollable::after{
 [data-lang="ne"] .hook::before{ content: "सम्झनुहोस्"; font-family: var(--deva); letter-spacing: 0; }
 .hook b{ color: var(--color-primary); }
 .hook .np-cell{ display: block; margin-top: 4px; }
+
+/* ------------------------------------------------------------
+   PREREQUISITE — "you should already know"
+
+   The first thing on a unit page after its title, and deliberately not
+   a warning. A student arriving at Inheritance has not done anything
+   wrong by not remembering access specifiers; they are being told where
+   the thing they need lives.
+
+   Quiet by default, because most visits will scroll straight past it.
+   It earns its place on the visit where a student is stuck.
+   ------------------------------------------------------------ */
+.prereq{
+  margin: var(--sp-4) 0 var(--sp-5);
+  padding: var(--sp-4);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-secondary);
+  border-radius: 0 var(--r-lg) var(--r-lg) 0;
+  background: var(--color-surface);
+}
+.prereq-h{
+  margin: 0 0 var(--sp-3);
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+.prereq-h .t-ne{ text-transform: none; letter-spacing: 0; font-family: var(--deva); }
+.prereq-list{ margin: 0; padding: 0; list-style: none; }
+.prereq-item + .prereq-item{
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px dashed var(--color-border);
+}
+.prereq-link{
+  display: flex; align-items: baseline; gap: var(--sp-2);
+  text-decoration: none;
+  font-weight: var(--fw-bold);
+  color: var(--color-secondary);
+}
+.prereq-link:hover .prereq-t, .prereq-link:focus-visible .prereq-t{ text-decoration: underline; }
+.prereq-n{
+  flex: none;
+  min-width: 22px; height: 22px;
+  display: inline-grid; place-items: center;
+  border-radius: var(--r-sm);
+  background: var(--color-secondary);
+  color: var(--color-background);
+  font-family: var(--mono); font-size: var(--fs-xs); font-weight: var(--fw-bold);
+}
+.prereq-t{ font-size: var(--fs-base); }
+.prereq-t .np-cell{
+  display: block;
+  font-size: var(--fs-sm); font-weight: var(--fw-normal);
+  color: var(--color-text-muted);
+}
+/* The reason is the part that does the work, so it is prose and not a
+   caption — it has to be readable, not merely present. */
+.prereq-why{
+  margin: var(--sp-2) 0 0 30px;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+  color: var(--color-text-muted);
+}
+.prereq-why .np-cell{ display: block; margin-top: 4px; }
+
+@media (max-width: 400px){
+  .prereq-why{ margin-left: 0; }
+}
+
+/* ------------------------------------------------------------
+   THE REVISION VIEW
+
+   Calm on purpose. A student opens this page because something is not
+   working, and a wall of red would be the wrong greeting. The four
+   states are told apart by their WORD first; the colour is a second
+   channel, and the tally reads correctly in greyscale.
+
+   No streaks, no points, no celebration. The strongest thing the page
+   says is "held after a miss", because that is the strongest thing the
+   record actually knows.
+   ------------------------------------------------------------ */
+.revise{ margin-top: var(--sp-4); }
+.rv-h{
+  margin: var(--sp-5) 0 var(--sp-3);
+  font-size: var(--fs-lg);
+  color: var(--color-text);
+}
+.rv-h .np-cell{ display: block; font-size: var(--fs-sm); color: var(--color-text-muted); }
+
+.rv-summary{
+  padding: var(--sp-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-lg);
+  background: var(--color-surface);
+}
+.rv-sum-line{ margin: 0 0 var(--sp-3); font-size: var(--fs-base); color: var(--color-text); }
+.rv-sum-line .np-cell{ display: block; margin-top: 3px; font-size: var(--fs-sm); }
+
+.rv-bar{
+  height: 8px; border-radius: 999px;
+  background: var(--color-surface-sunken);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+.rv-bar-fill{ display: block; height: 100%; background: var(--color-secondary); }
+
+.rv-tally{
+  display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-4);
+  margin: var(--sp-3) 0 0; padding: 0; list-style: none;
+  font-size: var(--fs-sm); color: var(--color-text-muted);
+}
+.rv-t b{ font-family: var(--mono); font-size: var(--fs-base); margin-right: 4px; }
+.rv-t-review b{ color: var(--color-error); }
+.rv-t-shaky  b{ color: var(--color-warning); }
+.rv-t-fresh  b{ color: var(--color-secondary); }
+.rv-t-held   b{ color: var(--color-success); }
+
+/* ---- what to do next ---- */
+.rv-recs{ margin: 0; padding: 0; list-style: none; }
+.rv-rec{
+  margin-bottom: var(--sp-3);
+  padding: var(--sp-4);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-border-strong);
+  border-radius: 0 var(--r-lg) var(--r-lg) 0;
+  background: var(--color-surface);
+}
+.rv-rec-review{ border-left-color: var(--color-error); }
+.rv-rec-shaky{ border-left-color: var(--color-warning); }
+.rv-rec-t{ margin: 0; font-size: var(--fs-md); font-weight: var(--fw-bold); color: var(--color-text); }
+.rv-rec-t .np-cell{ display: block; font-size: var(--fs-sm); font-weight: var(--fw-normal); }
+.rv-rec-why{ margin: var(--sp-2) 0 0; font-size: var(--fs-sm); color: var(--color-text-muted); }
+.rv-rec-why .np-cell{ display: block; margin-top: 3px; }
+.rv-rec-prereq{
+  margin: var(--sp-3) 0 0;
+  padding-top: var(--sp-3);
+  border-top: 1px dashed var(--color-border);
+  font-size: var(--fs-sm); line-height: var(--lh-base); color: var(--color-text-muted);
+}
+.rv-rec-prereq .np-cell{ display: block; margin-top: 3px; }
+
+.rv-actions{ display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-3); }
+.rv-act{
+  display: inline-flex; align-items: center;
+  padding: var(--sp-2) var(--sp-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  color: var(--color-text);
+  font-size: var(--fs-sm); text-decoration: none;
+}
+.rv-act:hover{ border-color: var(--color-secondary); }
+.rv-act-main{
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: var(--fw-bold);
+}
+
+/* ---- every unit ---- */
+.rv-units{ margin: 0; padding: 0; list-style: none; }
+.rv-unit{
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp-2) var(--sp-3);
+  padding: var(--sp-3);
+  border-bottom: 1px solid var(--color-border);
+}
+.rv-unit:last-child{ border-bottom: 0; }
+.rv-unit-link{ flex: 1 1 200px; text-decoration: none; color: var(--color-text); }
+.rv-unit-link:hover .rv-unit-t, .rv-unit-link:focus-visible .rv-unit-t{ text-decoration: underline; }
+.rv-unit-t{ font-size: var(--fs-base); }
+.rv-unit-t .np-cell{ display: block; font-size: var(--fs-sm); color: var(--color-text-muted); }
+.rv-state{
+  flex: none;
+  padding: 2px 10px; border-radius: 999px;
+  border: 1px solid var(--color-border-strong);
+  font-size: var(--fs-xs); color: var(--color-text-muted);
+  white-space: nowrap;
+}
+.rv-review .rv-state{ border-color: var(--color-error); color: var(--color-error); }
+.rv-learn  .rv-state{ border-color: var(--color-secondary); color: var(--color-secondary); }
+.rv-held   .rv-state{ border-color: var(--color-success); color: var(--color-success); }
+.rv-count{ flex: none; font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-subtle); }
+
+.rv-empty, .rv-allclear{
+  margin: 0; font-size: var(--fs-base); line-height: var(--lh-base); color: var(--color-text-muted);
+}
+.rv-empty .np-cell, .rv-allclear .np-cell{ display: block; margin-top: var(--sp-2); }
+.rv-empty-box{
+  padding: var(--sp-4);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--r-lg);
+}
+.rv-empty-box .rv-units{ margin-top: var(--sp-4); }

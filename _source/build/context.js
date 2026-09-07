@@ -115,6 +115,8 @@ const RUNTIME_PUBLISHED = {
   'trace.js': 'trace.js',
   'quiz.js': 'quiz.js',
   'services/progress.js': 'services/progress.js',
+  'services/revision.js': 'services/revision.js',
+  'revise.js': 'revise.js',
   'services/quiz.js': 'services/quiz.js',
   'services/simulation.js': 'services/simulation.js'
 };
@@ -158,9 +160,48 @@ const practiceBanks = [
   require('../content/practice/grade10-oop-cpp.js')
 ].reduce((all, bank) => all.concat(bank), []);
 
+/* ---------------- the learning map ----------------
+   One derived object joining what already exists rather than a new
+   place to repeat it: titles, pages, hours and marks come from
+   pages.js; the prerequisite edges come from content/prerequisites.js;
+   nothing is written twice.
+
+   A unit's canonical id is `<subject>/u<n>` — the same n the navigation
+   badge shows and the same unit key the question banks already tag
+   against, so the map, the quiz and the retrieval record all join
+   without a translation table.
+
+   A page is a UNIT when it declares hours. trace, tables and quiz pages
+   are not units and have no place in a prerequisite graph. */
+const prerequisites = require('../content/prerequisites.js');
+
+const learningMap = (() => {
+  const pages = require('../config/pages.js');
+  const out = {};
+  for (const [subject, cfg] of Object.entries(pages)){
+    for (const p of cfg.pages){
+      if (typeof p.hrs !== 'number') continue;
+      const id = subject + '/u' + p.n;
+      out[id] = {
+        id,
+        subject,
+        n: p.n,
+        page: subject + '/' + p.file,
+        title: { en: p.title, ne: p.np },
+        hrs: p.hrs,
+        marks: p.marks,
+        prereqs: (prerequisites[id] || []).map(r => ({ unit: r.unit, why: r.why }))
+      };
+    }
+  }
+  return out;
+})();
+
 module.exports = {
   questionBanks,
   practiceBanks,
+  prerequisites,
+  learningMap,
   ROOT, SRC, write, read,
   css,
   runtime, RUNTIME_PUBLISHED,

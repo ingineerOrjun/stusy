@@ -79,6 +79,22 @@
     prevProblem:      { en: '◂ Previous',            ne: '◂ अघिल्लो' },
     right:            { en: 'Right.',                ne: 'ठिक।' },
     notRight:         { en: 'Not that.',             ne: 'त्यो होइन।' },
+
+    /* REVISION — every one of these describes a RECORD, never a student.
+       "Needs another look" is a fact about a question; "you don't know
+       this" is a claim about a person, and a student who reads the second
+       is being taught something other than the subject. */
+    stateNew:         { en: 'Not started',        ne: 'सुरु भएको छैन' },
+    stateLearning:    { en: 'Started',            ne: 'सुरु भयो' },
+    statePracticing:  { en: 'Practising',         ne: 'अभ्यास हुँदैछ' },
+    stateNeedsReview: { en: 'Needs another look', ne: 'फेरि हेर्नुपर्ने' },
+    stateMastered:    { en: 'Held',               ne: 'पक्का भयो' },
+    tallyReview:      { en: 'need another look',  ne: 'फेरि हेर्नुपर्ने' },
+    tallyShaky:       { en: 'almost there',       ne: 'लगभग पुग्यो' },
+    tallyFresh:       { en: 'right first time',   ne: 'पहिलो पटकमै ठिक' },
+    tallyHeld:        { en: 'held after a miss',  ne: 'छुटेपछि पक्का भयो' },
+    actReview:        { en: 'Review the unit',    ne: 'युनिट फेरि हेर्नुहोस्' },
+    actPrereq:        { en: 'Revise what it builds on', ne: 'आधार बनेको कुरा दोहोर्‍याउनुहोस्' },
     tryAgain:    { en: 'Try again',       ne: 'फेरि प्रयास गर्नुहोस्' },
     check:       { en: 'Check this group', ne: 'यो समूह जाँच्नुहोस्' },
     clear:       { en: 'Clear selection',  ne: 'छनोट हटाउनुहोस्' },

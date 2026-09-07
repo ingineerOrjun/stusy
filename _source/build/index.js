@@ -103,6 +103,57 @@ const SHEETS = {
   'style-all.css':     CORE + digitalCss + dbmsCss + langCss
 };
 
+/* ---------------- "you should already know" ----------------
+   Rendered at BUILD time, into the page, above the objectives. It is the
+   first thing a student meets, so it must be there before any script
+   runs: a student who opens Unit 5, does not follow it, and needs to be
+   told to revise Unit 3 is exactly the student whose connection dropped
+   half way through loading the page.
+
+   Placed after the unit's rule line and before "By the end of this unit
+   you can…", which puts the two halves of the contract next to each
+   other — what you need first, then what you will be able to do.
+
+   A unit with no prerequisites renders nothing at all rather than an
+   empty panel saying "none": four units are genuine entry points and
+   telling them so is noise. */
+function prereqBlock(unitId){
+  const unit = ctx.learningMap[unitId];
+  if (!unit || !unit.prereqs.length) return '';
+  const map = ctx.learningMap;
+
+  let h = '<aside class="prereq" aria-labelledby="prereq-h">';
+  h += '<h2 class="prereq-h" id="prereq-h">' +
+       '<span class="t-en">You should already know</span>' +
+       '<span class="t-ne"><span class="t-en"> · </span>तपाईंलाई पहिले यति आउनुपर्छ</span></h2>';
+  h += '<ul class="prereq-list">';
+  for (const r of unit.prereqs){
+    const to = map[r.unit];
+    if (!to) continue;
+    /* Both units live under the same subject folder in every case the
+       graph currently has, but the href is computed from the paths so a
+       future cross-subject prerequisite needs no change here. */
+    const from = unit.page.split('/').slice(0, -1);
+    const target = to.page.split('/');
+    let up = '';
+    let i = 0;
+    while (i < from.length && from[i] === target[i]) i++;
+    for (let k = i; k < from.length; k++) up += '../';
+    const href = up + target.slice(i).join('/');
+
+    h += '<li class="prereq-item">';
+    h += '<a class="prereq-link" href="' + href + '">' +
+         '<span class="prereq-n">' + to.n + '</span>' +
+         '<span class="prereq-t">' + to.title.en +
+         '<span class="np-cell">' + to.title.ne + '</span></span></a>';
+    h += '<p class="prereq-why">' + r.why.en +
+         '<span class="np-cell">' + r.why.ne + '</span></p>';
+    h += '</li>';
+  }
+  h += '</ul></aside>';
+  return h;
+}
+
 /* A page declares its subject; the dev reference pages show everything. */
 function sheetFor(o){
   if (o.allSubjects) return 'style-all.css';
@@ -387,6 +438,16 @@ w('assets/js/diagram-data.js',
     JSON.stringify({ intro: DIA[n].intro, steps: DIA[n].steps }, null, 2) + ');'
   ).join('\n\n') + '\n');
 
+/* ---------------- the revision index ----------------
+   A retrieval record is keyed by the answer id its author wrote —
+   `dba41` — which tells the revision view nothing about where that
+   question lives. This is the join: id → unit → page.
+
+   Collected while the pages are written rather than by re-reading them
+   afterwards, so it cannot drift from what actually shipped. `retrieval`
+   is filled by the page loop below; the file is written after it. */
+const retrievalIndex = {};
+
 w('assets/js/practice-bank.js',
   '/* GENERATED from _source/content/practice — do not edit by hand. */\n' +
   ctx.practiceBanks.map(skill =>
@@ -636,7 +697,33 @@ ${sectionHtml(subject.hero)}
       : `<a class="nx" href="index.html"><span class="lab">Back ▸</span><span class="ttl">Subject overview</span></a>`;
     pager += '</div>';
 
-    const body = chipBar(p.file) + '\n' + p.sec.map(sectionHtml).join('\n\n');
+    /* The prerequisite block goes inside the lesson section, after its
+       rule line — not before the section — so it sits under the unit
+       heading it belongs to rather than above it. */
+    let body = chipBar(p.file) + '\n' + p.sec.map(sectionHtml).join('\n\n');
+    if (typeof p.hrs === 'number'){
+      const block = prereqBlock(key + '/u' + p.n);
+      if (block){
+        const anchor = '<div class="rule"></div>';
+        const at = body.indexOf(anchor);
+        if (at < 0) throw new Error(
+          key + '/' + p.file + ': no rule line to place the prerequisite block after. ' +
+          'Every unit lesson opens with sec-head then <div class="rule"></div>.');
+        body = body.slice(0, at + anchor.length) + '\n\n  ' + block + body.slice(at + anchor.length);
+      }
+    }
+
+    if (typeof p.hrs === 'number'){
+      const unitId = key + '/u' + p.n;
+      for (const m of body.matchAll(/<button class="btn-ans" data-answer="([^"]+)"/g)){
+        if (retrievalIndex[m[1]]) throw new Error(
+          'two retrieval questions share the id "' + m[1] + '": ' +
+          retrievalIndex[m[1]].unit + ' and ' + unitId +
+          '. Ids are the storage key for a student\'s self-grade, so a collision ' +
+          'would silently merge two questions\' history.');
+        retrievalIndex[m[1]] = { unit: unitId, page: `${gid}/${slug}/${p.file}` };
+      }
+    }
 
     w(`${gid}/${slug}/${p.file}`, page({
       root, grade:gid, activeHref:`${gid}/${slug}`, subject:key,
@@ -682,7 +769,18 @@ w('animation-showcase.html', page({
   js: ['services/motion.js', 'code.js', 'showcase.js']
 }));
 
+/* Written after the page loop, because retrievalIndex is filled by it.
+   One file carries both halves of what the revision view needs: the unit
+   graph (titles, pages, prerequisites) and the question join. */
+w('assets/js/learning-map.js',
+  '/* GENERATED from config/pages.js and content/prerequisites.js — do not edit by hand. */\n' +
+  'RevisionService.load(' +
+  JSON.stringify({ units: ctx.learningMap, questions: retrievalIndex }, null, 1) + ');\n');
+
 console.log('site written to ' + ctx.ROOT);
+console.log('learning map: ' + Object.keys(ctx.learningMap).length + ' units, ' +
+            Object.values(ctx.learningMap).reduce((a, u) => a + u.prereqs.length, 0) +
+            ' prerequisite edges, ' + Object.keys(retrievalIndex).length + ' retrieval questions');
 console.log('animated diagrams: ' + (diaAnimated.size ? [...diaAnimated].join(', ') : 'none'));
 console.log('deep-authored units: ' + (deepUnits.length ? deepUnits.join(', ') : 'none'));
 console.log('diagrams injected: ' + diaUsed);

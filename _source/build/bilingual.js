@@ -71,7 +71,18 @@ const LAYOUT = /\b(pair|simgrid|herogrid|cards|gcards|scards|ucards|pager|topbar
    They act as run BREAKERS: the prose either side of them is still
    wrapped, they themselves are left alone. */
 const NEVER_WRAP_TAG = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
-const NEVER_WRAP_CLASS = /\b(eyebrow|badge|hrs|marks|mk|pill|meta|status|idx|sec-num|qn|wex-n|wex-lbl|dia-progress|cpu-addr)\b/;
+
+/* A CONTAINER A RUNTIME FILLS CANNOT BE PAIRED, BECAUSE IT IS EMPTY HERE.
+   `revise` is an empty div at build time and holds both languages by the
+   time a student sees it. Left in an English run it was wrapped in
+   <div class="t-en">, and Nepali mode hid the entire revision view —
+   the page rendered, the data loaded, and every panel was blank. It
+   looked like a data problem and was a pairing problem.
+
+   Empty runtime containers elsewhere escape this only because their
+   surrounding markup happens to break the run first. This names the one
+   that did not; a future one should be named here too. */
+const NEVER_WRAP_CLASS = /\b(eyebrow|badge|hrs|marks|mk|pill|meta|status|idx|sec-num|qn|wex-n|wex-lbl|dia-progress|cpu-addr|revise)\b/;
 
 function neverWrap(child){
   if (child.type !== 'el') return false;

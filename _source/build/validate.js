@@ -129,7 +129,8 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
            still have to be nameable from a page. Kept as an explicit
            list rather than a pattern, so a typo in a page's js array is
            still caught — which is the whole point of this check. */
-        const GENERATED = ['question-bank.js', 'practice-bank.js', 'diagram-data.js'];
+        const GENERATED = ['question-bank.js', 'practice-bank.js', 'diagram-data.js',
+                           'learning-map.js'];
         const published = Object.values(ctx.RUNTIME_PUBLISHED).concat(GENERATED);
         if (!published.includes(f)) E(at, `references runtime module "${f}" which the build does not publish`);
       });
@@ -634,6 +635,72 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
         }
       }
     }
+  })();
+
+  /* ---------- 4d. the prerequisite graph ----------
+     A prerequisite that points at a unit which does not exist renders as
+     a dead link on the page a struggling student was sent to, which is
+     the worst possible moment for one. A CYCLE is worse still: "to
+     understand Unit 5, first understand Unit 5" is advice that cannot be
+     followed, and nothing in the UI would reveal it — the student would
+     simply walk in a circle. */
+  (function checkPrereqs(){
+    const map = ctx.learningMap;
+    const known = new Set(Object.keys(map));
+    if (!known.size){ E('content/prerequisites.js', 'the learning map is empty'); return; }
+
+    for (const [id, unit] of Object.entries(map)){
+      for (const r of unit.prereqs){
+        if (!known.has(r.unit)){
+          E('content/prerequisites.js',
+            id + ' requires "' + r.unit + '", which is not a unit. Known units: ' +
+            [...known].slice(0, 4).join(', ') + '…');
+          continue;
+        }
+        if (r.unit === id){
+          E('content/prerequisites.js', id + ' is its own prerequisite');
+        }
+        if (!r.why || !String(r.why.en || '').trim() || !String(r.why.ne || '').trim()){
+          E('content/prerequisites.js',
+            id + ' → ' + r.unit + ' has no reason in both languages. A prerequisite ' +
+            'without a reason is a link; with one it tells a stuck student what to re-read');
+        } else if (!/[ऀ-ॿ]/.test(r.why.ne)){
+          E('content/prerequisites.js',
+            id + ' → ' + r.unit + ': the Nepali reason has no Devanagari in it');
+        }
+      }
+    }
+
+    /* Depth-first cycle detection over the whole graph, reporting the
+       actual path rather than just "a cycle exists" — a five-unit cycle
+       is not findable by inspection. */
+    const WHITE = 0, GREY = 1, BLACK = 2;
+    const colour = {};
+    for (const id of known) colour[id] = WHITE;
+    const stack = [];
+    let reported = false;
+
+    function visit(id){
+      if (reported) return;
+      colour[id] = GREY;
+      stack.push(id);
+      for (const r of (map[id] ? map[id].prereqs : [])){
+        if (!known.has(r.unit)) continue;
+        if (colour[r.unit] === GREY){
+          const from = stack.indexOf(r.unit);
+          E('content/prerequisites.js',
+            'prerequisite cycle: ' + stack.slice(from).join(' → ') + ' → ' + r.unit +
+            '. A student sent to revise this would walk in a circle.');
+          reported = true;
+          return;
+        }
+        if (colour[r.unit] === WHITE) visit(r.unit);
+        if (reported) return;
+      }
+      stack.pop();
+      colour[id] = BLACK;
+    }
+    for (const id of known) if (colour[id] === WHITE) visit(id);
   })();
 
   /* ---------- 5. runtime modules ---------- */
