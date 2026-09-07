@@ -53,6 +53,18 @@
     /* answering */
     showAnswer:  { en: 'Show the answer', ne: 'उत्तर हेर्नुहोस्' },
     hideAnswer:  { en: 'Hide the answer', ne: 'उत्तर लुकाउनुहोस्' },
+
+    /* RETRIEVAL — the gate, and the self-assessment after it.
+       "I have attempted it" is longer than "Show the answer" on purpose:
+       the label is the gate. A student who reads it and presses anyway
+       has at least been asked, and the wording is what does the asking. */
+    revealAfterAttempt: { en: 'I have attempted it — show the answer',
+                          ne: 'मैले प्रयास गरेँ — उत्तर देखाउनुहोस्' },
+    attemptLabel:       { en: 'Write your answer first — it is not saved',
+                          ne: 'पहिले आफ्नो उत्तर लेख्नुहोस् — यो सुरक्षित गरिँदैन' },
+    gotIt:              { en: 'Got it',   ne: 'आयो' },
+    partly:             { en: 'Partly',   ne: 'आंशिक' },
+    notYet:             { en: 'Not yet',  ne: 'अझै आएन' },
     tryAgain:    { en: 'Try again',       ne: 'फेरि प्रयास गर्नुहोस्' },
     check:       { en: 'Check this group', ne: 'यो समूह जाँच्नुहोस्' },
     clear:       { en: 'Clear selection',  ne: 'छनोट हटाउनुहोस्' },

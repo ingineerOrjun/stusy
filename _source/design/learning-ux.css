@@ -244,6 +244,61 @@ html, body{ overflow-x: clip; }
 .examq .ans[aria-hidden="true"]{ display: none; }
 
 /* ------------------------------------------------------------
+   RETRIEVAL — the gate in front of a model answer
+
+   Deliberately quiet. This sits inside a question a student is already
+   reading, and a loud panel here would compete with the question for
+   the attention the question needs. The scratch space looks like
+   somewhere to write, the gate looks like the control it always was,
+   and the self-assessment only appears once there is something to
+   assess against.
+   ------------------------------------------------------------ */
+.rt-attempt{ margin: var(--sp-3) 0 var(--sp-2); }
+.rt-label{
+  display: block; margin-bottom: var(--sp-1);
+  font-size: var(--fs-xs); color: var(--color-text-muted);
+}
+.rt-label .np-cell{ display: block; margin-top: 2px; }
+.rt-input{
+  display: block; width: 100%; box-sizing: border-box;
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  color: var(--color-text);
+  font-family: var(--sans); font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+  resize: vertical;
+}
+.rt-input:focus-visible{ outline: 3px solid var(--color-focus); outline-offset: 2px; }
+
+.rt-judge{ margin-top: var(--sp-3); }
+.rt-judge-q{
+  margin: 0 0 var(--sp-2);
+  font-size: var(--fs-sm); font-weight: var(--fw-medium); color: var(--color-text);
+}
+.rt-judge-q .np-cell{ display: block; font-weight: var(--fw-normal); margin-top: 2px; }
+.rt-grades{ display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.rt-grade{ font-size: var(--fs-sm); min-width: 92px; }
+/* State is named by the label the student pressed, so the colour only
+   reinforces a word that is already there — the Phase 5 rule. */
+.rt-grade[aria-pressed="true"].rt-ok{
+  border-color: var(--color-success); box-shadow: inset 0 0 0 2px var(--color-success);
+}
+.rt-grade[aria-pressed="true"].rt-mid{
+  border-color: var(--color-warning); box-shadow: inset 0 0 0 2px var(--color-warning);
+}
+.rt-grade[aria-pressed="true"].rt-no{
+  border-color: var(--color-error); box-shadow: inset 0 0 0 2px var(--color-error);
+}
+.rt-said{
+  margin: var(--sp-3) 0 0;
+  font-size: var(--fs-sm); line-height: var(--lh-base); color: var(--color-text-muted);
+}
+.rt-said:empty{ margin: 0; }
+.rt-said .np-cell{ display: block; margin-top: 4px; }
+
+/* ------------------------------------------------------------
    6. SCROLL AFFORDANCE FOR WIDE CONTENT
 
    A 520px diagram scrolled into 284px is correct — scaling it down

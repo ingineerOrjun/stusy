@@ -639,7 +639,12 @@ ${sectionHtml(subject.hero)}
       crumb: crumb([['Home', root + 'index.html'], [g.label, '../index.html'],
                     [label, 'index.html'], [p.title]]),
       body, pager,
-      js: ['services/motion.js', 'code.js'].concat(p.js)
+      /* progress.js before retrieval.js: the gate records a self-grade,
+         and a page that loaded the gate without somewhere to put the
+         grade would silently drop it. retrieval.js degrades rather than
+         throwing, which is exactly why the ordering has to be stated
+         here rather than left to chance. */
+      js: ['services/motion.js', 'code.js', 'services/progress.js', 'retrieval.js'].concat(p.js)
     }));
   });
 });

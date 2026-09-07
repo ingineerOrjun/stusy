@@ -21,6 +21,8 @@
 
   var KEY = 'rgsc.progress.v1';
   var SCHEMA_VERSION = 1;
+  /* the three self-assessments a retrieval question accepts */
+  var GRADE = /^(got|partly|not)$/;
 
   /* ---------- storage adapter ---------------------------------------
      Swap this object to move persistence elsewhere. The service above
@@ -67,8 +69,14 @@
 
   /* ---------- state ------------------------------------------------- */
 
+  /* `retrieval` was added in Phase 6 and SCHEMA_VERSION deliberately did
+     NOT change. A version bump discards the stored payload, and there is
+     no reason to throw away a student's finished units and quiz history
+     to make room for a new key. An older payload simply arrives without
+     it and gets an empty one; a newer payload read by older code loses
+     only the new field. */
   function emptyState() {
-    return { version: SCHEMA_VERSION, units: {}, quiz: {} };
+    return { version: SCHEMA_VERSION, units: {}, quiz: {}, retrieval: {} };
   }
 
   /* A corrupted or foreign payload must never throw into the UI.
@@ -99,6 +107,15 @@
                  typeof a.score === 'number' && typeof a.total === 'number' &&
                  a.total > 0 && a.score >= 0 && a.score <= a.total;
         }).slice(-20);                    // bound growth; keep the most recent
+      }
+    }
+    if (data.retrieval && typeof data.retrieval === 'object' && !Array.isArray(data.retrieval)) {
+      for (var r in data.retrieval) {
+        if (!Object.prototype.hasOwnProperty.call(data.retrieval, r)) continue;
+        var v = data.retrieval[r];
+        if (v && typeof v === 'object' && GRADE.test(v.grade) && typeof v.at === 'string') {
+          s.retrieval[r] = { grade: v.grade, at: v.at, attempts: Number(v.attempts) || 1 };
+        }
       }
     }
     return s;
@@ -189,6 +206,55 @@
       persist();
       emit('quiz:attempt', { quizId: quizId, score: score, total: total });
       return true;
+    },
+
+    /* RETRIEVAL — a self-graded attempt at a written practice question.
+       Only the grade is kept. The student's own words are never stored:
+       see the note in retrieval.js on why the component does not offer
+       to keep them.
+
+       The latest grade replaces the previous one rather than appending,
+       because the point of the record is "where does this student stand
+       now", and a question answered badly in September and well in
+       December is a question they now know. `attempts` keeps the count
+       so a run of re-attempts is still visible. */
+    recordRetrieval: function (questionId, grade) {
+      requireId(questionId, 'questionId');
+      if (!GRADE.test(grade)) {
+        throw new RangeError('ProgressService: unknown retrieval grade ' + grade);
+      }
+      var prev = state.retrieval[questionId];
+      state.retrieval[questionId] = {
+        grade: grade,
+        at: new Date().toISOString(),
+        attempts: prev ? prev.attempts + 1 : 1
+      };
+      persist();
+      emit('retrieval:graded', { questionId: questionId, grade: grade });
+      return true;
+    },
+
+    getRetrieval: function (questionId) {
+      requireId(questionId, 'questionId');
+      var r = state.retrieval[questionId];
+      return r ? { grade: r.grade, at: r.at, attempts: r.attempts } : null;
+    },
+
+    /* What §17 needs to say something true about competence: how many
+       questions this student has actually attempted, and how they stand.
+       Returns counts only — the caller decides the wording. */
+    getRetrievalSummary: function (questionIds) {
+      var ids = Array.isArray(questionIds) ? questionIds : Object.keys(state.retrieval);
+      var out = { total: ids.length, attempted: 0, got: 0, partly: 0, not: 0 };
+      for (var i = 0; i < ids.length; i++) {
+        var r = state.retrieval[ids[i]];
+        if (!r) continue;
+        out.attempted++;
+        if (r.grade === 'got') out.got++;
+        else if (r.grade === 'partly') out.partly++;
+        else out.not++;
+      }
+      return out;
     },
 
     getQuizHistory: function (quizId) {

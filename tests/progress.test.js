@@ -133,7 +133,12 @@ test('falls back to memory when the quota is exceeded mid-session', () => {
 
 test('corrupted JSON is discarded rather than thrown', () => {
   const p = load(fakeStorage({ 'rgsc.progress.v1': '{not json at all' }));
-  assert.deepStrictEqual(p.exportState(), { version: 1, units: {}, quiz: {} });
+  /* Deliberately the whole shape and not just `units`: a clean state has
+     to be clean everywhere, and asserting the exact object is what would
+     catch a field surviving a discard. `retrieval` joined it in Phase 6
+     without a schema bump, so that a student's finished units and quiz
+     history are not thrown away to make room for a new key. */
+  assert.deepStrictEqual(p.exportState(), { version: 1, units: {}, quiz: {}, retrieval: {} });
 });
 
 test('a payload of the wrong shape is discarded', () => {

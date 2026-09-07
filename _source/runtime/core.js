@@ -164,6 +164,11 @@ function runSteps(codeElId, codeLines, steps, conEl, guard, onDone){
         var id = btn.getAttribute('data-answer');
         var target = document.getElementById(id);
         if (!target) return;
+        /* A practice question is retrieval.js's, not this one's. Both
+           binding a click on the same button would toggle the answer
+           twice and leave it exactly as it was — the reveal would look
+           broken with nothing in either file looking wrong. */
+        if (btn.closest && btn.closest('.examq')) return;
         btn.setAttribute('type', 'button');
         btn.setAttribute('aria-controls', id);
         btn.setAttribute('aria-expanded', target.classList.contains('show') ? 'true' : 'false');

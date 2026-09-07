@@ -108,6 +108,7 @@ const RUNTIME_PUBLISHED = {
   'showcase.js': 'showcase.js',
   'snippets.js': 'snippets.js',
   'predict.js': 'predict.js',
+  'retrieval.js': 'retrieval.js',
   'sim-stackqueue.js': 'sim-stackqueue.js',
   'sim-dispatch.js': 'sim-dispatch.js',
   'trace.js': 'trace.js',
