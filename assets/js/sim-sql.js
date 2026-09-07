@@ -268,7 +268,7 @@
     h += this.examples.map(function (e, i){
       return '<button type="button" class="sq-eg" data-sq-eg="' + i + '">' +
              '<span class="t-en">' + esc(e.en) + '</span>' +
-             '<span class="t-ne"><span class="t-en"> · </span>' + esc(e.ne) + '</span></button>';
+             '<span class="t-ne" lang="ne"><span class="t-en"> · </span>' + esc(e.ne) + '</span></button>';
     }).join('');
     h += '</div>';
 

@@ -281,7 +281,7 @@
         return '<button type="button" class="er-pick" data-er-part="' + p.id + '"' +
                ' aria-pressed="' + (self.part === p.id) + '">' +
                '<span class="t-en">' + esc(p.label.en) + '</span>' +
-               '<span class="t-ne"><span class="t-en"> · </span>' + esc(p.label.ne) + '</span></button>';
+               '<span class="t-ne" lang="ne"><span class="t-en"> · </span>' + esc(p.label.ne) + '</span></button>';
       }).join('');
       h += '</div>';
     } else {
@@ -291,7 +291,7 @@
                '" data-er-card="' + c.id + '" aria-pressed="' + (self.card === c.id) + '">' +
                '<code>' + esc(c.id) + '</code> ' +
                '<span class="t-en">' + esc(c.label.en) + '</span>' +
-               '<span class="t-ne"><span class="t-en"> · </span>' + esc(c.label.ne) + '</span></button>';
+               '<span class="t-ne" lang="ne"><span class="t-en"> · </span>' + esc(c.label.ne) + '</span></button>';
       }).join('');
       h += '</div>';
     }

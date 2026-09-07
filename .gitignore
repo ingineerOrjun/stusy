@@ -3,3 +3,5 @@ node_modules/
 Thumbs.db
 *.log
 .vercel
+tests/manual/__sr-inject.js
+tests/manual/__contrast-inject.js

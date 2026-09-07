@@ -420,7 +420,13 @@
 .km-btn:hover{ border-color: var(--color-secondary); }
 .km-v{ font-family: var(--mono); font-size: var(--fs-lg); font-weight: 700; line-height: 1;
        color: var(--color-text-muted); }
-.km-m{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-subtle); }
+/* --color-text-subtle is calibrated to 4.52:1 on --panel — 0.02 of
+   headroom — and a K-map cell's selected and grouped states paint
+   surfaces LIGHTER than --panel, where the same ink measured 3.53:1.
+   The minterm number is what a student cites when they explain which
+   cells they grouped, so it is read, not decoration. Muted clears 5.23:1
+   on the lightest of those states. */
+.km-m{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-muted); }
 
 .km-cell.is-one .km-btn{ border-color: var(--color-success); background: rgba(154,230,160,.10); }
 .km-cell.is-one .km-v{ color: var(--color-success); }
@@ -458,8 +464,10 @@
   border-radius: var(--r-md);
   background: rgba(255,215,110,.05);
 }
+/* Same cause as .km-m: this panel tints itself yellow over --panel, and
+   --color-text-subtle has no headroom above --panel. 4.02:1 -> 5.95:1. */
 .km-r-lab{ font-family: var(--mono); font-size: var(--fs-xs); letter-spacing: 1px;
-           text-transform: uppercase; color: var(--color-text-subtle); }
+           text-transform: uppercase; color: var(--color-text-muted); }
 .km-r-lab .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
 .km-expr{
   font-family: var(--mono); font-size: var(--fs-lg); font-weight: 700;

@@ -107,7 +107,7 @@
       return '<button type="button" class="cc-mode' + (self.mode === k ? ' primary' : '') +
              '" data-cc-mode="' + k + '" aria-pressed="' + (self.mode === k) + '">' +
              '<span class="t-en">' + esc(SCHEDULES[k].label.en) + '</span>' +
-             '<span class="t-ne">' + esc(SCHEDULES[k].label.ne) + '</span></button>';
+             '<span class="t-ne" lang="ne">' + esc(SCHEDULES[k].label.ne) + '</span></button>';
     }).join('');
     h += '</div>';
 

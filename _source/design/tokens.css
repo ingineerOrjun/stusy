@@ -24,7 +24,15 @@
 
   --chalk-white:#eef5f2;
   --chalk-dim:#a1b8b1;
-  --chalk-faint:#819791;   /* WCAG 1.4.3: 4.52:1 on --panel. Was #7e948e = 4.35:1 */
+  /* WCAG 1.4.3: 4.52:1 on --panel. Was #7e948e = 4.35:1.
+     THAT IS 0.02 OF HEADROOM, AND --panel IS NOT THE LIGHTEST SURFACE.
+     Any component that tints its own background — a selected K-map cell,
+     a highlighted result panel — sits above --panel and puts this ink
+     below 4.5:1. Phase 5 measured two such places at 3.53:1 and 4.02:1.
+     So: use --color-text-subtle on --panel or darker ONLY. On a tinted
+     or raised surface use --color-text-muted, which holds 5.2:1 even on
+     the lightest state in the product. */
+  --chalk-faint:#819791;
 
   --yellow:#ffd76e;
   --blue:#7fd1ff;

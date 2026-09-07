@@ -49,7 +49,7 @@
     var en = String(p.en || ''), ne = String(p.ne || '');
     if (!ne || ne.trim() === en.trim()) return esc(en);
     return '<span class="t-en">' + esc(en) + '</span>' +
-           '<span class="t-ne">' + esc(ne) + '</span>';
+           '<span class="t-ne" lang="ne">' + esc(ne) + '</span>';
   }
 
   /* Each set is one rule, drilled. `pre` is monospaced evidence — a

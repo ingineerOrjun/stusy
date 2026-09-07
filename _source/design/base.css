@@ -102,13 +102,20 @@ ul.tick li{margin:.28em 0}
   overflow:auto;padding:12px 0;margin:12px 0;
 }
 .code .ln{display:flex;padding:0 14px;white-space:pre;border-left:3px solid transparent}
+/* 4.5:1 ON #0c1714, MEASURED, NOT ASSUMED.
+   These two were literals darker than any token — #4f6b64 gave 3.15:1
+   and the comment colour 3.93:1, both below WCAG 1.4.3. A line number
+   is quiet by role, but a student who cannot read it cannot follow a
+   trace that refers to line 7, and a comment is the part of a code
+   example that explains it. Raised to 4.78:1 and 5.96:1; they still
+   read as the quietest things in the well. */
 .code .ln .n{
-  flex:none;width:30px;text-align:right;margin-right:14px;color:#4f6b64;user-select:none;
+  flex:none;width:30px;text-align:right;margin-right:14px;color:#6d8880;user-select:none;
 }
 .code .ln.on{background:rgba(255,215,110,.13);border-left-color:var(--yellow)}
 .code .ln.on .n{color:var(--yellow)}
 .c-key{color:#ff8f7a}.c-typ{color:#7fd1ff}.c-str{color:#9ae6a0}
-.c-com{color:#5f7a73;font-style:italic}.c-num{color:#c9a9ff}
+.c-com{color:#7d9992;font-style:italic}.c-num{color:#c9a9ff}
 
 /* ---------- console ---------- */
 .console{
@@ -117,7 +124,11 @@ ul.tick li{margin:.28em 0}
   white-space:pre-wrap;color:var(--green);overflow:auto;max-height:260px;
 }
 .console .cline{margin:2px 0;animation:fade .28s ease both}
-.console .muted{color:#5f7a73}
+/* Same literal as .c-com was, on a darker well: 4.12:1. This is the line
+   that tells a student the program has printed nothing yet — the one
+   message in the console that must be readable when nothing else is.
+   6.24:1. */
+.console .muted{color:#7d9992}
 @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 
 /* ---------- buttons ---------- */

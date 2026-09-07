@@ -228,7 +228,7 @@
         return '<button type="button" class="dt-term" data-dt-term="' + t.id + '"' +
                ' aria-pressed="' + (self.term === t.id) + '">' +
                '<span class="t-en">' + esc(t.label.en) + '</span>' +
-               '<span class="t-ne"><span class="t-en"> · </span>' + esc(t.label.ne) + '</span>' +
+               '<span class="t-ne" lang="ne"><span class="t-en"> · </span>' + esc(t.label.ne) + '</span>' +
                '</button>';
       }).join('');
       h += '</div>';

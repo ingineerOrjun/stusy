@@ -130,8 +130,20 @@ const FAVICON = 'data:image/svg+xml,' + encodeURIComponent(
    Nepali half of the page useless to exactly the students who need it.
 
    Applied centrally at build time so every current and future content
-   file inherits it without the author having to remember. */
-const NEPALI_CONTAINERS = /\b(np|np-cell|np-line|lead-np)\b/;
+   file inherits it without the author having to remember.
+
+   `t-ne` was missing from this list until Phase 5, and the fallback that
+   should have caught it cannot: the text test below only sees the run
+   immediately after an opening tag, and the house idiom for a Nepali
+   passage opens with a nested separator —
+
+       <span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक…</span>
+
+   so the captured run was empty and the Devanagari after the inner
+   </span> was never examined. 82 Nepali passages across 20 pages were
+   being handed to an English synthesiser. Naming the class is the fix;
+   the text test stays as a net for content that does not use a class. */
+const NEPALI_CONTAINERS = /\b(np|np-cell|np-line|lead-np|t-ne)\b/;
 const DEVANAGARI = /[ऀ-ॿ]/;
 
 /* ---------------- language modes (Phase 3) ----------------
@@ -198,6 +210,23 @@ function normaliseHeadings(html){
   });
 }
 
+/* HEADER SCOPE
+   All 25 content tables are column-header-only, the one shape every
+   screen reader infers correctly, so nothing is announced wrongly today.
+   `scope` is added anyway because the inference is the reader's guess,
+   not a declaration: the first content table that adds a row header
+   turns a latent risk into a wrong announcement, silently, and no test
+   would catch it. Declaring the association costs nothing visual.
+
+   Only <th> already inside a table gets it, and only if the author has
+   not said otherwise. */
+function markTableScope(html){
+  return html.replace(/<th\b([^>]*)>/gi, (whole, attrs) => {
+    if (/\bscope\s*=/i.test(attrs)) return whole;
+    return `<th${attrs} scope="col">`;
+  });
+}
+
 function markNepali(html){
   return html.replace(/<([a-z][a-z0-9]*)\b([^>]*)>([^<]*)/gi, (whole, tag, attrs, text) => {
     if (/\blang\s*=/i.test(attrs)) return whole;              // already declared
@@ -223,7 +252,7 @@ function page(o){
     if (needed.indexOf('diagram-data.js') < 0) needed.push('diagram-data.js');
   }
   const js = needed.map(f => `<script src="${root}assets/js/${f}"></script>`).join('\n');
-  return markNepali(pairEnglish(`<!DOCTYPE html>
+  return markTableScope(markNepali(pairEnglish(`<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -274,7 +303,7 @@ ${o.pager || ''}
 ${js}
 </body>
 </html>
-`));
+`)));
 }
 
 function crumb(parts){
