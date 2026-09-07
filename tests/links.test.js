@@ -168,7 +168,10 @@ test('dev pages hold to the same chrome and safety rules as student pages', () =
     const html = fs.readFileSync(path.join(ROOT, p), 'utf8');
     assert.match(html, /assets\/css\/style\.css/, p + ': no stylesheet');
     assert.match(html, /http-equiv="Content-Security-Policy"/, p + ': no CSP');
-    assert.match(html, /<main id="main">/, p + ': no main landmark');
+    /* attribute-order-independent: this asserted the exact string
+       `<main id="main">` and broke the day <main> gained tabindex="-1",
+       which is a correction, not a regression */
+    assert.match(html, /<main\b[^>]*\bid="main"/, p + ': no main landmark');
     assert.ok(!/(?:href|src)="\//.test(html), p + ': root-relative path breaks offline use');
   }
 });

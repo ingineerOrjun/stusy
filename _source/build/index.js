@@ -210,6 +210,22 @@ function normaliseHeadings(html){
   });
 }
 
+/* WHY <main> CARRIES tabindex="-1"
+   It is what makes the skip link work. Measured in Chrome: activating
+   "Skip to content" set location.hash to #main and then dropped
+   document.activeElement to <body>. The page scrolled and the keyboard
+   user's position was lost — the next Tab started over from the top,
+   which is the one thing the link exists to prevent. A fragment target
+   that cannot hold focus does not receive it.
+
+   -1 keeps it out of the Tab sequence: focusable, never tabbed to. No
+   visual change either, because :focus-visible does not match focus
+   moved by a fragment navigation, so no ring is painted.
+
+   This note lives here rather than beside the tag: an HTML comment in
+   the template ships to all 36 built pages, and this one mentioned
+   <main> in its prose, which made every page look like it had two. */
+
 /* HEADER SCOPE
    All 25 content tables are column-header-only, the one shape every
    screen reader infers correctly, so nothing is announced wrongly today.
@@ -286,7 +302,7 @@ ${mobileNav(root, o.grade, o.activeHref)}
 
 <div class="wrap">
 ${o.crumb ? `<nav class="crumb" aria-label="Breadcrumb">${o.crumb}</nav>` : ''}
-<main id="main"${o.subject ? ` data-subject="${o.subject}"` : ""}>
+<main id="main" tabindex="-1"${o.subject ? ` data-subject="${o.subject}"` : ""}>
 ${normaliseHeadings(o.body)}
 </main>
 ${o.pager || ''}

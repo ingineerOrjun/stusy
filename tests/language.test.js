@@ -366,7 +366,8 @@ test('the Digital Design quiz page draws a varied selection', () => {
   const html = fs2.readFileSync(path.join(ROOT, 'grade10', 'digital-design', 'quiz.html'), 'utf8');
   assert.match(html, /id="quizBox"[^>]*data-limit="12"/, 'quiz length not configured on the page');
   assert.match(html, /id="quizBox"[^>]*data-shuffle="true"/, 'a retake would be the same paper');
-  assert.match(html, /<main id="main" data-subject="grade10\/digital-design">/,
+  /* the fact is the attribute, not its position among the others */
+  assert.match(html, /<main\b[^>]*\bdata-subject="grade10\/digital-design"/,
     'the page must tell the engine which bank to use');
 });
 
