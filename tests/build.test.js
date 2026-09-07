@@ -37,6 +37,9 @@ const PAGES = [
 
 const ASSETS = [
   'assets/css/style.css',
+  'assets/css/style-digital.css',
+  'assets/css/style-dbms.css',
+  'assets/css/style-all.css',
   'assets/js/nav.js',
   'assets/js/code.js',
   'assets/js/snippets.js',

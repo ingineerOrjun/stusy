@@ -74,7 +74,15 @@ test('every page carries the shared navigation chrome', () => {
   for (const f of htmlFiles){
     const html = fs.readFileSync(f, 'utf8');
     const rel = path.relative(ROOT, f);
-    assert.match(html, /assets\/css\/style\.css/, rel + ': no stylesheet');
+    /* Phase 5 split the one sheet into four variants, so the fact to
+       assert is no longer a filename — it is that the page links
+       exactly one stylesheet and that the file is really there. That
+       catches a variant nobody built, which the old exact-name match
+       could not. */
+    const sheets = [...html.matchAll(/href="([^"]*assets\/css\/[^"]+\.css)"/g)].map(m => m[1]);
+    assert.strictEqual(sheets.length, 1, rel + ': links ' + sheets.length + ' stylesheets — ' + sheets.join(', '));
+    assert.ok(fs.existsSync(path.resolve(path.dirname(f), sheets[0])),
+      rel + ': links ' + sheets[0] + ', which was not built');
     assert.match(html, /assets\/js\/nav\.js/,     rel + ': no nav script');
     assert.match(html, /id="hamBtn"/,             rel + ': no hamburger button');
     assert.match(html, /id="mobilePanel"/,        rel + ': no mobile panel');
@@ -166,7 +174,9 @@ test('dev pages are generated but never linked from student pages', () => {
 test('dev pages hold to the same chrome and safety rules as student pages', () => {
   for (const p of DEV_PAGES){
     const html = fs.readFileSync(path.join(ROOT, p), 'utf8');
-    assert.match(html, /assets\/css\/style\.css/, p + ': no stylesheet');
+    /* a reference page has to carry every subject's components, or it
+       stops being a reference */
+    assert.match(html, /assets\/css\/style-all\.css/, p + ': a dev page must load every subject layer');
     assert.match(html, /http-equiv="Content-Security-Policy"/, p + ': no CSP');
     /* attribute-order-independent: this asserted the exact string
        `<main id="main">` and broke the day <main> gained tabindex="-1",

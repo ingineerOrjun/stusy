@@ -76,6 +76,42 @@ const dbmsCss    = ctx.read('design/dbms.css');
 /* Phase 3 language layer — loaded last so a mode can hide anything above it. */
 const langCss = ctx.read('design/language.css');
 
+/* ---------------- which stylesheet a page gets ----------------
+   Until Phase 5 every page loaded one 119 KB sheet, 45 KB of which was
+   the two subject layers. A grade 9 stub with nine links carried the
+   full K-map workbench and the whole ER notation. At three authored
+   subjects that is 38% waste; at eight it stops being a rounding error.
+
+   A COMPLETE SHEET PER VARIANT, NOT A SHEET PER LAYER.
+   Splitting into core + subject + language would need three <link>s in
+   a fixed order, and the order is load-bearing: language.css must come
+   last or a mode cannot hide what the subject layer drew. One request
+   per page, four files on disk, and the cascade is settled at build
+   time where it can be reasoned about — rather than in a page's <head>
+   where a future author can reorder it by accident.
+
+   The subject layers were not actually separable when this was written.
+   dbms.css styled the decision drill, which four OOP pages use, and
+   digital.css held one rule for a shared control label. Both moved to
+   the shared layer first; splitting before that would have quietly
+   unstyled a component on pages that never mention its subject. */
+const CORE = baseCss + siteCss + uxCss + motionCss;
+const SHEETS = {
+  'style.css':         CORE + langCss,
+  'style-digital.css': CORE + digitalCss + langCss,
+  'style-dbms.css':    CORE + dbmsCss + langCss,
+  'style-all.css':     CORE + digitalCss + dbmsCss + langCss
+};
+
+/* A page declares its subject; the dev reference pages show everything. */
+function sheetFor(o){
+  if (o.allSubjects) return 'style-all.css';
+  const s = o.subject || '';
+  if (s.indexOf('digital-design') >= 0) return 'style-digital.css';
+  if (s.indexOf('dbms') >= 0) return 'style-dbms.css';
+  return 'style.css';
+}
+
 /* ---------------- nav builders ---------------- */
 function deskNav(root, activeGrade){
   let h = '<nav class="desknav">';
@@ -280,7 +316,7 @@ function page(o){
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${root}assets/css/style.css">
+<link rel="stylesheet" href="${root}assets/css/${sheetFor(o)}">
 ${LANG_BOOTSTRAP}
 </head>
 <body>
@@ -331,7 +367,7 @@ function crumb(parts){
 }
 
 /* ---------------- assets ---------------- */
-w('assets/css/style.css', baseCss + siteCss + uxCss + motionCss + digitalCss + dbmsCss + langCss);
+for (const [name, css] of Object.entries(SHEETS)) w('assets/css/' + name, css);
 
 /* Runtime modules ship verbatim from _source/runtime — what is in source
    control is exactly what the browser receives. */
@@ -616,6 +652,7 @@ w('design-system.html', page({
   title: 'Design System Reference — RGSC Study Board (internal)',
   desc: 'Internal QA reference for the design system. Not student-facing.',
   crumb: crumb([['Home', 'index.html'], ['Design System (internal)']]),
+  allSubjects: true,   /* a reference page must show every subject's components */
   body: sectionHtml('design-system'),
   js: ['code.js', 'predict.js']
 }));
@@ -629,6 +666,7 @@ w('animation-showcase.html', page({
   title: 'Animation & Motion Reference — RGSC Study Board (internal)',
   desc: 'Internal QA reference for the motion system. Not student-facing.',
   crumb: crumb([['Home', 'index.html'], ['Animation Reference (internal)']]),
+  allSubjects: true,
   body: sectionHtml('animation-showcase'),
   js: ['services/motion.js', 'code.js', 'showcase.js']
 }));

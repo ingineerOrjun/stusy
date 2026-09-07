@@ -10,7 +10,7 @@ const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
 const SRC = path.join(ROOT, '_source');
-const css = fs.readFileSync(path.join(ROOT, 'assets/css/style.css'), 'utf8');
+const css = fs.readFileSync(path.join(ROOT, 'assets/css/style-all.css'), 'utf8');
 const LESSONS = ['u1','u2','u3','u4','u5','u6'];
 /* EVERY authored unit page, in every subject.
 

@@ -1470,6 +1470,1298 @@ svg text[text-anchor="end"]   { text-anchor: end; }
 svg text[text-anchor="middle"]{ text-anchor: middle; }
 
 /* ============================================================
+   DIGITAL DESIGN — specialised educational visualizations
+
+   Phase 3. Same product language as every other lesson (tokens,
+   spacing, type scale, state colours); specialised only where the
+   subject genuinely needs a shape the rest of the product does not
+   have — a signal that is on or off, a truth table wired to a circuit,
+   a K-map grid, a bus carrying a value.
+
+   Loaded after motion.css so it can use the shared state language, and
+   before language.css so a mode still wins over everything here.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. SIGNAL — the one idea the whole subject rests on
+
+   A wire is either carrying 1 or it is not. That is a binary state, so
+   it gets a binary treatment: dim and thin for 0, bright and thick for
+   1. Colour alone would fail a colour-blind student and fail in print,
+   so width and opacity carry the same information.
+   ------------------------------------------------------------ */
+.gl-wire{
+  stroke: var(--color-border);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke var(--dur-fast) var(--ease-out),
+              stroke-width var(--dur-fast) var(--ease-out);
+}
+.gl-wire.hi{ stroke: var(--color-success); stroke-width: 3.4; }
+
+.g-body{
+  fill: rgba(127,209,255,.07);
+  stroke: var(--color-secondary);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+.g-open{ fill: none; }
+
+.gl-pin{
+  fill: var(--color-text-muted);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.gl-lamp{
+  fill: rgba(0,0,0,.35);
+  stroke: var(--color-border);
+  stroke-width: 2;
+  transition: fill var(--dur-fast) var(--ease-out), stroke var(--dur-fast) var(--ease-out);
+}
+.gl-lamp.on{ fill: rgba(154,230,160,.30); stroke: var(--color-success); }
+.gl-lampv{
+  fill: var(--color-text);
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Static figures use the same gate vocabulary as the workbench, so a
+   symbol the student memorises from a figure is the symbol they toggle
+   in the simulation. Same classes, one appearance. */
+.fig svg .f-gate, .dia-stage svg .f-gate{
+  fill: rgba(127,209,255,.07);
+  stroke: var(--color-secondary);
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+.fig svg .f-gate-open, .dia-stage svg .f-gate-open{ fill: none; }
+.fig svg .f-wire, .dia-stage svg .f-wire{
+  stroke: var(--color-text-muted);
+  stroke-width: 1.8;
+  fill: none;
+  stroke-linecap: round;
+}
+.fig svg .f-pin, .dia-stage svg .f-pin{
+  fill: var(--color-text-muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* A bar over a letter is the exam's notation for NOT. In HTML it can be
+   drawn properly rather than approximated with a combining character,
+   which renders unevenly across the Devanagari and Latin fallbacks. */
+.ovl{ text-decoration: overline; text-decoration-thickness: 1.5px; }
+
+/* ------------------------------------------------------------
+   2. THE WORKBENCH
+   ------------------------------------------------------------ */
+.gatelab{
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-lg);
+  background: var(--color-surface);
+  box-shadow: var(--elev-2);
+  padding: var(--sp-4);
+  margin-block: var(--space-block);
+}
+
+.gl-pick{
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px dashed var(--color-border);
+  margin-bottom: var(--sp-4);
+}
+.gl-gate{
+  font-family: var(--mono); font-size: var(--fs-xs); font-weight: 700;
+  letter-spacing: .8px;
+  color: var(--color-text-muted);
+  background: var(--color-surface-sunken);
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: 999px;
+  padding: var(--sp-2) var(--sp-4);
+  cursor: pointer;
+}
+.gl-gate:hover{ color: var(--color-secondary); border-color: var(--color-secondary); }
+.gl-gate[aria-selected="true"]{
+  color: #12241f;
+  background: linear-gradient(150deg, var(--color-primary), #e0a93f);
+  border-color: transparent;
+}
+
+.gl-main{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--sp-5);
+  align-items: start;
+}
+.gl-main > *{ min-width: 0; }
+
+.gl-title{ margin-bottom: var(--sp-2); }
+.gl-title b{ color: var(--color-primary); font-size: var(--fs-base); }
+/* The Nepali name is a second line, not a suffix — inline it read as
+   one run-together word ("ANDएन्ड"). */
+.gl-title .np-cell{ display: block; margin-top: 2px; }
+.gl-expr{
+  display: block; margin-top: var(--sp-1);
+  font-family: var(--mono); font-size: var(--fs-sm);
+  color: var(--color-secondary);
+}
+.gl-svg{ width: 100%; height: auto; display: block; max-width: 420px; }
+
+.gl-toggles{
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px dashed var(--color-border);
+}
+.gl-toggles .sim-controls-label{ width: 100%; margin-bottom: var(--sp-1); }
+
+/* An input is a switch, and it should look like one: the value is the
+   thing that changes, so the value is what is emphasised. */
+.gl-in{
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  padding: var(--sp-2) var(--sp-3);
+  cursor: pointer;
+  min-height: 44px;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.gl-in:hover{ border-color: var(--color-secondary); }
+.gl-in-n{ font-family: var(--mono); font-size: var(--fs-sm); color: var(--color-text-muted); }
+.gl-in-v{
+  font-family: var(--mono); font-size: var(--fs-lg); font-weight: 700; line-height: 1;
+  color: var(--color-text-muted);
+  min-width: 1.2em; text-align: center;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.gl-in.on{ border-color: var(--color-success); background: rgba(154,230,160,.10); }
+.gl-in.on .gl-in-v{ color: var(--color-success); }
+
+/* ------------------------------------------------------------
+   3. THE TRUTH TABLE
+
+   Wired to the circuit: the row the student's inputs select is the row
+   that lights. That link is the lesson, so the highlight is strong
+   enough to find without hunting.
+   ------------------------------------------------------------ */
+.gl-tt{
+  width: 100%;
+  /* base.css sets a 560px floor on every table so wide comparison tables
+     scroll rather than crush. A truth table has three narrow columns and
+     must not inherit that — it was overflowing its own grid column. */
+  min-width: 0;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+}
+.gl-tt caption{
+  caption-side: top; text-align: left;
+  font-family: var(--sans); font-size: var(--fs-xs);
+  letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--color-text-subtle);
+  padding-bottom: var(--sp-2);
+}
+.gl-tt th, .gl-tt td{
+  border: 1px solid var(--color-border);
+  padding: var(--sp-2) var(--sp-3);
+  text-align: center;
+}
+.gl-tt th{
+  color: var(--color-primary);
+  background: var(--color-surface-sunken);
+  font-weight: 700;
+}
+.gl-tt td{ color: var(--color-text-muted); }
+.gl-tt .gl-y{ color: var(--color-text); font-weight: 700; }
+
+.gl-tt tbody tr{ transition: background var(--dur-fast) var(--ease-out); }
+.gl-tt tbody tr.is-active{ background: rgba(255,215,110,.14); }
+.gl-tt tbody tr.is-active td{ color: var(--color-primary); }
+.gl-tt tbody tr.is-active .gl-y{ color: var(--color-primary); }
+/* A row highlight that is only a background colour disappears in
+   high-contrast mode and in print. Give it an edge as well. */
+.gl-tt tbody tr.is-active td:first-child{ box-shadow: inset 3px 0 0 var(--color-primary); }
+
+.gl-say{
+  margin-top: var(--sp-4);
+  border-left: 3px solid var(--color-primary);
+  background: rgba(255,215,110,.06);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+}
+.gl-say-en{ display: block; }
+.gl-say-ne{ display: block; margin-top: var(--sp-2); }
+
+/* ------------------------------------------------------------
+   4. RESPONSIVE
+   Below the two-column threshold the circuit sits above its table
+   rather than shrinking both into illegibility.
+   ------------------------------------------------------------ */
+@media (max-width: 720px){
+  .gl-main{ grid-template-columns: 1fr; gap: var(--sp-4); }
+  .gl-svg{ max-width: 100%; }
+}
+
+/* ------------------------------------------------------------
+   5. REDUCED MOTION
+   Every transition here is a state change, not decoration, so under
+   reduced motion the states still change — instantly.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce){
+  .gl-wire, .gl-lamp, .gl-in, .gl-in-v, .gl-tt tbody tr{ transition: none; }
+}
+
+/* ============================================================
+   UNIT 1 — NUMBER WORKBENCH
+   ============================================================ */
+
+/* ---- place-value converter ---- */
+.numlab{ font-size: var(--fs-sm); }
+
+.nl-bits{
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  justify-content: center;
+}
+/* A bit switch shows three things at once: which power of two it is,
+   whether it is on, and what it is worth. The place value is the fact
+   the student is here to learn, so it is not hidden behind a hover. */
+.nl-bit{
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  min-width: 58px; min-height: 44px;
+  padding: var(--sp-2) var(--sp-1);
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.nl-bit:hover{ border-color: var(--color-secondary); }
+.nl-pow{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-subtle); }
+.nl-val{
+  font-family: var(--mono); font-size: var(--fs-lg); font-weight: 700; line-height: 1;
+  color: var(--color-text-muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.nl-place{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-subtle); }
+.nl-bit.on{ border-color: var(--color-success); background: rgba(154,230,160,.10); }
+.nl-bit.on .nl-val{ color: var(--color-success); }
+.nl-bit.on .nl-place{ color: var(--color-success); }
+
+.nl-sum{
+  margin-top: var(--sp-4);
+  border-left: 3px solid var(--color-primary);
+  background: rgba(255,215,110,.06);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-3) var(--sp-4);
+  font-family: var(--mono); font-size: var(--fs-sm);
+}
+.nl-sum-en{ display: block; }
+.nl-sum-ne{ display: block; margin-top: var(--sp-2); font-family: var(--deva); }
+
+.nl-out{ margin-top: var(--sp-4); display: grid; gap: var(--sp-2); }
+.nl-row{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.2fr);
+  gap: var(--sp-3);
+  align-items: baseline;
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-sm);
+  background: var(--color-surface-sunken);
+}
+.nl-row > *{ min-width: 0; }
+.nl-name{ color: var(--color-text-muted); }
+.nl-name .np-cell{ display: block; font-size: var(--fs-xs); }
+.nl-base{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-subtle); }
+.nl-num{
+  font-family: var(--mono); font-size: var(--fs-base); font-weight: 700;
+  color: var(--color-primary); text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* ---- binary column adder ---- */
+.nl-add-grid{
+  display: grid;
+  grid-template-columns: auto repeat(var(--cols), minmax(28px, 40px));
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+}
+.nl-lab{
+  font-family: var(--sans); font-size: var(--fs-xs);
+  color: var(--color-text-subtle); text-align: right; padding-right: var(--sp-2);
+}
+.nl-lab-sum{ color: var(--color-primary); font-weight: 700; }
+.nl-cell{
+  text-align: center;
+  padding: var(--sp-2) 0;
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+  border-radius: var(--r-sm);
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.nl-carry{ font-size: var(--fs-sm); color: var(--color-error); min-height: 1.4em; }
+.nl-sumc{
+  border-top: 1.5px solid var(--color-border);
+  color: var(--color-text); font-weight: 700; min-height: 1.6em;
+}
+.nl-blank{ visibility: hidden; }
+.nl-cell.is-active{ background: rgba(255,215,110,.16); color: var(--color-primary); }
+
+.nl-progress{
+  font-family: var(--mono); font-size: var(--fs-xs);
+  color: var(--color-text-subtle); align-self: center;
+}
+.nl-say{
+  margin-top: var(--sp-4);
+  border-left: 3px solid var(--color-secondary);
+  background: rgba(127,209,255,.06);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+}
+.nl-say-en{ display: block; }
+.nl-say-ne{ display: block; margin-top: var(--sp-2); }
+
+@media (max-width: 480px){
+  .nl-bit{ min-width: 46px; }
+  .nl-row{ grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .nl-base{ display: none; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .nl-bit, .nl-val, .nl-cell{ transition: none; }
+}
+
+/* ============================================================
+   UNIT 3 — KARNAUGH MAP
+   ============================================================ */
+.kmap{ font-size: var(--fs-sm); }
+.km-head{ margin-bottom: var(--sp-3); }
+.km-vars{ font-family: var(--mono); font-size: var(--fs-xs); letter-spacing: 1px;
+          text-transform: uppercase; color: var(--color-text-subtle); }
+.km-head .np-cell{ display: block; margin-top: 2px; }
+
+.km-wrap{ overflow-x: auto; }
+.km-grid{
+  border-collapse: separate; border-spacing: 4px;
+  min-width: 0;                       /* base.css sets a 560px floor on tables */
+  width: auto; margin: 0 auto;
+}
+.km-cap{
+  caption-side: top; text-align: left;
+  font-family: var(--sans); font-size: var(--fs-xs);
+  color: var(--color-text-subtle); padding-bottom: var(--sp-3);
+  max-width: 52ch;
+}
+.km-cap .np-cell{ display: block; margin-top: 3px; }
+
+.km-h{
+  font-family: var(--mono); font-size: var(--fs-xs);
+  color: var(--color-primary); font-weight: 700;
+  padding: var(--sp-1) var(--sp-2); text-align: center;
+}
+.km-corner{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-subtle); }
+.km-corner span{ display: block; }
+.km-corner span:first-child{ text-align: left; }
+.km-corner span:last-child{ text-align: right; }
+
+.km-cell{ padding: 0; }
+.km-btn{
+  width: 100%; min-width: 56px; min-height: 56px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.km-btn:hover{ border-color: var(--color-secondary); }
+.km-v{ font-family: var(--mono); font-size: var(--fs-lg); font-weight: 700; line-height: 1;
+       color: var(--color-text-muted); }
+/* --color-text-subtle is calibrated to 4.52:1 on --panel — 0.02 of
+   headroom — and a K-map cell's selected and grouped states paint
+   surfaces LIGHTER than --panel, where the same ink measured 3.53:1.
+   The minterm number is what a student cites when they explain which
+   cells they grouped, so it is read, not decoration. Muted clears 5.23:1
+   on the lightest of those states. */
+.km-m{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-muted); }
+
+.km-cell.is-one .km-btn{ border-color: var(--color-success); background: rgba(154,230,160,.10); }
+.km-cell.is-one .km-v{ color: var(--color-success); }
+/* A selection in progress and an accepted group must not look the same —
+   one is a proposal, the other is a decision. */
+.km-cell.is-selected .km-btn{
+  border-color: var(--color-secondary);
+  background: rgba(127,209,255,.18);
+  box-shadow: 0 0 0 2px rgba(127,209,255,.35);
+}
+.km-cell.is-grouped .km-btn{
+  border-color: var(--color-primary);
+  background: rgba(255,215,110,.14);
+}
+
+.km-verdict{
+  margin-top: var(--sp-4);
+  border-left: 3px solid var(--color-border);
+  background: var(--color-surface-sunken);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+  min-height: 1.2em;
+}
+.km-verdict.is-success{ border-left-color: var(--color-success); background: rgba(154,230,160,.08); }
+.km-verdict.is-error{ border-left-color: var(--color-error); background: rgba(255,143,122,.08); }
+.km-v-en{ display: block; }
+.km-v-ne{ display: block; margin-top: var(--sp-2); }
+
+.km-result{
+  margin-top: var(--sp-3);
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border: 1.5px dashed var(--color-primary);
+  border-radius: var(--r-md);
+  background: rgba(255,215,110,.05);
+}
+/* Same cause as .km-m: this panel tints itself yellow over --panel, and
+   --color-text-subtle has no headroom above --panel. 4.02:1 -> 5.95:1. */
+.km-r-lab{ font-family: var(--mono); font-size: var(--fs-xs); letter-spacing: 1px;
+           text-transform: uppercase; color: var(--color-text-muted); }
+.km-r-lab .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+.km-expr{
+  font-family: var(--mono); font-size: var(--fs-lg); font-weight: 700;
+  color: var(--color-primary); overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce){ .km-btn{ transition: none; } }
+
+/* The caption belongs to the grid, so it is centred with it rather than
+   floating against the left edge of a much wider container. */
+.km-cap{ margin: 0 auto; }
+.km-grid{ margin-inline: auto; }
+
+/* ============================================================
+   UNIT 4 — COMBINATIONAL CIRCUIT WORKBENCH
+   Reuses the gate workbench's vocabulary (.gl-in, .gl-tt, .gl-say) so
+   a student who learned that interface already knows this one.
+   ============================================================ */
+.comblab{ font-size: var(--fs-sm); }
+.cb-main{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--sp-5);
+  align-items: start;
+}
+.cb-main > *{ min-width: 0; }
+
+.cb-io{
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: var(--sp-3);
+  align-items: start;
+  margin-top: var(--sp-3);
+}
+.cb-io > *{ min-width: 0; }
+.cb-col{ display: flex; flex-direction: column; gap: var(--sp-2); }
+.cb-h{
+  font-family: var(--mono); font-size: var(--fs-xs);
+  letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+.cb-h .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+.cb-arrow{ align-self: center; color: var(--color-text-subtle); font-size: 1.4rem; }
+
+/* An output is read, not pressed, so it is a panel rather than a button. */
+.cb-out{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--sp-1) var(--sp-3);
+  align-items: center;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  padding: var(--sp-2) var(--sp-3);
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.cb-out-n{ font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-text-muted);
+           letter-spacing: .6px; }
+.cb-out-v{
+  font-family: var(--mono); font-size: var(--fs-lg); font-weight: 700; line-height: 1;
+  color: var(--color-text-muted); text-align: center; min-width: 1.2em;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.cb-out-e{
+  grid-column: 1 / -1;
+  font-family: var(--mono); font-size: var(--fs-xs); color: var(--color-secondary);
+  overflow-wrap: anywhere;
+}
+.cb-out.on{ border-color: var(--color-success); background: rgba(154,230,160,.10); }
+.cb-out.on .cb-out-v{ color: var(--color-success); }
+
+@media (max-width: 760px){
+  .cb-main{ grid-template-columns: 1fr; }
+  .cb-io{ grid-template-columns: 1fr; }
+  .cb-arrow{ transform: rotate(90deg); justify-self: center; }
+}
+@media (prefers-reduced-motion: reduce){ .cb-out, .cb-out-v{ transition: none; } }
+
+/* ============================================================
+   UNIT 5 — 8085 INSTRUCTION CYCLE
+   ============================================================ */
+.cpu8085{ font-size: var(--fs-sm); }
+
+.cpu-h{
+  font-family: var(--mono); font-size: var(--fs-xs);
+  letter-spacing: 1.2px; text-transform: uppercase; color: var(--color-text-subtle);
+}
+.cpu-h .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+
+.cpu-prog{
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  padding: var(--sp-3) var(--sp-4);
+  margin-bottom: var(--sp-4);
+}
+.cpu-line{
+  display: grid; grid-template-columns: auto 1fr; gap: var(--sp-4);
+  font-family: var(--mono); font-size: var(--fs-sm);
+  padding: var(--sp-1) var(--sp-2);
+  border-radius: var(--r-sm);
+  color: var(--color-text-muted);
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.cpu-line:first-of-type{ margin-top: var(--sp-2); }
+.cpu-addr{ color: var(--color-text-subtle); }
+.cpu-line.is-active{ background: rgba(255,215,110,.14); color: var(--color-primary); }
+.cpu-line.is-active .cpu-addr{ color: var(--color-primary); }
+
+/* The four stages read as a sequence, so they are laid out as one. */
+.cpu-stages{
+  display: flex; flex-wrap: wrap; gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+.cpu-stage{
+  font-family: var(--mono); font-size: var(--fs-xs); font-weight: 700; letter-spacing: 1px;
+  color: var(--color-text-subtle);
+  border: 1.5px solid var(--color-border);
+  border-radius: 999px;
+  padding: var(--sp-2) var(--sp-4);
+  transition: color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.cpu-stage + .cpu-stage{ position: relative; }
+.cpu-stage.is-active{
+  color: #12241f;
+  background: linear-gradient(150deg, var(--color-primary), #e0a93f);
+  border-color: transparent;
+}
+
+.cpu-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--sp-3);
+}
+.cpu-cell{
+  display: flex; flex-direction: column; gap: 3px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  padding: var(--sp-3);
+  min-width: 0;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.cpu-n{ font-family: var(--sans); font-size: var(--fs-xs); color: var(--color-text-muted); }
+.cpu-n .np-cell{ display: block; }
+.cpu-sub{ font-size: var(--fs-xs); color: var(--color-text-subtle); }
+.cpu-v{
+  font-family: var(--mono); font-size: var(--fs-base); font-weight: 700;
+  color: var(--color-text); overflow-wrap: anywhere;
+}
+.cpu-bus .cpu-v{ color: var(--color-secondary); }
+
+/* "Active" here means this block is doing something in the current
+   stage — the thing the student is meant to be looking at. */
+.cpu-cell.is-active{
+  border-color: var(--color-primary);
+  background: rgba(255,215,110,.12);
+}
+.cpu-cell.is-active .cpu-v{ color: var(--color-primary); }
+
+.cpu-flagset{ display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: 2px; }
+.cpu-flagset span{
+  font-family: var(--mono); font-size: var(--fs-xs);
+  border: 1px solid var(--color-border); border-radius: var(--r-sm);
+  padding: 2px var(--sp-2); color: var(--color-text-subtle);
+}
+.cpu-flagset span.on{
+  border-color: var(--color-error); color: var(--color-error);
+  background: rgba(255,143,122,.10);
+}
+
+.cpu-progress{ font-family: var(--mono); font-size: var(--fs-xs);
+               color: var(--color-text-subtle); align-self: center; }
+.cpu-say{
+  margin-top: var(--sp-4);
+  border-left: 3px solid var(--color-primary);
+  background: rgba(255,215,110,.06);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+}
+.cpu-say-en{ display: block; }
+.cpu-say-ne{ display: block; margin-top: var(--sp-2); }
+
+@media (prefers-reduced-motion: reduce){
+  .cpu-cell, .cpu-stage, .cpu-line{ transition: none; }
+}
+
+/* ============================================================
+   DBMS — specialised educational visualizations
+
+   Phase 4. Same product language as every other lesson (tokens,
+   spacing, type scale, state colours); specialised only where the
+   subject needs a shape the rest of the product does not have — a
+   relation with a named degree and cardinality, an ER notation, a
+   query pipeline.
+
+   Loaded after digital.css so it shares that layer's state language,
+   and before language.css so a mode still wins over everything here.
+
+   THREE RULES THIS FILE KEEPS
+
+   1. Nothing below --fs-xs (12px). The design system says that is the
+      floor and Phase 3.1 spent a section enforcing it.
+   2. Every table scrolls inside its own container. A relation with six
+      columns must not push a 320px phone sideways.
+   3. Colour never carries meaning alone. A primary key is marked by a
+      badge that says PK, not by being gold.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. THE RELATION — Unit 3
+
+   The table is the subject's one idea, so it is drawn as an object
+   with edges rather than as loose rows: a student is meant to see a
+   bounded thing that has a degree and a cardinality.
+   ------------------------------------------------------------ */
+.dt-wrap{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 10px 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+}
+.dt{
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 0;                       /* beats the global table min-width */
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+}
+.dt-name{
+  caption-side: top;
+  text-align: left;
+  padding: 8px 10px 6px;
+  font-family: var(--sans);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  letter-spacing: .04em;
+}
+.dt th,
+.dt td{
+  border: 1px solid var(--color-border);
+  padding: 6px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+.dt th{
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: var(--fw-medium);
+  vertical-align: top;
+}
+.dt td{ color: var(--color-text-muted); }
+.dt tbody tr:nth-child(even) td{ background: rgba(255,255,255,.014); }
+
+/* NULL is a value to be read, not a blank cell. Showing it empty is
+   how "NULL means zero" gets learned. */
+.dt-null{
+  color: var(--color-text-subtle);
+  font-style: italic;
+  font-size: var(--fs-xs);
+}
+.dt-empty td{ text-align: center; color: var(--color-text-subtle); font-style: italic; }
+
+/* Key badges. The word does the work; the colour only reinforces it. */
+.dt-badge{
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 5px;
+  border-radius: var(--r-sm);
+  font-family: var(--sans);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  line-height: 1.5;
+  vertical-align: middle;
+}
+.dt-pk{ background: var(--color-primary); color: var(--color-background); }
+.dt-fk{ background: var(--color-secondary); color: var(--color-background); }
+.dt-type{
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-normal);
+  color: var(--color-text-subtle);
+}
+
+/* What a chosen term points at. The outline is what carries it — a
+   background tint alone disappears against a dark board for a student
+   with low vision. */
+.dt th.is-mark,
+.dt td.is-mark{
+  background: rgba(255, 215, 110, .13);
+  box-shadow: inset 0 0 0 2px var(--color-primary);
+  color: var(--color-text);
+}
+.dt tr.is-mark td{ background: rgba(255, 215, 110, .10); }
+.dt tr.is-mark td.is-mark{ background: rgba(255, 215, 110, .20); }
+
+/* Degree and cardinality, side by side and always visible, because the
+   whole difficulty is that they are two different numbers. */
+.dt-counts{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 6px 2px 0;
+  font-size: var(--fs-xs);
+  color: var(--color-text-subtle);
+}
+.dt-count b{
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  color: var(--color-primary);
+}
+/* In bilingual mode the two halves of this label sit in one line box,
+   so without this they render as "degreeस्तम्भ" — the same collision
+   Phase 3.1 fixed on the gate workbench title. Stacking them also
+   keeps the Devanagari on its own baseline, which it needs. */
+.dt-count .np-cell{ display: block; }
+
+.dt-terms{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.dt-term{ font-size: var(--fs-xs); }
+.dt-term[aria-pressed="true"]{
+  background: var(--color-primary);
+  color: var(--color-background);
+  border-color: var(--color-primary);
+}
+.dt-tables{ display: flex; flex-wrap: wrap; gap: 14px; }
+.dt-tables > .dt-wrap{ flex: 1 1 260px; margin: 0; }
+
+.dt-keys{
+  margin: 12px 0 0;
+  padding-left: 0;
+  list-style: none;
+  font-size: var(--fs-sm);
+}
+.dt-keys li{
+  margin: 6px 0;
+  padding-left: 4px;
+  color: var(--color-text-muted);
+  line-height: var(--lh-base);
+}
+.dt-say{
+  display: block;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-surface);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+  color: var(--color-text);
+  min-height: 1.2em;
+}
+.dt-say .np-cell{ display: block; margin-top: 4px; }
+
+/* ------------------------------------------------------------
+   2. ER NOTATION — Unit 2
+   ------------------------------------------------------------ */
+.er-picker{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.er-pick{ font-size: var(--fs-xs); }
+.er-pick code{
+  font-size: var(--fs-xs);
+  color: inherit;
+  background: none;
+  padding: 0;
+  margin-right: 4px;
+}
+.er-pick[aria-pressed="true"]{
+  background: var(--color-primary);
+  color: var(--color-background);
+  border-color: var(--color-primary);
+}
+
+.er-figure{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 0;
+}
+.er-svg{
+  display: block;
+  width: 100%;
+  min-width: 460px;                    /* below this the notation stops being readable */
+  height: auto;
+}
+.er-entity{
+  fill: var(--color-surface);
+  stroke: var(--color-secondary);
+  stroke-width: 2;
+}
+.er-rel{
+  fill: var(--color-surface);
+  stroke: var(--color-primary);
+  stroke-width: 2;
+}
+.er-attr{
+  fill: var(--color-surface);
+  stroke: var(--color-border-strong);
+  stroke-width: 1.5;
+}
+.er-entity.is-focus,
+.er-rel.is-focus,
+.er-attr.is-focus{
+  fill: rgba(255, 215, 110, .16);
+  stroke: var(--color-primary);
+  stroke-width: 3;
+}
+.er-line{ stroke: var(--color-border-strong); stroke-width: 1.5; }
+.er-name{
+  fill: var(--color-text);
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+.er-rel-name{ font-size: 12px; fill: var(--color-primary); }
+.er-attr-name{
+  fill: var(--color-text-muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  text-anchor: middle;
+}
+.er-key{ text-decoration: underline; }   /* the notation for a key attribute */
+.er-card{
+  fill: var(--color-primary);
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+/* The occurrences — the half a static ER diagram cannot show. */
+.er-occ{
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+}
+.er-occ-head{
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-bottom: 8px;
+}
+.er-occ-head .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+.er-occ-list{ margin: 0; padding: 0; list-style: none; }
+.er-occ-row{
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--color-border-soft);
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+}
+.er-occ-row:last-child{ border-bottom: 0; }
+.er-occ-l{
+  min-width: 62px;
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+.er-occ-arrow{ color: var(--color-text-subtle); }
+.er-occ-r{ color: var(--color-text-muted); }
+.er-occ-r b{ color: var(--color-text); font-weight: 600; }
+/* A row that fans out to several is the visible form of "many". */
+.er-occ-row.is-many .er-occ-arrow{ color: var(--color-primary); }
+.er-occ-note{
+  margin: 10px 0 0;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+  color: var(--color-text-muted);
+}
+.er-occ-note .np-cell{ display: block; margin-top: 4px; }
+
+.er-say{
+  display: block;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-surface);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+}
+.er-say .np-cell{ display: block; margin-top: 4px; }
+.er-shape{
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+.er-tables{
+  display: block;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+  color: var(--color-text-muted);
+}
+.er-tables-h,
+.er-junction-h{
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-bottom: 6px;
+}
+.er-tables-h .np-cell,
+.er-junction-h .np-cell,
+.er-tables .np-cell{ display: block; text-transform: none; letter-spacing: 0; margin-top: 4px; }
+.er-junction{ margin-top: 12px; }
+
+/* ------------------------------------------------------------
+   3. SQL SIMULATOR — Unit 4
+   ------------------------------------------------------------ */
+.sq-h{
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-bottom: 6px;
+}
+.sq-h .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+
+.sq-db{ margin-bottom: 14px; }
+.sq-db-tables{ display: flex; flex-wrap: wrap; gap: 14px; }
+.sq-db-tables > .dt-wrap{ flex: 1 1 240px; margin: 0; }
+.sq-gone{
+  flex: 1 1 240px;
+  padding: 14px;
+  border: 1px dashed var(--color-error);
+  border-radius: var(--r-md);
+  color: var(--color-error);
+  font-size: var(--fs-sm);
+}
+.sq-gone .np-cell{ display: block; margin-top: 4px; }
+
+.sq-examples{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.sq-eg{ font-size: var(--fs-xs); text-align: left; }
+
+.sq-editor{ margin-bottom: 10px; }
+.sq-lab{
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-bottom: 6px;
+}
+.sq-lab .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+.sq-input{
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  color: var(--color-text);
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  resize: vertical;
+}
+.sq-input:focus{
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-color: var(--color-primary);
+}
+.sq-scope{
+  margin: 6px 0 0;
+  font-size: var(--fs-xs);
+  color: var(--color-text-subtle);
+  line-height: var(--lh-base);
+}
+.sq-scope .np-cell{ display: block; margin-top: 3px; }
+
+/* THE PIPELINE — the actual lesson. Each stage is a step with the row
+   count it produced, so a student watches the number fall. */
+.sq-pipe{
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: sqstep;
+}
+.sq-step{
+  display: grid;
+  grid-template-columns: 76px 1fr auto;
+  gap: 4px 10px;
+  align-items: baseline;
+  padding: 8px 10px;
+  border-left: 3px solid var(--color-secondary);
+  background: var(--color-surface);
+  margin-bottom: 4px;
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+}
+.sq-step.is-warn{ border-left-color: var(--color-error); }
+.sq-stage{
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  color: var(--color-secondary);
+}
+.sq-step.is-warn .sq-stage{ color: var(--color-error); }
+.sq-step-say{ color: var(--color-text-muted); }
+.sq-step-say .np-cell{ display: block; margin-top: 3px; }
+.sq-count{
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+}
+
+.sq-result{ margin-top: 14px; }
+.sq-dropped{
+  padding: 12px;
+  border: 1px dashed var(--color-error);
+  border-radius: var(--r-md);
+  color: var(--color-error);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+}
+.sq-dropped .np-cell{ display: block; margin-top: 4px; }
+
+/* A refusal is teaching, so it is dressed as a note, not as a crash. */
+.sq-err{
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-warning);
+  border-left-width: 3px;
+  border-radius: var(--r-md);
+  background: var(--color-surface);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-base);
+  color: var(--color-text);
+}
+.sq-err-h{
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--color-warning);
+  margin-bottom: 6px;
+}
+.sq-err-h .np-cell{ display: block; text-transform: none; letter-spacing: 0; }
+.sq-err-ne{ display: block; margin-top: 5px; }
+
+/* ------------------------------------------------------------
+   4. NARROW SCREENS
+
+   At 320px a two-column grid is one column, and the pipeline step
+   stacks so the sentence keeps a readable measure.
+   ------------------------------------------------------------ */
+@media (max-width: 560px){
+  .sq-step{
+    grid-template-columns: 1fr auto;
+  }
+  .sq-stage{ grid-column: 1 / -1; }
+  .dt-tables > .dt-wrap,
+  .sq-db-tables > .dt-wrap{ flex: 1 1 100%; }
+  .er-occ-l{ min-width: 52px; }
+}
+
+/* ------------------------------------------------------------
+   5. REDUCED MOTION
+
+   The only transition here is the one that carries meaning — the
+   highlight moving as a student picks a term. A student who has asked
+   for less motion gets the same information instantly.
+   ------------------------------------------------------------ */
+.dt th, .dt td{
+  transition: background var(--dur-fast) var(--ease-standard),
+              box-shadow var(--dur-fast) var(--ease-standard);
+}
+.er-entity, .er-rel, .er-attr{
+  transition: fill var(--dur-base) var(--ease-standard),
+              stroke var(--dur-base) var(--ease-standard);
+}
+@media (prefers-reduced-motion: reduce){
+  .dt th, .dt td,
+  .er-entity, .er-rel, .er-attr{ transition: none; }
+}
+
+/* The announced line. Visible too — a sighted student benefits from the
+   same one-line outcome, and a summary nobody can see is a summary
+   nobody maintains. */
+.sq-summary{
+  margin: 12px 0 0;
+  padding: 8px 12px;
+  border-left: 3px solid var(--color-success);
+  background: var(--color-surface);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-base);
+  color: var(--color-text);
+}
+.sq-summary:empty{ display: none; }
+.sq-summary .np-cell{ display: block; margin-top: 3px; font-weight: var(--fw-normal); }
+
+/* ------------------------------------------------------------
+   6. DECISION DRILL — MOVED to learning-ux.css in Phase 5
+
+   Phase 4.5 made the drill subject-agnostic in JavaScript — it reads
+   data-subject and carries eight data sets, four of them OOP. Its
+   styling stayed here, so four OOP unit pages depended on the DBMS
+   stylesheet for a component that has nothing to do with DBMS. That is
+   what stopped the sheets from being splittable, and it would have been
+   a silent breakage the moment they were.
+
+   The rules now live with the other shared learning components.
+   ------------------------------------------------------------ */
+/* ------------------------------------------------------------
+   7. CONCURRENCY STEPPER — Unit 6.2
+   ------------------------------------------------------------ */
+.cc-modes{ display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.cc-mode .t-ne{ display: block; font-size: var(--fs-xs); }
+
+/* The three values, side by side. Seeing all three at once is the
+   entire lesson: two of them disagree with the third and nobody has
+   made a mistake. */
+.cc-state{ display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.cc-cell{
+  flex: 1 1 150px; padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-md);
+  background: var(--color-surface-sunken);
+  transition: border-color var(--dur-fast) var(--ease-standard),
+              background var(--dur-fast) var(--ease-standard);
+}
+.cc-cell.is-active{ border-color: var(--color-primary); background: var(--color-surface); }
+.cc-cell-db{ border-style: dashed; }
+.cc-cell-h{
+  display: block; font-size: var(--fs-xs);
+  color: var(--color-text-subtle); margin-bottom: 4px;
+}
+.cc-cell-h .np-cell{ display: block; }
+.cc-val{
+  display: block; font-family: var(--mono);
+  font-size: var(--fs-lg); font-weight: var(--fw-bold);
+  color: var(--color-primary);
+}
+.cc-cell-db .cc-val{ color: var(--color-text); }
+
+.cc-steps{ margin: 0 0 12px; padding: 0; list-style: none; }
+.cc-step{
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 5px 8px; border-radius: var(--r-sm);
+  font-family: var(--mono); font-size: var(--fs-sm);
+  color: var(--color-text-subtle);
+}
+.cc-step.is-done{ color: var(--color-text-muted); }
+.cc-step.is-now{ background: var(--color-surface); color: var(--color-text); }
+.cc-step.is-lost.is-done{ color: var(--color-error); }
+.cc-who{
+  min-width: 26px; font-weight: var(--fw-bold);
+  font-size: var(--fs-xs);
+}
+.cc-t1{ color: var(--color-secondary); }
+.cc-t2{ color: var(--color-primary); }
+.cc-progress{
+  font-family: var(--mono); font-size: var(--fs-xs);
+  color: var(--color-text-subtle); margin-left: auto; align-self: center;
+}
+.cc-say{
+  display: block; margin-top: 12px; padding: 10px 12px;
+  border-left: 3px solid var(--color-secondary);
+  background: var(--color-surface);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: var(--fs-sm); line-height: var(--lh-base);
+  min-height: 1.2em;
+}
+.cc-say .np-cell{ display: block; margin-top: 4px; }
+.cc-out{
+  margin-top: 12px; padding: 12px 14px;
+  border: 1px solid var(--color-border-strong);
+  border-left-width: 3px; border-radius: var(--r-md);
+  font-size: var(--fs-sm); line-height: var(--lh-base);
+}
+.cc-out.is-lost{ border-left-color: var(--color-error); }
+.cc-out.is-ok{ border-left-color: var(--color-success); }
+.cc-out .np-cell{ display: block; margin-top: 4px; }
+
+@media (prefers-reduced-motion: reduce){
+  .cc-cell{ transition: none; }
+}
+
+/* ============================================================
    LANGUAGE LAYER — Phase 3
 
    Three modes over one DOM. Both languages are always present; this

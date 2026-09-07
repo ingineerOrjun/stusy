@@ -476,10 +476,6 @@
 
 @media (prefers-reduced-motion: reduce){ .km-btn{ transition: none; } }
 
-/* A control label that carries a Nepali gloss must break, or the two
-   languages run together as one sentence. */
-.sim-controls-label .np-cell{ display: block; margin-top: 3px; text-transform: none; letter-spacing: 0; }
-
 /* The caption belongs to the grid, so it is centred with it rather than
    floating against the left edge of a much wider container. */
 .km-cap{ margin: 0 auto; }

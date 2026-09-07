@@ -12,7 +12,7 @@ const { createEnvironment } = require('./helpers/dom.js');
 const ROOT = path.resolve(__dirname, '..');
 const SRC = path.join(ROOT, '_source');
 const MOTION = path.join(SRC, 'runtime/services/motion.js');
-const css = fs.readFileSync(path.join(ROOT, 'assets/css/style.css'), 'utf8');
+const css = fs.readFileSync(path.join(ROOT, 'assets/css/style-all.css'), 'utf8');
 const diagrams = require(path.join(SRC, 'diagrams.js'));
 
 /* Load MotionService with a controlled prefers-reduced-motion answer. */
