@@ -153,7 +153,7 @@
 
     /* ---- what to do next ---- */
     if (recs.length){
-      h += '<h3 class="rv-h">' + pair({ en: 'Start here', ne: 'यहाँबाट सुरु गर्नुहोस्' }) + '</h3>';
+      h += '<h2 class="rv-h">' + pair({ en: 'Start here', ne: 'यहाँबाट सुरु गर्नुहोस्' }) + '</h2>';
       h += '<ul class="rv-recs">';
       recs.slice(0, 3).forEach(function (r){ h += recRow(r, here); });
       h += '</ul>';
@@ -166,7 +166,7 @@
     }
 
     /* ---- every unit ---- */
-    h += '<h3 class="rv-h">' + pair({ en: 'Every unit', ne: 'सबै युनिट' }) + '</h3>';
+    h += '<h2 class="rv-h">' + pair({ en: 'Every unit', ne: 'सबै युनिट' }) + '</h2>';
     h += '<ul class="rv-units">';
     rep.units.forEach(function (u){ h += unitRow(u, here, true); });
     h += '</ul>';

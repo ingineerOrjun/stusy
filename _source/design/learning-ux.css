@@ -64,9 +64,15 @@ html, body{ overflow-x: clip; }
 @media (pointer: coarse){
   button, .opt, .btn-ans, .nav a, .pager a, .mobilepanel a,
   .dropmenu a, .hamburger, [data-answer], .crumb a, .brand,
-  .predict-opt, .sim-controls button{
+  .predict-opt, .sim-controls button,
+  /* Phase 7. .rv-act measured 43px at 320px — one pixel under the floor,
+     which is exactly the kind of miss a hand-maintained selector list
+     accumulates. The links are here too: a revision action and a
+     prerequisite are the two things a struggling student taps most. */
+  .rv-act, .prereq-link, .rv-unit-link{
     min-height: var(--touch-min);
   }
+  .rv-act, .prereq-link, .rv-unit-link{ display: inline-flex; align-items: center; }
   /* breadcrumb links are small text; give them tappable padding rather than
      inflating the type, so the crumb still reads as a trail */
   .crumb a{ display: inline-flex; align-items: center; padding: 0 var(--sp-1); }
