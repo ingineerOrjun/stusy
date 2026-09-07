@@ -234,6 +234,15 @@ T3  REDO   it has a COMMIT record</div>
     <p><b>Question:</b> a school database changes a little every day. A full backup takes 2 hours;
     each day's changes take 10 minutes to copy. Compare an incremental and a differential schedule
     for a Sunday-to-Saturday week, and say which restores faster after a Saturday failure.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Both schedules cost the same to take. Decide which
+      one <b>restores</b> faster after a Saturday failure, and count how many files each
+      restore has to read — that count is the answer.</span>
+      <span class="np-cell">दुवै schedule लिन उही समय लाग्छ। शनिबार बिग्रिएपछि कुनले छिटो
+      <b>पुनर्स्थापना</b> गर्छ भन्ने निर्णय गर्नुहोस्, र हरेकले कति फाइल पढ्नुपर्छ गन्नुहोस् —
+      त्यही गन्ती नै उत्तर हो।</span></p>
+    </div>
+
     <div class="wex-out">
       <span class="wex-lbl">Working — incremental</span>
       <div class="out">Sun   FULL           2 hrs

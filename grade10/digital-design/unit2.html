@@ -287,6 +287,14 @@
   <div class="wex">
     <div class="wex-h"><span class="wex-n">Example 1</span> Filling a truth table you have not memorised</div>
     <p><b>Question:</b> complete the truth table of a NOR gate.</p>
+
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Before you read the steps: a NOR gate has four rows.
+      Exactly one of them outputs 1 — which one, and why that one?</span>
+      <span class="np-cell" lang="ne">चरणहरू पढ्नुअघि: NOR गेटका चार पङ्क्ति हुन्छन्।
+      ठ्याक्कै एउटाले मात्र १ दिन्छ — कुन, र किन त्यही?</span></p>
+    </div>
+
     <p><b>Step 1 — write the rows.</b> Two inputs, so 2² = 4 rows. Count up in binary:
     00, 01, 10, 11. Now no row can be missed.</p>
     <p><b>Step 2 — do the easy gate first.</b> NOR is OR then NOT, so find OR:
@@ -520,6 +528,15 @@
   <div class="wex">
     <div class="wex-h"><span class="wex-n">Example 2</span> Proving the second theorem by truth table</div>
     <p><b>Question:</b> prove that <code>(A + B)' = A' · B'</code>.</p>
+
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">A truth-table proof is finished when two columns
+      match on every row. Name the two columns you are going to compare — that
+      is the whole plan of the proof.</span>
+      <span class="np-cell" lang="ne">Truth table को प्रमाण तब पूरा हुन्छ जब दुई स्तम्भ हरेक पङ्क्तिमा
+      मिल्छन्। तपाईं कुन दुई स्तम्भ मिलाउँदै हुनुहुन्छ — त्यही नै प्रमाणको पूरा योजना हो।</span></p>
+    </div>
+
     <p><b>Step 1 — build the columns you need:</b> A, B, A + B, (A + B)', A', B', A' · B'.</p>
     <p><b>Step 2 — fill them row by row.</b></p>
     <div class="wex-out">
@@ -680,6 +697,7 @@
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/services/progress.js"></script>
 <script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
 <script src="../../assets/js/services/simulation.js"></script>
 <script src="../../assets/js/predict.js"></script>
 <script src="../../assets/js/sim-gates.js"></script>

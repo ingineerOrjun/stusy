@@ -802,8 +802,15 @@ ${sectionHtml(subject.hero)}
          and a page that loaded the gate without somewhere to put the
          grade would silently drop it. retrieval.js degrades rather than
          throwing, which is exactly why the ordering has to be stated
-         here rather than left to chance. */
-      js: ['services/motion.js', 'code.js', 'services/progress.js', 'retrieval.js'].concat(p.js)
+         here rather than left to chance.
+
+         wexthink.js has no such dependency — it records nothing — but it
+         ships on every unit page for the same reason retrieval.js does:
+         all 18 units carry at least one gated worked example, and a
+         per-page list would be one more thing to forget when an author
+         adds the nineteenth. */
+      js: ['services/motion.js', 'code.js', 'services/progress.js',
+           'retrieval.js', 'wexthink.js'].concat(p.js)
     }));
   });
 });

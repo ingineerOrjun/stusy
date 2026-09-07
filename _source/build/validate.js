@@ -637,6 +637,124 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
     }
   })();
 
+  /* ---------- 4c-bis. the worked-example think gate ----------
+     The gate is a marker the author inserts, and a marker is the kind of
+     thing that survives a bad edit while meaning nothing. Three ways it
+     can be silently broken, all of them invisible on the page because
+     the runtime simply declines to build a gate it cannot understand:
+
+       1. a .wex-gate with nothing after it inside its .wex — the marker
+          is at the end, so there is no working to hide and the student
+          gets a prompt, a scratch box, and a button that reveals empty
+          space;
+       2. a prompt with no Nepali — the students most likely to skip
+          straight to the answer are the ones reading in Nepali, and an
+          English-only prompt is a gate that only gates half the audience;
+       3. a .wex-gate that is not inside a .wex at all — a copy-paste
+          landing, which the runtime ignores entirely.
+
+     None of these throws. All three look fine in source. That is what
+     makes them worth a build gate rather than a review pass. */
+  (function checkThinkGates(){
+    const fs2 = require('fs');
+    const path2 = require('path');
+    const dir = path2.join(ctx.SRC, 'content', 'lessons');
+    if (!fs2.existsSync(dir)) return;
+
+    /* balanced-depth extraction: a .wex contains nested divs, so a
+       non-greedy match to the first </div> would cut it off at the
+       header and every check below would pass on a fragment. */
+    function blocks(h, cls){
+      const open = '<div class="' + cls + '"';
+      const out = [];
+      let i = 0;
+      while ((i = h.indexOf(open, i)) >= 0){
+        let d = 0, j = i;
+        for (;;){
+          const o = h.indexOf('<div', j), c = h.indexOf('</div>', j);
+          if (c < 0) break;
+          if (o >= 0 && o < c){ d++; j = o + 4; }
+          else { d--; j = c + 6; if (d === 0) break; }
+        }
+        out.push(h.slice(i, j));
+        i = j;
+      }
+      return out;
+    }
+
+    let gated = 0, total = 0;
+    for (const file of fs2.readdirSync(dir).filter(f => f.endsWith('.html'))){
+      const html = fs2.readFileSync(path2.join(dir, file), 'utf8');
+      const where = 'content/lessons/' + file;
+
+      const examples = blocks(html, 'wex');
+      total += examples.length;
+
+      /* (3) every marker in the file has to be accounted for by one of
+         the examples, or it is sitting somewhere the runtime never looks */
+      const markersInFile = (html.match(/<div class="wex-gate">/g) || []).length;
+      let markersInExamples = 0;
+
+      for (const ex of examples){
+        const at = ex.indexOf('<div class="wex-gate">');
+        if (at < 0) continue;
+        markersInExamples++;
+        gated++;
+
+        const gate = blocks(ex.slice(at), 'wex-gate')[0] || '';
+        const after = ex.slice(at + gate.length).replace(/<\/div>\s*$/, '').trim();
+
+        if (!after){
+          E(where, 'a worked example has a think gate with no working after it. ' +
+            'The student would be asked to commit, and then shown nothing.');
+        }
+        if (!/class="wex-think"/.test(gate)){
+          E(where, 'a think gate has no <p class="wex-think"> prompt — ' +
+            'the gate would ask the student to think without saying what about');
+        }
+        if (!/[ऀ-ॿ]/.test(gate)){
+          E(where, 'a think gate prompt has no Nepali. A gate that only speaks ' +
+            'English gates only half the students it was built for.');
+        }
+      }
+
+      if (markersInFile !== markersInExamples){
+        E(where, (markersInFile - markersInExamples) + ' .wex-gate marker(s) sit outside ' +
+          'any .wex block. The runtime only looks inside worked examples, so these ' +
+          'do nothing at all and nothing on the page says so.');
+      }
+    }
+
+    /* Worked examples are referred to by number — in the unit's own
+       prose, in the practice banks, and by a teacher saying "look at
+       Example 3". db-u6 shipped two examples both called Example 1,
+       which makes that reference ambiguous and is completely invisible
+       unless the two happen to be read together. */
+    for (const file of fs2.readdirSync(dir).filter(f => f.endsWith('.html'))){
+      const html = fs2.readFileSync(path2.join(dir, file), 'utf8');
+      const seen = new Set(), dupes = new Set();
+      for (const m of html.matchAll(/<span class="wex-n">Example (\d+)<\/span>/g)){
+        if (seen.has(m[1])) dupes.add(m[1]); else seen.add(m[1]);
+      }
+      if (dupes.size){
+        E('content/lessons/' + file,
+          'two worked examples share the number ' + [...dupes].join(', ') +
+          '. "See Example ' + [...dupes][0] + '" now points at two different things.');
+      }
+    }
+
+    /* The other half of the contract, and the one that matters most.
+       Phase 8.1 measured 0 of 50 examples gating anything; the point of
+       the work was to change that deliberately, per example, and the
+       point of this line is that it cannot silently slide back to 0. */
+    if (total && !gated){
+      E('content/lessons',
+        'not one of the ' + total + ' worked examples asks the student to commit ' +
+        'before the solution appears. That was the state this component was built ' +
+        'to fix, and nothing else in the build would notice the return to it.');
+    }
+  })();
+
   /* ---------- 4d. the prerequisite graph ----------
      A prerequisite that points at a unit which does not exist renders as
      a dead link on the page a struggling student was sent to, which is

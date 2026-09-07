@@ -455,6 +455,15 @@ int main() {
     c.own();        // its own
     return 0;
 }</pre>
+
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">One child, two parents. Decide which line comes from
+      which class before opening this — and whether the printing order is the order the
+      bases were inherited in, or the order the calls were written in.</span>
+      <span class="np-cell" lang="ne">एउटा child, दुई parent। खोल्नुअघि कुन लाइन कुन class बाट आउँछ निर्णय
+      गर्नुहोस् — र छापिने क्रम base inherit गरेको क्रम हो कि call लेखिएको क्रम हो?</span></p>
+    </div>
+
     <div class="wex-out">
       <span class="wex-lbl">Output</span>
       <pre class="out">Tall from father
@@ -678,6 +687,16 @@ int main() {
     B obj;          // only ONE object is created
     return 0;
 }</pre>
+
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">This is the promise in the title — so keep it. One
+      object, four lines of output. Write all four down in order before opening this.
+      The destructor order is not the constructor order, and that is the exam question.</span>
+      <span class="np-cell" lang="ne">शीर्षकमा गरिएको वाचा यही हो — त्यसैले पूरा गर्नुहोस्। एउटै object,
+      चार लाइन output। खोल्नुअघि चारै लाइन क्रम मिलाएर लेख्नुहोस्। destructor को क्रम
+      constructor को क्रम होइन, र परीक्षाको प्रश्न त्यही हो।</span></p>
+    </div>
+
     <div class="wex-out">
       <span class="wex-lbl">Output</span>
       <pre class="out">A constructor
@@ -791,6 +810,7 @@ A destructor</pre>
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/services/progress.js"></script>
 <script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
 <script src="../../assets/js/snippets.js"></script>
 <script src="../../assets/js/services/simulation.js"></script>
 <script src="../../assets/js/predict.js"></script>

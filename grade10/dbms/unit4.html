@@ -271,6 +271,15 @@ FROM Student
 WHERE marks &gt; 60 AND class_id = 10
 ORDER BY marks DESC;</div>
     </div>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Four students, and the query is on screen. Write down
+      exactly which names come back, in the order they come back. The database does not
+      read this query top to bottom, and the ORDER BY is what gives that away.</span>
+      <span class="np-cell" lang="ne">चार विद्यार्थी छन्, query सामुन्ने छ। कुन-कुन नाम, कुन क्रममा फर्किन्छन्
+      ठ्याक्कै लेख्नुहोस्। डाटाबेसले यो query माथिबाट तलसम्म पढ्दैन, र ORDER BY ले नै
+      त्यो देखाउँछ।</span></p>
+    </div>
+
     <p><b>Step 1 — FROM.</b> Start with all 4 rows of Student.</p>
     <p><b>Step 2 — WHERE.</b> Test each row against <code>marks &gt; 60 AND class_id = 10</code>.
     Both halves must hold, because AND narrows:</p>
@@ -486,6 +495,15 @@ Ram    78</div>
     <div class="wex-h"><span class="wex-n">Example 3</span> Which join produced this result?</div>
     <p><b>Question:</b> a query on Student and Class returned four rows, and one of them had
     <code>NULL</code> in the room column. Which join was used, and why?</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Four joins are possible and only one fits. Name it
+      before you open this, then check whether your reason was the NULL's <b>position</b>
+      or only its presence — the position is what decides it.</span>
+      <span class="np-cell" lang="ne">चार वटा join सम्भव छन्, मिल्ने एउटै हो। खोल्नुअघि नाम भन्नुहोस्,
+      अनि जाँच्नुहोस् — तपाईंको कारण NULL को <b lang="ne">ठाउँ</b> थियो कि खाली NULL भएकै?
+      निर्णय गर्ने ठाउँले हो।</span></p>
+    </div>
+
     <p><b>Reasoning.</b> A NULL on the <i>right</i>-hand column means a left row survived with no
     partner. An inner join would have dropped it, so it is not inner. A right join keeps
     unmatched <i>right</i> rows, which would put the NULL on the left instead. A full outer join
@@ -770,6 +788,7 @@ DROP TABLE Student;</div>
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/services/progress.js"></script>
 <script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
 <script src="../../assets/js/services/simulation.js"></script>
 <script src="../../assets/js/predict.js"></script>
 <script src="../../assets/js/sql-engine.js"></script>

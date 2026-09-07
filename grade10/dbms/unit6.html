@@ -172,6 +172,14 @@ T2: balance = 5000 − 2000  (3000)
 T1: write balance          (4000)
 T2: write balance          (3000)</div>
     </div>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">The whole schedule is above. Work out the balance
+      the database is left holding, and the balance it should have held — the gap between
+      those two numbers is the name of the problem.</span>
+      <span class="np-cell" lang="ne">पूरा schedule माथि छ। डाटाबेसमा अन्तमा बाँकी रहने रकम, र रहनुपर्ने
+      रकम निकाल्नुहोस् — ती दुई सङ्ख्याको फरक नै समस्याको नाम हो।</span></p>
+    </div>
+
     <p><b>Step 1 — find where the two reads happen.</b> Both read before either writes, so both
     are working from 5000.</p>
     <p><b>Step 2 — find the last write.</b> T2 writes last, so T2's value survives and T1's is
@@ -339,7 +347,7 @@ Prevented by    locking — T2 must wait until
   </div>
 
   <div class="wex">
-    <div class="wex-h"><span class="wex-n">Example 1</span> Tracing a transfer through the states</div>
+    <div class="wex-h"><span class="wex-n">Example 2</span> Tracing a transfer through the states</div>
     <p><b>Question:</b> Ram has 5000 and Sita has 2000. A transaction transfers 1000 from Ram to
     Sita, but the system crashes immediately after the first update. Trace the states and state
     the final balances.</p>
@@ -512,6 +520,7 @@ Final states: COMMITTED and ABORTED.</div>
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/services/progress.js"></script>
 <script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
 <script src="../../assets/js/services/simulation.js"></script>
 <script src="../../assets/js/predict.js"></script>
 <script src="../../assets/js/sim-concurrency.js"></script>

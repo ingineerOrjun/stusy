@@ -355,3 +355,135 @@ the entity now, with entities stripped before looking for letters so
 *Phase 8 complete. 354 tests across three consecutive runs, 0 failures, build
 reproduced from a wiped assets directory, no regressions. Programming in C not
 started. Not deployed.*
+
+---
+---
+
+# Phase 8.1 — completion report
+
+The second Phase 8 brief. Appended rather than merged, so the report of
+the first one still stands as written.
+
+---
+
+## What was built
+
+**One component, 26 content gates, two build rules, four content fixes.**
+
+| | |
+|---|---|
+| `_source/runtime/wexthink.js` | new, 7.6 KB — the worked-example think gate |
+| `_source/design/learning-ux.css` | +38 lines |
+| `_source/runtime/services/strings.js` | +3 keys, both languages |
+| `_source/build/validate.js` | 2 new rule groups |
+| `_source/build/index.js`, `context.js` | registration |
+| 18 lesson files | 26 gates, 4 defect fixes |
+| `tests/wexthink.test.js` | new, 11 tests |
+| **Totals** | 56 files, +1198 / −12 |
+
+---
+
+## The measurement this phase turned on
+
+```
+BEFORE            AFTER
+worked examples          50                50
+  gated                   0        →       26
+  says "predict",
+  hides nothing           2        →        0
+  open on purpose        48        →       24
+```
+
+**0 of 50** was the finding. Not "too few" — none. Every worked example
+in the product showed its solution beside its question, including two
+whose own wording told the student to predict first.
+
+That measurement was taken twice, because the first attempt reported
+3 of 50: it was matching the word "predict" in prose rather than any
+mechanism. The correct number was lower and the finding was stronger.
+
+---
+
+## Verified
+
+Each of these was run, not reasoned about.
+
+| Claim | How |
+|---|---|
+| 365 tests pass | `npm test`, 365 / 365 |
+| The 11 new tests can fail | the component was broken **four** ways — hide by class instead of `hidden`; read the child list while mutating it; drop the already-gated guard; accept a gate with no working — and the suite failed 2, 3, 1 and 1 tests respectively |
+| The build rejects a gate with no Nepali | the Nepali was stripped from one prompt; the build failed with that message and wrote no pages |
+| The build rejects duplicate example numbers | `db-u6`'s duplicate was reintroduced; the build failed and named it |
+| The build is deterministic | built twice, 40 files, identical hashes |
+| The gate works in a browser | Chrome, page served: 2 gates on `dd-u5`, both hidden at load, `aria-expanded="false"`, `aria-controls` resolving to the box it controls |
+| **The solution is out of the rendered tree while gated** | a phrase unique to the gated block is absent from `document.body.innerText` while closed, present after the control is pressed, absent again after it is closed. `display: none`, `offsetParent === null` |
+| It works in all three language modes | driven through the product's own language control: English "Show the working"; Nepali "काम गरेको देखाउनुहोस्" **carrying `lang="ne"`**; bilingual showing both halves of the prompt with the Nepali half tagged |
+| It works across subjects | verified on `dd-u5` (Digital Design) and `u5` (DS & OOP) |
+| Nothing regressed | the full suite, plus a clean rebuild of every page |
+
+The Nepali label carrying `lang="ne"` is worth naming: that is the exact
+defect class Phase 8 found in 12 places, and it does not recur here
+because `UIStrings.write()` fixed it centrally rather than per component.
+
+---
+
+## NOT VERIFIED
+
+Unchanged from every previous phase, and still true:
+
+- **What a screen reader actually says.** Narrator has no transcript API
+  and NVDA is not installed. What is verified above is that the gated
+  solution is absent from the rendered tree — which is what a screen
+  reader reads from — **not** that anyone heard it read correctly.
+- **Heading hierarchy at the platform level.** The .NET UIA wrapper does
+  not expose `AriaRole` or `Level`.
+- **`file://` operation.** Still measured over `http://localhost`.
+- **WCAG 2.1 AA is not claimed**, here or anywhere in this product.
+
+One further limitation specific to this phase: the Browser pane returned
+**blank screenshots** of a page whose DOM was demonstrably present and
+positioned — `elementFromPoint` at the viewport centre returned the gate
+itself. The visual appearance of the gate was therefore checked through
+the DOM and computed styles, **not by looking at it**. It is styled from
+existing tokens and reuses `.rt-*`, so it cannot be far off, but nobody
+has seen it.
+
+---
+
+## A tool phantom, caught before it reached this document
+
+The diagram classifier's first run reported `baseTable` as authored but
+never embedded. It is embedded, in `dd-u1` at line 59. The scanner
+captured a 400-character context window *inside* its own regex match,
+which advances the pattern past any second diagram falling in that
+window.
+
+Recorded because it is the eighth of its kind across these phases and
+the pattern is always the same: **the tool was wrong, and the tool was
+mine.** The fix is in the scratch script — match the token alone, then
+slice the window separately.
+
+---
+
+## What this phase deliberately did not do
+
+- **No animation was added.** Every concept on the brief's candidate list
+  is already covered by the 11 existing animated diagrams. Adding a
+  twelfth would have raised a number.
+- **No worked examples were added.** 50 before, 50 after. What changed is
+  what half of them ask of the student.
+- **No prose was padded**, and no prediction blocks were added to reach a
+  count.
+- **Programming in C was not started.**
+
+## What is left, in priority order
+
+1. **db-u3** — 10 hrs, 8 marks, zero diagrams and zero tables, in the
+   unit about tables. The clearest single gap in the product.
+2. **u1** — 20 hrs, 15 marks, the largest unit, with no drill and no
+   faded practice.
+3. **db-u4** — 14 hrs, 11 marks, no drill and no faded practice.
+4. **db-u5** — no diagram, on a topic (decomposition) that is inherently
+   visual.
+5. Prediction density on the heavy units — currently exactly one block
+   per unit whatever the unit weighs.

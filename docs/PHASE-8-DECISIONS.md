@@ -170,3 +170,148 @@ sheets, classification charts, comparison tables — which the same step says
 to leave alone, because a student revising from a screenshot needs them still.
 
 **Adding animation here would have increased a count and taught nothing.**
+
+---
+---
+
+# Phase 8.1 — decisions
+
+Decisions taken under the second Phase 8 brief. Appended, not merged:
+the decisions above still describe why the first Phase 8 looks as it
+does.
+
+---
+
+## D9 · The think gate is authored per example, never automatic
+
+**Decision.** A worked example is gated only when an author inserts a
+`.wex-gate` marker into it. 26 of the 50 carry one; 24 do not.
+
+**Why not all 50.** The one-line implementation hides every solution and
+would have been wrong in exactly the way the brief warns about. Half the
+worked examples in this product exist to show a **form** — `class Box
+{ … };`, the syntax of an inheritance list, how a K-map is drawn. A
+student who has never seen that form cannot predict it. Hiding it adds a
+click between them and the thing they opened the page for, and calls the
+click pedagogy.
+
+**The rule that decided each one.** Gate where the student can produce a
+**determinate answer** from what is already on screen. Leave open where
+it is the first demonstration of a notation, a syntax, or a procedure.
+
+**Consequence.** The split is a content judgement, and it is visible: 26
+markers, greppable, each one reviewable on its own. It is not derivable
+from a rule, and it should not be.
+
+---
+
+## D10 · An explicit marker, because inference was measurably unsafe
+
+**Decision.** The runtime splits an example at a `.wex-gate` element.
+
+**The alternative, tried and rejected.** Infer the split — everything
+after the paragraph beginning `<b>Question:</b>` is the working. It
+reads well and it does not work: **only 24 of the 50 examples use that
+convention.** An inference rule would have been right about half the
+time and silently wrong about the rest, and "silently wrong" here means
+a student is shown the answer to a question they were told to attempt.
+
+**What the marker buys.** It is greppable, it is countable, the build
+validates it, and it cannot drift as content is edited around it.
+
+---
+
+## D11 · The working is `hidden`, not styled out of sight
+
+**Decision.** The gated working is hidden with the `hidden` property,
+and the CSS rule is `.wex-work[hidden]{ display:none }`.
+
+**Why this is the whole point.** `opacity:0`, `visibility:hidden`,
+`height:0` and a `.is-closed` class all look identical in a screenshot,
+and three of them leave the solution **in the accessibility tree**. A
+student using Narrator would be read the answer that the sighted student
+beside them cannot see — a gate that gates only the people who do not
+need it.
+
+**Verified, not assumed.** In Chrome, with the page served: the gated
+block reports `display: none`, `offsetParent === null`, and a phrase
+unique to it is absent from `document.body.innerText` while closed,
+present after the control is pressed, and absent again after it is
+closed. A test asserts `hidden === true` and fails when the component is
+changed to hide by class — this was confirmed by making that change.
+
+---
+
+## D12 · It reuses `.rt-*` rather than growing a second set of styles
+
+**Decision.** The scratch box uses `rt-attempt`, `rt-label` and
+`rt-input` — the classes `retrieval.js` introduced.
+
+**Why.** Those names describe the **act** — attempting before looking —
+not the component that first needed it. To a student the two gates are
+the same act, so they should not be able to drift apart visually. This
+is the brief's "do not duplicate existing components" applied to CSS,
+and it is why the gate arrived with 30 lines of new style rather than 80.
+
+---
+
+## D13 · "Show the working", not "Show the answer"
+
+**Decision.** The gate's label names the method, not the result.
+
+**Why.** What is behind the gate is how the answer was reached, and that
+is what the marks are for. A student who has already worked the answer
+out still has a reason to open it — to check their route rather than
+their result. "Show the answer" tells them there is nothing left to do.
+
+---
+
+## D14 · Four content defects were fixed, not worked around
+
+**Decision.** `u2`'s "eight tokens" (it enumerates seven), `u6`'s code
+comment that gives away the trick its own title advertises, `db-u6`'s two
+Example 1s, and `dd-u5`'s merged question-and-answer block were all
+corrected in the content.
+
+**Why it is worth recording.** Three of the four were only visible
+*because* of the gating pass. Gating `u6` Example 3 was pointless while
+the code comment said `// prints "Base show"  <-- surprising!`; gating
+`dd-u5` Example 1 was impossible while the instructions and their
+answers shared one block. **Adding the mechanism is what exposed the
+content that contradicted it.**
+
+The `db-u6` duplicate numbering was found by a scan, and a build rule now
+enforces uniqueness — confirmed to fail by reintroducing the duplicate.
+
+---
+
+## D15 · The build gate includes the one rule that protects the intent
+
+**Decision.** `validate.js` fails the build if **no** worked example
+gates anything, alongside the per-gate rules (a gate with no working
+after it, a prompt with no Nepali, a marker outside any example).
+
+**Why that rule and not a threshold.** A number would be a quota, and
+this phase has argued twice that quotas produce content nobody needed.
+What is worth protecting is not "26" — it is that the measured starting
+state, **0 of 50**, cannot silently return. Every one of these four
+failures is invisible in source and silent at runtime: the component
+simply declines to build a gate it cannot understand, and the page looks
+finished.
+
+---
+
+## D16 · Three P0 units were named and left unbuilt
+
+**Decision.** `u1`, `db-u3` and `db-u4` are recorded as P0 and no
+practice was written for them in this phase.
+
+**Why not start them.** Each is a content build the size of the three
+faded-practice skills that were the *whole* of the first Phase 8. Begun
+at the end of this one they would have been left half-finished, and half
+a practice sequence is worse than none — a student meets a fade that
+stops before it withdraws the help.
+
+**Why they are named anyway.** An audit that only reports what was fixed
+is a progress report. The matrix exists so the next phase starts from a
+measurement instead of a fresh guess.

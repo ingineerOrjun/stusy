@@ -66,6 +66,16 @@
     partly:             { en: 'Partly',   ne: 'आंशिक' },
     notYet:             { en: 'Not yet',  ne: 'अझै आएन' },
 
+    /* THE WORKED-EXAMPLE THINK GATE.
+       "Show the working" and not "Show the answer": what is behind this
+       gate is the method, and the method is what the marks are for. A
+       student who has already worked the answer out still has a reason
+       to open it — to check their route, not just their result. */
+    showWorking:  { en: 'Show the working', ne: 'काम गरेको देखाउनुहोस्' },
+    hideWorking:  { en: 'Hide the working', ne: 'काम गरेको लुकाउनुहोस्' },
+    thinkAttempt: { en: 'Jot your answer down first — it is not saved',
+                    ne: 'पहिले आफ्नो जवाफ लेख्नुहोस् — यो सुरक्षित गरिँदैन' },
+
     /* GUIDED PRACTICE — the level is named in words, so a student knows
        help is being withdrawn on purpose rather than wondering where it
        went. */

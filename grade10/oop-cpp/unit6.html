@@ -264,6 +264,15 @@ int main() {
     s.area(2.0f);       // matches version 3
     return 0;
 }</pre>
+
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">The comments tell you which version each call
+      matches. They do not tell you the numbers. Work out all three results before
+      opening this — the third one is a circle, not a square.</span>
+      <span class="np-cell" lang="ne">कुन call ले कुन version मिलाउँछ भन्ने comment ले भन्छ। सङ्ख्या भन्दैन।
+      खोल्नुअघि तीनै नतिजा निकाल्नुहोस् — तेस्रो चाहिँ वृत्त हो, वर्ग होइन।</span></p>
+    </div>
+
     <div class="wex-out">
       <span class="wex-lbl">Output</span>
       <pre class="out">Square area = 25
@@ -456,9 +465,21 @@ public:
 int main() {
     Base *p;  Derived d;
     p = &amp;d;
-    p-&gt;show();        // prints "Base show"  &lt;-- surprising!
+    p-&gt;show();        // a Base pointer, holding a Derived object
     return 0;
 }</pre>
+
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">A <code>Base</code> pointer is holding a
+      <code>Derived</code> object, and <code>show()</code> is not virtual. Commit to one
+      line of output. Most people answer with the type of the <b>object</b>; without
+      <code>virtual</code>, C++ answers with the type of the <b>pointer</b>.</span>
+      <span class="np-cell" lang="ne"><code>Base</code> pointer ले <code>Derived</code> object समातेको छ,
+      र <code>show()</code> virtual छैन। एउटै लाइन output भन्नुहोस्। धेरैले
+      <b>object</b> को प्रकार भन्छन्; <code>virtual</code> नभए C++ ले <b>pointer</b> को
+      प्रकार भन्छ।</span></p>
+    </div>
+
     <div class="wex-out">
       <span class="wex-lbl">Output without virtual</span>
       <pre class="out">Base show</pre>
@@ -711,6 +732,7 @@ int main() {
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/services/progress.js"></script>
 <script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
 <script src="../../assets/js/snippets.js"></script>
 <script src="../../assets/js/services/simulation.js"></script>
 <script src="../../assets/js/predict.js"></script>

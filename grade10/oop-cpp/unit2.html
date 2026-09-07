@@ -362,13 +362,22 @@
   <div class="wex">
     <div class="wex-h"><span class="wex-n">Example 1</span> Find the tokens in one line of code</div>
     <pre class="cpp" data-nonum>int sum = a + 25;</pre>
-    <p class="wex-note"><span class="t-en">This single line contains <b>eight tokens</b>:
+
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Count the tokens in that line and write your number
+      down before opening this. Almost everyone who gets it wrong forgets the same
+      one — and it is the character at the very end.</span>
+      <span class="np-cell" lang="ne">त्यो लाइनका token गन्नुहोस् र खोल्नुअघि आफ्नो सङ्ख्या लेख्नुहोस्।
+      बिराउनेहरू प्रायः उही एउटा बिर्सन्छन् — र त्यो सबैभन्दा अन्तिमको अक्षर हो।</span></p>
+    </div>
+
+    <p class="wex-note"><span class="t-en">This single line contains <b>seven tokens</b>:
       <span class="term">int</span> (keyword), <span class="term">sum</span> (identifier),
       <span class="term">=</span> (operator), <span class="term">a</span> (identifier),
       <span class="term">+</span> (operator), <span class="term">25</span> (constant),
       <span class="term">;</span> (punctuator). Questions like "identify the tokens in the given
       statement" are common — count carefully.
-      </span><span class="np-cell" lang="ne">यो एउटै लाइनमा <b lang="ne">आठ टोकन</b> छन्। "दिइएको कथनमा token पहिचान
+      </span><span class="np-cell" lang="ne">यो एउटै लाइनमा <b lang="ne">सात टोकन</b> छन्। "दिइएको कथनमा token पहिचान
       गर्नुहोस्" भन्ने प्रश्न बारम्बार आउँछ — ध्यान दिएर गन्नुहोस्।</span></p>
   </div>
 
@@ -547,6 +556,16 @@ int main() {
 
     return 0;
 }</pre>
+
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">marks is 78. Name the grade that prints, and say how
+      many of the four tests are actually evaluated before the program stops testing.
+      A ladder is not four separate ifs, and that is the marks difference.</span>
+      <span class="np-cell" lang="ne">marks = ७८ छ। कुन grade छापिन्छ भन्नुहोस्, र प्रोग्रामले परीक्षण
+      रोक्नुअघि चारमध्ये कति परीक्षण साँच्चै गर्छ पनि भन्नुहोस्। ladder भनेको छुट्टाछुट्टै चार
+      वटा if होइन, र अङ्कको फरक त्यहीँ छ।</span></p>
+    </div>
+
     <div class="wex-out">
       <span class="wex-lbl">Output</span>
       <pre class="out">Grade A</pre>
@@ -678,6 +697,7 @@ do {
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/services/progress.js"></script>
 <script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
 <script src="../../assets/js/snippets.js"></script>
 <script src="../../assets/js/services/simulation.js"></script>
 <script src="../../assets/js/predict.js"></script>

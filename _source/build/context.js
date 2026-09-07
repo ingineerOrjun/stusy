@@ -109,6 +109,7 @@ const RUNTIME_PUBLISHED = {
   'snippets.js': 'snippets.js',
   'predict.js': 'predict.js',
   'retrieval.js': 'retrieval.js',
+  'wexthink.js': 'wexthink.js',
   'guided.js': 'guided.js',
   'sim-stackqueue.js': 'sim-stackqueue.js',
   'sim-dispatch.js': 'sim-dispatch.js',

@@ -239,3 +239,188 @@ Item 7 was left deliberately. 18 prediction blocks exist and work; adding
 more would have been the easiest thing in the list to do and the least
 valuable, and STEP 9 of Phase 7's brief explicitly says not to target a
 numerical quota.
+
+---
+---
+
+# Phase 8.1 — the second brief
+
+A second Phase 8 brief arrived after the work above had shipped. It
+reuses the same three filenames but asks different questions, so this is
+appended rather than written over: the record above is still the record
+of what was done then.
+
+Its opening instruction was *"Do NOT blindly implement the ideas below.
+First inspect the current repository and verify what already exists."*
+Doing that first mattered — three of its steps were already built.
+
+---
+
+## 11 · What the brief asked for that already existed
+
+| Asked for | Found | Verdict |
+|---|---|---|
+| A contrastive "which one is this?" pattern | **8 decision drills** in `sim-drill.js`. `absencap` is literally *"Abstraction or encapsulation?"*, two options, a reason per case | already built |
+| Animation where motion carries meaning | 11 animated diagrams, covering every concept on the brief's own candidate list | already built |
+| A transfer level in guided practice | the fifth rung, shipped in the first Phase 8 | already built |
+| A prerequisite and revision system | Phase 7 | already built |
+
+**Nothing in that column was rebuilt.** What follows is what was
+genuinely missing.
+
+---
+
+## 12 · The 18-unit matrix
+
+Measured from source, not carried over from an earlier report. `wex` is
+worked examples; `gate` is how many of them ask the student to commit
+before the solution appears; `pre` is prediction blocks; `exq` retrieval
+questions; `tbl` comparison tables.
+
+| Subject | Unit | hrs | marks | fig | sim | wex | **gate** | pre | exq | tbl | drill | practice | Priority |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| DS & OOP | u1 Data Structure | 20 | 15 | 9 | 1 | 3 | 0 → 1 | 1 | 4 | 2 | — | — | **P0** |
+| DS & OOP | u2 OOP concepts | 10 | 14 | 2 | 1 | 4 | 0 → 2 | 1 | 4 | 4 | oopfeature | oop.controlflow | P2 |
+| DS & OOP | u3 Class and Object | 7 | 2 | 3 | 1 | 3 | 0 → 1 | 1 | 4 | 1 | accessspec | — | P3 |
+| DS & OOP | u4 Abstraction | 7 | 5 | 2 | 1 | 3 | 0 → 1 | 1 | 4 | 1 | absencap | — | P3 |
+| DS & OOP | u5 Inheritance | 10 | 7 | 4 | 1 | 4 | 0 → 2 | 1 | 4 | 2 | inhertype | oop.ctororder | P2 |
+| DS & OOP | u6 Polymorphism | 10 | 7 | 3 | 1 | 3 | 0 → 2 | 1 | 4 | 1 | — | — | P1 |
+| Digital | dd-u1 Number systems | 12 | 7 | 2 | 2 | 5 | 0 → 1 | 1 | 4 | 0 | — | dd.dec2bin | P2 |
+| Digital | dd-u2 Logic gates | 14 | **15** | 2 | 2 | 2 | 0 → 2 | 1 | 4 | 1 | — | dd.demorgan | P1 |
+| Digital | dd-u3 Boolean and K-map | 10 | 6 | 2 | 1 | 3 | 0 → 1 | 1 | 3 | 0 | — | — | P2 |
+| Digital | dd-u4 Combinational | 13 | 7 | 3 | 2 | 2 | 0 → 2 | 1 | 3 | 1 | — | — | P1 |
+| Digital | dd-u5 Microprocessor | 15 | **15** | 4 | 1 | 2 | 0 → 2 | 1 | 4 | 1 | — | dd.addressing | P1 |
+| DBMS | db-u1 Introduction | 6 | 5 | 3 | 1 | 2 | 0 → 1 | 1 | 3 | 0 | dbterms | — | P3 |
+| DBMS | db-u2 ER model | 10 | 8 | 2 | 3 | 2 | 0 → 1 | 1 | 3 | 0 | cardinality | — | P2 |
+| DBMS | db-u3 Relational model | 10 | 8 | **0** | 2 | 2 | 0 → 2 | 1 | 3 | 0 | — | — | **P0** |
+| DBMS | db-u4 SQL | 14 | 11 | 3 | 3 | 4 | 0 → 2 | 1 | 4 | 0 | — | — | **P0** |
+| DBMS | db-u5 Normalization | 8 | 6 | **0** | 1 | 2 | 0 → 1 | 1 | 3 | 0 | normalforms | db.normalform | P1 |
+| DBMS | db-u6 Transactions | 8 | 6 | 1 | 1 | 2 | 0 → 1 | 1 | 3 | 0 | — | — | P2 |
+| DBMS | db-u7 Backup and recovery | 8 | 6 | 1 | 1 | 2 | 0 → 1 | 1 | 3 | 0 | recovery | — | P2 |
+
+**Three units are P0 and fifteen are not**, which is the point of a
+priority scale.
+
+- **u1** — 20 hours and 15 marks, the largest unit in the product, with
+  no drill and no faded practice. Its *visual* support is the best
+  anywhere (9 diagrams); what a student cannot do in it is practise.
+- **db-u3** — 10 hours, 8 marks, **zero diagrams and zero tables**, in
+  the unit whose whole subject is tables. The lowest support-to-weight
+  ratio measured.
+- **db-u4** — 14 hours, 11 marks, no drill, no faded practice. It is
+  carried by the SQL simulator, which is genuinely strong, and that is
+  why it is P0 and not worse.
+
+### Two patterns visible in the matrix that no single unit shows
+
+1. **Predictions are uniform at exactly one per unit** — 18 units, 18
+   prediction blocks. A 5-mark unit and a 15-mark unit get identical
+   provision. That is the signature of a quota met rather than a need
+   served.
+2. **Comparison tables and decision drills are almost perfectly
+   disjoint.** All 14 tables are in Digital Design and OOP; all 4 DBMS
+   drills sit in units with **no** table. The contrast material and the
+   contrast practice are in different subjects.
+
+---
+
+## 13 · The finding that drove the work: 0 of 50
+
+Every worked example was measured individually:
+
+```
+worked examples                                 50
+  a mechanism hides the solution                 0
+  the prose says "predict", nothing hides it     2
+  no ask at all                                 48
+```
+
+**Not one worked example asked the student to commit to anything.**
+Question and full solution were on screen together, so the eye reaches
+the answer before the mind reaches the question.
+
+The two in the middle row are worse than the 48:
+
+- `u5` Example 4 is *titled* **"Proving the order — predict this output
+  before you read it"**, with the output three lines below it.
+- `db-u3` Example 2 says to decide before looking, and shows the answer
+  immediately.
+
+The instruction was there; the mechanism was not. A student who obeys it
+and a student who ignores it see exactly the same page.
+
+**After this phase: 26 gated, 24 deliberately open, 0 broken promises.**
+
+### Why 24 stay open
+
+The obvious implementation hides all 50, and it is wrong. A student who
+has never seen `class Box { … };` cannot predict it, and hiding it only
+puts a click between them and what they came to read. The rule applied:
+**gate an example when the student can produce a determinate answer;
+leave it open when it is the first demonstration of a notation, a syntax
+or a procedure.**
+
+| Left open | Why |
+|---|---|
+| dd-u1 Ex1–Ex3, dd-u3 Ex1 and Ex3 | first demonstration of a conversion or K-map method |
+| u1 Ex1–Ex2, u2 Ex2, u3 Ex1–Ex2, u4 Ex1–Ex2, u5 Ex1 and Ex3, u6 Ex2 | C++ syntax shown for the first time |
+| db-u4 Ex2 and Ex4 | free-form production ("write a CREATE TABLE"), which the retrieval gate already handles better |
+| db-u1 Ex1, db-u2 Ex1, db-u5 Ex1, db-u7 Ex1 | the unit already drills exactly this decision |
+
+---
+
+## 14 · Content defects found while doing it
+
+Four. None would have been caught by any test or build rule that existed.
+
+| Where | Defect |
+|---|---|
+| `u2` Example 1 | claims the line has **"eight tokens"** and then enumerates **seven**. `int sum = a + 25;` has seven. Fixed in both languages. |
+| `u6` Example 3 | titled *"the exam's favourite trick"*, with the trick given away by its own code comment: `// prints "Base show"  <-- surprising!`. The comment now states the setup, not the answer. |
+| `db-u6` | **two worked examples both numbered "Example 1"**, so "see Example 1" pointed at two different things. Renumbered, and a build rule added so it cannot recur. |
+| `dd-u5` Example 1 | instructions and answers shared one block — which is why the earlier audit called it *"a lookup table masquerading as an example"*. Split into question and answer so it could be gated. |
+
+---
+
+## 15 · All 55 diagrams, classified
+
+The earlier report asserted this classification. It was never produced.
+Here it is, measured.
+
+| | Count | What they are |
+|---|---|---|
+| **Animated** | **11** | motion carries the meaning: `dbArchitecture`, `erToRelational`, `normalForms`, `txnStates`, `recoveryLog`, `twosComplement`, `deMorgan`, `simplify`, `rippleCarry`, `ctorOrder`, `dispatch` |
+| **Static reference** | **44** | notation sheets, classification trees, comparison pictures, structural drawings |
+| **Unused** | **0** | every diagram is embedded in a lesson |
+
+Per subject: DBMS 15 (5 animated), Digital Design 17 (4 animated),
+DS and OOP 23 (2 animated) — 55 in total.
+
+The classification also surfaced a **consistent architecture nobody had
+written down**: all 11 animated diagrams are embedded *bare*, because
+they caption themselves one line per step; all 44 static ones are
+wrapped in `<figure class="fig">` with a bilingual `<figcaption>`. The
+split is exact — 11 bare, 44 framed, no exceptions either way.
+
+**Nothing was animated in this phase either**, for the same reason as
+before: every concept on the brief's candidate list is already covered,
+and the diagrams that stay static are the reference material a student
+revises from.
+
+> **A tool phantom, caught before it was reported.** The first run of the
+> classifier said `baseTable` was authored but embedded nowhere. It is
+> embedded — dd-u1, line 59. The scanner captured a 400-character window
+> *inside* its own match, which advances the regex past any second
+> diagram within that window. The measurement was wrong, not the
+> repository.
+
+---
+
+## 16 · What was left, and why
+
+| Item | Status |
+|---|---|
+| Prediction density on the heavy units | **Not done.** Real — one block per unit regardless of weight — but the gating work serves the same need in the same units, and adding predictions on top would have raised a count rather than the learning. Recorded for the next phase. |
+| A comparison table for the four DBMS drill units | **Not done.** The drills work without one. The disjointness is a finding, not yet a defect. |
+| Faded practice for u1, db-u3 and db-u4 | **Not done.** These are the P0s, and each is a content build the size of the three delivered in the first Phase 8 — not something to start at the end of a phase and leave half-finished. |
+| Diagrams for db-u3 and db-u5 | **Not done**, and it is the clearest single gap left: two units carrying 14 marks between them with no diagram and no table. |

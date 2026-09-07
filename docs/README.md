@@ -67,6 +67,7 @@ Read these to find out *why* something is the way it is.
 | 6 — learning quality and content depth | [LEARNING-AUDIT](PHASE-6-LEARNING-AUDIT.md) | [LEARNING-ARCHITECTURE](PHASE-6-LEARNING-ARCHITECTURE.md) | [report](PHASE-6-COMPLETION-REPORT.md) |
 | 7 — revision intelligence and prerequisites | [CONTENT-AUDIT](PHASE-7-CONTENT-AUDIT.md) | [LEARNING-ARCHITECTURE](PHASE-7-LEARNING-ARCHITECTURE.md) | [report](PHASE-7-COMPLETION-REPORT.md) |
 | 8 — learning depth, headings, screen reader | [LEARNING-AUDIT](PHASE-8-LEARNING-AUDIT.md) | [D](PHASE-8-DECISIONS.md) | [report](PHASE-8-COMPLETION-REPORT.md) |
+| 8.1 — the 18-unit matrix, and the worked-example think gate | appended to the three Phase 8 documents above | | |
 
 ## Two things every document here agrees on
 

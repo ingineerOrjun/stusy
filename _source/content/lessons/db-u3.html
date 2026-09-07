@@ -167,6 +167,15 @@
     <p><b>Question:</b> a hospital records DOCTORs (doctor_id, name) and PATIENTs (patient_id,
     name). A doctor treats many patients, and a patient may be treated by many doctors. Convert
     this to the relational model.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Two entities, related many-to-many. Commit to one
+      number before you open this: how many <b>tables</b> will the finished answer have?
+      The number itself tells you whether you have remembered the M:N rule.</span>
+      <span class="np-cell">दुई entity, many-to-many सम्बन्ध। खोल्नुअघि एउटा सङ्ख्या भन्नुहोस्:
+      पूरा उत्तरमा कति वटा <b>तालिका</b> हुनेछन्? त्यो सङ्ख्याले नै M:N को नियम सम्झनुभयो कि
+      भएन भन्छ।</span></p>
+    </div>
+
     <p><b>Step 1 — apply rule 1</b> to each entity:</p>
     <div class="wex-out">
       <span class="wex-lbl">Working</span>
@@ -245,6 +254,14 @@ Treats  ( doctor_id, patient_id )
 │  3 │ Hari  │  55   │    11    │
 └────┴───────┴───────┴──────────┘</div>
     </div>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Write down all five answers now. Degree and
+      cardinality are the pair that get swapped — one of them counts across, the other
+      counts down, and deciding which before you look is the whole exercise.</span>
+      <span class="np-cell">पाँचै उत्तर अहिल्यै लेख्नुहोस्। Degree र cardinality नै साटिने जोडी हो —
+      एउटाले तेर्सो गन्छ, अर्कोले ठाडो, र हेर्नुअघि कुन हो भन्ने छुट्याउनु नै पूरा अभ्यास हो।</span></p>
+    </div>
+
     <p><b>Count sideways for degree, downwards for cardinality.</b> That one sentence prevents the
     only mistake this question invites:</p>
     <div class="wex-out">

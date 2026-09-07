@@ -1119,6 +1119,44 @@ html, body{ overflow-x: clip; }
 .rt-said:empty{ margin: 0; }
 .rt-said .np-cell{ display: block; margin-top: 4px; }
 
+/* ---- 5e. The worked-example think gate ---------------------
+   The same act as the retrieval gate above, in front of a worked
+   solution rather than a practice question — so it reuses .rt-attempt,
+   .rt-label and .rt-input rather than restyling them. Those classes
+   name attempting-before-looking, not the component that first needed
+   it, and sharing them is what stops the two gates drifting apart.
+
+   Quieter than .predict on purpose. A prediction block is a stop: it
+   is the whole point of that part of the page. This one sits INSIDE an
+   example the student is already reading, so it marks a pause, not a
+   destination — a rule and a prompt, no panel, no second border
+   competing with the example's own.
+   ------------------------------------------------------------ */
+.wex-gate{
+  margin: var(--sp-3) 0;
+  padding-top: var(--sp-3);
+  border-top: 1px dashed var(--color-border);
+}
+.wex-think{
+  margin: 0;
+  font-size: var(--fs-sm); font-weight: var(--fw-medium);
+  color: var(--color-text);
+}
+.wex-think .np-cell{
+  display: block; margin-top: 3px;
+  font-weight: var(--fw-normal); color: var(--color-text-muted);
+}
+.wex-reveal{
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+}
+/* Hidden with the `hidden` property rather than a class, so the working
+   is out of the accessibility tree too. A screen-reader user who has
+   not opened the gate should not be read the answer the sighted student
+   cannot see. */
+.wex-work[hidden]{ display: none; }
+.wex-work > :first-child{ margin-top: 0; }
+
 /* ------------------------------------------------------------
    6. SCROLL AFFORDANCE FOR WIDE CONTENT
 

@@ -392,6 +392,14 @@
     <div class="wex-h"><span class="wex-n">Example 2</span> Working out which flags are set</div>
     <p><b>Question:</b> the accumulator holds <code>A0H</code> and <code>60H</code> is added to it.
     State the value left in the accumulator and the state of the CY, Z, S and P flags.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">A0H + 60H. Do the addition in binary first, then
+      commit to all four flags before opening this. The one that catches people is Z:
+      a result of zero and a carry out of the top bit happen together here.</span>
+      <span class="np-cell" lang="ne">A0H + 60H। पहिले binary मा जोड्नुहोस्, अनि खोल्नुअघि चारै flag भन्नुहोस्।
+      अल्झाउने चाहिँ Z हो: यहाँ शून्य नतिजा र माथिल्लो बिटको carry सँगै आउँछन्।</span></p>
+    </div>
+
     <p><b>Step 1 — do the addition in binary.</b> Never try to set the flags from the hex:</p>
     <div class="wex-out">
       <span class="wex-lbl">Working</span>
@@ -541,8 +549,27 @@ P  = 1   the result has ZERO 1s, and zero is even</div>
 
   <div class="wex">
     <div class="wex-h"><span class="wex-n">Example 1</span> Identify the addressing mode of each instruction</div>
+    <p><b>Question:</b> name the addressing mode of each of these five instructions.</p>
     <div class="wex-out">
-      <span class="wex-lbl">Working</span>
+      <span class="wex-lbl">The instructions</span>
+      <div class="out">MVI B, 20H
+LDA 2050H
+MOV A, C
+MOV A, M
+CMA</div>
+    </div>
+
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Name all five before opening this. Two of them look
+      almost identical — <code>MOV A, C</code> and <code>MOV A, M</code> — and they are
+      not the same mode. That pair is the whole question.</span>
+      <span class="np-cell" lang="ne">खोल्नुअघि पाँचै वटा भन्नुहोस्। दुई वटा झन्डै उस्तै देखिन्छन् —
+      <code>MOV A, C</code> र <code>MOV A, M</code> — तर तिनको mode फरक हो। त्यही जोडी नै
+      पूरा प्रश्न हो।</span></p>
+    </div>
+
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
       <div class="out">MVI B, 20H   → Immediate.  20H is written inside the instruction.
 LDA 2050H    → Direct.     the address 2050H is given in full.
 MOV A, C     → Register.   both operands are named registers.
@@ -711,6 +738,7 @@ CMA          → Implicit.   the operand (the accumulator) is
 <script src="../../assets/js/code.js"></script>
 <script src="../../assets/js/services/progress.js"></script>
 <script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
 <script src="../../assets/js/services/simulation.js"></script>
 <script src="../../assets/js/predict.js"></script>
 <script src="../../assets/js/sim-8085.js"></script>

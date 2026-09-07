@@ -81,6 +81,63 @@ Nepali. A question a student cannot get right must never reach them.
 answers where the wrong one is *tempting* — LIFO vs FIFO, which overload wins,
 what a pointer prints. It does not suit recall.
 
+## 3b. The worked-example think gate
+
+Added in Phase 8.1, after measuring that **0 of the product's 50 worked
+examples asked the student to commit to anything** — question and full
+solution were on screen together in all fifty, including two whose own
+wording said to predict first.
+
+Same commitment-before-reveal idea as §3, in front of a *demonstration*
+rather than a question:
+
+```
+QUESTION      already authored
+   ↓
+THINK         a prompt naming the specific thing to decide
+   ↓
+ATTEMPT       a scratch box. Never read, never stored
+   ↓
+REVEAL        a deliberate press. Nothing opens before it
+   ↓
+EXPLANATION   the working — which is what the marks are for
+```
+
+Authoring is one marker, placed after the question and before the
+working. Everything after it, inside the same `.wex`, is what gets
+hidden:
+
+```html
+<div class="wex">
+  <div class="wex-h"><span class="wex-n">Example 1</span> …</div>
+  <p><b>Question:</b> …</p>
+
+  <div class="wex-gate">
+    <p class="wex-think">… the prompt in English …
+    <span class="np-cell">… the same prompt in Nepali …</span></p>
+  </div>
+
+  <p><b>Step 1 …</b></p>            <!-- from here down: gated -->
+</div>
+```
+
+The build **rejects** a gate with nothing after it, a gate whose prompt
+has no Nepali, a marker sitting outside any worked example, and a state
+where no example gates anything at all.
+
+**Gate selectively — this is a content judgement, not a rule.** Gate when
+the student can produce a *determinate* answer from what is already on
+screen. Leave it open when the example is the first demonstration of a
+notation, a syntax or a procedure: a student who has never seen
+`class Box { … };` cannot predict it, and hiding it only puts a click
+between them and what they came to read. 26 of 50 are gated; the other
+24 are open on purpose.
+
+**The working is hidden with `hidden`, never with a class.** `opacity:0`,
+`visibility:hidden` and `height:0` look identical on screen and leave the
+solution in the accessibility tree, where a screen-reader user is read
+the answer the sighted student cannot see.
+
 ## 4. Simulation as a learning object
 
 Every simulation uses one frame, so a student learns the interface once and
