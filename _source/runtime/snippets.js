@@ -6,7 +6,7 @@ var BASIC_STRUCT = [
 'using namespace std;         // use the standard namespace',
 '',
 'int main() {                 // execution starts here',
-'    cout << "Hello RGSC" << endl;',
+'    cout << "Hello Gyansetu" << endl;',
 '    return 0;                // 0 means success',
 '}'
 ];

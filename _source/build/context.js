@@ -119,7 +119,8 @@ const RUNTIME_PUBLISHED = {
   'services/revision.js': 'services/revision.js',
   'revise.js': 'revise.js',
   'services/quiz.js': 'services/quiz.js',
-  'services/simulation.js': 'services/simulation.js'
+  'services/simulation.js': 'services/simulation.js',
+  'home.js': 'home.js'
 };
 
 const RUNTIME_FILES = Object.keys(RUNTIME_PUBLISHED);
@@ -198,16 +199,52 @@ const learningMap = (() => {
   return out;
 })();
 
+/* ---------------- content statistics ----------------
+   The home page states what the product contains. Those numbers are
+   COUNTED here, from the same lesson sources the pages are built from,
+   so a claim on the landing page cannot drift from the content — and
+   cannot be inflated by editing a template. If a number looks wrong,
+   the content is wrong.
+
+   Counted from source rather than from the written pages because the
+   home page is written before the unit pages are, and a statistic that
+   depends on build order is a statistic that silently reads zero. */
+const contentStats = (() => {
+  const dir = path.join(SRC, 'content', 'lessons');
+  const files = fs.existsSync(dir)
+    ? fs.readdirSync(dir).filter(f => f.endsWith('.html'))
+    : [];
+  const all = files.map(f => fs.readFileSync(path.join(dir, f), 'utf8')).join('\n');
+  const count = re => (all.match(re) || []).length;
+
+  const site = require('../config/site.js');
+  const diagrams = require('../diagrams.js');
+
+  return {
+    units:       Object.keys(learningMap).length,
+    subjects:    site.reduce((n, g) => n + g.subjects.filter(s => s.done).length, 0),
+    diagrams:    Object.keys(diagrams).length,
+    animations:  Object.keys(diagrams).filter(n => typeof diagrams[n] !== 'string').length,
+    simulators:  count(/class="sim"/g),
+    retrieval:   count(/class="examq"/g),
+    practice:    practiceBanks.length,
+    predictions: count(/class="predict"/g),
+    hours:       Object.values(learningMap).reduce((n, u) => n + (u.hrs || 0), 0)
+  };
+})();
+
 module.exports = {
   questionBanks,
   practiceBanks,
   prerequisites,
   learningMap,
+  contentStats,
   ROOT, SRC, write, read,
   css,
   runtime, RUNTIME_PUBLISHED,
   section, hero,
   site:     require('../config/site.js'),
   pages:    require('../config/pages.js'),
+  brand:    require('../config/brand.js'),
   syllabus: require('../content/syllabus.js')
 };

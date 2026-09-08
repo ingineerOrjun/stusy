@@ -1,5 +1,5 @@
 /* ============================================================
-   RGSC Study Board — page writer.
+   Gyansetu — page writer.
    Assembles every page from content, design and runtime sources.
    ============================================================ */
 const ctx = require('./context.js');
@@ -8,6 +8,7 @@ const validate = require('./validate.js');
 
 const w         = ctx.write;
 const baseCss   = ctx.css;
+const BRAND     = ctx.brand;
 const SITE      = ctx.site;
 const OUTLINE   = ctx.syllabus;
 const AUTHORED  = ctx.pages;   /* subject key -> { hero, pages[] } */
@@ -73,6 +74,10 @@ const motionCss = ctx.read('design/motion.css');
    shared state language, before the language layer so a mode still wins. */
 const digitalCss = ctx.read('design/digital.css');
 const dbmsCss    = ctx.read('design/dbms.css');
+/* The landing page's hero, bridge and counters. One page out of 40 uses
+   them, so they ride on that page's sheet only — the same argument that
+   split the subject layers out of the core. */
+const homeCss    = ctx.read('design/home.css');
 /* Phase 3 language layer — loaded last so a mode can hide anything above it. */
 const langCss = ctx.read('design/language.css');
 
@@ -98,6 +103,7 @@ const langCss = ctx.read('design/language.css');
 const CORE = baseCss + siteCss + uxCss + motionCss;
 const SHEETS = {
   'style.css':         CORE + langCss,
+  'style-home.css':    CORE + homeCss + langCss,
   'style-digital.css': CORE + digitalCss + langCss,
   'style-dbms.css':    CORE + dbmsCss + langCss,
   'style-all.css':     CORE + digitalCss + dbmsCss + langCss
@@ -157,6 +163,7 @@ function prereqBlock(unitId){
 /* A page declares its subject; the dev reference pages show everything. */
 function sheetFor(o){
   if (o.allSubjects) return 'style-all.css';
+  if (o.grade === 'home') return 'style-home.css';
   const s = o.subject || '';
   if (s.indexOf('digital-design') >= 0) return 'style-digital.css';
   if (s.indexOf('dbms') >= 0) return 'style-dbms.css';
@@ -441,8 +448,8 @@ ${LANG_BOOTSTRAP}
 <header class="topbar">
   <div class="topbar-in">
     <a class="brand" href="${root}index.html">
-      <span class="brand-mark">RG</span>
-      <span class="brand-txt">RGSC Study Board<small>Computer Engineering · CDC Nepal 2078</small></span>
+      <span class="brand-mark">${BRAND.mark}</span>
+      <span class="brand-txt">${BRAND.name}<small>${BRAND.tagline}</small></span>
     </a>
     ${deskNav(root, o.grade)}
     ${LANG_SWITCH}
@@ -460,7 +467,7 @@ ${normaliseHeadings(markNepaliHeadings(o.body))}
 </main>
 ${o.pager || ''}
 <footer>
-  <b style="color:var(--chalk-dim)">RGSC Study Board</b> — Secondary Level (Technical &amp; Vocational),
+  <b style="color:var(--chalk-dim)">${BRAND.name}</b> — Secondary Level (Technical &amp; Vocational),
   Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
   Works fully offline. No login, no server, no internet needed (web fonts are optional).
   <span class="np-cell">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
@@ -527,65 +534,166 @@ w('assets/js/question-bank.js',
     JSON.stringify(qs, null, 2) + ');'
   ).join('\n\n') + '\n');
 
-/* ---------------- home ---------------- */
+/* ---------------- home ----------------
+   THE LANDING PAGE MAKES ONE ARGUMENT AND THEN PROVES IT.
+
+   The old page opened with "Computer Engineering Study Board" and a
+   paragraph explaining that topics are given in English with Nepali
+   beside them. That is the product's whole thesis, stated in prose that
+   a visitor skims.
+
+   It is now the name — Gyansetu, ज्ञानसेतु, knowledge bridge — and the
+   first thing on the page is six real terms out of the real curriculum
+   making that crossing. Nothing is claimed that is not shown.
+
+   Every number below is counted from the lesson sources by
+   ctx.contentStats, so the page cannot overstate what has been built. */
 (function(){
+  const S = ctx.contentStats;
+
+  /* --- the bridge: real exam terms, real Nepali meanings ---
+     Chosen for being the terms students actually lose marks on, one
+     pair per completed subject area, not the easiest six to translate.
+
+     THE ONE PLACE THAT IGNORES THE LANGUAGE MODE, DELIBERATELY.
+     .bridge-en and .bridge-ne are NOT .t-en / .t-ne, so both halves
+     survive English mode and Nepali mode alike. Everywhere else that
+     would be a bug; here it is the component. A visitor in English mode
+     shown "Inheritance →" and an empty box has been shown the product
+     failing to do the one thing it is named after.
+
+     The Nepali still carries lang="ne" — the build's markNepali pass
+     adds it — so a screen reader changes voice rather than reading
+     Devanagari through an English one. */
+  const BRIDGE = [
+    { term:'Inheritance', sub:'DS &amp; OOP with C++',
+      ne:'एउटा class ले अर्को class का data र function सित्तैमा पाउनु — फेरि लेख्नु नपर्ने।' },
+    { term:'Encapsulation', sub:'DS &amp; OOP with C++',
+      ne:'डाटा र त्यही डाटामाथि काम गर्ने function लाई एउटै object भित्र बाँधेर बाहिरबाट छोप्नु।' },
+    { term:'Normalization', sub:'DBMS',
+      ne:'एउटै तालिकामा दोहोरिएको डाटा हटाउन सानो–साना तालिकामा बाँड्ने तरिका।' },
+    { term:'Primary key', sub:'DBMS',
+      ne:'तालिकाको हरेक row लाई छुट्याउने अद्वितीय column — दोहोरिन पनि नहुने, खाली हुन पनि नहुने।' },
+    { term:'Universal gate', sub:'Digital Design',
+      ne:'जुन गेटबाट अरू सबै गेट बनाउन सकिन्छ — NAND र NOR, यी दुई मात्र।' },
+    { term:'Instruction cycle', sub:'Digital Design',
+      ne:'fetch → decode → execute — प्रोसेसरले हरेक instruction मा दोहोर्‍याउने तीन चरण।' }
+  ];
+
+  const bridgeItems = BRIDGE.map((b, i) => `
+      <div class="bridge-item${i ? '' : ' on'}" data-term="${b.term}"${i ? ' hidden' : ''}>
+        <div class="bridge-en"><b>${b.term}</b><small>${b.sub}</small></div>
+        <div class="bridge-span" aria-hidden="true">&#10230;</div>
+        <div class="bridge-ne"><p>${b.ne}</p><small>अर्थ</small></div>
+      </div>`).join('');
+
+  /* --- grade cards --- */
   let cards = '';
   SITE.forEach(g => {
     const soon = g.status === 'soon';
     const n = g.id.replace('grade','');
-    cards += soon
-      ? `<div class="gcard dis"><div class="num">${n}</div><h3>${g.label}<span class="np-cell">${g.np}</span></h3>
-         <p><span class="status soon">next phase</span></p></div>`
-      : `<a class="gcard" href="${g.id}/index.html"><div class="num">${n}</div>
+    if (soon){
+      cards += `<div class="gcard dis"><div class="num">${n}</div>
          <h3>${g.label}<span class="np-cell">${g.np}</span></h3>
-         <p>${g.subjects.length} subjects · 4 credit hrs each · 128 working hrs</p></a>`;
+         <p><span class="status soon">next phase</span></p></div>`;
+      return;
+    }
+    /* Readiness is shown per subject rather than as one number, because
+       "4 subjects" beside three outlines and one finished subject is
+       true and misleading at the same time. */
+    const chips = g.subjects.map(s =>
+      `<span class="${s.done ? 'on' : ''}">${s.short}</span>`).join('');
+    cards += `<a class="gcard" href="${g.id}/index.html"><div class="num">${n}</div>
+       <h3>${g.label}<span class="np-cell">${g.np}</span></h3>
+       <p>${g.subjects.length} subjects · 4 credit hrs each · 128 working hrs</p>
+       <div class="ready">${chips}</div>
+       <span class="go">Open</span></a>`;
   });
 
+  /* --- what is actually finished, derived rather than typed ---
+     This paragraph said "Grade 10 OOP is complete" for four phases
+     after DBMS and Digital Design were finished too. It is now built
+     from the same `done` flags the cards use, so it cannot say
+     something the site map disagrees with. */
+  const readySubjects = [];
+  SITE.forEach(g => g.subjects.forEach(s => {
+    if (s.done) readySubjects.push({ grade: g.label, en: s.short, ne: s.np });
+  }));
+  const readyEn = readySubjects.map(s => `<b>${s.en}</b>`).join(', ');
+  const readyNe = readySubjects.map(s => `<b>${s.ne}</b>`).join(', ');
+
+  const stat = (n, en, ne) =>
+    `<div class="stat"><span class="stat-n" data-to="${n}">${n}</span>
+       <span class="stat-l">${en}<span class="np-cell">${ne}</span></span></div>`;
+
   const body = `
-<div class="pagehead">
-  <div class="eyebrow">Secondary Level · Technical &amp; Vocational Stream</div>
-  <h1>Computer Engineering <span style="color:var(--yellow)">Study Board</span></h1>
-  <p class="lead">Learn and revise every subject of the Computer Engineering curriculum.
-  Each topic is explained in <b>simple English first</b> — the exact wording the exam uses —
-  with a <b>Nepali explanation beside it</b>, so you can match your Nepali understanding to the
-  English exam terms.</p>
-  <p class="np-line">कम्प्युटर इन्जिनियरिङका हरेक विषय सिक्नुहोस् र दोहोर्‍याउनुहोस्।
-  हरेक कुरा पहिले <b>सजिलो अंग्रेजीमा</b> — जुन शब्द परीक्षामै आउँछ — अनि छेउमै
-  <b>नेपालीमा</b> पनि। यसले नेपाली बुझाइलाई अंग्रेजी शब्दसँग जोड्न सजिलो बनाउँछ।</p>
-  <div class="meta">
+<div class="homehero">
+  <p class="hero-eyebrow">Secondary Level · Technical &amp; Vocational Stream</p>
+  <div class="hero-brand">
+    <h1>${BRAND.name}</h1>
+    <span class="hero-np">${BRAND.np}</span>
+    <span class="hero-mean">${BRAND.meaning.en}</span>
+  </div>
+  <p class="hero-promise">${BRAND.promise.en}
+    <span class="np-cell">${BRAND.promise.ne}</span></p>
+  <div class="hero-meta">
     <span class="pill y">Bilingual</span>
     <span class="pill b">Interactive simulators</span>
     <span class="pill c">Program tracing</span>
     <span class="pill">Works offline</span>
   </div>
+
+  <div class="bridge" aria-labelledby="bridge-h">
+    <div class="bridge-head">
+      <p class="bridge-kicker" id="bridge-h">The same idea, both ways</p>
+      <button class="bridge-play" type="button" aria-pressed="false">Pause</button>
+    </div>
+    <div class="bridge-stage">${bridgeItems}
+    </div>
+    <div class="bridge-dots"></div>
+  </div>
 </div>
 
-<section style="margin-top:34px">
+<div class="stats reveal">
+  ${stat(S.units,      'units written',      'युनिट लेखिएका')}
+  ${stat(S.diagrams,   'diagrams',           'चित्र')}
+  ${stat(S.animations, 'animated',           'चलायमान')}
+  ${stat(S.simulators, 'things to try',      'चलाएर हेर्ने')}
+  ${stat(S.retrieval,  'practice questions', 'अभ्यास प्रश्न')}
+  ${stat(S.hours,      'course hours',       'पाठ्य घण्टा')}
+</div>
+
+<section style="margin-top:34px" class="reveal">
   <div class="sec-head"><div class="sec-num">›</div>
     <div><h2>Choose your grade</h2><p class="sec-sub">आफ्नो कक्षा छान्नुहोस्</p></div></div>
   <div class="rule"></div>
   <div class="gcards">${cards}</div>
 </section>
 
-<div class="pair">
+<div class="pair reveal">
   <div class="en"><span class="tag">What is ready right now</span>
-    <p><b>Grade 10 — Data Structure &amp; OOP using C++</b> is complete: all 6 units, two
-    interactive simulators, a step-by-step program tracer, comparison tables and a 15-question quiz.</p>
-    <p>Every other subject currently shows its <b>full syllabus outline</b> taken from the CDC
-    curriculum, so you can see exactly what you must study. Notes for those are being written next.</p>
+    <p>${readySubjects.length} subjects are written in full — ${readyEn} —
+    across ${S.units} units: ${S.diagrams} diagrams, ${S.animations} of them animated,
+    ${S.simulators} things you can actually operate, and ${S.retrieval} practice questions
+    that ask you to answer before they show you anything.</p>
+    <p>Every other subject shows its <b>full syllabus outline</b> taken from the CDC
+    curriculum, so you can see exactly what you must study. Notes for those are being
+    written next.</p>
   </div>
   <div class="np"><span class="tag">अहिले के तयार छ</span>
-    <p><b>कक्षा १० — डाटा स्ट्रक्चर र OOP (C++)</b> पूरै तयार छ: सबै ६ युनिट, दुई इन्टरएक्टिभ
-    सिमुलेटर, लाइन–लाइन प्रोग्राम ट्रेसर, तुलनात्मक तालिका र १५ प्रश्नको क्विज।</p>
-    <p>अरू सबै विषयमा अहिले CDC पाठ्यक्रमबाट लिइएको <b>पूरा सिलेबस रूपरेखा</b> देखिन्छ, ताकि के–के
-    पढ्नुपर्छ थाहा होस्। तिनका नोट्स क्रमशः लेखिँदैछन्।</p>
+    <p>${readySubjects.length} विषय पूरै लेखिएका छन् — ${readyNe} — जम्मा ${S.units} युनिटमा:
+    ${S.diagrams} चित्र, तीमध्ये ${S.animations} चलायमान, ${S.simulators} वटा आफैँ चलाएर हेर्न मिल्ने,
+    र ${S.retrieval} अभ्यास प्रश्न — जसले उत्तर देखाउनुअघि तपाईंलाई नै सोध्छ।</p>
+    <p>अरू सबै विषयमा अहिले CDC पाठ्यक्रमबाट लिइएको <b>पूरा सिलेबस रूपरेखा</b> देखिन्छ, ताकि
+    के–के पढ्नुपर्छ थाहा होस्। तिनका नोट्स क्रमशः लेखिँदैछन्।</p>
   </div>
 </div>`;
 
   w('index.html', page({
     root:'', grade:'home',
-    title:'RGSC Study Board — Computer Engineering, Grade 9 to 12',
-    desc:'Bilingual (English + Nepali) study and revision site for the Nepal CDC Computer Engineering curriculum.',
+    title:`${BRAND.name} — Computer Engineering, Grade 9 to 12`,
+    desc:`${BRAND.name} (${BRAND.np}) — bilingual English and Nepali study and revision site for the Nepal CDC Computer Engineering curriculum.`,
+    js:['services/motion.js','home.js'],
     body
   }));
 })();
@@ -623,7 +731,7 @@ SITE.filter(g => g.status === 'open').forEach(g => {
 
   w(`${g.id}/index.html`, page({
     root:'../', grade:g.id,
-    title:`${g.label} — Computer Engineering | RGSC Study Board`,
+    title:`${g.label} — Computer Engineering | `,
     desc:`All ${g.label} Computer Engineering subjects.`,
     crumb: crumb([['Home','../index.html'], [g.label]]),
     body
@@ -686,7 +794,7 @@ Object.keys(OUTLINE).forEach(key => {
 
   w(`${key}/index.html`, page({
     root:'../../', grade:gid, activeHref:key,
-    title:`${s.name} — ${g.label} | RGSC Study Board`,
+    title:`${s.name} — ${g.label} | `,
     desc:`Full CDC syllabus outline for ${s.name}, ${g.label}.`,
     crumb: crumb([['Home','../../index.html'], [g.label,'../index.html'], [s.short]]),
     body
@@ -743,7 +851,7 @@ ${sectionHtml(subject.hero)}
 
   w(`${gid}/${slug}/index.html`, page({
     root, grade:gid, activeHref:`${gid}/${slug}`, subject:key,
-    title:`${s.name} — ${g.label} | RGSC Study Board`,
+    title:`${s.name} — ${g.label} | `,
     desc:`Bilingual Class 10 notes, interactive simulations and a quiz for ${s.name}.`,
     crumb: crumb([['Home', root + 'index.html'], [g.label, '../index.html'], [label]]),
     body: overviewBody
@@ -793,7 +901,7 @@ ${sectionHtml(subject.hero)}
 
     w(`${gid}/${slug}/${p.file}`, page({
       root, grade:gid, activeHref:`${gid}/${slug}`, subject:key,
-      title:`${p.title} — ${label} | RGSC Study Board`,
+      title:`${p.title} — ${label} | `,
       desc:`${p.title} explained in simple English with a Nepali explanation beside it.`,
       crumb: crumb([['Home', root + 'index.html'], [g.label, '../index.html'],
                     [label, 'index.html'], [p.title]]),
@@ -820,7 +928,7 @@ ${sectionHtml(subject.hero)}
    Deliberately NOT linked from any student-facing navigation. */
 w('design-system.html', page({
   root: '', grade: null,
-  title: 'Design System Reference — RGSC Study Board (internal)',
+  title: 'Design System Reference —  (internal)',
   desc: 'Internal QA reference for the design system. Not student-facing.',
   crumb: crumb([['Home', 'index.html'], ['Design System (internal)']]),
   allSubjects: true,   /* a reference page must show every subject's components */
@@ -834,7 +942,7 @@ w('design-system.html', page({
    would drift. Not linked from any student-facing navigation. */
 w('animation-showcase.html', page({
   root: '', grade: null,
-  title: 'Animation & Motion Reference — RGSC Study Board (internal)',
+  title: 'Animation & Motion Reference —  (internal)',
   desc: 'Internal QA reference for the motion system. Not student-facing.',
   crumb: crumb([['Home', 'index.html'], ['Animation Reference (internal)']]),
   allSubjects: true,

@@ -1,5 +1,5 @@
 /* ============================================================
-   RGSC Study Board — SVG diagram library
+   Gyansetu — SVG diagram library
    Every diagram is inline SVG: offline-safe, theme-aware,
    scales to any screen, and carries a <title> for screen readers.
    Referenced from content files as {{dia:name}}.
@@ -413,7 +413,7 @@ D.programAnatomy = `
   <text class="f-code" x="40" y="62">#include &lt;iostream&gt;</text>
   <text class="f-code" x="40" y="92">using namespace std;</text>
   <text class="f-code" x="40" y="130">int main() {</text>
-  <text class="f-code" x="60" y="158">cout &lt;&lt; "Hello RGSC";</text>
+  <text class="f-code" x="60" y="158">cout &lt;&lt; "Hello Gyansetu";</text>
   <text class="f-code" x="60" y="186">return 0;</text>
   <text class="f-code" x="40" y="214">}</text>
 

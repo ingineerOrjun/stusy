@@ -15,4 +15,4 @@ http.createServer((req, res) => {
   }
   res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream' });
   res.end(fs.readFileSync(file));
-}).listen(PORT, () => console.log('RGSC Study Board on http://localhost:' + PORT));
+}).listen(PORT, () => console.log('Gyansetu on http://localhost:' + PORT));

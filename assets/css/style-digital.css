@@ -512,8 +512,13 @@ footer .np-cell{font-family:var(--deva);display:block;margin-top:6px}
   display:flex;align-items:center;gap:18px}
 
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+/* The mark is ज्ञ — the first glyph of ज्ञानसेतु. var(--deva), not
+   var(--mono): the mono stack carries no Devanagari, so the glyph would
+   fall back to whatever each machine happens to have and the logo would
+   differ between devices. Sized a little larger than the old "RG"
+   because a conjunct sits shorter than two capitals. */
 .brand-mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
-  font-family:var(--mono);font-weight:700;font-size:.82rem;color:#12241f;
+  font-family:var(--deva);font-weight:700;font-size:1.05rem;line-height:1;color:#12241f;
   background:linear-gradient(150deg,var(--yellow),#e0a93f);flex:none}
 .brand-txt{display:flex;flex-direction:column;line-height:1.15;color:var(--chalk-white);
   font-weight:700;font-size:.95rem;white-space:nowrap}

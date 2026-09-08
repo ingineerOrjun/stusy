@@ -1,4 +1,4 @@
-/* RGSC Study Board — top bar behaviour */
+/* Gyansetu — top bar behaviour */
 (function(){
   var btn = document.getElementById('hamBtn');
   var panel = document.getElementById('mobilePanel');

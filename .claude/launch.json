@@ -1,6 +1,11 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "rgsc", "runtimeExecutable": "npm", "runtimeArgs": ["run", "serve"], "port": 8080 }
+    {
+      "name": "gyansetu",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "serve"],
+      "port": 8080
+    }
   ]
 }
