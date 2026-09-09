@@ -1,0 +1,495 @@
+<section id="hw-u5">
+  <div class="sec-head">
+    <div class="sec-num">5</div>
+    <div>
+      <h2>Repair and Maintenance</h2>
+      <p class="sec-sub">मर्मत र सम्भार</p>
+    </div>
+    <span class="marks">12 hrs · 9 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>List preventive maintenance tasks and say what failure each one prevents.</li>
+      <li>Work through a wireless connection problem in a sensible order.</li>
+      <li>Name the power problems a system faces and the device that protects against each.</li>
+      <li>Diagnose video card and monitor image-quality faults from their symptoms.</li>
+      <li>Explain why a processor must be cooled and what happens when cooling fails.</li>
+      <li>Define a computer virus, list how infection spreads, and state detection and prevention methods.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: निरोधात्मक सम्भारका काम सूचीबद्ध गर्न र हरेकले कुन
+    खराबी रोक्छ भन्न, वायरलेस जडान समस्या मिल्दो क्रममा समाधान गर्न, प्रणालीले भोग्ने बिजुली
+    समस्या र हरेकबाट जोगाउने उपकरण नाम लिन, video card र monitor का लक्षणबाट खराबी पत्ता लगाउन,
+    प्रोसेसर किन चिसो पार्नुपर्छ र cooling बिग्रिँदा के हुन्छ व्याख्या गर्न, र भाइरसको परिभाषा
+    दिन, सर्ने तरिका सूचीबद्ध गर्न तथा पत्ता लगाउने र रोक्ने उपाय भन्न सक्नुहुनेछ।</span>
+  </div>
+
+  <h3 class="topic" id="hw-t51">5.1 &nbsp;Preventive maintenance</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p><b>Preventive maintenance</b> is work done on a system that is <i>still working</i>, to
+      stop failures before they happen and to extend the equipment's life.</p>
+      <p>Each task exists because of a specific failure it prevents — that pairing is what the exam
+      wants, not the list on its own:</p>
+      <p><b>Cleaning dust from vents, fans and heatsinks</b> — prevents overheating and the sudden
+      shutdowns it causes.</p>
+      <p><b>Checking that all cables and cards are firmly seated</b> — prevents intermittent faults
+      that are very hard to trace.</p>
+      <p><b>Deleting temporary files and defragmenting the disk</b> — prevents slowdowns and the
+      disk filling up.</p>
+      <p><b>Updating the operating system and antivirus</b> — closes the security holes malware
+      uses to get in.</p>
+      <p><b>Taking regular backups</b> — the only preventive measure that works after the hardware
+      has already failed.</p>
+      <p><b>Using a UPS and keeping the machine in a cool, dry, ventilated place</b> — prevents
+      damage from power problems, heat and humidity.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Preventive maintenance</b> भनेको <i>अझै चलिरहेको</i> प्रणालीमा गरिने काम हो, जसले
+      खराबी हुनुअघि नै रोक्छ र उपकरणको आयु बढाउँछ।</p>
+      <p>हरेक काम कुनै निश्चित खराबी रोक्न छ — परीक्षाले खोज्ने त्यही जोडी हो, एक्लो सूची होइन:</p>
+      <p><b>प्वाल, पंखा र heatsink को धुलो सफा गर्ने</b> — तात्ने समस्या र त्यसले ल्याउने अचानक
+      बन्द हुने अवस्था रोक्छ।</p>
+      <p><b>सबै केबल र कार्ड कसिएका छन् कि जाँच्ने</b> — पत्ता लगाउन गाह्रो हुने रुकिरुकी आउने
+      खराबी रोक्छ।</p>
+      <p><b>अस्थायी फाइल मेटाउने र डिस्क defragment गर्ने</b> — ढिलो हुने र डिस्क भरिने समस्या
+      रोक्छ।</p>
+      <p><b>अपरेटिङ सिस्टम र antivirus अपडेट गर्ने</b> — malware भित्रिने सुरक्षा प्वाल बन्द
+      गर्छ।</p>
+      <p><b>नियमित ब्याकअप लिने</b> — हार्डवेयर बिग्रिसकेपछि पनि काम लाग्ने एक मात्र निरोधात्मक
+      उपाय।</p>
+      <p><b>UPS प्रयोग गर्ने र मेसिन चिसो, सुक्खा, हावा खेल्ने ठाउँमा राख्ने</b> — बिजुली समस्या,
+      ताप र आर्द्रताबाट हुने क्षति रोक्छ।</p>
+    </div>
+  </div>
+
+  <h3 class="topic" id="hw-t52">5.2 &nbsp;Power source and power protection</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>Four things can go wrong with mains power, and a different device protects against each:</p>
+      <p><b>Surge / spike</b> — a brief, very large rise in voltage, often from lightning or heavy
+      machinery switching off. Protected by a <b>surge protector</b>, which diverts the excess.</p>
+      <p><b>Sag / brownout</b> — voltage that drops below normal but does not disappear. It can
+      make a system unstable and restart without warning. Protected by a <b>voltage stabiliser</b>.</p>
+      <p><b>Blackout</b> — power fails completely. Only a <b>UPS (Uninterruptible Power Supply)</b>
+      helps, because it holds a battery that carries the machine long enough to save work and shut
+      down properly.</p>
+      <p><b>Noise</b> — small unwanted variations riding on the supply. Filtered by a UPS or a
+      conditioner.</p>
+      <p>A UPS is not a generator. It buys minutes, not hours, and its purpose is a clean shutdown.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p>मुख्य बिजुलीमा चार किसिमका समस्या आउँछन्, र हरेकबाट फरक उपकरणले जोगाउँछ:</p>
+      <p><b>Surge / spike</b> — छोटो तर धेरै ठूलो भोल्टेज बढाइ, प्रायः चट्याङ वा ठूलो मेसिन बन्द
+      हुँदा। <b>Surge protector</b> ले जोगाउँछ, जसले बढी बिजुली अन्तै पठाउँछ।</p>
+      <p><b>Sag / brownout</b> — भोल्टेज सामान्यभन्दा तल झर्नु, तर पूरै नजानु। प्रणाली अस्थिर
+      बनाउँछ र चेतावनीबिनै रिस्टार्ट गराउँछ। <b>Voltage stabiliser</b> ले जोगाउँछ।</p>
+      <p><b>Blackout</b> — बिजुली पूरै जानु। <b>UPS (Uninterruptible Power Supply)</b> ले मात्र
+      काम गर्छ, किनकि यसमा ब्याट्री हुन्छ जसले काम बचाएर ठीकसँग बन्द गर्न पुग्ने बेर मेसिन
+      चलाइराख्छ।</p>
+      <p><b>Noise</b> — सप्लाईमै मिसिएर आउने साना अवाञ्छित उतारचढाव। UPS वा conditioner ले
+      छान्छ।</p>
+      <p>UPS जेनेरेटर होइन। यसले घण्टा होइन, मिनेट दिन्छ, र यसको उद्देश्य सफासँग बन्द गर्नु हो।</p>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="c">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>A school has frequent power cuts and loses unsaved work every time. Which device solves the
+      problem?
+      <span class="np-cell">एउटा विद्यालयमा बारम्बार बिजुली जान्छ र हरेक पटक नबचाइएको काम हराउँछ।
+      कुन उपकरणले यो समस्या समाधान गर्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">A surge protector</button>
+      <button class="predict-opt" data-value="b">A voltage stabiliser</button>
+      <button class="predict-opt" data-value="c">A UPS</button>
+    </div>
+    <div class="predict-feedback">
+      <p>Read what the problem actually is: the power <b>disappears</b>. A surge protector handles
+      voltage that is too <i>high</i> and a stabiliser handles voltage that is too <i>low</i> —
+      neither can supply power that is not there. Only a UPS carries its own battery, and that is
+      why it is the only one of the three that helps in a blackout.</p>
+      <span class="np-cell">समस्या के हो पढ्नुहोस्: बिजुली <b>हराउँछ</b>। Surge protector ले धेरै
+      <i>बढी</i> भोल्टेज सम्हाल्छ र stabiliser ले धेरै <i>कम</i> — नभएको बिजुली दुवैले दिन
+      सक्दैनन्। UPS सँग मात्र आफ्नै ब्याट्री हुन्छ, र तीनमध्ये blackout मा काम लाग्ने एक मात्र
+      यही हुनुको कारण त्यही हो।</span>
+    </div>
+  </div>
+
+  <h3 class="topic" id="hw-t53">5.3 &nbsp;Cooling, ventilation and processor power</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A processor turns electrical power into work and <b>heat</b>. If the heat is not carried
+      away as fast as it is produced, the temperature climbs until the board shuts the machine down
+      to protect the chip.</p>
+      <p><b>How a processor is cooled:</b> a <b>heatsink</b> of metal fins sits on the chip, with a
+      thin layer of <b>thermal paste</b> filling the microscopic gaps so heat crosses into it.
+      A <b>fan</b> moves air through the fins. The <b>case</b> provides the path: cool air in at
+      the front, warm air out at the back.</p>
+      <p><b>Processor power and voltage:</b> the board supplies the processor through its own
+      regulator at a low, precisely held voltage. Too low and the system is unstable; too high and
+      the chip is damaged. This is why overclocking without care destroys processors.</p>
+      <p><b>Thermal shutdown is protection, not a fault.</b> A machine that turns itself off when
+      hot is working correctly — the fault is whatever is stopping the heat leaving.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p>प्रोसेसरले विद्युतीय शक्तिलाई काम र <b>ताप</b> मा बदल्छ। उत्पादन भएको गतिमै ताप बाहिर
+      नगए तापक्रम बढ्दै जान्छ र चिप जोगाउन बोर्डले मेसिन बन्द गरिदिन्छ।</p>
+      <p><b>प्रोसेसर कसरी चिसो पारिन्छ:</b> चिपमाथि धातुका पत्र भएको <b>heatsink</b> राखिन्छ, र
+      सूक्ष्म खाली ठाउँ भर्न पातलो <b>thermal paste</b> लगाइन्छ ताकि ताप त्यसमा सरोस्।
+      <b>पंखा</b> ले पत्रबीच हावा चलाउँछ। <b>केस</b> ले बाटो दिन्छ: अगाडिबाट चिसो हावा भित्र,
+      पछाडिबाट न्यानो हावा बाहिर।</p>
+      <p><b>प्रोसेसरको बिजुली र भोल्टेज:</b> बोर्डले आफ्नै regulator मार्फत प्रोसेसरलाई कम र
+      ठ्याक्कै स्थिर भोल्टेज दिन्छ। कम भए प्रणाली अस्थिर हुन्छ; बढी भए चिप बिग्रिन्छ। ध्यान
+      नपुर्‍याई overclock गर्दा प्रोसेसर नष्ट हुनुको कारण यही हो।</p>
+      <p><b>तापका कारण बन्द हुनु सुरक्षा हो, खराबी होइन।</b> तातेपछि आफैँ बन्द हुने मेसिन ठीकसँग
+      चलिरहेको छ — ताप बाहिर जान नदिने जुनसुकै कुरा नै खराबी हो।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:hwCooling}}
+    <figcaption>One path, front to back. Dust on the fins is an insulator: the processor makes its
+    normal heat and simply cannot get rid of it.
+    <span class="np-cell">एउटै बाटो, अगाडिबाट पछाडि। पत्रमा जमेको धुलो इन्सुलेटर हो: प्रोसेसरले
+    सामान्य ताप निकाल्छ तर त्यो बाहिर पठाउनै सक्दैन।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Diagnose it yourself</span><span class="t-ne"><span class="t-en"> · </span>आफैँ निदान गर्नुहोस्</span></p>
+      <h4>The fault lab — it restarts by itself after a while</h4>
+      <p class="sim-goal">What you will learn: to use the <b>timing</b> of a fault as evidence.
+      This scenario cannot be solved by naming a part — it is solved by noticing when the failure
+      happens and what that rules out.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: खराबीको <b>समय</b> लाई प्रमाणका रूपमा प्रयोग
+      गर्न। यो अवस्था पार्टको नाम भनेर समाधान हुँदैन — कहिले बिग्रिन्छ र त्यसले के हटाउँछ भनी
+      ध्यान दिएर हुन्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="fault" id="fl-overheat" data-scenario="overheat"></div>
+    </div>
+    <div class="sim-controls"></div>
+    <p class="sim-why"><span class="t-en">Why this matters: a fault that appears only after the
+    machine warms up is one of the few whose cause is written in its timing. Students who never
+    learn to read that will replace a processor to fix a dusty heatsink.</span><span class="np-cell">किन
+    महत्त्वपूर्ण छ: मेसिन तातेपछि मात्र देखिने खराबी ती थोरैमध्ये एक हो जसको कारण समयमै लेखिएको
+    हुन्छ। यो पढ्न नसिकेका विद्यार्थीले धुलो भरिएको heatsink मिलाउन प्रोसेसरै साट्छन्।</span></p>
+  </div>
+
+  <h3 class="topic" id="hw-t54">5.4 &nbsp;Display, video card and device connection faults</h3>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Symptom</th>
+          <th scope="col">Most likely cause</th>
+          <th scope="col">What to do</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Screen blurry or stretched<span class="np-cell">स्क्रिन धमिलो वा तानिएको</span></td>
+          <td>Resolution not set to the monitor's native value<span class="np-cell">Monitor को आफ्नै resolution मा सेट नभएको</span></td>
+          <td>Set the recommended resolution in display settings<span class="np-cell">Display सेटिङमा सिफारिस गरिएको resolution राख्ने</span></td>
+        </tr>
+        <tr>
+          <td>Wrong or missing colours<span class="np-cell">रङ गलत वा नआएको</span></td>
+          <td>Loose or damaged video cable — a bent pin<span class="np-cell">Video केबल खुकुलो वा बिग्रेको — पिन बाङ्गिएको</span></td>
+          <td>Reseat the cable; check the pins; try another cable<span class="np-cell">केबल फेरि कस्ने; पिन हेर्ने; अर्को केबल जोड्ने</span></td>
+        </tr>
+        <tr>
+          <td>Flickering, tiring to look at<span class="np-cell">झिमझिम, हेर्न थकाइ लाग्ने</span></td>
+          <td>Refresh rate set too low<span class="np-cell">Refresh rate धेरै कम राखिएको</span></td>
+          <td>Raise it to the highest the monitor supports<span class="np-cell">Monitor ले सक्ने सबैभन्दा माथि बढाउने</span></td>
+        </tr>
+        <tr>
+          <td>Distorted patterns or artefacts on screen<span class="np-cell">स्क्रिनमा बिग्रिएका आकार वा धब्बा</span></td>
+          <td>Video card overheating or failing<span class="np-cell">Video card तात्दै वा बिग्रँदै</span></td>
+          <td>Clean its fan and fins; reseat the card; test in another slot<span class="np-cell">यसको पंखा र पत्र सफा गर्ने; कार्ड फेरि बसाल्ने; अर्को slot मा जाँच्ने</span></td>
+        </tr>
+        <tr>
+          <td>Device not recognised at all<span class="np-cell">उपकरण पत्तै नलागेको</span></td>
+          <td>Loose connector, dead port, or a missing driver<span class="np-cell">Connector खुकुलो, पोर्ट मरेको, वा driver नभएको</span></td>
+          <td>Try another port, then another cable, then install the driver<span class="np-cell">अर्को पोर्ट, अनि अर्को केबल, अनि driver इन्स्टल</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="topic" id="hw-t55">5.5 &nbsp;Wireless connection problems</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">In this order</span>
+      <p><b>1. Is the adapter switched on?</b> Many laptops have a physical switch or a keyboard
+      shortcut, and flight mode disables it entirely. This is the commonest cause and the fastest
+      to check.</p>
+      <p><b>2. Is the network visible?</b> If no networks appear at all, the fault is the adapter
+      or its driver. If other networks appear but yours does not, the fault is at the router.</p>
+      <p><b>3. Does it connect but not reach the internet?</b> Then the wireless link is fine and
+      the problem is beyond the router — the connection to the provider.</p>
+      <p><b>4. Is the signal weak?</b> Distance, thick walls and interference from other equipment
+      all reduce it. Moving closer is a diagnostic step, not just a workaround.</p>
+      <p><b>5. Is it the password or the security setting?</b> A wrong key gives a connection that
+      keeps dropping and reconnecting rather than a clean failure.</p>
+    </div>
+    <div class="np"><span class="tag">यही क्रममा</span>
+      <p><b>१. Adapter खुला छ?</b> धेरै ल्यापटपमा भौतिक स्विच वा किबोर्ड सर्टकट हुन्छ, र flight
+      mode ले पूरै बन्द गर्छ। सबैभन्दा सामान्य कारण र सबैभन्दा छिटो जाँच यही हो।</p>
+      <p><b>२. नेटवर्क देखिन्छ?</b> कुनै पनि नेटवर्क नदेखिए खराबी adapter वा यसको driver मा छ।
+      अरू देखिने तर आफ्नो नदेखिने भए खराबी router मा छ।</p>
+      <p><b>३. जोडिन्छ तर इन्टरनेट आउँदैन?</b> त्यसो भए वायरलेस जडान ठीक छ र समस्या router भन्दा
+      पर — सेवा प्रदायकसँगको जडानमा छ।</p>
+      <p><b>४. सिग्नल कमजोर छ?</b> दूरी, बाक्लो भित्ता र अरू उपकरणको हस्तक्षेपले घटाउँछ। नजिक
+      सर्नु समाधान मात्र होइन, निदानको एउटा चरण पनि हो।</p>
+      <p><b>५. पासवर्ड वा security सेटिङ हो?</b> गलत key ले सफासँग असफल हुनुको साटो बारम्बार
+      जोडिने र छुट्ने जडान दिन्छ।</p>
+    </div>
+  </div>
+
+  <h3 class="topic" id="hw-t56">5.6 &nbsp;Viruses — detection, protection and prevention</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>computer virus</b> is a malicious program that attaches itself to another program or
+      file, and copies itself to other files or computers when that host is run.</p>
+      <p><b>How infection spreads:</b> infected USB drives and external media; email attachments;
+      downloads from untrusted sites; pirated software; and network shares.</p>
+      <p><b>Signs of infection:</b> the computer slows down for no clear reason; files disappear,
+      change size or will not open; programs start or crash on their own; unexpected messages
+      appear; free disk space falls quickly; the antivirus has been disabled.</p>
+      <p><b>Detection and protection:</b> install antivirus software and <b>keep it updated</b> —
+      an out-of-date scanner cannot recognise a new virus. Scan removable media before opening it.
+      Enable a firewall. Keep the operating system patched.</p>
+      <p><b>Prevention:</b> do not open attachments from unknown senders, do not install pirated
+      software, disable autorun on removable media, and take regular backups — the last defence
+      when everything else has failed.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Computer virus</b> भनेको अर्को प्रोग्राम वा फाइलमा टाँसिने र त्यो चल्दा आफूलाई अन्य
+      फाइल वा कम्प्युटरमा सार्ने हानिकारक प्रोग्राम हो।</p>
+      <p><b>कसरी सर्छ:</b> सङ्क्रमित USB र बाहिरी मिडिया; इमेल attachment; अविश्वसनीय साइटबाट
+      डाउनलोड; चोरी सफ्टवेयर; र नेटवर्क share।</p>
+      <p><b>सङ्क्रमणका लक्षण:</b> स्पष्ट कारणबिनै कम्प्युटर ढिलो हुनु; फाइल हराउनु, आकार बदलिनु
+      वा नखुल्नु; प्रोग्राम आफैँ खुल्नु वा बन्द हुनु; अनपेक्षित सन्देश देखिनु; खाली ठाउँ छिट्टै
+      घट्नु; antivirus बन्द भइदिनु।</p>
+      <p><b>पत्ता लगाउने र जोगाउने:</b> antivirus राख्नुहोस् र <b>अपडेट गरिराख्नुहोस्</b> —
+      पुरानो स्क्यानरले नयाँ भाइरस चिन्न सक्दैन। बाहिरी मिडिया खोल्नुअघि स्क्यान गर्नुहोस्।
+      Firewall खोल्नुहोस्। अपरेटिङ सिस्टम अपडेट राख्नुहोस्।</p>
+      <p><b>रोकथाम:</b> नचिनेको पठाउनेको attachment नखोल्नुहोस्, चोरी सफ्टवेयर नराख्नुहोस्,
+      हटाउन मिल्ने मिडियाको autorun बन्द गर्नुहोस्, र नियमित ब्याकअप लिनुहोस् — सबै असफल भएपछिको
+      अन्तिम रक्षा यही हो।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Which power problem is this, and what protects against it?</h4>
+      <p class="sim-goal">What you will learn: to match a described power event to the right
+      protective device — which is exactly how this topic is examined, rather than as four
+      definitions in a row.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: वर्णन गरिएको बिजुली घटनालाई ठीक सुरक्षा
+      उपकरणसँग मिलाउन — यो विषय चार परिभाषा लहरै सोधेर होइन, ठ्याक्कै यसै गरी जाँचिन्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-hw-power" data-set="powerprotect"></div>
+    </div>
+    <div class="sim-controls"></div>
+    <p class="sim-why"><span class="t-en">Why this matters: choosing the wrong protective device is
+    an expensive mistake in the real world. A surge protector on a site with frequent cuts protects
+    against the one problem that site does not have.</span><span class="np-cell">किन महत्त्वपूर्ण
+    छ: गलत सुरक्षा उपकरण छान्नु वास्तविक जीवनमा महँगो गल्ती हो। बारम्बार बिजुली जाने ठाउँमा
+    surge protector राख्नु भनेको त्यहाँ नभएकै समस्याबाट जोगिनु हो।</span></p>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Choosing power protection for a real site</div>
+    <p><b>Question:</b> a school computer lab has three problems: the voltage drops noticeably at
+    peak hours, the power fails completely two or three times a week, and there are lightning
+    storms in the monsoon. What do you install, and why?</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Three problems are listed. Decide how many devices
+      are actually needed before you read on.</span><span class="np-cell">तीन समस्या लेखिएका छन्।
+      पढ्नुअघि साँच्चै कति उपकरण चाहिन्छ निर्णय गर्नुहोस्।</span></p>
+    </div>
+    <p><b>Step 1 — name each problem.</b> Voltage dropping at peak hours is a <b>sag</b>. Power
+    failing completely is a <b>blackout</b>. Lightning is a <b>surge</b>.</p>
+    <p><b>Step 2 — match a device to each.</b> Sag needs a stabiliser. Blackout needs a UPS.
+    Surge needs a surge protector.</p>
+    <p><b>Step 3 — check for overlap before buying three things.</b> A UPS already provides surge
+    protection and filtering, and most units regulate voltage within a range as well. So a UPS with
+    built-in voltage regulation covers all three.</p>
+    <p><b>Step 4 — state what it does not cover.</b> A UPS gives minutes, not hours. If the cuts
+    last longer than the battery, its job is a clean shutdown, and a generator is a separate
+    decision.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">A UPS with built-in voltage regulation — it answers all three, and only the blackout genuinely required a battery.</div>
+    </div>
+    <p class="wex-note">The examiner is testing whether you match the device to the <i>problem</i>.
+    Recommending a surge protector for a site whose real complaint is power cuts protects against
+    the one thing that site did not report.
+    <span class="np-cell">परीक्षकले तपाईंले उपकरणलाई <i>समस्या</i> सँग मिलाउनुहुन्छ कि हेर्छ।
+    बिजुली जाने गुनासो भएको ठाउँमा surge protector सिफारिस गर्नु भनेको त्यहाँ नभनिएकै कुराबाट
+    जोगाउनु हो।</span></p>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> A monitor problem, narrowed in three checks</div>
+    <p><b>Question:</b> a user reports that their screen "looks wrong". On inspection the picture
+    is blurry, slightly stretched, and there is a faint pink tint on the left side. How do you
+    proceed?</p>
+    <p><b>Step 1 — separate the complaints.</b> There are two independent symptoms here: geometry
+    (blurry and stretched) and colour (a pink tint). Treating them as one fault is what makes this
+    look hard.</p>
+    <p><b>Step 2 — deal with the geometry first, because it costs nothing.</b> Blurry and stretched
+    on a flat panel means the resolution is not the monitor's native value. Set the recommended
+    resolution; the picture becomes sharp and the correct shape.</p>
+    <p><b>Step 3 — the tint remains, so it is a separate fault.</b> A colour cast confined to one
+    area of the screen points at the signal, not the settings. Check the video cable for a bent or
+    pushed-in pin, and reseat it at both ends.</p>
+    <p><b>Step 4 — confirm.</b> One pin was not making contact. With the cable reseated the tint
+    goes. Verify both symptoms are gone before closing the job.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">Two faults, not one: wrong resolution (a setting) and a video cable pin (hardware). Fixing either alone would have left the user still complaining.</div>
+    </div>
+    <p class="wex-note">When a user reports several things at once, count the faults before you
+    start. A "fix" that clears two of three symptoms is reported back as "it is still broken".
+    <span class="np-cell">प्रयोगकर्ताले एकैचोटि धेरै कुरा भन्दा सुरु गर्नुअघि खराबी कति छन्
+    गन्नुहोस्। तीनमध्ये दुई लक्षण हटाउने "समाधान" फेरि "अझै बिग्रेकै छ" भनेर फर्किन्छ।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Calling a thermal shutdown a fault.</b> The shutdown is the protection working. The
+        fault is the blocked airflow, the stopped fan or the dried thermal paste.
+        <span class="np-cell">तापले बन्द हुनुलाई खराबी भन्नु। बन्द हुनु सुरक्षा चलेको हो। खराबी
+        भनेको रोकिएको हावा, नचल्ने पंखा वा सुकेको thermal paste हो।</span></li>
+      <li><b>Saying a surge protector protects against power cuts.</b> It handles voltage that is
+        too high. Only a UPS has a battery, so only a UPS helps in a blackout.
+        <span class="np-cell">Surge protector ले बिजुली जानुबाट जोगाउँछ भन्नु। यसले बढी भोल्टेज
+        सम्हाल्छ। ब्याट्री UPS मा मात्र हुन्छ, त्यसैले blackout मा UPS मात्र काम लाग्छ।</span></li>
+      <li><b>Writing "install antivirus" without "and update it".</b> An antivirus that is never
+        updated cannot recognise anything released after it was installed.
+        <span class="np-cell">"अपडेट गर्ने" नलेखी "antivirus राख्ने" मात्र लेख्नु। कहिल्यै अपडेट
+        नगरिएको antivirus ले इन्स्टल भएपछि आएको कुनै पनि कुरा चिन्न सक्दैन।</span></li>
+      <li><b>Cleaning inside a machine with a wet cloth or a household vacuum.</b> Use dry
+        compressed air. Moisture and static both destroy components.
+        <span class="np-cell">मेसिनभित्र भिजेको कपडा वा घरायसी भ्याकुमले सफा गर्नु। सुक्खा
+        कम्प्रेस्ड एयर प्रयोग गर्नुहोस्। चिस्यान र static दुवैले पार्ट नष्ट गर्छन्।</span></li>
+    </ul>
+    <p class="hook"><b>Shutdown is the protection, not the fault.</b> Only a UPS has a battery.
+    <span class="np-cell"><b>बन्द हुनु सुरक्षा हो, खराबी होइन।</b> ब्याट्री UPS मा मात्र
+    हुन्छ।</span></p>
+  </div>
+
+  <h3 class="topic" id="hw-exam5">Exam focus — what is asked from this unit</h3>
+  <div class="exam-connect">
+    <b>This unit is the widest in the subject — eleven topics for 9 marks — so questions are short
+    and drawn from anywhere in it.</b> The reliable ones are: <b>list preventive maintenance
+    tasks</b> (pair each with the failure it prevents and you answer a 4-mark question with a
+    3-mark list), <b>differentiate UPS, surge protector and voltage stabiliser</b>, <b>what is a
+    computer virus and how do you prevent infection</b>, and <b>why must a processor be cooled</b>.
+    Expect at least one symptom-to-cause question drawn from the display and connection faults.
+    <span class="np-cell">यो विषयकै सबैभन्दा फराकिलो युनिट हो — ९ अंकका लागि एघार विषय — त्यसैले
+    प्रश्न छोटा र जताबाट पनि आउन सक्ने हुन्छन्। भरपर्दा प्रश्न: <b>निरोधात्मक सम्भारका काम
+    सूचीबद्ध गर्नुहोस्</b> (हरेकसँग रोकिने खराबी जोड्नुभयो भने ३ अंकको सूचीले ४ अंकको प्रश्न
+    उत्तर हुन्छ), <b>UPS, surge protector र voltage stabiliser छुट्याउनुहोस्</b>, <b>कम्प्युटर
+    भाइरस के हो र सङ्क्रमण कसरी रोक्ने</b>, र <b>प्रोसेसर किन चिसो पार्नुपर्छ</b>। Display र
+    जडान खराबीबाट कम्तीमा एउटा लक्षण–कारण प्रश्न आउने अपेक्षा गर्नुहोस्।</span>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q1 <span class="mk">4 marks</span></p>
+    <h4>What is preventive maintenance? List any four tasks and state what each one prevents.
+      <span class="np-cell">Preventive maintenance के हो? कुनै चार काम सूचीबद्ध गर्नुहोस् र हरेकले
+      के रोक्छ भन्नुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a51">Show the answer</button>
+    <div class="ans" id="hw-a51">
+      <p>Preventive maintenance is work carried out on a system that is still functioning, in order
+      to prevent failures and extend equipment life. Cleaning dust from vents, fans and heatsinks
+      prevents overheating and unexpected shutdowns. Checking that cables and cards are firmly
+      seated prevents intermittent faults. Deleting temporary files and defragmenting the disk
+      prevents slowdowns and the disk filling. Updating the operating system and antivirus closes
+      the security holes malware uses. Taking regular backups prevents permanent data loss when
+      hardware eventually fails.</p>
+      <span class="np-cell">Preventive maintenance भनेको अझै चलिरहेको प्रणालीमा खराबी रोक्न र
+      उपकरणको आयु बढाउन गरिने काम हो। प्वाल, पंखा र heatsink को धुलो सफा गर्दा तात्ने र अचानक बन्द
+      हुने समस्या रोकिन्छ। केबल र कार्ड कसिएका छन् कि जाँच्दा रुकिरुकी आउने खराबी रोकिन्छ। अस्थायी
+      फाइल मेटाउँदा र डिस्क defragment गर्दा ढिलो हुने र डिस्क भरिने समस्या रोकिन्छ। OS र
+      antivirus अपडेट गर्दा malware भित्रिने प्वाल बन्द हुन्छ। नियमित ब्याकअपले हार्डवेयर
+      बिग्रिँदा हुने स्थायी data क्षति रोक्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q2 <span class="mk">3 marks</span></p>
+    <h4>Differentiate between a UPS, a surge protector and a voltage stabiliser.
+      <span class="np-cell">UPS, surge protector र voltage stabiliser बीचको फरक छुट्याउनुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a52">Show the answer</button>
+    <div class="ans" id="hw-a52">
+      <p>A surge protector guards against a surge or spike — a brief, very high rise in voltage —
+      by diverting the excess away from the equipment. A voltage stabiliser guards against a sag or
+      brownout by holding the output steady when the incoming voltage drops below normal. A UPS
+      contains a battery and is the only one of the three that can supply power during a complete
+      blackout, giving enough time to save work and shut down properly; it also filters noise.</p>
+      <span class="np-cell">Surge protector ले surge वा spike — छोटो तर धेरै ठूलो भोल्टेज बढाइ —
+      बाट जोगाउँछ, बढी बिजुली उपकरणबाट अन्तै पठाएर। Voltage stabiliser ले आउने भोल्टेज
+      सामान्यभन्दा तल झर्दा आउटपुट स्थिर राखेर sag वा brownout बाट जोगाउँछ। UPS मा ब्याट्री हुन्छ
+      र पूरै blackout मा बिजुली दिन सक्ने तीनमध्ये एक मात्र यही हो, जसले काम बचाएर ठीकसँग बन्द गर्न
+      पुग्ने समय दिन्छ; यसले noise पनि छान्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q3 <span class="mk">2 marks</span></p>
+    <h4>What is a computer virus? State any three ways of preventing infection.
+      <span class="np-cell">Computer virus के हो? सङ्क्रमण रोक्ने कुनै तीन उपाय लेख्नुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a53">Show the answer</button>
+    <div class="ans" id="hw-a53">
+      <p>A computer virus is a malicious program that attaches itself to another program or file
+      and copies itself to other files or computers when the host is run. Prevention: install
+      antivirus software and keep it updated; scan USB drives and other removable media before
+      opening them; do not open email attachments from unknown senders; avoid pirated software;
+      disable autorun; and keep regular backups.</p>
+      <span class="np-cell">Computer virus भनेको अर्को प्रोग्राम वा फाइलमा टाँसिने र त्यो चल्दा
+      आफूलाई अन्य फाइल वा कम्प्युटरमा सार्ने हानिकारक प्रोग्राम हो। रोकथाम: antivirus राख्ने र
+      अपडेट गरिराख्ने; USB र अन्य मिडिया खोल्नुअघि स्क्यान गर्ने; नचिनेकाको इमेल attachment
+      नखोल्ने; चोरी सफ्टवेयर नचलाउने; autorun बन्द गर्ने; र नियमित ब्याकअप राख्ने।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick">Preventive maintenance is done while the system still works. Pair each task
+        with the failure it prevents.
+        <span class="np-cell">Preventive maintenance प्रणाली चलिरहेकै बेला गरिन्छ। हरेक कामसँग
+        त्यसले रोक्ने खराबी जोड्नुहोस्।</span></li>
+      <li class="tick">Surge = too high, sag = too low, blackout = none. Only a UPS has a battery.
+        <span class="np-cell">Surge = धेरै बढी, sag = धेरै कम, blackout = बिल्कुलै छैन। ब्याट्री
+        UPS मा मात्र।</span></li>
+      <li class="tick">A processor needs a heatsink, thermal paste and a fan, and the case needs a
+        clear front-to-back airflow path. Thermal shutdown is protection working correctly.
+        <span class="np-cell">प्रोसेसरलाई heatsink, thermal paste र पंखा चाहिन्छ, र केसमा
+        अगाडिदेखि पछाडिसम्म हावाको खुला बाटो। तापले बन्द हुनु सुरक्षा ठीकसँग चलेको हो।</span></li>
+      <li class="tick">Blurry screen → wrong resolution. Flicker → low refresh rate. Artefacts →
+        video card overheating.
+        <span class="np-cell">धमिलो स्क्रिन → गलत resolution। झिमझिम → कम refresh rate। बिग्रिएका
+        आकार → video card तात्दै।</span></li>
+      <li class="tick">A virus attaches to a host and spreads when it runs. Antivirus only works if
+        it is kept updated, and backups are the last defence.
+        <span class="np-cell">भाइरस कुनै host मा टाँसिन्छ र त्यो चल्दा सर्छ। Antivirus अपडेट
+        गरे मात्र काम लाग्छ, र ब्याकअप अन्तिम रक्षा हो।</span></li>
+    </ul>
+  </div>
+</section>

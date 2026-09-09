@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Overview on System's Core — Hardware & Repair | </title>
+<meta name="description" content="Overview on System's Core explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark" lang="ne">ज्ञ</span>
+      <span class="brand-txt">Gyansetu<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop on"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair <span class="dn">· notes ready</span><small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html" class="on">Hardware & Repair ✓<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 10</a> <span class="sep">/</span> <a href="index.html">Hardware & Repair</a> <span class="sep">/</span> <span>Overview on System's Core</span></nav>
+<main id="main" tabindex="-1" data-subject="grade10/hardware">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · Electronics</a><a href="unit2.html">2 · System Parts</a><a href="unit3.html" style="color:var(--yellow);border-color:var(--yellow)">3 · BIOS & Storage</a><a href="unit4.html">4 · Troubleshooting</a><a href="unit5.html">5 · Maintenance</a><a href="unit6.html">6 · Backup & RAID</a><a href="revise.html">↻ · Revision</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="hw-u3">
+  <div class="sec-head">
+    <div class="sec-num">3</div>
+    <div>
+      <h1>Overview on System's Core</h1>
+      <p class="sec-sub" lang="ne">प्रणालीको मुख्य भागको सिंहावलोकन</p>
+    </div>
+    <span class="marks">12 hrs · 9 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <aside class="prereq" aria-labelledby="prereq-h"><h2 class="prereq-h" id="prereq-h"><span class="t-en">You should already know</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>तपाईंलाई पहिले यति आउनुपर्छ</span></h2><ul class="prereq-list"><li class="prereq-item"><a class="prereq-link" href="unit2.html"><span class="prereq-n">2</span><span class="prereq-t"><span class="t-en">Introduction to Computer System</span><span class="np-cell" lang="ne">कम्प्युटर प्रणालीको परिचय</span></span></a><p class="prereq-why"><span class="t-en">Unit 3 identifies the parts ON the board and what each one connects. That only means something once you know the five units of a system and which of them the CPU is made of.</span><span class="np-cell" lang="ne">युनिट ३ ले बोर्डमा भएका भाग र हरेकले के जोड्छ चिनाउँछ। प्रणालीका पाँच एकाइ र तीमध्ये CPU कुन-कुनबाट बन्छ थाहा भएपछि मात्र त्यसको अर्थ हुन्छ।</span></p></li></ul></aside>
+
+  <div class="outcomes">
+    <h2><span class="t-en">By the end of this unit you can…</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो युनिट सकिँदा तपाईं यी कुरा गर्न सक्नुहुनेछ</span></h2><div class="t-en">
+    <ol>
+      <li>State what the BIOS is and list its main functions, including POST.</li>
+      <li>Identify the major parts of a motherboard and say what each one connects.</li>
+      <li>Explain what a form factor is and why it matters when replacing a board.</li>
+      <li>Describe the PCI local bus and what expansion slots are for.</li>
+      <li>Name the parts of an internal power supply and the voltages it provides.</li>
+      <li>Describe the construction of a hard disk and explain how a block is read.</li>
+      <li>Explain partitioning and drive lettering, and distinguish quick from full formatting.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: BIOS के हो र POST सहित यसका मुख्य काम भन्न, मदरबोर्डका
+    प्रमुख भाग चिन्न र हरेकले के जोड्छ भन्न, form factor के हो र बोर्ड साट्दा किन महत्त्वपूर्ण
+    हुन्छ बताउन, PCI local bus र expansion slot को काम वर्णन गर्न, आन्तरिक पावर सप्लाईका भाग र
+    यसले दिने भोल्टेज नाम लिन, hard disk को बनावट वर्णन गर्न र एउटा ब्लक कसरी पढिन्छ व्याख्या
+    गर्न, र partitioning–drive lettering बुझाउन तथा quick र full formatting छुट्याउन सक्नुहुनेछ।</span>
+  </div>
+
+  <h2 class="topic" id="hw-t31">3.1 &nbsp;The system BIOS</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p><b>BIOS (Basic Input Output System)</b> is firmware stored on a chip on the motherboard.
+      It is the first program that runs when the machine is switched on — before any operating
+      system exists in memory.</p>
+      <p><b>Its four functions:</b></p>
+      <p><b>1. POST (Power-On Self Test)</b> — checks that the essential hardware is present and
+      working. If something fails, it reports with <b>beep codes</b>, because the screen may not be
+      available yet.</p>
+      <p><b>2. Bootstrap loader</b> — finds the operating system on a drive and loads it into
+      memory.</p>
+      <p><b>3. BIOS drivers</b> — low-level control of the basic hardware so the machine can work
+      before the OS drivers load.</p>
+      <p><b>4. CMOS setup</b> — the screen where boot order, time and hardware settings are
+      changed. Those settings are kept in CMOS memory, powered by a small battery.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>BIOS (Basic Input Output System)</b> मदरबोर्डको चिपमा राखिएको firmware हो। मेसिन
+      खोल्दा सबैभन्दा पहिले चल्ने प्रोग्राम यही हो — मेमोरीमा कुनै अपरेटिङ सिस्टम आउनुअघि नै।</p>
+      <p><b lang="ne">यसका चार काम:</b></p>
+      <p><b lang="ne">१. POST (Power-On Self Test)</b> — आवश्यक हार्डवेयर छ र चलिरहेको छ कि जाँच्छ। केही
+      बिग्रिए <b lang="ne">बीप कोड</b> ले सुनाउँछ, किनकि स्क्रिन अझै उपलब्ध नहुन सक्छ।</p>
+      <p><b lang="ne">२. Bootstrap loader</b> — ड्राइभमा अपरेटिङ सिस्टम खोजेर मेमोरीमा लोड गर्छ।</p>
+      <p><b lang="ne">३. BIOS drivers</b> — आधारभूत हार्डवेयरको तल्लो तहको नियन्त्रण, ताकि OS का driver
+      लोड हुनुअघि पनि मेसिन चल्न सकोस्।</p>
+      <p><b lang="ne">४. CMOS setup</b> — boot order, समय र हार्डवेयर सेटिङ बदल्ने स्क्रिन। ती सेटिङ CMOS
+      मेमोरीमा रहन्छन्, जसलाई सानो ब्याट्रीले चलाउँछ।</p>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A computer shows the wrong date every time it is switched on, and the BIOS settings keep
+      returning to default. What is the most likely cause?
+      </span><span class="np-cell" lang="ne">कम्प्युटर खोल्दा हरेक पटक गलत मिति देखिन्छ, र BIOS सेटिङ बारम्बार
+      पूर्वनिर्धारितमा फर्किन्छ। सबैभन्दा सम्भावित कारण के हो?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">The hard disk is failing</button>
+      <button class="predict-opt" data-value="b">The CMOS battery is dead</button>
+      <button class="predict-opt" data-value="c">The operating system needs reinstalling</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p>The CMOS memory that holds the settings and runs the clock needs power even when the
+      machine is unplugged, and that comes from a small coin battery on the board. When it dies,
+      everything CMOS remembers is lost each time mains power goes. It is a cheap part and a
+      two-minute fix — but only if you read the symptom correctly instead of suspecting the disk.</p>
+      </div><span class="np-cell" lang="ne">सेटिङ राख्ने र घडी चलाउने CMOS मेमोरीलाई मेसिन अनप्लग हुँदा पनि बिजुली
+      चाहिन्छ, र त्यो बोर्डको सानो सिक्का ब्याट्रीबाट आउँछ। त्यो सकिएपछि मुख्य बिजुली जाँदा CMOS ले
+      सम्झेको सबै हराउँछ। सस्तो पार्ट र दुई मिनेटको काम हो — तर लक्षण ठीक पढेमा मात्र, disk मा
+      शंका गरेर होइन।</span>
+    </div>
+  </div>
+
+  <h2 class="topic" id="hw-t32">3.2 &nbsp;The motherboard and its form factors</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>The <b>motherboard</b> is the main printed circuit board. Every other component either
+      plugs into it or connects to it, and it carries the buses that let them communicate.</p>
+      <p>A <b>form factor</b> is the standard that fixes a board's size, its mounting-hole
+      positions, and where its ports and power connector sit. <b>ATX</b> is the common desktop
+      standard; <b>Micro-ATX</b> and <b>Mini-ITX</b> are smaller versions with fewer slots.</p>
+      <p>The form factor is why a replacement board is not simply "any board" — it must match the
+      case it has to screw into and the power supply that has to feed it.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Motherboard</b> मुख्य printed circuit board हो। अरू हरेक भाग या त यसमा जोडिन्छ या
+      यससँग जडान हुन्छ, र तिनलाई कुरा गर्न दिने bus यसैले बोक्छ।</p>
+      <p><b>Form factor</b> भनेको बोर्डको आकार, स्क्रु प्वालको स्थान, र पोर्ट तथा power connector
+      कहाँ पर्ने भन्ने तय गर्ने मानक हो। <b>ATX</b> सामान्य डेस्कटप मानक हो; <b>Micro-ATX</b> र
+      <b>Mini-ITX</b> कम slot भएका साना संस्करण हुन्।</p>
+      <p lang="ne">Form factor कै कारण साट्ने बोर्ड "जुनसुकै बोर्ड" हुँदैन — यो अटाउने केस र बिजुली दिने
+      पावर सप्लाई दुवैसँग मिल्नुपर्छ।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h3>Find each part of the board, and learn what it is blamed for</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: where each major component sits on a motherboard,
+      what it connects, and — for each one — the fault a technician most often traces back to it.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: मदरबोर्डमा हरेक प्रमुख भाग कहाँ पर्छ, के
+      जोड्छ, र हरेकको हकमा टेक्निसियनले प्रायः त्यसैसँग जोड्ने खराबी कुन हो।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="parts-lab" data-set="motherboard">
+        <figure class="fig">
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-hwmb">
+  <title id="t-hwmb">A motherboard layout showing the CPU socket, RAM slots, chipset, PCI expansion slots, BIOS chip with CMOS battery, the main power connector and the drive connectors</title>
+  <text class="f-ttl" x="10" y="20">A MOTHERBOARD, LAID OUT</text>
+
+  <rect class="f-box-d" x="16" y="30" width="668" height="256" rx="10"/>
+
+  <g id="mb-cpu">
+    <rect class="f-box-y" x="60" y="58" width="118" height="88" rx="6"/>
+    <rect x="78" y="76" width="82" height="52" rx="4" style="fill:rgba(255,215,110,.22);stroke:var(--color-primary);stroke-width:1.2"/>
+    <text class="f-lbl-y" x="119" y="106" style="font-size:11px">CPU</text>
+    <text class="f-lbl" x="119" y="122" style="font-size:9px">socket</text>
+    <text class="f-lbl" x="119" y="160" style="font-size:9.5px">under the heatsink</text>
+  </g>
+
+  <g id="mb-ram">
+    <rect class="f-box" x="212" y="52" width="20" height="120" rx="3"/>
+    <rect class="f-box" x="240" y="52" width="20" height="120" rx="3"/>
+    <rect class="f-box" x="268" y="52" width="20" height="120" rx="3"/>
+    <rect class="f-box" x="296" y="52" width="20" height="120" rx="3"/>
+    <text class="f-lbl-y" x="264" y="188" style="font-size:10.5px">RAM slots</text>
+  </g>
+
+  <g id="mb-chip">
+    <rect class="f-box-g" x="352" y="86" width="76" height="66" rx="6"/>
+    <text class="f-lbl-y" x="390" y="116" style="font-size:10px">CHIPSET</text>
+    <text class="f-lbl" x="390" y="132" style="font-size:9px">traffic</text>
+  </g>
+
+  <g id="mb-pci">
+    <rect class="f-box" x="60" y="204" width="230" height="16" rx="3"/>
+    <rect class="f-box" x="60" y="230" width="230" height="16" rx="3"/>
+    <rect class="f-box" x="60" y="256" width="160" height="16" rx="3"/>
+    <text class="f-lbl-y" x="175" y="196" style="font-size:10.5px">PCI / expansion slots</text>
+  </g>
+
+  <g id="mb-bios">
+    <rect class="f-box-c" x="352" y="196" width="70" height="42" rx="5"/>
+    <text class="f-lbl-y" x="387" y="216" style="font-size:9.5px">BIOS</text>
+    <text class="f-lbl" x="387" y="230" style="font-size:9px">chip</text>
+    <circle cx="452" cy="217" r="17" class="f-box-c"/>
+    <text class="f-lbl" x="452" y="221" style="font-size:8.5px">CMOS</text>
+  </g>
+
+  <g id="mb-pwr">
+    <rect class="f-box-y" x="556" y="52" width="110" height="46" rx="5"/>
+    <text class="f-lbl-y" x="611" y="72" style="font-size:10px">POWER</text>
+    <text class="f-lbl" x="611" y="88" style="font-size:9px">24-pin main</text>
+  </g>
+
+  <g id="mb-sata">
+    <rect class="f-box" x="556" y="196" width="110" height="20" rx="3"/>
+    <rect class="f-box" x="556" y="224" width="110" height="20" rx="3"/>
+    <text class="f-lbl-y" x="611" y="264" style="font-size:10px">drive connectors</text>
+  </g>
+
+  <line class="f-ln" x1="178" y1="102" x2="212" y2="102"/>
+  <line class="f-ln" x1="316" y1="112" x2="352" y2="112"/>
+  <line class="f-ln" x1="390" y1="152" x2="390" y2="196"/>
+  <line class="f-ln" x1="428" y1="119" x2="556" y2="90"/>
+</svg></figure>
+        <div class="parts-panel"></div>
+      </div>
+    </div>
+    <div class="sim-controls"></div>
+    <p class="sim-why"><span class="t-en">Why this matters: the practical exam can put a board in
+    front of you and ask you to point at a component. Reading its name in a list is not the same
+    skill as recognising it on a board — and the fault note attached to each part is what Unit 4
+    will ask you to reason with.</span><span class="np-cell" lang="ne">किन महत्त्वपूर्ण छ: व्यावहारिक
+    परीक्षामा तपाईंअघि बोर्ड राखेर कुनै भाग देखाउन भन्न सकिन्छ। सूचीमा नाम पढ्नु र बोर्डमा चिन्नु
+    एउटै सीप होइन — र हरेक भागसँग जोडिएको खराबीकै आधारमा युनिट ४ ले तर्क गर्न लगाउँछ।</span></p>
+  </div>
+
+  <h2 class="topic" id="hw-t33">3.3 &nbsp;The PCI local bus</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>bus</b> is a set of parallel wires that carries data, addresses and control signals
+      between components.</p>
+      <p><b>PCI (Peripheral Component Interconnect)</b> is a <b>local bus</b> — "local" meaning it
+      runs close to the processor and at high speed, rather than out on a slow peripheral path.</p>
+      <p>Its <b>expansion slots</b> take add-on cards: graphics, sound, network, additional ports.
+      This is what makes a desktop upgradable — a capability the board does not have can be added
+      as a card instead of replacing the whole machine.</p>
+      <p>PCI cards are also <b>plug and play</b>: the system detects the card and allocates the
+      resources it needs, instead of the user setting jumpers by hand.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Bus</b> भनेको भागहरूबीच data, ठेगाना र नियन्त्रण सङ्केत बोक्ने समानान्तर तारहरूको
+      समूह हो।</p>
+      <p><b>PCI (Peripheral Component Interconnect)</b> एउटा <b>local bus</b> हो — "local" भनेको
+      यो ढिलो peripheral बाटोमा नभई प्रोसेसरको नजिक, उच्च गतिमा चल्छ।</p>
+      <p lang="ne">यसका <b>expansion slot</b> ले थप कार्ड लिन्छन्: graphics, sound, network, थप पोर्ट।
+      डेस्कटप अपग्रेड गर्न मिल्ने यसैले हुन्छ — बोर्डमा नभएको क्षमता पूरै मेसिन साट्नुको साटो
+      कार्ड थपेर ल्याउन सकिन्छ।</p>
+      <p lang="ne">PCI कार्ड <b>plug and play</b> पनि हुन्छन्: प्रयोगकर्ताले हातले jumper मिलाउनुपर्दैन,
+      प्रणालीले कार्ड पत्ता लगाएर चाहिने साधन बाँडिदिन्छ।</p>
+    </div>
+  </div>
+
+  <h2 class="topic" id="hw-t34">3.4 &nbsp;The internal power supply</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>The <b>SMPS (Switched Mode Power Supply)</b> converts the AC mains supply into the low
+      DC voltages the components need, and it must do so cleanly and steadily.</p>
+      <p><b>Its main parts:</b> a <b>transformer</b> to change the voltage, a <b>rectifier</b> to
+      convert AC into DC, a <b>filter</b> to smooth what is left of the ripple, a <b>voltage
+      regulator</b> to hold each output steady as the load changes, and a <b>cooling fan</b>.</p>
+      <p><b>The outputs:</b> <b>+12 V</b> for motors and the processor circuits, <b>+5 V</b> and
+      <b>+3.3 V</b> for the board's logic and the drives.</p>
+      <p>A supply that is failing does not always die outright. It often produces voltages that are
+      out of range under load, which shows up as random restarts and faults that move around — the
+      hardest kind to diagnose.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>SMPS (Switched Mode Power Supply)</b> ले मुख्य AC बिजुलीलाई भागहरूलाई चाहिने कम DC
+      भोल्टेजमा बदल्छ, र त्यो सफा तथा स्थिर हुनुपर्छ।</p>
+      <p><b lang="ne">यसका मुख्य भाग:</b> भोल्टेज बदल्न <b>transformer</b>, AC लाई DC बनाउन
+      <b>rectifier</b>, बाँकी ripple मिलाउन <b>filter</b>, भार बदलिँदा पनि हरेक आउटपुट स्थिर
+      राख्न <b>voltage regulator</b>, र <b lang="ne">कुलिङ पंखा</b>।</p>
+      <p><b lang="ne">आउटपुट:</b> मोटर र प्रोसेसर परिपथका लागि <b lang="ne">+१२ V</b>, बोर्डको लजिक र ड्राइभका लागि
+      <b lang="ne">+५ V</b> र <b lang="ne">+३.३ V</b>।</p>
+      <p lang="ne">बिग्रँदै गएको सप्लाई सधैं एकैचोटि मर्दैन। भार पर्दा दायराबाहिरको भोल्टेज दिन्छ, जुन
+      अनियमित रिस्टार्ट र ठाउँ बदलिरहने खराबीका रूपमा देखिन्छ — निदान गर्न सबैभन्दा गाह्रो
+      किसिम।</p>
+    </div>
+  </div>
+
+  <h2 class="topic" id="hw-t35">3.5 &nbsp;Hard disk construction and operation</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>hard disk drive</b> stores data magnetically on rigid rotating <b>platters</b>.</p>
+      <p><b>Track</b> — one concentric ring on a platter surface. <b>Sector</b> — one slice of a
+      track, and the smallest unit that can be read or written. <b>Cylinder</b> — the same track
+      number on every platter, taken together. <b>Read-write head</b> — mounted on an actuator arm,
+      floating microns above the surface on a cushion of air.</p>
+      <p><b>Access time</b> is made of three parts added together: <b>seek time</b> (the arm moves
+      to the right track), <b>rotational delay</b> (the disk turns until the sector arrives), and
+      <b>transfer time</b> (the data is read).</p>
+      <p>The head never touches the platter. When it does — from a knock while running — that is a
+      <b>head crash</b>, and the damage is physical.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Hard disk drive</b> ले घुम्ने कडा <b>platter</b> मा चुम्बकीय रूपमा data राख्छ।</p>
+      <p><b>Track</b> — platter सतहको एउटा केन्द्रित रिङ। <b>Sector</b> — track को एउटा टुक्रा, र
+      पढ्न–लेख्न मिल्ने सबैभन्दा सानो एकाइ। <b>Cylinder</b> — हरेक platter को उही नम्बरको track
+      सँगै लिँदा। <b>Read-write head</b> — actuator arm मा जडित, हावाको तकियामा सतहभन्दा माइक्रोन
+      मात्र माथि तैरिने।</p>
+      <p><b>Access time</b> तीन भागको योग हो: <b>seek time</b> (arm ठीक track मा जाने),
+      <b>rotational delay</b> (sector आइपुग्न डिस्क घुम्ने), र <b>transfer time</b> (data
+      पढिने)।</p>
+      <p lang="ne">Head ले platter छुँदैन। चलिरहेको बेला धक्का लागेर छोयो भने त्यो <b>head crash</b> हो, र
+      क्षति भौतिक हुन्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    <div class="dia" data-dia="hwHddRead">
+  <div class="dia-stage">
+<svg viewBox="0 0 700 260" role="img" aria-labelledby="t-hwhdd">
+  <title id="t-hwhdd">A hard disk drive with platters, tracks, sectors and a read-write head on an actuator arm, showing seek time, rotational delay and data transfer</title>
+  <defs><marker id="a-hwhdd" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
+  <text class="f-ttl" x="10" y="20">READING ONE BLOCK FROM A HARD DISK</text>
+
+  <g id="hd-platter">
+    <circle cx="200" cy="140" r="96" class="f-box-d"/>
+    <circle cx="200" cy="140" r="72" class="f-box-d"/>
+    <circle cx="200" cy="140" r="48" class="f-box-d"/>
+    <circle cx="200" cy="140" r="12" style="fill:var(--color-text-muted)"/>
+    <text class="f-lbl-y" x="200" y="256">PLATTER — spins constantly</text>
+  </g>
+
+  <g id="hd-track">
+    <circle cx="200" cy="140" r="72" style="fill:none;stroke:var(--color-primary);stroke-width:2.4"/>
+    <text class="f-lbl-y" x="330" y="70" style="font-size:10.5px">TRACK — one ring</text>
+    <line class="f-ln" x1="256" y1="92" x2="320" y2="76"/>
+  </g>
+
+  <g id="hd-sector">
+    <path d="M200 140 L268 116 A72 72 0 0 1 262 168 Z"
+          style="fill:rgba(255,143,122,.3);stroke:var(--color-error);stroke-width:1.6"/>
+    <text class="f-lbl-y" x="340" y="112" style="font-size:10.5px">SECTOR — one slice of a track</text>
+    <line class="f-ln" x1="272" y1="140" x2="332" y2="118"/>
+  </g>
+
+  <g id="hd-seek">
+    <line class="f-arr" x1="430" y1="196" x2="252" y2="150" marker-end="url(#a-hwhdd)"/>
+    <rect class="f-box-y" x="428" y="180" width="120" height="34" rx="5"/>
+    <text class="f-lbl-y" x="488" y="201" style="font-size:10px">SEEK TIME</text>
+    <text class="f-lbl" x="596" y="201" style="font-size:9.5px">arm moves</text>
+  </g>
+
+  <g id="hd-rot">
+    <rect class="f-box-y" x="428" y="222" width="120" height="34" rx="5"/>
+    <text class="f-lbl-y" x="488" y="243" style="font-size:10px">ROTATIONAL DELAY</text>
+    <text class="f-lbl" x="608" y="243" style="font-size:9.5px">disk turns</text>
+  </g>
+
+  <g id="hd-head">
+    <rect class="f-box-g" x="428" y="60" width="180" height="46" rx="6"/>
+    <text class="f-lbl-y" x="518" y="80" style="font-size:10.5px">READ / WRITE HEAD</text>
+    <text class="f-lbl" x="518" y="96" style="font-size:9.5px">floats on a cushion of air</text>
+  </g>
+
+  <g id="hd-xfer">
+    <rect class="f-box-g" x="428" y="120" width="240" height="44" rx="6"/>
+    <text class="f-lbl-y" x="548" y="140" style="font-size:10.5px">DATA TRANSFER</text>
+    <text class="f-lbl" x="548" y="156" style="font-size:9.5px">the block is read into memory</text>
+  </g>
+</svg></div>
+  <div class="dia-controls">
+    <button type="button" data-dia-act="prev" data-ui="prev">&#9666; Prev</button>
+    <button type="button" data-dia-act="play" data-ui="play" aria-pressed="false">&#9654; Play</button>
+    <button type="button" data-dia-act="next" data-ui="next">Next &#9656;</button>
+    <button type="button" data-dia-act="reset" data-ui="reset">Reset</button>
+    <span class="dia-progress" aria-live="polite" data-dia-steps="7">step 0 / 7</span>
+  </div>
+  <div class="dia-caption" role="status">
+    <span class="dia-cap-en"></span>
+    <span class="dia-cap-ne np-cell" lang="ne"></span>
+  </div>
+</div>
+    <figcaption><span class="t-en">Step through one read. "Explain the operation of a hard disk" is answered by this
+    sequence, and the three parts of access time are usually worth a mark each.
+    </span><span class="np-cell" lang="ne">एउटा पढाइ चरणबद्ध हेर्नुहोस्। "Hard disk को सञ्चालन व्याख्या गर्नुहोस्"
+    भन्ने प्रश्नको उत्तर यही क्रम हो, र access time का तीन भागको प्रायः एक–एक अंक हुन्छ।</span></figcaption>
+  </figure>
+
+  <h2 class="topic" id="hw-t36">3.6 &nbsp;Partitioning and formatting</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p><b>Partitioning</b> divides one physical disk into separate areas that the operating
+      system treats as independent drives.</p>
+      <p>A <b>primary partition</b> can be booted from. An <b>extended partition</b> is a container
+      that holds <b>logical drives</b>; the extended partition itself gets no drive letter.</p>
+      <p><b>Drive lettering</b> assigns C:, D:, E: and so on. Reasons to partition: separating the
+      operating system from data so the OS can be reinstalled without losing files, running more
+      than one OS, and keeping backups organised.</p>
+      <p><b>Formatting</b> writes a file system onto a partition so files can be stored.
+      <b>Quick format</b> clears the index only — the data is still physically there until it is
+      overwritten. <b>Full format</b> also scans every sector for defects, which is why it takes
+      far longer.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Partitioning</b> ले एउटै भौतिक डिस्कलाई छुट्टाछुट्टै क्षेत्रमा बाँड्छ, जसलाई
+      अपरेटिङ सिस्टमले स्वतन्त्र ड्राइभ मान्छ।</p>
+      <p><b>Primary partition</b> बाट boot गर्न सकिन्छ। <b>Extended partition</b> भनेको
+      <b>logical drive</b> राख्ने भाँडो हो; extended partition आफैँले ड्राइभ अक्षर पाउँदैन।</p>
+      <p><b>Drive lettering</b> ले C:, D:, E: आदि दिन्छ। Partition गर्ने कारण: अपरेटिङ सिस्टमलाई
+      data बाट छुट्याउनु ताकि फाइल नगुमाई OS फेरि इन्स्टल गर्न सकियोस्, एकभन्दा बढी OS चलाउनु,
+      र ब्याकअप व्यवस्थित राख्नु।</p>
+      <p><b>Formatting</b> ले partition मा file system लेख्छ ताकि फाइल राख्न सकियोस्।
+      <b>Quick format</b> ले सूची मात्र मेटाउँछ — data नओभरराइट भएसम्म भौतिक रूपमा त्यहीँ हुन्छ।
+      <b>Full format</b> ले हरेक sector मा खराबी पनि जाँच्छ, त्यसैले धेरै समय लाग्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 240" role="img" aria-labelledby="t-hwpart">
+  <title id="t-hwpart">One physical hard disk divided into a primary partition and an extended partition holding logical drives, each given a drive letter, and the difference between formatting types</title>
+  <text class="f-ttl" x="10" y="20">ONE PHYSICAL DISK, SEVERAL DRIVES</text>
+
+  <rect class="f-box-d" x="16" y="32" width="668" height="72" rx="8"/>
+  <text class="f-lbl-y" x="60" y="52" style="font-size:10px">ONE DISK</text>
+
+  <rect class="f-box-y" x="30" y="60" width="180" height="34" rx="5"/>
+  <text class="f-lbl-y" x="120" y="82" style="font-size:10px">PRIMARY — C:</text>
+
+  <rect class="f-box" x="222" y="60" width="448" height="34" rx="5"/>
+  <text class="f-lbl" x="446" y="82" style="font-size:10px">EXTENDED PARTITION — holds logical drives, gets no letter of its own</text>
+
+  <rect class="f-box-g" x="234" y="112" width="136" height="30" rx="5"/>
+  <text class="f-lbl-y" x="302" y="132" style="font-size:10px">LOGICAL — D:</text>
+  <rect class="f-box-g" x="382" y="112" width="136" height="30" rx="5"/>
+  <text class="f-lbl-y" x="450" y="132" style="font-size:10px">LOGICAL — E:</text>
+  <rect class="f-box-g" x="530" y="112" width="136" height="30" rx="5"/>
+  <text class="f-lbl-y" x="598" y="132" style="font-size:10px">LOGICAL — F:</text>
+
+  <rect class="f-box-d" x="16" y="158" width="326" height="70" rx="8"/>
+  <text class="f-lbl-y" x="179" y="178">PARTITIONING</text>
+  <text class="f-lbl" x="179" y="196" style="font-size:10px">dividing one physical disk into</text>
+  <text class="f-lbl" x="179" y="210" style="font-size:10px">separate areas the OS sees as</text>
+  <text class="f-lbl" x="179" y="222" style="font-size:10px">independent drives</text>
+
+  <rect class="f-box-d" x="358" y="158" width="326" height="70" rx="8"/>
+  <text class="f-lbl-y" x="521" y="178">FORMATTING</text>
+  <text class="f-lbl" x="521" y="196" style="font-size:10px">writing a file system onto a partition</text>
+  <text class="f-lbl" x="521" y="210" style="font-size:10px">QUICK — clears the index only</text>
+  <text class="f-lbl" x="521" y="222" style="font-size:10px">FULL — also scans every sector</text>
+</svg>
+    <figcaption><span class="t-en">One disk, several drives. The extended partition is the box, not one of the drives
+    inside it — a distinction that is regularly worth a mark.
+    </span><span class="np-cell" lang="ne">एउटै डिस्क, धेरै ड्राइभ। Extended partition भाँडो हो, त्यसभित्रको कुनै
+    ड्राइभ होइन — यही भिन्नताको प्रायः अंक हुन्छ।</span></figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Choosing a format before handing on a disk</div>
+    <p><b>Question:</b> a school is donating old computers. A technician quick-formats the disks.
+    Is the data safe from recovery?</p>
+    <p><b>Step 1 — what did the quick format actually do?</b> It rewrote the file system index, so
+    the drive reports itself as empty.</p>
+    <p><b>Step 2 — where is the data now?</b> Still on the platters. Nothing overwrote the sectors
+    that hold it; only the entries pointing at them were cleared.</p>
+    <p><b>Step 3 — so can it be read back?</b> Yes. Recovery software scans sectors directly rather
+    than trusting the index, and will find most of it.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">No. A quick format does not remove data. Use a full format, or a wipe utility that overwrites every sector.</div>
+    </div>
+    <p class="wex-note"><span class="t-en">This is the practical reason the two format types are in the syllabus at
+    all — the difference has consequences for privacy, not just for time taken.
+    </span><span class="np-cell" lang="ne">पाठ्यक्रममा दुई किसिमको format राखिनुको व्यावहारिक कारण यही हो — फरकले
+    समय मात्र होइन, गोपनीयतामा पनि असर पार्छ।</span></p>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Working out a disk's capacity from its geometry</div>
+    <p><b>Question:</b> a hard disk has 4 platter surfaces, 8192 cylinders, 63 sectors per track
+    and 512 bytes per sector. What is its capacity?</p>
+    <p><b>Step 1 — what does one track hold?</b> 63 sectors × 512 bytes = 32,256 bytes.</p>
+    <p><b>Step 2 — how many tracks are there in total?</b> A cylinder is one track on every
+    surface, so tracks = cylinders × surfaces = 8192 × 4 = 32,768 tracks.</p>
+    <p><b>Step 3 — multiply.</b> 32,768 × 32,256 = 1,056,964,608 bytes.</p>
+    <p><b>Step 4 — convert.</b> Divide by 1024 three times: ÷1024 = 1,032,192 KB, ÷1024 =
+    1008 MB, which is roughly 0.98 GB.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">1,056,964,608 bytes ≈ 1008 MB ≈ 0.98 GB</div>
+    </div>
+    <p class="wex-note"><span class="t-en">Step 2 is where marks are lost. A cylinder is not one track — it is the
+    same track number on <i>every</i> surface, so you must multiply by the number of surfaces. Miss
+    that and your answer is four times too small.
+    </span><span class="np-cell" lang="ne">अंक चरण २ मै गुम्छ। Cylinder एउटा track होइन — <i lang="ne">हरेक</i> सतहको उही
+    नम्बरको track हो, त्यसैले सतह सङ्ख्याले गुणन गर्नैपर्छ। यो छुटे उत्तर चार गुणा सानो
+    आउँछ।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h3><span class="t-en">Mistakes that cost marks here</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यहाँ अङ्क गुमाउने गल्तीहरू</span></h3>
+    <ul>
+      <li><span class="t-en"><b>Saying the BIOS is stored on the hard disk.</b> It is firmware on a chip on the
+        motherboard — it has to run before any disk is read.
+        </span><span class="np-cell" lang="ne">BIOS hard disk मा हुन्छ भन्नु। यो मदरबोर्डको चिपमा रहेको firmware
+        हो — कुनै disk पढिनुअघि नै यो चल्नुपर्छ।</span></li>
+      <li><span class="t-en"><b>Saying a quick format erases the data.</b> It clears the index. The data stays on the
+        platters until something overwrites it.
+        </span><span class="np-cell" lang="ne">Quick format ले data मेटाउँछ भन्नु। यसले सूची मात्र सफा गर्छ। कुनै
+        कुराले नओभरराइट गरेसम्म data platter मै रहन्छ।</span></li>
+      <li><span class="t-en"><b>Treating a partition as a physical disk.</b> C: and D: are very often two areas of one
+        drive — if that drive fails, both go together.
+        </span><span class="np-cell" lang="ne">Partition लाई भौतिक डिस्क ठान्नु। C: र D: प्रायः एउटै ड्राइभका दुई
+        क्षेत्र हुन् — ड्राइभ बिग्रिए दुवै सँगै जान्छन्।</span></li>
+      <li><span class="t-en"><b>Giving the extended partition a drive letter.</b> It is a container. The logical drives
+        inside it get the letters.
+        </span><span class="np-cell" lang="ne">Extended partition लाई ड्राइभ अक्षर दिनु। त्यो भाँडो हो। अक्षर
+        त्यसभित्रका logical drive ले पाउँछन्।</span></li>
+    </ul>
+    <p class="hook"><span class="t-en"><b>Quick format hides the data; full format checks the disk.</b> BIOS is on the
+    board, not the disk.
+    </span><span class="np-cell" lang="ne"><b lang="ne">Quick format ले data लुकाउँछ; full format ले disk जाँच्छ।</b>
+    BIOS बोर्डमा हुन्छ, disk मा होइन।</span></p>
+  </div>
+
+  <h2 class="topic" id="hw-exam3"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>परीक्षा केन्द्रबिन्दु — यो युनिटबाट के सोधिन्छ</span></h2>
+  <div class="exam-connect"><span class="t-en">
+    <b>This is the heaviest unit for definitions — 12 hours and 9 marks — and it is where the
+    practical exam gets its component questions.</b> Expect <b>list the functions of the BIOS</b>
+    (POST is always one of them), <b>explain the construction and operation of a hard disk</b>
+    (track, sector, cylinder, head, and the three parts of access time), and <b>differentiate</b>
+    questions on primary vs extended partition and quick vs full format. Be ready to label a
+    motherboard diagram and to name the parts of an SMPS with its output voltages.
+    </span><span class="np-cell" lang="ne">परिभाषाका हिसाबले सबैभन्दा भारी युनिट यही हो — १२ घण्टा, ९ अंक — र
+    व्यावहारिक परीक्षाका पार्ट्ससम्बन्धी प्रश्न यहीँबाट आउँछन्। <b lang="ne">BIOS का काम सूचीबद्ध
+    गर्नुहोस्</b> (POST सधैं एक हो), <b lang="ne">hard disk को बनावट र सञ्चालन व्याख्या गर्नुहोस्</b>
+    (track, sector, cylinder, head, र access time का तीन भाग), र primary–extended partition तथा
+    quick–full format को <b lang="ne">फरक</b> सोधिन्छ। मदरबोर्ड चित्रमा नाम लेख्न र SMPS का भाग तथा
+    आउटपुट भोल्टेज भन्न तयार रहनुहोस्।</span>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q1 <span class="mk">4 marks</span></p>
+    <h3><span class="t-en">What is BIOS? List its main functions.
+      </span><span class="np-cell" lang="ne">BIOS के हो? यसका मुख्य काम सूचीबद्ध गर्नुहोस्।</span></h3>
+    <button class="btn-ans" data-answer="hw-a31">Show the answer</button>
+    <div class="ans" id="hw-a31"><div class="t-en">
+      <p>BIOS (Basic Input Output System) is firmware held on a chip on the motherboard, and it is
+      the first program to run when the computer is switched on. Its main functions are: POST
+      (Power-On Self Test), which checks the essential hardware and reports failures by beep codes;
+      the bootstrap loader, which locates the operating system and loads it into memory; BIOS
+      drivers, which give low-level control of basic hardware before the operating system's own
+      drivers are available; and CMOS setup, which lets the user view and change hardware settings
+      such as boot order and system time.</p>
+      </div><span class="np-cell" lang="ne">BIOS (Basic Input Output System) मदरबोर्डको चिपमा रहेको firmware हो, र
+      कम्प्युटर खोल्दा सबैभन्दा पहिले चल्ने प्रोग्राम यही हो। यसका मुख्य काम: POST (Power-On Self
+      Test), जसले आवश्यक हार्डवेयर जाँच्छ र बिग्रिएमा बीप कोडले सुनाउँछ; bootstrap loader, जसले
+      अपरेटिङ सिस्टम खोजेर मेमोरीमा लोड गर्छ; BIOS drivers, जसले OS का आफ्नै driver उपलब्ध
+      हुनुअघि आधारभूत हार्डवेयरको तल्लो तहको नियन्त्रण दिन्छ; र CMOS setup, जसबाट boot order र
+      समयजस्ता सेटिङ हेर्न र बदल्न मिल्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q2 <span class="mk">3 marks</span></p>
+    <h3><span class="t-en">Define track, sector and cylinder. State the three components of access time.
+      </span><span class="np-cell" lang="ne">Track, sector र cylinder को परिभाषा दिनुहोस्। Access time का तीन भाग
+      लेख्नुहोस्।</span></h3>
+    <button class="btn-ans" data-answer="hw-a32">Show the answer</button>
+    <div class="ans" id="hw-a32"><div class="t-en">
+      <p>A track is one concentric ring on the surface of a platter. A sector is one slice of a
+      track and is the smallest unit that can be read or written. A cylinder is the set of tracks
+      of the same number on all the platters taken together. Access time = seek time (moving the
+      head to the correct track) + rotational delay (waiting for the sector to come round) +
+      transfer time (reading or writing the data).</p>
+      </div><span class="np-cell" lang="ne">Track भनेको platter को सतहमा भएको एउटा केन्द्रित रिङ हो। Sector भनेको
+      track को एउटा टुक्रा र पढ्न–लेख्न मिल्ने सबैभन्दा सानो एकाइ हो। Cylinder भनेको सबै platter
+      का उही नम्बरका track सँगै लिँदा बन्ने समूह हो। Access time = seek time (head लाई ठीक track
+      मा लाने) + rotational delay (sector आइपुग्न पर्खने) + transfer time (data पढ्ने वा लेख्ने)।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q3 <span class="mk">2 marks</span></p>
+    <h3><span class="t-en">Differentiate between quick formatting and full formatting.
+      </span><span class="np-cell" lang="ne">Quick formatting र full formatting बीचको फरक छुट्याउनुहोस्।</span></h3>
+    <button class="btn-ans" data-answer="hw-a33">Show the answer</button>
+    <div class="ans" id="hw-a33"><div class="t-en">
+      <p>A quick format only rewrites the file system index, so the partition reports itself as
+      empty while the data physically remains on the disk until overwritten; it takes a few
+      seconds. A full format also scans every sector for defects and marks any bad ones so they are
+      not used, which takes much longer but gives a genuine check of the disk's condition.</p>
+      </div><span class="np-cell" lang="ne">Quick format ले file system को सूची मात्र फेरि लेख्छ, त्यसैले partition
+      खाली देखिन्छ तर data नओभरराइट भएसम्म भौतिक रूपमा डिस्कमै रहन्छ; केही सेकेन्ड लाग्छ। Full
+      format ले हरेक sector मा खराबी पनि जाँच्छ र बिग्रिएका sector चिन्ह लगाएर प्रयोग नगर्ने
+      बनाउँछ — समय धेरै लाग्छ तर डिस्कको अवस्थाको साँचो जाँच हुन्छ।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick"><span class="t-en">BIOS is firmware on a motherboard chip. Its functions: POST, bootstrap
+        loader, BIOS drivers, CMOS setup.
+        </span><span class="np-cell" lang="ne">BIOS मदरबोर्डको चिपमा रहेको firmware हो। काम: POST, bootstrap loader,
+        BIOS drivers, CMOS setup।</span></li>
+      <li class="tick"><span class="t-en">A form factor fixes a board's size, mounting holes and port positions — ATX,
+        Micro-ATX, Mini-ITX.
+        </span><span class="np-cell" lang="ne">Form factor ले बोर्डको आकार, स्क्रु प्वाल र पोर्टको स्थान तय गर्छ —
+        ATX, Micro-ATX, Mini-ITX।</span></li>
+      <li class="tick"><span class="t-en">PCI is a local bus with expansion slots for add-on cards, and it is plug and
+        play.
+        </span><span class="np-cell" lang="ne">PCI एउटा local bus हो, जसका expansion slot मा थप कार्ड राखिन्छ, र
+        यो plug and play हो।</span></li>
+      <li class="tick"><span class="t-en">An SMPS has a transformer, rectifier, filter, regulator and fan, and outputs
+        +12 V, +5 V and +3.3 V.
+        </span><span class="np-cell" lang="ne">SMPS मा transformer, rectifier, filter, regulator र पंखा हुन्छन्, र
+        +१२ V, +५ V तथा +३.३ V दिन्छ।</span></li>
+      <li class="tick"><span class="t-en">Access time = seek time + rotational delay + transfer time.
+        </span><span class="np-cell" lang="ne">Access time = seek time + rotational delay + transfer time।</span></li>
+      <li class="tick"><span class="t-en">Primary partitions boot; an extended partition holds logical drives and gets
+        no letter itself. Quick format clears the index; full format also checks every sector.
+        </span><span class="np-cell" lang="ne">Primary partition बाट boot हुन्छ; extended partition ले logical drive
+        राख्छ र आफैँ अक्षर पाउँदैन। Quick format ले सूची सफा गर्छ; full format ले हरेक sector पनि
+        जाँच्छ।</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit2.html"><span class="lab">◂ Previous</span><span class="ttl">Introduction to Computer System</span></a><a class="nx" href="unit4.html"><span class="lab">Next ▸</span><span class="ttl">Troubleshooting Techniques</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">Gyansetu</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-parts.js"></script>
+<script src="../../assets/js/diagram.js"></script>
+<script src="../../assets/js/diagram-data.js"></script>
+</body>
+</html>

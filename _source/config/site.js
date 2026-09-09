@@ -54,7 +54,8 @@ module.exports = [
         "slug": "hardware",
         "name": "Computer Hardware, Electronics Repair & Maintenance",
         "short": "Hardware & Repair",
-        "np": "कम्प्युटर हार्डवेयर र मर्मत"
+        "np": "कम्प्युटर हार्डवेयर र मर्मत",
+        "done": true
       },
       {
         "slug": "dbms",

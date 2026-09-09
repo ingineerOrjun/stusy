@@ -2498,4 +2498,738 @@ ${[
   <text class="f-lbl-y" x="350" y="248">Three bits are unused. A flag is SET by the result of the last arithmetic or logic instruction — not by a data transfer.</text>
 </svg>`;
 
+/* ===============================================================
+   HARDWARE & REPAIR — UNIT 1: ELECTRONIC DEVICES
+   =============================================================== */
+
+/* Matter → molecule → atom → subatomic particles. A ladder, because
+   the exam question is "define matter, molecule and atom" and the
+   marks are in getting the containment order right. */
+D.hwMatter = `
+<svg viewBox="0 0 700 240" role="img" aria-labelledby="t-hwmatter">
+  <title id="t-hwmatter">Matter is made of molecules, a molecule is made of atoms, and an atom contains protons and neutrons in a nucleus with electrons in shells around it</title>
+  ${ah('a-hwmatter')}
+  <text class="f-ttl" x="10" y="20">FROM MATTER DOWN TO THE ELECTRON — each one is inside the one before</text>
+
+  <rect class="f-box" x="16" y="36" width="150" height="74" rx="8"/>
+  <text class="f-val" x="91" y="62">MATTER</text>
+  <text class="f-lbl" x="91" y="80">anything with mass</text>
+  <text class="f-lbl" x="91" y="95">and volume</text>
+
+  <path class="f-arr" d="M170 73 L200 73" marker-end="url(#a-hwmatter)"/>
+
+  <rect class="f-box" x="204" y="36" width="150" height="74" rx="8"/>
+  <text class="f-val" x="279" y="62">MOLECULE</text>
+  <text class="f-lbl" x="279" y="80">smallest part that</text>
+  <text class="f-lbl" x="279" y="95">still is that substance</text>
+
+  <path class="f-arr" d="M358 73 L388 73" marker-end="url(#a-hwmatter)"/>
+
+  <rect class="f-box-y" x="392" y="36" width="150" height="74" rx="8"/>
+  <text class="f-val" x="467" y="62">ATOM</text>
+  <text class="f-lbl" x="467" y="80">smallest part of an</text>
+  <text class="f-lbl" x="467" y="95">element</text>
+
+  <path class="f-arr" d="M546 73 L576 73" marker-end="url(#a-hwmatter)"/>
+
+  <rect class="f-box-g" x="580" y="36" width="104" height="74" rx="8"/>
+  <text class="f-val" x="632" y="62">PARTICLES</text>
+  <text class="f-lbl" x="632" y="80">proton, neutron,</text>
+  <text class="f-lbl" x="632" y="95">electron</text>
+
+  <text class="f-ttl" x="10" y="146">INSIDE THE ATOM</text>
+
+  <circle cx="150" cy="186" r="46" class="f-box-d"/>
+  <circle cx="150" cy="186" r="26" class="f-box-d"/>
+  <circle cx="150" cy="186" r="11" style="fill:rgba(255,143,122,.35);stroke:var(--color-error);stroke-width:1.4"/>
+  <text class="f-lbl-y" x="150" y="190" style="font-size:9px">p n</text>
+  <circle cx="176" cy="186" r="4.5" style="fill:var(--color-secondary)"/>
+  <circle cx="150" cy="140" r="4.5" style="fill:var(--color-secondary)"/>
+  <circle cx="112" cy="210" r="4.5" style="fill:var(--color-secondary)"/>
+
+  <text class="f-lbl-y" x="150" y="235">atom</text>
+
+  <rect class="f-box-d" x="232" y="152" width="452" height="70" rx="8"/>
+  <circle cx="256" cy="172" r="5" style="fill:var(--color-error)"/>
+  <text class="f-lbl" x="356" y="176" text-anchor="start">PROTON — positive charge, sits in the nucleus</text>
+  <circle cx="256" cy="192" r="5" style="fill:var(--color-text-muted)"/>
+  <text class="f-lbl" x="356" y="196" text-anchor="start">NEUTRON — no charge, sits in the nucleus</text>
+  <circle cx="256" cy="212" r="5" style="fill:var(--color-secondary)"/>
+  <text class="f-lbl" x="356" y="216" text-anchor="start">ELECTRON — negative charge, orbits in shells</text>
+</svg>`;
+
+/* KCL at a node and KVL round a loop, side by side with real numbers
+   already filled in — the two laws are only ever asked as "state and
+   apply", and applying them is arithmetic once the sign rule is right. */
+D.hwKirchhoff = `
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="t-hwkcl">
+  <title id="t-hwkcl">Kirchhoff's current law at a junction: current in equals current out. Kirchhoff's voltage law around a loop: the supply voltage equals the sum of the voltage drops</title>
+  ${ah('a-hwkcl')}
+  <text class="f-ttl" x="10" y="20">KCL — AT A JUNCTION</text>
+
+  <path class="f-arr" d="M30 96 L120 96" marker-end="url(#a-hwkcl)"/>
+  <text class="f-lbl-y" x="72" y="86">I₁ = 5A</text>
+  <path class="f-arr" d="M30 150 L120 122" marker-end="url(#a-hwkcl)"/>
+  <text class="f-lbl-y" x="66" y="152">I₂ = 3A</text>
+
+  <circle cx="126" cy="108" r="6" style="fill:var(--color-primary)"/>
+  <text class="f-lbl" x="126" y="132">node</text>
+
+  <path class="f-arr" d="M134 100 L226 76" marker-end="url(#a-hwkcl)"/>
+  <text class="f-lbl-y" x="188" y="66">I₃ = 6A</text>
+  <path class="f-arr" d="M134 116 L226 140" marker-end="url(#a-hwkcl)"/>
+  <text class="f-lbl-y" x="192" y="158">I₄ = ?</text>
+
+  <rect class="f-box-g" x="24" y="182" width="300" height="52" rx="8"/>
+  <text class="f-lbl" x="174" y="203">IN = OUT  →  5 + 3 = 6 + I₄</text>
+  <text class="f-lbl-y" x="174" y="221">I₄ = 2 A</text>
+
+  <line class="f-ln" x1="350" y1="30" x2="350" y2="240"/>
+
+  <text class="f-ttl" x="378" y="20">KVL — ROUND A LOOP</text>
+
+  <rect class="f-box-d" x="392" y="46" width="268" height="112" rx="6"/>
+  <rect class="f-box-y" x="378" y="86" width="28" height="34" rx="4"/>
+  <text class="f-lbl-y" x="392" y="107" style="font-size:9px">12V</text>
+  <text class="f-lbl" x="392" y="136">supply</text>
+
+  <rect class="f-box" x="452" y="32" width="60" height="26" rx="4"/>
+  <text class="f-lbl" x="482" y="49">R₁ 5V</text>
+  <rect class="f-box" x="556" y="32" width="60" height="26" rx="4"/>
+  <text class="f-lbl" x="586" y="49">R₂ 4V</text>
+  <rect class="f-box" x="504" y="146" width="60" height="26" rx="4"/>
+  <text class="f-lbl" x="534" y="163">R₃ ?</text>
+
+  <rect class="f-box-g" x="376" y="182" width="300" height="52" rx="8"/>
+  <text class="f-lbl" x="526" y="203">SUPPLY = SUM OF DROPS  →  12 = 5 + 4 + R₃</text>
+  <text class="f-lbl-y" x="526" y="221">R₃ drops 3 V</text>
+</svg>`;
+
+/* Intrinsic, N-type and P-type lattices side by side. The whole point
+   of the picture is that all three are electrically NEUTRAL — the
+   misconception this unit has to kill. */
+D.hwDoping = `
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="t-hwdope">
+  <title id="t-hwdope">Pure silicon has four valence electrons. Adding a pentavalent impurity gives a spare electron and makes N-type. Adding a trivalent impurity gives a hole and makes P-type. All three are electrically neutral</title>
+  <text class="f-ttl" x="10" y="20">DOPING — ADDING AN IMPURITY ON PURPOSE</text>
+
+  <rect class="f-box-d" x="16" y="32" width="212" height="150" rx="8"/>
+  <text class="f-lbl-y" x="122" y="52">PURE (INTRINSIC) SILICON</text>
+  <circle cx="80" cy="96" r="15" class="f-box"/><text class="f-lbl" x="80" y="100" style="font-size:9px">Si</text>
+  <circle cx="164" cy="96" r="15" class="f-box"/><text class="f-lbl" x="164" y="100" style="font-size:9px">Si</text>
+  <circle cx="80" cy="146" r="15" class="f-box"/><text class="f-lbl" x="80" y="150" style="font-size:9px">Si</text>
+  <circle cx="164" cy="146" r="15" class="f-box"/><text class="f-lbl" x="164" y="150" style="font-size:9px">Si</text>
+  <line class="f-ln" x1="95" y1="96" x2="149" y2="96"/>
+  <line class="f-ln" x1="95" y1="146" x2="149" y2="146"/>
+  <line class="f-ln" x1="80" y1="111" x2="80" y2="131"/>
+  <line class="f-ln" x1="164" y1="111" x2="164" y2="131"/>
+  <text class="f-lbl" x="122" y="174">4 valence electrons, all shared</text>
+
+  <rect class="f-box-g" x="242" y="32" width="212" height="150" rx="8"/>
+  <text class="f-lbl-y" x="348" y="52">N-TYPE — pentavalent added</text>
+  <circle cx="306" cy="96" r="15" class="f-box"/><text class="f-lbl" x="306" y="100" style="font-size:9px">Si</text>
+  <circle cx="390" cy="96" r="15" style="fill:rgba(154,230,160,.3);stroke:var(--color-success);stroke-width:1.6"/>
+  <text class="f-lbl" x="390" y="100" style="font-size:9px">P</text>
+  <circle cx="306" cy="146" r="15" class="f-box"/><text class="f-lbl" x="306" y="150" style="font-size:9px">Si</text>
+  <circle cx="390" cy="146" r="15" class="f-box"/><text class="f-lbl" x="390" y="150" style="font-size:9px">Si</text>
+  <line class="f-ln" x1="321" y1="96" x2="375" y2="96"/>
+  <line class="f-ln" x1="321" y1="146" x2="375" y2="146"/>
+  <circle cx="414" cy="76" r="5" style="fill:var(--color-secondary)"/>
+  <text class="f-lbl" x="348" y="174">spare ELECTRON — majority carrier</text>
+
+  <rect class="f-box-c" x="468" y="32" width="216" height="150" rx="8"/>
+  <text class="f-lbl-y" x="576" y="52">P-TYPE — trivalent added</text>
+  <circle cx="534" cy="96" r="15" class="f-box"/><text class="f-lbl" x="534" y="100" style="font-size:9px">Si</text>
+  <circle cx="618" cy="96" r="15" style="fill:rgba(255,143,122,.3);stroke:var(--color-error);stroke-width:1.6"/>
+  <text class="f-lbl" x="618" y="100" style="font-size:9px">B</text>
+  <circle cx="534" cy="146" r="15" class="f-box"/><text class="f-lbl" x="534" y="150" style="font-size:9px">Si</text>
+  <circle cx="618" cy="146" r="15" class="f-box"/><text class="f-lbl" x="618" y="150" style="font-size:9px">Si</text>
+  <line class="f-ln" x1="549" y1="96" x2="603" y2="96"/>
+  <line class="f-ln" x1="549" y1="146" x2="603" y2="146"/>
+  <circle cx="642" cy="76" r="5.5" style="fill:none;stroke:var(--color-error);stroke-width:1.6"/>
+  <text class="f-lbl" x="576" y="174">missing electron = HOLE — majority carrier</text>
+
+  <rect class="f-box-y" x="16" y="196" width="668" height="42" rx="8"/>
+  <text class="f-lbl-y" x="350" y="213">ALL THREE ARE ELECTRICALLY NEUTRAL</text>
+  <text class="f-lbl" x="350" y="230">Doping adds a carrier, not a charge — the impurity atom brings its own protons with it</text>
+</svg>`;
+
+/* THE ONE UNIT-1 CONCEPT THAT EARNS ANIMATION.
+   A PN junction is not a static object — the depletion region is a
+   width that CHANGES, and forward vs reverse bias is the same picture
+   with that width moving in opposite directions. A student who has seen
+   it narrow and widen can answer "why does a diode conduct one way"
+   without memorising a sentence; a pair of still pictures cannot show
+   that the two cases are the same mechanism. */
+D.hwPnJunction = {
+  type: 'animated',
+  intro: { en: 'A PN junction forming, then the same junction under forward and reverse bias.',
+           ne: 'PN junction बन्ने क्रम, अनि उही junction लाई forward र reverse bias मा।' },
+  svg: `
+<svg viewBox="0 0 700 260" role="img" aria-labelledby="t-hwpn">
+  <title id="t-hwpn">A P-type and an N-type block joined to form a PN junction, the depletion region that appears at the join, and how forward bias narrows it while reverse bias widens it</title>
+  ${ah('a-hwpn')}
+  <text class="f-ttl" x="10" y="20">THE PN JUNCTION</text>
+
+  <g id="pn-p">
+    <rect class="f-box-c" x="120" y="60" width="180" height="86" rx="6"/>
+    <text class="f-lbl-y" x="210" y="82">P-TYPE</text>
+    <circle cx="160" cy="106" r="5.5" style="fill:none;stroke:var(--color-error);stroke-width:1.5"/>
+    <circle cx="196" cy="122" r="5.5" style="fill:none;stroke:var(--color-error);stroke-width:1.5"/>
+    <circle cx="232" cy="102" r="5.5" style="fill:none;stroke:var(--color-error);stroke-width:1.5"/>
+    <circle cx="266" cy="126" r="5.5" style="fill:none;stroke:var(--color-error);stroke-width:1.5"/>
+    <text class="f-lbl" x="210" y="162">holes are the majority carrier</text>
+  </g>
+
+  <g id="pn-n">
+    <rect class="f-box-g" x="400" y="60" width="180" height="86" rx="6"/>
+    <text class="f-lbl-y" x="490" y="82">N-TYPE</text>
+    <circle cx="434" cy="106" r="5" style="fill:var(--color-secondary)"/>
+    <circle cx="470" cy="124" r="5" style="fill:var(--color-secondary)"/>
+    <circle cx="508" cy="102" r="5" style="fill:var(--color-secondary)"/>
+    <circle cx="546" cy="126" r="5" style="fill:var(--color-secondary)"/>
+    <text class="f-lbl" x="490" y="162">free electrons are the majority carrier</text>
+  </g>
+
+  <g id="pn-dep">
+    <rect x="300" y="60" width="100" height="86" style="fill:rgba(255,215,110,.16);stroke:var(--color-primary);stroke-width:1.4;stroke-dasharray:4 3"/>
+    <text class="f-lbl-y" x="350" y="46" style="font-size:10.5px">DEPLETION REGION</text>
+    <text class="f-lbl" x="350" y="180">no free carriers left here</text>
+  </g>
+
+  <g id="pn-barrier">
+    <text class="f-lbl-y" x="350" y="106" style="font-size:11px">barrier</text>
+    <text class="f-lbl-y" x="350" y="122" style="font-size:11px">0.7 V</text>
+    <text class="f-lbl" x="350" y="200">no current flows on its own</text>
+  </g>
+
+  <g id="pn-fwd">
+    <rect class="f-box-y" x="316" y="66" width="68" height="74" style="fill:rgba(255,215,110,.16)"/>
+    <rect class="f-box-g" x="20" y="212" width="660" height="38" rx="7"/>
+    <text class="f-lbl-y" x="350" y="228">FORWARD BIAS — P to +, N to −</text>
+    <text class="f-lbl" x="350" y="243">the depletion region NARROWS, the barrier is overcome, and current flows</text>
+    <path class="f-arr" d="M120 190 L580 190" marker-end="url(#a-hwpn)"/>
+  </g>
+
+  <g id="pn-rev">
+    <rect x="286" y="60" width="128" height="86" style="fill:rgba(255,143,122,.14);stroke:var(--color-error);stroke-width:1.4;stroke-dasharray:4 3"/>
+    <rect class="f-box-c" x="20" y="212" width="660" height="38" rx="7"/>
+    <text class="f-lbl-y" x="350" y="228">REVERSE BIAS — P to −, N to +</text>
+    <text class="f-lbl" x="350" y="243">the depletion region WIDENS, the barrier grows, and current stops</text>
+  </g>
+</svg>`,
+  steps: [
+    { show: '#pn-p', focus: '#pn-p',
+      en: 'Start apart. The P-type block has holes as its majority carrier — and it is electrically neutral.',
+      ne: 'छुट्टै सुरु गरौं। P-type खण्डको बहुसंख्यक वाहक hole हो — र यो विद्युतीय रूपमा उदासीन छ।' },
+    { show: '#pn-n', focus: '#pn-n',
+      en: 'The N-type block has free electrons as its majority carrier, and it is neutral too.',
+      ne: 'N-type खण्डको बहुसंख्यक वाहक स्वतन्त्र electron हो, र यो पनि उदासीन छ।' },
+    { show: '#pn-dep', focus: '#pn-dep',
+      en: 'Join them. Electrons cross over and fill holes near the join, so that strip is left with no free carriers — the depletion region.',
+      ne: 'जोड्नुहोस्। Electron पारि गएर जोडनेर का hole भर्छन्, त्यसैले त्यो पट्टीमा स्वतन्त्र वाहक बाँकी रहँदैन — यही depletion region हो।' },
+    { show: '#pn-barrier', focus: '#pn-barrier',
+      en: 'The exposed ions set up a barrier potential — about 0.7 V in silicon. It stops further crossing, so no current flows by itself.',
+      ne: 'खुला भएका ion ले barrier potential बनाउँछन् — silicon मा करिब ०.७ V। यसले थप पार गर्न रोक्छ, त्यसैले आफैँ कुनै current बग्दैन।' },
+    { show: '#pn-fwd', hide: '#pn-rev', focus: '#pn-fwd',
+      en: 'FORWARD BIAS: P to positive, N to negative. The supply pushes carriers toward the join, the depletion region narrows, and above 0.7 V current flows.',
+      ne: 'FORWARD BIAS: P मा धनात्मक, N मा ऋणात्मक। सप्लाईले वाहकलाई जोडतिर धकेल्छ, depletion region साँघुरो हुन्छ, र ०.७ V माथि current बग्छ।' },
+    { show: '#pn-rev', hide: '#pn-fwd', focus: '#pn-rev',
+      en: 'REVERSE BIAS: the connections swap. Carriers are pulled AWAY from the join, the depletion region widens, the barrier grows — and current stops. Same mechanism, opposite direction.',
+      ne: 'REVERSE BIAS: जडान उल्टिन्छ। वाहकहरू जोडबाट टाढा तानिन्छन्, depletion region चौडा हुन्छ, barrier बढ्छ — र current रोकिन्छ। उही प्रक्रिया, उल्टो दिशा।' }
+  ]
+};
+
+/* ===============================================================
+   HARDWARE — UNITS 2 AND 3
+   The ids on the groups below (su-*, mb-*) are the highlight targets
+   sim-parts.js drives. Renaming one silently breaks the parts lab,
+   which is why that component refuses to mount if a target is gone
+   rather than quietly dropping a button.
+   =============================================================== */
+
+D.hwSystemUnits = `
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="t-hwsys">
+  <title id="t-hwsys">The units of a computer system: an input unit feeds the CPU, which contains the control unit, the arithmetic and logic unit and memory, and the CPU feeds the output unit</title>
+  ${ah('a-hwsys')}
+  <text class="f-ttl" x="10" y="20">THE UNITS OF A COMPUTER SYSTEM</text>
+
+  <g id="su-in">
+    <rect class="f-box" x="16" y="92" width="112" height="66" rx="8"/>
+    <text class="f-val" x="72" y="118" style="font-size:13px">INPUT</text>
+    <text class="f-lbl" x="72" y="136" style="font-size:10px">keyboard, mouse,</text>
+    <text class="f-lbl" x="72" y="149" style="font-size:10px">scanner, camera</text>
+  </g>
+
+  <path class="f-arr" d="M132 125 L166 125" marker-end="url(#a-hwsys)"/>
+
+  <rect class="f-box-d" x="172" y="46" width="356" height="164" rx="10"/>
+  <text class="f-lbl-y" x="350" y="66">CPU — CENTRAL PROCESSING UNIT</text>
+
+  <g id="su-cu">
+    <rect class="f-box-y" x="190" y="78" width="150" height="52" rx="7"/>
+    <text class="f-val" x="265" y="100" style="font-size:12px">CONTROL UNIT</text>
+    <text class="f-lbl" x="265" y="118" style="font-size:10px">fetch, decode, direct</text>
+  </g>
+
+  <g id="su-alu">
+    <rect class="f-box-y" x="360" y="78" width="150" height="52" rx="7"/>
+    <text class="f-val" x="435" y="100" style="font-size:12px">ALU</text>
+    <text class="f-lbl" x="435" y="118" style="font-size:10px">calculate and compare</text>
+  </g>
+
+  <g id="su-mem">
+    <rect class="f-box-g" x="190" y="144" width="320" height="50" rx="7"/>
+    <text class="f-val" x="350" y="166" style="font-size:12px">MEMORY UNIT</text>
+    <text class="f-lbl" x="350" y="184" style="font-size:10px">holds what is being worked on, and the result</text>
+  </g>
+
+  <line class="f-ln" x1="265" y1="130" x2="265" y2="144"/>
+  <line class="f-ln" x1="435" y1="130" x2="435" y2="144"/>
+
+  <path class="f-arr" d="M534 125 L568 125" marker-end="url(#a-hwsys)"/>
+
+  <g id="su-out">
+    <rect class="f-box" x="572" y="92" width="112" height="66" rx="8"/>
+    <text class="f-val" x="628" y="118" style="font-size:13px">OUTPUT</text>
+    <text class="f-lbl" x="628" y="136" style="font-size:10px">monitor, printer,</text>
+    <text class="f-lbl" x="628" y="149" style="font-size:10px">speaker</text>
+  </g>
+
+  <text class="f-lbl" x="350" y="232">Control unit DIRECTS · ALU CALCULATES — the single most confused pair in this unit</text>
+</svg>`;
+
+D.hwDisplayTech = `
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="t-hwdisp">
+  <title id="t-hwdisp">A comparison of CRT, LCD and LED monitors by how they make light, their size and their power use, with definitions of resolution, colour depth and refresh rate</title>
+  <text class="f-ttl" x="10" y="20">THREE DISPLAY TECHNOLOGIES</text>
+
+  <rect class="f-box-c" x="16" y="32" width="212" height="112" rx="8"/>
+  <text class="f-lbl-y" x="122" y="52">CRT</text>
+  <text class="f-lbl" x="122" y="70" style="font-size:10px">Cathode Ray Tube</text>
+  <text class="f-lbl" x="122" y="90" style="font-size:10px">electron gun fires at</text>
+  <text class="f-lbl" x="122" y="103" style="font-size:10px">a phosphor screen</text>
+  <text class="f-lbl" x="122" y="123" style="font-size:10px">bulky · heavy · hot</text>
+  <text class="f-lbl" x="122" y="136" style="font-size:10px">highest power use</text>
+
+  <rect class="f-box" x="242" y="32" width="212" height="112" rx="8"/>
+  <text class="f-lbl-y" x="348" y="52">LCD</text>
+  <text class="f-lbl" x="348" y="70" style="font-size:10px">Liquid Crystal Display</text>
+  <text class="f-lbl" x="348" y="90" style="font-size:10px">crystals block or pass</text>
+  <text class="f-lbl" x="348" y="103" style="font-size:10px">light from a CCFL lamp</text>
+  <text class="f-lbl" x="348" y="123" style="font-size:10px">flat · light · cool</text>
+  <text class="f-lbl" x="348" y="136" style="font-size:10px">much less power</text>
+
+  <rect class="f-box-g" x="468" y="32" width="216" height="112" rx="8"/>
+  <text class="f-lbl-y" x="576" y="52">LED</text>
+  <text class="f-lbl" x="576" y="70" style="font-size:10px">an LCD, backlit by LEDs</text>
+  <text class="f-lbl" x="576" y="90" style="font-size:10px">same crystals — only the</text>
+  <text class="f-lbl" x="576" y="103" style="font-size:10px">light source changed</text>
+  <text class="f-lbl" x="576" y="123" style="font-size:10px">thinnest · best contrast</text>
+  <text class="f-lbl" x="576" y="136" style="font-size:10px">lowest power use</text>
+
+  <rect class="f-box-d" x="16" y="158" width="668" height="80" rx="8"/>
+  <text class="f-lbl-y" x="120" y="180">RESOLUTION</text>
+  <text class="f-lbl" x="120" y="198" style="font-size:10px">pixels across × down</text>
+  <text class="f-lbl" x="120" y="211" style="font-size:10px">1366 × 768</text>
+  <text class="f-lbl" x="120" y="228" style="font-size:10px">more pixels = sharper</text>
+
+  <text class="f-lbl-y" x="350" y="180">COLOUR DEPTH</text>
+  <text class="f-lbl" x="350" y="198" style="font-size:10px">bits used per pixel</text>
+  <text class="f-lbl" x="350" y="211" style="font-size:10px">24-bit = 16.7M colours</text>
+  <text class="f-lbl" x="350" y="228" style="font-size:10px">more bits = smoother shades</text>
+
+  <text class="f-lbl-y" x="580" y="180">REFRESH RATE</text>
+  <text class="f-lbl" x="580" y="198" style="font-size:10px">redraws per second, in Hz</text>
+  <text class="f-lbl" x="580" y="211" style="font-size:10px">60 Hz = 60 times a second</text>
+  <text class="f-lbl" x="580" y="228" style="font-size:10px">too low = visible flicker</text>
+</svg>`;
+
+D.hwMotherboard = `
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-hwmb">
+  <title id="t-hwmb">A motherboard layout showing the CPU socket, RAM slots, chipset, PCI expansion slots, BIOS chip with CMOS battery, the main power connector and the drive connectors</title>
+  <text class="f-ttl" x="10" y="20">A MOTHERBOARD, LAID OUT</text>
+
+  <rect class="f-box-d" x="16" y="30" width="668" height="256" rx="10"/>
+
+  <g id="mb-cpu">
+    <rect class="f-box-y" x="60" y="58" width="118" height="88" rx="6"/>
+    <rect x="78" y="76" width="82" height="52" rx="4" style="fill:rgba(255,215,110,.22);stroke:var(--color-primary);stroke-width:1.2"/>
+    <text class="f-lbl-y" x="119" y="106" style="font-size:11px">CPU</text>
+    <text class="f-lbl" x="119" y="122" style="font-size:9px">socket</text>
+    <text class="f-lbl" x="119" y="160" style="font-size:9.5px">under the heatsink</text>
+  </g>
+
+  <g id="mb-ram">
+    <rect class="f-box" x="212" y="52" width="20" height="120" rx="3"/>
+    <rect class="f-box" x="240" y="52" width="20" height="120" rx="3"/>
+    <rect class="f-box" x="268" y="52" width="20" height="120" rx="3"/>
+    <rect class="f-box" x="296" y="52" width="20" height="120" rx="3"/>
+    <text class="f-lbl-y" x="264" y="188" style="font-size:10.5px">RAM slots</text>
+  </g>
+
+  <g id="mb-chip">
+    <rect class="f-box-g" x="352" y="86" width="76" height="66" rx="6"/>
+    <text class="f-lbl-y" x="390" y="116" style="font-size:10px">CHIPSET</text>
+    <text class="f-lbl" x="390" y="132" style="font-size:9px">traffic</text>
+  </g>
+
+  <g id="mb-pci">
+    <rect class="f-box" x="60" y="204" width="230" height="16" rx="3"/>
+    <rect class="f-box" x="60" y="230" width="230" height="16" rx="3"/>
+    <rect class="f-box" x="60" y="256" width="160" height="16" rx="3"/>
+    <text class="f-lbl-y" x="175" y="196" style="font-size:10.5px">PCI / expansion slots</text>
+  </g>
+
+  <g id="mb-bios">
+    <rect class="f-box-c" x="352" y="196" width="70" height="42" rx="5"/>
+    <text class="f-lbl-y" x="387" y="216" style="font-size:9.5px">BIOS</text>
+    <text class="f-lbl" x="387" y="230" style="font-size:9px">chip</text>
+    <circle cx="452" cy="217" r="17" class="f-box-c"/>
+    <text class="f-lbl" x="452" y="221" style="font-size:8.5px">CMOS</text>
+  </g>
+
+  <g id="mb-pwr">
+    <rect class="f-box-y" x="556" y="52" width="110" height="46" rx="5"/>
+    <text class="f-lbl-y" x="611" y="72" style="font-size:10px">POWER</text>
+    <text class="f-lbl" x="611" y="88" style="font-size:9px">24-pin main</text>
+  </g>
+
+  <g id="mb-sata">
+    <rect class="f-box" x="556" y="196" width="110" height="20" rx="3"/>
+    <rect class="f-box" x="556" y="224" width="110" height="20" rx="3"/>
+    <text class="f-lbl-y" x="611" y="264" style="font-size:10px">drive connectors</text>
+  </g>
+
+  <line class="f-ln" x1="178" y1="102" x2="212" y2="102"/>
+  <line class="f-ln" x1="316" y1="112" x2="352" y2="112"/>
+  <line class="f-ln" x1="390" y1="152" x2="390" y2="196"/>
+  <line class="f-ln" x1="428" y1="119" x2="556" y2="90"/>
+</svg>`;
+
+/* ===============================================================
+   HARDWARE — UNITS 3 TO 6
+   =============================================================== */
+
+/* A hard disk read is a SEQUENCE with moving parts, and the exam asks
+   "explain the operation of a hard disk drive" — which is that
+   sequence. Still pictures of a platter teach the vocabulary and not
+   the operation, so this one animates. */
+D.hwHddRead = {
+  type: 'animated',
+  intro: { en: 'How a hard disk finds and reads one block of data.',
+           ne: 'Hard disk ले data को एउटा ब्लक कसरी खोजेर पढ्छ।' },
+  svg: `
+<svg viewBox="0 0 700 260" role="img" aria-labelledby="t-hwhdd">
+  <title id="t-hwhdd">A hard disk drive with platters, tracks, sectors and a read-write head on an actuator arm, showing seek time, rotational delay and data transfer</title>
+  ${ah('a-hwhdd')}
+  <text class="f-ttl" x="10" y="20">READING ONE BLOCK FROM A HARD DISK</text>
+
+  <g id="hd-platter">
+    <circle cx="200" cy="140" r="96" class="f-box-d"/>
+    <circle cx="200" cy="140" r="72" class="f-box-d"/>
+    <circle cx="200" cy="140" r="48" class="f-box-d"/>
+    <circle cx="200" cy="140" r="12" style="fill:var(--color-text-muted)"/>
+    <text class="f-lbl-y" x="200" y="256">PLATTER — spins constantly</text>
+  </g>
+
+  <g id="hd-track">
+    <circle cx="200" cy="140" r="72" style="fill:none;stroke:var(--color-primary);stroke-width:2.4"/>
+    <text class="f-lbl-y" x="330" y="70" style="font-size:10.5px">TRACK — one ring</text>
+    <line class="f-ln" x1="256" y1="92" x2="320" y2="76"/>
+  </g>
+
+  <g id="hd-sector">
+    <path d="M200 140 L268 116 A72 72 0 0 1 262 168 Z"
+          style="fill:rgba(255,143,122,.3);stroke:var(--color-error);stroke-width:1.6"/>
+    <text class="f-lbl-y" x="340" y="112" style="font-size:10.5px">SECTOR — one slice of a track</text>
+    <line class="f-ln" x1="272" y1="140" x2="332" y2="118"/>
+  </g>
+
+  <g id="hd-seek">
+    <line class="f-arr" x1="430" y1="196" x2="252" y2="150" marker-end="url(#a-hwhdd)"/>
+    <rect class="f-box-y" x="428" y="180" width="120" height="34" rx="5"/>
+    <text class="f-lbl-y" x="488" y="201" style="font-size:10px">SEEK TIME</text>
+    <text class="f-lbl" x="596" y="201" style="font-size:9.5px">arm moves</text>
+  </g>
+
+  <g id="hd-rot">
+    <rect class="f-box-y" x="428" y="222" width="120" height="34" rx="5"/>
+    <text class="f-lbl-y" x="488" y="243" style="font-size:10px">ROTATIONAL DELAY</text>
+    <text class="f-lbl" x="608" y="243" style="font-size:9.5px">disk turns</text>
+  </g>
+
+  <g id="hd-head">
+    <rect class="f-box-g" x="428" y="60" width="180" height="46" rx="6"/>
+    <text class="f-lbl-y" x="518" y="80" style="font-size:10.5px">READ / WRITE HEAD</text>
+    <text class="f-lbl" x="518" y="96" style="font-size:9.5px">floats on a cushion of air</text>
+  </g>
+
+  <g id="hd-xfer">
+    <rect class="f-box-g" x="428" y="120" width="240" height="44" rx="6"/>
+    <text class="f-lbl-y" x="548" y="140" style="font-size:10.5px">DATA TRANSFER</text>
+    <text class="f-lbl" x="548" y="156" style="font-size:9.5px">the block is read into memory</text>
+  </g>
+</svg>`,
+  steps: [
+    { show: '#hd-platter', focus: '#hd-platter',
+      en: 'The platter is a rigid magnetic disk, and it spins the whole time the drive is powered — typically 5400 or 7200 revolutions per minute.',
+      ne: 'Platter एउटा कडा चुम्बकीय डिस्क हो, र ड्राइभमा बिजुली भएसम्म यो निरन्तर घुमिरहन्छ — सामान्यतया मिनेटमा ५४०० वा ७२०० पटक।' },
+    { show: '#hd-track', focus: '#hd-track',
+      en: 'The surface is divided into concentric rings called TRACKS. The same track on every platter, stacked, is called a cylinder.',
+      ne: 'सतहलाई TRACK भनिने केन्द्रित रिङमा बाँडिएको हुन्छ। हरेक platter को उही track माथिमाथि राखिएको समूहलाई cylinder भनिन्छ।' },
+    { show: '#hd-sector', focus: '#hd-sector',
+      en: 'Each track is cut into SECTORS. A sector is the smallest unit the drive can read or write — traditionally 512 bytes.',
+      ne: 'हरेक track लाई SECTOR मा काटिन्छ। ड्राइभले पढ्न वा लेख्न सक्ने सबैभन्दा सानो एकाइ sector हो — परम्परागत रूपमा ५१२ बाइट।' },
+    { show: '#hd-head', focus: '#hd-head',
+      en: 'The read-write head sits on an actuator arm and floats microns above the surface on a cushion of air. It never touches the platter — if it does, that is a head crash.',
+      ne: 'Read-write head actuator arm मा हुन्छ र हावाको तकियामा सतहभन्दा माइक्रोन मात्र माथि तैरिन्छ। यसले platter छुँदैन — छोयो भने त्यो head crash हो।' },
+    { show: '#hd-seek', focus: '#hd-seek',
+      en: 'SEEK TIME: the arm swings the head to the right track. This is mechanical movement, which is why it is the slowest part of a read.',
+      ne: 'SEEK TIME: arm ले head लाई ठीक track मा पुर्‍याउँछ। यो यान्त्रिक चाल हो — त्यसैले पढाइको सबैभन्दा ढिलो भाग यही हो।' },
+    { show: '#hd-rot', focus: '#hd-rot',
+      en: 'ROTATIONAL DELAY: the head is on the right track but the sector it wants has not come round yet, so it waits for the disk to bring it.',
+      ne: 'ROTATIONAL DELAY: head ठीक track मा छ तर चाहिएको sector अझै आइपुगेको छैन, त्यसैले डिस्कले ल्याउन्जेल पर्खिन्छ।' },
+    { show: '#hd-xfer', focus: '#hd-xfer',
+      en: 'DATA TRANSFER: the sector passes under the head and the block is read into memory. Access time is all three added together — seek, rotation, transfer.',
+      ne: 'DATA TRANSFER: sector head मुनिबाट जान्छ र ब्लक मेमोरीमा पढिन्छ। Access time भनेको तीनै वटाको योग हो — seek, rotation, transfer।' }
+  ]
+};
+
+D.hwPartition = `
+<svg viewBox="0 0 700 240" role="img" aria-labelledby="t-hwpart">
+  <title id="t-hwpart">One physical hard disk divided into a primary partition and an extended partition holding logical drives, each given a drive letter, and the difference between formatting types</title>
+  <text class="f-ttl" x="10" y="20">ONE PHYSICAL DISK, SEVERAL DRIVES</text>
+
+  <rect class="f-box-d" x="16" y="32" width="668" height="72" rx="8"/>
+  <text class="f-lbl-y" x="60" y="52" style="font-size:10px">ONE DISK</text>
+
+  <rect class="f-box-y" x="30" y="60" width="180" height="34" rx="5"/>
+  <text class="f-lbl-y" x="120" y="82" style="font-size:10px">PRIMARY — C:</text>
+
+  <rect class="f-box" x="222" y="60" width="448" height="34" rx="5"/>
+  <text class="f-lbl" x="446" y="82" style="font-size:10px">EXTENDED PARTITION — holds logical drives, gets no letter of its own</text>
+
+  <rect class="f-box-g" x="234" y="112" width="136" height="30" rx="5"/>
+  <text class="f-lbl-y" x="302" y="132" style="font-size:10px">LOGICAL — D:</text>
+  <rect class="f-box-g" x="382" y="112" width="136" height="30" rx="5"/>
+  <text class="f-lbl-y" x="450" y="132" style="font-size:10px">LOGICAL — E:</text>
+  <rect class="f-box-g" x="530" y="112" width="136" height="30" rx="5"/>
+  <text class="f-lbl-y" x="598" y="132" style="font-size:10px">LOGICAL — F:</text>
+
+  <rect class="f-box-d" x="16" y="158" width="326" height="70" rx="8"/>
+  <text class="f-lbl-y" x="179" y="178">PARTITIONING</text>
+  <text class="f-lbl" x="179" y="196" style="font-size:10px">dividing one physical disk into</text>
+  <text class="f-lbl" x="179" y="210" style="font-size:10px">separate areas the OS sees as</text>
+  <text class="f-lbl" x="179" y="222" style="font-size:10px">independent drives</text>
+
+  <rect class="f-box-d" x="358" y="158" width="326" height="70" rx="8"/>
+  <text class="f-lbl-y" x="521" y="178">FORMATTING</text>
+  <text class="f-lbl" x="521" y="196" style="font-size:10px">writing a file system onto a partition</text>
+  <text class="f-lbl" x="521" y="210" style="font-size:10px">QUICK — clears the index only</text>
+  <text class="f-lbl" x="521" y="222" style="font-size:10px">FULL — also scans every sector</text>
+</svg>`;
+
+D.hwTroubleshootSteps = `
+<svg viewBox="0 0 700 260" role="img" aria-labelledby="t-hwts">
+  <title id="t-hwts">The six steps of troubleshooting: identify the problem, gather information, form a theory of probable cause, test the theory, apply the fix and verify, then document what was done</title>
+  ${ah('a-hwts')}
+  <text class="f-ttl" x="10" y="20">THE STEPS OF TROUBLESHOOTING — in this order, every time</text>
+
+  <rect class="f-box-y" x="16" y="36" width="200" height="52" rx="7"/>
+  <text class="f-lbl-y" x="116" y="58" style="font-size:11px">1 · IDENTIFY THE PROBLEM</text>
+  <text class="f-lbl" x="116" y="76" style="font-size:9.5px">what exactly does it do, and when?</text>
+
+  <path class="f-arr" d="M220 62 L246 62" marker-end="url(#a-hwts)"/>
+
+  <rect class="f-box-y" x="250" y="36" width="200" height="52" rx="7"/>
+  <text class="f-lbl-y" x="350" y="58" style="font-size:11px">2 · GATHER INFORMATION</text>
+  <text class="f-lbl" x="350" y="76" style="font-size:9.5px">ask the user what changed</text>
+
+  <path class="f-arr" d="M454 62 L480 62" marker-end="url(#a-hwts)"/>
+
+  <rect class="f-box-y" x="484" y="36" width="200" height="52" rx="7"/>
+  <text class="f-lbl-y" x="584" y="58" style="font-size:11px">3 · FORM A THEORY</text>
+  <text class="f-lbl" x="584" y="76" style="font-size:9.5px">the most probable cause first</text>
+
+  <path class="f-arr" d="M584 92 L584 118" marker-end="url(#a-hwts)"/>
+
+  <rect class="f-box" x="484" y="122" width="200" height="52" rx="7"/>
+  <text class="f-lbl-y" x="584" y="144" style="font-size:11px">4 · TEST THE THEORY</text>
+  <text class="f-lbl" x="584" y="162" style="font-size:9.5px">one change at a time</text>
+
+  <path class="f-arr" d="M480 148 L454 148" marker-end="url(#a-hwts)"/>
+
+  <rect class="f-box" x="250" y="122" width="200" height="52" rx="7"/>
+  <text class="f-lbl-y" x="350" y="144" style="font-size:11px">5 · FIX AND VERIFY</text>
+  <text class="f-lbl" x="350" y="162" style="font-size:9.5px">confirm the symptom is gone</text>
+
+  <path class="f-arr" d="M246 148 L220 148" marker-end="url(#a-hwts)"/>
+
+  <rect class="f-box-g" x="16" y="122" width="200" height="52" rx="7"/>
+  <text class="f-lbl-y" x="116" y="144" style="font-size:11px">6 · DOCUMENT</text>
+  <text class="f-lbl" x="116" y="162" style="font-size:9.5px">what it was, what fixed it</text>
+
+  <rect class="f-box-c" x="16" y="192" width="668" height="52" rx="8"/>
+  <text class="f-lbl-y" x="350" y="212">IF THE TEST DISPROVES THE THEORY, GO BACK TO STEP 3 — DO NOT GUESS AGAIN AT STEP 4</text>
+  <text class="f-lbl" x="350" y="230">Change one thing at a time. Two changes at once and you no longer know which one worked.</text>
+</svg>`;
+
+D.hwCooling = `
+<svg viewBox="0 0 700 240" role="img" aria-labelledby="t-hwcool">
+  <title id="t-hwcool">Airflow through a computer case: cool air enters at the front, passes over the processor heatsink and the components, and warm air leaves at the rear, with dust blocking the path when vents are not cleaned</title>
+  ${ah('a-hwcool')}
+  <text class="f-ttl" x="10" y="20">HOW A CASE STAYS COOL — one path, front to back</text>
+
+  <rect class="f-box-d" x="120" y="40" width="460" height="140" rx="8"/>
+
+  <path class="f-arr" d="M28 110 L118 110" marker-end="url(#a-hwcool)"/>
+  <text class="f-lbl-y" x="72" y="98" style="font-size:10px">COOL AIR IN</text>
+  <text class="f-lbl" x="72" y="130" style="font-size:9.5px">front intake</text>
+
+  <rect class="f-box-y" x="270" y="70" width="120" height="58" rx="6"/>
+  <line class="f-ln" x1="280" y1="78" x2="280" y2="120"/>
+  <line class="f-ln" x1="292" y1="78" x2="292" y2="120"/>
+  <line class="f-ln" x1="304" y1="78" x2="304" y2="120"/>
+  <line class="f-ln" x1="316" y1="78" x2="316" y2="120"/>
+  <line class="f-ln" x1="328" y1="78" x2="328" y2="120"/>
+  <text class="f-lbl-y" x="360" y="104" style="font-size:9.5px">HEATSINK</text>
+  <text class="f-lbl" x="330" y="146" style="font-size:9.5px">fins carry heat away from the CPU</text>
+
+  <circle cx="200" cy="99" r="26" class="f-box"/>
+  <text class="f-lbl" x="200" y="103" style="font-size:9px">fan</text>
+
+  <path class="f-arr" d="M582 110 L672 110" marker-end="url(#a-hwcool)"/>
+  <text class="f-lbl-y" x="628" y="98" style="font-size:10px">WARM AIR OUT</text>
+  <text class="f-lbl" x="628" y="130" style="font-size:9.5px">rear exhaust</text>
+
+  <rect class="f-box-c" x="16" y="194" width="668" height="40" rx="8"/>
+  <text class="f-lbl" x="350" y="211">DUST ON THE FINS IS AN INSULATOR. The CPU makes its normal heat and can no longer get rid of it,</text>
+  <text class="f-lbl" x="350" y="227">so the board shuts down to protect it — which the user reports as "it restarts by itself".</text>
+</svg>`;
+
+D.hwRaid = `
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="t-hwraid">
+  <title id="t-hwraid">RAID 0 stripes data across two disks for speed with no redundancy, RAID 1 mirrors the same data onto two disks for safety, and RAID 5 stripes data with parity across three disks so one can fail</title>
+  <text class="f-ttl" x="10" y="20">RAID — SEVERAL DISKS BEHAVING AS ONE</text>
+
+  <rect class="f-box-c" x="16" y="32" width="212" height="164" rx="8"/>
+  <text class="f-lbl-y" x="122" y="52">RAID 0 — STRIPING</text>
+  <rect class="f-box" x="36" y="66" width="80" height="60" rx="5"/>
+  <text class="f-lbl" x="76" y="88" style="font-size:9px">A1</text>
+  <text class="f-lbl" x="76" y="106" style="font-size:9px">A3</text>
+  <rect class="f-box" x="130" y="66" width="80" height="60" rx="5"/>
+  <text class="f-lbl" x="170" y="88" style="font-size:9px">A2</text>
+  <text class="f-lbl" x="170" y="106" style="font-size:9px">A4</text>
+  <text class="f-lbl" x="122" y="148" style="font-size:9.5px">fastest · full capacity</text>
+  <text class="f-lbl" x="122" y="164" style="font-size:9.5px">NO redundancy at all</text>
+  <text class="f-lbl-y" x="122" y="184" style="font-size:9.5px">one disk fails = everything lost</text>
+
+  <rect class="f-box-g" x="242" y="32" width="212" height="164" rx="8"/>
+  <text class="f-lbl-y" x="348" y="52">RAID 1 — MIRRORING</text>
+  <rect class="f-box" x="262" y="66" width="80" height="60" rx="5"/>
+  <text class="f-lbl" x="302" y="88" style="font-size:9px">A1</text>
+  <text class="f-lbl" x="302" y="106" style="font-size:9px">A2</text>
+  <rect class="f-box" x="356" y="66" width="80" height="60" rx="5"/>
+  <text class="f-lbl" x="396" y="88" style="font-size:9px">A1</text>
+  <text class="f-lbl" x="396" y="106" style="font-size:9px">A2</text>
+  <text class="f-lbl" x="348" y="148" style="font-size:9.5px">an exact copy on both</text>
+  <text class="f-lbl" x="348" y="164" style="font-size:9.5px">half the capacity is usable</text>
+  <text class="f-lbl-y" x="348" y="184" style="font-size:9.5px">one disk fails = still running</text>
+
+  <rect class="f-box" x="468" y="32" width="216" height="164" rx="8"/>
+  <text class="f-lbl-y" x="576" y="52">RAID 5 — STRIPING + PARITY</text>
+  <rect class="f-box" x="484" y="66" width="60" height="60" rx="5"/>
+  <text class="f-lbl" x="514" y="88" style="font-size:9px">A1</text>
+  <text class="f-lbl-y" x="514" y="106" style="font-size:9px">Bp</text>
+  <rect class="f-box" x="550" y="66" width="60" height="60" rx="5"/>
+  <text class="f-lbl" x="580" y="88" style="font-size:9px">A2</text>
+  <text class="f-lbl" x="580" y="106" style="font-size:9px">B1</text>
+  <rect class="f-box" x="616" y="66" width="60" height="60" rx="5"/>
+  <text class="f-lbl-y" x="646" y="88" style="font-size:9px">Ap</text>
+  <text class="f-lbl" x="646" y="106" style="font-size:9px">B2</text>
+  <text class="f-lbl" x="576" y="148" style="font-size:9.5px">minimum THREE disks</text>
+  <text class="f-lbl" x="576" y="164" style="font-size:9.5px">one disk of capacity goes to parity</text>
+  <text class="f-lbl-y" x="576" y="184" style="font-size:9.5px">one disk fails = rebuilt from parity</text>
+
+  <rect class="f-box-y" x="16" y="208" width="668" height="34" rx="8"/>
+  <text class="f-lbl" x="350" y="230">RAID IS NOT A BACKUP. It survives a DISK failing. It does not survive a file being deleted, overwritten or encrypted — that change is mirrored too.</text>
+</svg>`;
+
+/* Full, incremental and differential differ only in WHAT GETS COPIED on
+   each successive day — which is a change over time, and therefore the
+   one thing a still table shows badly and a sequence shows well. */
+D.hwBackupTypes = {
+  type: 'animated',
+  intro: { en: 'Full, incremental and differential backups across one working week.',
+           ne: 'एउटा कार्य-हप्ताभरि full, incremental र differential backup।' },
+  svg: `
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="t-hwbk">
+  <title id="t-hwbk">A week of backups comparing full, incremental and differential methods, showing how much each copies each day and how many sets are needed to restore</title>
+  <text class="f-ttl" x="10" y="20">ONE WEEK OF BACKUPS</text>
+
+  <text class="f-lbl" x="120" y="46" style="font-size:10px">MON</text>
+  <text class="f-lbl" x="234" y="46" style="font-size:10px">TUE</text>
+  <text class="f-lbl" x="348" y="46" style="font-size:10px">WED</text>
+  <text class="f-lbl" x="462" y="46" style="font-size:10px">THU</text>
+  <text class="f-lbl" x="576" y="46" style="font-size:10px">FRI</text>
+
+  <g id="bk-full">
+    <text class="f-lbl-y" x="46" y="82" style="font-size:10px">FULL</text>
+    <rect class="f-box-y" x="80" y="60" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="120" y="80" style="font-size:9px">everything</text>
+    <rect class="f-box-y" x="194" y="60" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="234" y="80" style="font-size:9px">everything</text>
+    <rect class="f-box-y" x="308" y="60" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="348" y="80" style="font-size:9px">everything</text>
+    <rect class="f-box-y" x="422" y="60" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="462" y="80" style="font-size:9px">everything</text>
+    <rect class="f-box-y" x="536" y="60" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="576" y="80" style="font-size:9px">everything</text>
+    <text class="f-lbl" x="350" y="106" style="font-size:9.5px">slowest to back up · fastest to restore · needs 1 set</text>
+  </g>
+
+  <g id="bk-inc">
+    <text class="f-lbl-y" x="46" y="146" style="font-size:10px">INCREMENTAL</text>
+    <rect class="f-box-y" x="80" y="124" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="120" y="144" style="font-size:9px">full</text>
+    <rect class="f-box-g" x="194" y="124" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="234" y="144" style="font-size:9px">since MON</text>
+    <rect class="f-box-g" x="308" y="124" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="348" y="144" style="font-size:9px">since TUE</text>
+    <rect class="f-box-g" x="422" y="124" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="462" y="144" style="font-size:9px">since WED</text>
+    <rect class="f-box-g" x="536" y="124" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="576" y="144" style="font-size:9px">since THU</text>
+    <text class="f-lbl" x="350" y="170" style="font-size:9.5px">fastest to back up · slowest to restore · needs the full set AND every increment</text>
+  </g>
+
+  <g id="bk-diff">
+    <text class="f-lbl-y" x="46" y="210" style="font-size:10px">DIFFERENTIAL</text>
+    <rect class="f-box-y" x="80" y="188" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="120" y="208" style="font-size:9px">full</text>
+    <rect class="f-box" x="194" y="188" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="234" y="208" style="font-size:9px">since MON</text>
+    <rect class="f-box" x="308" y="188" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="348" y="208" style="font-size:9px">since MON</text>
+    <rect class="f-box" x="422" y="188" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="462" y="208" style="font-size:9px">since MON</text>
+    <rect class="f-box" x="536" y="188" width="80" height="30" rx="4"/>
+    <text class="f-lbl" x="576" y="208" style="font-size:9px">since MON</text>
+    <text class="f-lbl" x="350" y="234" style="font-size:9.5px">grows each day · restore needs exactly TWO sets — the full one and the latest differential</text>
+  </g>
+</svg>`,
+  steps: [
+    { show: '#bk-full', focus: '#bk-full',
+      en: 'A FULL backup copies everything, every time. Restoring is simple — you need one set — but it takes the longest and uses the most media.',
+      ne: 'FULL backup ले हरेक पटक सबै कुरा कपी गर्छ। पुनर्स्थापना सजिलो — एउटै सेट चाहिन्छ — तर समय सबैभन्दा बढी लाग्छ र मिडिया पनि धेरै खपत हुन्छ।' },
+    { show: '#bk-inc', focus: '#bk-inc',
+      en: 'INCREMENTAL copies only what changed since the LAST backup of any kind. Each day is small and quick. But to restore Friday you need Monday\'s full set plus every increment in between — miss one and the chain is broken.',
+      ne: 'INCREMENTAL ले जुनसुकै किसिमको <b>अघिल्लो</b> backup पछि बदलिएको मात्र कपी गर्छ। हरेक दिनको सानो र छिटो हुन्छ। तर शुक्रबार फर्काउन सोमबारको full सेट र बीचका सबै increment चाहिन्छन् — एउटा छुट्यो भने शृंखला टुट्छ।' },
+    { show: '#bk-diff', focus: '#bk-diff',
+      en: 'DIFFERENTIAL copies everything changed since the last FULL backup. Each day is bigger than the one before, but a restore needs exactly two sets: the full one and the most recent differential. That is the trade — more media for a simpler recovery.',
+      ne: 'DIFFERENTIAL ले अन्तिम <b>FULL</b> backup पछि बदलिएको सबै कपी गर्छ। हरेक दिनको अघिल्लो भन्दा ठूलो हुन्छ, तर पुनर्स्थापनाका लागि ठ्याक्कै दुई सेट चाहिन्छ: full र सबैभन्दा पछिल्लो differential। सौदा यही हो — सजिलो रिकभरीका लागि बढी मिडिया।' }
+  ]
+};
+
 module.exports = D;

@@ -1,0 +1,388 @@
+<section id="hw-u1">
+  <div class="sec-head">
+    <div class="sec-num">1</div>
+    <div>
+      <h2>Introduction to Electronic Devices</h2>
+      <p class="sec-sub">इलेक्ट्रोनिक उपकरणको परिचय</p>
+    </div>
+    <span class="marks">10 hrs · 8 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Define matter, molecule and atom, and name the three subatomic particles with their charges.</li>
+      <li>State Kirchhoff's current law and voltage law, and apply each one to find a missing value.</li>
+      <li>Explain what doping is, and how it produces P-type and N-type material.</li>
+      <li>Name the majority and minority carrier in each type, and say why both types are still neutral.</li>
+      <li>Describe how a PN junction and its depletion region form.</li>
+      <li>Explain forward bias and reverse bias, and why a diode conducts in only one direction.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: matter, molecule र atom को परिभाषा दिन र तीन उप-आणविक
+    कणलाई चार्जसहित नाम लिन, KCL र KVL भन्न र लगाएर छुटेको मान निकाल्न, doping के हो र P-type–N-type
+    कसरी बन्छ भन्न, दुवैको बहुसंख्यक–अल्पसंख्यक वाहक नाम लिन र दुवै किन उदासीन रहन्छन् भन्न, PN
+    junction र depletion region कसरी बन्छ बताउन, र forward–reverse bias मा diode किन एकतर्फी मात्र
+    चल्छ व्याख्या गर्न सक्नुहुनेछ।</span>
+  </div>
+
+  <h3 class="topic" id="hw-t11">1.1 &nbsp;Matter, molecule and atom</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p><b>Matter</b> is anything that has mass and occupies space. A wire, a chip, the air
+      around the board — all matter.</p>
+      <p>A <b>molecule</b> is the smallest particle of a substance that still has the properties
+      of that substance. Split a water molecule and you no longer have water.</p>
+      <p>An <b>atom</b> is the smallest particle of an <i>element</i>. It is built from three
+      subatomic particles: the <b>proton</b> (positive) and <b>neutron</b> (no charge) in the
+      nucleus, and the <b>electron</b> (negative) orbiting in shells.</p>
+      <p>Electronics is the study of what those <b>outermost electrons</b> do. Everything in this
+      subject — conduction, doping, a diode — comes back to whether an electron is free to move.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Matter</b> भनेको जुनसुकै कुरा जसको द्रव्यमान हुन्छ र ठाउँ ओगट्छ। तार, चिप, बोर्ड
+      वरिपरिको हावा — सबै matter हुन्।</p>
+      <p><b>Molecule</b> भनेको कुनै पदार्थको त्यस्तो सबैभन्दा सानो कण, जसमा त्यही पदार्थका गुण
+      कायम रहन्छन्। पानीको molecule फुटाए त्यो पानी रहँदैन।</p>
+      <p><b>Atom</b> भनेको <i>तत्व</i> को सबैभन्दा सानो कण हो। यसमा तीन उप-आणविक कण हुन्छन्:
+      nucleus भित्र <b>proton</b> (धनात्मक) र <b>neutron</b> (चार्ज नभएको), अनि शेलमा घुम्ने
+      <b>electron</b> (ऋणात्मक)।</p>
+      <p>इलेक्ट्रोनिक्स भनेको ती <b>सबैभन्दा बाहिरी electron</b> ले के गर्छन् भन्ने अध्ययन हो।
+      यस विषयका सबै कुरा — चालकता, doping, diode — electron चल्न स्वतन्त्र छ कि छैन भन्नेमै फर्किन्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:hwMatter}}
+    <figcaption>Each one is contained in the one before it. "Define matter, molecule and atom" is
+    answered by getting this order right and naming the three particles.
+    <span class="np-cell">हरेक कुरा अघिल्लोभित्र पर्छ। "Matter, molecule र atom को परिभाषा
+    दिनुहोस्" भन्ने प्रश्नको उत्तर यही क्रम मिलाएर र तीन कणको नाम लिएर दिइन्छ।</span></figcaption>
+  </figure>
+
+  <h3 class="topic" id="hw-t12">1.2 &nbsp;Kirchhoff's laws — KCL and KVL</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p><b>Kirchhoff's Current Law (KCL):</b> at any junction, the total current flowing <b>in</b>
+      equals the total current flowing <b>out</b>. Nothing is created or lost at a joint.</p>
+      <p><b>Kirchhoff's Voltage Law (KVL):</b> around any closed loop, the supply voltage equals
+      the sum of the voltage drops. Energy given by the source is entirely used up by the loop.</p>
+      <p>These two laws are why a technician can reason about a board without measuring every
+      point: if three currents at a junction are known, the fourth is fixed.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Kirchhoff's Current Law (KCL):</b> कुनै पनि जोडमा <b>भित्र आउने</b> कुल current र
+      <b>बाहिर जाने</b> कुल current बराबर हुन्छ। जोडमा केही बन्दैन, केही हराउँदैन।</p>
+      <p><b>Kirchhoff's Voltage Law (KVL):</b> कुनै पनि बन्द loop मा सप्लाईको भोल्टेज र सबै
+      भोल्टेज ड्रपको योग बराबर हुन्छ। स्रोतले दिएको ऊर्जा loop ले पूरै खपत गर्छ।</p>
+      <p>यी दुई नियमकै कारण टेक्निसियनले हरेक बिन्दु नापेर हेर्नु पर्दैन: जोडमा तीन current थाहा
+      भए चौथो आफैँ निश्चित हुन्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:hwKirchhoff}}
+    <figcaption>Both laws are "state it, then apply it" questions. The applying is simple
+    arithmetic once you have decided which currents are in and which are out.
+    <span class="np-cell">दुवै नियम "भन्नुहोस्, अनि लगाउनुहोस्" भन्ने प्रश्न हुन्। कुन current
+    भित्र र कुन बाहिर हो छुट्याइसकेपछि लगाउनु साधारण गणित मात्र हो।</span></figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Finding a missing current with KCL</div>
+    <p><b>Question:</b> at a junction, 5 A and 3 A flow in. One branch carries 6 A out. What does
+    the remaining branch carry?</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Work it out before you read on — the whole law is
+      one sentence, and you already have it.</span><span class="np-cell">पढ्नुअघि आफैँ निकाल्नुहोस्
+      — पूरै नियम एउटै वाक्य हो, र त्यो तपाईंसँग छ।</span></p>
+    </div>
+    <p><b>Step 1 — add everything going in.</b> 5 + 3 = 8 A.</p>
+    <p><b>Step 2 — add everything going out that you know.</b> 6 A on the one named branch.</p>
+    <p><b>Step 3 — KCL says the two totals must match.</b> 8 = 6 + I, so I = 2 A.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">I = 2 A, flowing OUT of the junction</div>
+    </div>
+    <p class="wex-note">Say the direction, not just the number. A junction question with an
+    unsigned answer is only half answered, because "2 A" is true of a current going either way.
+    <span class="np-cell">सङ्ख्या मात्र होइन, दिशा पनि लेख्नुहोस्। दिशा नलेखिएको उत्तर आधा मात्र
+    हो — किनकि "२ A" दुवै दिशाको current लाई मिल्छ।</span></p>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Finding a missing voltage drop with KVL</div>
+    <p><b>Question:</b> a 12 V supply feeds a loop with three resistors. R₁ drops 5 V and R₂ drops
+    4 V. What does R₃ drop?</p>
+    <p><b>Step 1 — write the law for this loop.</b> Supply = sum of drops, so 12 = 5 + 4 + R₃.</p>
+    <p><b>Step 2 — collect the known drops.</b> 5 + 4 = 9 V.</p>
+    <p><b>Step 3 — subtract.</b> R₃ = 12 − 9 = 3 V.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">R₃ drops 3 V</div>
+    </div>
+    <p class="wex-note">This is the check a technician makes on a suspect power rail: if the drops
+    do not add up to the supply, either a reading is wrong or there is a fault in the loop.
+    <span class="np-cell">बिग्रिएको पावर रेल जाँच्दा टेक्निसियनले यही हेर्छ: ड्रपको योग सप्लाईसँग
+    मिलेन भने या त कुनै रिडिङ गलत छ, या loop मै खराबी छ।</span></p>
+  </div>
+
+  <h3 class="topic" id="hw-t13">1.3 &nbsp;Semiconductors and doping</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>semiconductor</b> conducts better than an insulator but worse than a conductor.
+      <b>Silicon</b> and <b>germanium</b> are the two used. Each has <b>four valence electrons</b>,
+      so a pure crystal has none spare and barely conducts.</p>
+      <p><b>Doping</b> is deliberately adding a small amount of impurity to a pure semiconductor to
+      increase its conductivity.</p>
+      <p><b>N-type</b> — add a <b>pentavalent</b> impurity (5 valence electrons: phosphorus,
+      arsenic). Four electrons bond; the fifth is spare and free to move.</p>
+      <p><b>P-type</b> — add a <b>trivalent</b> impurity (3 valence electrons: boron, gallium).
+      One bond is left unfilled, and that gap is a <b>hole</b>.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Semiconductor</b> ले insulator भन्दा राम्रो तर conductor भन्दा कम बिजुली चलाउँछ।
+      <b>Silicon</b> र <b>germanium</b> दुई प्रयोग हुन्छन्। दुवैमा <b>चार valence electron</b>
+      हुन्छन्, त्यसैले शुद्ध क्रिस्टलमा फाल्तु electron हुँदैन र मुस्किलले चल्छ।</p>
+      <p><b>Doping</b> भनेको चालकता बढाउन शुद्ध semiconductor मा जानाजान थोरै अशुद्धि मिसाउनु हो।</p>
+      <p><b>N-type</b> — <b>pentavalent</b> अशुद्धि (५ valence electron: phosphorus, arsenic)
+      मिसाउनुहोस्। चार वटाले बन्धन बनाउँछन्; पाँचौं फाल्तु रहन्छ र चल्न स्वतन्त्र हुन्छ।</p>
+      <p><b>P-type</b> — <b>trivalent</b> अशुद्धि (३ valence electron: boron, gallium)
+      मिसाउनुहोस्। एउटा बन्धन खाली रहन्छ, र त्यही खाली ठाउँ <b>hole</b> हो।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:hwDoping}}
+    <figcaption>The yellow band at the bottom is the line that most often decides a mark: doping
+    adds a <b>carrier</b>, not a <b>charge</b>. Both doped types are still electrically neutral.
+    <span class="np-cell">तलको पहेँलो पट्टी नै प्रायः अंक निर्धारण गर्ने वाक्य हो: doping ले
+    <b>वाहक</b> थप्छ, <b>चार्ज</b> होइन। दुवै doped प्रकार अझै विद्युतीय रूपमा उदासीन छन्।</span></figcaption>
+  </figure>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Majority and minority carriers</span>
+      <p>Both kinds of carrier exist in both materials. What changes is which one dominates.</p>
+      <p>In <b>N-type</b>: electrons are the <b>majority</b> carrier, holes the <b>minority</b>.</p>
+      <p>In <b>P-type</b>: holes are the <b>majority</b> carrier, electrons the <b>minority</b>.</p>
+      <p>The minority carriers come from heat breaking bonds in the silicon itself, which is why
+      a hot device leaks more current than a cold one.</p>
+    </div>
+    <div class="np"><span class="tag">बहुसंख्यक र अल्पसंख्यक वाहक</span>
+      <p>दुवै किसिमका वाहक दुवै पदार्थमा हुन्छन्। फरक यत्ति हो कि कुन हावी हुन्छ।</p>
+      <p><b>N-type</b> मा: electron <b>बहुसंख्यक</b>, hole <b>अल्पसंख्यक</b> वाहक हो।</p>
+      <p><b>P-type</b> मा: hole <b>बहुसंख्यक</b>, electron <b>अल्पसंख्यक</b> वाहक हो।</p>
+      <p>अल्पसंख्यक वाहक silicon भित्रै तापले बन्धन टुट्दा बन्छन् — त्यसैले तातो उपकरणले चिसो
+      भन्दा बढी current चुहाउँछ।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>P-type or N-type?</h4>
+      <p class="sim-goal">What you will learn: to read a description and decide which material it
+      is, so the "differentiate P-type and N-type" question is answered from recognition rather
+      than from a memorised pair of sentences.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: विवरण पढेर कुन पदार्थ हो छुट्याउन — ताकि
+      "P-type र N-type फरक छुट्याउनुहोस्" भन्ने प्रश्न घोकेको वाक्यबाट होइन, चिनेरै उत्तर
+      दिन सकियोस्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-hw-dope" data-set="dopetype"></div>
+    </div>
+    <div class="sim-controls"></div>
+    <p class="sim-why"><span class="t-en">Why this matters: every diode, transistor and chip on a
+    motherboard is built from these two materials joined together. If you cannot tell them apart,
+    the PN junction in 1.4 has nothing to stand on.</span><span class="np-cell">किन महत्त्वपूर्ण छ:
+    मदरबोर्डको हरेक diode, transistor र चिप यिनै दुई पदार्थ जोडेर बनेको हुन्छ। यी छुट्याउन
+    नसके १.४ को PN junction अडिने ठाउँ नै रहँदैन।</span></p>
+  </div>
+
+  <h3 class="topic" id="hw-t14">1.4 &nbsp;The PN junction, forward bias and reverse bias</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>PN junction</b> is formed when a P-type and an N-type material are joined in a single
+      crystal. It is the basis of the <b>diode</b>.</p>
+      <p>At the join, free electrons from the N side cross and fill holes on the P side. That
+      leaves a thin strip with no free carriers — the <b>depletion region</b> — and exposed ions
+      that create a <b>barrier potential</b> of about <b>0.7 V</b> in silicon (0.3 V in germanium).</p>
+      <p><b>Forward bias:</b> P to the positive terminal, N to the negative. The depletion region
+      narrows, and once the supply exceeds the barrier, <b>current flows</b>.</p>
+      <p><b>Reverse bias:</b> the connections are swapped. Carriers are pulled away from the join,
+      the depletion region <b>widens</b>, and <b>current stops</b> — apart from a tiny leakage
+      current carried by the minority carriers.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>PN junction</b> भनेको एउटै क्रिस्टलमा P-type र N-type पदार्थ जोडिँदा बन्ने जोड हो।
+      <b>Diode</b> यसैमा आधारित छ।</p>
+      <p>जोडमा N तर्फका स्वतन्त्र electron पारि गएर P तर्फका hole भर्छन्। त्यसले स्वतन्त्र वाहक
+      नभएको पातलो पट्टी छोड्छ — <b>depletion region</b> — र खुला ion हरूले silicon मा करिब
+      <b>०.७ V</b> (germanium मा ०.३ V) को <b>barrier potential</b> बनाउँछन्।</p>
+      <p><b>Forward bias:</b> P धनात्मक टर्मिनलमा, N ऋणात्मकमा। Depletion region साँघुरो हुन्छ, र
+      सप्लाईले barrier नाघेपछि <b>current बग्छ</b>।</p>
+      <p><b>Reverse bias:</b> जडान उल्टिन्छ। वाहकहरू जोडबाट टाढा तानिन्छन्, depletion region
+      <b>चौडा</b> हुन्छ, र <b>current रोकिन्छ</b> — अल्पसंख्यक वाहकले बोक्ने अति सानो leakage
+      current बाहेक।</p>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>A silicon diode is connected in reverse bias. What happens to the depletion region?
+      <span class="np-cell">एउटा silicon diode reverse bias मा जोडियो। Depletion region मा
+      के हुन्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">It narrows, so current flows</button>
+      <button class="predict-opt" data-value="b">It widens, so current stops</button>
+      <button class="predict-opt" data-value="c">It disappears completely</button>
+    </div>
+    <div class="predict-feedback">
+      <p>Reverse bias pulls both kinds of carrier <b>away</b> from the junction, so the region
+      empty of carriers gets <b>wider</b> and the barrier grows. The diode blocks. It never
+      disappears — the depletion region exists even with no supply connected at all.</p>
+      <span class="np-cell">Reverse bias ले दुवै किसिमका वाहकलाई जोडबाट <b>टाढा</b> तान्छ,
+      त्यसैले वाहकविहीन क्षेत्र <b>चौडा</b> हुन्छ र barrier बढ्छ। Diode ले रोक्छ। यो कहिल्यै
+      हराउँदैन — कुनै सप्लाई नजोडे पनि depletion region हुन्छ।</span>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:hwPnJunction}}
+    <figcaption>Step through it. Forward and reverse bias are not two facts to memorise — they are
+    the same depletion region moving in opposite directions.
+    <span class="np-cell">एक–एक चरण हेर्नुहोस्। Forward र reverse bias घोक्नुपर्ने दुई तथ्य होइनन्
+    — उही depletion region उल्टो दिशामा चलेको हो।</span></figcaption>
+  </figure>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Saying N-type is negatively charged and P-type positively charged.</b> Both are
+        electrically <b>neutral</b>. The impurity atom brings its own protons with it — doping
+        adds a carrier, not a charge.
+        <span class="np-cell">N-type ऋणात्मक र P-type धनात्मक चार्ज भएको भन्नु। दुवै विद्युतीय
+        रूपमा <b>उदासीन</b> छन्। अशुद्धिको atom ले आफ्नै proton ल्याउँछ — doping ले वाहक थप्छ,
+        चार्ज होइन।</span></li>
+      <li><b>Writing that no current at all flows in reverse bias.</b> A very small leakage current
+        flows, carried by the minority carriers. "No current" loses the mark that "negligible
+        leakage current" earns.
+        <span class="np-cell">Reverse bias मा बिल्कुलै current बग्दैन भन्नु। अल्पसंख्यक वाहकले
+        बोकेको सानो leakage current बग्छ। "Current छैन" भन्दा "नगण्य leakage current" ले अंक
+        पाउँछ।</span></li>
+      <li><b>Confusing a hole with an electron that has moved.</b> A hole is the <b>absence</b> of
+        an electron in a bond, and it behaves like a positive carrier.
+        <span class="np-cell">Hole लाई सरेको electron सम्झनु। Hole भनेको बन्धनमा electron को
+        <b>अनुपस्थिति</b> हो, र यो धनात्मक वाहकजस्तै व्यवहार गर्छ।</span></li>
+      <li><b>Mixing up KCL and KVL.</b> Current at a junction, voltage round a loop. If the
+        question shows a node, it is KCL; if it shows a closed path, it is KVL.
+        <span class="np-cell">KCL र KVL मिसाउनु। जोडमा current, loop मा voltage। प्रश्नले node
+        देखाए KCL, बन्द बाटो देखाए KVL।</span></li>
+    </ul>
+    <p class="hook"><b>Doping adds a carrier, not a charge.</b> Forward narrows, reverse widens.
+    <span class="np-cell"><b>Doping ले वाहक थप्छ, चार्ज होइन।</b> Forward ले साँघुरो, reverse ले
+    चौडा बनाउँछ।</span></p>
+  </div>
+
+  <h3 class="topic" id="hw-exam1">Exam focus — what is asked from this unit</h3>
+  <div class="exam-connect">
+    <b>This is the only theory-heavy unit in a practical subject, and it carries 8 marks.</b>
+    Questions come in three shapes: <b>define</b> (matter, molecule, atom, doping, semiconductor),
+    <b>state and apply</b> (KCL and KVL with numbers — always show the equation before the answer),
+    and <b>differentiate</b> (P-type vs N-type, forward vs reverse bias, majority vs minority
+    carrier). The PN junction with its depletion region labelled is the one diagram from this unit
+    you may be asked to draw.
+    <span class="np-cell">व्यावहारिक विषयको एक मात्र सैद्धान्तिक भारी युनिट यही हो, र यसले ८ अंक
+    बोक्छ। प्रश्न तीन किसिमका आउँछन्: <b>परिभाषा</b> (matter, molecule, atom, doping,
+    semiconductor), <b>भनेर लगाउने</b> (सङ्ख्यासहित KCL र KVL — उत्तरअघि समीकरण अवश्य लेख्नुहोस्),
+    र <b>फरक छुट्याउने</b> (P-type र N-type, forward र reverse bias, बहुसंख्यक र अल्पसंख्यक वाहक)।
+    यस युनिटबाट कोर्न सकिने चित्र depletion region नामांकित PN junction हो।</span>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q1 <span class="mk">2 marks</span></p>
+    <h4>Define doping. Name one pentavalent and one trivalent impurity.
+      <span class="np-cell">Doping को परिभाषा दिनुहोस्। एउटा pentavalent र एउटा trivalent अशुद्धिको
+      नाम लेख्नुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a11">Show the answer</button>
+    <div class="ans" id="hw-a11">
+      <p>Doping is the deliberate addition of a small amount of impurity to a pure semiconductor in
+      order to increase its conductivity. Pentavalent: phosphorus (or arsenic, antimony).
+      Trivalent: boron (or gallium, indium).</p>
+      <span class="np-cell">Doping भनेको चालकता बढाउने उद्देश्यले शुद्ध semiconductor मा जानाजान
+      थोरै अशुद्धि मिसाउनु हो। Pentavalent: phosphorus (वा arsenic, antimony)। Trivalent: boron
+      (वा gallium, indium)।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q2 <span class="mk">3 marks</span></p>
+    <h4>State Kirchhoff's Current Law. At a junction 4 A and 7 A flow in, and 5 A flows out on one
+      branch. Find the current in the remaining branch.
+      <span class="np-cell">Kirchhoff's Current Law भन्नुहोस्। एउटा जोडमा ४ A र ७ A भित्र आउँछन्,
+      र एउटा शाखाबाट ५ A बाहिर जान्छ। बाँकी शाखाको current निकाल्नुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a12">Show the answer</button>
+    <div class="ans" id="hw-a12">
+      <p>KCL: at any junction the total current flowing in equals the total current flowing out.
+      In = 4 + 7 = 11 A. Known out = 5 A. So the remaining branch carries 11 − 5 = <b>6 A out of
+      the junction</b>.</p>
+      <span class="np-cell">KCL: कुनै पनि जोडमा भित्र आउने कुल current र बाहिर जाने कुल current
+      बराबर हुन्छ। भित्र = ४ + ७ = ११ A। थाहा भएको बाहिर = ५ A। त्यसैले बाँकी शाखाले
+      ११ − ५ = <b>६ A जोडबाट बाहिर</b> बोक्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q3 <span class="mk">3 marks</span></p>
+    <h4>Explain how a depletion region forms at a PN junction, and what happens to it under reverse
+      bias.
+      <span class="np-cell">PN junction मा depletion region कसरी बन्छ, र reverse bias मा त्यसमा
+      के हुन्छ — व्याख्या गर्नुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a13">Show the answer</button>
+    <div class="ans" id="hw-a13">
+      <p>When P-type and N-type are joined, free electrons from the N side diffuse across and
+      recombine with holes on the P side. The strip either side of the join is left with no free
+      carriers and with exposed ions, forming the depletion region and a barrier potential of about
+      0.7 V in silicon. Under reverse bias the supply pulls carriers away from the junction, so the
+      depletion region widens, the barrier increases, and conduction stops apart from a small
+      leakage current due to minority carriers.</p>
+      <span class="np-cell">P-type र N-type जोडिँदा N तर्फका स्वतन्त्र electron पारि सरेर P तर्फका
+      hole सँग पुनर्संयोजन हुन्छन्। जोडको दुवैतिरको पट्टीमा स्वतन्त्र वाहक रहँदैन र खुला ion बाँकी
+      रहन्छन् — यसैले depletion region र silicon मा करिब ०.७ V को barrier potential बन्छ। Reverse
+      bias मा सप्लाईले वाहकलाई जोडबाट टाढा तान्छ, त्यसैले depletion region चौडा हुन्छ, barrier
+      बढ्छ, र अल्पसंख्यक वाहकको सानो leakage current बाहेक चालन रोकिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick">Matter → molecule → atom → proton, neutron, electron. Proton positive,
+        neutron neutral, electron negative.
+        <span class="np-cell">Matter → molecule → atom → proton, neutron, electron। Proton धनात्मक,
+        neutron उदासीन, electron ऋणात्मक।</span></li>
+      <li class="tick">KCL: current in = current out at a junction. KVL: supply = sum of drops
+        around a loop.
+        <span class="np-cell">KCL: जोडमा भित्रको current = बाहिरको current। KVL: loop मा सप्लाई =
+        ड्रपहरूको योग।</span></li>
+      <li class="tick">Silicon and germanium have four valence electrons. Doping adds a
+        pentavalent impurity for N-type or a trivalent one for P-type.
+        <span class="np-cell">Silicon र germanium मा चार valence electron हुन्छन्। N-type लाई
+        pentavalent, P-type लाई trivalent अशुद्धि मिसाइन्छ।</span></li>
+      <li class="tick">N-type: electrons majority, holes minority. P-type: holes majority,
+        electrons minority. Both are electrically neutral.
+        <span class="np-cell">N-type: electron बहुसंख्यक, hole अल्पसंख्यक। P-type: hole बहुसंख्यक,
+        electron अल्पसंख्यक। दुवै उदासीन छन्।</span></li>
+      <li class="tick">The depletion region has no free carriers and sets up a 0.7 V barrier in
+        silicon. Forward bias narrows it and current flows; reverse bias widens it and current
+        stops apart from leakage.
+        <span class="np-cell">Depletion region मा स्वतन्त्र वाहक हुँदैन र silicon मा ०.७ V को
+        barrier बन्छ। Forward bias ले साँघुरो बनाउँछ र current बग्छ; reverse bias ले चौडा बनाउँछ
+        र leakage बाहेक current रोकिन्छ।</span></li>
+    </ul>
+  </div>
+</section>

@@ -189,6 +189,56 @@ module.exports = {
         chip: 'Quiz',
         sec: ['db-quiz'], js: ['services/quiz.js', 'question-bank.js', 'quiz.js'] }
     ]
+  },
+
+  /* Hours come straight from the CDC outline in content/syllabus.js
+     (10+10+12+12+12+8 = 64). Marks are that outline weighted to the
+     50-mark grid every subject uses: 8+8+9+9+9+7. */
+  'grade10/hardware': {
+    hero: 'hw-hero',
+    pages: [
+      { file: 'unit1.html', n: '1',
+        title: 'Introduction to Electronic Devices', np: 'इलेक्ट्रोनिक उपकरणको परिचय',
+        chip: 'Electronics', hrs: 10, marks: 8,
+        sec: ['hw-u1'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js'] },
+
+      { file: 'unit2.html', n: '2',
+        title: 'Introduction to Computer System', np: 'कम्प्युटर प्रणालीको परिचय',
+        chip: 'System Parts', hrs: 10, marks: 8,
+        sec: ['hw-u2'], js: ['services/simulation.js', 'predict.js', 'sim-parts.js', 'sim-drill.js'] },
+
+      { file: 'unit3.html', n: '3',
+        title: "Overview on System's Core", np: 'प्रणालीको मुख्य भाग',
+        chip: 'BIOS & Storage', hrs: 12, marks: 9,
+        sec: ['hw-u3'], js: ['services/simulation.js', 'predict.js', 'sim-parts.js'] },
+
+      { file: 'unit4.html', n: '4',
+        title: 'Troubleshooting Techniques', np: 'समस्या समाधानका तरिका',
+        chip: 'Troubleshooting', hrs: 12, marks: 9,
+        sec: ['hw-u4'], js: ['services/simulation.js', 'predict.js', 'sim-fault.js',
+                             'guided.js', 'practice-bank.js'] },
+
+      { file: 'unit5.html', n: '5',
+        title: 'Repair and Maintenance', np: 'मर्मत र सम्भार',
+        chip: 'Maintenance', hrs: 12, marks: 9,
+        sec: ['hw-u5'], js: ['services/simulation.js', 'predict.js', 'sim-fault.js', 'sim-drill.js'] },
+
+      { file: 'unit6.html', n: '6',
+        title: 'Backup and Recovery', np: 'ब्याकअप र रिकभरी',
+        chip: 'Backup & RAID', hrs: 8, marks: 7,
+        sec: ['hw-u6'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js'] },
+
+      { file: 'revise.html', n: '↻',
+        title: 'Your Revision', np: 'तपाईंको दोहोर्‍याइ',
+        chip: 'Revision',
+        sec: ['revise'], js: ['services/progress.js', 'services/revision.js',
+                              'learning-map.js', 'revise.js'] },
+
+      { file: 'quiz.html', n: '?',
+        title: 'Self-Check Quiz', np: 'आफैं जाँच्ने क्विज',
+        chip: 'Quiz',
+        sec: ['hw-quiz'], js: ['services/quiz.js', 'question-bank.js', 'quiz.js'] }
+    ]
   }
 
 };

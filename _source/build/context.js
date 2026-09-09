@@ -120,6 +120,8 @@ const RUNTIME_PUBLISHED = {
   'revise.js': 'revise.js',
   'services/quiz.js': 'services/quiz.js',
   'services/simulation.js': 'services/simulation.js',
+  'sim-parts.js': 'sim-parts.js',
+  'sim-fault.js': 'sim-fault.js',
   'home.js': 'home.js'
 };
 
@@ -149,7 +151,8 @@ const hero = read('content/sections/hero.html');
 const questionBanks = {
   'grade10/oop-cpp':        require('../content/questions/grade10-oop-cpp.js'),
   'grade10/digital-design': require('../content/questions/grade10-digital-design.js'),
-  'grade10/dbms':           require('../content/questions/grade10-dbms.js')
+  'grade10/dbms':           require('../content/questions/grade10-dbms.js'),
+  'grade10/hardware':       require('../content/questions/grade10-hardware.js')
 };
 
 /* Faded guided practice. Same shape as the question banks: content lives
@@ -159,7 +162,8 @@ const questionBanks = {
 const practiceBanks = [
   require('../content/practice/grade10-digital-design.js'),
   require('../content/practice/grade10-dbms.js'),
-  require('../content/practice/grade10-oop-cpp.js')
+  require('../content/practice/grade10-oop-cpp.js'),
+  require('../content/practice/grade10-hardware.js')
 ].reduce((all, bank) => all.concat(bank), []);
 
 /* ---------------- the learning map ----------------

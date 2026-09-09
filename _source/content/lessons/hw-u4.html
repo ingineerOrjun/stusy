@@ -1,0 +1,459 @@
+<section id="hw-u4">
+  <div class="sec-head">
+    <div class="sec-num">4</div>
+    <div>
+      <h2>Troubleshooting Techniques</h2>
+      <p class="sec-sub">समस्या समाधानका तरिका</p>
+    </div>
+    <span class="marks">12 hrs · 9 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>State the general principles a technician works by, including changing one thing at a time.</li>
+      <li>List the steps of troubleshooting in order, and say what each step produces.</li>
+      <li>Work through a boot problem from the symptom to the cause without guessing.</li>
+      <li>Interpret common boot-time error messages and beep codes.</li>
+      <li>List the usual causes of a system slowdown and how to tell them apart.</li>
+      <li>Apply a diagnostic sequence to a specific component that is suspected of failing.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: टेक्निसियनले पालना गर्ने सामान्य सिद्धान्त — एकपटकमा
+    एउटा मात्र कुरा बदल्नेसहित — भन्न, troubleshooting का चरण क्रमैसँग सूचीबद्ध गर्न र हरेक चरणले
+    के दिन्छ बताउन, अनुमान नगरी boot समस्यालाई लक्षणबाट कारणसम्म पुर्‍याउन, सामान्य boot त्रुटि
+    सन्देश र बीप कोड बुझ्न, प्रणाली ढिलो हुनुका सामान्य कारण र तिनलाई छुट्याउने तरिका भन्न, र
+    बिग्रेको शंका गरिएको कुनै भागमा निदान क्रम लागू गर्न सक्नुहुनेछ।</span>
+  </div>
+
+  <h3 class="topic" id="hw-t41">4.1 &nbsp;General troubleshooting techniques</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The principles a technician works by</span>
+      <p><b>Check the simplest and cheapest thing first.</b> A loose cable costs five seconds to
+      rule out; an opened case costs twenty minutes and a risk of damage.</p>
+      <p><b>Change one thing at a time.</b> Change two and the fault goes away, you no longer know
+      which change fixed it — and you cannot prevent it happening again.</p>
+      <p><b>Work from the symptom, not from a hunch.</b> The symptom already tells you how far the
+      machine got before it stopped, which rules out everything that happens later.</p>
+      <p><b>Do not replace parts to diagnose.</b> Substituting a known-good part is a legitimate
+      test; buying a new one because you suspect it is not.</p>
+      <p><b>Observe safety.</b> Power off and unplug before opening a case. Never work inside a
+      power supply or a CRT monitor — both store dangerous charge after being unplugged.</p>
+    </div>
+    <div class="np"><span class="tag">टेक्निसियनले पालना गर्ने सिद्धान्त</span>
+      <p><b>सबैभन्दा सजिलो र सस्तो कुरा पहिले जाँच्नुहोस्।</b> खुकुलो केबल हटाउन पाँच सेकेन्ड
+      लाग्छ; केस खोल्न बीस मिनेट र बिगार्ने जोखिम।</p>
+      <p><b>एकपटकमा एउटा मात्र कुरा बदल्नुहोस्।</b> दुई बदल्दा खराबी हट्यो भने कुनले मिलायो थाहा
+      हुँदैन — र फेरि हुन नदिन पनि सकिँदैन।</p>
+      <p><b>अनुमानबाट होइन, लक्षणबाट काम गर्नुहोस्।</b> मेसिन रोकिनुअघि कहाँसम्म पुगेको थियो
+      भन्ने लक्षणले नै बताउँछ, र त्यसपछि हुने सबै कुरा हट्छ।</p>
+      <p><b>निदानका लागि पार्ट नसाट्नुहोस्।</b> चल्ने भनेर थाहा भएको पार्ट राखेर हेर्नु वैध
+      परीक्षण हो; शंकाकै भरमा नयाँ किन्नु होइन।</p>
+      <p><b>सुरक्षा अपनाउनुहोस्।</b> केस खोल्नुअघि बिजुली बन्द गरी प्लग निकाल्नुहोस्। पावर सप्लाई
+      र CRT monitor भित्र कहिल्यै काम नगर्नुहोस् — प्लग निकालेपछि पनि दुवैमा खतरनाक चार्ज
+      जम्मा रहन्छ।</p>
+    </div>
+  </div>
+
+  <h3 class="topic" id="hw-t42">4.2 &nbsp;The steps of troubleshooting</h3>
+
+  <figure class="fig">
+    {{dia:hwTroubleshootSteps}}
+    <figcaption>Six steps, always in this order. The loop back from step 4 to step 3 is the part
+    students leave out — and it is what separates diagnosis from guessing.
+    <span class="np-cell">छ चरण, सधैं यही क्रममा। चरण ४ बाट ३ मा फर्किने बाटो विद्यार्थीले छुटाउने
+    भाग हो — र निदान र अनुमानबीचको भिन्नता यही हो।</span></figcaption>
+  </figure>
+
+  <div class="pair">
+    <div class="en"><span class="tag">What each step produces</span>
+      <p><b>1. Identify the problem</b> — a precise statement of what happens and when. "It does
+      not work" is not one; "it powers on, fans spin, screen stays black" is.</p>
+      <p><b>2. Gather information</b> — ask the user what changed. New hardware, a storm, a move,
+      a spill, an update. Most faults have a cause the user can tell you about.</p>
+      <p><b>3. Establish a theory of probable cause</b> — the <i>most likely</i> cause consistent
+      with the symptom, not every possible cause.</p>
+      <p><b>4. Test the theory</b> — one check, one change. If the test disproves the theory, go
+      <b>back to step 3</b> and form a new one. Do not start swapping parts.</p>
+      <p><b>5. Apply the fix and verify</b> — confirm the original symptom is actually gone, and
+      that nothing else broke while you were working.</p>
+      <p><b>6. Document</b> — what the symptom was, what caused it, what fixed it. This is what
+      makes the second occurrence quick.</p>
+    </div>
+    <div class="np"><span class="tag">हरेक चरणले के दिन्छ</span>
+      <p><b>१. समस्या पहिचान</b> — के हुन्छ र कहिले हुन्छ भन्ने ठ्याक्कै कथन। "चल्दैन" कथन होइन;
+      "बिजुली आउँछ, पंखा घुम्छ, स्क्रिन कालै रहन्छ" कथन हो।</p>
+      <p><b>२. जानकारी सङ्कलन</b> — प्रयोगकर्तालाई के बदलियो सोध्नुहोस्। नयाँ हार्डवेयर, चट्याङ,
+      सारेको, पानी खसेको, अपडेट। धेरैजसो खराबीको कारण प्रयोगकर्ताले नै बताउन सक्छ।</p>
+      <p><b>३. सम्भावित कारणको अनुमान बनाउनुहोस्</b> — लक्षणसँग मिल्ने <i>सबैभन्दा सम्भावित</i>
+      कारण, हरेक सम्भावित कारण होइन।</p>
+      <p><b>४. अनुमान परीक्षण</b> — एउटा जाँच, एउटा परिवर्तन। परीक्षणले अनुमान गलत साबित गरे
+      <b>चरण ३ मा फर्किनुहोस्</b> र नयाँ बनाउनुहोस्। पार्ट साट्न नथाल्नुहोस्।</p>
+      <p><b>५. समाधान लागू गरी पुष्टि</b> — सुरुको लक्षण साँच्चै हट्यो कि, र काम गर्दा अरू केही
+      बिग्रियो कि जाँच्नुहोस्।</p>
+      <p><b>६. अभिलेख</b> — लक्षण के थियो, कारण के थियो, केले मिलायो। दोस्रो पटक छिटो हुनुको
+      कारण यही हो।</p>
+    </div>
+  </div>
+
+  <h3 class="topic" id="hw-t43">4.3 &nbsp;Troubleshooting boot problems</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Read how far it got</span>
+      <p>A boot problem is diagnosed by asking <b>how far the machine reached before it stopped</b>.
+      Each stage rules out everything after it.</p>
+      <p><b>Nothing at all</b> — no lights, no fans. Power is not arriving: mains, cable, switch,
+      power supply.</p>
+      <p><b>Fans spin, screen black, beeps</b> — power is fine and POST is running. The BIOS found
+      a fault before video was available; memory is the usual cause.</p>
+      <p><b>Manufacturer logo, then an error message</b> — POST passed. The hardware is working and
+      the problem is with finding or loading the operating system.</p>
+      <p><b>OS starts, then fails</b> — hardware and boot sector are fine. The fault is in the
+      operating system, a driver, or software.</p>
+    </div>
+    <div class="np"><span class="tag">कहाँसम्म पुग्यो पढ्नुहोस्</span>
+      <p>Boot समस्याको निदान <b>मेसिन रोकिनुअघि कहाँसम्म पुग्यो</b> भनेर गरिन्छ। हरेक चरणले
+      त्यसपछिका सबै सम्भावना हटाउँछ।</p>
+      <p><b>केही पनि छैन</b> — बत्ती छैन, पंखा छैन। बिजुली नै आइरहेको छैन: मुख्य लाइन, केबल,
+      स्विच, पावर सप्लाई।</p>
+      <p><b>पंखा घुम्छ, स्क्रिन कालो, बीप</b> — बिजुली ठीक छ र POST चलिरहेको छ। Video उपलब्ध
+      हुनुअघि नै BIOS ले खराबी भेट्यो; प्रायः मेमोरी कारण हुन्छ।</p>
+      <p><b>कम्पनीको लोगो, अनि त्रुटि सन्देश</b> — POST पास भयो। हार्डवेयर चलिरहेको छ र समस्या
+      अपरेटिङ सिस्टम भेट्न वा लोड गर्नमा छ।</p>
+      <p><b>OS सुरु हुन्छ, अनि बिग्रिन्छ</b> — हार्डवेयर र boot sector ठीक छन्। खराबी अपरेटिङ
+      सिस्टम, driver वा सफ्टवेयरमा छ।</p>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>A machine powers on, the fans spin, and it beeps repeatedly with a completely black screen.
+      Which part of the boot has it reached?
+      <span class="np-cell">मेसिनमा बिजुली आउँछ, पंखा घुम्छ, र पूरै कालो स्क्रिनसहित बारम्बार
+      बीप गर्छ। Boot को कुन चरणसम्म पुगेको हो?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">It has not received power</button>
+      <button class="predict-opt" data-value="b">POST is running and has found a fault</button>
+      <button class="predict-opt" data-value="c">The operating system is loading</button>
+    </div>
+    <div class="predict-feedback">
+      <p>Beeping <b>is</b> the POST reporting. It only happens once power has reached the board and
+      the BIOS is running — so the power supply, the switch and the mains are all already ruled
+      out. And it is beeping rather than displaying because the fault was found <b>before</b> video
+      was initialised, which is why memory is the first suspect. The operating system is nowhere
+      near loading yet.</p>
+      <span class="np-cell">बीप गर्नु <b>नै</b> POST ले सुनाएको हो। बोर्डसम्म बिजुली पुगेर BIOS
+      चलेपछि मात्र यो हुन्छ — त्यसैले पावर सप्लाई, स्विच र मुख्य लाइन सबै पहिल्यै हट्छन्। र
+      देखाउनुको साटो बीप गर्नुको कारण खराबी video सुरु हुन<b>अघि</b> भेटियो — त्यसैले पहिलो शंका
+      मेमोरीमा जान्छ। अपरेटिङ सिस्टम लोड हुने अवस्था नजिकै छैन।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Diagnose it yourself</span><span class="t-ne"><span class="t-en"> · </span>आफैँ निदान गर्नुहोस्</span></p>
+      <h4>The fault lab — powers on, no display</h4>
+      <p class="sim-goal">What you will learn: to narrow a fault by choosing what to check, in the
+      right order. Every choice tells you what it ruled in and what it ruled out — including when
+      your choice was reasonable but expensive, or when it was a step you should never take.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: के जाँच्ने भनी ठीक क्रममा छानेर खराबी साँघुरो
+      पार्न। हरेक छनोटले के पुष्टि गर्‍यो र के हटायो बताउँछ — तपाईंको छनोट ठीकै भए पनि महँगो
+      भएको, वा कहिल्यै नगर्नुपर्ने कदम भएको अवस्थासहित।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="fault" id="fl-nodisplay" data-scenario="nodisplay"></div>
+    </div>
+    <div class="sim-controls"></div>
+    <p class="sim-why"><span class="t-en">Why this matters: the practical exam does not ask you to
+    recite the six steps — it puts a symptom in front of you and watches the order you work in. A
+    correct diagnosis reached by opening the case first is still a bad answer, because it is not
+    repeatable.</span><span class="np-cell">किन महत्त्वपूर्ण छ: व्यावहारिक परीक्षाले छ चरण
+    घोकेर सुनाउन भन्दैन — लक्षण अगाडि राखेर तपाईं कुन क्रममा काम गर्नुहुन्छ हेर्छ। पहिले केस
+    खोलेर पुगेको सही निदान पनि नराम्रो उत्तर हो, किनकि त्यो दोहोर्‍याउन मिल्दैन।</span></p>
+  </div>
+
+  <h3 class="topic" id="hw-t44">4.4 &nbsp;Boot-time error messages and beep codes</h3>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Message or signal</th>
+          <th scope="col">What it means</th>
+          <th scope="col">Where to look first</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Repeating beeps, no display</b></td>
+          <td>POST failed before video<span class="np-cell">Video अघि नै POST असफल</span></td>
+          <td>RAM seating, then the RAM itself<span class="np-cell">RAM को बसाइ, अनि RAM आफैँ</span></td>
+        </tr>
+        <tr>
+          <td><b>One short beep</b></td>
+          <td>POST passed — this is normal<span class="np-cell">POST पास — यो सामान्य हो</span></td>
+          <td>Nothing. Look past POST.<span class="np-cell">केही होइन। POST पछाडि हेर्नुहोस्।</span></td>
+        </tr>
+        <tr>
+          <td><b>"No boot device found"</b></td>
+          <td>POST passed; no bootable drive was located<span class="np-cell">POST पास; boot हुने ड्राइभ भेटिएन</span></td>
+          <td>Boot order in BIOS, then the drive's data cable<span class="np-cell">BIOS को boot order, अनि ड्राइभको data केबल</span></td>
+        </tr>
+        <tr>
+          <td><b>"Operating system not found"</b></td>
+          <td>The drive was found; the OS on it was not<span class="np-cell">ड्राइभ भेटियो; त्यसको OS भेटिएन</span></td>
+          <td>Boot sector or a damaged OS installation<span class="np-cell">Boot sector वा बिग्रिएको OS</span></td>
+        </tr>
+        <tr>
+          <td><b>"CMOS checksum error"</b></td>
+          <td>Stored BIOS settings are lost or corrupt<span class="np-cell">भण्डारित BIOS सेटिङ हराए वा बिग्रिए</span></td>
+          <td>The CMOS battery<span class="np-cell">CMOS ब्याट्री</span></td>
+        </tr>
+        <tr>
+          <td><b>"Disk boot failure"</b></td>
+          <td>The boot drive could not be read<span class="np-cell">Boot ड्राइभ पढ्न सकिएन</span></td>
+          <td>Cable, then the drive's health<span class="np-cell">केबल, अनि ड्राइभको अवस्था</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="topic" id="hw-t45">4.5 &nbsp;Troubleshooting system slowdowns</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The usual causes, and how to tell them apart</span>
+      <p><b>Too little RAM</b> — the machine slows badly when several programs are open, and the
+      disk light stays on as it swaps memory to disk. Closing programs helps immediately.</p>
+      <p><b>Too many startup programs</b> — slow from the moment it boots, and slow at everything
+      rather than at one task.</p>
+      <p><b>A nearly full or fragmented disk</b> — everything involving files is slow. There is no
+      room left for temporary files and virtual memory.</p>
+      <p><b>Malware</b> — slow with no obvious cause, often with network activity when nothing is
+      open, and often appearing suddenly rather than gradually.</p>
+      <p><b>Overheating</b> — fast at first, then slow after a while, because the processor
+      deliberately reduces its speed to protect itself. The timing is the clue.</p>
+    </div>
+    <div class="np"><span class="tag">सामान्य कारण, र छुट्याउने तरिका</span>
+      <p><b>RAM कम</b> — धेरै प्रोग्राम खोल्दा एकदम ढिलो हुन्छ, र मेमोरी डिस्कमा सार्दा डिस्कको
+      बत्ती बलिरहन्छ। प्रोग्राम बन्द गर्दा तुरुन्तै सहज हुन्छ।</p>
+      <p><b>Startup मा धेरै प्रोग्राम</b> — बुट भएकै बेलादेखि ढिलो, र एउटै काममा होइन, सबैमा
+      ढिलो।</p>
+      <p><b>डिस्क झन्डै भरिएको वा टुक्रिएको</b> — फाइलसँग सम्बन्धित सबै काम ढिलो। अस्थायी फाइल र
+      virtual memory लाई ठाउँ बाँकी हुँदैन।</p>
+      <p><b>Malware</b> — स्पष्ट कारणबिनै ढिलो, प्रायः केही नखोल्दा पनि नेटवर्क चलिरहने, र
+      बिस्तारै होइन अचानक सुरु हुने।</p>
+      <p><b>तात्ने समस्या</b> — सुरुमा छिटो, केही बेरपछि ढिलो — किनकि प्रोसेसरले आफूलाई जोगाउन
+      जानाजान गति घटाउँछ। सङ्केत भनेको समय हो।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Faded practice</span><span class="t-ne"><span class="t-en"> · </span>क्रमशः कम सहयोग</span></p>
+      <h4>Working a symptom down to a cause</h4>
+      <p class="sim-goal">What you will learn: to produce the diagnostic sequence yourself. The
+      first problem is worked for you, the next shows fewer steps, and by the last one you write
+      the reasoning with no prompts at all.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: निदानको क्रम आफैँ बनाउन। पहिलो समस्या
+      तपाईंका लागि गरिदिइन्छ, अर्कोमा कम चरण देखिन्छन्, र अन्तिममा कुनै सङ्केतबिनै तपाईं आफैँ
+      तर्क लेख्नुहुन्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="guided" id="gp-hw-diag" data-skill="hw.diagnose"></div>
+    </div>
+    <div class="sim-controls"></div>
+    <p class="sim-why"><span class="t-en">Why this matters: reading a worked diagnosis feels like
+    learning and is not. The only way to find out whether you can do it is to be given a symptom
+    with the working removed.</span><span class="np-cell">किन महत्त्वपूर्ण छ: गरिसकेको निदान पढ्दा
+    सिकेजस्तो लाग्छ, तर सिकिँदैन। आफूले गर्न सक्छु कि सक्दिनँ भन्ने थाहा पाउने एउटै तरिका
+    छ — काम हटाइएको लक्षण दिइनु।</span></p>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> "No boot device found" — reasoning it out</div>
+    <p><b>Question:</b> a computer shows the manufacturer logo, then "No boot device found". The
+    user says it worked yesterday. Where do you look, and in what order?</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Before reading on, answer one question: what has the
+      message already proved is working?</span><span class="np-cell">पढ्नुअघि एउटा प्रश्नको उत्तर
+      दिनुहोस्: यो सन्देशले के चलिरहेको छ भनी पहिल्यै प्रमाणित गरिसक्यो?</span></p>
+    </div>
+    <p><b>Step 1 — read how far it got.</b> A logo and a readable message mean video works and
+    POST passed. Power, memory and the display path are all ruled out before you touch anything.</p>
+    <p><b>Step 2 — ask what changed.</b> The user mentions the machine was moved to a new desk
+    yesterday. A move disturbs cables; this is now the most probable cause.</p>
+    <p><b>Step 3 — check the cheapest thing consistent with that theory.</b> Enter BIOS setup and
+    look at the detected drives. The disk is not listed at all.</p>
+    <p><b>Step 4 — a disk that is not detected is a connection or a drive fault.</b> Power off,
+    unplug, and reseat both the data cable and the power cable at the drive and at the board.</p>
+    <p><b>Step 5 — verify.</b> The drive now appears in BIOS and the machine boots.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">A data cable loosened by the move. Found without opening a single component, because the message ruled out everything before the disk.</div>
+    </div>
+    <p class="wex-note">Notice that no part was replaced and nothing was guessed. Step 1 removed
+    most of the machine from suspicion and step 2 supplied the theory — the actual repair took
+    thirty seconds.
+    <span class="np-cell">ध्यान दिनुहोस्, कुनै पार्ट साटिएन र केही अनुमान गरिएन। चरण १ ले
+    मेसिनको ठूलो हिस्सालाई शंकाबाट हटायो र चरण २ ले अनुमान दियो — वास्तविक मर्मत तीस सेकेन्डको
+    थियो।</span></p>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Separating two causes of the same complaint</div>
+    <p><b>Question:</b> two users both report "my computer is slow". How do you tell whether it is
+    too little RAM or overheating, without opening either machine?</p>
+    <p><b>Step 1 — ask when it is slow, not how slow.</b> The two causes have different timing, and
+    timing is free to collect.</p>
+    <p><b>Step 2 — the first user says it is slow whenever several programs are open, from the
+    moment it starts.</b> Present from boot, and tied to load rather than to elapsed time. That is
+    memory: the machine is swapping to disk because RAM has run out.</p>
+    <p><b>Step 3 — the second says it is fine for half an hour and then gets slow, every day.</b>
+    Absent at first and appearing only after the machine has warmed up. That is thermal: the
+    processor is reducing its own speed to protect itself.</p>
+    <p><b>Step 4 — confirm each cheaply.</b> For the first, watch the disk light while opening
+    programs; for the second, read the temperature in BIOS setup after it has been running.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">User 1 — insufficient RAM. User 2 — overheating. The same complaint, separated by one question about timing.</div>
+    </div>
+    <p class="wex-note">"It is slow" is not a symptom. "It is slow after twenty minutes" is. Most
+    of the work in this unit is turning the first sentence into the second.
+    <span class="np-cell">"ढिलो छ" लक्षण होइन। "बीस मिनेटपछि ढिलो हुन्छ" लक्षण हो। यस युनिटको
+    धेरैजसो काम पहिलो वाक्यलाई दोस्रोमा बदल्नु नै हो।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Replacing parts to find the fault.</b> Substituting a known-good part is a test;
+        buying a new part on suspicion is not diagnosis, and the exam marks the method.
+        <span class="np-cell">खराबी खोज्न पार्ट साट्नु। चल्ने भनेर थाहा भएको पार्ट राखेर हेर्नु
+        परीक्षण हो; शंकामा नयाँ किन्नु निदान होइन, र परीक्षाले तरिकाको अंक दिन्छ।</span></li>
+      <li><b>Changing two things at once.</b> If the fault clears you have no idea which change did
+        it, so you have not learned anything and cannot prevent a repeat.
+        <span class="np-cell">एकैचोटि दुई कुरा बदल्नु। खराबी हट्यो भने कुनले हटायो थाहै हुँदैन,
+        त्यसैले केही सिकिँदैन र फेरि हुन रोक्न पनि सकिँदैन।</span></li>
+      <li><b>Skipping "ask the user what changed".</b> It is a step in the method and it is free.
+        Most faults follow a change the user can name.
+        <span class="np-cell">"के बदलियो?" सोध्ने चरण छोड्नु। यो विधिकै एउटा चरण हो र निःशुल्क छ।
+        धेरैजसो खराबी प्रयोगकर्ताले नाम लिन सक्ने परिवर्तनपछि आउँछ।</span></li>
+      <li><b>Reinstalling the operating system for a hardware symptom.</b> If the screen is blank
+        before any OS could load, the OS cannot be the cause — and reinstalling destroys the
+        user's data for nothing.
+        <span class="np-cell">हार्डवेयरको लक्षणमा अपरेटिङ सिस्टम फेरि इन्स्टल गर्नु। कुनै OS लोड
+        हुनुअघि नै स्क्रिन खाली छ भने OS कारण हुनै सक्दैन — र फेरि इन्स्टल गर्दा प्रयोगकर्ताको
+        data बेकारमा नष्ट हुन्छ।</span></li>
+    </ul>
+    <p class="hook"><b>Cheapest check first, one change at a time.</b> The symptom says how far it got.
+    <span class="np-cell"><b>सस्तो जाँच पहिले, एकपटकमा एउटा परिवर्तन।</b> कहाँसम्म पुग्यो भन्ने
+    लक्षणले नै भन्छ।</span></p>
+  </div>
+
+  <h3 class="topic" id="hw-exam4">Exam focus — what is asked from this unit</h3>
+  <div class="exam-connect">
+    <b>This unit carries 9 marks in the written paper and is most of what the practical exam
+    actually tests.</b> The written questions are predictable: <b>list the steps of
+    troubleshooting</b> (in order — the order is the answer), <b>what would you check if…</b>
+    given a symptom, and <b>state the causes of</b> a slow system or a boot failure. The examiner
+    is looking for a <i>sequence of checks with reasons</i>, not a single guessed cause. Write the
+    order you would work in and say what each check rules out; that is where the marks are.
+    <span class="np-cell">यो युनिटले लिखित परीक्षामा ९ अंक बोक्छ र व्यावहारिक परीक्षाले जाँच्ने
+    कुराको ठूलो हिस्सा यही हो। लिखित प्रश्न अनुमान गर्न सकिने खालका छन्: <b>troubleshooting का
+    चरण सूचीबद्ध गर्नुहोस्</b> (क्रमैसँग — क्रम नै उत्तर हो), लक्षण दिएर <b>के जाँच्नुहुन्छ</b>,
+    र ढिलो प्रणाली वा boot असफलताका <b>कारण लेख्नुहोस्</b>। परीक्षकले अनुमान गरिएको एउटा कारण
+    होइन, <i>कारणसहितको जाँच क्रम</i> खोज्छ। तपाईं कुन क्रममा काम गर्नुहुन्छ लेख्नुहोस् र हरेक
+    जाँचले के हटाउँछ भन्नुहोस्; अंक त्यहीँ छ।</span>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q1 <span class="mk">3 marks</span></p>
+    <h4>List the steps of troubleshooting in order.
+      <span class="np-cell">Troubleshooting का चरण क्रमैसँग सूचीबद्ध गर्नुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a41">Show the answer</button>
+    <div class="ans" id="hw-a41">
+      <p>1. Identify the problem — state exactly what happens and when. 2. Gather information —
+      ask the user what changed. 3. Establish a theory of probable cause — the most likely cause
+      consistent with the symptom. 4. Test the theory, changing one thing at a time; if it is
+      disproved, return to step 3. 5. Apply the fix and verify the original symptom has gone.
+      6. Document the symptom, the cause and the solution.</p>
+      <span class="np-cell">१. समस्या पहिचान — के हुन्छ र कहिले हुन्छ ठ्याक्कै भन्ने। २. जानकारी
+      सङ्कलन — प्रयोगकर्तालाई के बदलियो सोध्ने। ३. सम्भावित कारणको अनुमान — लक्षणसँग मिल्ने
+      सबैभन्दा सम्भावित कारण। ४. अनुमानको परीक्षण, एकपटकमा एउटा कुरा बदलेर; गलत साबित भए चरण ३ मा
+      फर्किने। ५. समाधान लागू गरी सुरुको लक्षण हट्यो कि पुष्टि गर्ने। ६. लक्षण, कारण र समाधानको
+      अभिलेख राख्ने।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q2 <span class="mk">3 marks</span></p>
+    <h4>A computer powers on with fans running but shows nothing on screen. Describe how you would
+      find the fault.
+      <span class="np-cell">कम्प्युटरमा बिजुली आउँछ, पंखा घुम्छ, तर स्क्रिनमा केही देखिँदैन।
+      खराबी कसरी पत्ता लगाउनुहुन्छ वर्णन गर्नुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a42">Show the answer</button>
+    <div class="ans" id="hw-a42">
+      <p>Work from the cheapest check outward. First confirm the monitor has power and the video
+      cable is firm at both ends, and try a monitor known to work — this rules out the display path.
+      Then listen at power-on: repeated beeps mean POST found a fault before video was available,
+      which points to memory. Power off, unplug, and reseat the RAM modules one at a time until the
+      clips close. If the beeps continue with a module known to be good, the slot or the board is
+      at fault. Change only one thing at a time, and verify the display returns before closing the
+      case.</p>
+      <span class="np-cell">सबैभन्दा सस्तो जाँचबाट बाहिरतिर बढ्नुहोस्। पहिले monitor मा बिजुली छ र
+      video केबल दुवै छेउमा कसिएको छ पुष्टि गर्नुहोस्, र चल्ने भनेर थाहा भएको monitor जोडेर
+      हेर्नुहोस् — यसले display को बाटो हटाउँछ। अनि बिजुली लाग्दा सुन्नुहोस्: बारम्बार बीप भनेको
+      video उपलब्ध हुनुअघि POST ले खराबी भेट्यो, जसले मेमोरीतिर देखाउँछ। बिजुली बन्द गरी प्लग
+      निकाली क्लिप बन्द नहुन्जेल RAM एक–एक गरी फेरि बसाल्नुहोस्। चल्ने मोड्युल राख्दा पनि बीप
+      जारी रहे slot वा बोर्डमा खराबी छ। एकपटकमा एउटा मात्र कुरा बदल्नुहोस्, र केस बन्द गर्नुअघि
+      स्क्रिन फर्कियो कि पुष्टि गर्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q3 <span class="mk">3 marks</span></p>
+    <h4>State four causes of a computer becoming slow, and how you would tell one of them apart
+      from the others.
+      <span class="np-cell">कम्प्युटर ढिलो हुनुका चार कारण लेख्नुहोस्, र तीमध्ये एउटालाई अरूबाट
+      कसरी छुट्याउनुहुन्छ भन्नुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a43">Show the answer</button>
+    <div class="ans" id="hw-a43">
+      <p>Causes: insufficient RAM; too many programs loading at startup; a nearly full or
+      fragmented hard disk; malware infection; overheating causing the processor to reduce its
+      speed. Overheating is told apart by its timing — the machine is normal when first switched on
+      and only becomes slow after it has been running for a while, and sooner when a demanding
+      program is open. The other causes are slow from the start.</p>
+      <span class="np-cell">कारण: RAM अपुग; startup मा धेरै प्रोग्राम लोड हुनु; hard disk झन्डै
+      भरिनु वा टुक्रिनु; malware सङ्क्रमण; तात्दा प्रोसेसरले गति घटाउनु। तात्ने समस्या समयले
+      छुट्टिन्छ — खोल्दा सामान्य हुन्छ र केही बेर चलेपछि मात्र ढिलो हुन्छ, र भारी प्रोग्राम
+      खोले झन् चाँडो। अरू कारणमा सुरुदेखि नै ढिलो हुन्छ।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick">Steps: identify, gather information, form a theory, test it, fix and verify,
+        document. A failed test sends you back to forming a theory, not to swapping parts.
+        <span class="np-cell">चरण: पहिचान, जानकारी सङ्कलन, अनुमान, परीक्षण, समाधान र पुष्टि,
+        अभिलेख। परीक्षण असफल भए पार्ट साट्न होइन, अनुमान बनाउनतिरै फर्किने।</span></li>
+      <li class="tick">Cheapest check first; change one thing at a time; never diagnose by buying
+        parts.
+        <span class="np-cell">सस्तो जाँच पहिले; एकपटकमा एउटा परिवर्तन; पार्ट किनेर निदान
+        कहिल्यै नगर्ने।</span></li>
+      <li class="tick">The symptom tells you how far the boot got, and that rules out everything
+        after it. Beeps mean POST is running and video is not yet available.
+        <span class="np-cell">Boot कहाँसम्म पुग्यो लक्षणले भन्छ, र त्यसपछिका सबै सम्भावना हट्छन्।
+        बीप भनेको POST चलिरहेको र video अझै नआएको।</span></li>
+      <li class="tick">"No boot device" points at boot order and cables; "CMOS checksum error"
+        points at the battery.
+        <span class="np-cell">"No boot device" ले boot order र केबलतिर देखाउँछ; "CMOS checksum
+        error" ले ब्याट्रीतिर।</span></li>
+      <li class="tick">Slowdowns: too little RAM, too many startup programs, a full or fragmented
+        disk, malware, or overheating — which is the one identified by its timing.
+        <span class="np-cell">ढिलो हुनु: RAM कम, startup मा धेरै प्रोग्राम, डिस्क भरिएको वा
+        टुक्रिएको, malware, वा तात्ने — जुन समयले चिनिन्छ।</span></li>
+    </ul>
+  </div>
+</section>

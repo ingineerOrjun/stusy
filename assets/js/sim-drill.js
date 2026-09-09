@@ -514,6 +514,207 @@
           }
         }
       ]
+    },
+
+    /* ---- Hardware Unit 1: which doped material is described? ---- */
+    dopetype: {
+      title: { en: 'P-type or N-type?', ne: 'P-type कि N-type?' },
+      lead: {
+        en: 'Each case describes a doped semiconductor from a different angle — the impurity, the carrier, or what the exam calls it. Decide which material it is. The trap is the last one: neither type is charged.',
+        ne: 'हरेक केसले doped semiconductor लाई फरक कोणबाट वर्णन गर्छ — अशुद्धि, वाहक, वा परीक्षाको शब्द। कुन पदार्थ हो छान्नुहोस्। अन्तिममा पासो छ: कुनै पनि प्रकार चार्ज भएको हुँदैन।'
+      },
+      options: [
+        { id: 'p', label: { en: 'P-type', ne: 'P-type' } },
+        { id: 'n', label: { en: 'N-type', ne: 'N-type' } },
+        { id: 'both', label: { en: 'True of both', ne: 'दुवैमा सही' } }
+      ],
+      cases: [
+        {
+          pre: 'Silicon doped with phosphorus\n(5 valence electrons)',
+          answer: 'n',
+          why: {
+            en: 'Phosphorus is pentavalent. Four of its electrons bond with the silicon; the fifth is spare and free to move. A spare electron means N-type — N for negative carrier.',
+            ne: 'Phosphorus pentavalent हो। यसका चारवटा electron silicon सँग बन्धन बनाउँछन्; पाँचौं फाल्तु रहन्छ र चल्न स्वतन्त्र हुन्छ। फाल्तु electron भनेको N-type — N भनेको ऋणात्मक वाहक।'
+          }
+        },
+        {
+          pre: 'The majority carrier is the hole.',
+          answer: 'p',
+          why: {
+            en: 'A hole is the gap left where a bond could not be completed, and it behaves like a positive carrier. Holes dominating means P-type — P for positive carrier.',
+            ne: 'Hole भनेको बन्धन पूरा हुन नसकेको खाली ठाउँ हो, र यो धनात्मक वाहकजस्तै व्यवहार गर्छ। Hole हावी हुनु भनेको P-type — P भनेको धनात्मक वाहक।'
+          }
+        },
+        {
+          pre: 'Silicon doped with boron\n(3 valence electrons)',
+          answer: 'p',
+          why: {
+            en: 'Boron is trivalent — it can fill only three of the four bonds silicon offers. The fourth is left empty, and that empty bond is a hole. Trivalent gives P-type.',
+            ne: 'Boron trivalent हो — silicon ले दिने चारमध्ये तीन बन्धन मात्र भर्न सक्छ। चौथो खाली रहन्छ, र त्यही खाली बन्धन hole हो। Trivalent ले P-type दिन्छ।'
+          }
+        },
+        {
+          pre: 'The minority carrier is the hole.',
+          answer: 'n',
+          why: {
+            en: 'Read which carrier is in the MINORITY, not which is named. If holes are the minority then electrons are the majority, so this is N-type. Half the marks lost on this topic go to reading "minority" as "majority".',
+            ne: 'कुन वाहक <b>अल्पसंख्यक</b> हो पढ्नुहोस्, नाम लिइएको होइन। Hole अल्पसंख्यक भए electron बहुसंख्यक हुन्छ, त्यसैले यो N-type हो। यस विषयमा गुम्ने आधा अंक "अल्पसंख्यक" लाई "बहुसंख्यक" पढ्दा जान्छ।'
+          }
+        },
+        {
+          pre: 'The material is electrically neutral.',
+          answer: 'both',
+          why: {
+            en: 'This is the trap, and it is worth a mark on its own. Doping adds a CARRIER, not a CHARGE — the impurity atom arrives with its own protons, so the total charge is unchanged. Neither P-type nor N-type is charged.',
+            ne: 'यही पासो हो, र यसैको छुट्टै अंक हुन्छ। Doping ले <b>वाहक</b> थप्छ, <b>चार्ज</b> होइन — अशुद्धिको atom आफ्नै proton सहित आउँछ, त्यसैले कुल चार्ज उस्तै रहन्छ। P-type र N-type कुनै पनि चार्ज भएको हुँदैन।'
+          }
+        }
+      ]
+    },
+
+    /* ---- Hardware Unit 2: which display property is this? ---- */
+    displayprop: {
+      title: { en: 'Which display property is being described?', ne: 'कुन display गुणको कुरा हो?' },
+      lead: {
+        en: 'These three are never asked as bare definitions in a practical paper — they arrive as a user complaint or a setting. Decide which property each one is about.',
+        ne: 'व्यावहारिक प्रश्नपत्रमा यी तीन कुरा खाली परिभाषाका रूपमा सोधिँदैनन् — प्रयोगकर्ताको गुनासो वा सेटिङ बनेर आउँछन्। हरेक कुन गुणसँग सम्बन्धित हो छान्नुहोस्।'
+      },
+      options: [
+        { id: 'res', label: { en: 'Resolution', ne: 'Resolution' } },
+        { id: 'depth', label: { en: 'Colour depth', ne: 'Colour depth' } },
+        { id: 'refresh', label: { en: 'Refresh rate', ne: 'Refresh rate' } }
+      ],
+      cases: [
+        {
+          pre: '1366 × 768',
+          answer: 'res',
+          why: {
+            en: 'Two numbers multiplied like this are always pixels across by pixels down. That is resolution, and nothing else on a display is written in that form.',
+            ne: 'यसरी लेखिएका दुई सङ्ख्या सधैं चौडाइका पिक्सेल × उचाइका पिक्सेल हुन्। त्यो resolution हो, र display को अरू कुनै गुण यसरी लेखिँदैन।'
+          }
+        },
+        {
+          pre: '"The screen flickers and my eyes hurt\nafter an hour."',
+          answer: 'refresh',
+          why: {
+            en: 'Flicker is the screen being redrawn too few times a second for the eye to blend the frames. Raise the refresh rate to the highest the monitor supports and the flicker goes.',
+            ne: 'झिमझिम भनेको स्क्रिन सेकेन्डमा यति थोरै पटक कोरिनु कि आँखाले फ्रेम जोड्नै नसक्नु। Monitor ले सक्ने सबैभन्दा माथिको refresh rate राखेपछि झिमझिम हट्छ।'
+          }
+        },
+        {
+          pre: '24-bit — about 16.7 million colours',
+          answer: 'depth',
+          why: {
+            en: 'Bits per pixel is colour depth. More bits means more distinguishable shades, which is why a low setting shows visible bands in a smooth gradient instead of a gradual change.',
+            ne: 'प्रति पिक्सेल bit भनेको colour depth हो। बढी bit भनेको बढी छुट्याउन सकिने रङ — त्यसैले कम सेटिङमा बिस्तारै बदलिनुको साटो पट्टी–पट्टी देखिन्छ।'
+          }
+        },
+        {
+          pre: '"Everything looks blurry and slightly\nstretched sideways."',
+          answer: 'res',
+          why: {
+            en: 'A flat panel has one native resolution and looks sharp only at that. Set to anything else, the picture is scaled to fit and goes soft — stretched sideways means the aspect ratio is wrong too.',
+            ne: 'Flat panel को एउटै native resolution हुन्छ र त्यहीँ मात्र तीक्ष्ण देखिन्छ। अरू राखे तस्बिर अटाउन तानिन्छ र धमिलो हुन्छ — छेउतिर तानिनुले aspect ratio पनि बिग्रेको जनाउँछ।'
+          }
+        }
+      ]
+    },
+
+    /* ---- Hardware Unit 5: which power problem, and what protects? ---- */
+    powerprotect: {
+      title: { en: 'Which power problem is this?', ne: 'यो कुन बिजुली समस्या हो?' },
+      lead: {
+        en: 'Each case describes what the power actually did. Name the problem — the protective device follows from it, and choosing the wrong one is the expensive mistake this topic exists to prevent.',
+        ne: 'हरेक केसले बिजुलीले साँच्चै के गर्‍यो बताउँछ। समस्याको नाम भन्नुहोस् — सुरक्षा उपकरण त्यसैबाट आउँछ, र गलत छान्नु नै यो विषयले रोक्न खोजेको महँगो गल्ती हो।'
+      },
+      options: [
+        { id: 'surge', label: { en: 'Surge — needs a surge protector', ne: 'Surge — surge protector चाहिन्छ' } },
+        { id: 'sag', label: { en: 'Sag — needs a stabiliser', ne: 'Sag — stabiliser चाहिन्छ' } },
+        { id: 'black', label: { en: 'Blackout — needs a UPS', ne: 'Blackout — UPS चाहिन्छ' } }
+      ],
+      cases: [
+        {
+          pre: 'Lightning strikes nearby. The voltage\njumps enormously for a few milliseconds.',
+          answer: 'surge',
+          why: {
+            en: 'A brief, very large rise in voltage is a surge or spike. A surge protector diverts the excess energy away from the equipment before it reaches the power supply.',
+            ne: 'छोटो तर धेरै ठूलो भोल्टेज बढाइ नै surge वा spike हो। Surge protector ले बढी ऊर्जा पावर सप्लाईसम्म पुग्नुअघि नै अन्तै पठाउँछ।'
+          }
+        },
+        {
+          pre: 'The power fails completely for twenty\nminutes. Unsaved work is lost each time.',
+          answer: 'black',
+          why: {
+            en: 'The supply is gone, so nothing that conditions incoming power can help — there is none to condition. Only a UPS carries a battery, which is why it is the only answer to a blackout.',
+            ne: 'सप्लाई नै गयो, त्यसैले आउने बिजुली मिलाउने कुनै उपकरणले काम गर्दैन — मिलाउने बिजुली नै छैन। ब्याट्री UPS मा मात्र हुन्छ, त्यसैले blackout को एक मात्र उत्तर यही हो।'
+          }
+        },
+        {
+          pre: 'At peak hours the mains drops well below\nnormal. Lights dim and the PC restarts.',
+          answer: 'sag',
+          why: {
+            en: 'Voltage that falls below normal without disappearing is a sag or brownout. A voltage stabiliser holds the output steady while the incoming supply moves around.',
+            ne: 'नहराई सामान्यभन्दा तल झर्ने भोल्टेज नै sag वा brownout हो। Voltage stabiliser ले आउने सप्लाई तलमाथि हुँदा पनि आउटपुट स्थिर राख्छ।'
+          }
+        },
+        {
+          pre: 'A large motor in the next room switches\noff. The PC dies instantly, once.',
+          answer: 'surge',
+          why: {
+            en: 'Switching a large inductive load OFF throws energy back into the supply as a spike. Read the event, not the outcome — the machine dying looks like a blackout, but the cause was a moment of far too much voltage, not too little.',
+            ne: 'ठूलो inductive भार बन्द गर्दा ऊर्जा spike बनेर सप्लाईमै फर्किन्छ। नतिजा होइन, घटना पढ्नुहोस् — मेसिन मर्नु blackout जस्तो देखिन्छ, तर कारण एक क्षणको अत्यधिक भोल्टेज हो, कमी होइन।'
+          }
+        }
+      ]
+    },
+
+    /* ---- Hardware Unit 6: which method fits the situation? ---- */
+    backupchoice: {
+      title: { en: 'Which method fits this situation?', ne: 'यो अवस्थामा कुन विधि मिल्छ?' },
+      lead: {
+        en: 'Every option here is the right answer to something. The marks go to matching the method to the problem actually described — read what is being protected against.',
+        ne: 'यहाँका हरेक विकल्प कुनै न कुनै कुराको सही उत्तर हुन्। अंक विधिलाई वर्णन गरिएकै समस्यासँग मिलाउनुमा छ — केबाट जोगाउन खोजिएको हो पढ्नुहोस्।'
+      },
+      options: [
+        { id: 'raid1', label: { en: 'RAID 1', ne: 'RAID 1' } },
+        { id: 'inc', label: { en: 'Incremental backup', ne: 'Incremental backup' } },
+        { id: 'diff', label: { en: 'Differential backup', ne: 'Differential backup' } },
+        { id: 'offsite', label: { en: 'Off-site backup', ne: 'अर्को ठाउँको ब्याकअप' } }
+      ],
+      cases: [
+        {
+          pre: 'A user deletes an important folder by\nmistake and needs it back.',
+          answer: 'diff',
+          why: {
+            en: 'A deletion needs a BACKUP, because RAID would have mirrored the deletion onto every disk instantly. Any backup would do here; differential is chosen because a restore needs only two sets, so recovering one folder is quick.',
+            ne: 'मेटाइका लागि <b>ब्याकअप</b> चाहिन्छ, किनकि RAID ले मेटाइलाई तुरुन्तै हरेक डिस्कमा सारिसक्थ्यो। यहाँ जुनसुकै ब्याकअपले काम गर्थ्यो; differential छानिनुको कारण फर्काउन दुई सेट मात्र चाहिनु हो, त्यसैले एउटा फोल्डर फर्काउन छिटो हुन्छ।'
+          }
+        },
+        {
+          pre: 'A server disk fails at 11 a.m. The service\nmust keep running with no interruption.',
+          answer: 'raid1',
+          why: {
+            en: 'The requirement is CONTINUITY, not recovery — no interruption is allowed, so there is no time to restore anything. Mirroring means the second disk carries on alone the moment the first fails.',
+            ne: 'आवश्यकता <b>निरन्तरता</b> हो, पुनर्स्थापना होइन — रोकिन नपाउने भएकाले केही फर्काउने समयै हुँदैन। Mirroring भएकाले पहिलो बिग्रेकै क्षणदेखि दोस्रो डिस्कले एक्लै चलाइरहन्छ।'
+          }
+        },
+        {
+          pre: 'The nightly backup window is very short.\nOnly minutes are available.',
+          answer: 'inc',
+          why: {
+            en: 'The constraint is on BACKUP time, not restore time. Incremental copies only what changed since the previous backup of any kind, which makes it the smallest and fastest each night — accepting a slower, more fragile restore in exchange.',
+            ne: 'बाधा <b>ब्याकअप</b> समयमा छ, फर्काउने समयमा होइन। Incremental ले जुनसुकै किसिमको अघिल्लो ब्याकअपपछि बदलिएको मात्र कपी गर्छ, त्यसैले हरेक रात सबैभन्दा सानो र छिटो — बदलामा ढिलो र कमजोर पुनर्स्थापना स्वीकार गरेर।'
+          }
+        },
+        {
+          pre: 'A fire destroys the office, including the\nserver and the backup drive beside it.',
+          answer: 'offsite',
+          why: {
+            en: 'No RAID level and no backup schedule helps when both copies burn together. The property that matters here is not the method but the LOCATION — a copy held somewhere else, or in the cloud.',
+            ne: 'दुवै प्रतिलिपि सँगै जल्दा कुनै RAID स्तर र कुनै ब्याकअप तालिकाले काम गर्दैन। यहाँ महत्त्वपूर्ण कुरा विधि होइन, <b>स्थान</b> हो — अर्को ठाउँमा वा cloud मा राखिएको प्रतिलिपि।'
+          }
+        }
+      ]
     }
   };
 

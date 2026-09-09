@@ -444,3 +444,128 @@ DiagramRuntime.register("recoveryLog", {
     }
   ]
 });
+
+DiagramRuntime.register("hwPnJunction", {
+  "intro": {
+    "en": "A PN junction forming, then the same junction under forward and reverse bias.",
+    "ne": "PN junction बन्ने क्रम, अनि उही junction लाई forward र reverse bias मा।"
+  },
+  "steps": [
+    {
+      "show": "#pn-p",
+      "focus": "#pn-p",
+      "en": "Start apart. The P-type block has holes as its majority carrier — and it is electrically neutral.",
+      "ne": "छुट्टै सुरु गरौं। P-type खण्डको बहुसंख्यक वाहक hole हो — र यो विद्युतीय रूपमा उदासीन छ।"
+    },
+    {
+      "show": "#pn-n",
+      "focus": "#pn-n",
+      "en": "The N-type block has free electrons as its majority carrier, and it is neutral too.",
+      "ne": "N-type खण्डको बहुसंख्यक वाहक स्वतन्त्र electron हो, र यो पनि उदासीन छ।"
+    },
+    {
+      "show": "#pn-dep",
+      "focus": "#pn-dep",
+      "en": "Join them. Electrons cross over and fill holes near the join, so that strip is left with no free carriers — the depletion region.",
+      "ne": "जोड्नुहोस्। Electron पारि गएर जोडनेर का hole भर्छन्, त्यसैले त्यो पट्टीमा स्वतन्त्र वाहक बाँकी रहँदैन — यही depletion region हो।"
+    },
+    {
+      "show": "#pn-barrier",
+      "focus": "#pn-barrier",
+      "en": "The exposed ions set up a barrier potential — about 0.7 V in silicon. It stops further crossing, so no current flows by itself.",
+      "ne": "खुला भएका ion ले barrier potential बनाउँछन् — silicon मा करिब ०.७ V। यसले थप पार गर्न रोक्छ, त्यसैले आफैँ कुनै current बग्दैन।"
+    },
+    {
+      "show": "#pn-fwd",
+      "hide": "#pn-rev",
+      "focus": "#pn-fwd",
+      "en": "FORWARD BIAS: P to positive, N to negative. The supply pushes carriers toward the join, the depletion region narrows, and above 0.7 V current flows.",
+      "ne": "FORWARD BIAS: P मा धनात्मक, N मा ऋणात्मक। सप्लाईले वाहकलाई जोडतिर धकेल्छ, depletion region साँघुरो हुन्छ, र ०.७ V माथि current बग्छ।"
+    },
+    {
+      "show": "#pn-rev",
+      "hide": "#pn-fwd",
+      "focus": "#pn-rev",
+      "en": "REVERSE BIAS: the connections swap. Carriers are pulled AWAY from the join, the depletion region widens, the barrier grows — and current stops. Same mechanism, opposite direction.",
+      "ne": "REVERSE BIAS: जडान उल्टिन्छ। वाहकहरू जोडबाट टाढा तानिन्छन्, depletion region चौडा हुन्छ, barrier बढ्छ — र current रोकिन्छ। उही प्रक्रिया, उल्टो दिशा।"
+    }
+  ]
+});
+
+DiagramRuntime.register("hwHddRead", {
+  "intro": {
+    "en": "How a hard disk finds and reads one block of data.",
+    "ne": "Hard disk ले data को एउटा ब्लक कसरी खोजेर पढ्छ।"
+  },
+  "steps": [
+    {
+      "show": "#hd-platter",
+      "focus": "#hd-platter",
+      "en": "The platter is a rigid magnetic disk, and it spins the whole time the drive is powered — typically 5400 or 7200 revolutions per minute.",
+      "ne": "Platter एउटा कडा चुम्बकीय डिस्क हो, र ड्राइभमा बिजुली भएसम्म यो निरन्तर घुमिरहन्छ — सामान्यतया मिनेटमा ५४०० वा ७२०० पटक।"
+    },
+    {
+      "show": "#hd-track",
+      "focus": "#hd-track",
+      "en": "The surface is divided into concentric rings called TRACKS. The same track on every platter, stacked, is called a cylinder.",
+      "ne": "सतहलाई TRACK भनिने केन्द्रित रिङमा बाँडिएको हुन्छ। हरेक platter को उही track माथिमाथि राखिएको समूहलाई cylinder भनिन्छ।"
+    },
+    {
+      "show": "#hd-sector",
+      "focus": "#hd-sector",
+      "en": "Each track is cut into SECTORS. A sector is the smallest unit the drive can read or write — traditionally 512 bytes.",
+      "ne": "हरेक track लाई SECTOR मा काटिन्छ। ड्राइभले पढ्न वा लेख्न सक्ने सबैभन्दा सानो एकाइ sector हो — परम्परागत रूपमा ५१२ बाइट।"
+    },
+    {
+      "show": "#hd-head",
+      "focus": "#hd-head",
+      "en": "The read-write head sits on an actuator arm and floats microns above the surface on a cushion of air. It never touches the platter — if it does, that is a head crash.",
+      "ne": "Read-write head actuator arm मा हुन्छ र हावाको तकियामा सतहभन्दा माइक्रोन मात्र माथि तैरिन्छ। यसले platter छुँदैन — छोयो भने त्यो head crash हो।"
+    },
+    {
+      "show": "#hd-seek",
+      "focus": "#hd-seek",
+      "en": "SEEK TIME: the arm swings the head to the right track. This is mechanical movement, which is why it is the slowest part of a read.",
+      "ne": "SEEK TIME: arm ले head लाई ठीक track मा पुर्‍याउँछ। यो यान्त्रिक चाल हो — त्यसैले पढाइको सबैभन्दा ढिलो भाग यही हो।"
+    },
+    {
+      "show": "#hd-rot",
+      "focus": "#hd-rot",
+      "en": "ROTATIONAL DELAY: the head is on the right track but the sector it wants has not come round yet, so it waits for the disk to bring it.",
+      "ne": "ROTATIONAL DELAY: head ठीक track मा छ तर चाहिएको sector अझै आइपुगेको छैन, त्यसैले डिस्कले ल्याउन्जेल पर्खिन्छ।"
+    },
+    {
+      "show": "#hd-xfer",
+      "focus": "#hd-xfer",
+      "en": "DATA TRANSFER: the sector passes under the head and the block is read into memory. Access time is all three added together — seek, rotation, transfer.",
+      "ne": "DATA TRANSFER: sector head मुनिबाट जान्छ र ब्लक मेमोरीमा पढिन्छ। Access time भनेको तीनै वटाको योग हो — seek, rotation, transfer।"
+    }
+  ]
+});
+
+DiagramRuntime.register("hwBackupTypes", {
+  "intro": {
+    "en": "Full, incremental and differential backups across one working week.",
+    "ne": "एउटा कार्य-हप्ताभरि full, incremental र differential backup।"
+  },
+  "steps": [
+    {
+      "show": "#bk-full",
+      "focus": "#bk-full",
+      "en": "A FULL backup copies everything, every time. Restoring is simple — you need one set — but it takes the longest and uses the most media.",
+      "ne": "FULL backup ले हरेक पटक सबै कुरा कपी गर्छ। पुनर्स्थापना सजिलो — एउटै सेट चाहिन्छ — तर समय सबैभन्दा बढी लाग्छ र मिडिया पनि धेरै खपत हुन्छ।"
+    },
+    {
+      "show": "#bk-inc",
+      "focus": "#bk-inc",
+      "en": "INCREMENTAL copies only what changed since the LAST backup of any kind. Each day is small and quick. But to restore Friday you need Monday's full set plus every increment in between — miss one and the chain is broken.",
+      "ne": "INCREMENTAL ले जुनसुकै किसिमको <b>अघिल्लो</b> backup पछि बदलिएको मात्र कपी गर्छ। हरेक दिनको सानो र छिटो हुन्छ। तर शुक्रबार फर्काउन सोमबारको full सेट र बीचका सबै increment चाहिन्छन् — एउटा छुट्यो भने शृंखला टुट्छ।"
+    },
+    {
+      "show": "#bk-diff",
+      "focus": "#bk-diff",
+      "en": "DIFFERENTIAL copies everything changed since the last FULL backup. Each day is bigger than the one before, but a restore needs exactly two sets: the full one and the most recent differential. That is the trade — more media for a simpler recovery.",
+      "ne": "DIFFERENTIAL ले अन्तिम <b>FULL</b> backup पछि बदलिएको सबै कपी गर्छ। हरेक दिनको अघिल्लो भन्दा ठूलो हुन्छ, तर पुनर्स्थापनाका लागि ठ्याक्कै दुई सेट चाहिन्छ: full र सबैभन्दा पछिल्लो differential। सौदा यही हो — सजिलो रिकभरीका लागि बढी मिडिया।"
+    }
+  ]
+});

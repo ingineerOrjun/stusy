@@ -381,6 +381,116 @@ RevisionService.load({
      }
     }
    ]
+  },
+  "grade10/hardware/u1": {
+   "id": "grade10/hardware/u1",
+   "subject": "grade10/hardware",
+   "n": "1",
+   "page": "grade10/hardware/unit1.html",
+   "title": {
+    "en": "Introduction to Electronic Devices",
+    "ne": "इलेक्ट्रोनिक उपकरणको परिचय"
+   },
+   "hrs": 10,
+   "marks": 8,
+   "prereqs": []
+  },
+  "grade10/hardware/u2": {
+   "id": "grade10/hardware/u2",
+   "subject": "grade10/hardware",
+   "n": "2",
+   "page": "grade10/hardware/unit2.html",
+   "title": {
+    "en": "Introduction to Computer System",
+    "ne": "कम्प्युटर प्रणालीको परिचय"
+   },
+   "hrs": 10,
+   "marks": 8,
+   "prereqs": []
+  },
+  "grade10/hardware/u3": {
+   "id": "grade10/hardware/u3",
+   "subject": "grade10/hardware",
+   "n": "3",
+   "page": "grade10/hardware/unit3.html",
+   "title": {
+    "en": "Overview on System's Core",
+    "ne": "प्रणालीको मुख्य भाग"
+   },
+   "hrs": 12,
+   "marks": 9,
+   "prereqs": [
+    {
+     "unit": "grade10/hardware/u2",
+     "why": {
+      "en": "Unit 3 identifies the parts ON the board and what each one connects. That only means something once you know the five units of a system and which of them the CPU is made of.",
+      "ne": "युनिट ३ ले बोर्डमा भएका भाग र हरेकले के जोड्छ चिनाउँछ। प्रणालीका पाँच एकाइ र तीमध्ये CPU कुन-कुनबाट बन्छ थाहा भएपछि मात्र त्यसको अर्थ हुन्छ।"
+     }
+    }
+   ]
+  },
+  "grade10/hardware/u4": {
+   "id": "grade10/hardware/u4",
+   "subject": "grade10/hardware",
+   "n": "4",
+   "page": "grade10/hardware/unit4.html",
+   "title": {
+    "en": "Troubleshooting Techniques",
+    "ne": "समस्या समाधानका तरिका"
+   },
+   "hrs": 12,
+   "marks": 9,
+   "prereqs": [
+    {
+     "unit": "grade10/hardware/u3",
+     "why": {
+      "en": "Every boot symptom is read against what the BIOS does and in what order — POST before video, video before the disk. Without 3.1 the beeps and the boot messages are noise rather than evidence.",
+      "ne": "हरेक boot लक्षण BIOS ले के गर्छ र कुन क्रममा गर्छ भन्ने आधारमा पढिन्छ — video अघि POST, disk अघि video। ३.१ बिना बीप र boot सन्देश प्रमाण होइन, हल्ला मात्र हुन्।"
+     }
+    }
+   ]
+  },
+  "grade10/hardware/u5": {
+   "id": "grade10/hardware/u5",
+   "subject": "grade10/hardware",
+   "n": "5",
+   "page": "grade10/hardware/unit5.html",
+   "title": {
+    "en": "Repair and Maintenance",
+    "ne": "मर्मत र सम्भार"
+   },
+   "hrs": 12,
+   "marks": 9,
+   "prereqs": [
+    {
+     "unit": "grade10/hardware/u4",
+     "why": {
+      "en": "Unit 5 is troubleshooting applied to specific parts, so it assumes the method from Unit 4: cheapest check first, one change at a time, and reading the timing of a fault as evidence.",
+      "ne": "युनिट ५ भनेको निश्चित भागमा लगाइएको troubleshooting हो, त्यसैले युनिट ४ को विधि थाहा भएको मान्छ: सस्तो जाँच पहिले, एकपटकमा एउटा परिवर्तन, र खराबीको समयलाई प्रमाणका रूपमा पढ्ने।"
+     }
+    }
+   ]
+  },
+  "grade10/hardware/u6": {
+   "id": "grade10/hardware/u6",
+   "subject": "grade10/hardware",
+   "n": "6",
+   "page": "grade10/hardware/unit6.html",
+   "title": {
+    "en": "Backup and Recovery",
+    "ne": "ब्याकअप र रिकभरी"
+   },
+   "hrs": 8,
+   "marks": 7,
+   "prereqs": [
+    {
+     "unit": "grade10/hardware/u3",
+     "why": {
+      "en": "RAID combines physical disks and a restore writes to a formatted partition, so the hard disk, partitioning and formatting from Unit 3 are what Unit 6 is built on.",
+      "ne": "RAID ले भौतिक डिस्क जोड्छ र पुनर्स्थापनाले format गरिएको partition मा लेख्छ, त्यसैले युनिट ३ का hard disk, partitioning र formatting माथि नै युनिट ६ अडेको छ।"
+     }
+    }
+   ]
   }
  },
  "questions": {
@@ -639,6 +749,78 @@ RevisionService.load({
   "dba73": {
    "unit": "grade10/dbms/u7",
    "page": "grade10/dbms/unit7.html"
+  },
+  "hw-a11": {
+   "unit": "grade10/hardware/u1",
+   "page": "grade10/hardware/unit1.html"
+  },
+  "hw-a12": {
+   "unit": "grade10/hardware/u1",
+   "page": "grade10/hardware/unit1.html"
+  },
+  "hw-a13": {
+   "unit": "grade10/hardware/u1",
+   "page": "grade10/hardware/unit1.html"
+  },
+  "hw-a21": {
+   "unit": "grade10/hardware/u2",
+   "page": "grade10/hardware/unit2.html"
+  },
+  "hw-a22": {
+   "unit": "grade10/hardware/u2",
+   "page": "grade10/hardware/unit2.html"
+  },
+  "hw-a23": {
+   "unit": "grade10/hardware/u2",
+   "page": "grade10/hardware/unit2.html"
+  },
+  "hw-a31": {
+   "unit": "grade10/hardware/u3",
+   "page": "grade10/hardware/unit3.html"
+  },
+  "hw-a32": {
+   "unit": "grade10/hardware/u3",
+   "page": "grade10/hardware/unit3.html"
+  },
+  "hw-a33": {
+   "unit": "grade10/hardware/u3",
+   "page": "grade10/hardware/unit3.html"
+  },
+  "hw-a41": {
+   "unit": "grade10/hardware/u4",
+   "page": "grade10/hardware/unit4.html"
+  },
+  "hw-a42": {
+   "unit": "grade10/hardware/u4",
+   "page": "grade10/hardware/unit4.html"
+  },
+  "hw-a43": {
+   "unit": "grade10/hardware/u4",
+   "page": "grade10/hardware/unit4.html"
+  },
+  "hw-a51": {
+   "unit": "grade10/hardware/u5",
+   "page": "grade10/hardware/unit5.html"
+  },
+  "hw-a52": {
+   "unit": "grade10/hardware/u5",
+   "page": "grade10/hardware/unit5.html"
+  },
+  "hw-a53": {
+   "unit": "grade10/hardware/u5",
+   "page": "grade10/hardware/unit5.html"
+  },
+  "hw-a61": {
+   "unit": "grade10/hardware/u6",
+   "page": "grade10/hardware/unit6.html"
+  },
+  "hw-a62": {
+   "unit": "grade10/hardware/u6",
+   "page": "grade10/hardware/unit6.html"
+  },
+  "hw-a63": {
+   "unit": "grade10/hardware/u6",
+   "page": "grade10/hardware/unit6.html"
   }
  }
 });

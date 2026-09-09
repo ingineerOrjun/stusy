@@ -212,6 +212,51 @@ module.exports = {
                  'class and its member functions from Unit 3 come first.',
              ne: 'Overloading भनेको एउटै कक्षामा एउटै नामका दुई member function हुनु हो, ' +
                  'त्यसैले युनिट ३ का class र member function पहिले चाहिन्छन्।' } }
+  ],
+
+  /* ---------------- Hardware & Repair ----------------
+     Unit 1 is an entry point: the electronics stands on nothing else in
+     the subject. Unit 2 is deliberately an entry point too — naming the
+     parts of a system does not require knowing what a semiconductor is,
+     and pretending otherwise would send a student backwards for nothing. */
+
+  'grade10/hardware/u3': [
+    { unit: 'grade10/hardware/u2',
+      why: { en: 'Unit 3 identifies the parts ON the board and what each one connects. That ' +
+                 'only means something once you know the five units of a system and which of ' +
+                 'them the CPU is made of.',
+             ne: 'युनिट ३ ले बोर्डमा भएका भाग र हरेकले के जोड्छ चिनाउँछ। प्रणालीका पाँच एकाइ र ' +
+                 'तीमध्ये CPU कुन-कुनबाट बन्छ थाहा भएपछि मात्र त्यसको अर्थ हुन्छ।' } }
+  ],
+
+  'grade10/hardware/u4': [
+    { unit: 'grade10/hardware/u3',
+      why: { en: 'Every boot symptom is read against what the BIOS does and in what order — ' +
+                 'POST before video, video before the disk. Without 3.1 the beeps and the boot ' +
+                 'messages are noise rather than evidence.',
+             ne: 'हरेक boot लक्षण BIOS ले के गर्छ र कुन क्रममा गर्छ भन्ने आधारमा पढिन्छ — ' +
+                 'video अघि POST, disk अघि video। ३.१ बिना बीप र boot सन्देश प्रमाण होइन, ' +
+                 'हल्ला मात्र हुन्।' } }
+  ],
+
+  'grade10/hardware/u5': [
+    { unit: 'grade10/hardware/u4',
+      why: { en: 'Unit 5 is troubleshooting applied to specific parts, so it assumes the method ' +
+                 'from Unit 4: cheapest check first, one change at a time, and reading the ' +
+                 'timing of a fault as evidence.',
+             ne: 'युनिट ५ भनेको निश्चित भागमा लगाइएको troubleshooting हो, त्यसैले युनिट ४ को ' +
+                 'विधि थाहा भएको मान्छ: सस्तो जाँच पहिले, एकपटकमा एउटा परिवर्तन, र खराबीको ' +
+                 'समयलाई प्रमाणका रूपमा पढ्ने।' } }
+  ],
+
+  'grade10/hardware/u6': [
+    { unit: 'grade10/hardware/u3',
+      why: { en: 'RAID combines physical disks and a restore writes to a formatted partition, ' +
+                 'so the hard disk, partitioning and formatting from Unit 3 are what Unit 6 ' +
+                 'is built on.',
+             ne: 'RAID ले भौतिक डिस्क जोड्छ र पुनर्स्थापनाले format गरिएको partition मा लेख्छ, ' +
+                 'त्यसैले युनिट ३ का hard disk, partitioning र formatting माथि नै युनिट ६ ' +
+                 'अडेको छ।' } }
   ]
 
 };

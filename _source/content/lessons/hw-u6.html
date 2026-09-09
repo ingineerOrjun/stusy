@@ -1,0 +1,446 @@
+<section id="hw-u6">
+  <div class="sec-head">
+    <div class="sec-num">6</div>
+    <div>
+      <h2>Backup and Recovery</h2>
+      <p class="sec-sub">ब्याकअप र रिकभरी</p>
+    </div>
+    <span class="marks">8 hrs · 7 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Define backup and recovery, and say why both are needed.</li>
+      <li>Compare full, incremental and differential backups on speed and on what a restore needs.</li>
+      <li>Name common backup devices and media, and choose one for a given situation.</li>
+      <li>Explain backup scheduling and how a media rotation scheme such as grandfather–father–son works.</li>
+      <li>Describe RAID 0, RAID 1 and RAID 5, and state why RAID is not a backup.</li>
+      <li>List recovery techniques and say when each applies.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: backup र recovery को परिभाषा दिन र दुवै किन चाहिन्छ
+    भन्न, full–incremental–differential लाई गति र पुनर्स्थापनामा के चाहिन्छ भन्ने आधारमा तुलना
+    गर्न, सामान्य ब्याकअप उपकरण र मिडिया नाम लिन तथा अवस्था अनुसार छान्न, ब्याकअप तालिका र
+    grandfather–father–son जस्ता media rotation कसरी चल्छ बुझाउन, RAID 0–1–5 वर्णन गर्न र RAID
+    किन ब्याकअप होइन भन्न, र recovery का उपाय सूचीबद्ध गरी कहिले कुन लागू हुन्छ भन्न
+    सक्नुहुनेछ।</span>
+  </div>
+
+  <h3 class="topic" id="hw-t61">6.1 &nbsp;What backup and recovery mean</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>A <b>backup</b> is a copy of data kept separately, so that it can be restored if the
+      original is lost, damaged or changed by mistake.</p>
+      <p><b>Recovery</b> is the process of restoring that data, and returning the system to working
+      order, after a failure.</p>
+      <p>Data is lost in more ways than hardware failure: accidental deletion, overwriting a file,
+      a virus, theft, fire or flood, and a failed update. A backup plan has to survive all of them,
+      which is why <b>keeping the copy in the same building as the original</b> is a weak plan and
+      an <b>off-site copy</b> is part of a serious one.</p>
+      <p>The test of a backup is not whether it ran. It is whether a <b>restore</b> works — a
+      backup that has never been restored from is an assumption, not a safeguard.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Backup</b> भनेको छुट्टै राखिएको data को प्रतिलिपि हो, ताकि मूल हराए, बिग्रिए वा
+      भुलवश बदलिए फर्काउन सकियोस्।</p>
+      <p><b>Recovery</b> भनेको खराबीपछि त्यो data फर्काउने र प्रणालीलाई चल्ने अवस्थामा ल्याउने
+      प्रक्रिया हो।</p>
+      <p>Data हार्डवेयर बिग्रेर मात्र हराउँदैन: भुलले मेटिनु, फाइल ओभरराइट हुनु, भाइरस, चोरी,
+      आगलागी वा बाढी, र असफल अपडेट। ब्याकअप योजनाले यी सबै झेल्नुपर्छ — त्यसैले <b>प्रतिलिपि
+      मूलकै भवनमा राख्नु</b> कमजोर योजना हो र <b>अर्को ठाउँको प्रतिलिपि</b> गम्भीर योजनाको
+      हिस्सा हो।</p>
+      <p>ब्याकअपको जाँच "चल्यो कि चलेन" होइन। <b>फर्काउन सकिन्छ कि सकिँदैन</b> हो — कहिल्यै
+      फर्काएर नहेरिएको ब्याकअप अनुमान हो, सुरक्षा होइन।</p>
+    </div>
+  </div>
+
+  <h3 class="topic" id="hw-t62">6.2 &nbsp;Backup methods</h3>
+
+  <figure class="fig">
+    {{dia:hwBackupTypes}}
+    <figcaption>Step through the week. The difference between the three is not what they copy on
+    Monday — it is what they copy on Friday, and how many sets a restore then needs.
+    <span class="np-cell">हप्ताभरि चरणबद्ध हेर्नुहोस्। तीनबीचको फरक सोमबार के कपी गर्छन् भन्ने
+    होइन — शुक्रबार के कपी गर्छन्, र फर्काउन कति सेट चाहिन्छ भन्ने हो।</span></figcaption>
+  </figure>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The three methods compared</span>
+      <p><b>Full backup</b> — copies everything every time. Slowest to take and uses the most
+      media, but a restore needs only <b>one</b> set, so it is the fastest and safest to recover
+      from.</p>
+      <p><b>Incremental backup</b> — copies only what has changed since the <b>last backup of any
+      kind</b>. Fastest to take and smallest, but a restore needs the last full backup <b>plus
+      every increment since</b>. If one increment in the chain is missing or damaged, everything
+      after it is lost.</p>
+      <p><b>Differential backup</b> — copies everything changed since the last <b>full</b> backup.
+      Each day is larger than the last, but a restore needs exactly <b>two</b> sets: the full
+      backup and the most recent differential.</p>
+      <p>The trade is always the same: time and media when you back up, against time and risk when
+      you restore.</p>
+    </div>
+    <div class="np"><span class="tag">तीन विधिको तुलना</span>
+      <p><b>Full backup</b> — हरेक पटक सबै कपी गर्छ। लिन सबैभन्दा ढिलो र मिडिया धेरै लाग्छ, तर
+      फर्काउन <b>एउटै</b> सेट चाहिन्छ — त्यसैले recovery सबैभन्दा छिटो र सुरक्षित।</p>
+      <p><b>Incremental backup</b> — <b>जुनसुकै किसिमको अघिल्लो ब्याकअप</b> पछि बदलिएको मात्र कपी
+      गर्छ। लिन सबैभन्दा छिटो र सानो, तर फर्काउन अन्तिम full ब्याकअप <b>र त्यसपछिका सबै
+      increment</b> चाहिन्छन्। शृंखलाको एउटा increment हराए वा बिग्रिए त्यसपछिको सबै जान्छ।</p>
+      <p><b>Differential backup</b> — अन्तिम <b>full</b> ब्याकअपपछि बदलिएको सबै कपी गर्छ। हरेक
+      दिनको अघिल्लो भन्दा ठूलो हुन्छ, तर फर्काउन ठ्याक्कै <b>दुई</b> सेट चाहिन्छ: full र
+      सबैभन्दा पछिल्लो differential।</p>
+      <p>सौदा सधैं उही हो: ब्याकअप लिँदाको समय र मिडिया, बनाम फर्काउँदाको समय र जोखिम।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> How many sets does a Friday restore need?</div>
+    <p><b>Question:</b> a full backup runs on Monday. Incremental backups run Tuesday to Friday.
+    The disk fails on Friday evening. Which sets are needed, and what happens if Wednesday's tape
+    is unreadable?</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Decide two things before reading on: how many sets,
+      and what Wednesday's failure costs you.</span><span class="np-cell">पढ्नुअघि दुई कुरा
+      निर्णय गर्नुहोस्: कति सेट चाहिन्छ, र बुधबारको असफलताले के गुमाउँछ।</span></p>
+    </div>
+    <p><b>Step 1 — what does an incremental hold?</b> Only what changed since the previous backup
+    of any kind — so Tuesday's holds Monday-to-Tuesday changes, Wednesday's holds Tuesday-to-
+    Wednesday, and so on.</p>
+    <p><b>Step 2 — rebuild the timeline.</b> Start from Monday's full set, then apply Tuesday's,
+    Wednesday's, Thursday's and Friday's increments in order. That is <b>five</b> sets.</p>
+    <p><b>Step 3 — remove Wednesday.</b> Thursday's increment holds only what changed <i>after</i>
+    Wednesday's backup. Without Wednesday there is a gap in the chain that nothing else fills, so
+    the restore can only be trusted up to Tuesday.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">Five sets are needed. Losing Wednesday's breaks the chain: everything from Wednesday onwards is unrecoverable.</div>
+    </div>
+    <p class="wex-note">Run the same failure against a differential scheme and only Friday's
+    differential matters — Wednesday's loss would cost nothing. That is what "two sets" buys you.
+    <span class="np-cell">यही असफलता differential योजनामा लगाउनुहोस् — शुक्रबारको differential
+    मात्र काम लाग्छ, बुधबार हराए केही बिग्रँदैन। "दुई सेट" ले किन्ने कुरा यही हो।</span></p>
+  </div>
+
+  <h3 class="topic" id="hw-t63">6.3 &nbsp;Devices, media, scheduling and rotation</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p><b>Backup devices and media:</b> external hard disks (large, fast, cheap per gigabyte);
+      USB flash drives (portable, small capacity); optical discs — CD, DVD, Blu-ray (write once,
+      cheap, slow); magnetic tape (very large capacity, low cost, still used for archives); network
+      attached storage; and cloud storage, which is off-site by nature.</p>
+      <p><b>Scheduling</b> means deciding <i>when</i> backups run and automating them. Backups that
+      depend on someone remembering do not happen. They are usually scheduled outside working
+      hours, because a backup competes for the disk and the network.</p>
+      <p><b>Media rotation</b> means reusing a set of media in a planned cycle, so that several
+      generations of backup exist at once. The standard scheme is
+      <b>grandfather–father–son</b>: daily backups (son) are kept for a week, weekly backups
+      (father) for a month, and monthly backups (grandfather) for a year.</p>
+      <p>Rotation is what protects you from a problem you did not notice immediately. If a file was
+      corrupted three weeks ago and every backup has been overwritten since, the only copies you
+      hold are all corrupted too.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>ब्याकअप उपकरण र मिडिया:</b> बाहिरी hard disk (ठूलो, छिटो, प्रति GB सस्तो); USB flash
+      drive (बोक्न सजिलो, कम क्षमता); optical disc — CD, DVD, Blu-ray (एक पटक लेखिने, सस्तो,
+      ढिलो); चुम्बकीय टेप (धेरै ठूलो क्षमता, कम लागत, अभिलेखका लागि अझै प्रयोगमा); network
+      attached storage; र cloud storage, जुन स्वभावतः अर्को ठाउँमा हुन्छ।</p>
+      <p><b>Scheduling</b> भनेको ब्याकअप <i>कहिले</i> चल्ने तय गरेर स्वचालित बनाउनु हो। कसैले
+      सम्झनुपर्ने ब्याकअप हुँदैन। प्रायः कार्यालय समयबाहिर राखिन्छ, किनकि ब्याकअपले डिस्क र
+      नेटवर्क ओगट्छ।</p>
+      <p><b>Media rotation</b> भनेको मिडियाको समूहलाई योजनाबद्ध चक्रमा पुनः प्रयोग गर्नु, ताकि
+      एकैचोटि ब्याकअपका धेरै पुस्ता रहून्। मानक योजना
+      <b>grandfather–father–son</b> हो: दैनिक ब्याकअप (son) एक हप्ता, साप्ताहिक (father) एक
+      महिना, र मासिक (grandfather) एक वर्ष राखिन्छ।</p>
+      <p>तुरुन्तै थाहा नपाएको समस्याबाट जोगाउने कुरा rotation नै हो। तीन हप्ताअघि फाइल बिग्रेको
+      थियो र त्यसपछि हरेक ब्याकअप ओभरराइट भइसक्यो भने तपाईंसँग भएका सबै प्रतिलिपि पनि
+      बिग्रिएकै हुन्छन्।</p>
+    </div>
+  </div>
+
+  <h3 class="topic" id="hw-t64">6.4 &nbsp;RAID</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p><b>RAID (Redundant Array of Independent Disks)</b> combines several physical disks so the
+      operating system sees them as one drive, in order to gain speed, fault tolerance, or both.</p>
+      <p><b>RAID 0 — striping.</b> Data is split across the disks, so reads and writes are faster
+      and the full capacity is usable. There is <b>no redundancy</b>: if any one disk fails, all
+      the data is lost. Minimum two disks.</p>
+      <p><b>RAID 1 — mirroring.</b> The same data is written to both disks. One disk can fail and
+      the system keeps running. Only half the total capacity is usable. Minimum two disks.</p>
+      <p><b>RAID 5 — striping with parity.</b> Data and parity information are spread across all
+      the disks. Any one disk can fail and its contents are rebuilt from the parity. The capacity
+      of one disk is given up to parity. Minimum <b>three</b> disks.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>RAID (Redundant Array of Independent Disks)</b> ले धेरै भौतिक डिस्कलाई जोडेर अपरेटिङ
+      सिस्टमलाई एउटै ड्राइभजस्तो देखाउँछ — गति, खराबी सहनशीलता, वा दुवै पाउन।</p>
+      <p><b>RAID 0 — striping.</b> Data डिस्कहरूमा बाँडिन्छ, त्यसैले पढ्न–लेख्न छिटो हुन्छ र पूरै
+      क्षमता प्रयोग हुन्छ। <b>कुनै redundancy छैन</b>: एउटा डिस्क बिग्रिए सबै data जान्छ।
+      न्यूनतम दुई डिस्क।</p>
+      <p><b>RAID 1 — mirroring.</b> उही data दुवै डिस्कमा लेखिन्छ। एउटा बिग्रिए पनि प्रणाली
+      चलिरहन्छ। कुल क्षमताको आधा मात्र प्रयोगयोग्य। न्यूनतम दुई डिस्क।</p>
+      <p><b>RAID 5 — parity सहितको striping.</b> Data र parity सबै डिस्कमा फैलाइन्छ। कुनै एउटा
+      बिग्रिए त्यसको सामग्री parity बाट पुनर्निर्माण हुन्छ। एउटा डिस्क बराबरको क्षमता parity मा
+      जान्छ। न्यूनतम <b>तीन</b> डिस्क।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:hwRaid}}
+    <figcaption>The yellow band is the sentence that separates a full-mark answer from a half one.
+    RAID survives a disk failing; it does not survive a mistake.
+    <span class="np-cell">पहेँलो पट्टी नै पूरा अंक र आधा अंकको उत्तर छुट्याउने वाक्य हो। RAID ले
+    डिस्क बिग्रिँदा जोगाउँछ; गल्ती भएमा जोगाउँदैन।</span></figcaption>
+  </figure>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>A server uses RAID 1. A user deletes an important folder by mistake. Is it recoverable from
+      the RAID?
+      <span class="np-cell">एउटा सर्भरमा RAID 1 छ। प्रयोगकर्ताले भुलवश महत्त्वपूर्ण फोल्डर मेट्छ।
+      के त्यो RAID बाट फर्काउन सकिन्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Yes — the second disk still has it</button>
+      <button class="predict-opt" data-value="b">No — the deletion was mirrored too</button>
+      <button class="predict-opt" data-value="c">Yes, but only within 24 hours</button>
+    </div>
+    <div class="predict-feedback">
+      <p>Mirroring copies <b>every</b> change to both disks, and a deletion is a change. Both disks
+      lose the folder at the same instant. RAID protects against a <b>disk failing</b> — a
+      mechanical event affecting one disk. It gives no protection against deletion, overwriting, a
+      virus or ransomware, because those are legitimate write operations as far as the array is
+      concerned. Only a backup, held separately and not written to continuously, recovers this.</p>
+      <span class="np-cell">Mirroring ले <b>हरेक</b> परिवर्तन दुवै डिस्कमा सार्छ, र मेटाइ पनि
+      परिवर्तन हो। दुवै डिस्कले एकै क्षणमा फोल्डर गुमाउँछन्। RAID ले <b>डिस्क बिग्रिनु</b> —
+      एउटा डिस्कमा हुने यान्त्रिक घटना — बाट जोगाउँछ। मेटाइ, ओभरराइट, भाइरस वा ransomware बाट
+      जोगाउँदैन, किनकि array का लागि ती वैध लेखाइ हुन्। छुट्टै राखिएको र निरन्तर नलेखिने ब्याकअपले
+      मात्र यो फर्काउँछ।</span>
+    </div>
+  </div>
+
+  <h3 class="topic" id="hw-t65">6.5 &nbsp;Recovery techniques</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Match the technique to the failure</span>
+      <p><b>Restore from backup</b> — the general answer, and the only one that works when data
+      itself has been lost or corrupted.</p>
+      <p><b>System restore point</b> — rolls the operating system's settings and drivers back to an
+      earlier state. Fixes a bad update or driver; does <b>not</b> recover deleted personal files.</p>
+      <p><b>Recovery / repair console</b> — repairs a damaged boot sector or system files so the
+      machine can start again.</p>
+      <p><b>Data recovery software</b> — scans sectors directly to retrieve files whose index
+      entries were deleted. This works precisely because a quick format and a delete do not remove
+      the data itself.</p>
+      <p><b>Professional recovery from a failed drive</b> — for physical damage such as a head
+      crash, done in a clean room. Expensive, and never guaranteed.</p>
+      <p><b>Rebuilding a RAID array</b> — replacing a failed disk and letting the array rebuild its
+      contents from the mirror or the parity.</p>
+    </div>
+    <div class="np"><span class="tag">खराबी अनुसार उपाय मिलाउनुहोस्</span>
+      <p><b>ब्याकअपबाट फर्काउने</b> — सामान्य उत्तर, र data नै हराएको वा बिग्रिएको बेला काम लाग्ने
+      एक मात्र उपाय।</p>
+      <p><b>System restore point</b> — अपरेटिङ सिस्टमका सेटिङ र driver लाई अघिल्लो अवस्थामा
+      फर्काउँछ। खराब अपडेट वा driver मिलाउँछ; मेटिएका व्यक्तिगत फाइल <b>फर्काउँदैन</b>।</p>
+      <p><b>Recovery / repair console</b> — बिग्रिएको boot sector वा सिस्टम फाइल मर्मत गरेर मेसिन
+      फेरि सुरु हुन दिन्छ।</p>
+      <p><b>Data recovery सफ्टवेयर</b> — सूची मेटिएका फाइल फर्काउन sector सीधै स्क्यान गर्छ। यो
+      चल्नुको कारण नै quick format र delete ले data आफैँ नहटाउनु हो।</p>
+      <p><b>बिग्रेको ड्राइभबाट व्यावसायिक रिकभरी</b> — head crash जस्तो भौतिक क्षतिका लागि, clean
+      room मा गरिने। महँगो, र कहिल्यै ग्यारेन्टी नहुने।</p>
+      <p><b>RAID array पुनर्निर्माण</b> — बिग्रेको डिस्क साटेर array लाई mirror वा parity बाट
+      सामग्री फेरि बनाउन दिने।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Which backup or RAID level fits this situation?</h4>
+      <p class="sim-goal">What you will learn: to choose a method from a described need, which is
+      how this unit is examined — the exam gives you a situation and asks what you would use, not
+      for three definitions.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: वर्णन गरिएको आवश्यकताबाट विधि छान्न — यो युनिट
+      यसै गरी जाँचिन्छ। परीक्षाले तीन परिभाषा होइन, अवस्था दिएर के प्रयोग गर्नुहुन्छ
+      सोध्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-hw-backup" data-set="backupchoice"></div>
+    </div>
+    <div class="sim-controls"></div>
+    <p class="sim-why"><span class="t-en">Why this matters: every option here is correct for
+    something. Marks are lost by choosing one that solves a different problem from the one
+    described — RAID for accidental deletion is the classic.</span><span class="np-cell">किन
+    महत्त्वपूर्ण छ: यहाँका हरेक विकल्प कुनै न कुनै अवस्थाका लागि ठीक छन्। वर्णन गरिएको भन्दा फरक
+    समस्या समाधान गर्ने विकल्प छानेर अंक गुम्छ — भुलले मेटिएकोमा RAID भन्नु उत्कृष्ट
+    उदाहरण।</span></p>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> How much space do you actually get?</div>
+    <p><b>Question:</b> four 2 TB disks are available. What usable capacity does each of RAID 0,
+    RAID 1 and RAID 5 give, and how many disks can fail in each?</p>
+    <p><b>Step 1 — RAID 0 keeps nothing back.</b> Every disk stores data and none stores a copy or
+    parity, so usable = 4 × 2 = <b>8 TB</b>. Nothing is protected: <b>0</b> disks may fail.</p>
+    <p><b>Step 2 — RAID 1 stores everything twice.</b> Half the total is a copy, so usable =
+    8 ÷ 2 = <b>4 TB</b>. One disk of each mirrored pair may fail.</p>
+    <p><b>Step 3 — RAID 5 gives up one disk's worth to parity.</b> Usable = (4 − 1) × 2 =
+    <b>6 TB</b>. Any <b>one</b> disk may fail and be rebuilt from the parity.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">RAID 0 → 8 TB, no disk may fail · RAID 1 → 4 TB, one per pair · RAID 5 → 6 TB, any one</div>
+    </div>
+    <p class="wex-note">Read the pattern rather than memorising three numbers: capacity and safety
+    trade directly against each other, and RAID 5 exists because it buys most of the capacity of
+    RAID 0 with most of the safety of RAID 1.
+    <span class="np-cell">तीन सङ्ख्या घोक्नुभन्दा ढाँचा पढ्नुहोस्: क्षमता र सुरक्षा सीधै एक–अर्काको
+    सट्टामा जान्छन्, र RAID 5 हुनुको कारण यही हो — यसले RAID 0 को धेरैजसो क्षमता र RAID 1 को
+    धेरैजसो सुरक्षा सँगै दिन्छ।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Calling RAID a backup.</b> RAID survives a disk failing. It mirrors deletion,
+        corruption and ransomware faithfully onto every disk in the array.
+        <span class="np-cell">RAID लाई ब्याकअप भन्नु। RAID ले डिस्क बिग्रिँदा जोगाउँछ। मेटाइ,
+        बिग्रिनु र ransomware लाई array का हरेक डिस्कमा जस्ताको तस्तै सार्छ।</span></li>
+      <li><b>Swapping incremental and differential.</b> Incremental = since the <b>last backup</b>;
+        differential = since the last <b>full backup</b>. Getting these the wrong way round
+        reverses every answer about restore time.
+        <span class="np-cell">Incremental र differential साट्नु। Incremental = <b>अघिल्लो
+        ब्याकअप</b> पछि; differential = अन्तिम <b>full ब्याकअप</b> पछि। उल्टो पारे फर्काउने
+        समयसम्बन्धी हरेक उत्तर उल्टिन्छ।</span></li>
+      <li><b>Saying RAID 5 needs two disks.</b> It needs a minimum of three, because parity has to
+        live somewhere other than the data it protects.
+        <span class="np-cell">RAID 5 लाई दुई डिस्क चाहिन्छ भन्नु। न्यूनतम तीन चाहिन्छ, किनकि
+        parity ले जोगाउने data भन्दा अन्तै बस्नुपर्छ।</span></li>
+      <li><b>Keeping the only backup beside the computer.</b> Fire, flood and theft take both at
+        once. A serious plan keeps a copy off-site.
+        <span class="np-cell">एक मात्र ब्याकअप कम्प्युटरकै छेउमा राख्नु। आगलागी, बाढी र चोरीले
+        दुवै सँगै लैजान्छन्। गम्भीर योजनाले एउटा प्रतिलिपि अर्को ठाउँमा राख्छ।</span></li>
+    </ul>
+    <p class="hook"><b>RAID survives a disk; backup survives a mistake.</b> Incremental = since
+    last backup, differential = since last full.
+    <span class="np-cell"><b>RAID ले डिस्क जोगाउँछ; ब्याकअपले गल्ती जोगाउँछ।</b> Incremental =
+    अघिल्लो ब्याकअपपछि, differential = अन्तिम full पछि।</span></p>
+  </div>
+
+  <h3 class="topic" id="hw-exam6">Exam focus — what is asked from this unit</h3>
+  <div class="exam-connect">
+    <b>The shortest unit — 8 hours, 7 marks — and the most predictable.</b> Three questions cover
+    almost everything ever asked: <b>differentiate full, incremental and differential backup</b>
+    (say what each copies AND what a restore needs, or you get half the marks), <b>explain RAID 0,
+    1 and 5</b> with their minimum disks and what happens when one fails, and <b>define backup and
+    recovery / list recovery techniques</b>. If a question gives you a scenario, the answer is
+    almost always the trade-off between backup time and restore time — say which you are choosing
+    and why.
+    <span class="np-cell">सबैभन्दा छोटो युनिट — ८ घण्टा, ७ अंक — र सबैभन्दा अनुमानयोग्य। तीन
+    प्रश्नले सोधिने झन्डै सबै समेट्छन्: <b>full, incremental र differential छुट्याउनुहोस्</b>
+    (हरेकले के कपी गर्छ <b>र</b> फर्काउन के चाहिन्छ दुवै भन्नुहोस्, नत्र आधा अंक), <b>RAID 0, 1
+    र 5 व्याख्या गर्नुहोस्</b> न्यूनतम डिस्क र एउटा बिग्रिँदा के हुन्छ सहित, र <b>backup–recovery
+    को परिभाषा / recovery का उपाय</b>। प्रश्नले अवस्था दियो भने उत्तर झन्डै सधैं ब्याकअप समय र
+    पुनर्स्थापना समयबीचको सौदा हो — कुन छान्दै हुनुहुन्छ र किन भन्नुहोस्।</span>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q1 <span class="mk">3 marks</span></p>
+    <h4>Differentiate between full, incremental and differential backup.
+      <span class="np-cell">Full, incremental र differential backup बीचको फरक छुट्याउनुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a61">Show the answer</button>
+    <div class="ans" id="hw-a61">
+      <p>A full backup copies all the data every time; it takes the longest and uses the most media
+      but a restore needs only that one set. An incremental backup copies only what has changed
+      since the last backup of any type; it is the quickest to take and the smallest, but restoring
+      requires the last full backup together with every incremental taken since, and a missing one
+      breaks the chain. A differential backup copies everything changed since the last full backup;
+      each one grows larger than the last, but a restore needs exactly two sets — the full backup
+      and the most recent differential.</p>
+      <span class="np-cell">Full backup ले हरेक पटक सबै data कपी गर्छ; समय सबैभन्दा बढी लाग्छ र
+      मिडिया धेरै खपत हुन्छ तर फर्काउन त्यही एउटै सेट चाहिन्छ। Incremental backup ले जुनसुकै
+      किसिमको अघिल्लो ब्याकअपपछि बदलिएको मात्र कपी गर्छ; लिन सबैभन्दा छिटो र सानो, तर फर्काउन
+      अन्तिम full ब्याकअप र त्यसपछिका सबै incremental चाहिन्छन्, र एउटा हराए शृंखला टुट्छ।
+      Differential backup ले अन्तिम full ब्याकअपपछि बदलिएको सबै कपी गर्छ; हरेक अघिल्लो भन्दा ठूलो
+      हुँदै जान्छ, तर फर्काउन ठ्याक्कै दुई सेट चाहिन्छ — full र सबैभन्दा पछिल्लो differential।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q2 <span class="mk">3 marks</span></p>
+    <h4>What is RAID? Explain RAID 0, RAID 1 and RAID 5, stating the minimum number of disks for
+      each.
+      <span class="np-cell">RAID के हो? RAID 0, RAID 1 र RAID 5 व्याख्या गर्नुहोस्, र हरेकलाई
+      चाहिने न्यूनतम डिस्क सङ्ख्या लेख्नुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a62">Show the answer</button>
+    <div class="ans" id="hw-a62">
+      <p>RAID (Redundant Array of Independent Disks) combines several physical disks so that the
+      operating system treats them as a single drive, to gain speed, fault tolerance or both.
+      RAID 0 uses striping: data is divided across the disks giving faster access and full
+      capacity, but there is no redundancy and one disk failing loses everything — minimum two
+      disks. RAID 1 uses mirroring: identical data is written to both disks so one can fail without
+      loss, but only half the capacity is usable — minimum two disks. RAID 5 uses striping with
+      parity spread across all disks, so any one disk can fail and be rebuilt from the parity, at
+      the cost of one disk's capacity — minimum three disks.</p>
+      <span class="np-cell">RAID (Redundant Array of Independent Disks) ले धेरै भौतिक डिस्क जोडेर
+      अपरेटिङ सिस्टमलाई एउटै ड्राइभजस्तो देखाउँछ — गति, खराबी सहनशीलता वा दुवैका लागि। RAID 0 ले
+      striping प्रयोग गर्छ: data डिस्कहरूमा बाँडिन्छ, पहुँच छिटो हुन्छ र पूरै क्षमता पाइन्छ, तर
+      redundancy नभएकाले एउटा डिस्क बिग्रिए सबै जान्छ — न्यूनतम दुई डिस्क। RAID 1 ले mirroring
+      प्रयोग गर्छ: दुवै डिस्कमा उही data लेखिन्छ, त्यसैले एउटा बिग्रिए पनि हराउँदैन, तर आधा
+      क्षमता मात्र प्रयोगयोग्य — न्यूनतम दुई डिस्क। RAID 5 ले सबै डिस्कमा फैलिएको parity सहित
+      striping गर्छ, त्यसैले कुनै एउटा बिग्रिए parity बाट पुनर्निर्माण हुन्छ, एउटा डिस्क बराबरको
+      क्षमताको मूल्यमा — न्यूनतम तीन डिस्क।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q3 <span class="mk">2 marks</span></p>
+    <h4>Explain the grandfather–father–son media rotation scheme, and state one problem it protects
+      against that a single daily backup does not.
+      <span class="np-cell">Grandfather–father–son media rotation योजना बुझाउनुहोस्, र दैनिक एउटै
+      ब्याकअपले नजोगाउने कुन समस्याबाट यसले जोगाउँछ लेख्नुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a63">Show the answer</button>
+    <div class="ans" id="hw-a63">
+      <p>Grandfather–father–son is a media rotation scheme in which daily backups (son) are kept
+      for about a week, weekly backups (father) for about a month, and monthly backups
+      (grandfather) for about a year, with the media reused in that planned cycle. It protects
+      against corruption or an unwanted change that is not noticed immediately: if a single daily
+      backup is overwritten each day, then after a few days every copy held contains the same
+      damage, whereas keeping older generations means an undamaged version still exists.</p>
+      <span class="np-cell">Grandfather–father–son एउटा media rotation योजना हो जसमा दैनिक ब्याकअप
+      (son) करिब एक हप्ता, साप्ताहिक (father) करिब एक महिना, र मासिक (grandfather) करिब एक वर्ष
+      राखिन्छ, र मिडिया त्यही योजनाबद्ध चक्रमा पुनः प्रयोग हुन्छ। यसले तुरुन्तै थाहा नपाइने
+      बिग्रिनु वा अवाञ्छित परिवर्तनबाट जोगाउँछ: दैनिक एउटै ब्याकअप हरेक दिन ओभरराइट भइरहे केही
+      दिनपछि भएका सबै प्रतिलिपिमा उही क्षति हुन्छ, तर पुराना पुस्ता राखे नबिग्रेको संस्करण अझै
+      रहन्छ।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick">A backup is a separate copy; recovery is the process of restoring it. A
+        backup that has never been restored from is untested.
+        <span class="np-cell">Backup छुट्टै प्रतिलिपि हो; recovery त्यो फर्काउने प्रक्रिया।
+        कहिल्यै फर्काएर नहेरिएको ब्याकअप परीक्षण नगरिएको हो।</span></li>
+      <li class="tick">Full = everything, one set to restore. Incremental = since the last backup,
+        full plus every increment to restore. Differential = since the last full, exactly two sets
+        to restore.
+        <span class="np-cell">Full = सबै, फर्काउन एउटै सेट। Incremental = अघिल्लो ब्याकअपपछि,
+        फर्काउन full र सबै increment। Differential = अन्तिम full पछि, फर्काउन ठ्याक्कै दुई सेट।</span></li>
+      <li class="tick">Grandfather–father–son keeps daily, weekly and monthly generations, which is
+        what protects against damage noticed late.
+        <span class="np-cell">Grandfather–father–son ले दैनिक, साप्ताहिक र मासिक पुस्ता राख्छ,
+        जसले ढिलो थाहा भएको क्षतिबाट जोगाउँछ।</span></li>
+      <li class="tick">RAID 0 = speed, no redundancy, 2 disks. RAID 1 = mirror, 2 disks. RAID 5 =
+        parity, 3 disks minimum.
+        <span class="np-cell">RAID 0 = गति, redundancy छैन, २ डिस्क। RAID 1 = mirror, २ डिस्क।
+        RAID 5 = parity, न्यूनतम ३ डिस्क।</span></li>
+      <li class="tick">RAID is not a backup. It survives a disk failing, not a deletion, a virus or
+        a mistake.
+        <span class="np-cell">RAID ब्याकअप होइन। यसले डिस्क बिग्रिँदा जोगाउँछ — मेटाइ, भाइरस वा
+        गल्तीमा होइन।</span></li>
+    </ul>
+  </div>
+</section>

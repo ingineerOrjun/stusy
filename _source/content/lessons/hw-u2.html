@@ -1,0 +1,382 @@
+<section id="hw-u2">
+  <div class="sec-head">
+    <div class="sec-num">2</div>
+    <div>
+      <h2>Introduction to Computer System</h2>
+      <p class="sec-sub">कम्प्युटर प्रणालीको परिचय</p>
+    </div>
+    <span class="marks">10 hrs · 8 marks</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Name the basic units of a computer system and say what each one does.</li>
+      <li>List the common input devices and explain how each gets data into the machine.</li>
+      <li>State exactly what the ALU does and what the control unit does, without swapping them.</li>
+      <li>Define resolution, colour depth and refresh rate, and say what each one changes on screen.</li>
+      <li>Compare CRT, LCD and LED monitors on how they make light, size and power use.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: कम्प्युटर प्रणालीका आधारभूत एकाइ नाम लिन र हरेकको काम भन्न,
+    सामान्य input उपकरण सूचीबद्ध गर्न र हरेकले कसरी data भित्र ल्याउँछ बताउन, ALU र control unit
+    नसाटी ठ्याक्कै के गर्छन् भन्न, resolution–colour depth–refresh rate को परिभाषा दिन र
+    स्क्रिनमा के फरक पार्छन् भन्न, र CRT–LCD–LED लाई बत्ती बनाउने तरिका, आकार र बिजुली खपतमा
+    तुलना गर्न सक्नुहुनेछ।</span>
+  </div>
+
+  <h3 class="topic" id="hw-t21">2.1 &nbsp;The basic units of a computer system</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>Every computer, from a phone to a server, is built from the same five functional units:
+      <b>input</b>, <b>control</b>, <b>arithmetic and logic</b>, <b>memory</b> and <b>output</b>.</p>
+      <p>The middle three together are the <b>CPU (Central Processing Unit)</b>. That grouping is
+      what a question means when it says "the components of the CPU".</p>
+      <p>The order matters and it is always the same: data comes <b>in</b>, is <b>held</b> in
+      memory, is <b>worked on</b> by the ALU under the direction of the control unit, and the
+      result goes <b>out</b>.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p>फोनदेखि सर्भरसम्म हरेक कम्प्युटर उही पाँच कार्यात्मक एकाइबाट बनेको हुन्छ:
+      <b>input</b>, <b>control</b>, <b>arithmetic and logic</b>, <b>memory</b> र <b>output</b>।</p>
+      <p>बीचका तीन मिलेर <b>CPU (Central Processing Unit)</b> बन्छ। "CPU का भागहरू" भनेर सोधिँदा
+      यही समूह खोजिएको हुन्छ।</p>
+      <p>क्रम महत्त्वपूर्ण छ र सधैं उही हुन्छ: data <b>भित्र</b> आउँछ, मेमोरीमा <b>राखिन्छ</b>,
+      control unit को निर्देशनमा ALU ले <b>काम गर्छ</b>, र नतिजा <b>बाहिर</b> जान्छ।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Interactive experiment</span><span class="t-ne"><span class="t-en"> · </span>अन्तरक्रियात्मक प्रयोग</span></p>
+      <h4>Find each unit, and see what it is responsible for</h4>
+      <p class="sim-goal">What you will learn: where each unit sits in the flow and exactly what it
+      is responsible for — so that when a question asks which unit does the comparing, you can see
+      the answer rather than recall a sentence.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: प्रवाहमा हरेक एकाइ कहाँ पर्छ र ठ्याक्कै कसको
+      के जिम्मेवारी हो — ताकि तुलना कसले गर्छ भन्ने प्रश्न आउँदा वाक्य सम्झनुभन्दा उत्तर देख्न
+      सकियोस्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="parts-lab" data-set="systemunits">
+        <figure class="fig">{{dia:hwSystemUnits}}</figure>
+        <div class="parts-panel"></div>
+      </div>
+    </div>
+    <div class="sim-controls"></div>
+    <p class="sim-why"><span class="t-en">Why this matters: "differentiate between the ALU and the
+    control unit" is asked almost every year, and the marks are lost by students who know both
+    words but attach the wrong job to each. Seeing them side by side in the flow fixes which is
+    which.</span><span class="np-cell">किन महत्त्वपूर्ण छ: "ALU र control unit फरक छुट्याउनुहोस्"
+    झन्डै हरेक वर्ष सोधिन्छ, र अंक ती विद्यार्थीले गुमाउँछन् जसलाई दुवै शब्द थाहा हुन्छ तर काम
+    उल्टो जोडिन्छ। प्रवाहमा सँगै देखेपछि कुन कुन हो पक्का हुन्छ।</span></p>
+  </div>
+
+  <h3 class="topic" id="hw-t22">2.2 &nbsp;The input unit</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>The <b>input unit</b> accepts data and instructions from the outside world and converts
+      them into the binary form the computer can process.</p>
+      <p><b>Keyboard</b> — each key press closes a switch; the keyboard controller turns that into a
+      scan code, which becomes a character.</p>
+      <p><b>Mouse</b> — a pointing device. An optical mouse photographs the surface many times a
+      second and works out which way it moved.</p>
+      <p><b>Scanner</b> — shines light across a document and measures the reflection, producing an
+      <i>image</i> of the page. OCR software is what turns that image into editable text.</p>
+      <p><b>Digital camera</b> — a lens focuses light onto an image sensor, which converts the
+      brightness at each point into a number and stores it in memory.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Input unit</b> ले बाहिरी संसारबाट data र निर्देशन लिन्छ र कम्प्युटरले प्रशोधन गर्न
+      सक्ने binary रूपमा बदल्छ।</p>
+      <p><b>Keyboard</b> — हरेक किथिचाइले एउटा स्विच बन्द गर्छ; keyboard controller ले त्यसलाई
+      scan code बनाउँछ, जुन अक्षर बन्छ।</p>
+      <p><b>Mouse</b> — देखाउने उपकरण। Optical mouse ले सेकेन्डमा धेरै पटक सतहको फोटो खिच्छ र कता
+      सर्‍यो पत्ता लगाउँछ।</p>
+      <p><b>Scanner</b> — कागजमा बत्ती पार गरेर परावर्तन नाप्छ, र पानाको <i>चित्र</i> बनाउँछ।
+      त्यो चित्रलाई सम्पादन गर्न मिल्ने अक्षरमा बदल्ने काम OCR सफ्टवेयरको हो।</p>
+      <p><b>Digital camera</b> — लेन्सले बत्ती image sensor मा केन्द्रित गर्छ, जसले हरेक बिन्दुको
+      उज्यालोलाई सङ्ख्यामा बदलेर मेमोरीमा राख्छ।</p>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="c">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>You scan a printed page. Straight afterwards, can you edit the words in a word processor?
+      <span class="np-cell">तपाईंले छापिएको पाना स्क्यान गर्नुभयो। लगत्तै word processor मा
+      शब्दहरू सम्पादन गर्न सकिन्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Yes — a scanner produces text</button>
+      <button class="predict-opt" data-value="b">Yes, but only if the page was typed</button>
+      <button class="predict-opt" data-value="c">No — you get an image until OCR converts it</button>
+    </div>
+    <div class="predict-feedback">
+      <p>A scanner is a light sensor, not a reader. What it produces is a <b>picture</b> of the
+      page — the letters in it are just dark pixels. <b>OCR (Optical Character Recognition)</b>
+      software has to examine that picture and work out which shapes are which characters before
+      anything becomes editable text.</p>
+      <span class="np-cell">Scanner बत्ती नाप्ने सेन्सर हो, पढ्ने यन्त्र होइन। यसले पानाको
+      <b>तस्बिर</b> दिन्छ — त्यसका अक्षर केवल कालो पिक्सेल हुन्। <b>OCR (Optical Character
+      Recognition)</b> सफ्टवेयरले त्यो तस्बिर हेरेर कुन आकार कुन अक्षर हो पत्ता लगाएपछि मात्र
+      सम्पादन गर्न मिल्ने अक्षर बन्छ।</span>
+    </div>
+  </div>
+
+  <h3 class="topic" id="hw-t23">2.3 &nbsp;The processing unit — ALU and control unit</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p>The <b>ALU (Arithmetic and Logic Unit)</b> performs all <b>arithmetic</b> operations
+      (+ − × ÷) and all <b>logical</b> operations (greater than, less than, equal to, AND, OR,
+      NOT). Every calculation and every comparison in the machine happens here and nowhere else.</p>
+      <p>The <b>control unit (CU)</b> directs the whole system. It <b>fetches</b> each instruction
+      from memory, <b>decodes</b> it to work out what is required, and sends the signals that tell
+      each unit what to do and when. It does not calculate anything itself.</p>
+      <p>A useful picture: the ALU is the worker, the control unit is the supervisor. The
+      supervisor decides what gets done next; the worker does it.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>ALU (Arithmetic and Logic Unit)</b> ले सबै <b>अंकगणितीय</b> काम (+ − × ÷) र सबै
+      <b>तार्किक</b> काम (ठूलो, सानो, बराबर, AND, OR, NOT) गर्छ। मेसिनको हरेक गणना र हरेक तुलना
+      यहीँ हुन्छ, अन्त कतै हुँदैन।</p>
+      <p><b>Control unit (CU)</b> ले पूरै प्रणाली निर्देशित गर्छ। मेमोरीबाट हरेक निर्देशन
+      <b>ल्याउँछ</b>, के चाहिएको हो <b>बुझ्छ</b>, र कुन एकाइले कहिले के गर्ने भन्ने सङ्केत पठाउँछ।
+      यसले आफैँ केही गणना गर्दैन।</p>
+      <p>सम्झने तरिका: ALU कामदार हो, control unit सुपरभाइजर। सुपरभाइजरले अब के गर्ने भन्छ;
+      कामदारले गर्छ।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Which unit does what, on one instruction</div>
+    <p><b>Question:</b> a program contains the instruction <code>IF marks &gt; 40 THEN print
+    "PASS"</code>. Which unit does each part of the work?</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Before you read on, decide one thing: which unit
+      performs the comparison?</span><span class="np-cell">पढ्नुअघि एउटा कुरा निर्णय गर्नुहोस्:
+      तुलना कुन एकाइले गर्छ?</span></p>
+    </div>
+    <p><b>Step 1 — the instruction has to be brought in.</b> The <b>control unit</b> fetches it
+    from memory and decodes it.</p>
+    <p><b>Step 2 — the value of <code>marks</code> has to be available.</b> It is held in the
+    <b>memory unit</b>.</p>
+    <p><b>Step 3 — <code>marks &gt; 40</code> has to be evaluated.</b> That is a comparison, which
+    is a <b>logical</b> operation, so the <b>ALU</b> does it and reports true or false.</p>
+    <p><b>Step 4 — the result decides what happens next.</b> The <b>control unit</b> reads the
+    ALU's answer and directs the machine to the printing instruction.</p>
+    <p><b>Step 5 — "PASS" reaches the user.</b> Through the <b>output unit</b>.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">CU fetches and decodes · memory holds the value · ALU compares · CU acts on the result · output unit displays</div>
+    </div>
+    <p class="wex-note">Notice the control unit appears twice and never calculates. That is the
+    distinction the exam is testing.
+    <span class="np-cell">ध्यान दिनुहोस्, control unit दुई पटक आउँछ र कहिल्यै गणना गर्दैन।
+    परीक्षाले जाँच्ने भिन्नता यही हो।</span></p>
+  </div>
+
+  <h3 class="topic" id="hw-t24">2.4 &nbsp;The display unit</h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Definition — learn this wording</span>
+      <p><b>Resolution</b> is the number of pixels across by the number down — 1366 × 768. More
+      pixels means a sharper picture and more detail in the same area.</p>
+      <p><b>Colour depth</b> is the number of bits used to describe one pixel's colour. 24-bit
+      gives about 16.7 million colours; fewer bits produce visible banding in a gradient.</p>
+      <p><b>Refresh rate</b> is how many times per second the screen is redrawn, measured in hertz.
+      60 Hz means sixty times a second. Too low a rate is visible as flicker and causes eye strain.</p>
+      <p><b>CRT</b> fires an electron beam at a phosphor coating — bulky, heavy, hot, most power.
+      <b>LCD</b> uses liquid crystals to block or pass light from a lamp behind them — flat and far
+      cooler. <b>LED</b> is an LCD whose backlight is made of LEDs instead — thinner still, better
+      contrast, least power.</p>
+    </div>
+    <div class="np"><span class="tag">परिभाषा — यही शब्दमा सम्झनुहोस्</span>
+      <p><b>Resolution</b> भनेको चौडाइका पिक्सेल × उचाइका पिक्सेल — १३६६ × ७६८। बढी पिक्सेल भनेको
+      उही ठाउँमा तीक्ष्ण तस्बिर र बढी विवरण।</p>
+      <p><b>Colour depth</b> भनेको एउटा पिक्सेलको रङ बताउन प्रयोग हुने bit सङ्ख्या। २४-bit ले
+      करिब १ करोड ६७ लाख रङ दिन्छ; कम bit भए रङ बदलिँदा पट्टीहरू देखिन्छन्।</p>
+      <p><b>Refresh rate</b> भनेको स्क्रिन सेकेन्डमा कति पटक फेरि कोरिन्छ — hertz मा नापिन्छ।
+      ६० Hz भनेको सेकेन्डमा साठी पटक। धेरै कम भए झिमझिम देखिन्छ र आँखा दुख्छ।</p>
+      <p><b>CRT</b> ले phosphor मा electron किरण हान्छ — ठूलो, गह्रौं, तातो, सबैभन्दा बढी बिजुली।
+      <b>LCD</b> ले पछाडिको बत्तीलाई liquid crystal ले छेक्ने वा पास गर्ने गर्छ — पातलो र धेरै
+      चिसो। <b>LED</b> भनेको त्यही LCD हो, तर पछाडिको बत्ती LED को — झन् पातलो, राम्रो contrast,
+      सबैभन्दा कम बिजुली।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:hwDisplayTech}}
+    <figcaption>LED is not a different kind of screen from LCD — it is an LCD with a different
+    backlight. Saying so earns the mark that "LED is newer" does not.
+    <span class="np-cell">LED, LCD भन्दा फरक किसिमको स्क्रिन होइन — फरक backlight भएको LCD हो।
+    यही भन्दा अंक मिल्छ; "LED नयाँ हो" भन्दा मिल्दैन।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Which display property is being described?</h4>
+      <p class="sim-goal">What you will learn: to match a symptom or a description to resolution,
+      colour depth or refresh rate — which is how these three are actually asked about, rather than
+      as bare definitions.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: कुनै लक्षण वा विवरणलाई resolution, colour depth
+      वा refresh rate सँग मिलाउन — किनकि यी तीन कुरा खाली परिभाषाका रूपमा होइन, यसरी नै
+      सोधिन्छन्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-hw-disp" data-set="displayprop"></div>
+    </div>
+    <div class="sim-controls"></div>
+    <p class="sim-why"><span class="t-en">Why this matters: a user complaint is never "my refresh
+    rate is low" — it is "the screen flickers and my eyes hurt". Translating the complaint into the
+    property is the actual skill.</span><span class="np-cell">किन महत्त्वपूर्ण छ: प्रयोगकर्ताले
+    "मेरो refresh rate कम छ" कहिल्यै भन्दैन — "स्क्रिन झिमझिम गर्छ र आँखा दुख्छ" भन्छ। गुनासोलाई
+    गुणमा बदल्नु नै वास्तविक सीप हो।</span></p>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> How much memory does one screen of picture need?</div>
+    <p><b>Question:</b> a monitor runs at 1366 × 768 with 24-bit colour depth. How much memory does
+    a single frame occupy?</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">You have every number you need. Work out the two
+      steps before reading on.</span><span class="np-cell">चाहिने सबै सङ्ख्या तपाईंसँग छन्।
+      पढ्नुअघि दुई चरण आफैँ निकाल्नुहोस्।</span></p>
+    </div>
+    <p><b>Step 1 — how many pixels are on the screen?</b> Resolution is across × down, so
+    1366 × 768 = 1,049,088 pixels.</p>
+    <p><b>Step 2 — how many bytes does each pixel need?</b> Colour depth is bits per pixel, and
+    8 bits make a byte, so 24-bit = 3 bytes per pixel.</p>
+    <p><b>Step 3 — multiply.</b> 1,049,088 × 3 = 3,147,264 bytes, which is about 3 MB.</p>
+    <div class="wex-out">
+      <span class="wex-lbl">Answer</span>
+      <div class="out">About 3 MB for one frame</div>
+    </div>
+    <p class="wex-note">Now see why refresh rate matters to the hardware: at 60 Hz the graphics
+    card must deliver that 3 MB sixty times every second. Resolution, colour depth and refresh rate
+    are not three unrelated settings — they multiply together into the work the card has to do.
+    <span class="np-cell">अब refresh rate हार्डवेयरका लागि किन महत्त्वपूर्ण छ हेर्नुहोस्: ६० Hz मा
+    ग्राफिक्स कार्डले त्यही ३ MB सेकेन्डमा साठी पटक पुर्‍याउनुपर्छ। Resolution, colour depth र
+    refresh rate तीन असम्बन्धित सेटिङ होइनन् — यी गुणन भएर कार्डले गर्नुपर्ने काम बन्छन्।</span></p>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Saying the control unit performs calculations.</b> It fetches, decodes and directs.
+        Every calculation and comparison is the ALU's.
+        <span class="np-cell">Control unit ले गणना गर्छ भन्नु। यसले ल्याउँछ, बुझ्छ र निर्देशन
+        दिन्छ। हरेक गणना र तुलना ALU को हो।</span></li>
+      <li><b>Calling a scanner an output device</b> because it produces a file. Direction is judged
+        by where the data is going: into the computer is input.
+        <span class="np-cell">फाइल बन्छ भन्दैमा scanner लाई output भन्नु। दिशा data कता जान्छ
+        भन्नेले तय हुन्छ: कम्प्युटरभित्र जान्छ भने input हो।</span></li>
+      <li><b>Confusing resolution with screen size.</b> A large monitor can have a low resolution
+        and look worse than a small one with a high resolution.
+        <span class="np-cell">Resolution र स्क्रिनको आकार मिसाउनु। ठूलो monitor को resolution कम
+        भए त्यो उच्च resolution भएको सानो भन्दा नराम्रो देखिन्छ।</span></li>
+      <li><b>Writing that LED is a completely different technology from LCD.</b> It is an LCD with
+        an LED backlight — the crystals are the same.
+        <span class="np-cell">LED लाई LCD भन्दा पूरै फरक प्रविधि लेख्नु। यो LED backlight भएको
+        LCD हो — crystal उही हुन्।</span></li>
+    </ul>
+    <p class="hook"><b>CU directs, ALU calculates.</b> LED is an LCD with a new lamp.
+    <span class="np-cell"><b>CU ले निर्देशन दिन्छ, ALU ले गणना गर्छ।</b> LED भनेको नयाँ बत्ती
+    भएको LCD हो।</span></p>
+  </div>
+
+  <h3 class="topic" id="hw-exam2">Exam focus — what is asked from this unit</h3>
+  <div class="exam-connect">
+    <b>This unit is the vocabulary the rest of the subject is written in, and it carries 8 marks.</b>
+    Expect <b>list</b> questions (name four input devices), <b>differentiate</b> questions (ALU vs
+    control unit, CRT vs LCD vs LED, input vs output device) and <b>define</b> questions
+    (resolution, colour depth, refresh rate). The block diagram of a computer system with its units
+    labelled is the one diagram from this unit you may be asked to draw — and the arrows between
+    the blocks are worth marks, not just the boxes.
+    <span class="np-cell">यो युनिट बाँकी विषय लेखिने शब्दावली हो, र यसले ८ अंक बोक्छ।
+    <b>सूची</b> प्रश्न (चार input उपकरणको नाम), <b>फरक छुट्याउने</b> प्रश्न (ALU र control unit,
+    CRT–LCD–LED, input र output) र <b>परिभाषा</b> प्रश्न (resolution, colour depth, refresh rate)
+    आउँछन्। यस युनिटबाट कोर्न सकिने चित्र एकाइ नामांकित कम्प्युटर प्रणालीको ब्लक डायग्राम हो — र
+    बाकसबीचका तीर पनि अंक बोक्छन्, बाकस मात्र होइन।</span>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q1 <span class="mk">3 marks</span></p>
+    <h4>Differentiate between the ALU and the control unit, with one example of the work each does.
+      <span class="np-cell">ALU र control unit बीचको फरक छुट्याउनुहोस्, र हरेकले गर्ने कामको एउटा
+      उदाहरण दिनुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a21">Show the answer</button>
+    <div class="ans" id="hw-a21">
+      <p>The ALU performs all arithmetic operations (+ − × ÷) and all logical operations
+      (comparisons, AND, OR, NOT) — for example, evaluating whether marks &gt; 40. The control unit
+      does not calculate at all; it fetches each instruction from memory, decodes it, and generates
+      the signals that tell the other units what to do and when — for example, directing the
+      machine to the next instruction once the ALU reports its result.</p>
+      <span class="np-cell">ALU ले सबै अंकगणितीय (+ − × ÷) र सबै तार्किक (तुलना, AND, OR, NOT) काम
+      गर्छ — जस्तै, marks &gt; 40 हो कि होइन जाँच्ने। Control unit ले गणना गर्दैनँ; यसले मेमोरीबाट
+      हरेक निर्देशन ल्याउँछ, बुझ्छ, र अरू एकाइलाई कहिले के गर्ने भन्ने सङ्केत बनाउँछ — जस्तै,
+      ALU ले नतिजा दिएपछि मेसिनलाई अर्को निर्देशनतिर लैजाने।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q2 <span class="mk">3 marks</span></p>
+    <h4>Define resolution and refresh rate. State one problem a user notices when the refresh rate
+      is too low.
+      <span class="np-cell">Resolution र refresh rate को परिभाषा दिनुहोस्। Refresh rate धेरै कम
+      हुँदा प्रयोगकर्ताले देख्ने एउटा समस्या लेख्नुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a22">Show the answer</button>
+    <div class="ans" id="hw-a22">
+      <p>Resolution is the number of pixels displayed across the screen by the number down, for
+      example 1366 × 768; a higher resolution gives a sharper, more detailed picture. Refresh rate
+      is the number of times per second the screen image is redrawn, measured in hertz. When it is
+      too low the user sees visible flicker, which causes eye strain and headaches.</p>
+      <span class="np-cell">Resolution भनेको स्क्रिनको चौडाइमा देखिने पिक्सेल × उचाइमा देखिने
+      पिक्सेल, जस्तै १३६६ × ७६८; बढी resolution ले तीक्ष्ण र बढी विवरणसहितको तस्बिर दिन्छ।
+      Refresh rate भनेको स्क्रिनको तस्बिर सेकेन्डमा कति पटक फेरि कोरिन्छ, hertz मा नापिने।
+      धेरै कम हुँदा प्रयोगकर्ताले झिमझिम देख्छ, जसले आँखा थकाइ र टाउको दुखाइ ल्याउँछ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <p class="q-h">Q3 <span class="mk">2 marks</span></p>
+    <h4>Name any four input devices and state what kind of data each one brings in.
+      <span class="np-cell">कुनै चार input उपकरणको नाम लेख्नुहोस् र हरेकले कस्तो data भित्र
+      ल्याउँछ भन्नुहोस्।</span></h4>
+    <button class="btn-ans" data-answer="hw-a23">Show the answer</button>
+    <div class="ans" id="hw-a23">
+      <p>Keyboard — characters and commands typed by the user. Mouse — position and selection.
+      Scanner — an image of a printed document. Digital camera — photographs as image data. (Also
+      acceptable: microphone for sound, joystick for movement, barcode reader for product codes.)</p>
+      <span class="np-cell">Keyboard — प्रयोगकर्ताले टाइप गरेका अक्षर र आदेश। Mouse — स्थान र
+      छनोट। Scanner — छापिएको कागजको चित्र। Digital camera — तस्बिर, image data का रूपमा।
+      (माइक्रोफोन–आवाज, joystick–चाल, barcode reader–उत्पादन कोड पनि मान्य।)</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul>
+      <li class="tick">Five units: input, control, ALU, memory, output. The middle three are the CPU.
+        <span class="np-cell">पाँच एकाइ: input, control, ALU, memory, output। बीचका तीन मिलेर CPU।</span></li>
+      <li class="tick">ALU does arithmetic and logic. The control unit fetches, decodes and directs
+        — and calculates nothing.
+        <span class="np-cell">ALU ले अंकगणित र तर्क गर्छ। Control unit ले ल्याउँछ, बुझ्छ र निर्देशन
+        दिन्छ — गणना गर्दैन।</span></li>
+      <li class="tick">Input devices: keyboard, mouse, scanner, digital camera. A scanner gives an
+        image; OCR turns it into text.
+        <span class="np-cell">Input उपकरण: keyboard, mouse, scanner, digital camera। Scanner ले
+        चित्र दिन्छ; OCR ले अक्षरमा बदल्छ।</span></li>
+      <li class="tick">Resolution = pixels across × down. Colour depth = bits per pixel. Refresh
+        rate = redraws per second in Hz.
+        <span class="np-cell">Resolution = चौडाइ × उचाइका पिक्सेल। Colour depth = प्रति पिक्सेल
+        bit। Refresh rate = सेकेन्डमा फेरि कोरिने पटक, Hz मा।</span></li>
+      <li class="tick">CRT is bulky and uses most power; LCD is flat and cooler; LED is an LCD with
+        an LED backlight — thinnest and least power.
+        <span class="np-cell">CRT ठूलो र सबैभन्दा बढी बिजुली खान्छ; LCD पातलो र चिसो; LED भनेको
+        LED backlight भएको LCD — सबैभन्दा पातलो र कम बिजुली।</span></li>
+    </ul>
+  </div>
+</section>
