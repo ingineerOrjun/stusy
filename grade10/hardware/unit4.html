@@ -213,6 +213,100 @@
     </div>
   </div>
 
+  <figure class="fig">
+    <div class="dia" data-dia="hwBootSequence">
+  <div class="dia-stage">
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-hwboot">
+  <title id="t-hwboot">The boot sequence from power on through POST, BIOS settings, finding the boot device, loading the operating system and reaching the desktop, with the symptom seen if the machine stops at each stage</title>
+  <defs><marker id="a-hwboot" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
+  <text class="f-ttl" x="10" y="20">WHAT HAPPENS WHEN YOU PRESS THE POWER BUTTON</text>
+
+  <g id="bt-1">
+    <rect class="f-box-y" x="16" y="40" width="200" height="46" rx="7"/>
+    <text class="f-lbl-y" x="116" y="60" style="font-size:11px">1 · POWER ON</text>
+    <text class="f-lbl" x="116" y="77" style="font-size:9.5px">PSU delivers +12V, +5V, +3.3V</text>
+    <rect class="f-box-c" x="16" y="92" width="200" height="34" rx="6"/>
+    <text class="f-lbl" x="116" y="106" style="font-size:9px">STOPS HERE →  no lights,</text>
+    <text class="f-lbl" x="116" y="119" style="font-size:9px">no fans, nothing at all</text>
+  </g>
+
+  <g id="bt-2">
+    <path class="f-arr" d="M220 63 L246 63" marker-end="url(#a-hwboot)"/>
+    <rect class="f-box-y" x="250" y="40" width="200" height="46" rx="7"/>
+    <text class="f-lbl-y" x="350" y="60" style="font-size:11px">2 · POST</text>
+    <text class="f-lbl" x="350" y="77" style="font-size:9.5px">BIOS tests RAM, video, keyboard</text>
+    <rect class="f-box-c" x="250" y="92" width="200" height="34" rx="6"/>
+    <text class="f-lbl" x="350" y="106" style="font-size:9px">STOPS HERE →  fans run,</text>
+    <text class="f-lbl" x="350" y="119" style="font-size:9px">screen black, BEEP CODES</text>
+  </g>
+
+  <g id="bt-3">
+    <path class="f-arr" d="M454 63 L480 63" marker-end="url(#a-hwboot)"/>
+    <rect class="f-box-y" x="484" y="40" width="200" height="46" rx="7"/>
+    <text class="f-lbl-y" x="584" y="60" style="font-size:11px">3 · BIOS / CMOS</text>
+    <text class="f-lbl" x="584" y="77" style="font-size:9.5px">reads settings and boot order</text>
+    <rect class="f-box-c" x="484" y="92" width="200" height="34" rx="6"/>
+    <text class="f-lbl" x="584" y="106" style="font-size:9px">STOPS HERE →  "CMOS checksum</text>
+    <text class="f-lbl" x="584" y="119" style="font-size:9px">error", clock keeps resetting</text>
+  </g>
+
+  <g id="bt-4">
+    <path class="f-arr" d="M584 130 L584 152" marker-end="url(#a-hwboot)"/>
+    <rect class="f-box" x="484" y="156" width="200" height="46" rx="7"/>
+    <text class="f-lbl-y" x="584" y="176" style="font-size:11px">4 · FIND BOOT DEVICE</text>
+    <text class="f-lbl" x="584" y="193" style="font-size:9.5px">reads the boot sector of a drive</text>
+    <rect class="f-box-c" x="484" y="208" width="200" height="34" rx="6"/>
+    <text class="f-lbl" x="584" y="222" style="font-size:9px">STOPS HERE →  "No boot device"</text>
+    <text class="f-lbl" x="584" y="235" style="font-size:9px">or "Operating system not found"</text>
+  </g>
+
+  <g id="bt-5">
+    <path class="f-arr" d="M480 179 L454 179" marker-end="url(#a-hwboot)"/>
+    <rect class="f-box" x="250" y="156" width="200" height="46" rx="7"/>
+    <text class="f-lbl-y" x="350" y="176" style="font-size:11px">5 · LOAD THE OS</text>
+    <text class="f-lbl" x="350" y="193" style="font-size:9.5px">bootstrap loader, then drivers</text>
+    <rect class="f-box-c" x="250" y="208" width="200" height="34" rx="6"/>
+    <text class="f-lbl" x="350" y="222" style="font-size:9px">STOPS HERE →  logo, then a</text>
+    <text class="f-lbl" x="350" y="235" style="font-size:9px">freeze, a crash or a restart loop</text>
+  </g>
+
+  <g id="bt-6">
+    <path class="f-arr" d="M246 179 L220 179" marker-end="url(#a-hwboot)"/>
+    <rect class="f-box-g" x="16" y="156" width="200" height="46" rx="7"/>
+    <text class="f-lbl-y" x="116" y="176" style="font-size:11px">6 · DESKTOP</text>
+    <text class="f-lbl" x="116" y="193" style="font-size:9.5px">login, and the machine is yours</text>
+    <rect class="f-box-d" x="16" y="208" width="200" height="34" rx="6"/>
+    <text class="f-lbl" x="116" y="222" style="font-size:9px">SLOW OR FREEZING HERE →</text>
+    <text class="f-lbl" x="116" y="235" style="font-size:9px">software, drivers or heat</text>
+  </g>
+
+  <g id="bt-rule">
+    <rect class="f-box-y" x="16" y="252" width="668" height="38" rx="8"/>
+    <text class="f-lbl-y" x="350" y="268">THE DIAGNOSTIC RULE: WHATEVER STAGE IT REACHED, EVERY STAGE AFTER IT IS RULED OUT</text>
+    <text class="f-lbl" x="350" y="283">Beeping means it reached stage 2 — so power is already proved good, and the disk has not been touched yet.</text>
+  </g>
+</svg></div>
+  <div class="dia-controls">
+    <button type="button" data-dia-act="prev" data-ui="prev">&#9666; Prev</button>
+    <button type="button" data-dia-act="play" data-ui="play" aria-pressed="false">&#9654; Play</button>
+    <button type="button" data-dia-act="next" data-ui="next">Next &#9656;</button>
+    <button type="button" data-dia-act="reset" data-ui="reset">Reset</button>
+    <span class="dia-progress" aria-live="polite" data-dia-steps="7">step 0 / 7</span>
+  </div>
+  <div class="dia-caption" role="status">
+    <span class="dia-cap-en"></span>
+    <span class="dia-cap-ne np-cell" lang="ne"></span>
+  </div>
+</div>
+    <figcaption><span class="t-en">Step through it once before reading on. Each stage carries the symptom you see if
+    the machine stops there — so this is not a picture of booting, it is the diagnostic map,
+    walked forwards.
+    </span><span class="np-cell" lang="ne">पढ्नुअघि एक पटक चरणबद्ध हेर्नुहोस्। हरेक चरणले त्यहीँ रोकिए देखिने लक्षण
+    बोक्छ — त्यसैले यो boot हुने चित्र मात्र होइन, अगाडिबाट हिँडेको निदान नक्सा हो।</span></figcaption>
+  </figure>
+
   <div class="predict" data-answer="b">
     <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
     <h3><span class="t-en">A machine powers on, the fans spin, and it beeps repeatedly with a completely black screen.
@@ -567,5 +661,7 @@
 <script src="../../assets/js/sim-fault.js"></script>
 <script src="../../assets/js/guided.js"></script>
 <script src="../../assets/js/practice-bank.js"></script>
+<script src="../../assets/js/diagram.js"></script>
+<script src="../../assets/js/diagram-data.js"></script>
 </body>
 </html>

@@ -755,6 +755,86 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
     }
   })();
 
+  /* ---------- 4c-ter. syllabus coverage ----------
+     THE FAILURE NOTHING ELSE COULD SEE.
+
+     Every other content rule here protects the shape of a page. None of
+     them can notice a syllabus topic that was never written at all —
+     the build knew the official topic list and knew what had been
+     authored, and never compared the two. A student would have found
+     out in the exam hall.
+
+     Three ways to fail, and each one is a real thing that happens:
+
+       missing   — a topic on the official list with no content
+       dangling  — content claiming an anchor that no longer exists,
+                   which is what a refactor leaves behind
+       stale     — an entry for a topic the syllabus no longer lists,
+                   which is what a curriculum revision leaves behind
+
+     Opt-in per subject: only subjects present in content/coverage.js
+     are checked. Retro-fitting a map for the three subjects written
+     before this rule existed would mean recording a guess as a fact. */
+  (function checkCoverage(){
+    let coverage;
+    try { coverage = require('../content/coverage.js'); }
+    catch (e){ return; }                       /* no map, nothing to check */
+
+    const fs2 = require('fs');
+    const path2 = require('path');
+
+    for (const [subject, map] of Object.entries(coverage)){
+      const outline = syllabus[subject];
+      if (!outline){
+        E('content/coverage.js', `"${subject}" has a coverage map but no syllabus outline`);
+        continue;
+      }
+      const cfg = pages[subject];
+      if (!cfg){
+        E('content/coverage.js', `"${subject}" has a coverage map but no authored pages`);
+        continue;
+      }
+
+      /* every anchor that actually exists across this subject's lessons */
+      const anchors = new Set();
+      for (const p of cfg.pages){
+        for (const sec of (p.sec || [])){
+          const f = path2.join(ctx.SRC, 'content', 'lessons', sec + '.html');
+          if (!fs2.existsSync(f)) continue;
+          const html = fs2.readFileSync(f, 'utf8');
+          for (const m of html.matchAll(/\sid="([^"]+)"/g)) anchors.add(m[1]);
+        }
+      }
+
+      const official = new Set();
+      outline.forEach(u => (u.c || []).forEach(t => official.add(t)));
+
+      /* 1 · a topic on the official list with nothing teaching it */
+      for (const topic of official){
+        if (!(topic in map)){
+          E(`coverage["${subject}"]`,
+            'the syllabus lists "' + topic + '" and nothing covers it. ' +
+            'A student would meet this topic for the first time in the exam.');
+        }
+      }
+
+      for (const [topic, anchor] of Object.entries(map)){
+        /* 2 · content pointing at an anchor that no longer exists */
+        if (!anchors.has(anchor)){
+          E(`coverage["${subject}"]`,
+            '"' + topic + '" claims anchor #' + anchor + ', which does not exist in any ' +
+            'lesson of this subject. Either the section was renamed or its content is gone.');
+        }
+        /* 3 · a map entry the syllabus has moved on from */
+        if (!official.has(topic)){
+          E(`coverage["${subject}"]`,
+            '"' + topic + '" is not a topic in the current syllabus. If the curriculum was ' +
+            'revised, the content answering it needs review rather than a quiet re-label.');
+        }
+      }
+    }
+  })();
+
   /* ---------- 4d. the prerequisite graph ----------
      A prerequisite that points at a unit which does not exist renders as
      a dead link on the page a struggling student was sent to, which is

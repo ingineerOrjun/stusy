@@ -1312,6 +1312,210 @@ GuidedPractice.register({
 });
 
 GuidedPractice.register({
+  "id": "hw.restore",
+  "subject": "grade10/hardware",
+  "unit": "hw-u6",
+  "skill": {
+    "en": "Count the sets a restore depends on, and say what a missing one costs",
+    "ne": "पुनर्स्थापनाले भर पर्ने सेट गन्नुहोस्, र एउटा हराए के गुम्छ भन्नुहोस्"
+  },
+  "rule": {
+    "en": "A restore needs the last FULL backup plus whatever holds the changes since. Incremental holds changes since the LAST BACKUP OF ANY KIND, so every one since the full backup is needed and they form a chain — break a link and everything after it is lost. Differential holds changes since the last FULL backup, so exactly two sets are ever needed and losing an older differential costs nothing.",
+    "ne": "पुनर्स्थापनाका लागि अन्तिम FULL ब्याकअप र त्यसपछिका परिवर्तन बोक्ने जति चाहिन्छ। Incremental ले जुनसुकै किसिमको अघिल्लो ब्याकअपपछिको परिवर्तन बोक्छ, त्यसैले full पछिका सबै चाहिन्छन् र ती शृंखला बन्छन् — एउटा कडी टुट्यो भने त्यसपछिको सबै जान्छ। Differential ले अन्तिम FULL पछिको परिवर्तन बोक्छ, त्यसैले सधैं ठ्याक्कै दुई सेट चाहिन्छ र पुरानो differential हराए केही बिग्रँदैन।"
+  },
+  "problems": [
+    {
+      "fade": "worked",
+      "ask": {
+        "en": "Full backup on Monday. Incremental backups on Tuesday, Wednesday, Thursday and Friday. The disk fails on Friday night. How many sets does the restore need?",
+        "ne": "सोमबार full ब्याकअप। मंगल, बुध, बिही र शुक्रबार incremental। शुक्रबार राति डिस्क बिग्रियो। पुनर्स्थापनाका लागि कति सेट चाहिन्छ?"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "Does an incremental hold changes since the last FULL backup, or since the last backup of any kind? Answer full or any",
+            "ne": "Incremental ले अन्तिम FULL पछिको परिवर्तन बोक्छ कि जुनसुकै किसिमको अघिल्लो ब्याकअपपछिको? full वा any"
+          },
+          "answer": "any",
+          "accept": [
+            "any kind",
+            "last backup"
+          ],
+          "why": {
+            "en": "That is the whole definition. Tuesday holds Monday-to-Tuesday, Wednesday holds Tuesday-to-Wednesday, and so on — each one starts where the previous backup stopped, not where the full one did.",
+            "ne": "परिभाषा नै यही हो। मंगलबारले सोम–मंगलको, बुधबारले मंगल–बुधको बोक्छ — हरेकले अघिल्लो ब्याकअप रोकिएको ठाउँबाट सुरु गर्छ, full रोकिएको ठाउँबाट होइन।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "How many incremental sets were taken between Monday and Friday? Answer a number",
+            "ne": "सोमबारदेखि शुक्रबारसम्म कति incremental सेट लिइए? सङ्ख्यामा उत्तर दिनुहोस्"
+          },
+          "answer": "4",
+          "accept": [
+            "four"
+          ],
+          "why": {
+            "en": "Tuesday, Wednesday, Thursday and Friday — four.",
+            "ne": "मंगल, बुध, बिही र शुक्रबार — चार।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "So how many sets in total does the restore need? Answer a number",
+            "ne": "त्यसैले पुनर्स्थापनाका लागि जम्मा कति सेट चाहिन्छ? सङ्ख्यामा उत्तर दिनुहोस्"
+          },
+          "answer": "5",
+          "accept": [
+            "five"
+          ],
+          "why": {
+            "en": "The full set, then all four increments replayed in order. Five.",
+            "ne": "Full सेट, अनि चारै increment क्रमैसँग लगाउने। पाँच।"
+          }
+        }
+      ],
+      "result": "5",
+      "resultPrompt": {
+        "en": "Sets needed",
+        "ne": "चाहिने सेट"
+      },
+      "check": {
+        "en": "Five. The chain has to be replayed in order, which is the price incremental pays for being the fastest to take. Notice the count is full + one per day since — not one per day of the week.",
+        "ne": "पाँच। शृंखला क्रमैसँग लगाउनुपर्छ — लिन सबैभन्दा छिटो हुनुको मूल्य incremental ले यही तिर्छ। गन्ती full + त्यसपछिका हरेक दिनको एक हो, हप्ताको हरेक दिनको एक होइन।"
+      }
+    },
+    {
+      "fade": "partial",
+      "ask": {
+        "en": "The same week, but the Tuesday-to-Friday backups are DIFFERENTIAL instead. The disk fails on Friday night. How many sets does the restore need?",
+        "ne": "उही हप्ता, तर मंगलदेखि शुक्रसम्मका ब्याकअप DIFFERENTIAL छन्। शुक्रबार राति डिस्क बिग्रियो। पुनर्स्थापनाका लागि कति सेट चाहिन्छ?"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "What does Friday's differential contain — changes since Thursday, or since Monday? Answer thursday or monday",
+            "ne": "शुक्रबारको differential मा के हुन्छ — बिहीबारपछिको परिवर्तन कि सोमबारपछिको? thursday वा monday"
+          },
+          "answer": "monday",
+          "accept": [
+            "mon",
+            "full"
+          ],
+          "why": {
+            "en": "A differential always measures from the last FULL backup, so Friday's already contains everything Tuesday, Wednesday and Thursday captured.",
+            "ne": "Differential सधैं अन्तिम FULL बाट नाप्छ, त्यसैले शुक्रबारकोमा मंगल, बुध र बिहीबारले टिपेको सबै पहिल्यै समेटिएको हुन्छ।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "So how many sets does the restore need? Answer a number",
+            "ne": "त्यसैले पुनर्स्थापनाका लागि कति सेट चाहिन्छ? सङ्ख्यामा उत्तर दिनुहोस्"
+          },
+          "answer": "2",
+          "accept": [
+            "two"
+          ],
+          "why": {
+            "en": "Monday's full set and Friday's differential. The ones in between are redundant the moment a newer differential exists.",
+            "ne": "सोमबारको full र शुक्रबारको differential। नयाँ differential बनेकै क्षणदेखि बीचका सबै बेकामे हुन्छन्।"
+          }
+        }
+      ],
+      "result": "2",
+      "resultPrompt": {
+        "en": "Sets needed",
+        "ne": "चाहिने सेट"
+      },
+      "check": {
+        "en": "Two — always two, whatever day it fails on. That is what differential buys with its larger daily sets, and it is the comparison the exam asks for.",
+        "ne": "दुई — जुन दिन बिग्रिए पनि सधैं दुई। ठूला दैनिक सेटको बदलामा differential ले किन्ने कुरा यही हो, र परीक्षाले खोज्ने तुलना पनि यही।"
+      }
+    },
+    {
+      "fade": "guided",
+      "ask": {
+        "en": "Back to the incremental week: full on Monday, incrementals Tuesday to Friday. Wednesday's tape turns out to be unreadable. Up to which day can the data be trusted?",
+        "ne": "फेरि incremental हप्तामा: सोमबार full, मंगलदेखि शुक्रसम्म incremental। बुधबारको टेप पढ्नै नमिल्ने निस्कियो। कुन दिनसम्मको data भरपर्दो छ?"
+      },
+      "steps": [
+        {
+          "prompt": {
+            "en": "Does Thursday's increment contain the changes Wednesday's was holding? Answer yes or no",
+            "ne": "बिहीबारको increment मा बुधबारकोले बोकेको परिवर्तन छ? yes वा no"
+          },
+          "answer": "no",
+          "accept": [
+            "n"
+          ],
+          "why": {
+            "en": "Thursday only holds what changed after Wednesday's backup ran. Nothing later re-captures what Wednesday was carrying, so the gap cannot be filled from another set.",
+            "ne": "बिहीबारकोमा बुधबारको ब्याकअप चलेपछि बदलिएको मात्र हुन्छ। बुधबारले बोकेको कुरा पछिको कुनैले फेरि टिप्दैन, त्यसैले त्यो खाडल अर्को सेटबाट भरिँदैन।"
+          }
+        },
+        {
+          "prompt": {
+            "en": "So which day is the last one you can restore to? Answer monday, tuesday, wednesday or friday",
+            "ne": "त्यसैले कुन दिनसम्म फर्काउन सकिन्छ? monday, tuesday, wednesday वा friday"
+          },
+          "answer": "tuesday",
+          "accept": [
+            "tue"
+          ],
+          "why": {
+            "en": "Monday's full set plus Tuesday's increment replay cleanly. The chain breaks at Wednesday, and everything from there on is unrecoverable.",
+            "ne": "सोमबारको full र मंगलबारको increment सफासँग लाग्छन्। शृंखला बुधबार टुट्छ, र त्यसपछिको सबै फर्काउन सकिँदैन।"
+          }
+        }
+      ],
+      "result": "tuesday",
+      "resultPrompt": {
+        "en": "Restorable up to",
+        "ne": "यति दिनसम्म फर्काउन सकिने"
+      },
+      "check": {
+        "en": "Tuesday. One damaged tape cost three days of work — that fragility is the real argument against incremental, and it is why the same failure under a differential scheme would have cost nothing at all.",
+        "ne": "मंगलबार। एउटा बिग्रेको टेपले तीन दिनको काम लियो — incremental विरुद्धको साँचो तर्क यही कमजोरी हो, र त्यसैले differential योजनामा उही असफलताले केही बिगार्दैनथ्यो।"
+      }
+    },
+    {
+      "fade": "independent",
+      "ask": {
+        "en": "A full backup runs on the 1st of the month. Differential backups run every day after it. The disk fails on the 20th. How many sets does the restore need? Answer a number.",
+        "ne": "महिनाको १ गते full ब्याकअप चल्छ। त्यसपछि हरेक दिन differential। २० गते डिस्क बिग्रियो। पुनर्स्थापनाका लागि कति सेट चाहिन्छ? सङ्ख्यामा उत्तर दिनुहोस्।"
+      },
+      "steps": [],
+      "result": "2",
+      "resultPrompt": {
+        "en": "Sets needed",
+        "ne": "चाहिने सेट"
+      },
+      "check": {
+        "en": "Two, and the twenty days are a distraction. A differential restore never needs more than the full set and the latest differential, however long the month has run. If you answered 20 or 19, you counted the backups taken rather than the ones a restore depends on.",
+        "ne": "दुई — र बीस दिन ध्यान भड्काउन राखिएको हो। महिना जति लामो भए पनि differential पुनर्स्थापनालाई full सेट र सबैभन्दा पछिल्लो differential भन्दा बढी कहिल्यै चाहिँदैन। २० वा १९ भन्नुभयो भने तपाईंले लिइएका ब्याकअप गन्नुभयो, पुनर्स्थापनाले भर पर्नेहरू होइन।"
+      }
+    },
+    {
+      "fade": "transfer",
+      "ask": {
+        "en": "Different technology, same question. A RAID 5 array of four disks loses one disk. To rebuild the missing disk's contents, how many of the surviving disks must be readable? Answer a number.",
+        "ne": "फरक प्रविधि, उही प्रश्न। चार डिस्कको RAID 5 array ले एउटा डिस्क गुमायो। हराएको डिस्कको सामग्री पुनर्निर्माण गर्न बाँकी कतिवटा डिस्क पढ्न मिल्नुपर्छ? सङ्ख्यामा उत्तर दिनुहोस्।"
+      },
+      "steps": [],
+      "result": "3",
+      "resultPrompt": {
+        "en": "Disks needed",
+        "ne": "चाहिने डिस्क"
+      },
+      "check": {
+        "en": "All three. The rule transferred: a recovery depends on every source that holds part of the answer, and you count those rather than counting what exists. RAID 5 rebuilds the lost disk by combining the data and parity spread across ALL the remaining disks — so a second failure during the rebuild loses the array, which is exactly the chain-breaks-and-everything-after-is-gone problem, wearing different hardware.",
+        "ne": "तीनै वटा। नियम सर्‍यो: पुनर्स्थापनाले उत्तरको अंश बोक्ने हरेक स्रोतमा भर पर्छ, र गन्नुपर्ने कुरा त्यही हो — के छ भन्ने होइन। RAID 5 ले बाँकी <b>सबै</b> डिस्कमा फैलिएको data र parity जोडेर हराएको डिस्क बनाउँछ — त्यसैले पुनर्निर्माणकै बीचमा दोस्रो डिस्क बिग्रिए array जान्छ, जुन ठ्याक्कै \"कडी टुट्यो, त्यसपछिको सबै गयो\" भन्ने समस्या हो, फरक हार्डवेयर लगाएर।"
+      }
+    }
+  ]
+});
+
+GuidedPractice.register({
   "id": "hw.diagnose",
   "subject": "grade10/hardware",
   "unit": "hw-u4",

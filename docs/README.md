@@ -69,6 +69,7 @@ Read these to find out *why* something is the way it is.
 | 8 — learning depth, headings, screen reader | [LEARNING-AUDIT](PHASE-8-LEARNING-AUDIT.md) | [D](PHASE-8-DECISIONS.md) | [report](PHASE-8-COMPLETION-REPORT.md) |
 | 8.1 — the 18-unit matrix, and the worked-example think gate | appended to the three Phase 8 documents above | | |
 | Hardware — Class 10 Hardware & Repair, complete | [CONTENT-AUDIT](PHASE-HARDWARE-CONTENT-AUDIT.md) | two new components, argued in the report §3 | [report](PHASE-HARDWARE-COMPLETION-REPORT.md) |
+| Hardware 8 — boot animation, coverage validation, diagram reset fix | — | syllabus coverage gate, argued in the report §4 | [report](PHASE-8-HARDWARE-REPAIR-COMPLETION-REPORT.md) |
 
 ## Two things every document here agrees on
 

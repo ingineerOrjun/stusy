@@ -63,13 +63,62 @@
     return this.svg ? this.svg.querySelectorAll(sel) : [];
   };
 
+  /* Every selector this diagram's steps can touch, collected once.
+
+     WHY THIS EXISTS. reset() used to clear only elements carrying an
+     animation class — .dia-step and friends. Every animated diagram in
+     the product marks its stages as plain `<g id="...">` with no class
+     at all, so _applyStep could add `.on` to them and reset could never
+     take it off.
+
+     Forward stepping only ever adds, which is why this survived from
+     Phase 2 to here unnoticed: Next looked perfect. Prev and Reset were
+     visually inert on all fifteen animated diagrams — the caption and
+     the counter moved back while the picture stayed fully revealed, so
+     a student stepping back read "POST is running" over a finished
+     boot, and Reset handed the next student the answer labelled
+     "step 0".
+
+     Collecting the step selectors is narrower than clearing every `.on`
+     in the SVG: it touches exactly what the steps themselves target and
+     nothing an author lit deliberately in the base markup. */
+  Diagram.prototype._targets = function(){
+    if (this._targetSel) return this._targetSel;
+    var seen = {};
+    var add = function(list){
+      if (!list) return;
+      var arr = typeof list === 'string' ? [list] : list;
+      for (var i = 0; i < arr.length; i++) seen[arr[i]] = true;
+    };
+    var steps = (this.cfg && this.cfg.steps) || [];
+    for (var i = 0; i < steps.length; i++){
+      var s = steps[i];
+      add(s.show); add(s.hide); add(s.focus);
+      if (s.state) for (var k in s.state) if (Object.prototype.hasOwnProperty.call(s.state, k)) seen[k] = true;
+      if (s.move)  for (var m in s.move)  if (Object.prototype.hasOwnProperty.call(s.move, m))  seen[m] = true;
+    }
+    var out = [];
+    for (var sel in seen) if (Object.prototype.hasOwnProperty.call(seen, sel)) out.push(sel);
+    this._targetSel = out;
+    return out;
+  };
+
   /* Return every animatable element to its base state. */
   Diagram.prototype.reset = function(){
+    var self = this;
+    var clear = function(el){
+      el.classList.remove('on');
+      el.removeAttribute('transform');
+      if (global.MotionService) MotionService.setState(el, null);
+    };
+
     var marked = this.$('.dia-step, .dia-dim, .dia-focus, .dia-draw, .dia-travel');
-    for (var i = 0; i < marked.length; i++){
-      marked[i].classList.remove('on');
-      marked[i].removeAttribute('transform');
-      if (global.MotionService) MotionService.setState(marked[i], null);
+    for (var i = 0; i < marked.length; i++) clear(marked[i]);
+
+    var sels = this._targets();
+    for (var j = 0; j < sels.length; j++){
+      var els = self.$(sels[j]);
+      for (var k = 0; k < els.length; k++) clear(els[k]);
     }
     return this;
   };

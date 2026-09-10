@@ -569,3 +569,54 @@ DiagramRuntime.register("hwBackupTypes", {
     }
   ]
 });
+
+DiagramRuntime.register("hwBootSequence", {
+  "intro": {
+    "en": "The boot sequence, and the symptom you see if it stops at each stage.",
+    "ne": "Boot को क्रम, र हरेक चरणमा रोकिए देखिने लक्षण।"
+  },
+  "steps": [
+    {
+      "show": "#bt-1",
+      "focus": "#bt-1",
+      "en": "POWER ON. The supply delivers +12 V, +5 V and +3.3 V and the fans start. If nothing at all happens — no lights, no fan — it never got this far, and the fault is in the power path.",
+      "ne": "POWER ON। सप्लाईले +१२ V, +५ V र +३.३ V दिन्छ र पंखा सुरु हुन्छ। केही पनि नभएमा — बत्ती छैन, पंखा छैन — यो यहाँसम्म पुगेकै छैन, र खराबी बिजुलीको बाटोमा छ।"
+    },
+    {
+      "show": "#bt-2",
+      "focus": "#bt-2",
+      "en": "POST — the Power-On Self Test. The BIOS checks the essential hardware. Because video is not ready yet, it reports a failure by BEEPING. Fans running plus beeps means power is already proved good.",
+      "ne": "POST — Power-On Self Test। BIOS ले आवश्यक हार्डवेयर जाँच्छ। Video अझै तयार नभएकाले खराबी <b>बीप</b> गरेर सुनाउँछ। पंखा घुम्नु र बीप हुनुले बिजुली ठीक छ भन्ने पहिल्यै प्रमाणित गर्छ।"
+    },
+    {
+      "show": "#bt-3",
+      "focus": "#bt-3",
+      "en": "BIOS reads its stored settings from CMOS — the time, and the boot order. A dead CMOS battery shows here: \"CMOS checksum error\", and a clock that resets on every start.",
+      "ne": "BIOS ले CMOS बाट भण्डारित सेटिङ पढ्छ — समय, र boot order। मरेको CMOS ब्याट्री यहीँ देखिन्छ: \"CMOS checksum error\", र हरेक पटक सुरु हुँदा फर्किने घडी।"
+    },
+    {
+      "show": "#bt-4",
+      "focus": "#bt-4",
+      "en": "It now looks for a bootable drive in the order the BIOS lists, and reads its boot sector. Failing here gives a MESSAGE ON SCREEN — which itself proves POST passed and video works.",
+      "ne": "अब BIOS ले तोकेको क्रममा boot हुने ड्राइभ खोज्छ र त्यसको boot sector पढ्छ। यहाँ असफल भए <b>स्क्रिनमा सन्देश</b> आउँछ — र त्यही सन्देशले POST पास भयो र video चल्छ भन्ने प्रमाणित गर्छ।"
+    },
+    {
+      "show": "#bt-5",
+      "focus": "#bt-5",
+      "en": "The bootstrap loader hands control to the operating system, which loads its drivers. A logo followed by a freeze, a crash or a restart loop is a fault at this stage — the hardware has already done its job.",
+      "ne": "Bootstrap loader ले नियन्त्रण अपरेटिङ सिस्टमलाई सुम्पिन्छ, जसले आफ्ना driver लोड गर्छ। लोगोपछि अड्किनु, बन्द हुनु वा बारम्बार रिस्टार्ट हुनु यही चरणको खराबी हो — हार्डवेयरले आफ्नो काम गरिसक्यो।"
+    },
+    {
+      "show": "#bt-6",
+      "focus": "#bt-6",
+      "en": "The desktop appears. Anything slow or unstable from here on is software, drivers or heat — every piece of hardware has already proved itself by getting you this far.",
+      "ne": "डेस्कटप देखिन्छ। यहाँदेखि उता ढिलो वा अस्थिर हुनु सफ्टवेयर, driver वा तापको कुरा हो — यहाँसम्म ल्याएरै हरेक हार्डवेयरले आफूलाई प्रमाणित गरिसक्यो।"
+    },
+    {
+      "show": "#bt-rule",
+      "focus": "#bt-rule",
+      "en": "And this is the whole of diagnosis in one line. Find the last stage it completed; everything after that stage is ruled out without a single tool.",
+      "ne": "र पूरै निदान यही एउटा वाक्यमा छ। पूरा भएको अन्तिम चरण पत्ता लगाउनुहोस्; त्यसपछिका सबै चरण कुनै औजारबिनै हट्छन्।"
+    }
+  ]
+});

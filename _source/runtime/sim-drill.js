@@ -715,6 +715,60 @@
           }
         }
       ]
+    },
+
+    /* ---- Hardware Unit 5: which port does this device use? ----
+       Syllabus topic 5.6, "input and output device connection issues".
+       Built as a drill rather than a new component because a drill is
+       already exactly this shape: one case, named options, and a reason
+       attached to the answer. A bespoke port-matching widget would have
+       been a second engine doing the same job. */
+    portmatch: {
+      title: { en: 'Which port does this connect to?', ne: 'यो कुन पोर्टमा जोडिन्छ?' },
+      lead: {
+        en: 'A device that will not work is very often a device in the wrong socket. Read what is being connected and choose the port — the reasoning matters more than the shape, because several connectors physically fit where they do not belong.',
+        ne: 'नचल्ने उपकरण प्रायः गलत सकेटमा जोडिएको हुन्छ। के जोड्दै हुनुहुन्छ पढेर पोर्ट छान्नुहोस् — आकारभन्दा कारण महत्त्वपूर्ण छ, किनकि धेरै connector नमिल्ने ठाउँमा पनि भौतिक रूपमा अटाउँछन्।'
+      },
+      options: [
+        { id: 'usb', label: { en: 'USB', ne: 'USB' } },
+        { id: 'hdmi', label: { en: 'HDMI / VGA', ne: 'HDMI / VGA' } },
+        { id: 'eth', label: { en: 'Ethernet (RJ-45)', ne: 'Ethernet (RJ-45)' } },
+        { id: 'audio', label: { en: '3.5 mm audio', ne: '३.५ mm audio' } }
+      ],
+      cases: [
+        {
+          pre: 'A wired network cable from the router',
+          answer: 'eth',
+          why: {
+            en: 'A network cable ends in an RJ-45 plug and goes to the Ethernet port. The trap is that an RJ-11 telephone plug is narrower and will slide into an RJ-45 socket without clicking — it fits, and it will never carry a network.',
+            ne: 'नेटवर्क केबलको टुप्पोमा RJ-45 प्लग हुन्छ र त्यो Ethernet पोर्टमा जान्छ। पासो यो हो: RJ-11 टेलिफोन प्लग साँघुरो हुन्छ र क्लिक नगरी RJ-45 सकेटभित्र पस्छ — अटाउँछ, तर कहिल्यै नेटवर्क बोक्दैन।'
+          }
+        },
+        {
+          pre: 'A monitor cable carrying picture and sound',
+          answer: 'hdmi',
+          why: {
+            en: 'Picture AND sound over one cable means HDMI — VGA is analogue and carries video only. If a user complains there is no sound from the monitor, check which of the two they used before suspecting the speakers.',
+            ne: 'एउटै केबलमा तस्बिर <b>र</b> आवाज भनेको HDMI हो — VGA analogue हो र video मात्र बोक्छ। Monitor बाट आवाज आएन भन्ने गुनासो आए स्पिकरमा शंका गर्नुअघि कुन केबल प्रयोग भयो हेर्नुहोस्।'
+          }
+        },
+        {
+          pre: 'A printer, a keyboard, a mouse and a flash drive',
+          answer: 'usb',
+          why: {
+            en: 'All four are USB, which is why USB replaced the separate parallel, PS/2 and serial ports it succeeded. One port type, one connector, and the system detects what was plugged in.',
+            ne: 'चारै USB हुन् — त्यसैले USB ले पहिलेका छुट्टाछुट्टै parallel, PS/2 र serial पोर्ट हटायो। एउटै किसिमको पोर्ट, एउटै connector, र के जोडियो प्रणालीले आफैँ पत्ता लगाउँछ।'
+          }
+        },
+        {
+          pre: 'Headphones, into a socket that is\nthe same size as the microphone one',
+          answer: 'audio',
+          why: {
+            en: 'Both are 3.5 mm and physically identical, so the plug fits either way and nothing warns you. Go by the colour and the icon: green with a headphone symbol is output, pink with a microphone symbol is input. "It fits" is not evidence.',
+            ne: 'दुवै ३.५ mm र भौतिक रूपमा एउटै हुन्, त्यसैले प्लग जतासुकै अटाउँछ र केही चेतावनी आउँदैन। रङ र चिन्ह हेर्नुहोस्: हेडफोन चिन्हसहितको हरियो output, माइक्रोफोन चिन्हसहितको गुलाबी input। "अटायो" भन्नु प्रमाण होइन।'
+          }
+        }
+      ]
     }
   };
 

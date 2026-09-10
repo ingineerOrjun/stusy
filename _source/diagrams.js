@@ -3232,4 +3232,117 @@ D.hwBackupTypes = {
   ]
 };
 
+/* THE ANIMATION THIS SUBJECT SHOULD HAVE HAD FIRST.
+
+   Unit 4 teaches diagnosis as "read how far the boot reached, and let
+   that rule out everything after it". That rule is useless to a student
+   who cannot picture the sequence — and the sequence is the one thing
+   in this subject that is purely temporal, so a still diagram states it
+   and cannot show it.
+
+   What makes it teach rather than decorate: each stage carries the
+   SYMPTOM you see if the machine stops there. Stepping through it is
+   stepping through the diagnostic map, forwards. A student who has done
+   that can answer "fans spin, screen black, beeping" without being
+   told, because they have watched where beeping lives. */
+D.hwBootSequence = {
+  type: 'animated',
+  intro: { en: 'The boot sequence, and the symptom you see if it stops at each stage.',
+           ne: 'Boot को क्रम, र हरेक चरणमा रोकिए देखिने लक्षण।' },
+  svg: `
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-hwboot">
+  <title id="t-hwboot">The boot sequence from power on through POST, BIOS settings, finding the boot device, loading the operating system and reaching the desktop, with the symptom seen if the machine stops at each stage</title>
+  ${ah('a-hwboot')}
+  <text class="f-ttl" x="10" y="20">WHAT HAPPENS WHEN YOU PRESS THE POWER BUTTON</text>
+
+  <g id="bt-1">
+    <rect class="f-box-y" x="16" y="40" width="200" height="46" rx="7"/>
+    <text class="f-lbl-y" x="116" y="60" style="font-size:11px">1 · POWER ON</text>
+    <text class="f-lbl" x="116" y="77" style="font-size:9.5px">PSU delivers +12V, +5V, +3.3V</text>
+    <rect class="f-box-c" x="16" y="92" width="200" height="34" rx="6"/>
+    <text class="f-lbl" x="116" y="106" style="font-size:9px">STOPS HERE →  no lights,</text>
+    <text class="f-lbl" x="116" y="119" style="font-size:9px">no fans, nothing at all</text>
+  </g>
+
+  <g id="bt-2">
+    <path class="f-arr" d="M220 63 L246 63" marker-end="url(#a-hwboot)"/>
+    <rect class="f-box-y" x="250" y="40" width="200" height="46" rx="7"/>
+    <text class="f-lbl-y" x="350" y="60" style="font-size:11px">2 · POST</text>
+    <text class="f-lbl" x="350" y="77" style="font-size:9.5px">BIOS tests RAM, video, keyboard</text>
+    <rect class="f-box-c" x="250" y="92" width="200" height="34" rx="6"/>
+    <text class="f-lbl" x="350" y="106" style="font-size:9px">STOPS HERE →  fans run,</text>
+    <text class="f-lbl" x="350" y="119" style="font-size:9px">screen black, BEEP CODES</text>
+  </g>
+
+  <g id="bt-3">
+    <path class="f-arr" d="M454 63 L480 63" marker-end="url(#a-hwboot)"/>
+    <rect class="f-box-y" x="484" y="40" width="200" height="46" rx="7"/>
+    <text class="f-lbl-y" x="584" y="60" style="font-size:11px">3 · BIOS / CMOS</text>
+    <text class="f-lbl" x="584" y="77" style="font-size:9.5px">reads settings and boot order</text>
+    <rect class="f-box-c" x="484" y="92" width="200" height="34" rx="6"/>
+    <text class="f-lbl" x="584" y="106" style="font-size:9px">STOPS HERE →  "CMOS checksum</text>
+    <text class="f-lbl" x="584" y="119" style="font-size:9px">error", clock keeps resetting</text>
+  </g>
+
+  <g id="bt-4">
+    <path class="f-arr" d="M584 130 L584 152" marker-end="url(#a-hwboot)"/>
+    <rect class="f-box" x="484" y="156" width="200" height="46" rx="7"/>
+    <text class="f-lbl-y" x="584" y="176" style="font-size:11px">4 · FIND BOOT DEVICE</text>
+    <text class="f-lbl" x="584" y="193" style="font-size:9.5px">reads the boot sector of a drive</text>
+    <rect class="f-box-c" x="484" y="208" width="200" height="34" rx="6"/>
+    <text class="f-lbl" x="584" y="222" style="font-size:9px">STOPS HERE →  "No boot device"</text>
+    <text class="f-lbl" x="584" y="235" style="font-size:9px">or "Operating system not found"</text>
+  </g>
+
+  <g id="bt-5">
+    <path class="f-arr" d="M480 179 L454 179" marker-end="url(#a-hwboot)"/>
+    <rect class="f-box" x="250" y="156" width="200" height="46" rx="7"/>
+    <text class="f-lbl-y" x="350" y="176" style="font-size:11px">5 · LOAD THE OS</text>
+    <text class="f-lbl" x="350" y="193" style="font-size:9.5px">bootstrap loader, then drivers</text>
+    <rect class="f-box-c" x="250" y="208" width="200" height="34" rx="6"/>
+    <text class="f-lbl" x="350" y="222" style="font-size:9px">STOPS HERE →  logo, then a</text>
+    <text class="f-lbl" x="350" y="235" style="font-size:9px">freeze, a crash or a restart loop</text>
+  </g>
+
+  <g id="bt-6">
+    <path class="f-arr" d="M246 179 L220 179" marker-end="url(#a-hwboot)"/>
+    <rect class="f-box-g" x="16" y="156" width="200" height="46" rx="7"/>
+    <text class="f-lbl-y" x="116" y="176" style="font-size:11px">6 · DESKTOP</text>
+    <text class="f-lbl" x="116" y="193" style="font-size:9.5px">login, and the machine is yours</text>
+    <rect class="f-box-d" x="16" y="208" width="200" height="34" rx="6"/>
+    <text class="f-lbl" x="116" y="222" style="font-size:9px">SLOW OR FREEZING HERE →</text>
+    <text class="f-lbl" x="116" y="235" style="font-size:9px">software, drivers or heat</text>
+  </g>
+
+  <g id="bt-rule">
+    <rect class="f-box-y" x="16" y="252" width="668" height="38" rx="8"/>
+    <text class="f-lbl-y" x="350" y="268">THE DIAGNOSTIC RULE: WHATEVER STAGE IT REACHED, EVERY STAGE AFTER IT IS RULED OUT</text>
+    <text class="f-lbl" x="350" y="283">Beeping means it reached stage 2 — so power is already proved good, and the disk has not been touched yet.</text>
+  </g>
+</svg>`,
+  steps: [
+    { show: '#bt-1', focus: '#bt-1',
+      en: 'POWER ON. The supply delivers +12 V, +5 V and +3.3 V and the fans start. If nothing at all happens — no lights, no fan — it never got this far, and the fault is in the power path.',
+      ne: 'POWER ON। सप्लाईले +१२ V, +५ V र +३.३ V दिन्छ र पंखा सुरु हुन्छ। केही पनि नभएमा — बत्ती छैन, पंखा छैन — यो यहाँसम्म पुगेकै छैन, र खराबी बिजुलीको बाटोमा छ।' },
+    { show: '#bt-2', focus: '#bt-2',
+      en: 'POST — the Power-On Self Test. The BIOS checks the essential hardware. Because video is not ready yet, it reports a failure by BEEPING. Fans running plus beeps means power is already proved good.',
+      ne: 'POST — Power-On Self Test। BIOS ले आवश्यक हार्डवेयर जाँच्छ। Video अझै तयार नभएकाले खराबी <b>बीप</b> गरेर सुनाउँछ। पंखा घुम्नु र बीप हुनुले बिजुली ठीक छ भन्ने पहिल्यै प्रमाणित गर्छ।' },
+    { show: '#bt-3', focus: '#bt-3',
+      en: 'BIOS reads its stored settings from CMOS — the time, and the boot order. A dead CMOS battery shows here: "CMOS checksum error", and a clock that resets on every start.',
+      ne: 'BIOS ले CMOS बाट भण्डारित सेटिङ पढ्छ — समय, र boot order। मरेको CMOS ब्याट्री यहीँ देखिन्छ: "CMOS checksum error", र हरेक पटक सुरु हुँदा फर्किने घडी।' },
+    { show: '#bt-4', focus: '#bt-4',
+      en: 'It now looks for a bootable drive in the order the BIOS lists, and reads its boot sector. Failing here gives a MESSAGE ON SCREEN — which itself proves POST passed and video works.',
+      ne: 'अब BIOS ले तोकेको क्रममा boot हुने ड्राइभ खोज्छ र त्यसको boot sector पढ्छ। यहाँ असफल भए <b>स्क्रिनमा सन्देश</b> आउँछ — र त्यही सन्देशले POST पास भयो र video चल्छ भन्ने प्रमाणित गर्छ।' },
+    { show: '#bt-5', focus: '#bt-5',
+      en: 'The bootstrap loader hands control to the operating system, which loads its drivers. A logo followed by a freeze, a crash or a restart loop is a fault at this stage — the hardware has already done its job.',
+      ne: 'Bootstrap loader ले नियन्त्रण अपरेटिङ सिस्टमलाई सुम्पिन्छ, जसले आफ्ना driver लोड गर्छ। लोगोपछि अड्किनु, बन्द हुनु वा बारम्बार रिस्टार्ट हुनु यही चरणको खराबी हो — हार्डवेयरले आफ्नो काम गरिसक्यो।' },
+    { show: '#bt-6', focus: '#bt-6',
+      en: 'The desktop appears. Anything slow or unstable from here on is software, drivers or heat — every piece of hardware has already proved itself by getting you this far.',
+      ne: 'डेस्कटप देखिन्छ। यहाँदेखि उता ढिलो वा अस्थिर हुनु सफ्टवेयर, driver वा तापको कुरा हो — यहाँसम्म ल्याएरै हरेक हार्डवेयरले आफूलाई प्रमाणित गरिसक्यो।' },
+    { show: '#bt-rule', focus: '#bt-rule',
+      en: 'And this is the whole of diagnosis in one line. Find the last stage it completed; everything after that stage is ruled out without a single tool.',
+      ne: 'र पूरै निदान यही एउटा वाक्यमा छ। पूरा भएको अन्तिम चरण पत्ता लगाउनुहोस्; त्यसपछिका सबै चरण कुनै औजारबिनै हट्छन्।' }
+  ]
+};
+
 module.exports = D;

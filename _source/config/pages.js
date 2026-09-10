@@ -226,7 +226,8 @@ module.exports = {
       { file: 'unit6.html', n: '6',
         title: 'Backup and Recovery', np: 'ब्याकअप र रिकभरी',
         chip: 'Backup & RAID', hrs: 8, marks: 7,
-        sec: ['hw-u6'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js'] },
+        sec: ['hw-u6'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                             'guided.js', 'practice-bank.js'] },
 
       { file: 'revise.html', n: '↻',
         title: 'Your Revision', np: 'तपाईंको दोहोर्‍याइ',
