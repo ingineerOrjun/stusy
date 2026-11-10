@@ -881,12 +881,26 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
         }
       }
 
-      for (const [topic, anchor] of Object.entries(map)){
-        /* 2 · content pointing at an anchor that no longer exists */
-        if (!anchors.has(anchor)){
+      for (const [topic, claim] of Object.entries(map)){
+        /* An official topic is sometimes taught across two sections — the
+           official list folds sub-items together in one place and splits
+           them in another. A map entry may therefore name SEVERAL anchors.
+           Recording both is the point: one anchor would hide half the
+           evidence, and a comment would not be checked by anything. */
+        const list = Array.isArray(claim) ? claim : [claim];
+
+        if (!list.length){
           E(`coverage["${subject}"]`,
-            '"' + topic + '" claims anchor #' + anchor + ', which does not exist in any ' +
-            'lesson of this subject. Either the section was renamed or its content is gone.');
+            '"' + topic + '" names no anchor at all, so nothing is being claimed for it.');
+        }
+
+        for (const anchor of list){
+          /* 2 · content pointing at an anchor that no longer exists */
+          if (!anchors.has(anchor)){
+            E(`coverage["${subject}"]`,
+              '"' + topic + '" claims anchor #' + anchor + ', which does not exist in any ' +
+              'lesson of this subject. Either the section was renamed or its content is gone.');
+          }
         }
         /* 3 · a map entry the syllabus has moved on from */
         if (!official.has(topic)){

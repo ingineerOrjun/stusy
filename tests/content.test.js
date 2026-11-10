@@ -91,6 +91,37 @@ test('syllabus totals match the curriculum', () => {
   assert.strictEqual(topics, 319, 'expected 319 outlined topics');
 });
 
+test('every authored subject has a coverage map, and it is complete', () => {
+  /* The build gate is opt-in per subject: a subject with no entry in
+     coverage.js is simply not checked. That is the right default for an
+     unauthored outline and the wrong one for an authored subject, where
+     silence looks exactly like success.
+
+     This asserts the opt-in itself. Before the Phase 9 continuation, two
+     of the four authored Grade 10 subjects — DBMS and Digital Design,
+     twenty-seven marks of the paper between them — had outlines, had
+     lessons, and were not checked against either. */
+  const coverage = require(path.join(SRC, 'content', 'coverage.js'));
+  const pages = require(path.join(SRC, 'config', 'pages.js'));
+
+  const authored = Object.keys(pages).filter(k => (pages[k].pages || [])
+    .some(p => typeof p.hrs === 'number'));
+  assert.ok(authored.length >= 4, 'expected at least 4 authored subjects');
+
+  for (const subject of authored){
+    assert.ok(coverage[subject],
+      subject + ' has authored lessons and no coverage map, so nothing checks ' +
+      'whether its official topics were ever written');
+
+    /* and the map must account for every topic, not merely exist */
+    const official = (syllabus[subject] || []).flatMap(u => u.c || []);
+    assert.ok(official.length, subject + ': no outline to check against');
+    const missing = official.filter(t => !(t in coverage[subject]));
+    assert.deepStrictEqual(missing, [],
+      subject + ': official topics with no entry in the coverage map');
+  }
+});
+
 test('every syllabus key maps to a real subject in the site map', () => {
   const known = new Set();
   site.forEach(g => g.subjects.forEach(s => known.add(g.id + '/' + s.slug)));

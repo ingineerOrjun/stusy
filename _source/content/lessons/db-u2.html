@@ -26,6 +26,8 @@
     सक्नुहुनेछ।</span>
   </div>
 
+  <h3 class="topic" id="db-t21">2.1 &nbsp;Introduction to the ER model</h3>
+
   <div class="pair">
     <div class="en"><span class="tag">Why model before you build</span>
       <p>A database is expensive to change once it holds real data. The <b>ER model</b> is a
@@ -58,6 +60,35 @@
     <span class="np-cell">कोर्ने प्रश्नमा आकार नै जाँचिन्छ। दीर्घवृत्त हुनुपर्ने ठाउँमा आयत कोर्दा
     भित्रको शब्द सही भए पनि अंक जान्छ।</span></figcaption>
   </figure>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Entity, entity set, weak entity — three words, one shape</span>
+      <p>An <b>entity</b> is one single thing the database stores: Ram, one student. You can point
+      at it.</p>
+      <p>An <b>entity set</b> is every entity of the same kind, taken together: all the students.
+      The rectangle you draw in an ER diagram names the <i>set</i> — it says <code>STUDENT</code>,
+      not <code>Ram</code>. This is the distinction a one-mark question is testing when it asks
+      you to "define entity and entity set", and the two answers are not interchangeable.</p>
+      <p>The easiest way to keep them apart is to look one step ahead, at Unit 3. When the diagram
+      becomes tables, <b>the entity set becomes the table and each entity becomes one row.</b>
+      A table is a set of rows; that is the same sentence said twice.</p>
+      <p>A <b>weak entity</b> is not a third kind of thing but an entity with a missing key: it
+      cannot be identified without its owner. Drawn as a double rectangle.</p>
+    </div>
+    <div class="np"><span class="tag">इन्टिटी, इन्टिटी सेट, कमजोर इन्टिटी — तीन शब्द, एउटै आकार</span>
+      <p><b>इन्टिटी</b> भनेको डाटाबेसले राख्ने एउटै वस्तु: राम, एक विद्यार्थी। औंला ठड्याएर देखाउन
+      सकिन्छ।</p>
+      <p><b>इन्टिटी सेट</b> भनेको उही किसिमका सबै इन्टिटी सँगै: सबै विद्यार्थी। ER चित्रमा कोरिने
+      आयतले <i>सेट</i> को नाम लेख्छ — <code>STUDENT</code> लेख्छ, <code>Ram</code> लेख्दैन।
+      "इन्टिटी र इन्टिटी सेट परिभाषित गर्नुहोस्" भन्ने एक अंकको प्रश्नले जाँच्ने यही फरक हो, र दुई
+      उत्तर साटासाट मिल्दैनन्।</p>
+      <p>छुट्याउने सजिलो उपाय युनिट ३ तर्फ एक पाइला अघि हेर्नु हो। चित्र तालिकामा बदलिँदा
+      <b>इन्टिटी सेट तालिका बन्छ र हरेक इन्टिटी एक पङ्क्ति बन्छ।</b> तालिका भनेको पङ्क्तिहरूको सेट
+      हो — उही वाक्य दुई पटक भनिएको।</p>
+      <p><b>कमजोर इन्टिटी</b> तेस्रो किसिमको वस्तु होइन, कुञ्जी नभएको इन्टिटी हो: मालिकविना चिनिन
+      सक्दैन। दोहोरो आयतले कोरिन्छ।</p>
+    </div>
+  </div>
 
   <div class="sim">
     <div class="sim-head">

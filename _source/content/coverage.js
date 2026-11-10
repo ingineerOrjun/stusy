@@ -32,10 +32,16 @@
    later topic when one is inserted. The string is the contract.
 
    OPT-IN PER SUBJECT
-   Only subjects listed here are checked. The three subjects written
-   before this rule existed are not retro-fitted, because inventing
-   their coverage map now would be recording a guess as a fact — see
-   the completion report.
+   Only subjects listed here are checked. As of the Phase 9 continuation
+   all four Grade 10 subjects are mapped, so every Grade 10 topic on the
+   official list is now gated. The four Grade 9 subjects have outlines
+   but no authored lessons, so there is nothing yet to map them to.
+
+   ONE TOPIC MAY NAME SEVERAL ANCHORS
+   A value may be a single anchor or an array of them. The official list
+   folds sub-items together in one unit and splits them in another, so an
+   official topic is sometimes taught across two sections. An array says
+   so in data the validator checks, rather than in a comment it cannot.
    ============================================================ */
 
 module.exports = {
@@ -163,6 +169,192 @@ module.exports = {
     'Backup scheduling and media rotation systems': 'hw-t63',
     'Introduction to RAID': 'hw-t64',
     'Recovery Techniques': 'hw-t65'
+  },
+
+  /* ---------------------------------------------------------------
+     DATABASE MANAGEMENT SYSTEM — mapped in the Phase 9 continuation.
+
+     Every entry below was checked by reading the content it points at,
+     not by matching a heading. Where the official topic turned out to
+     be taught in a callout inside a parent section rather than under a
+     heading of its own, the callout is named in a comment so the next
+     reader can find it without searching.
+
+     TWO GAPS WERE FOUND BY DOING THIS, and both were filled before the
+     map was written, because a map that points at nothing is worse than
+     no map:
+
+       2.2 "Entity Set" — the unit's own learning outcome promised it
+            and no section taught it. Added to db-t22.
+       4.3 "WITH"       — one of the five clauses the official list
+            names, absent from a 14-mark unit. Added to db-t43.
+
+     A NOTE ON THE LESSON NUMBERING. The official document folds
+     sub-items together in some units and the lessons flatten them, so
+     a lesson heading reads "2.6 Keys in DBMS" where the official list
+     numbers it 2.4. The topic NAMES match, which is what a student
+     searches by, and renumbering six files carries risk with no
+     learning gain — so the divergence is recorded here and in
+     docs/PHASE-9-CONTINUATION.md rather than papered over.
+     --------------------------------------------------------------- */
+  'grade10/dbms': {
+
+    /* ---- Unit 1 — Introduction to Database System (6 hrs, 2 marks) ---- */
+    'Concept of Data, Information, Database and Database Management System': 'db-t11',
+    'Limitations of the File System': 'db-t12',
+    'Advantages and Disadvantages of a Database System': 'db-t12',
+    /* taught in the callout headed "1.4 — Where database systems are used",
+       inside the 1.2 & 1.3 section: seven domains, bilingual */
+    'Application of Database System': 'db-t12',
+    'Types of Database Users': 'db-t15',
+    'DBMS Architecture': 'db-t16',
+    'Database Model': 'db-t17',
+    'Database Schema': 'db-t17',
+
+    /* ---- Unit 2 — ER-Model (10 hrs, 10 marks) ---- */
+    'Introduction to ER-Model': 'db-t21',
+    /* entity, weak entity and entity set: the first two in the ER parts
+       lab, the third added as prose because nothing taught it */
+    'Components — Entity, Weak Entity, Entity Set': 'db-t22',
+    /* the six attribute symbols are taught in the parts lab, one press
+       each, with the shape a student has to draw */
+    'Attributes and Types of Attributes': 'db-t22',
+    /* the relationship symbol in the lab; its TYPES in the callout on
+       degree — unary, binary, ternary */
+    'Relationship and Types of Relationship': 'db-t22',
+    'Mapping Cardinalities': 'db-t25',
+    'Keys in DBMS': 'db-t26',
+
+    /* ---- Unit 3 — Relational Model (10 hrs, 6 marks) ---- */
+    'Introduction to Relational Model': 'db-t31',
+    /* all nine concepts are pressable in the table visualiser:
+       relation, tuple, attribute, degree, cardinality, domain,
+       primary key, relational schema, relational instance */
+    'Key Concepts — Tables; Tuple, Cardinality and Column; Attribute, Degree and Domain; Relational Instance; Relational Schema; Relational Key': 'db-t32',
+    /* the callout headed "3.3 — The properties of a relation", plus the
+       prediction that tests the order-does-not-matter property */
+    'Properties of Relations': 'db-t32',
+    'Mapping ER-Model to Relational Model': 'db-t34',
+
+    /* ---- Unit 4 — SQL (14 hrs, 14 marks) ---- */
+    'Introduction': 'db-t41',
+    'DDL — CREATE, ALTER, DROP, RENAME': 'db-t42',
+    /* SELECT has its own section; INSERT, UPDATE and DELETE are taught
+       in the SQL lab that sits inside the DDL section, where DELETE is
+       contrasted with DROP. Two anchors, because the topic is genuinely
+       in two places. */
+    'DML — SELECT, INSERT, UPDATE, DELETE': ['db-t43', 'db-t42'],
+    'DCL — GRANT, REVOKE': 'db-t44',
+    'SQL Clauses — WHERE, AND, OR, WITH, ORDER BY': 'db-t43',
+    'SQL Joins — Inner, Natural, Left Outer, Right Outer, Full Outer': 'db-t46',
+    'SQL View': 'db-t47',
+
+    /* ---- Unit 5 — Relational Database Design (8 hrs, 6 marks) ---- */
+    'Functional Dependency and its Types': 'db-t51',
+    'Normalization — definition': 'db-t53',
+    'Normal Forms — 1NF, 2NF, 3NF': 'db-t53',
+
+    /* ---- Unit 6 — Database Transaction (8 hrs, 6 marks) ---- */
+    'Introduction to Transaction': 'db-t61',
+    'Concurrency in Transaction': 'db-t62',
+    'ACID properties': 'db-t63',
+    'States of a Transaction': 'db-t64',
+
+    /* ---- Unit 7 — Backup, Recovery and Security (8 hrs, 6 marks) ---- */
+    'Introduction to Backup': 'db-t71',
+    'Types of Backup — Physical, Logical': 'db-t71',
+    /* the callout headed "7.3 — Why a database fails": hardware,
+       software, power, and the rest */
+    'Reasons for Database Failure': 'db-t71',
+    'Methods of Database Backup': 'db-t74',
+    'Concept of Recovery, Redo / Undo': 'db-t75',
+    'Introduction to Database Security': 'db-t76',
+    /* the callout headed "7.7 — Common threats" */
+    'Common Threats in a Database': 'db-t76'
+  },
+
+  /* ---------------------------------------------------------------
+     DIGITAL DESIGN AND MICROPROCESSOR — mapped in the Phase 9
+     continuation, by the same method.
+
+     ONE GAP WAS FOUND AND FILLED. Topics 4.7 to 4.10 — decoder,
+     encoder, multiplexer, demultiplexer — were defined only inside a
+     static SVG, whose text is English by house convention
+     (LANGUAGE-SYSTEM §10). The figure's caption carried the mnemonic
+     ("learn them in opposite pairs") but not the definitions, so a
+     student reading in Nepali had no definition of a decoder anywhere
+     in the unit. A bilingual block now carries all four.
+
+     AN OFFICIAL INCONSISTENCY, RECORDED NOT FIXED. Unit 3 is titled
+     "Boolean algebra and Karnaugh Map" and its official content list
+     names no Karnaugh map at all. The repo teaches one anyway, at
+     #t35, because the title and the SEE paper both demand it. That
+     section is therefore NOT in this map: it answers no official topic
+     string, and claiming otherwise would be inventing curriculum.
+     --------------------------------------------------------------- */
+  'grade10/digital-design': {
+
+    /* ---- Unit 1 — Number system and binary arithmetic (12 hrs, 7 marks) ---- */
+    'Numbering concept': 't11',
+    'Types of numbering system — Decimal, Binary, Octal, Hexadecimal': 't12',
+    /* all three official conversions are taught in 1.3, each with its
+       own worked example and the number lab to try it in */
+    'Decimal integer to binary and binary to decimal conversion': 't13',
+    'Decimal fractions to binary conversion': 't13',
+    'Octal to decimal and decimal to octal conversion': 't13',
+    "1's complement": 't14',
+    "2's complement": 't14',
+    'Binary addition': 't16',
+    'Binary subtraction': 't16',
+    'Binary multiplication': 't16',
+
+    /* ---- Unit 2 — Concept of logic gates (14 hrs, 15 marks) ---- */
+    'Notations': 't21',
+    'Concept of gate and truth table': 't22',
+    /* the five basic gates: symbol, expression and truth table each,
+       plus the gate workbench to toggle inputs on */
+    'Inverter, OR gate, AND gate, NOR gate, NAND gate': 't22',
+    'Universal gates': 't226',
+    /* the official document numbers this one "3.1" inside Unit 2 — a
+       numbering slip in the source; the lesson numbers it 2.3 */
+    "De-Morgan's theorem": 't23',
+
+    /* ---- Unit 3 — Boolean algebra and Karnaugh Map (10 hrs, 6 marks) ---- */
+    'Boolean relationships and simplification': 't31',
+    'Sum of Products (SOP)': 't32',
+    'Product of Sums (POS)': 't32',
+    'Algebraic simplification': 't34',
+
+    /* ---- Unit 4 — Binary arithmetic and combinational logic (13 hrs, 7 marks) ---- */
+    'Half adder': 't41',
+    'Binary adder': 't44',
+    'Half subtractor': 't43',
+    'Full Adder': 't44',
+    'Full Subtractor': 't43',
+    'Code converters': 't46',
+    /* the four block-level circuits share one section, one block
+       diagram and one bilingual definition block; the multiplexer also
+       has the combinational workbench to drive */
+    'Decoder': 't47',
+    'Encoder': 't47',
+    'Multiplexer': 't47',
+    'Demultiplexer': 't47',
+
+    /* ---- Unit 5 — Microprocessor (15 hrs, 15 marks) ---- */
+    'Definition of Microprocessor and its applications': 't51',
+    'Types of Microprocessor': 't51',
+    'Input / Output': 't53',
+    'Memory': 't53',
+    'Processing unit': 't53',
+    'Arithmetic and logical unit, control unit, Registers': 't53',
+    /* the CPU block diagram with the three buses and their widths, and
+       the callout that gives each bus one line */
+    '8085 bus structure and internal architecture': 't53',
+    'Pin configuration of 8085': 't58',
+    /* flags and interrupts have their own section with the flag-register
+       diagram; the registers and the two buses are in 5.3 – 5.6 */
+    'Description of each block — Registers, flags, data and address bus, timing and control with interrupts': ['t59', 't53'],
+    'Introduction to Addressing modes': 't510'
   }
 
 };

@@ -206,6 +206,43 @@
     स्तम्भमा पनि छान्न सक्छ।</span></figcaption>
   </figure>
 
+  <div class="pair">
+    <div class="en"><span class="tag">The five clauses the syllabus names</span>
+      <p><b>WHERE</b> tests one condition. <b>AND</b> joins two conditions that must
+      <i>both</i> hold; <b>OR</b> joins two of which <i>either</i> will do. So
+      <code>WHERE marks &gt; 60 AND class_id = 10</code> keeps fewer rows than
+      <code>WHERE marks &gt; 60</code>, and <code>OR</code> keeps more. If you cannot remember
+      which way round, count rows: AND narrows, OR widens.</p>
+      <p><b>ORDER BY</b> sorts the result — <code>ASC</code> is the default,
+      <code>DESC</code> reverses it.</p>
+      <p><b>WITH</b> gives a query a name so that the query after it can use that name like a
+      table:</p>
+      <p><code>WITH Toppers AS ( SELECT name, marks FROM Student WHERE marks &gt; 80 )</code>
+      <br><code>SELECT name FROM Toppers ORDER BY marks DESC;</code></p>
+      <p>One long nested query becomes two short readable ones, and the name can be used more than
+      once. <b>The difference from a view, which is 4.7, is the whole exam question:</b> a view is
+      stored in the database and stays until it is dropped; a <code>WITH</code> name exists only
+      for the single statement that defines it and is gone the moment that statement finishes.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">पाठ्यक्रमले नाम लिएका पाँच clause</span>
+      <p><b>WHERE</b> ले एउटा सर्त जाँच्छ। <b>AND</b> ले <i lang="ne">दुवै</i> पूरा हुनुपर्ने दुई सर्त
+      जोड्छ; <b>OR</b> ले <i lang="ne">कुनै एक</i> भए हुने दुई सर्त जोड्छ। त्यसैले
+      <code>WHERE marks &gt; 60 AND class_id = 10</code> ले <code>WHERE marks &gt; 60</code>
+      भन्दा थोरै पङ्क्ति राख्छ, र <code>OR</code> ले बढी। कुन कस्तो हो बिर्सिए पङ्क्ति गन्नुहोस्:
+      AND ले साँघुरो बनाउँछ, OR ले फराकिलो।</p>
+      <p><b>ORDER BY</b> ले नतिजा क्रममा मिलाउँछ — <code>ASC</code> पूर्वनिर्धारित,
+      <code>DESC</code> ले उल्टाउँछ।</p>
+      <p><b>WITH</b> ले क्वेरीलाई नाम दिन्छ, ताकि पछिको क्वेरीले त्यो नामलाई तालिकाजस्तै प्रयोग
+      गर्न सकोस्:</p>
+      <p><code>WITH Toppers AS ( SELECT name, marks FROM Student WHERE marks &gt; 80 )</code>
+      <br><code>SELECT name FROM Toppers ORDER BY marks DESC;</code></p>
+      <p lang="ne">एउटा लामो नेस्टेड क्वेरी दुई छोटा पढ्न सजिला क्वेरी बन्छ, र त्यो नाम एकभन्दा बढी पटक
+      प्रयोग गर्न सकिन्छ। <b lang="ne">View (४.७) सँगको फरक नै पूरै परीक्षा प्रश्न हो:</b> view डाटाबेसमा
+      भण्डारण हुन्छ र drop नगरेसम्म रहन्छ; <code>WITH</code> को नाम त्यसलाई बनाउने एउटै कथनभरि
+      मात्र रहन्छ र कथन सकिनेबित्तिकै हराउँछ।</p>
+    </div>
+  </div>
+
   <div class="predict" data-answer="b">
     <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
     <h3><span class="t-en">The Student table has 4 rows. You run
