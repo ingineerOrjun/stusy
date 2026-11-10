@@ -30,6 +30,32 @@
 (function (global) {
   'use strict';
 
+
+  /* THE HEADING LEVEL IS COMPUTED, NOT CHOSEN.
+
+     These headings are emitted after the page has loaded, so
+     build/index.js normaliseHeadings() — which derives every authored
+     heading level from the document nesting — never sees them. They
+     were hardcoded <h5>, and the lesson they sit in renders its
+     section titles as h2 and its simulation titles as h3. The result
+     was h3 followed by h5: a level skipped, and a misleading outline
+     for anyone navigating by heading, which is the normal way to skim
+     a 5,000-word page without sight of it.
+
+     Measured on grade10/hardware/unit5.html, the one page where the
+     jump actually occurred. Hardcoding h4 instead would be correct
+     today and wrong the next time the nesting changes, so this reads
+     the nearest heading above the mount point and goes one deeper. */
+  function levelUnder(root){
+    var all = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+    var lvl = 3;
+    for (var i = 0; i < all.length; i++){
+      if (root.compareDocumentPosition(all[i]) & Node.DOCUMENT_POSITION_PRECEDING){
+        lvl = Number(all[i].tagName.charAt(1));
+      }
+    }
+    return Math.min(lvl + 1, 6);
+  }
   var doc = global.document;
   if (!doc) return;
 
@@ -174,8 +200,9 @@
       return;
     }
     var p = this.parts[this.i];
+    var L = levelUnder(this.root || this.info);
     this.info.innerHTML =
-      '<h5 class="parts-name">' + bi(p.name.en, p.name.ne) + '</h5>' +
+      '<h' + L + ' class="parts-name">' + bi(p.name.en, p.name.ne) + '</h' + L + '>' +
       '<p class="parts-does">' + biBlock(p.does.en, p.does.ne) + '</p>' +
       '<p class="parts-exam"><span class="parts-tag">' +
         bi('In the exam', 'परीक्षामा') + '</span> ' +

@@ -49,6 +49,18 @@ function conLine(el, text, cls){
   if (!el) return;
   var d = document.createElement('div');
   d.className = 'cline' + (cls ? ' ' + cls : '');
+
+  /* The 'np' class already says this line is Nepali — to the stylesheet.
+     It said nothing to a screen reader, which then read Devanagari with
+     an English voice. Six call sites across three simulators emit
+     Nepali console output, including the shared step player, so every
+     simulated run on the site was affected.
+
+     Marking it HERE rather than at the call sites is the point: the
+     class and the language can no longer disagree, and a seventh call
+     site gets it for free. */
+  if (cls && /\bnp\b/.test(cls)) d.setAttribute('lang', 'ne');
+
   d.textContent = text;
   el.appendChild(d);
   el.scrollTop = el.scrollHeight;
