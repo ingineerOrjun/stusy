@@ -1,6 +1,6 @@
 # Documentation index
 
-Forty-seven documents accumulated over nine phases of work, plus this index. This is the map.
+Forty-eight documents accumulated over nine phases of work, plus this index. This is the map.
 
 **If you read only one thing:** [`ARCHITECTURE.md`](ARCHITECTURE.md) for how
 the system is put together, then the contract for whatever you are about to
@@ -71,6 +71,7 @@ Read these to find out *why* something is the way it is.
 | Hardware — Class 10 Hardware & Repair, complete | [CONTENT-AUDIT](PHASE-HARDWARE-CONTENT-AUDIT.md) | two new components, argued in the report §3 | [report](PHASE-HARDWARE-COMPLETION-REPORT.md) |
 | Hardware 8 — boot animation, coverage validation, diagram reset fix | — | syllabus coverage gate, argued in the report §4 | [report](PHASE-8-HARDWARE-REPAIR-COMPLETION-REPORT.md) |
 | 9 — Grade 10 curriculum integrity | official CDC grid located; 9 units had wrong marks | specification-grid.js as a build gate | [report](PHASE-9-CURRICULUM-INTEGRITY.md) |
+| 9 continued — the four coverage maps | all 150 Grade 10 topics mapped; three claims of the Phase 9 report corrected | a map entry may name several anchors; tests for the DRAW, not just the bank | [report](PHASE-9-CONTINUATION.md) |
 
 ## Two things every document here agrees on
 
