@@ -145,6 +145,22 @@ module.exports = {
   /* PDF p. 20 — "Fundamentals of Computer and Application" */
   'grade9/computer-fundamentals': {
     source: 'CDC 2078, Specification Grid, Grade 9, Fundamentals of Computer and Application',
+
+    /* THE OTHER HALF OF THE COURSE.
+
+       The subject header on p.10 reads "Credit hrs: 4 / Working hrs:
+       128". The hours in `units` below are the THEORY hours — what the
+       scope-and-sequence table counts and what the specification grid
+       weighs. A second table, "Suggested Practical and Project Works"
+       on pp.16-17, gives a separate hour budget per unit which also
+       totals 64. 64 + 64 = the 128 working hours.
+
+       Recorded here because reporting this subject as "64 hours"
+       describes half of it, and because the practical half is where 30
+       of the 50 internal marks are earned (practical 18, project 12).
+       Verified in Phase 12 by two independent extractions. */
+    practicalHours: { '1': 10, '2': 10, '3': 8, '4': 6, '5': 12, '6': 8, '7': 10 },
+
     units: [
       { n: '1', hrs:  8, marks:  6, content: 'Introduction to computer' },
       { n: '2', hrs: 10, marks:  7, content: 'Computer Components' },

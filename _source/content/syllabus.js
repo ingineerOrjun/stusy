@@ -162,8 +162,7 @@ module.exports = {
       "c": [
         "Introduction to Components of computer system",
         "Input Unit — Keyboard, Mouse, Joystick, OMR, OCR, BCR, MICR, Scanner, Touch Screen, Touchpad, Microphone, Digital Camera",
-        "Output Unit (softcopy) — Monitors (CRT, LCD, LED/Plasma), Speaker, Projector, Headphone",
-        "Output Unit (hardcopy) — Printers (impact, non-impact, 3D), Graphic plotter",
+        "Output Unit — softcopy: Monitors (CRT, LCD, LED/Plasma), Speaker, Projector, Headphone; hardcopy: Printers (impact, non-impact, 3D), Graphic plotter",
         "Concept of Memory unit",
         "Processing unit — Microprocessor: clock speed, word length, components and functions"
       ]

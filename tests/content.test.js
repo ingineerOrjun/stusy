@@ -85,10 +85,22 @@ test('syllabus totals match the curriculum', () => {
   /* Phase 9 added the DS & OOP outline (6 units, 35 topics), which had
      been missing since the subject was written: 7 -> 8 subjects,
      46 -> 52 units, 284 -> 319 topics. Every authored Grade 10 subject
-     now has an outline, so every one can be coverage-checked. */
+     now has an outline, so every one can be coverage-checked.
+
+     Phase 12: 319 -> 318. Not a loss of curriculum — a correction to it.
+     Verifying Grade 9 Fundamentals of Computer and Application against
+     the CDC scope and sequence, by two independent extractions, showed
+     that official topic 2.3 is ONE topic carrying two bullets, softcopy
+     and hardcopy output devices. The outline had promoted the second
+     bullet to a numbered topic of its own, which pushed 2.4 and 2.5 out
+     of step with the numbering a student reads in the curriculum.
+     Merged back: that subject 37 -> 36, Grade 9 169 -> 168, total 318.
+
+     This test failing is the system working. A total that moves without
+     a reason beside it is how a curriculum drifts. */
   assert.strictEqual(Object.keys(syllabus).length, 8, 'expected 8 outlined subjects');
   assert.strictEqual(units, 52,  'expected 52 outlined units');
-  assert.strictEqual(topics, 319, 'expected 319 outlined topics');
+  assert.strictEqual(topics, 318, 'expected 318 outlined topics');
 });
 
 test('every authored subject has a coverage map, and it is complete', () => {

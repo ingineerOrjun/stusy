@@ -47,7 +47,7 @@ what settles the stream and the grade together.
 | Subject | Scope and Sequence | Specification Grid |
 |---|---:|---:|
 | Programming Principles and Concept in C Language | p. 4 | **p. 9** |
-| Fundamentals of Computer and Application | p. 13 | **p. 20** |
+| Fundamentals of Computer and Application | p. 13 | **p. 20** | ← verified line by line in Phase 12 |
 | Fundamentals of electro-system | p. 24 | **p. 31** |
 | Website Design | p. 35 | **p. 42** |
 

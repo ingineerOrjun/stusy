@@ -1,8 +1,8 @@
 # Grade 9 — curriculum map
 
-**4 subjects · 28 units · 169 topics · 256 credit hours · 200 external marks.**
+**4 subjects · 28 units · 168 topics · 256 theory hours · 200 external marks.**
 
-**Topic coverage today: 0 of 169 taught.** Nothing has been authored. This
+**Topic coverage today: 0 of 168 taught.** Nothing has been authored. This
 document is the map of what exists to build, not a claim about what is built.
 
 Machine-readable form:
@@ -40,13 +40,13 @@ Unit 2 gained *Operators in C* in this phase — see the audit, `G9-D1`.
 | Unit | Title | Hrs | Marks | Topics |
 |---:|---|---:|---:|---:|
 | 1 | Introduction to computer | 8 | 6 | 4 |
-| 2 | Computer Components | 10 | 7 | 6 |
+| 2 | Computer Components | 10 | 7 | 5 |
 | 3 | Computer software | 10 | **9** | 7 |
 | 4 | Memory/Storage Unit | 10 | 8 | 5 |
 | 5 | Internet and its Application | 10 | 8 | 3 |
 | 6 | Multimedia | 8 | 6 | 3 |
 | 7 | Emerging Technology | 8 | 6 | 9 |
-| | | **64** | **50** | **37** |
+| | | **64** | **50** | **36** |
 
 ### Fundamentals of electro-system — PDF p. 31
 
@@ -88,7 +88,7 @@ reported in one table.
 | **partially-taught** | some content present, named gaps recorded | **0** |
 | **practical-missing** | taught, but the curriculum's practical activity is absent | **0** |
 | **assessment-missing** | taught, but no question examines it | **0** |
-| **not-implemented** | nothing written | **169** |
+| **not-implemented** | nothing written | **168** |
 
 **The evidence behind that: there are no Grade 9 lesson files.**
 `_source/content/lessons/` contains 24 files, all Grade 10. No Grade 9 subject
@@ -97,8 +97,14 @@ per Grade 9 subject and no lessons. A test asserts this and will fail the moment
 it stops being true, which is the signal to come back and add a coverage map.
 
 **This is not comparable to Grade 10's 150/150.** That figure means every
-official Grade 10 topic was traced to content someone read. Grade 9's 0/169
+official Grade 10 topic was traced to content someone read. Grade 9's 0/168
 means the work has not started.
+
+> **Updated in Phase 12.** This subject was 37 topics here until its scope and
+> sequence was verified line by line against the PDF. Official topic 2.3 is ONE
+> topic carrying two bullets — softcopy and hardcopy output devices — and the
+> outline had promoted the second to a topic of its own, renumbering 2.4 and 2.5
+> out of step with the curriculum. Corrected: 37 → 36, and Grade 9 169 → 168.
 
 ## 3 · What a "covered" Grade 9 topic will have to mean
 

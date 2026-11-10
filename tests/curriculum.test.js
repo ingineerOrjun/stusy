@@ -272,3 +272,76 @@ test('Grade 9 and Grade 10 never share a question bank or a lesson file', () => 
     }
   }
 });
+
+/* ============================================================
+   PHASE 12 — the verified shape of Fundamentals of Computer and
+   Application.
+
+   Every one of this subject's topics was read from the CDC 2078 PDF by
+   TWO independent extractions, which agreed: the Phase 11 pipeline
+   (inflate every stream, pull Tj/TJ in stream order, decode latin1) and
+   a second one written for Phase 12 that walks the catalog's page tree
+   for real page numbers and decodes through each font's ToUnicode CMap.
+
+   The counts below are therefore evidence, not convention, and this
+   test is what stops them drifting back. It caught one real error:
+   official topic 2.3 is ONE topic carrying two bullets — softcopy
+   output devices and hardcopy output devices — and the repository had
+   promoted the second bullet to a numbered topic of its own, which
+   renumbered 2.4 and 2.5 out of step with the curriculum a student
+   would be reading alongside.
+   ============================================================ */
+test('Fundamentals of Computer and Application matches the verified curriculum', () => {
+  const key = 'grade9/computer-fundamentals';
+  const outline = syllabus[key];
+  const spec = grid[key];
+  assert.ok(outline && spec, key + ': missing outline or grid');
+
+  /* unit n -> [official title, credit hrs, external marks, top-level topics]
+     Source: CDC 2078, scope and sequence pp. 13-15 (PDF pages 18-20),
+     specification grid p. 20 (PDF page 25). */
+  const VERIFIED = [
+    ['Introduction to computer',      8,  6, 4],
+    ['Computer Components',          10,  7, 5],
+    ['Computer software',            10,  9, 7],
+    ['Memory/Storage Unit',          10,  8, 5],
+    ['Internet and its Application', 10,  8, 3],
+    ['Multimedia',                    8,  6, 3],
+    ['Emerging Technology',           8,  6, 9]
+  ];
+
+  assert.strictEqual(outline.length, VERIFIED.length, key + ': unit count changed');
+
+  VERIFIED.forEach(([title, hrs, marks, topics], i) => {
+    const u = outline[i], g = spec.units[i];
+    const n = i + 1;
+    const norm = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '');
+    assert.strictEqual(norm(u.t), norm(title), key + ' unit ' + n + ': title changed');
+    assert.strictEqual(u.h, hrs,     key + ' unit ' + n + ': hours changed');
+    assert.strictEqual(g.marks, marks, key + ' unit ' + n + ': external marks changed');
+    assert.strictEqual(u.c.length, topics,
+      key + ' unit ' + n + ' ("' + title + '") has ' + u.c.length + ' topics; the ' +
+      'curriculum has ' + topics + '. A topic was split or merged — check it against ' +
+      'the scope and sequence before changing this number.');
+  });
+
+  assert.strictEqual(outline.reduce((a, u) => a + u.c.length, 0), 36,
+    key + ': the subject has 36 official topics');
+});
+
+test('the Grade 9 practical hours are recorded alongside the theory hours', () => {
+  /* The subject is 4 credit hours and 128 WORKING hours: 64 theory,
+     which is what the scope-and-sequence table and the specification
+     grid count, and 64 practical, which is a separate table the grid
+     says nothing about. Reporting "64 hours" without that distinction
+     describes half the course. */
+  const spec = grid['grade9/computer-fundamentals'];
+  const theory = spec.units.reduce((a, u) => a + u.hrs, 0);
+  assert.strictEqual(theory, 64, 'theory hours should total 64');
+  assert.ok(spec.practicalHours,
+    'the practical hours per unit are not recorded. CDC 2078 p.16-17 (PDF 21-22) ' +
+    'gives them as 10/10/8/6/12/8/10, totalling 64.');
+  const prac = Object.values(spec.practicalHours).reduce((a, n) => a + n, 0);
+  assert.strictEqual(prac, 64, 'practical hours should total 64, found ' + prac);
+  assert.strictEqual(theory + prac, 128, 'theory + practical should be the 128 working hours');
+});

@@ -70,14 +70,14 @@
   "totals": {
     "subjects": 4,
     "units": 28,
-    "topics": 169,
+    "topics": 168,
     "creditHours": 256,
     "externalMarks": 200,
     "topicsFullyTaught": 0,
     "topicsPartiallyTaught": 0,
-    "topicsNotImplemented": 169
+    "topicsNotImplemented": 168
   },
-  "coverageStatement": "No Grade 9 lesson has been authored. Every one of the 169 topics is \"not-implemented\". The curriculum structure around them — units, titles, hours and marks — is verified against the CDC document and held by tests/curriculum.test.js.",
+  "coverageStatement": "No Grade 9 lesson has been authored. Every one of the 168 topics is \"not-implemented\". The curriculum structure around them — units, titles, hours and marks — is verified against the CDC document and held by tests/curriculum.test.js.",
   "statusVocabulary": {
     "fully-taught": "explanation, worked example and assessment all present and read",
     "partially-taught": "some content present; named gaps recorded",
@@ -352,7 +352,7 @@
       "creditHours": 64,
       "externalMarks": 50,
       "unitCount": 7,
-      "topicCount": 37,
+      "topicCount": 36,
       "authored": false,
       "units": [
         {
@@ -396,11 +396,7 @@
               "status": "not-implemented"
             },
             {
-              "title": "Output Unit (softcopy) — Monitors (CRT, LCD, LED/Plasma), Speaker, Projector, Headphone",
-              "status": "not-implemented"
-            },
-            {
-              "title": "Output Unit (hardcopy) — Printers (impact, non-impact, 3D), Graphic plotter",
+              "title": "Output Unit — softcopy: Monitors (CRT, LCD, LED/Plasma), Speaker, Projector, Headphone; hardcopy: Printers (impact, non-impact, 3D), Graphic plotter",
               "status": "not-implemented"
             },
             {
