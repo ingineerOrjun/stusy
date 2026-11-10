@@ -33,20 +33,19 @@
    2027 paper will be built from". If the two ever diverge, this file is
    the single place to change.
 
-   PAGE NUMBERS — WHAT THE CITATIONS BELOW ARE, EXACTLY
-   The page numbers are the position of each grid in the PDF's content
-   streams, counted in order. They are NOT read off the printed folio:
-   the text extraction used here recovers no reliable page markers, and
-   the document is served through a canvas flipbook that cannot be read
-   as text. They are accurate to a few pages and are given as a finding
-   aid, not as a citation to quote.
+   PAGE NUMBERS — CONFIRMED IN PHASE 11, HAVING BEEN INFERRED BEFORE
+   Phase 9 derived these from the order of the PDF's content streams and
+   Phase 9.5 labelled them "approx." because the printed folio could not
+   be recovered. It can: each grid's text block OPENS with its own page
+   number, which is why the extraction reads "50Specification GridGrade:
+   10" and "9Specification GridGrade: 9". Every citation below is that
+   leading number, and all four Grade 10 pages came back exactly as
+   Phase 9 had guessed — 50, 59, 68, 76.
 
-   The verification that does hold is the numbers themselves. Every
-   marks column below was re-extracted independently in the Phase 9
-   continuation and compared: Hardware 7/7/9/10/11/6, DBMS
+   The numbers themselves were also re-extracted independently in the
+   Phase 9 continuation and compared: Hardware 7/7/9/10/11/6, DBMS
    2/10/6/14/6/6/6 and Digital Design 7/15/6/7/15 all came back
-   unchanged. The subject and unit titles printed in each grid are the
-   anchor a reviewer should search for.
+   unchanged.
 
    WHY THIS FILE EXISTS
    Two subjects shipped with marks that were DERIVED from hours because
@@ -105,7 +104,87 @@
 
 module.exports = {
 
-  /* Specification Grid, approx. PDF p. 50 — "Data structure & OOP concept using C++" */
+  /* ============================================================
+     GRADE 9 — transcribed in Phase 11.
+
+     The same document, the same table, four pages earlier in it. Each
+     Grade 9 subject carries a grid headed "Specification Grid / Grade: 9"
+     and each totals 64 credit hours and 50 external marks, like Grade 10.
+
+     HOW THE NUMBERS WERE READ, since the extraction interleaves columns.
+     Units 2..7 come out cleanly as hours then marks. Unit 1's row is
+     merged with the whole-paper column totals, so its marks are the
+     digits after the shared run. The method was calibrated against the
+     Grade 10 DBMS grid, whose values were already known and verified:
+     it reproduced 6/10/10/14/8/8/8 hours and 2/10/6/14/6/6/6 marks
+     exactly. Each subject below is then checked by arithmetic — unit 1
+     must equal 50 minus the rest — and every one agrees.
+
+     CROSS-CHECKED AGAINST THE REPO. The Grade 9 outlines in
+     content/syllabus.js were transcribed from the scope-and-sequence
+     before this grid was read. Comparing the two found ZERO
+     disagreements on unit count, unit title or hours across all four
+     subjects, which is the opposite of what the same comparison found
+     for Grade 10 in Phase 9.
+     ============================================================ */
+
+  /* PDF p. 9 — "Programming Principles and Concept in C Language" */
+  'grade9/c-programming': {
+    source: 'CDC 2078, Specification Grid, Grade 9, Programming Principles and Concept in C Language',
+    units: [
+      { n: '1', hrs:  6, marks:  5, content: 'Principles of Programming' },
+      { n: '2', hrs: 10, marks:  7, content: 'Fundamentals of C' },
+      { n: '3', hrs: 16, marks: 13, content: 'Control Flow Statements' },
+      { n: '4', hrs: 12, marks: 10, content: 'Functions' },
+      { n: '5', hrs: 10, marks:  8, content: 'Arrays & Strings' },
+      { n: '6', hrs:  6, marks:  5, content: 'Structure and Union' },
+      { n: '7', hrs:  4, marks:  2, content: 'Pointers' }
+    ]
+  },
+
+  /* PDF p. 20 — "Fundamentals of Computer and Application" */
+  'grade9/computer-fundamentals': {
+    source: 'CDC 2078, Specification Grid, Grade 9, Fundamentals of Computer and Application',
+    units: [
+      { n: '1', hrs:  8, marks:  6, content: 'Introduction to computer' },
+      { n: '2', hrs: 10, marks:  7, content: 'Computer Components' },
+      { n: '3', hrs: 10, marks:  9, content: 'Computer software' },
+      { n: '4', hrs: 10, marks:  8, content: 'Memory/Storage Unit' },
+      { n: '5', hrs: 10, marks:  8, content: 'Internet and its Application' },
+      { n: '6', hrs:  8, marks:  6, content: 'Multimedia' },
+      { n: '7', hrs:  8, marks:  6, content: 'Emerging Technology' }
+    ]
+  },
+
+  /* PDF p. 31 — "Fundamentals of electro-system" */
+  'grade9/electro-system': {
+    source: 'CDC 2078, Specification Grid, Grade 9, Fundamentals of electro-system',
+    units: [
+      { n: '1', hrs:  9, marks:  6, content: 'Introduction to Electrostatics' },
+      { n: '2', hrs: 13, marks: 10, content: 'Electric Fundamentals' },
+      { n: '3', hrs: 13, marks: 10, content: 'Electric circuit' },
+      { n: '4', hrs:  6, marks:  6, content: 'Electrical Power and Theory' },
+      { n: '5', hrs: 10, marks:  7, content: 'Cell and capacitor' },
+      { n: '6', hrs:  8, marks:  6, content: 'Magnetism and Electromagnetism' },
+      { n: '7', hrs:  5, marks:  5, content: 'Fundamentals of Current and phase current' }
+    ]
+  },
+
+  /* PDF p. 42 — "Website Design" */
+  'grade9/website-design': {
+    source: 'CDC 2078, Specification Grid, Grade 9, Website Design',
+    units: [
+      { n: '1', hrs:  6, marks:  6, content: 'Basics in Website Design' },
+      { n: '2', hrs:  4, marks:  3, content: 'Website Design Principles' },
+      { n: '3', hrs:  6, marks:  6, content: 'HTML Basics' },
+      { n: '4', hrs: 15, marks:  9, content: 'HTML Elements' },
+      { n: '5', hrs:  5, marks:  5, content: 'HTML5 Basics' },
+      { n: '6', hrs: 18, marks: 15, content: 'Cascading Style Sheets (CSS)' },
+      { n: '7', hrs: 10, marks:  6, content: 'JavaScript Fundamentals' }
+    ]
+  },
+
+  /* PDF p. 50 — "Data structure & OOP concept using C++" */
   'grade10/oop-cpp': {
     source: 'CDC 2078, Specification Grid, Grade 10, Data structure & OOP concept using C++',
     units: [
@@ -118,7 +197,7 @@ module.exports = {
     ]
   },
 
-  /* Specification Grid, approx. PDF p. 59 — "Computer Hardware, Electronics Repair and Maintenance" */
+  /* PDF p. 59 — "Computer Hardware, Electronics Repair and Maintenance" */
   'grade10/hardware': {
     source: 'CDC 2078, Specification Grid, Grade 10, Computer Hardware, Electronics Repair and Maintenance',
     units: [
@@ -131,7 +210,7 @@ module.exports = {
     ]
   },
 
-  /* Specification Grid, approx. PDF p. 68 — "Database Management System" */
+  /* PDF p. 68 — "Database Management System" */
   'grade10/dbms': {
     source: 'CDC 2078, Specification Grid, Grade 10, Database Management System',
     units: [
@@ -145,7 +224,7 @@ module.exports = {
     ]
   },
 
-  /* Specification Grid, approx. PDF p. 76 — "Digital Design and Microprocessor" */
+  /* PDF p. 76 — "Digital Design and Microprocessor" */
   'grade10/digital-design': {
     source: 'CDC 2078, Specification Grid, Grade 10, Digital Design and Microprocessor',
     units: [

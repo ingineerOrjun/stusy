@@ -79,7 +79,8 @@ module.exports = {
         "Variables and Keywords",
         "Character Sets, Constants and Variables",
         "Data Types and Format Specifiers",
-        "Input / Output statements"
+        "Input / Output statements",
+        "Operators in C (Arithmetic, Relational, Logical, Bitwise, Assignment)"
       ]
     },
     {
@@ -87,7 +88,6 @@ module.exports = {
       "np": "नियन्त्रण प्रवाह कथन",
       "h": 16,
       "c": [
-        "Operators in C (Arithmetic, Relational, Logical, Bitwise, Assignment)",
         "Decision Making Statements — if, if…else, switch",
         "Loop Statements — for, while, do-while, nested loops",
         "Jump Statements — break, continue, goto, return"
