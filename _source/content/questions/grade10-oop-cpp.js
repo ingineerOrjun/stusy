@@ -1219,5 +1219,74 @@ module.exports = [
       en: 'Without <code>virtual</code> the compiler decides from the POINTER\'s type, not the object\'s, so Shape\'s version runs even though the object really is a Circle. Adding <code>virtual</code> to the base function is what defers the decision to run time and makes Circle\'s version run. This single keyword is the most examined point in the unit.',
       ne: '<code>virtual</code> नभए compiler ले object होइन, <b>pointer</b> को किसिम हेरेर निर्णय गर्छ — त्यसैले object साँच्चै Circle भए पनि Shape कै संस्करण चल्छ। Base function मा <code>virtual</code> थप्दा निर्णय चल्ने बेलासम्म पर सर्छ र Circle कै संस्करण चल्छ। यस युनिटमा सबैभन्दा बढी सोधिने बिन्दु यही एउटा keyword हो।'
     }
+  },
+
+  /* ============================================================
+     ADDED IN THE PHASE 9 CONTINUATION — cognitive variety, not volume.
+
+     The Phase 9 report claimed the expanded bank covered "definitions,
+     code reading, output prediction, error identification and applied
+     scenarios". Counted by topic tag, that was one error-identification
+     question and two output-prediction questions out of forty-nine. The
+     claim was thin rather than false, and three questions is the right
+     size of correction: all three ask the student to find a fault or
+     trace an execution rather than recall a sentence.
+     ============================================================ */
+  {
+    id: 'g10.oop-cpp.q50', subject: 'grade10/oop-cpp', unit: 'u2',
+    topic: 'cin-extraction', difficulty: 'medium', type: 'single-choice', examRelevant: true,
+    prompt: {
+      en: 'This program will not compile. Which line is wrong, and why?<br><code>int n;<br>cout &lt;&lt; "Enter n: ";<br>cin &lt;&lt; n;<br>cout &lt;&lt; n;</code>',
+      ne: 'यो प्रोग्राम compile हुँदैन। कुन हरफ गलत छ, र किन?<br><code>int n;<br>cout &lt;&lt; "Enter n: ";<br>cin &lt;&lt; n;<br>cout &lt;&lt; n;</code>'
+    },
+    options: [
+      { en: 'Line 3 — cin takes >> (extraction), not <<', ne: 'हरफ ३ — cin लाई >> (extraction) चाहिन्छ, << होइन' },
+      { en: 'Line 1 — n must be given a value when it is declared', ne: 'हरफ १ — n घोषणा गर्दै मान दिनुपर्छ' },
+      { en: 'Line 2 — a string cannot be sent to cout', ne: 'हरफ २ — cout मा string पठाउन मिल्दैन' },
+      { en: 'Line 4 — the same variable cannot be printed twice', ne: 'हरफ ४ — उही variable दुई पटक छाप्न मिल्दैन' }
+    ],
+    answer: 0,
+    explanation: {
+      en: 'The arrows point the way the data travels. <code>cout &lt;&lt;</code> pushes a value OUT to the screen; <code>cin &gt;&gt;</code> pulls a value IN from the keyboard. Written as <code>cin &lt;&lt; n</code> the compiler looks for a way to insert into an input stream, finds none, and stops — so this is a compile error, not a wrong answer at run time. An uninitialised <code>int n;</code> is perfectly legal, which is why option 2 is the tempting wrong one.',
+      ne: 'तीरले data कुन दिशामा जान्छ देखाउँछ। <code>cout &lt;&lt;</code> ले मान पर्दामा <b>बाहिर</b> पठाउँछ; <code>cin &gt;&gt;</code> ले किबोर्डबाट <b>भित्र</b> तान्छ। <code>cin &lt;&lt; n</code> लेख्दा compiler ले input stream भित्र हाल्ने उपाय खोज्छ, पाउँदैन, र रोकिन्छ — त्यसैले यो चल्दाको गलत उत्तर होइन, compile त्रुटि हो। <code>int n;</code> लाई मान नदिई छोड्नु पूर्ण रूपमा वैध छ, त्यसैले दोस्रो विकल्प आकर्षक गलत उत्तर हो।'
+    }
+  },
+  {
+    id: 'g10.oop-cpp.q51', subject: 'grade10/oop-cpp', unit: 'u2',
+    topic: 'switch-fallthrough', difficulty: 'medium', type: 'single-choice', examRelevant: true,
+    prompt: {
+      en: 'What exactly is printed?<br><code>int x = 2;<br>switch (x) {<br>&nbsp; case 1: cout &lt;&lt; "A";<br>&nbsp; case 2: cout &lt;&lt; "B";<br>&nbsp; case 3: cout &lt;&lt; "C";<br>&nbsp; default: cout &lt;&lt; "D";<br>}</code>',
+      ne: 'ठ्याक्कै के छापिन्छ?<br><code>int x = 2;<br>switch (x) {<br>&nbsp; case 1: cout &lt;&lt; "A";<br>&nbsp; case 2: cout &lt;&lt; "B";<br>&nbsp; case 3: cout &lt;&lt; "C";<br>&nbsp; default: cout &lt;&lt; "D";<br>}</code>'
+    },
+    options: [
+      { en: 'BCD', ne: 'BCD' },
+      { en: 'B', ne: 'B' },
+      { en: 'BC', ne: 'BC' },
+      { en: 'ABCD', ne: 'ABCD' }
+    ],
+    answer: 0,
+    explanation: {
+      en: 'A <code>switch</code> JUMPS to the matching label and then keeps running straight down — the later <code>case</code> labels are only labels, not barriers. There is no <code>break</code> anywhere, so after printing B it carries on into case 3 and then default, giving BCD. <code>default</code> is not skipped just because a case already matched. Add <code>break;</code> to each case and the answer becomes B.',
+      ne: '<code>switch</code> ले मिल्ने label मा <b>हाम फाल्छ</b> र त्यसपछि सिधै तल चलिरहन्छ — पछिका <code>case</code> label मात्र हुन्, बार होइनन्। कतै <code>break</code> छैन, त्यसैले B छापेपछि case 3 र त्यसपछि default मा पनि पस्छ, र BCD आउँछ। कुनै case मिलेकै कारण <code>default</code> छुट्दैन। हरेक case मा <code>break;</code> थपे उत्तर B बन्छ।'
+    }
+  },
+  {
+    id: 'g10.oop-cpp.q52', subject: 'grade10/oop-cpp', unit: 'u5',
+    topic: 'private-base-access', difficulty: 'hard', type: 'single-choice', examRelevant: true,
+    prompt: {
+      en: 'Why does the marked line fail to compile?<br><code>class A { private: int x; };<br>class B : public A {<br>public:<br>&nbsp; void show() { cout &lt;&lt; x; }&nbsp; // this line<br>};</code>',
+      ne: 'चिन्ह लगाइएको हरफ किन compile हुँदैन?<br><code>class A { private: int x; };<br>class B : public A {<br>public:<br>&nbsp; void show() { cout &lt;&lt; x; }&nbsp; // यही हरफ<br>};</code>'
+    },
+    options: [
+      { en: 'A private base member is not accessible to a derived class — it would have to be protected', ne: 'Base को private मेम्बर derived class ले छुन पाउँदैन — त्यो protected हुनुपर्छ' },
+      { en: 'public inheritance makes x public, so it cannot be printed', ne: 'public inheritance ले x लाई public बनाउँछ, त्यसैले छाप्न मिल्दैन' },
+      { en: 'x must be given a value before it can be used', ne: 'प्रयोग गर्नुअघि x लाई मान दिनुपर्छ' },
+      { en: 'B must declare its own x before using it', ne: 'B ले प्रयोग गर्नुअघि आफ्नै x घोषणा गर्नुपर्छ' }
+    ],
+    answer: 0,
+    explanation: {
+      en: '<code>private</code> means "this class only", and inheriting does not loosen it — <code>x</code> is inherited by B but B is not allowed to touch it. <code>protected</code> is the specifier that exists for exactly this situation: visible to derived classes, still hidden from the outside world. Note that the inheritance mode (<code>public</code> here) changes what happens to the base\'s public and protected members; it never grants access to its private ones.',
+      ne: '<code>private</code> को अर्थ "यही class मात्र" हो, र inheritance ले यो खुकुलो बनाउँदैन — <code>x</code> B मा सर्छ तर B ले छुन पाउँदैन। यस्तै अवस्थाका लागि बनेको specifier <code>protected</code> हो: derived class ले देख्छ, बाहिरी संसारले देख्दैन। Inheritance mode (यहाँ <code>public</code>) ले base का public र protected मेम्बरको हैसियत बदल्छ; private मेम्बरमा पहुँच कहिल्यै दिँदैन।'
+    }
   }
 ];

@@ -57,9 +57,22 @@
       if (opts.difficulty) pool = pool.filter(function (q) { return q.difficulty === opts.difficulty; });
       if (opts.topic)      pool = pool.filter(function (q) { return q.topic === opts.topic; });
       pool = pool.slice();
+
+      /* WHY `rand` IS INJECTABLE.
+         Shuffling called Math.random directly, which made the one
+         property that matters about a shuffled draw untestable: that it
+         is a permutation of the pool and loses nothing. A test could
+         assert the COUNT, and did, and a shuffle that dropped a question
+         or served one twice would have passed it.
+
+         A seeded generator makes the draw reproducible, so a test can
+         name the exact paper it expects. Production passes nothing and
+         gets Math.random, so page behaviour is unchanged. */
+      var rand = typeof opts.rand === 'function' ? opts.rand : Math.random;
+
       if (opts.shuffle) {
         for (var i = pool.length - 1; i > 0; i--) {
-          var j = Math.floor(Math.random() * (i + 1));
+          var j = Math.floor(rand() * (i + 1));
           var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
         }
       }

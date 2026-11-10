@@ -432,9 +432,17 @@ overflow:
 | Program tracer captions | ✅ | ✅ | ✅ |
 | Navigation, breadcrumbs, footer | ✅ | ✅ | ✅ |
 
-¹ The Digital Design bank is fully bilingual — asserted by a test. The older
-`grade10/oop-cpp` bank has English-only prompts and options; those fall back to
-English in Nepali mode rather than blanking. See §9.
+¹ Both banks are now fully bilingual, and both are asserted by a test.
+`grade10/oop-cpp` was the exception when this table was written; it is not any
+more. Measured in the Phase 9 continuation: every one of its 52 prompts and 52
+explanations carries a Devanagari half. Four questions have **options** with no
+Nepali half, and that is deliberate — the options are the C++ tokens `public`,
+`protected`, `private`, `static`, the symbols `#`, `&`, `~`, `::`, and the
+program output `AAXX`. A Nepali half there would be a mistranslation rather
+than a translation. `tests/assessment.test.js` therefore requires a Nepali half
+on every prompt and explanation, and on any option longer than two words, which
+is the line between a value and a sentence. The fallback below still applies to
+anything that slips through. See §9.
 
 ### The fallback rule
 
@@ -496,7 +504,7 @@ local files it is the right trade.
 
 | Limitation | Effect | Fix |
 | --- | --- | --- |
-| The `grade10/oop-cpp` question bank has English-only prompts and options | Those questions show in English in Nepali mode | Translate the 15 questions; the engine already supports it |
+| ~~The `grade10/oop-cpp` question bank has English-only prompts and options~~ | **Resolved.** All 52 prompts and explanations are bilingual; the only untranslated options are C++ keywords, symbols and program output, where translating would be wrong | Held true by `tests/assessment.test.js` |
 | A heading that mixes both languages in one element, e.g. `Key points to revise — दोहोर्‍याउनुपर्ने मुख्य बुँदा` | Cannot be split, so both halves show in every mode | Split into two elements when those headings are next edited |
 | Element-level `lang="ne"` marking | An English technical term inside a Nepali sentence inherits `lang="ne"` | Pre-existing; a screen reader still reads `push()` intelligibly |
 | Topic headings such as *"2.1 Notations — three ways to write the same gate"* have no Nepali counterpart | They stay in English in Nepali mode | **Deliberate**: they are navigation landmarks, and a lesson whose section headings vanish is harder to use than one with English headings. Give them a Nepali sibling to change this |
