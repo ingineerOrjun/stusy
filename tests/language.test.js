@@ -735,3 +735,61 @@ test('every Nepali heading translation is used by at least one heading', () => {
   assert.deepStrictEqual(unused, [],
     'these translations match no heading and were written for nothing: ' + unused.join(' | '));
 });
+
+/* ============================================================
+   NEPALI TERMINOLOGY — one concept, one spelling
+
+   An official exam term that is rendered two different ways across the
+   subjects reads, to a student working in Nepali, as two different
+   terms. "Entity" was written इन्टिटी 49 times across the DBMS units and
+   एन्टिटी three times in OOP Unit 1's terms table — the same official
+   word, in the same curriculum, for the same concept. A student meeting
+   एन्टिटी in Unit 1 and इन्टिटी in DBMS Unit 2 has no way to know they are
+   the same thing.
+
+   This pins the spelling that the corpus already uses by a wide margin.
+   It is not a style rule imposed from outside: in each pair below the
+   chosen form was already dominant, and the rejected one appeared a
+   handful of times in one file.
+
+   WHAT IS DELIBERATELY NOT PINNED HERE
+     - टेबल, which is correct inside ट्रुथ टेबल — the established Digital
+       Design term for a truth table, not a competing word for तालिका.
+     - हरफ for a LINE of code, against पङ्क्ति for a row of a table. Two
+       concepts, two words, both right.
+     - बाबु for a base class against अभिभावक for the parent node of a
+       tree or a folder. The inheritance units use a deliberate familial
+       metaphor; a folder is not anyone's child.
+     - इकाई, which the first draft of this test rejected as a third
+       spelling of "entity" and which the test immediately caught in
+       Digital Design Unit 5 — in केन्द्रीय प्रोसेसिङ इकाई, where it means
+       UNIT and is correct. A terminology rule has to name the concept,
+       not the letters.
+   ============================================================ */
+test('one Nepali spelling per concept, across every subject', () => {
+  const lessons = path.join(SRC, 'content', 'lessons');
+  const files = fs.readdirSync(lessons).filter(f => f.endsWith('.html'));
+
+  /* [concept, the spelling the corpus uses, the spellings that must not reappear] */
+  const PINNED = [
+    ['entity', 'इन्टिटी', ['एन्टिटी']],
+    ['column', 'स्तम्भ',   ['कोलम']]
+  ];
+
+  for (const [concept, keep, reject] of PINNED){
+    let kept = 0;
+    const offenders = [];
+    for (const f of files){
+      const s = fs.readFileSync(path.join(lessons, f), 'utf8');
+      kept += s.split(keep).length - 1;
+      for (const bad of reject){
+        const n = s.split(bad).length - 1;
+        if (n) offenders.push(f + ' uses "' + bad + '" ' + n + '×');
+      }
+    }
+    assert.ok(kept > 0, concept + ': the pinned spelling "' + keep + '" appears nowhere');
+    assert.deepStrictEqual(offenders, [],
+      concept + ' is spelled "' + keep + '" everywhere else, so these read as a ' +
+      'different term to a student working in Nepali: ' + offenders.join('; '));
+  }
+});
