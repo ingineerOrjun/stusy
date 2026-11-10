@@ -14,6 +14,8 @@
    transcribed below, verbatim.
 
    IS THIS STILL THE APPLICABLE CURRICULUM?
+   Investigated in full in docs/CURRICULUM-APPLICABILITY.md, with the
+   evidence tiered. The summary:
    Checked at the source on 10 November 2026. The CDC's own listing page
    for this subject (moecdc.gov.np/content/553/) is dated 1 Mangsir 2082
    BS and links exactly ONE file — the 2078 PDF transcribed here. No
@@ -72,6 +74,26 @@
    unit, and fails the build on any disagreement. Changing a mark now
    requires changing the transcription, which is the place a reviewer
    can check against the PDF.
+
+   THESE 50 MARKS ARE HALF THE SUBJECT, NOT ALL OF IT
+   The curriculum's §7 Student Evaluation is explicit:
+
+     "Internal evaluation covers 50 Percent weightage. Internal
+      evaluation consists of Practical Activities (Practical works and
+      projects works) (35 Percent), (b) Marks from trimester
+      examinations (10 Percent), and (c) Classroom participation
+      (5 Percent)."
+
+   So each subject is 100 marks: 50 external, set from the grid below,
+   and 50 internal, which a school awards and which no study site can
+   predict or replace. The unit marks here are shares of the EXTERNAL
+   paper only.
+
+   This matters on the page, not just in a comment. Three of the four
+   subject heroes used to show a bare "50 marks" pill while the fourth
+   showed "50 external marks" — so three of them let a student read the
+   theory paper as the whole subject. All four now say external, and a
+   test holds them together.
 
    A NOTE ON WHAT IS *NOT* HERE
    The grid also apportions each unit's marks across MCQ / short / long

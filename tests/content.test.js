@@ -159,3 +159,29 @@ test('shared page sections resolve and are not marked authored', () => {
     assert.ok(s.html.length > 100, id + ' section looks empty');
   }
 });
+
+test('a subject never shows its external paper as if it were the whole subject', () => {
+  /* The CDC curriculum, §7 Student Evaluation: "Internal evaluation
+     covers 50 Percent weightage." Each subject is 100 marks — 50 from
+     the theory paper the specification grid describes, and 50 awarded
+     by the school for practical work, trimester tests and
+     participation.
+
+     Three of the four subject heroes used to show a bare "50 marks"
+     pill and the fourth showed "50 external marks". A student reading
+     any of those three had no way to know the number was half the
+     subject, and the inconsistency between the four is what made it
+     visible at all. */
+  const fs = require('node:fs');
+  const dir = path.join(SRC, 'content', 'sections');
+  const offenders = [];
+  for (const f of fs.readdirSync(dir).filter(n => /hero\.html$/.test(n))){
+    const html = fs.readFileSync(path.join(dir, f), 'utf8');
+    for (const m of html.matchAll(/>\s*(50[^<]*marks?)\s*</gi)){
+      if (!/external/i.test(m[1])) offenders.push(f + ': "' + m[1].trim() + '"');
+    }
+  }
+  assert.deepStrictEqual(offenders, [],
+    'these show the 50-mark theory paper without saying it is the external half: ' +
+    offenders.join('; '));
+});
