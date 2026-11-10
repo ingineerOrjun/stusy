@@ -542,6 +542,81 @@
       ]
     },
 
+    /* ---- GRADE 9 · Computer Fundamentals Unit 1: which BASIS of
+       classification is this? Added in Phase 12.
+
+       The unit lists five bases, and the paper does not ask a student to
+       recite them — it names a category and asks which basis it belongs
+       to, or describes a machine and asks where it sits. Those are
+       judgements against one rule, which is what this component is for.
+
+       The trap it drills: "supercomputer" and "digital" sound like the
+       same kind of word and answer two different questions. ---- */
+    cfclassify: {
+      title: { en: 'Which basis of classification?', ne: 'कुन आधारको वर्गीकरण हो?' },
+      lead: {
+        en: 'Each case names a category, or describes a machine. Decide which of the five bases it answers. Ask what QUESTION the word is answering — how big, what signal, how many jobs, what shape, or who made it.',
+        ne: 'हरेक केसमा कि एउटा वर्गको नाम छ, कि मेसिनको वर्णन। ती पाँच आधारमध्ये कुनको उत्तर हो छान्नुहोस्। त्यो शब्दले कुन प्रश्नको जवाफ दिँदै छ सोध्नुहोस् — कति ठूलो, कस्तो सङ्केत, कति काम, कस्तो आकार, कि कसले बनायो।'
+      },
+      options: [
+        { id: 'size',    label: { en: 'Size', ne: 'आकार' } },
+        { id: 'data',    label: { en: 'Data handling', ne: 'डाटा ह्यान्डलिङ' } },
+        { id: 'purpose', label: { en: 'Purpose', ne: 'प्रयोजन' } },
+        { id: 'model',   label: { en: 'Model', ne: 'मोडेल' } },
+        { id: 'brand',   label: { en: 'Brand', ne: 'ब्रान्ड' } }
+      ],
+      cases: [
+        {
+          pre: 'A weather office in Kathmandu runs a\nSUPERCOMPUTER to forecast the monsoon.',
+          answer: 'size',
+          why: {
+            en: 'Supercomputer, mainframe, mini and micro all answer one question: how much work can it do at once. That is the size and power class — not the kind of signal, and not how many different jobs it was built for.',
+            ne: 'Supercomputer, mainframe, mini र micro — चारैले एउटै प्रश्नको उत्तर दिन्छन्: एकैपटक कति काम गर्न सक्छ। यो आकार र क्षमताको वर्ग हो — सङ्केतको किसिम होइन, र कति फरक काम गर्न बनेको हो भन्ने पनि होइन।'
+          }
+        },
+        {
+          pre: "A hospital machine reads a patient's heartbeat\nas a continuously changing voltage.",
+          answer: 'data',
+          why: {
+            en: 'Continuously changing means an ANALOG signal, and analog, digital and hybrid are the data-handling classes. The clue is always the signal: a measured quantity that slides smoothly is analog, counted 0s and 1s are digital.',
+            ne: 'निरन्तर बदलिने भनेको ANALOG सङ्केत हो, र analog, digital, hybrid नै डाटा ह्यान्डलिङका वर्ग हुन्। सुराक सधैं सङ्केत नै हो: बिस्तारै सर्ने नापिने मान analog, गनिने ० र १ digital।'
+          }
+        },
+        {
+          pre: 'The computer inside a washing machine does\none job and cannot run anything else.',
+          answer: 'purpose',
+          why: {
+            en: 'One job only makes it special purpose; a machine you can load new programs onto is general purpose. It is also micro and digital — a computer sits in all five lists at once, and the question names which list it is asking about.',
+            ne: 'एउटै काम गर्ने भएकाले special purpose; नयाँ प्रोग्राम हाल्न मिल्ने भए general purpose। यो micro र digital पनि हो — एउटै कम्प्युटर पाँचै सूचीमा एकैचोटि पर्छ, र प्रश्नले कुन सूची सोधेको हो त्यही नाम लिन्छ।'
+          }
+        },
+        {
+          pre: 'A student carries a LAPTOP to class instead\nof using the desktop at home.',
+          answer: 'model',
+          why: {
+            en: 'Desktop, laptop and palmtop describe the physical form the machine is built in. A laptop is still a microcomputer, so answering size here would be true of the machine and still not answer the question that was asked.',
+            ne: 'Desktop, laptop र palmtop ले मेसिन कस्तो भौतिक आकारमा बनेको छ भन्छन्। Laptop पनि microcomputer नै हो, त्यसैले यहाँ आकार भन्नु मेसिनका लागि सही भए पनि सोधिएको प्रश्नको उत्तर हुँदैन।'
+          }
+        },
+        {
+          pre: 'A shop sells machines it calls\n"IBM compatible", beside Apple machines.',
+          answer: 'brand',
+          why: {
+            en: 'IBM PC, IBM compatible and Apple say who built the machine or whose design it follows. Nothing about a brand tells you the size, the signal or the purpose, which is exactly why it is counted as a separate basis.',
+            ne: 'IBM PC, IBM compatible र Apple ले मेसिन कसले बनायो वा कसको डिजाइन पछ्याउँछ भन्छन्। ब्रान्डले आकार, सङ्केत वा प्रयोजनबारे केही भन्दैन — त्यसैले यो छुट्टै आधार मानिन्छ।'
+          }
+        },
+        {
+          pre: 'A fuel pump measures flowing petrol and\nprints a digital bill for the amount.',
+          answer: 'data',
+          why: {
+            en: 'It measures a continuous quantity and then works with counted digits, which is the definition of a HYBRID computer. Hybrid is the third data-handling class, and a question describing both kinds of signal in one machine is asking for it.',
+            ne: 'यसले निरन्तर बग्ने परिमाण नाप्छ, अनि गनिने अङ्कसँग काम गर्छ — HYBRID कम्प्युटरको परिभाषा यही हो। Hybrid डाटा ह्यान्डलिङको तेस्रो वर्ग हो, र एउटै मेसिनमा दुवै किसिमको सङ्केत वर्णन गर्ने प्रश्नले यही खोज्दै छ।'
+          }
+        }
+      ]
+    },
+
     /* ---- Unit 1: data, information, database or DBMS? ---- */
     dbterms: {
       title: { en: 'Data, information, database or DBMS?', ne: 'Data, information, database कि DBMS?' },

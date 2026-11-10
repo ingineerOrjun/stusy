@@ -3429,4 +3429,80 @@ D.dbDependencies = `
   <text class="f-lbl" x="350" y="339" style="font-size:9.5px">Read where the arrow STARTS: the whole key is fine, part of the key is partial, a non-key column is transitive.</text>
 </svg>`;
 
+/* ===============================================================
+   GRADE 9 · FUNDAMENTALS OF COMPUTER AND APPLICATION · UNIT 1
+
+   WHY THESE TWO AND NOT MORE. Topic 1.1 defines a computer by what it
+   DOES to data, and 1.4 classifies computers five different ways. Both
+   are shapes: a cycle, and a tree. The other two topics of this unit —
+   characteristics and applications — are lists, and a list is already a
+   list on the page. Drawing them would be decoration.
+   =============================================================== */
+
+/* ---- 1.1 what a computer does: the IPO cycle, with storage ---- */
+D.cfIpoCycle = `
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-cfipo">
+  <title id="t-cfipo">The input, process, output cycle of a computer, with storage feeding
+  the processing unit and the stored program controlling it</title>
+  ${ah('a-cfipo')}
+  <text class="f-ttl" x="10" y="20">A COMPUTER IS DEFINED BY WHAT IT DOES TO DATA, not by its shape or size</text>
+
+  <rect class="f-box-y" x="24" y="96" width="140" height="62" rx="8"/>
+  <text class="f-lbl-y" x="94" y="122" style="font-size:12px">INPUT</text>
+  <text class="f-lbl" x="94" y="140" style="font-size:9.5px">raw data goes in</text>
+
+  <path class="f-arr" d="M168 127 L252 127" marker-end="url(#a-cfipo)"/>
+
+  <rect class="f-box-d" x="256" y="80" width="170" height="94" rx="8"/>
+  <text class="f-lbl-y" x="341" y="108" style="font-size:12px">PROCESS</text>
+  <text class="f-lbl" x="341" y="126" style="font-size:9.5px">the CPU works on it</text>
+  <text class="f-lbl" x="341" y="142" style="font-size:9.5px">following stored</text>
+  <text class="f-lbl" x="341" y="156" style="font-size:9.5px">instructions</text>
+
+  <path class="f-arr" d="M430 127 L514 127" marker-end="url(#a-cfipo)"/>
+
+  <rect class="f-box-g" x="518" y="96" width="150" height="62" rx="8"/>
+  <text class="f-lbl-y" x="593" y="122" style="font-size:12px">OUTPUT</text>
+  <text class="f-lbl" x="593" y="140" style="font-size:9.5px">information comes out</text>
+
+  <rect class="f-box" x="256" y="206" width="170" height="54" rx="8"/>
+  <text class="f-lbl-y" x="341" y="228" style="font-size:11px">STORAGE</text>
+  <text class="f-lbl" x="341" y="246" style="font-size:9.5px">keeps data and the program</text>
+  <path class="f-arr" d="M341 202 L341 180" marker-end="url(#a-cfipo)"/>
+  <path class="f-arr" d="M360 180 L360 202" marker-end="url(#a-cfipo)"/>
+
+  <text class="f-lbl" x="94" y="178" style="font-size:9px">numbers, letters, a key press</text>
+  <text class="f-lbl" x="593" y="178" style="font-size:9px">a result someone can use</text>
+
+  <rect class="f-box-y" x="24" y="272" width="652" height="20" rx="6"/>
+  <text class="f-lbl" x="350" y="286" style="font-size:9.5px">DATA is what goes in. INFORMATION is what comes out — data that has been processed into something useful.</text>
+</svg>`;
+
+/* ---- 1.4 five bases of classification ---- */
+D.cfClassify = `
+<svg viewBox="0 0 700 392" role="img" aria-labelledby="t-cfcl">
+  <title id="t-cfcl">Computers classified five ways: by size, by how they handle data, by
+  purpose, by model and by brand, each with its own categories</title>
+  <text class="f-ttl" x="10" y="20">FIVE QUESTIONS, FIVE ANSWERS — the exam asks which BASIS, then the categories under it</text>
+
+  ${[['on the basis of SIZE', 'Supercomputer · Mainframe · Mini · Micro', 'how much work at once', 'var(--color-primary)'],
+     ['on the basis of DATA HANDLING', 'Analog · Digital · Hybrid', 'what KIND of signal', 'var(--color-secondary)'],
+     ['on the basis of PURPOSE', 'General purpose · Special purpose', 'how many jobs it can do', 'var(--color-success)'],
+     ['on the basis of MODEL', 'Desktop · Laptop · Palmtop and similar', 'the physical form', 'var(--color-warning)'],
+     ['on the basis of BRAND', 'IBM PC · IBM compatible · Apple', 'who made it', 'var(--color-error)']
+    ].map(function(r, i){
+    const y = 44 + i * 64;
+    return `<g>
+    <rect class="f-box-d" x="16" y="${y}" width="668" height="52" rx="8"/>
+    <rect x="28" y="${y + 10}" width="212" height="32" rx="6"
+          style="fill:none;stroke:${r[3]};stroke-width:1.6"/>
+    <text class="f-lbl-y" x="134" y="${y + 31}" style="font-size:10.5px;fill:${r[3]}">${r[0]}</text>
+    <text class="f-lbl-y" x="258" y="${y + 24}" text-anchor="start" style="font-size:10.5px">${r[1]}</text>
+    <text class="f-lbl" x="258" y="${y + 40}" text-anchor="start" style="font-size:9px">asks: ${r[2]}</text>
+  </g>`;}).join('')}
+
+  <rect class="f-box-y" x="16" y="364" width="668" height="20" rx="6"/>
+  <text class="f-lbl" x="350" y="378" style="font-size:9.5px">One computer sits in ALL five lists at once. A laptop is micro, digital, general purpose, laptop model, and some brand.</text>
+</svg>`;
+
 module.exports = D;

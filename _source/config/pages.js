@@ -21,6 +21,38 @@
 module.exports = {
 
   /* ---------------------------------------------------------------
+     Grade 9 · Fundamentals of Computer and Application
+
+     The first Grade 9 subject with authored lessons. Unit 1 only —
+     Phase 12's scope — so this list grows one entry per unit as the
+     subject is written, and the coverage map in content/coverage.js
+     grows with it.
+
+     LESSON FILES CARRY THE `cf-` PREFIX. The lessons directory is flat
+     and Grade 10 OOP owns the bare names u1.html .. u6.html; a Grade 9
+     lesson called u1.html would not collide loudly, it would overwrite
+     one. The prefixes were reserved in the Phase 11 architecture plan
+     and are asserted by tests/curriculum.test.js.
+     --------------------------------------------------------------- */
+  'grade9/computer-fundamentals': {
+    hero: 'cf-hero',
+    pages: [
+      { file: 'unit1.html', n: '1',
+        title: 'Introduction to Computer', np: 'कम्प्युटरको परिचय',
+        chip: 'What a computer is', hrs: 8, marks: 6,
+        sec: ['cf-u1'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js'] },
+
+      { file: 'revise.html', n: '↻', title: 'Your Revision', np: 'तपाईंको दोहोर्‍याइ',
+        chip: 'Revision', sec: ['revise'],
+        js: ['services/progress.js', 'services/revision.js', 'learning-map.js', 'revise.js'] },
+
+      { file: 'quiz.html', n: '?', title: 'Self-Check Quiz', np: 'आफैं जाँच्ने क्विज',
+        chip: 'Quiz', sec: ['cf-quiz'],
+        js: ['services/quiz.js', 'question-bank.js', 'quiz.js'] }
+    ]
+  },
+
+  /* ---------------------------------------------------------------
      Grade 10 · Data Structure & OOP using C++
      --------------------------------------------------------------- */
   'grade10/oop-cpp': {

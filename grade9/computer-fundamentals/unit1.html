@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Introduction to Computer — Computer Fundamentals | </title>
+<meta name="description" content="Introduction to Computer explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark" lang="ne">ज्ञ</span>
+      <span class="brand-txt">Gyansetu<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop on"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair <span class="dn">· notes ready</span><small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html" class="on">Computer Fundamentals<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair ✓<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 9</a> <span class="sep">/</span> <a href="index.html">Computer Fundamentals</a> <span class="sep">/</span> <span>Introduction to Computer</span></nav>
+<main id="main" tabindex="-1" data-subject="grade9/computer-fundamentals">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html" style="color:var(--yellow);border-color:var(--yellow)">1 · What a computer is</a><a href="revise.html">↻ · Revision</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="cf-u1">
+  <div class="sec-head">
+    <div class="sec-num">1</div>
+    <div>
+      <h1>Introduction to Computer</h1>
+      <p class="sec-sub" lang="ne">कम्प्युटरको परिचय</p>
+    </div>
+    <span class="marks">8 hrs · 6 marks · 10 practical hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2><span class="t-en">By the end of this unit you can…</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो युनिट सकिँदा तपाईं यी कुरा गर्न सक्नुहुनेछ</span></h2><div class="t-en">
+    <ol>
+      <li>Define a computer by what it does to data, and name the four stages of that cycle.</li>
+      <li>Explain the difference between data and information, with an example of each.</li>
+      <li>State the characteristics of a computer, and say which of them is a property of the machine and not of the answer.</li>
+      <li>Give real applications of computers in Nepal across at least six different fields.</li>
+      <li>Name the five bases on which computers are classified, and the categories under each.</li>
+      <li>Place any computer you are shown into all five classifications at once.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: कम्प्युटरलाई उसले डाटामाथि गर्ने कामबाट परिभाषित गर्न र
+    त्यो चक्रका चार चरण नाम लिन, data र information को फरक उदाहरणसहित भन्न, कम्प्युटरका विशेषता
+    भन्न र तीमध्ये कुन मेसिनको गुण हो (उत्तरको होइन) छुट्याउन, नेपालमा कम्प्युटरको प्रयोग कम्तीमा
+    छ क्षेत्रमा देखाउन, वर्गीकरणका पाँच आधार र तिनका वर्ग नाम लिन, र देखाइएको जुनसुकै कम्प्युटरलाई
+    पाँचै वर्गीकरणमा एकैपटक राख्न सक्नुहुनेछ।</span>
+  </div>
+
+  <!-- ============ 1.1 ============ -->
+  <h2 class="topic" id="cf-t11">1.1 &nbsp;What a computer is</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The definition, and why it is worded that way</span>
+      <p>A <b>computer</b> is an electronic device that accepts <b>data</b>, processes it
+      according to a set of stored instructions, produces <b>information</b> as output, and can
+      store both for later use.</p>
+      <p>Every part of that sentence is doing work. <b>Electronic</b> rules out an abacus.
+      <b>Stored instructions</b> is the important one: a calculator also processes data, but you
+      must press each key. A computer holds the whole list of steps — the <b>program</b> — inside
+      itself and runs it without being told again at every step.</p>
+      <p>The name is misleading. "Computer" means "one who computes", and calculation is only one
+      of the things it does. It also stores, sorts, searches, compares, draws and communicates.
+      Judge a machine by the four stages below, not by its name or its size.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा, र यसरी नै किन लेखिन्छ</span>
+      <p><b lang="ne">कम्प्युटर</b> एउटा इलेक्ट्रोनिक उपकरण हो, जसले <b>data</b> लिन्छ, भण्डारण गरिएका
+      निर्देशनअनुसार त्यसलाई प्रशोधन गर्छ, आउटपुटका रूपमा <b>information</b> दिन्छ, र दुवैलाई पछि
+      प्रयोग गर्न राख्न सक्छ।</p>
+      <p lang="ne">यो वाक्यको हरेक भागको काम छ। <b lang="ne">इलेक्ट्रोनिक</b> भनेपछि अबाकस बाहिरियो। सबैभन्दा
+      महत्त्वपूर्ण <b lang="ne">भण्डारण गरिएका निर्देशन</b> हो: क्यालकुलेटरले पनि data प्रशोधन गर्छ, तर
+      हरेक बटन तपाईंले थिच्नुपर्छ। कम्प्युटरले चरणहरूको पूरै सूची — अर्थात् <b lang="ne">प्रोग्राम</b> —
+      आफैंभित्र राख्छ र हरेक चरणमा फेरि नभनिकनै चलाउँछ।</p>
+      <p lang="ne">नाम भने अलमल्याउने खालको छ। "Computer" को अर्थ "गणना गर्ने" हो, तर गणना त उसले गर्ने
+      धेरै काममध्ये एउटा मात्र हो। उसले राख्छ, क्रम मिलाउँछ, खोज्छ, तुलना गर्छ, कोर्छ र सञ्चार पनि
+      गर्छ। मेसिनलाई नाम वा आकारले होइन, तलका चार चरणले जाँच्नुहोस्।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-cfipo">
+  <title id="t-cfipo">The input, process, output cycle of a computer, with storage feeding
+  the processing unit and the stored program controlling it</title>
+  <defs><marker id="a-cfipo" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
+  <text class="f-ttl" x="10" y="20">A COMPUTER IS DEFINED BY WHAT IT DOES TO DATA, not by its shape or size</text>
+
+  <rect class="f-box-y" x="24" y="96" width="140" height="62" rx="8"/>
+  <text class="f-lbl-y" x="94" y="122" style="font-size:12px">INPUT</text>
+  <text class="f-lbl" x="94" y="140" style="font-size:9.5px">raw data goes in</text>
+
+  <path class="f-arr" d="M168 127 L252 127" marker-end="url(#a-cfipo)"/>
+
+  <rect class="f-box-d" x="256" y="80" width="170" height="94" rx="8"/>
+  <text class="f-lbl-y" x="341" y="108" style="font-size:12px">PROCESS</text>
+  <text class="f-lbl" x="341" y="126" style="font-size:9.5px">the CPU works on it</text>
+  <text class="f-lbl" x="341" y="142" style="font-size:9.5px">following stored</text>
+  <text class="f-lbl" x="341" y="156" style="font-size:9.5px">instructions</text>
+
+  <path class="f-arr" d="M430 127 L514 127" marker-end="url(#a-cfipo)"/>
+
+  <rect class="f-box-g" x="518" y="96" width="150" height="62" rx="8"/>
+  <text class="f-lbl-y" x="593" y="122" style="font-size:12px">OUTPUT</text>
+  <text class="f-lbl" x="593" y="140" style="font-size:9.5px">information comes out</text>
+
+  <rect class="f-box" x="256" y="206" width="170" height="54" rx="8"/>
+  <text class="f-lbl-y" x="341" y="228" style="font-size:11px">STORAGE</text>
+  <text class="f-lbl" x="341" y="246" style="font-size:9.5px">keeps data and the program</text>
+  <path class="f-arr" d="M341 202 L341 180" marker-end="url(#a-cfipo)"/>
+  <path class="f-arr" d="M360 180 L360 202" marker-end="url(#a-cfipo)"/>
+
+  <text class="f-lbl" x="94" y="178" style="font-size:9px">numbers, letters, a key press</text>
+  <text class="f-lbl" x="593" y="178" style="font-size:9px">a result someone can use</text>
+
+  <rect class="f-box-y" x="24" y="272" width="652" height="20" rx="6"/>
+  <text class="f-lbl" x="350" y="286" style="font-size:9.5px">DATA is what goes in. INFORMATION is what comes out — data that has been processed into something useful.</text>
+</svg>
+    <figcaption><span class="t-en">Input → Process → Output, with storage underneath. "Define a computer with a block
+    diagram" is a standard question, and this is the diagram it wants.
+    </span><span class="np-cell" lang="ne">Input → Process → Output, र मुनि storage। "ब्लक चित्रसहित कम्प्युटरको
+    परिभाषा दिनुहोस्" भन्ने प्रश्न पटक–पटक आउँछ, र खोजिने चित्र यही हो।</span></figcaption>
+  </figure>
+
+  <div class="callout"><span class="t-en">
+    <b>Data and information are not the same word.</b>
+    <b>Data</b> is raw and on its own means little: <code>72, 65, 88</code>.
+    <b>Information</b> is data that has been processed into something a person can use:
+    "the class average is 75". The computer's whole job is turning the first into the second —
+    which is why the definition names both.
+    </span><span class="np-cell" lang="ne">Data र information उस्तै शब्द होइनन्। <b>Data</b> कच्चा हुन्छ र आफैंमा
+    थोरै अर्थ राख्छ: <code lang="ne">७२, ६५, ८८</code>। <b>Information</b> भनेको प्रशोधन भइसकेको, मान्छेले
+    काम लगाउन सक्ने कुरा हो: "कक्षाको औसत ७५ छ"। कम्प्युटरको पूरै काम पहिलोलाई दोस्रो बनाउनु हो —
+    त्यसैले परिभाषामा दुवैको नाम आउँछ।</span>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A pocket calculator takes numbers in, adds them, and shows a result. By the definition
+      above, is it a computer?
+      </span><span class="np-cell" lang="ne">पकेट क्यालकुलेटरले संख्या लिन्छ, जोड्छ र नतिजा देखाउँछ। माथिको
+      परिभाषाअनुसार के यो कम्प्युटर हो?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Yes — it takes input and gives output</button>
+      <button class="predict-opt" data-value="b">No — it has no stored program</button>
+      <button class="predict-opt" data-value="c">Yes — it is electronic</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>No.</b> It is electronic and it does process input into output, so it passes two parts
+      of the test. What it cannot do is <b>hold a list of instructions and follow them on its
+      own</b> — you press every key yourself. That is the line the definition draws, and it is why
+      "stored instructions" is in it. A programmable scientific calculator sits much closer to the
+      line, which is a fair thing to notice.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">होइन।</b> यो इलेक्ट्रोनिक छ र इनपुटलाई आउटपुटमा बदल्छ पनि, त्यसैले
+      जाँचका दुई भाग पास गर्छ। तर <b lang="ne">निर्देशनको सूची राखेर आफैं पछ्याउन</b> सक्दैन — हरेक बटन
+      तपाईं आफैं थिच्नुहुन्छ। परिभाषाले कोर्ने रेखा यही हो, र "भण्डारण गरिएका निर्देशन" त्यसैले
+      राखिएको हो।</span>
+    </div>
+  </div>
+
+  <!-- ============ 1.2 ============ -->
+  <h2 class="topic" id="cf-t12">1.2 &nbsp;Characteristics of a computer</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">What a computer is good at</span>
+      <p><b>Speed</b> — it works in millionths and billionths of a second. A task that would take
+      a clerk a week can finish while you wait.</p>
+      <p><b>Accuracy</b> — it does not make mistakes in its own arithmetic.</p>
+      <p><b>Diligence</b> — it does not get bored or tired. The ten-thousandth calculation is done
+      exactly as carefully as the first.</p>
+      <p><b>Versatility</b> — the same machine prints a bill, plays a song and checks spelling,
+      because changing the program changes the job.</p>
+      <p><b>Storage</b> — it keeps very large amounts of data and finds any part of it again.</p>
+      <p><b>Automation</b> — once started, it carries out a whole job without a person at each
+      step.</p>
+      <p><b>Reliability</b> — it gives the same answer to the same question every time.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">कम्प्युटर केमा राम्रो छ</span>
+      <p><b lang="ne">गति</b> — ऊ सेकेन्डको दशलाख र अर्बौं भागमा काम गर्छ। कर्मचारीलाई हप्ता लाग्ने काम
+      तपाईं पर्खिरहँदै सकिन्छ।</p>
+      <p><b lang="ne">शुद्धता</b> — आफ्नै गणनामा ऊ गल्ती गर्दैन।</p>
+      <p><b lang="ne">लगनशीलता</b> — ऊ दिक्क हुँदैन, थाक्दैन। दश हजारौं गणना पनि पहिलोजत्तिकै ध्यान दिएर
+      हुन्छ।</p>
+      <p><b lang="ne">बहुउपयोगिता</b> — उही मेसिनले बिल छाप्छ, गीत बजाउँछ र हिज्जे जाँच्छ, किनभने प्रोग्राम
+      फेर्दा काम फेरिन्छ।</p>
+      <p><b lang="ne">भण्डारण</b> — ऊ धेरै ठूलो मात्रामा data राख्छ र त्यसको जुनसुकै भाग फेरि भेट्टाउँछ।</p>
+      <p><b lang="ne">स्वचालन</b> — एकपटक सुरु गरेपछि हरेक चरणमा मान्छे नचाहिने गरी पूरै काम सिध्याउँछ।</p>
+      <p><b lang="ne">भरपर्दोपन</b> — उही प्रश्नको उत्तर उसले हरेक पटक उही दिन्छ।</p>
+    </div>
+  </div>
+
+  <div class="callout"><span class="t-en">
+    <b>GIGO — the one that costs marks.</b> "Accuracy" means the machine does not make arithmetic
+    mistakes. It does <b>not</b> mean the answer is right. If you type a student's marks as 850
+    instead of 85, the computer will average 850 perfectly and hand you a wrong result.
+    <b>Garbage In, Garbage Out.</b> Accuracy is a property of the machine; correctness is a
+    property of the data you gave it.
+    </span><span class="np-cell" lang="ne"><b lang="ne">GIGO — यहीँ अंक जान्छ।</b> "शुद्धता" भनेको मेसिनले गणनामा गल्ती
+    गर्दैन भन्ने हो। उत्तर नै सही हुन्छ भनेको <b lang="ne">होइन</b>। विद्यार्थीको अंक ८५ का साटो ८५० टाइप
+    गर्नुभयो भने कम्प्युटरले ८५० लाई ठ्याक्कै सही औसत निकालिदिन्छ, र गलत नतिजा दिन्छ।
+    <b>Garbage In, Garbage Out.</b> शुद्धता मेसिनको गुण हो; सहीपन तपाईंले दिएको data को गुण
+    हो।</span>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Which characteristic is the answer?</div>
+    <p><b>Question:</b> a school enters 1,200 students' marks. The computer calculates every
+    average in two seconds, and every one of them is wrong because the marks were entered from
+    the wrong register. Which characteristic does this show, and which does it NOT disprove?</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Two characteristics are in play and the question
+      separates them. Decide which one the two seconds demonstrates, and which one the wrong
+      answers do not touch, before you open this.</span>
+      <span class="np-cell" lang="ne">दुई विशेषता खेलमा छन् र प्रश्नले तिनलाई छुट्याउँछ। दुई सेकेन्डले कुन
+      देखाउँछ, र गलत उत्तरले कुनलाई छुँदैन — खोल्नुअघि निर्णय गर्नुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">Two seconds for 1,200 averages   ->  SPEED
+Every average arithmetically correct ->  ACCURACY is intact
+The answers are useless               ->  the DATA was wrong, not the machine</div>
+      <p class="wex-note"><span class="t-en">The marks lost here are usually lost by writing "this shows the computer
+      is not accurate". It is accurate — it averaged exactly what it was given. The example is
+      GIGO, and naming GIGO is what earns the mark.
+      </span><span class="np-cell" lang="ne">यहाँ अंक प्रायः "यसले कम्प्युटर शुद्ध छैन भन्ने देखाउँछ" लेखेर जान्छ।
+      ऊ शुद्ध छ — उसलाई दिइएकै कुराको ठ्याक्कै औसत निकाल्यो। यो उदाहरण GIGO हो, र GIGO नाम लिनुले
+      नै अंक दिलाउँछ।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ 1.3 ============ -->
+  <h2 class="topic" id="cf-t13">1.3 &nbsp;Modern applications of the computer</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Where computers are actually used in Nepal</span>
+      <p><b>Education</b> — school records and results, online classes, and the material you are
+      reading now.</p>
+      <p><b>Banking and money</b> — accounts, ATMs, mobile banking, and the remittance that
+      reaches a village from abroad in minutes rather than weeks.</p>
+      <p><b>Government</b> — citizenship and land records, the national ID, online passport
+      applications, and tax filing.</p>
+      <p><b>Health</b> — patient records at a hospital or health post, laboratory machines,
+      and telemedicine that lets a doctor in Kathmandu advise a health worker in a hill district.</p>
+      <p><b>Communication</b> — email, messaging and video calls.</p>
+      <p><b>Transport and tourism</b> — online bus and flight booking, and hotel systems.</p>
+      <p><b>Weather and disaster warning</b> — forecasting the monsoon and giving flood warning
+      downstream, which in Nepal is a use that saves lives.</p>
+      <p><b>Agriculture</b> — market prices, weather advice and soil records reaching farmers by
+      phone.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">नेपालमा कम्प्युटर साँच्चै कहाँ प्रयोग हुन्छ</span>
+      <p><b lang="ne">शिक्षा</b> — विद्यालयको अभिलेख र नतिजा, अनलाइन कक्षा, र तपाईंले अहिले पढिरहेको यो
+      सामग्री।</p>
+      <p><b lang="ne">बैंकिङ र पैसा</b> — खाता, ATM, मोबाइल बैंकिङ, र विदेशबाट गाउँसम्म हप्तौंमा होइन
+      मिनेटमै पुग्ने रेमिट्यान्स।</p>
+      <p><b lang="ne">सरकारी काम</b> — नागरिकता र जग्गाको अभिलेख, राष्ट्रिय परिचयपत्र, अनलाइन राहदानी
+      आवेदन, र कर दाखिला।</p>
+      <p><b lang="ne">स्वास्थ्य</b> — अस्पताल र स्वास्थ्य चौकीमा बिरामीको अभिलेख, प्रयोगशालाका मेसिन, र
+      काठमाडौंको डाक्टरले पहाडी जिल्लाको स्वास्थ्यकर्मीलाई सल्लाह दिन मिल्ने टेलिमेडिसिन।</p>
+      <p><b lang="ne">सञ्चार</b> — इमेल, म्यासेज र भिडियो कल।</p>
+      <p><b lang="ne">यातायात र पर्यटन</b> — अनलाइन बस र हवाई टिकट, होटेलका प्रणाली।</p>
+      <p><b lang="ne">मौसम र विपद् सूचना</b> — मनसुनको पूर्वानुमान र तल्लो तटमा बाढीको चेतावनी — नेपालमा यो
+      ज्यान बचाउने प्रयोग हो।</p>
+      <p><b lang="ne">कृषि</b> — बजार भाउ, मौसमको सल्लाह र माटोको अभिलेख फोनबाटै किसानसम्म।</p>
+    </div>
+  </div>
+
+  <!-- ============ 1.4 ============ -->
+  <h2 class="topic" id="cf-t14">1.4 &nbsp;Classification of computers</h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Five questions, not one list</span>
+      <p>Computers are classified on <b>five different bases</b>, and this is where the unit's
+      marks usually are. The mistake to avoid is treating them as one long list. They are five
+      separate questions, and <b>every computer has an answer to all five at once</b>.</p>
+      <p><b>By size</b> — supercomputer, mainframe, minicomputer, microcomputer. This asks how
+      much work the machine can do at once.</p>
+      <p><b>By data handling</b> — analog, digital, hybrid. This asks what kind of signal it works
+      with. Analog <i>measures</i> something that changes smoothly, like a voltage. Digital
+      <i>counts</i> in 0s and 1s. Hybrid does both: a fuel pump measures flowing petrol and prints
+      a digital bill.</p>
+      <p><b>By purpose</b> — general purpose (you can load new programs onto it) or special
+      purpose (built for one job, like the computer in a washing machine).</p>
+      <p><b>By model</b> — the physical form: desktop, laptop, palmtop and similar.</p>
+      <p><b>By brand</b> — IBM PC, IBM compatible, Apple.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">पाँच प्रश्न, एउटै सूची होइन</span>
+      <p lang="ne">कम्प्युटरको वर्गीकरण <b lang="ne">पाँच फरक आधार</b> मा हुन्छ, र यस युनिटका अंक प्रायः यहीँ हुन्छन्।
+      बच्नुपर्ने गल्ती — यिनलाई एउटै लामो सूची ठान्नु। यी पाँच छुट्टाछुट्टै प्रश्न हुन्, र
+      <b lang="ne">हरेक कम्प्युटरसँग पाँचैको उत्तर एकैचोटि हुन्छ</b>।</p>
+      <p><b lang="ne">आकार अनुसार</b> — supercomputer, mainframe, minicomputer, microcomputer। यसले मेसिनले
+      एकैपटक कति काम गर्न सक्छ सोध्छ।</p>
+      <p><b lang="ne">डाटा ह्यान्डलिङ अनुसार</b> — analog, digital, hybrid। यसले कस्तो सङ्केतसँग काम गर्छ
+      सोध्छ। Analog ले बिस्तारै बदलिने कुरा <i lang="ne">नाप्छ</i>, जस्तै भोल्टेज। Digital ले ० र १ मा
+      <i lang="ne">गन्छ</i>। Hybrid ले दुवै गर्छ: पेट्रोल पम्पले बग्ने पेट्रोल नाप्छ र digital बिल छाप्छ।</p>
+      <p><b lang="ne">प्रयोजन अनुसार</b> — general purpose (नयाँ प्रोग्राम हाल्न मिल्ने) वा special purpose
+      (एउटै कामका लागि बनेको, जस्तै वासिङ मेसिनभित्रको कम्प्युटर)।</p>
+      <p><b lang="ne">मोडेल अनुसार</b> — भौतिक आकार: desktop, laptop, palmtop र यस्तै।</p>
+      <p><b lang="ne">ब्रान्ड अनुसार</b> — IBM PC, IBM compatible, Apple।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 392" role="img" aria-labelledby="t-cfcl">
+  <title id="t-cfcl">Computers classified five ways: by size, by how they handle data, by
+  purpose, by model and by brand, each with its own categories</title>
+  <text class="f-ttl" x="10" y="20">FIVE QUESTIONS, FIVE ANSWERS — the exam asks which BASIS, then the categories under it</text>
+
+  <g>
+    <rect class="f-box-d" x="16" y="44" width="668" height="52" rx="8"/>
+    <rect x="28" y="54" width="212" height="32" rx="6"
+          style="fill:none;stroke:var(--color-primary);stroke-width:1.6"/>
+    <text class="f-lbl-y" x="134" y="75" style="font-size:10.5px;fill:var(--color-primary)">on the basis of SIZE</text>
+    <text class="f-lbl-y" x="258" y="68" text-anchor="start" style="font-size:10.5px">Supercomputer · Mainframe · Mini · Micro</text>
+    <text class="f-lbl" x="258" y="84" text-anchor="start" style="font-size:9px">asks: how much work at once</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="108" width="668" height="52" rx="8"/>
+    <rect x="28" y="118" width="212" height="32" rx="6"
+          style="fill:none;stroke:var(--color-secondary);stroke-width:1.6"/>
+    <text class="f-lbl-y" x="134" y="139" style="font-size:10.5px;fill:var(--color-secondary)">on the basis of DATA HANDLING</text>
+    <text class="f-lbl-y" x="258" y="132" text-anchor="start" style="font-size:10.5px">Analog · Digital · Hybrid</text>
+    <text class="f-lbl" x="258" y="148" text-anchor="start" style="font-size:9px">asks: what KIND of signal</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="172" width="668" height="52" rx="8"/>
+    <rect x="28" y="182" width="212" height="32" rx="6"
+          style="fill:none;stroke:var(--color-success);stroke-width:1.6"/>
+    <text class="f-lbl-y" x="134" y="203" style="font-size:10.5px;fill:var(--color-success)">on the basis of PURPOSE</text>
+    <text class="f-lbl-y" x="258" y="196" text-anchor="start" style="font-size:10.5px">General purpose · Special purpose</text>
+    <text class="f-lbl" x="258" y="212" text-anchor="start" style="font-size:9px">asks: how many jobs it can do</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="236" width="668" height="52" rx="8"/>
+    <rect x="28" y="246" width="212" height="32" rx="6"
+          style="fill:none;stroke:var(--color-warning);stroke-width:1.6"/>
+    <text class="f-lbl-y" x="134" y="267" style="font-size:10.5px;fill:var(--color-warning)">on the basis of MODEL</text>
+    <text class="f-lbl-y" x="258" y="260" text-anchor="start" style="font-size:10.5px">Desktop · Laptop · Palmtop and similar</text>
+    <text class="f-lbl" x="258" y="276" text-anchor="start" style="font-size:9px">asks: the physical form</text>
+  </g><g>
+    <rect class="f-box-d" x="16" y="300" width="668" height="52" rx="8"/>
+    <rect x="28" y="310" width="212" height="32" rx="6"
+          style="fill:none;stroke:var(--color-error);stroke-width:1.6"/>
+    <text class="f-lbl-y" x="134" y="331" style="font-size:10.5px;fill:var(--color-error)">on the basis of BRAND</text>
+    <text class="f-lbl-y" x="258" y="324" text-anchor="start" style="font-size:10.5px">IBM PC · IBM compatible · Apple</text>
+    <text class="f-lbl" x="258" y="340" text-anchor="start" style="font-size:9px">asks: who made it</text>
+  </g>
+
+  <rect class="f-box-y" x="16" y="364" width="668" height="20" rx="6"/>
+  <text class="f-lbl" x="350" y="378" style="font-size:9.5px">One computer sits in ALL five lists at once. A laptop is micro, digital, general purpose, laptop model, and some brand.</text>
+</svg>
+    <figcaption><span class="t-en">Read the left column first. The exam names a basis and asks for its categories, or
+    names a category and asks which basis it belongs to.
+    </span><span class="np-cell" lang="ne">पहिले बायाँ स्तम्भ पढ्नुहोस्। परीक्षाले कि आधार दिएर त्यसका वर्ग सोध्छ,
+    कि वर्ग दिएर कुन आधारको हो सोध्छ।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3>Which basis of classification is being used?</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to tell the five bases apart on a real case rather
+      than by reciting the list. Six cases, and two of them answer the same basis for different
+      reasons.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: सूची घोकेर होइन, वास्तविक केसमा पाँच आधार
+      छुट्याउन। छ केस छन्, र तीमध्ये दुईले फरक कारणले उही आधारको उत्तर दिन्छन्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cfclass" data-set="cfclassify"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Before pressing anything, say out loud what question the case is answering. <b>How much
+        work?</b> size. <b>What kind of signal?</b> data handling. <b>How many different jobs?</b>
+        purpose. <b>What shape?</b> model. <b>Who made it?</b> brand.</p>
+        <p>Case 3 is the one worth reading the reason for even if you get it right. The washing
+        machine is <i>also</i> micro and <i>also</i> digital — more than one answer is true of the
+        machine, and only one answers the question asked.</p>
+        </div><span class="np-cell" lang="ne">केही थिच्नुअघि यो केसले कुन प्रश्नको उत्तर दिँदै छ भन्नुहोस्।
+        <b lang="ne">कति काम?</b> आकार। <b lang="ne">कस्तो सङ्केत?</b> डाटा ह्यान्डलिङ। <b lang="ne">कति फरक काम?</b> प्रयोजन।
+        <b lang="ne">कस्तो आकार?</b> मोडेल। <b lang="ne">कसले बनायो?</b> ब्रान्ड। केस ३ को कारण सही भए पनि
+        पढ्नुहोस्: वासिङ मेसिन micro पनि हो, digital पनि — मेसिनका लागि एकभन्दा बढी उत्तर सही
+        हुन्छन्, तर सोधिएको प्रश्नको उत्तर एउटै हुन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Classify one machine five ways</div>
+    <p><b>Question:</b> a student's laptop, made by Apple, used for homework, browsing and music.
+    Place it in all five classifications.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Work down the five bases in order and answer each
+      one separately. Write your five answers before opening this.</span>
+      <span class="np-cell" lang="ne">पाँच आधार क्रमैसँग लिनुहोस् र हरेकको छुट्टै उत्तर दिनुहोस्। खोल्नुअघि
+      आफ्ना पाँच उत्तर लेख्नुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">by size           MICROCOMPUTER      one person uses it at a time
+by data handling  DIGITAL            it works in 0s and 1s
+by purpose        GENERAL PURPOSE    homework, browsing and music are different jobs
+by model          LAPTOP             that is its physical form
+by brand          APPLE              who made it</div>
+      <p class="wex-note"><span class="t-en">One machine, five answers, none of them competing. A question that gives
+      you a machine and asks for "the classification" is asking for all five unless it names a
+      basis.
+      </span><span class="np-cell" lang="ne">एउटै मेसिन, पाँच उत्तर, कुनै पनि एकअर्कासँग बाझिँदैनन्। मेसिन दिएर
+      "वर्गीकरण" सोध्ने प्रश्नले आधार नतोकेसम्म पाँचै खोजेको हुन्छ।</span></p>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h3><span class="t-en">Mistakes that cost marks here</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यहाँ अङ्क गुमाउने गल्तीहरू</span></h3>
+    <ul>
+      <li><span class="t-en"><b>Saying a computer is "not accurate" when the output is wrong.</b> If the input was
+        wrong, that is GIGO. Accuracy describes the machine's arithmetic, not your typing.
+        </span><span class="np-cell" lang="ne">आउटपुट गलत हुँदा कम्प्युटर "शुद्ध छैन" भन्नु। इनपुट गलत थियो भने त्यो
+        GIGO हो। शुद्धताले मेसिनको गणना जनाउँछ, तपाईंको टाइपिङ होइन।</span></li>
+      <li><span class="t-en"><b>Mixing the five bases into one list.</b> "Supercomputer, digital, laptop" is not a
+        classification — it is one answer from each of three different questions.
+        </span><span class="np-cell" lang="ne">पाँच आधारलाई एउटै सूचीमा मिसाउनु। "Supercomputer, digital, laptop"
+        वर्गीकरण होइन — यी तीन फरक प्रश्नका एक–एक उत्तर हुन्।</span></li>
+      <li><span class="t-en"><b>Calling a calculator a computer.</b> It has no stored program; you press every key.
+        </span><span class="np-cell" lang="ne">क्यालकुलेटरलाई कम्प्युटर भन्नु। त्यसमा भण्डारण गरिएको प्रोग्राम
+        छैन; हरेक बटन तपाईं थिच्नुहुन्छ।</span></li>
+      <li><span class="t-en"><b>Using "data" and "information" as the same word.</b> Data goes in, information comes
+        out; the processing in between is the difference.
+        </span><span class="np-cell" lang="ne">"Data" र "information" लाई उही शब्द ठान्नु। Data भित्र जान्छ,
+        information बाहिर आउँछ; बीचको प्रशोधन नै फरक हो।</span></li>
+    </ul>
+    <p class="hook"><span class="t-en"><b>Data in, information out.</b> Accuracy is the machine's; correctness is yours.
+    </span><span class="np-cell" lang="ne"><b lang="ne">Data भित्र, information बाहिर।</b> शुद्धता मेसिनको, सहीपन तपाईंको।</span></p>
+  </div>
+
+  <!-- ============ EXAM FOCUS ============ -->
+  <h2 class="topic" id="cf-exam1"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>परीक्षा केन्द्रबिन्दु — यो युनिटबाट के सोधिन्छ</span></h2>
+
+  <div class="exam-connect">
+    <p><span class="t-en">This unit carries <b>6 of the 50 external marks</b> and 8 of the 64 theory hours. It is
+    almost always asked as short definition questions and one classification question. The
+    practical half of the unit — 10 hours of chart work and presentations — is assessed inside
+    your school's internal 50 marks, not in the written paper.
+    </span><span class="np-cell" lang="ne">यो युनिटले <b lang="ne">बाह्य ५० मध्ये ६ अंक</b> र ६४ सैद्धान्तिक घण्टामध्ये ८
+    घण्टा ओगट्छ। प्रायः छोटो परिभाषा प्रश्न र एउटा वर्गीकरण प्रश्नका रूपमा सोधिन्छ। युनिटको
+    प्रयोगात्मक आधा भाग — चार्ट र प्रस्तुतीकरणका १० घण्टा — लिखित परीक्षामा होइन, विद्यालयभित्रको
+    आन्तरिक ५० अंकमा मूल्याङ्कन हुन्छ।</span></p>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">Define a computer. </span><span class="np-cell" lang="ne">कम्प्युटरको परिभाषा दिनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa11">Show the answer</button>
+    <div class="ans" id="cfa11"><div class="t-en">
+      <p>A computer is an <b>electronic device</b> that accepts data, processes it according to a
+      set of <b>stored instructions</b>, gives information as output, and stores data and
+      instructions for later use.</p>
+      <p>Name all four stages — input, process, output, storage — and the stored program. An answer
+      that says only "a machine that calculates" does not reach full marks.</p>
+      </div><span class="np-cell" lang="ne">चारै चरण — input, process, output, storage — र भण्डारण गरिएको
+      प्रोग्रामको नाम लिनुहोस्। "गणना गर्ने मेसिन" मात्र लेखेको उत्तरले पूरा अंक पाउँदैन।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">Differentiate between data and information with one example of each.
+    </span><span class="np-cell" lang="ne">Data र information बीचको फरक, हरेकको एक–एक उदाहरणसहित लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa12">Show the answer</button>
+    <div class="ans" id="cfa12"><div class="t-en">
+      <p><b>Data</b> is raw, unprocessed facts that mean little on their own — for example the
+      marks <code>72, 65, 88</code>.</p>
+      <p><b>Information</b> is data that has been processed into a usable form — for example
+      "the class average is 75".</p>
+      <p>The difference is the processing in between, which is what the computer does.</p>
+      </div><span class="np-cell" lang="ne">Data कच्चा तथ्य, जस्तै अंक ७२, ६५, ८८। Information प्रशोधन भएर काम
+      लाग्ने रूपमा आएको, जस्तै "कक्षाको औसत ७५ छ"। बीचको प्रशोधन नै फरक हो।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">On what five bases are computers classified? Give the categories under any two of them.
+    </span><span class="np-cell" lang="ne">कम्प्युटरको वर्गीकरण कुन पाँच आधारमा हुन्छ? तीमध्ये कुनै दुईका वर्ग
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa13">Show the answer</button>
+    <div class="ans" id="cfa13"><div class="t-en">
+      <div class="out">size            supercomputer, mainframe, mini, micro
+data handling   analog, digital, hybrid
+purpose         general purpose, special purpose
+model           desktop, laptop, palmtop
+brand           IBM PC, IBM compatible, Apple</div>
+      <p>Name all five bases for the first marks; then give the categories under the two you know
+      best. Do not merge the lists.</p>
+      </div><span class="np-cell" lang="ne">पहिले पाँचै आधारको नाम लिनुहोस्; अनि राम्ररी थाहा भएका दुईका वर्ग
+      लेख्नुहोस्। सूचीहरू मिसाउनुहोस् नहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">A computer produced a wrong salary report. The company says the computer is unreliable.
+    Explain whether you agree, using a characteristic of computers.
+    </span><span class="np-cell" lang="ne">कम्प्युटरले गलत तलब प्रतिवेदन निकाल्यो। कम्पनी भन्छ कम्प्युटर भरपर्दो
+    छैन। कम्प्युटरको एउटा विशेषता प्रयोग गरी तपाईं सहमत हुनुहुन्छ कि छैन व्याख्या गर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa14">Show the answer</button>
+    <div class="ans" id="cfa14"><div class="t-en">
+      <p>Usually <b>disagree</b>. A computer is accurate and reliable: it processes exactly what it
+      is given, and gives the same answer every time. A wrong report almost always means wrong
+      input or a wrong program — <b>Garbage In, Garbage Out</b>.</p>
+      <p>Say which it is: wrong data entered, or a mistake in the instructions. Both are human
+      errors, not machine ones.</p>
+      </div><span class="np-cell" lang="ne">प्रायः <b lang="ne">असहमत</b>। कम्प्युटर शुद्ध र भरपर्दो हुन्छ: दिइएकै कुरा
+      ठ्याक्कै प्रशोधन गर्छ र हरेक पटक उही उत्तर दिन्छ। गलत प्रतिवेदन भनेको प्रायः गलत इनपुट वा
+      गलत प्रोग्राम — <b>Garbage In, Garbage Out</b>। कुन हो भन्नुहोस्: गलत data भरियो, कि
+      निर्देशनमै गल्ती। दुवै मानवीय गल्ती हुन्, मेसिनको होइन।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h2><span class="t-en">Key points to revise</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>दोहोर्‍याउनुपर्ने मुख्य बुँदा</span></h2>
+    <ul class="tick">
+      <li><span class="t-en">A computer accepts data, processes it by <b>stored instructions</b>, outputs information
+        and stores both. The stored program is what a calculator lacks.
+        </span><span class="np-cell" lang="ne">कम्प्युटरले data लिन्छ, <b lang="ne">भण्डारण गरिएका निर्देशन</b> ले प्रशोधन
+        गर्छ, information दिन्छ र दुवै राख्छ। क्यालकुलेटरमा नहुने कुरा भण्डारण गरिएको प्रोग्राम
+        नै हो।</span></li>
+      <li><span class="t-en">Data is raw; information is processed. The computer's job is the arrow between them.
+        </span><span class="np-cell" lang="ne">Data कच्चा; information प्रशोधित। कम्प्युटरको काम दुईबीचको तीर
+        हो।</span></li>
+      <li><span class="t-en">Speed, accuracy, diligence, versatility, storage, automation, reliability.
+        </span><span class="np-cell" lang="ne">गति, शुद्धता, लगनशीलता, बहुउपयोगिता, भण्डारण, स्वचालन,
+        भरपर्दोपन।</span></li>
+      <li><span class="t-en"><b>GIGO.</b> Accuracy is the machine's property; correctness depends on your data.
+        </span><span class="np-cell" lang="ne"><b lang="ne">GIGO।</b> शुद्धता मेसिनको गुण; सहीपन तपाईंको data मा
+        भर पर्छ।</span></li>
+      <li><span class="t-en">Five bases: size, data handling, purpose, model, brand — and every computer answers all
+        five at once.
+        </span><span class="np-cell" lang="ne">पाँच आधार: आकार, डाटा ह्यान्डलिङ, प्रयोजन, मोडेल, ब्रान्ड — र हरेक
+        कम्प्युटरले पाँचैको उत्तर एकैचोटि दिन्छ।</span></li>
+      <li><span class="t-en">Analog measures, digital counts, hybrid does both.
+        </span><span class="np-cell" lang="ne">Analog नाप्छ, digital गन्छ, hybrid दुवै गर्छ।</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="index.html"><span class="lab">◂ Previous</span><span class="ttl">Overview</span></a><a class="nx" href="revise.html"><span class="lab">Next ▸</span><span class="ttl">Your Revision</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">Gyansetu</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
+</body>
+</html>

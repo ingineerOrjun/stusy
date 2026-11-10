@@ -125,12 +125,24 @@ test('every authored subject has a coverage map, and it is complete', () => {
       subject + ' has authored lessons and no coverage map, so nothing checks ' +
       'whether its official topics were ever written');
 
-    /* and the map must account for every topic, not merely exist */
-    const official = (syllabus[subject] || []).flatMap(u => u.c || []);
-    assert.ok(official.length, subject + ': no outline to check against');
+    /* And the map must account for every topic of every unit that HAS a
+       page — not merely exist.
+
+       Phase 12: "every topic" became "every topic of an authored unit".
+       Grade 9 Fundamentals is being written one unit at a time, and
+       requiring a map entry for Unit 4 while Unit 4 is unwritten asserts
+       that content is missing when nobody claimed to have written it.
+       For a finished subject the two are the same set, so Grade 10 is
+       checked exactly as strictly as before. */
+    const outline = syllabus[subject] || [];
+    const authoredUnits = new Set(pages[subject].pages
+      .filter(p => typeof p.hrs === 'number').map(p => String(p.n)));
+    const official = outline.flatMap((u, i) =>
+      authoredUnits.has(String(i + 1)) ? (u.c || []) : []);
+    assert.ok(official.length, subject + ': no authored unit to check against');
     const missing = official.filter(t => !(t in coverage[subject]));
     assert.deepStrictEqual(missing, [],
-      subject + ': official topics with no entry in the coverage map');
+      subject + ': topics in an authored unit with no entry in the coverage map');
   }
 });
 

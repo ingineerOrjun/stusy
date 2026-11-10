@@ -172,6 +172,36 @@ module.exports = {
   },
 
   /* ---------------------------------------------------------------
+     GRADE 9 · FUNDAMENTALS OF COMPUTER AND APPLICATION — Phase 12.
+
+     THE FIRST PARTIALLY MAPPED SUBJECT. Grade 10 subjects arrived
+     complete and were mapped in one go. This one is being written a
+     unit at a time, so this map holds Unit 1's four topics and nothing
+     else: the other six units have no lessons, and an entry pointing at
+     an anchor that does not exist is worse than no entry.
+
+     The validator's three failure modes still apply to what IS here —
+     a missing Unit 1 topic, a dangling anchor, a stale entry — and
+     tests/curriculum.test.js checks that the map covers exactly the
+     units that have pages, so adding Unit 2 without mapping it fails.
+
+     All four topic strings below were verified against CDC 2078
+     pp.13-15 by two independent extractions in Phase 12.
+     --------------------------------------------------------------- */
+  'grade9/computer-fundamentals': {
+
+    /* ---- Unit 1 — Introduction to computer (8 hrs, 6 marks) ---- */
+    'Introduction to computer': 'cf-t11',
+    'Characteristics of computer': 'cf-t12',
+    'Modern Applications of computer': 'cf-t13',
+    /* 1.4 carries five sub-items — by size, data handling, purpose,
+       model and brand. All five are taught in this one section, in the
+       prose, the figure and the drill, which is why they share its
+       anchor rather than being split out. */
+    'Classification of computers — by size, by data handling, by purpose, by model, by brand': 'cf-t14'
+  },
+
+  /* ---------------------------------------------------------------
      DATABASE MANAGEMENT SYSTEM — mapped in the Phase 9 continuation.
 
      Every entry below was checked by reading the content it points at,

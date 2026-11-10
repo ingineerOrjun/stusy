@@ -831,20 +831,35 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
       const byN = {};
       units.forEach(p => { byN[String(p.n)] = p; });
 
-      if (units.length !== spec.units.length){
+      /* A SUBJECT MAY BE PART-WRITTEN.
+
+         This rule used to require the site to have exactly as many
+         units as the grid, and named every missing one as an error.
+         That was right for Grade 10, where each subject arrived
+         complete, and wrong for a subject being written a unit at a
+         time — Phase 12 authored Unit 1 of seven and the build reported
+         six errors for the six units nobody had claimed to have
+         written yet.
+
+         The codebase had already half-decided this: a few rules down,
+         an incomplete subject raises a WARNING ("1 of 7 syllabus units
+         authored"). Erroring here and warning there is the same
+         question answered twice, differently.
+
+         So: an authored unit must agree with the grid exactly — that is
+         the protection worth having, and it still fails the build.
+         A unit that has not been written yet is the warning's business.
+         A subject that claims MORE units than the grid is still an
+         error, because that cannot be work-in-progress. */
+      if (units.length > spec.units.length){
         E(`grid["${subject}"]`,
-          `the official grid lists ${spec.units.length} units and the site has ` +
-          `${units.length}. One of the two is wrong about the shape of the subject.`);
+          `the site has ${units.length} units and the official grid lists only ` +
+          `${spec.units.length}. A unit exists here that the curriculum does not have.`);
       }
 
       for (const official of spec.units){
         const p = byN[official.n];
-        if (!p){
-          E(`grid["${subject}"]`,
-            `the official grid has unit ${official.n} ("${official.content}") and the ` +
-            `site has no such unit`);
-          continue;
-        }
+        if (!p) continue;          /* not written yet — the warning covers it */
         if (p.hrs !== official.hrs){
           E(`grid["${subject}"]`,
             `unit ${official.n} is ${p.hrs} hrs in pages.js and ${official.hrs} hrs in the ` +
@@ -912,11 +927,32 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
         }
       }
 
+      /* Every topic the syllabus lists, and separately the topics of the
+         units that actually have a page.
+
+         WHY THE SECOND SET EXISTS. Rule 1 below says a topic with
+         nothing teaching it is an error, and for a finished subject
+         that is exactly right — it is the rule that found the gaps in
+         Grade 10. For a subject being written one unit at a time it
+         says something false: that Unit 4 is missing its content, when
+         nobody has claimed to have written Unit 4.
+
+         So the rule now applies to the units that exist. The ones that
+         do not are already reported, as a warning, by the completeness
+         check further down. When the last unit is authored the two sets
+         become the same and the rule is as strict as it ever was. */
       const official = new Set();
       outline.forEach(u => (u.c || []).forEach(t => official.add(t)));
 
+      const authoredUnits = new Set(
+        cfg.pages.filter(p => typeof p.hrs === 'number').map(p => String(p.n)));
+      const inAuthoredUnit = new Set();
+      outline.forEach((u, i) => {
+        if (authoredUnits.has(String(i + 1))) (u.c || []).forEach(t => inAuthoredUnit.add(t));
+      });
+
       /* 1 · a topic on the official list with nothing teaching it */
-      for (const topic of official){
+      for (const topic of inAuthoredUnit){
         if (!(topic in map)){
           E(`coverage["${subject}"]`,
             'the syllabus lists "' + topic + '" and nothing covers it. ' +

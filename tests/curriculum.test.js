@@ -123,14 +123,19 @@ test('a subject with authored pages agrees with its grid unit by unit', () => {
   }
 });
 
-test('Grade 9 is outlined but not yet taught, and says so', () => {
-  /* A guard against the quiet half-finish: four Grade 9 subjects exist
-     in the site map and the curriculum data, and none has lessons. The
-     moment one does, this test fails and whoever added it must come
-     back here, add its coverage map, and move it to the taught list —
-     which is how Grade 10's coverage gate came to exist at all.
+test('each Grade 9 subject has curriculum data, and a coverage map once it has lessons', () => {
+  /* A guard against the quiet half-finish. Phase 11 wrote this when no
+     Grade 9 subject had lessons, so that the day one did, it would fail
+     and force whoever added it to add a coverage map in the same
+     breath — which is how Grade 10's gate came to exist at all, three
+     phases too late.
 
-     This is not a claim that Grade 9 content is good. It is a claim
+     It did exactly that in Phase 12, when Fundamentals of Computer and
+     Application gained Unit 1. The map now exists and this reads the
+     state rather than asserting a particular one: curriculum data for
+     all four, and a map for whichever have pages.
+
+     It is not a claim that any Grade 9 content is good. It is a claim
      about what exists. */
   const G9 = ['grade9/c-programming', 'grade9/computer-fundamentals',
               'grade9/electro-system', 'grade9/website-design'];
@@ -140,16 +145,26 @@ test('Grade 9 is outlined but not yet taught, and says so', () => {
     assert.ok(syllabus[key], key + ': no outline');
     assert.ok(grid[key], key + ': no specification grid');
 
-    const authored = pages[key];
-    if (!authored){
+    if (!pages[key]){
       assert.ok(!coverage[key],
         key + ' has a coverage map but no authored pages — the map points at nothing');
       continue;
     }
     assert.ok(coverage[key],
-      key + ' now has authored pages. Add its coverage map to content/coverage.js and ' +
-      'update this test, exactly as Grade 10 does — a subject with lessons and no ' +
-      'coverage map is the one failure the build cannot see.');
+      key + ' has authored pages and no coverage map. Add one to content/coverage.js, ' +
+      'exactly as Grade 10 does — a subject with lessons and no coverage map is the one ' +
+      'failure the build cannot see.');
+
+    /* a partially written subject maps what it has written, and only
+       what it has written: an entry for an unwritten unit would point
+       at an anchor that does not exist */
+    const authoredUnits = new Set(pages[key].pages
+      .filter(p => typeof p.hrs === 'number').map(p => String(p.n)));
+    const mapped = Object.keys(coverage[key]);
+    const fromUnwritten = (syllabus[key] || []).flatMap((u, i) =>
+      authoredUnits.has(String(i + 1)) ? [] : (u.c || [])).filter(t => mapped.includes(t));
+    assert.deepStrictEqual(fromUnwritten, [],
+      key + ': the coverage map claims topics from units that have no page');
   }
 });
 
@@ -250,12 +265,31 @@ test('Grade 9 and Grade 10 never share a question bank or a lesson file', () => 
      anyone writes one. */
   const fs = require('node:fs');
   const lessons = fs.readdirSync(path.join(SRC, 'content', 'lessons'));
-  const G10_PREFIX = /^(u\d+|db-u\d+|dd-u\d+|hw-u\d+)\.html$/;
-  const unexpected = lessons.filter(f => f.endsWith('.html') && !G10_PREFIX.test(f));
+  /* Grade 10 owns the bare u1..u6 and the db-/dd-/hw- prefixes; Grade 9
+     owns c-/cf-/es-/wd-, reserved in the Phase 11 architecture plan and
+     first used by Phase 12's cf-u1.html. Anything outside both schemes
+     is a file that could overwrite a lesson. */
+  const KNOWN = /^(u\d+|db-u\d+|dd-u\d+|hw-u\d+|c-u\d+|cf-u\d+|es-u\d+|wd-u\d+)\.html$/;
+  const unexpected = lessons.filter(f => f.endsWith('.html') && !KNOWN.test(f));
   assert.deepStrictEqual(unexpected, [],
-    'a lesson file outside the Grade 10 naming scheme appeared. Grade 9 lessons ' +
-    'need their own prefix (c-, cf-, es-, wd-) — the bare names u1..u6 are ' +
-    'Grade 10 OOP and would be overwritten: ' + unexpected.join(', '));
+    'a lesson file outside both grades\' naming schemes appeared. Grade 9 lessons ' +
+    'use c-, cf-, es- or wd- — the bare names u1..u6 are Grade 10 OOP and would be ' +
+    'overwritten: ' + unexpected.join(', '));
+
+  /* and the prefix must match the subject that claims the file */
+  const PREFIX = { 'grade9/c-programming': 'c-', 'grade9/computer-fundamentals': 'cf-',
+                   'grade9/electro-system': 'es-', 'grade9/website-design': 'wd-' };
+  for (const [key, pre] of Object.entries(PREFIX)){
+    if (!pages[key]) continue;
+    for (const p of pages[key].pages){
+      for (const sec of (p.sec || [])){
+        if (/^(revise|.*-quiz|.*-hero)$/.test(sec)) continue;
+        assert.ok(sec.startsWith(pre),
+          key + ' claims lesson "' + sec + '", which does not carry its reserved ' +
+          'prefix "' + pre + '"');
+      }
+    }
+  }
 
   const banks = fs.readdirSync(path.join(SRC, 'content', 'questions'));
   for (const b of banks){
@@ -344,4 +378,37 @@ test('the Grade 9 practical hours are recorded alongside the theory hours', () =
   const prac = Object.values(spec.practicalHours).reduce((a, n) => a + n, 0);
   assert.strictEqual(prac, 64, 'practical hours should total 64, found ' + prac);
   assert.strictEqual(theory + prac, 128, 'theory + practical should be the 128 working hours');
+});
+
+test('every question bank is registered, and every quiz page has one', () => {
+  /* THE SILENT FAILURE THIS CATCHES, met in Phase 12.
+
+     build/context.js lists the question banks by hand. Phase 12 added
+     content/questions/grade9-computer-fundamentals.js, wired a quiz
+     page to it, and did not add the require. Everything passed: the
+     build succeeded, the page was generated, the suite was green — and
+     the quiz rendered an empty box, because QuizService had never been
+     given the bank. Only opening the page in a browser showed it.
+
+     Two directions, because the gap has two sides: a bank file nobody
+     registers, and a quiz page with no bank behind it. */
+  const fs = require('node:fs');
+  const dir = path.join(SRC, 'content', 'questions');
+  const ctxSrc = fs.readFileSync(path.join(SRC, 'build', 'context.js'), 'utf8');
+
+  for (const f of fs.readdirSync(dir).filter(n => n.endsWith('.js'))){
+    assert.ok(ctxSrc.includes('questions/' + f),
+      'content/questions/' + f + ' exists and build/context.js never requires it. ' +
+      'The quiz page that expects it will render an empty box and nothing will fail.');
+  }
+
+  for (const [key, cfg] of Object.entries(pages)){
+    const hasQuizPage = cfg.pages.some(p => p.file === 'quiz.html');
+    if (!hasQuizPage) continue;
+    const bank = key.replace('/', '-') + '.js';
+    assert.ok(fs.existsSync(path.join(dir, bank)),
+      key + ' has a quiz page and no question bank at content/questions/' + bank);
+    assert.ok(ctxSrc.includes("'" + key + "'"),
+      key + ' has a quiz page but is not keyed in build/context.js questionBanks');
+  }
 });

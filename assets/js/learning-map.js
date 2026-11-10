@@ -1,6 +1,19 @@
 /* GENERATED from config/pages.js and content/prerequisites.js — do not edit by hand. */
 RevisionService.load({
  "units": {
+  "grade9/computer-fundamentals/u1": {
+   "id": "grade9/computer-fundamentals/u1",
+   "subject": "grade9/computer-fundamentals",
+   "n": "1",
+   "page": "grade9/computer-fundamentals/unit1.html",
+   "title": {
+    "en": "Introduction to Computer",
+    "ne": "कम्प्युटरको परिचय"
+   },
+   "hrs": 8,
+   "marks": 6,
+   "prereqs": []
+  },
   "grade10/oop-cpp/u1": {
    "id": "grade10/oop-cpp/u1",
    "subject": "grade10/oop-cpp",
@@ -494,6 +507,22 @@ RevisionService.load({
   }
  },
  "questions": {
+  "cfa11": {
+   "unit": "grade9/computer-fundamentals/u1",
+   "page": "grade9/computer-fundamentals/unit1.html"
+  },
+  "cfa12": {
+   "unit": "grade9/computer-fundamentals/u1",
+   "page": "grade9/computer-fundamentals/unit1.html"
+  },
+  "cfa13": {
+   "unit": "grade9/computer-fundamentals/u1",
+   "page": "grade9/computer-fundamentals/unit1.html"
+  },
+  "cfa14": {
+   "unit": "grade9/computer-fundamentals/u1",
+   "page": "grade9/computer-fundamentals/unit1.html"
+  },
   "a1": {
    "unit": "grade10/oop-cpp/u1",
    "page": "grade10/oop-cpp/unit1.html"

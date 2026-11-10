@@ -149,6 +149,7 @@ function section(id){
 const hero = read('content/sections/hero.html');
 
 const questionBanks = {
+  'grade9/computer-fundamentals': require('../content/questions/grade9-computer-fundamentals.js'),
   'grade10/oop-cpp':        require('../content/questions/grade10-oop-cpp.js'),
   'grade10/digital-design': require('../content/questions/grade10-digital-design.js'),
   'grade10/dbms':           require('../content/questions/grade10-dbms.js'),
