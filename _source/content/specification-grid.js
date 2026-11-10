@@ -13,6 +13,39 @@
    credit hours and the total marks per unit. Those two numbers are
    transcribed below, verbatim.
 
+   IS THIS STILL THE APPLICABLE CURRICULUM?
+   Checked at the source on 10 November 2026. The CDC's own listing page
+   for this subject (moecdc.gov.np/content/553/) is dated 1 Mangsir 2082
+   BS and links exactly ONE file — the 2078 PDF transcribed here. No
+   later edition of the Computer Engineering curriculum is published
+   there, and the site is plainly maintained: its notice column carries
+   2083 BS items.
+
+   What that establishes: the 2078 edition is the only edition the CDC
+   publishes for this subject, as of today.
+
+   What it does NOT establish, and this is a real limitation: which
+   edition any particular year's SEE paper is set from. That is not
+   stated in any document reachable from the listing, so the marks below
+   should be read as "the published curriculum" and not as "the grid the
+   2027 paper will be built from". If the two ever diverge, this file is
+   the single place to change.
+
+   PAGE NUMBERS — WHAT THE CITATIONS BELOW ARE, EXACTLY
+   The page numbers are the position of each grid in the PDF's content
+   streams, counted in order. They are NOT read off the printed folio:
+   the text extraction used here recovers no reliable page markers, and
+   the document is served through a canvas flipbook that cannot be read
+   as text. They are accurate to a few pages and are given as a finding
+   aid, not as a citation to quote.
+
+   The verification that does hold is the numbers themselves. Every
+   marks column below was re-extracted independently in the Phase 9
+   continuation and compared: Hardware 7/7/9/10/11/6, DBMS
+   2/10/6/14/6/6/6 and Digital Design 7/15/6/7/15 all came back
+   unchanged. The subject and unit titles printed in each grid are the
+   anchor a reviewer should search for.
+
    WHY THIS FILE EXISTS
    Two subjects shipped with marks that were DERIVED from hours because
    the phases that built them recorded the grid as unavailable:
@@ -50,7 +83,7 @@
 
 module.exports = {
 
-  /* PDF p. 50 — "Data structure & OOP concept using C++" */
+  /* Specification Grid, approx. PDF p. 50 — "Data structure & OOP concept using C++" */
   'grade10/oop-cpp': {
     source: 'CDC 2078, Specification Grid, Grade 10, Data structure & OOP concept using C++',
     units: [
@@ -63,7 +96,7 @@ module.exports = {
     ]
   },
 
-  /* PDF p. 59 — "Computer Hardware, Electronics Repair and Maintenance" */
+  /* Specification Grid, approx. PDF p. 59 — "Computer Hardware, Electronics Repair and Maintenance" */
   'grade10/hardware': {
     source: 'CDC 2078, Specification Grid, Grade 10, Computer Hardware, Electronics Repair and Maintenance',
     units: [
@@ -76,7 +109,7 @@ module.exports = {
     ]
   },
 
-  /* PDF p. 68 — "Database Management System" */
+  /* Specification Grid, approx. PDF p. 68 — "Database Management System" */
   'grade10/dbms': {
     source: 'CDC 2078, Specification Grid, Grade 10, Database Management System',
     units: [
@@ -90,7 +123,7 @@ module.exports = {
     ]
   },
 
-  /* PDF p. 76 — "Digital Design and Microprocessor" */
+  /* Specification Grid, approx. PDF p. 76 — "Digital Design and Microprocessor" */
   'grade10/digital-design': {
     source: 'CDC 2078, Specification Grid, Grade 10, Digital Design and Microprocessor',
     units: [

@@ -1,7 +1,59 @@
 /* ============================================================
    SYLLABUS OUTLINES — official CDC curriculum
-   One entry per subject that has no authored lessons yet.
+
    Key is "<gradeId>/<subjectSlug>". Hours must total 64 per subject.
+   Entries exist both for subjects with authored lessons (where the
+   outline is what content/coverage.js is checked against) and for
+   subjects that are still only outlined.
+
+   WHERE THESE TOPIC LISTS COME FROM
+   Curriculum Development Centre, Ministry of Education, Science and
+   Technology, Government of Nepal. "Secondary Level School Curriculum
+   (Technical and Vocational Stream), Grade 9-12 — Computer
+   Engineering", 2078 BS. Listed at moecdc.gov.np/content/553/, which
+   links one file: giwmscdnone.gov.np/media/pdf_upload/1694337718_jx35alj.pdf
+   (1.03 MB, 321 pages). Each subject's list is transcribed from its
+   "Scope and Sequence of Contents" table, which is the authoritative
+   one where it disagrees with the learning-outcome list beside it.
+
+   Marks are NOT here. They live in content/specification-grid.js with
+   their own citation, because they come from a different table in the
+   same document and the build compares them against config/pages.js.
+   That file also records what is and is not established about whether
+   the 2078 edition is the one a given SEE paper is set from.
+
+   GRANULARITY — WHY A COUNT HERE MAY NOT MATCH A COUNT IN THE PDF
+   The official lists nest: a numbered topic may carry lettered or
+   further-numbered sub-items. The transcription FLATTENS some and FOLDS
+   others, choosing per unit whichever matches how the material is
+   actually taught. Two examples, both deliberate:
+
+     DBMS 2.2 "Components of ER-Model" has three sub-items and is
+       recorded as those three, because each is a separate symbol a
+       student must draw.
+     DBMS 3.2 "Key Concepts in Relational Model" has six sub-items and
+       is recorded as ONE string listing all six, because they are one
+       vocabulary taught on one table.
+
+   So the official top-level counts (34 + 21 sub-items for DBMS, 35 + 13
+   for Digital Design) do not equal the 39 and 39 recorded here, and
+   that is not a mismatch. The strings, not the counts, are the
+   contract — content/coverage.js matches on them exactly.
+
+   NUMBERING ERRORS IN THE SOURCE, recorded rather than tidied away:
+     DBMS Unit 3 prints "3.2" twice (Key Concepts, then Properties of
+       Relations).
+     Digital Design Unit 2 numbers De Morgan's theorem "3.1", inside
+       Unit 2.
+     Digital Design Unit 5 prints "5.7" twice (bus structure, then pin
+       configuration).
+     DS & OOP Unit 5 prints "5.1" twice; Unit 3's outcomes are numbered
+       2.1-2.5; Unit 4's outcomes repeat abstraction where the scope and
+       sequence gives encapsulation.
+
+   Digital Design Unit 3 is titled "Boolean algebra and Karnaugh Map"
+   and its official content list names no Karnaugh map. The repo teaches
+   one anyway; see the note in content/coverage.js.
    ============================================================ */
 
 module.exports = {
