@@ -125,7 +125,16 @@ function loadQuiz(){
 
 test('the question bank is internally consistent', () => {
   const { api } = loadQuiz();
-  assert.strictEqual(api.QUIZ.length, 15, 'expected 15 questions');
+  /* Phase 9: the exact count is not the property worth holding — the
+     bank grew from 15 to 49. What matters is that it is bigger than the
+     12 a quiz draws, because that is what makes a retake a different
+     paper. At 15 questions against a draw of 12 it very nearly was not,
+     and the OOP page had no draw limit at all. */
+  const DRAW = 12;
+  assert.ok(api.QUIZ.length >= DRAW, 'the bank is smaller than one quiz draw');
+  assert.ok(api.QUIZ.length >= 2 * DRAW,
+    'the bank holds ' + api.QUIZ.length + ' questions against a draw of ' + DRAW +
+    ' — too few for a retake to be a meaningfully different paper');
   api.QUIZ.forEach((q, i) => {
     const at = 'question ' + (i + 1);
     assert.ok(q.q, at + ': missing text');
@@ -140,14 +149,15 @@ test('the question bank is internally consistent', () => {
 test('answering everything correctly scores full marks', () => {
   const { env, api } = loadQuiz();
   api.QUIZ.forEach((q, i) => api.answer(i, q.a));
-  assert.strictEqual(env.el('scoreNum').textContent, '15 / 15');
+  const n = api.QUIZ.length;
+  assert.strictEqual(env.el('scoreNum').textContent, n + ' / ' + n);
   assert.strictEqual(env.el('scoreBox').style.display, 'block');
 });
 
 test('answering everything wrongly scores zero', () => {
   const { env, api } = loadQuiz();
   api.QUIZ.forEach((q, i) => api.answer(i, (q.a + 1) % q.o.length));
-  assert.strictEqual(env.el('scoreNum').textContent, '0 / 15');
+  assert.strictEqual(env.el('scoreNum').textContent, '0 / ' + api.QUIZ.length);
 });
 
 test('a question cannot be answered twice', () => {
@@ -155,7 +165,8 @@ test('a question cannot be answered twice', () => {
   api.answer(0, api.QUIZ[0].a);          // correct
   api.answer(0, (api.QUIZ[0].a + 1) % 4); // ignored
   api.QUIZ.slice(1).forEach((q, i) => api.answer(i + 1, (q.a + 1) % q.o.length));
-  assert.strictEqual(env.el('scoreNum').textContent, '1 / 15', 'double-answering changed the score');
+  assert.strictEqual(env.el('scoreNum').textContent, '1 / ' + api.QUIZ.length,
+    'double-answering changed the score');
 });
 
 test('feedback names the right answer when the student is wrong', () => {
@@ -243,7 +254,11 @@ test('every dispatch case carries a bilingual explanation', () => {
 
 test('the question bank is tagged for future per-unit selection', () => {
   const bank = require(path.join(ROOT, '_source/content/questions/grade10-oop-cpp.js'));
-  assert.strictEqual(bank.length, 15);
+  /* Phase 9 grew this bank from 15 to 49 and weighted it to the
+     official marks grid. The count is no longer the guard; coverage is
+     — see the per-unit assertion at the end of this test, which would
+     have caught Unit 2 (14 marks) having no questions at all. */
+  assert.ok(bank.length >= 24, 'bank has shrunk below two quiz draws: ' + bank.length);
   const ids = new Set();
   for (const q of bank){
     assert.match(q.id, /^g10\.oop-cpp\.q\d{2}$/, 'bad question id: ' + q.id);
@@ -259,15 +274,43 @@ test('the question bank is tagged for future per-unit selection', () => {
     assert.ok(Number.isInteger(q.answer) && q.answer >= 0 && q.answer < q.options.length,
       q.id + ': answer index out of range');
   }
+
+  /* THE GUARD THAT WAS MISSING, and the defect it would have caught.
+
+     Before Phase 9 this bank held 15 questions distributed against the
+     official marks grid like this:
+
+       unit 1 (15 marks)  4 questions     unit 4 (5 marks)  1
+       unit 2 (14 marks)  0 questions     unit 5 (7 marks)  1
+       unit 3 ( 2 marks)  6 questions     unit 6 (7 marks)  3
+
+     The second-heaviest unit in the subject had nothing, the lightest
+     had the most, and every existing assertion passed — because they
+     checked the shape of each question and never the shape of the set.
+
+     Weighting is not asserted exactly: judgement about how many
+     questions a topic deserves belongs to whoever writes them. What is
+     asserted is that no unit is silently empty, and that no unit holds
+     more than half the bank. */
+  const pages = require(path.join(ROOT, '_source/config/pages.js'))['grade10/oop-cpp'];
+  const units = pages.pages.filter(p => typeof p.hrs === 'number');
+  for (const u of units){
+    const n = bank.filter(q => q.unit === 'u' + u.n).length;
+    assert.ok(n > 0,
+      'unit ' + u.n + ' ("' + u.title + '", ' + u.marks + ' marks) has no questions at all — ' +
+      'a student revising from this quiz is never asked about it');
+    assert.ok(n <= bank.length / 2,
+      'unit ' + u.n + ' holds ' + n + ' of ' + bank.length + ' questions, more than half the bank');
+  }
 });
 
 test('QuizService filters by unit and difficulty without touching the engine', () => {
   const { api } = loadQuiz();
   const all = api.QuizService.getQuiz({ subject: 'grade10/oop-cpp' });
-  assert.strictEqual(all.length, 15);
+  assert.ok(all.length >= 24, 'service returned a short bank: ' + all.length);
 
   const u3 = api.QuizService.getQuiz({ subject: 'grade10/oop-cpp', unit: 'u3' });
-  assert.ok(u3.length > 0 && u3.length < 15, 'unit filter returned everything or nothing');
+  assert.ok(u3.length > 0 && u3.length < all.length, 'unit filter returned everything or nothing');
   assert.ok(u3.every(q => q.unit === 'u3'), 'unit filter leaked other units');
 
   const hard = api.QuizService.getQuiz({ subject: 'grade10/oop-cpp', difficulty: 'hard' });
@@ -293,10 +336,10 @@ test('QuizService scores an attempt independently of the DOM', () => {
   const qs = api.QuizService.toRenderModel(api.QuizService.getQuiz({ subject: 'grade10/oop-cpp' }));
   const perfect = qs.map(q => q.a);
   const full = api.QuizService.score(qs, perfect);
-  assert.strictEqual(full.score, 15); assert.strictEqual(full.total, 15);
+  assert.strictEqual(full.score, qs.length); assert.strictEqual(full.total, qs.length);
   const none = qs.map(q => (q.a + 1) % q.o.length);
   const zero = api.QuizService.score(qs, none);
-  assert.strictEqual(zero.score, 0); assert.strictEqual(zero.total, 15);
+  assert.strictEqual(zero.score, 0); assert.strictEqual(zero.total, qs.length);
 });
 
 /* ---------------------------------------------------- simulation registry */

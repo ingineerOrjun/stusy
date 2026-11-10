@@ -246,7 +246,7 @@ RevisionService.load({
     "ne": "डाटाबेस प्रणालीको परिचय"
    },
    "hrs": 6,
-   "marks": 5,
+   "marks": 2,
    "prereqs": []
   },
   "grade10/dbms/u2": {
@@ -259,7 +259,7 @@ RevisionService.load({
     "ne": "ई–आर मोडेल"
    },
    "hrs": 10,
-   "marks": 8,
+   "marks": 10,
    "prereqs": [
     {
      "unit": "grade10/dbms/u1",
@@ -280,7 +280,7 @@ RevisionService.load({
     "ne": "रिलेसनल मोडेल"
    },
    "hrs": 10,
-   "marks": 8,
+   "marks": 6,
    "prereqs": [
     {
      "unit": "grade10/dbms/u2",
@@ -301,7 +301,7 @@ RevisionService.load({
     "ne": "एसक्युएल — संरचित क्वेरी भाषा"
    },
    "hrs": 14,
-   "marks": 11,
+   "marks": 14,
    "prereqs": [
     {
      "unit": "grade10/dbms/u3",
@@ -392,7 +392,7 @@ RevisionService.load({
     "ne": "इलेक्ट्रोनिक उपकरणको परिचय"
    },
    "hrs": 10,
-   "marks": 8,
+   "marks": 7,
    "prereqs": []
   },
   "grade10/hardware/u2": {
@@ -405,7 +405,7 @@ RevisionService.load({
     "ne": "कम्प्युटर प्रणालीको परिचय"
    },
    "hrs": 10,
-   "marks": 8,
+   "marks": 7,
    "prereqs": []
   },
   "grade10/hardware/u3": {
@@ -439,7 +439,7 @@ RevisionService.load({
     "ne": "समस्या समाधानका तरिका"
    },
    "hrs": 12,
-   "marks": 9,
+   "marks": 10,
    "prereqs": [
     {
      "unit": "grade10/hardware/u3",
@@ -460,7 +460,7 @@ RevisionService.load({
     "ne": "मर्मत र सम्भार"
    },
    "hrs": 12,
-   "marks": 9,
+   "marks": 11,
    "prereqs": [
     {
      "unit": "grade10/hardware/u4",
@@ -481,7 +481,7 @@ RevisionService.load({
     "ne": "ब्याकअप र रिकभरी"
    },
    "hrs": 8,
-   "marks": 7,
+   "marks": 6,
    "prereqs": [
     {
      "unit": "grade10/hardware/u3",

@@ -378,6 +378,105 @@ module.exports = {
       ]
     }
   ],
+  /* Transcribed from the official CDC curriculum, §4 "Scope and Sequence
+     of Contents" for Grade 10 "Data structure & OOP concept using C++".
+
+     THIS SUBJECT HAD NO OUTLINE ON FILE UNTIL PHASE 9. It was authored
+     first, before the convention existed, so the one fully-written
+     subject was the only one nothing could check — while four
+     *unauthored* Grade 9 subjects had outlines.
+
+     Sub-items are folded into their parent topic, as the Hardware
+     transcription already does, with the sub-item names spelled out in
+     the parent's text (1.5 and 5.5 below).
+
+     TWO NUMBERING ERRORS IN THE OFFICIAL DOCUMENT, recorded rather than
+     silently tidied:
+       - Unit 5 prints "5.1" twice; the second is plainly 5.2.
+       - Unit 3's learning-outcome list is numbered 2.1-2.5.
+       - Unit 4's learning outcomes repeat abstraction three times where
+         the scope-and-sequence correctly gives encapsulation. The
+         scope-and-sequence is the authoritative list and is used here. */
+  "grade10/oop-cpp": [
+    {
+      "t": "Basic Introduction to Data Structure",
+      "np": "डाटा स्ट्रक्चरको आधारभूत परिचय",
+      "h": 20,
+      "c": [
+        "Introduction to Data Structures",
+        "Advantages of Data Structures",
+        "Terms Used in Data Structures (Data, Group Item, Record, Entity, Attribute or Field, File)",
+        "Need of Data Structures",
+        "Classification of Data Structures — Linear (Array, Linked List, Stack, Queue), Non-Linear (Trees, Graphs), and Operations (Searching, Sorting, Insertion, Deletion, Traversing)"
+      ]
+    },
+    {
+      "t": "Concept Of Object Oriented Programming (OOP) using C++",
+      "np": "OOP को अवधारणा (C++)",
+      "h": 10,
+      "c": [
+        "Introduction to Object Oriented Programming",
+        "Features",
+        "Application",
+        "Structured Vs Object Oriented Programming",
+        "Tokens and Character Sets",
+        "Data Type and Format Specific",
+        "Basic Input/ Output",
+        "Basic Program Structure",
+        "Control Statements"
+      ]
+    },
+    {
+      "t": "Class and Object",
+      "np": "क्लास र अब्जेक्ट",
+      "h": 7,
+      "c": [
+        "Introduction to class and object",
+        "Access Specific",
+        "Declaration of class and object",
+        "Class Methods and Data Members",
+        "Concept of Constructor and Destructor"
+      ]
+    },
+    {
+      "t": "Abstraction and Encapsulation",
+      "np": "एब्स्ट्र्याक्सन र इनक्याप्सुलेसन",
+      "h": 7,
+      "c": [
+        "Introduction to Abstraction",
+        "Advantages of Abstraction",
+        "Achieve Abstraction using C++ Program",
+        "Introduction to Encapsulation",
+        "Advantages of Encapsulation",
+        "Achieve Encapsulation using C++ Program"
+      ]
+    },
+    {
+      "t": "Inheritance",
+      "np": "इनहेरिटेन्स",
+      "h": 10,
+      "c": [
+        "Introduction to Inheritance",
+        "Advantages of Inheritance",
+        "Base Class and Derived Class",
+        "Syntax of Inheritance",
+        "Types of Inheritance — Single, Multilevel, Multiple, Hierarchical, Hybrid"
+      ]
+    },
+    {
+      "t": "Polymorphism",
+      "np": "पोलिमर्फिज्म",
+      "h": 10,
+      "c": [
+        "Introduction to Polymorphism",
+        "Advantages of Polymorphism",
+        "Syntax of Polymorphism",
+        "Types of Polymorphism",
+        "Function overriding"
+      ]
+    }
+  ],
+
   "grade10/hardware": [
     {
       "t": "Introduction to Electronic Devices",

@@ -144,22 +144,22 @@ module.exports = {
     pages: [
       { file: 'unit1.html', n: '1',
         title: 'Introduction to Database System', np: 'डाटाबेस प्रणालीको परिचय',
-        chip: 'Introduction', hrs: 6, marks: 5,
+        chip: 'Introduction', hrs: 6, marks: 2,
         sec: ['db-u1'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js'] },
 
       { file: 'unit2.html', n: '2',
         title: 'Entity Relationship Model (ER-Model)', np: 'ई–आर मोडेल',
-        chip: 'ER Model', hrs: 10, marks: 8,
+        chip: 'ER Model', hrs: 10, marks: 10,
         sec: ['db-u2'], js: ['services/simulation.js', 'predict.js', 'sim-table.js', 'sim-er.js', 'sim-drill.js'] },
 
       { file: 'unit3.html', n: '3',
         title: 'Relational Model', np: 'रिलेसनल मोडेल',
-        chip: 'Relational Model', hrs: 10, marks: 8,
+        chip: 'Relational Model', hrs: 10, marks: 6,
         sec: ['db-u3'], js: ['services/simulation.js', 'predict.js', 'sim-table.js'] },
 
       { file: 'unit4.html', n: '4',
         title: 'SQL — Structured Query Language', np: 'एसक्युएल — संरचित क्वेरी भाषा',
-        chip: 'SQL', hrs: 14, marks: 11,
+        chip: 'SQL', hrs: 14, marks: 14,
         sec: ['db-u4'], js: ['services/simulation.js', 'predict.js', 'sql-engine.js', 'sim-table.js', 'sim-sql.js'] },
 
       { file: 'unit5.html', n: '5',
@@ -199,12 +199,12 @@ module.exports = {
     pages: [
       { file: 'unit1.html', n: '1',
         title: 'Introduction to Electronic Devices', np: 'इलेक्ट्रोनिक उपकरणको परिचय',
-        chip: 'Electronics', hrs: 10, marks: 8,
+        chip: 'Electronics', hrs: 10, marks: 7,
         sec: ['hw-u1'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js'] },
 
       { file: 'unit2.html', n: '2',
         title: 'Introduction to Computer System', np: 'कम्प्युटर प्रणालीको परिचय',
-        chip: 'System Parts', hrs: 10, marks: 8,
+        chip: 'System Parts', hrs: 10, marks: 7,
         sec: ['hw-u2'], js: ['services/simulation.js', 'predict.js', 'sim-parts.js', 'sim-drill.js'] },
 
       { file: 'unit3.html', n: '3',
@@ -214,18 +214,18 @@ module.exports = {
 
       { file: 'unit4.html', n: '4',
         title: 'Troubleshooting Techniques', np: 'समस्या समाधानका तरिका',
-        chip: 'Troubleshooting', hrs: 12, marks: 9,
+        chip: 'Troubleshooting', hrs: 12, marks: 10,
         sec: ['hw-u4'], js: ['services/simulation.js', 'predict.js', 'sim-fault.js',
                              'guided.js', 'practice-bank.js'] },
 
       { file: 'unit5.html', n: '5',
         title: 'Repair and Maintenance', np: 'मर्मत र सम्भार',
-        chip: 'Maintenance', hrs: 12, marks: 9,
+        chip: 'Maintenance', hrs: 12, marks: 11,
         sec: ['hw-u5'], js: ['services/simulation.js', 'predict.js', 'sim-fault.js', 'sim-drill.js'] },
 
       { file: 'unit6.html', n: '6',
         title: 'Backup and Recovery', np: 'ब्याकअप र रिकभरी',
-        chip: 'Backup & RAID', hrs: 8, marks: 7,
+        chip: 'Backup & RAID', hrs: 8, marks: 6,
         sec: ['hw-u6'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
                              'guided.js', 'practice-bank.js'] },
 

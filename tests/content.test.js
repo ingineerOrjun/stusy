@@ -82,9 +82,13 @@ test('every syllabus unit carries both languages and at least one topic', () => 
 test('syllabus totals match the curriculum', () => {
   const units = Object.values(syllabus).reduce((a, u) => a + u.length, 0);
   const topics = Object.values(syllabus).reduce((a, u) => a + u.reduce((b, x) => b + x.c.length, 0), 0);
-  assert.strictEqual(Object.keys(syllabus).length, 7, 'expected 7 outlined subjects');
-  assert.strictEqual(units, 46,  'expected 46 outlined units');
-  assert.strictEqual(topics, 284, 'expected 284 outlined topics');
+  /* Phase 9 added the DS & OOP outline (6 units, 35 topics), which had
+     been missing since the subject was written: 7 -> 8 subjects,
+     46 -> 52 units, 284 -> 319 topics. Every authored Grade 10 subject
+     now has an outline, so every one can be coverage-checked. */
+  assert.strictEqual(Object.keys(syllabus).length, 8, 'expected 8 outlined subjects');
+  assert.strictEqual(units, 52,  'expected 52 outlined units');
+  assert.strictEqual(topics, 319, 'expected 319 outlined topics');
 });
 
 test('every syllabus key maps to a real subject in the site map', () => {

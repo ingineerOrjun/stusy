@@ -11,7 +11,12 @@
   <p class="sec-sub">Questions are in English because the exam is in English. The explanation after each
   answer is given in both English and Nepali.</p>
 
-  <div id="quizBox"></div>
+  <!-- Phase 9: this page carried neither a limit nor a shuffle, alone
+       among the four subjects, so every attempt served the whole bank in
+       a fixed order. With 15 questions that was merely repetitive; with
+       49 it would be a 49-question paper every time. Now matched to the
+       other three: 12 drawn from the bank, reshuffled on each retake. -->
+  <div id="quizBox" data-limit="12" data-shuffle="true"></div>
   <div class="score" id="scoreBox" role="status" style="display:none">
     <div class="big" id="scoreNum">0 / 15</div>
     <div id="scoreMsg"></div>

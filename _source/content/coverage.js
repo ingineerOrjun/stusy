@@ -40,6 +40,73 @@
 
 module.exports = {
 
+  /* ---------------------------------------------------------------
+     DS & OOP using C++ — mapped in Phase 9.
+
+     This subject was authored first and had no syllabus outline at all
+     until Phase 9, so nothing could check it. Several official topics
+     are taught INSIDE a parent section rather than under their own
+     heading, and share that section's anchor — the content was read
+     and confirmed present in each case, not inferred from the heading.
+     Where that happens it is noted.
+     --------------------------------------------------------------- */
+  'grade10/oop-cpp': {
+
+    /* ---- Unit 1 ---- */
+    'Introduction to Data Structures': 't11',
+    'Advantages of Data Structures': 't12',
+    'Terms Used in Data Structures (Data, Group Item, Record, Entity, Attribute or Field, File)': 't13',
+    'Need of Data Structures': 't14',
+    /* 1.5 also carries operations, which the lesson splits out at t16 */
+    'Classification of Data Structures — Linear (Array, Linked List, Stack, Queue), Non-Linear (Trees, Graphs), and Operations (Searching, Sorting, Insertion, Deletion, Traversing)': 't15',
+
+    /* ---- Unit 2 — the one unit where the lesson numbering matches
+       the official numbering one for one ---- */
+    'Introduction to Object Oriented Programming': 't21',
+    'Features': 't22',
+    'Application': 't23',
+    'Structured Vs Object Oriented Programming': 't24',
+    'Tokens and Character Sets': 't25',
+    'Data Type and Format Specific': 't26',
+    'Basic Input/ Output': 't27',
+    'Basic Program Structure': 't28',
+    'Control Statements': 't29',
+
+    /* ---- Unit 3 ---- */
+    'Introduction to class and object': 't31',
+    'Access Specific': 't32',
+    'Declaration of class and object': 't33',
+    /* 3.4 has no heading of its own: data members and member functions
+       are taught inside 3.3, where declaring a class is demonstrated. */
+    'Class Methods and Data Members': 't33',
+    'Concept of Constructor and Destructor': 't35',
+
+    /* ---- Unit 4 — the lesson has two headings for six official
+       topics; advantages and the C++ demonstration sit inside each. ---- */
+    'Introduction to Abstraction': 't41',
+    'Advantages of Abstraction': 't41',
+    'Achieve Abstraction using C++ Program': 't41',
+    'Introduction to Encapsulation': 't44',
+    'Advantages of Encapsulation': 't44',
+    'Achieve Encapsulation using C++ Program': 't44',
+
+    /* ---- Unit 5 ---- */
+    'Introduction to Inheritance': 't51',
+    'Advantages of Inheritance': 't51',
+    'Base Class and Derived Class': 't51',
+    'Syntax of Inheritance': 't54',
+    'Types of Inheritance — Single, Multilevel, Multiple, Hierarchical, Hybrid': 't55',
+
+    /* ---- Unit 6 ---- */
+    'Introduction to Polymorphism': 't61',
+    /* taught in the comparison section at the end of the unit */
+    'Advantages of Polymorphism': 't6c',
+    /* shown in the overloading section, where the first example is */
+    'Syntax of Polymorphism': 't62',
+    'Types of Polymorphism': 't64',
+    'Function overriding': 't65'
+  },
+
   'grade10/hardware': {
 
     /* ---- Unit 1 — Introduction to Electronic Devices ---- */

@@ -755,6 +755,69 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
     }
   })();
 
+  /* ---------- 4c-quater. the official specification grid ----------
+     WHAT THIS CATCHES, AND WHY IT HAD TO BE WRITTEN.
+
+     Two subjects shipped with marks DERIVED from hours, because the
+     phases that built them recorded the official grid as unavailable.
+     It was in the same PDF as the syllabus they had already
+     transcribed. Nine of twenty-four units were wrong, and the build
+     could not tell: the only existing rule was that a subject totals
+     50, which a wrong distribution satisfies perfectly.
+
+     A mark is a student's instruction about where to spend a week.
+     DBMS Unit 4 was understated by three and Unit 1 overstated by
+     three, so the subject's heaviest unit looked lighter than its
+     second-lightest.
+
+     Hours are checked here too. They were all correct, but they were
+     correct by transcription rather than by any rule, and the next
+     person to adjust one has nothing stopping them. */
+  (function checkGrid(){
+    let grid;
+    try { grid = require('../content/specification-grid.js'); }
+    catch (e){ return; }
+
+    for (const [subject, spec] of Object.entries(grid)){
+      const cfg = pages[subject];
+      if (!cfg){
+        E('content/specification-grid.js', `"${subject}" is in the grid but has no authored pages`);
+        continue;
+      }
+      const units = cfg.pages.filter(p => typeof p.hrs === 'number');
+      const byN = {};
+      units.forEach(p => { byN[String(p.n)] = p; });
+
+      if (units.length !== spec.units.length){
+        E(`grid["${subject}"]`,
+          `the official grid lists ${spec.units.length} units and the site has ` +
+          `${units.length}. One of the two is wrong about the shape of the subject.`);
+      }
+
+      for (const official of spec.units){
+        const p = byN[official.n];
+        if (!p){
+          E(`grid["${subject}"]`,
+            `the official grid has unit ${official.n} ("${official.content}") and the ` +
+            `site has no such unit`);
+          continue;
+        }
+        if (p.hrs !== official.hrs){
+          E(`grid["${subject}"]`,
+            `unit ${official.n} is ${p.hrs} hrs in pages.js and ${official.hrs} hrs in the ` +
+            `official grid (${spec.source})`);
+        }
+        if (p.marks !== official.marks){
+          E(`grid["${subject}"]`,
+            `unit ${official.n} ("${p.title}") is worth ${p.marks} marks in pages.js and ` +
+            `${official.marks} in the official grid. Marks tell a student where to spend ` +
+            `their revision time, so a wrong one sends them to the wrong unit. ` +
+            `Source: ${spec.source}`);
+        }
+      }
+    }
+  })();
+
   /* ---------- 4c-ter. syllabus coverage ----------
      THE FAILURE NOTHING ELSE COULD SEE.
 
