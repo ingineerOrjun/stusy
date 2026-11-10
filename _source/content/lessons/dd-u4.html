@@ -195,6 +195,104 @@
     मात्र फरक, र फरक एउटै ठाउँमा: carry ले <code>A</code> प्रयोग गर्छ, borrow ले <code>A′</code>।</span>
   </div>
 
+  <h4 class="sub">The two truth tables, because that is what is asked</h4>
+
+  <div class="pair">
+    <div class="en"><span class="tag">How to fill a borrow column without memorising it</span>
+      <p>"Draw the truth table of a half subtractor" and "…of a full subtractor" are set as
+      written questions, so the table — not the expression — is the thing you have to be able to
+      produce. You do not have to remember it. Do the subtraction in each row and read off what
+      happened.</p>
+      <p><b>BORROW is 1 exactly when what you are taking away is bigger than what you have.</b>
+      <code>0 − 1</code> needs a borrow; <code>1 − 0</code> and <code>1 − 1</code> do not. For the
+      full subtractor, the borrow-in counts as another 1 being taken away, so
+      <code>A − B − B<sub>in</sub></code> is the sum to do.</p>
+      <p><b>DIFFERENCE is 1 when an odd number of the inputs are 1</b> — which is what
+      <code>A ⊕ B ⊕ B<sub>in</sub></code> says, and the same rule that gives the SUM column of an
+      adder. One rule, two circuits.</p>
+    </div>
+    <div class="np"><span class="tag">borrow स्तम्भ कण्ठ नपारी भर्ने तरिका</span>
+      <p>"Half subtractor को ट्रुथ टेबल कोर्नुहोस्" र "full subtractor को…" लिखित प्रश्नमा आउँछन्,
+      त्यसैले अभिव्यक्ति होइन, <b>तालिका</b> बनाउन सक्नु चाहिन्छ। कण्ठ पार्नु पर्दैन। हरेक
+      पङ्क्तिमा घटाउ गर्नुहोस् र के भयो पढ्नुहोस्।</p>
+      <p><b>जे घटाउँदै छ त्यो आफूसँग भएकोभन्दा ठूलो हुँदा मात्र BORROW = 1 हुन्छ।</b>
+      <code>० − १</code> मा borrow चाहिन्छ; <code>१ − ०</code> र <code>१ − १</code> मा चाहिँदैन।
+      Full subtractor मा borrow-in पनि घटाइने अर्को १ हो, त्यसैले गर्नुपर्ने जोडघटाउ
+      <code>A − B − B<sub>in</sub></code> हो।</p>
+      <p><b>इनपुटमा १ को सङ्ख्या विषम भएमा DIFFERENCE = 1</b> — यही कुरा
+      <code>A ⊕ B ⊕ B<sub>in</sub></code> ले भन्छ, र adder को SUM स्तम्भ दिने नियम पनि यही हो।
+      एउटै नियम, दुई सर्किट।</p>
+    </div>
+  </div>
+
+  <p><b>Half subtractor</b> — <code>A − B</code>. Borrow is 1 only in the row
+    <code>0 − 1</code>.
+    <span class="np-cell"><b>Half subtractor</b> — <code>A − B</code>। <code>० − १</code> भएको
+    पङ्क्तिमा मात्र borrow = १।</span></p>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>A</th><th>B</th><th>D (difference)</th><th>B<sub>o</sub> (borrow)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><b>Full subtractor</b> — <code>A − B − B<sub>in</sub></code>. Compare the D column with a
+    full adder's SUM column: they are identical.
+    <span class="np-cell"><b>Full subtractor</b> — <code>A − B − B<sub>in</sub></code>। D स्तम्भलाई
+    full adder को SUM स्तम्भसँग मिलाउनुहोस्: ठ्याक्कै उही छ।</span></p>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>A</th><th>B</th><th>B<sub>in</sub></th><th>D</th><th>B<sub>o</sub></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+        <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="predict" data-answer="c">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>In a full subtractor, <code>A = 0</code>, <code>B = 1</code>, <code>B<sub>in</sub> = 1</code>.
+      What are D and B<sub>o</sub>?
+      <span class="np-cell">Full subtractor मा <code>A = ०</code>, <code>B = १</code>,
+      <code>B<sub>in</sub> = १</code> छ। D र B<sub>o</sub> के हुन्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">D = 1, Bo = 0</button>
+      <button class="predict-opt" data-value="b">D = 1, Bo = 1</button>
+      <button class="predict-opt" data-value="c">D = 0, Bo = 1</button>
+      <button class="predict-opt" data-value="d">D = 0, Bo = 0</button>
+    </div>
+    <div class="predict-feedback">
+      <p><b>D = 0, B<sub>o</sub> = 1.</b> The sum to do is <code>0 − 1 − 1 = −2</code>. Borrow once
+      and the top becomes <code>10</code> in binary, which is 2; then
+      <code>2 − 1 − 1 = 0</code>, so the difference is 0 and the borrow stayed out at 1.
+      Check it against the XOR rule too: <code>0 ⊕ 1 ⊕ 1 = 0</code>. Both routes agree, and the
+      trap in this row is assuming that a borrow always leaves a difference of 1.</p>
+      <span class="np-cell"><b>D = ०, B<sub>o</sub> = १।</b> गर्नुपर्ने जोडघटाउ
+      <code>० − १ − १ = −२</code> हो। एक पटक borrow लिएपछि माथिको <code>१०</code> अर्थात् २ बन्छ;
+      अनि <code>२ − १ − १ = ०</code>, त्यसैले difference ० र borrow बाहिर १ रह्यो। XOR नियमले पनि
+      जाँच्नुहोस्: <code>० ⊕ १ ⊕ १ = ०</code>। दुवै बाटो मिल्छ। यो पङ्क्तिको पासो —
+      borrow लिएपछि difference सधैं १ हुन्छ भन्ने अनुमान।</span>
+    </div>
+  </div>
+
   <h3 class="topic" id="t46">4.6 &nbsp;Code converters</h3>
 
   <figure class="fig">
@@ -261,6 +359,42 @@ Gray     1   1   1   0</div>
     <figcaption>Learn them in opposite pairs: decoder ↔ encoder, and MUX ↔ DEMUX.
     <span class="np-cell">विपरीत जोडीमा सिक्नुहोस्: decoder ↔ encoder, र MUX ↔ DEMUX।</span></figcaption>
   </figure>
+
+  <div class="pair">
+    <div class="en"><span class="tag">One definition each, and the line between the pairs</span>
+      <p><b>Decoder</b> — <code>n</code> inputs, <code>2ⁿ</code> outputs. The input is a binary
+      number, and the one output whose position matches that number goes to 1 while every other
+      output stays at 0. A 2-to-4 decoder given <code>10</code> raises output 2 and nothing else.
+      Few in, many out.</p>
+      <p><b>Encoder</b> — the exact reverse. <code>2ⁿ</code> inputs, <code>n</code> outputs. One
+      input is high and the circuit reports <i>which one</i>, as a binary number. A keypad uses
+      one: press the 5 key, get <code>0101</code>. Many in, few out.</p>
+      <p><b>Multiplexer (MUX)</b> — many data inputs, <b>one</b> output.
+      <code>n</code> select lines choose which of the <code>2ⁿ</code> inputs is passed through;
+      the rest are ignored. A data <i>selector</i>. Many to one.</p>
+      <p><b>Demultiplexer (DEMUX)</b> — <b>one</b> data input, many outputs. The select lines
+      choose which output the input is delivered to. A data <i>distributor</i>. One to many.</p>
+      <p><b>The line that separates the pairs:</b> a decoder and an encoder work on a
+      <b>code</b> — the thing coming in or going out <i>is</i> the number. A MUX and a DEMUX move
+      <b>data</b>, and the select lines are not the data; they only say which path it takes.</p>
+    </div>
+    <div class="np"><span class="tag">एक–एक परिभाषा, र जोडीबीचको रेखा</span>
+      <p><b>Decoder</b> — <code>n</code> इनपुट, <code>2ⁿ</code> आउटपुट। इनपुट एउटा binary सङ्ख्या
+      हो, र त्यो सङ्ख्यासँग ठाउँ मिल्ने एउटै आउटपुट १ हुन्छ, अरू सबै ० मा रहन्छन्। 2-to-4 decoder
+      लाई <code>१०</code> दिए आउटपुट २ मात्र उठ्छ। थोरै भित्र, धेरै बाहिर।</p>
+      <p><b>Encoder</b> — ठ्याक्कै उल्टो। <code>2ⁿ</code> इनपुट, <code>n</code> आउटपुट। एउटा इनपुट
+      उच्च हुन्छ र सर्किटले <i>कुन</i> हो भनी binary सङ्ख्यामा बताउँछ। किबोर्डको किप्याडमा यही
+      हुन्छ: ५ थिच्दा <code>०१०१</code> आउँछ। धेरै भित्र, थोरै बाहिर।</p>
+      <p><b>Multiplexer (MUX)</b> — धेरै data इनपुट, <b>एउटा</b> आउटपुट। <code>n</code> select
+      लाइनले <code>2ⁿ</code> इनपुटमध्ये कुन पार गर्ने छान्छ; बाँकी बेवास्ता हुन्छन्। data
+      <i>छान्ने</i> यन्त्र। धेरैदेखि एक।</p>
+      <p><b>Demultiplexer (DEMUX)</b> — <b>एउटा</b> data इनपुट, धेरै आउटपुट। select लाइनले इनपुट
+      कुन आउटपुटमा पुर्‍याउने छान्छ। data <i>बाँड्ने</i> यन्त्र। एकदेखि धेरै।</p>
+      <p><b>जोडीबीच छुट्याउने रेखा:</b> decoder र encoder <b>code</b> मा काम गर्छन् — भित्र आउने
+      वा बाहिर जाने चीज आफैं सङ्ख्या हो। MUX र DEMUX <b>data</b> सार्छन्, र select लाइन data
+      होइन; त्यसले कुन बाटो भन्ने मात्र बताउँछ।</p>
+    </div>
+  </div>
 
   <div class="sim">
     <div class="sim-head">
