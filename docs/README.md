@@ -70,6 +70,7 @@ Read these to find out *why* something is the way it is.
 | 8.1 — the 18-unit matrix, and the worked-example think gate | appended to the three Phase 8 documents above | | |
 | Hardware — Class 10 Hardware & Repair, complete | [CONTENT-AUDIT](PHASE-HARDWARE-CONTENT-AUDIT.md) | two new components, argued in the report §3 | [report](PHASE-HARDWARE-COMPLETION-REPORT.md) |
 | Hardware 8 — boot animation, coverage validation, diagram reset fix | — | syllabus coverage gate, argued in the report §4 | [report](PHASE-8-HARDWARE-REPAIR-COMPLETION-REPORT.md) |
+| 9 — Grade 10 curriculum integrity | official CDC grid located; 9 units had wrong marks | specification-grid.js as a build gate | [report](PHASE-9-CURRICULUM-INTEGRITY.md) |
 
 ## Two things every document here agrees on
 
