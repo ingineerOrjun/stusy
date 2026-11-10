@@ -810,10 +810,23 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
 
     for (const [subject, spec] of Object.entries(grid)){
       const cfg = pages[subject];
-      if (!cfg){
-        E('content/specification-grid.js', `"${subject}" is in the grid but has no authored pages`);
-        continue;
-      }
+
+      /* A SUBJECT MAY BE IN THE GRID AND NOT YET TAUGHT.
+
+         This used to be an error, and it was right while the grid held
+         Grade 10 only: every subject in it had pages, so one without
+         them meant a typo in a key. Phase 11 transcribed the Grade 9
+         grid — four subjects, 28 units, verified against the outline —
+         before any Grade 9 lesson exists, and the rule turned a piece
+         of correctly recorded curriculum into a failed build.
+
+         Knowing a subject's marks before writing it is the right order
+         to work in; it is what Phase 9 had to reconstruct backwards for
+         Grade 10. So an ungated subject is skipped HERE, and the thing
+         this rule was really protecting — that the grid, the outline
+         and the site map agree — is asserted for every grade, taught or
+         not, in tests/curriculum.test.js. */
+      if (!cfg) continue;
       const units = cfg.pages.filter(p => typeof p.hrs === 'number');
       const byN = {};
       units.forEach(p => { byN[String(p.n)] = p; });
