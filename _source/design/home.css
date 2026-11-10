@@ -120,11 +120,24 @@
   letter-spacing:2px; white-space:nowrap;
 }
 
-.bridge-dots{display:flex; gap:7px; justify-content:center; margin-top:12px}
+/* The dots are 9px because that is the right size for a position
+   indicator. 9px is NOT the right size for a thing a thumb has to hit:
+   measured at 320px these were 9x9 CSS pixels, the smallest control on
+   the site by a wide margin, and well under the 24x24 minimum.
+
+   The dot stays 9px and the TARGET grows. ::after paints nothing and
+   covers 25x25, which the button's own bounds cannot do without
+   changing how the row looks. The gap goes 7 -> 16 so that the pitch
+   (9 + 16 = 25) matches the target and two neighbouring hit areas
+   cannot overlap — an invisible overlap would send a press to the
+   wrong slide, which is worse than a small dot. */
+.bridge-dots{display:flex; gap:16px; justify-content:center; margin-top:12px}
 .bridge-dot{
   width:9px; height:9px; padding:0; border-radius:var(--r-full);
   border:1px solid var(--line-strong); background:transparent; cursor:pointer;
+  position:relative;
 }
+.bridge-dot::after{content:""; position:absolute; inset:-8px; border-radius:var(--r-full)}
 .bridge-dot[aria-current="true"]{background:var(--yellow); border-color:var(--yellow)}
 
 /* ---------------- counters ---------------- */

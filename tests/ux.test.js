@@ -298,3 +298,63 @@ test('a block promising an experiment has something to operate', () => {
     }
   }
 });
+
+/* ============================================================
+   RESPONSIVE DEFECTS FOUND IN THE PHASE 9.5 SWEEP
+
+   Both were found by measuring all 47 built pages at 320, 375, 768,
+   1024 and 1440 — 235 measurements — rather than by looking at the
+   pages someone had just edited. Both are in SHARED components, which
+   is why a seven-page check had missed them for several phases.
+   ============================================================ */
+
+test('a long word in a hero cannot be cut off', () => {
+  /* A .hero is overflow:hidden, so a word wider than its column is not
+     scrolled to — it is CUT. Measured at 320px: "Microprocessor" on the
+     Digital Design subject page ran 5px past the clip edge and lost its
+     last letters. The other three subject titles cleared the same
+     column by 29px, purely because every word in them is shorter, so
+     the page that happened to break was an accident of vocabulary. */
+  const rules = css.match(/\.hero\s+h1\s*\{[^}]*\}/g) || [];
+  assert.ok(rules.length, 'no .hero h1 rule found in the built stylesheet');
+  assert.ok(rules.some(r => /overflow-wrap\s*:\s*(break-word|anywhere)/.test(r)),
+    '.hero h1 has no overflow-wrap, so a long word will be clipped rather than wrapped: ' +
+    rules.join(' | '));
+});
+
+test('the home carousel dots are big enough to press', () => {
+  /* .bridge-dot is 9px wide because that is the right size for a
+     position indicator, and 9px is not a size a thumb can aim at. On a
+     touch device the generic button rule already gave it 44px of
+     HEIGHT; nothing gave it width, so the target was 9 x 44 — under the
+     24px minimum on the axis that matters.
+
+     It is also the one control missing from the hand-maintained
+     pointer:coarse selector list, which is the same failure the Phase 7
+     note in learning-ux.css records.
+
+     The dot stays 9px and the TARGET grows via ::after. The gap must
+     grow with it: at the old 7px gap the pitch was 16px and two 25px
+     targets would overlap, which sends a press to the wrong slide. */
+  /* The carousel is home-page furniture, so its rules ship only in the
+     home variant. Every variant is a complete sheet; this one is the
+     only one that contains these selectors at all, and reading the
+     wrong sheet is how the first version of this test "passed". */
+  const home = fs.readFileSync(path.join(ROOT, 'assets/css/style-home.css'), 'utf8');
+  const dot = (home.match(/\.bridge-dot\s*\{[^}]*\}/) || [])[0];
+  const after = (home.match(/\.bridge-dot::after\s*\{[^}]*\}/) || [])[0];
+  const dots = (home.match(/\.bridge-dots\s*\{[^}]*\}/) || [])[0];
+  assert.ok(dot && after && dots, 'the bridge dot rules are not all in the home stylesheet');
+
+  const inset = Number((after.match(/inset\s*:\s*-(\d+)px/) || [])[1]);
+  const size  = Number((dot.match(/width\s*:\s*(\d+)px/) || [])[1]);
+  const gap   = Number((dots.match(/gap\s*:\s*(\d+)px/) || [])[1]);
+  assert.ok(inset > 0, '.bridge-dot::after does not expand the hit area');
+  assert.ok(/position\s*:\s*relative/.test(dot), '.bridge-dot is not positioned, so ::after cannot anchor to it');
+
+  const target = size + inset * 2;
+  assert.ok(target >= 24, 'the dot target is ' + target + 'px, under the 24px minimum');
+  assert.ok(gap + size >= target,
+    'the dots are ' + (gap + size) + 'px apart but each target is ' + target +
+    'px wide, so neighbouring targets overlap and a press can hit the wrong slide');
+});

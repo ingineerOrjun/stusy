@@ -201,7 +201,13 @@ td.k{color:var(--blue);font-family:var(--mono);font-size:.85rem;white-space:nowr
   padding:30px 28px;box-shadow:var(--shadow);position:relative;overflow:hidden;
 }
 .hero .eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:2.2px;color:var(--coral);text-transform:uppercase}
-.hero h1{font-size:2.15rem;margin:.25em 0 .35em}
+/* A hero is overflow:hidden, so a word too long for the column is not
+   scrolled to — it is CUT. Measured at 320px: "Microprocessor" on the
+   Digital Design subject page ran 5px past the clip edge and lost its
+   last letters, while the other three subject titles cleared the same
+   column by 29px because every word in them is shorter. The defect is
+   not in that one title; it is that a long word has nowhere to go. */
+.hero h1{font-size:2.15rem;margin:.25em 0 .35em;overflow-wrap:break-word}
 .hero h1 .hl{color:var(--yellow)}
 .hero .lead{font-size:1.05rem;max-width:62ch;color:var(--chalk-white)}
 .hero .lead-np{font-family:var(--deva);color:#f6ecd2;max-width:62ch;
