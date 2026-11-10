@@ -278,6 +278,36 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
       if (!/class="sim-why"/.test(raw))      E(which, 'missing .sim-why — a simulation must explain why, not just show what');
     });
 
+    /* --- a drill must name a set that exists ---
+       A drill is mounted by one attribute: <div class="drill"
+       data-set="normalforms">. The runtime cannot build a set it does not
+       have, and it fails the only way a runtime can — quietly. The
+       student is left with a heading, an objective, an explanation of how
+       to use the thing, and a blank space where the thing was.
+
+       Nothing caught this. The page validated, the suite passed, the
+       build reported a simulation, and one letter in an attribute was the
+       difference between practice and an empty box. */
+    {
+      let SETS = null;
+      try { SETS = require('../runtime/sim-drill.js').SETS; } catch (e){ SETS = null; }
+      if (SETS){
+        for (const m of html.matchAll(/class="drill"[^>]*?data-set="([^"]*)"/g)){
+          if (!(m[1] in SETS)){
+            E(at, 'mounts a drill with data-set="' + m[1] + '", which is not a set in ' +
+                  'runtime/sim-drill.js. The student would get an empty box where the practice ' +
+                  'is. Known sets: ' + Object.keys(SETS).join(', '));
+          }
+        }
+        /* and the attribute is not optional */
+        for (const m of html.matchAll(/<div class="drill"([^>]*)>/g)){
+          if (!/data-set="/.test(m[1])){
+            E(at, 'mounts a drill with no data-set at all, so there is nothing for it to ask');
+          }
+        }
+      }
+    }
+
     /* --- every unit opens with objectives and closes with a recap --- */
     if (/^u\d+\.html$/.test(f)){
       if (!/class="outcomes"/.test(html))  E(at, 'missing .outcomes — every unit states its objectives');

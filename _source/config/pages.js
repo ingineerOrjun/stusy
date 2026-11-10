@@ -29,7 +29,8 @@ module.exports = {
       { file: 'unit1.html', n: '1',
         title: 'Basic Introduction to Data Structure', np: 'डाटा स्ट्रक्चरको आधारभूत परिचय',
         chip: 'Data Structure', hrs: 20, marks: 15,
-        sec: ['u1'], js: ['services/simulation.js', 'predict.js', 'sim-stackqueue.js'] },
+        sec: ['u1'], js: ['services/simulation.js', 'predict.js', 'sim-stackqueue.js',
+                          'sim-drill.js'] },
 
       { file: 'unit2.html', n: '2',
         title: 'Concept of OOP using C++', np: 'OOP को अवधारणा (C++)',
@@ -56,7 +57,8 @@ module.exports = {
       { file: 'unit6.html', n: '6',
         title: 'Polymorphism', np: 'पोलिमर्फिज्म',
         chip: 'Polymorphism', hrs: 10, marks: 7,
-        sec: ['u6'], js: ['snippets.js', 'services/simulation.js', 'predict.js', 'sim-dispatch.js'] },
+        sec: ['u6'], js: ['snippets.js', 'services/simulation.js', 'predict.js', 'sim-dispatch.js',
+                          'sim-drill.js'] },
 
       { file: 'trace.html', n: '▶',
         title: 'Trace a Full Program', np: 'पूरा प्रोग्राम ट्रेस गर्नुहोस्',

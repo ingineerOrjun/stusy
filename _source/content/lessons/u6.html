@@ -426,6 +426,38 @@ int main() {
     inheritance <b>चाहिन्छ</b>; <span class="term">virtual</span> राखे <b>run-time</b>।</p>
   </div>
 
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Read the code and name it: overloading, overriding, or neither?</h4>
+      <p class="sim-goal">What you will learn: to apply the table above to code you have not seen.
+      The paper prints a class and asks which kind of polymorphism it is — and two of these six
+      cases are neither, which is where the mark goes.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: माथिको तालिकालाई नदेखेको कोडमा लागू गर्न।
+      परीक्षामा क्लास छापेर कुन किसिमको polymorphism हो सोधिन्छ — र यी छ केसमध्ये दुई "दुवै होइन"
+      हुन्, अंक त्यहीँ जान्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-polykind" data-set="polykind"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Work the three checks in the order the lead gives them. <b>One class or two?</b> One
+        class means it can only be overloading. <b>Same parameters or different?</b> Different
+        means overloading; the same means you are looking at a redefinition. <b>Only then</b> look
+        for <span class="term">virtual</span>.</p>
+        <p>Cases 3 and 4 are the two that are neither, and they fail for completely different
+        reasons: case 3 compiles and quietly runs the wrong function, case 4 does not compile at
+        all. Read both reasons — a question that shows you code without
+        <span class="term">virtual</span> is testing case 3 on purpose.</p>
+        <span class="np-cell">लिडमा दिइएका तीन जाँच क्रमैसँग गर्नुहोस्। <b>एक क्लास कि दुई?</b>
+        एउटै क्लास भए overloading मात्र हुन सक्छ। <b>प्यारामिटर उही कि फरक?</b> फरक भए
+        overloading; उही भए पुनर्परिभाषा हेर्दै छ। <b>त्यसपछि मात्र</b>
+        <span class="term">virtual</span> खोज्नुहोस्। केस ३ र ४ दुवै होइन, तर कारण बेग्लै छ: केस ३
+        compile हुन्छ र चुपचाप गलत फङ्सन चलाउँछ, केस ४ compile नै हुँदैन।</span>
+      </div>
+    </div>
+  </div>
+
   <div class="pair">
     <div class="en">
       <span class="tag">Advantages of polymorphism</span>

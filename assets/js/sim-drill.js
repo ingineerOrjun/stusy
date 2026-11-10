@@ -403,6 +403,145 @@
       ]
     },
 
+    /* ---- OOP Unit 1: which data structure does this situation need? ----
+       Added in the Phase 9 continuation. Unit 1 is the heaviest unit in
+       its subject — 20 hrs, 15 marks — and it was the only one of the
+       twenty-four with no decision drill at all. It has the stack/queue
+       simulator, which teaches HOW each structure operates, and classifying
+       a situation is a different skill: topic 1.5 asks for linear against
+       non-linear, and the SEE asks it as "which would you use, and why". */
+    dsclassify: {
+      title: { en: 'Which data structure does this need?', ne: 'यसलाई कुन डाटा स्ट्रक्चर चाहिन्छ?' },
+      lead: {
+        en: 'Two questions settle every case. Is the shape a LINE or does it BRANCH? If it is a line, which end do things leave from — the end they went in at, or the other one? Commit before you check.',
+        ne: 'दुई प्रश्नले हरेक केस मिलाउँछ। आकार रेखा हो कि हाँगा फैलिन्छ? रेखा भए चीज कुन छेउबाट निस्कन्छ — भित्र गएकै छेउबाट कि अर्कोबाट? जाँच्नुअघि छान्नुहोस्।'
+      },
+      options: [
+        { id: 'stack', label: { en: 'Stack', ne: 'Stack' } },
+        { id: 'queue', label: { en: 'Queue', ne: 'Queue' } },
+        { id: 'tree',  label: { en: 'Tree',  ne: 'Tree'  } },
+        { id: 'graph', label: { en: 'Graph', ne: 'Graph' } }
+      ],
+      cases: [
+        {
+          pre: 'BROWSER HISTORY\n\nvisited   A  ->  B  ->  C\nnow press  Back',
+          answer: 'stack',
+          why: {
+            en: 'Back returns to B, the page visited most recently — last in, first out. Pages go in and come out at the same end, and a stack is the only structure that behaves that way.',
+            ne: 'Back ले सबैभन्दा पछिल्लो पृष्ठ B मा फर्काउँछ — पछि आएको पहिले जाने। पृष्ठहरू उही छेउबाट भित्र–बाहिर हुन्छन्, र यस्तो व्यवहार stack ले मात्र गर्छ।'
+          }
+        },
+        {
+          pre: 'PRINTER\n\njobs arrive   report, essay, marksheet\nwhich one prints first?',
+          answer: 'queue',
+          why: {
+            en: 'The report arrived first and prints first — first in, first out. Things enter at the rear and leave from the front, which is two different ends, and that is what makes it a queue rather than a stack.',
+            ne: 'report पहिले आयो र पहिले छापिन्छ — पहिले आएको पहिले जाने। चीज पछाडिबाट भित्र र अगाडिबाट बाहिर जान्छ — दुई फरक छेउ, र यही फरकले यसलाई stack होइन queue बनाउँछ।'
+          }
+        },
+        {
+          pre: 'FOLDERS ON A DISK\n\nSchool/\n  Class10/\n    Science/\n    Maths/',
+          answer: 'tree',
+          why: {
+            en: 'Every folder sits inside exactly one parent folder and may hold many children, and no path ever leads back to where it started. One parent, many children, no cycle — that is a tree, and it is non-linear.',
+            ne: 'हरेक फोल्डर ठ्याक्कै एउटै अभिभावक फोल्डरभित्र हुन्छ र धेरै छोरा राख्न सक्छ, र कुनै बाटो सुरुको ठाउँमा फर्किंदैन। एउटै अभिभावक, धेरै छोरा, चक्र छैन — यही tree हो, र यो non-linear हो।'
+          }
+        },
+        {
+          pre: 'BUS ROUTES\n\nKathmandu -- Pokhara\nPokhara   -- Chitwan\nChitwan   -- Kathmandu',
+          answer: 'graph',
+          why: {
+            en: 'The three routes close into a loop, so you can leave Kathmandu and arrive back at it. A tree can never do that, and no city is the parent of another — any node may connect to any node, which is a graph.',
+            ne: 'तीन मार्ग मिलेर चक्र बन्छ, त्यसैले काठमाडौंबाट निस्केर काठमाडौं फर्कन सकिन्छ। Tree ले यो कहिल्यै गर्न सक्दैन, र कुनै सहर अर्कोको अभिभावक होइन — कुनै पनि बिन्दु कुनै पनि बिन्दुसँग जोडिन सक्छ, यही graph हो।'
+          }
+        },
+        {
+          pre: 'TEXT EDITOR\n\ntyped   "Gyan" , "setu" , "!"\nnow press  Ctrl+Z',
+          answer: 'stack',
+          why: {
+            en: 'Undo removes the exclamation mark, the most recent change, and a second undo removes "setu". The order is the reverse of the order things were done in, so the structure holding them is a stack.',
+            ne: 'Undo ले सबैभन्दा पछिल्लो परिवर्तन "!" हटाउँछ, र दोस्रो undo ले "setu"। क्रम काम गरेको क्रमको ठ्याक्कै उल्टो हुन्छ, त्यसैले यिनलाई राख्ने संरचना stack हो।'
+          }
+        },
+        {
+          pre: 'TICKET COUNTER\n\n5 people standing in line\none more person arrives',
+          answer: 'queue',
+          why: {
+            en: 'The new person joins at the back and is served sixth, while the person at the front is served next. Insertion at one end and deletion at the other is the definition of a queue.',
+            ne: 'नयाँ मान्छे पछाडि उभिन्छ र छैटौं पालो पाउँछ, अगाडिकोले भर्खरको पालो पाउँछ। एक छेउबाट राख्ने र अर्को छेउबाट हटाउने — queue को परिभाषा यही हो।'
+          }
+        }
+      ]
+    },
+
+    /* ---- OOP Unit 6: overloading, overriding, or neither? ----
+       The unit already states the rule in a nine-row comparison table.
+       This is the table APPLIED, which is the part the paper tests: the
+       third option exists because a redefinition without `virtual` looks
+       exactly like overriding and does not behave like it. */
+    polykind: {
+      title: { en: 'Overloading, overriding, or neither?', ne: 'Overloading, overriding, कि दुवै होइन?' },
+      lead: {
+        en: 'Three checks, in order. Are the functions in ONE class or in a base and a derived class? Are the parameter lists the same or different? And if they are the same, is the base function virtual? Only the last one decides run-time behaviour.',
+        ne: 'तीन जाँच, क्रमैसँग। फङ्सनहरू एउटै क्लासमा छन् कि base र derived मा? प्यारामिटर सूची उही छ कि फरक? र उही भए base को फङ्सन virtual छ? run-time व्यवहार अन्तिमले मात्र तय गर्छ।'
+      },
+      options: [
+        { id: 'overload', label: { en: 'Overloading — compile-time', ne: 'Overloading — compile-time' } },
+        { id: 'override', label: { en: 'Overriding — run-time', ne: 'Overriding — run-time' } },
+        { id: 'neither',  label: { en: 'Neither — the base version runs', ne: 'दुवै होइन — base कै संस्करण चल्छ' } }
+      ],
+      cases: [
+        {
+          pre: 'class Area {\npublic:\n    void find(int s);\n    void find(int l, int b);\n};',
+          answer: 'overload',
+          why: {
+            en: 'One class, one name, two different parameter lists — one argument against two. There is no inheritance here at all, and the compiler can pick the right function from the call itself, so this is compile-time polymorphism.',
+            ne: 'एउटै क्लास, एउटै नाम, दुई फरक प्यारामिटर सूची — एक र दुई। यहाँ inheritance नै छैन, र compiler ले call आफैंबाट सही फङ्सन छान्न सक्छ, त्यसैले यो compile-time polymorphism हो।'
+          }
+        },
+        {
+          pre: 'class Shape {\npublic:\n    virtual void draw();\n};\nclass Circle : public Shape {\npublic:\n    void draw();\n};\n\nShape* p = new Circle;\np->draw();',
+          answer: 'override',
+          why: {
+            en: 'Base and derived, the same name and the same empty parameter list, and the base function is virtual. The call goes through a base pointer, so the decision waits until the program runs and Circle::draw is what executes.',
+            ne: 'Base र derived, उही नाम र उही खाली प्यारामिटर सूची, र base को फङ्सन virtual छ। Call base pointer मार्फत जाने भएकाले निर्णय प्रोग्राम चल्दासम्म कुर्छ र Circle::draw चल्छ।'
+          }
+        },
+        {
+          pre: 'class Shape {\npublic:\n    void draw();          // no virtual\n};\nclass Circle : public Shape {\npublic:\n    void draw();\n};\n\nShape* p = new Circle;\np->draw();',
+          answer: 'neither',
+          why: {
+            en: 'It looks like the case above with one word removed, and that word is the whole mechanism. Without virtual the compiler decides from the POINTER type, which is Shape, so Shape::draw runs even though the object is a Circle. This is function hiding, not overriding.',
+            ne: 'यो माथिको केसबाट एउटा शब्द हटाएको जस्तै देखिन्छ, र त्यो शब्द नै पूरै प्रविधि हो। virtual नभए compiler ले POINTER को प्रकार — अर्थात् Shape — बाट निर्णय गर्छ, त्यसैले वस्तु Circle भए पनि Shape::draw चल्छ। यो function hiding हो, overriding होइन।'
+          }
+        },
+        {
+          pre: 'class Box {\npublic:\n    int  size();\n    void size();          // only the return type differs\n};',
+          answer: 'neither',
+          why: {
+            en: 'The parameter lists are identical and only the return type differs, which C++ does not accept — the compiler cannot tell from a call which one you meant. This will not compile, so it is not overloading, and with no derived class it cannot be overriding either.',
+            ne: 'प्यारामिटर सूची ठ्याक्कै उही छ, फरक रिटर्न टाइपमा मात्र — C++ ले यो स्वीकार गर्दैन, किनभने call हेरेर compiler ले कुन चाहिएको भन्न सक्दैन। यो compile हुँदैन, त्यसैले overloading होइन, र derived क्लास नै नभएकाले overriding पनि होइन।'
+          }
+        },
+        {
+          pre: 'class Animal {\npublic:\n    virtual void speak();\n};\nclass Dog : public Animal {\npublic:\n    void speak();\n};\n\nDog d;\nd.speak();',
+          answer: 'override',
+          why: {
+            en: 'Dog::speak replaces Animal::speak with the same signature, so it is overriding and the derived version runs. Note that it runs here because the object type is known exactly, not because of virtual — virtual only changes what happens through a base pointer or reference.',
+            ne: 'Dog::speak ले उही हस्ताक्षरसहित Animal::speak लाई प्रतिस्थापन गर्छ, त्यसैले यो overriding हो र derived कै संस्करण चल्छ। तर यहाँ चल्नुको कारण virtual होइन, वस्तुको प्रकार ठ्याक्कै थाहा हुनु हो — virtual ले base pointer वा reference मार्फत मात्र फरक पार्छ।'
+          }
+        },
+        {
+          pre: 'class Print {\npublic:\n    void show(int x);\n    void show(char c);\n    void show(double d);\n};',
+          answer: 'overload',
+          why: {
+            en: 'Three functions, one name, parameter TYPES different each time. Overloading does not require a different number of parameters — a different type, or even a different order, is enough for the compiler to tell them apart.',
+            ne: 'तीन फङ्सन, एउटै नाम, हरेक पटक प्यारामिटरको प्रकार फरक। Overloading लाई प्यारामिटरको सङ्ख्या फरक हुनु जरुरी छैन — प्रकार फरक, वा क्रम मात्र फरक भए पनि compiler ले छुट्याउन सक्छ।'
+          }
+        }
+      ]
+    },
+
     /* ---- Unit 1: data, information, database or DBMS? ---- */
     dbterms: {
       title: { en: 'Data, information, database or DBMS?', ne: 'Data, information, database कि DBMS?' },
