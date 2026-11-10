@@ -3345,4 +3345,88 @@ D.hwBootSequence = {
   ]
 };
 
+/* ===============================================================
+   DBMS UNIT 5 — FUNCTIONAL DEPENDENCY
+
+   WHY THIS DIAGRAM EXISTS. "Functional Dependency and its Types" is
+   the FIRST official topic of Unit 5, and the unit taught it with a
+   bilingual paragraph, a callout and a prediction — no picture at all.
+   Partial and transitive dependency are named 38 times across the
+   unit, because they are the whole reason 2NF and 3NF fail, and a
+   student had nothing to look at.
+
+   A dependency is an arrow between columns. Partial means the arrow
+   starts at PART of a composite key; transitive means two arrows chain
+   through a non-key column. That is a shape, and a shape set in prose
+   has to be rebuilt in the reader's head every time.
+
+   It uses the same table as the normalForms animation already in this
+   unit — (student_id, subject) with name, class_id, class_room — so
+   the two read as one story rather than two unrelated examples.
+   =============================================================== */
+D.dbDependencies = `
+<svg viewBox="0 0 700 348" role="img" aria-labelledby="t-dbdep">
+  <title id="t-dbdep">Three kinds of functional dependency in the table STUDENT with composite key student_id and subject: a full dependency on the whole key, a partial dependency on part of the key which breaks 2NF, and a transitive dependency through a non-key column which breaks 3NF</title>
+  ${ah('a-dbdep')}
+  <text class="f-ttl" x="10" y="20">WHICH COLUMN DECIDES WHICH — the arrow is the dependency</text>
+  <text class="f-lbl" x="10" y="38" text-anchor="start" style="font-size:10px">STUDENT ( student_id , subject , name , class_id , class_room )   —   the key is the pair ( student_id , subject )</text>
+
+  <g>
+    <rect class="f-box-g" x="16" y="56" width="150" height="46" rx="7"/>
+    <text class="f-lbl-y" x="91" y="76" style="font-size:11px">FULL</text>
+    <text class="f-lbl" x="91" y="92" style="font-size:9.5px">depends on the whole key</text>
+
+    <rect class="f-box-d" x="192" y="52" width="244" height="54" rx="7"/>
+    <text class="f-lbl" x="314" y="48" style="font-size:9px">the whole key</text>
+    <rect class="f-box-y" x="202" y="62" width="110" height="34" rx="5"/>
+    <text class="f-lbl-y" x="257" y="84" style="font-size:10px">student_id</text>
+    <rect class="f-box-y" x="318" y="62" width="108" height="34" rx="5"/>
+    <text class="f-lbl-y" x="372" y="84" style="font-size:10px">subject</text>
+
+    <path class="f-arr" d="M440 79 L498 79" marker-end="url(#a-dbdep)"/>
+    <rect class="f-box" x="502" y="62" width="110" height="34" rx="5"/>
+    <text class="f-lbl" x="557" y="84" style="font-size:10px">marks</text>
+    <text class="f-lbl" x="645" y="84" style="font-size:9.5px">fine</text>
+  </g>
+
+  <g>
+    <rect class="f-box-c" x="16" y="152" width="150" height="46" rx="7"/>
+    <text class="f-lbl-y" x="91" y="172" style="font-size:11px">PARTIAL</text>
+    <text class="f-lbl" x="91" y="188" style="font-size:9.5px">breaks 2NF</text>
+
+    <rect class="f-box-d" x="192" y="148" width="244" height="54" rx="7"/>
+    <rect class="f-box-y" x="202" y="158" width="110" height="34" rx="5"/>
+    <text class="f-lbl-y" x="257" y="180" style="font-size:10px">student_id</text>
+    <rect class="f-box-d" x="318" y="158" width="108" height="34" rx="5"/>
+    <text class="f-lbl" x="372" y="180" style="font-size:10px">subject</text>
+    <text class="f-lbl" x="372" y="144" style="font-size:9px">not used by the arrow</text>
+
+    <path d="M312 175 L498 175" style="fill:none;stroke:var(--color-error);stroke-width:1.8"
+          marker-end="url(#a-dbdep)"/>
+    <rect class="f-box" x="502" y="158" width="110" height="34" rx="5"/>
+    <text class="f-lbl" x="557" y="180" style="font-size:10px">name</text>
+    <text class="f-lbl" x="320" y="212" text-anchor="start" style="font-size:9.5px">the arrow starts at PART of the key, so name moves to its own table</text>
+  </g>
+
+  <g>
+    <rect class="f-box-c" x="16" y="256" width="150" height="46" rx="7"/>
+    <text class="f-lbl-y" x="91" y="276" style="font-size:11px">TRANSITIVE</text>
+    <text class="f-lbl" x="91" y="292" style="font-size:9.5px">breaks 3NF</text>
+
+    <rect class="f-box-y" x="202" y="262" width="110" height="34" rx="5"/>
+    <text class="f-lbl-y" x="257" y="284" style="font-size:10px">student_id</text>
+    <path class="f-arr" d="M316 279 L348 279" marker-end="url(#a-dbdep)"/>
+    <rect class="f-box" x="352" y="262" width="110" height="34" rx="5"/>
+    <text class="f-lbl" x="407" y="284" style="font-size:10px">class_id</text>
+    <path d="M466 279 L498 279" style="fill:none;stroke:var(--color-error);stroke-width:1.8"
+          marker-end="url(#a-dbdep)"/>
+    <rect class="f-box" x="502" y="262" width="110" height="34" rx="5"/>
+    <text class="f-lbl" x="557" y="284" style="font-size:10px">class_room</text>
+    <text class="f-lbl" x="202" y="316" text-anchor="start" style="font-size:9.5px">a non-key column decides another non-key column, so class_room moves out with class_id</text>
+  </g>
+
+  <rect class="f-box-y" x="16" y="326" width="668" height="18" rx="5"/>
+  <text class="f-lbl" x="350" y="339" style="font-size:9.5px">Read where the arrow STARTS: the whole key is fine, part of the key is partial, a non-key column is transitive.</text>
+</svg>`;
+
 module.exports = D;
