@@ -1,0 +1,1120 @@
+{
+  "$generatedBy": "tools/grade9-spec.js — regenerate, do not edit by hand",
+  "grade": "Grade 9",
+  "stream": "Technical and Vocational Stream — Computer Engineering",
+  "generated": "2026-11-10",
+  "source": {
+    "title": "Secondary Level School Curriculum (Technical and Vocational Stream), Grade 9-12 — Computer Engineering",
+    "issuingAuthority": "Curriculum Development Centre, Ministry of Education, Science and Technology, Government of Nepal",
+    "edition": "2078 BS",
+    "listing": "https://moecdc.gov.np/content/553/",
+    "file": "https://giwmscdnone.gov.np/media/pdf_upload/1694337718_jx35alj.pdf",
+    "fileSize": "1.03 MB, 321 pages",
+    "primarySource": true,
+    "gridPages": {
+      "c-programming": 9,
+      "computer-fundamentals": 20,
+      "electro-system": 31,
+      "website-design": 42
+    },
+    "scopePages": {
+      "c-programming": 4,
+      "computer-fundamentals": 13,
+      "electro-system": 24,
+      "website-design": 35
+    }
+  },
+  "evaluation": {
+    "totalMarks": 100,
+    "internal": {
+      "marks": 50,
+      "awardedBy": "the school",
+      "breakdown": [
+        {
+          "item": "Participation",
+          "marks": 5
+        },
+        {
+          "item": "Practical work — conduction of activities",
+          "marks": 15
+        },
+        {
+          "item": "Practical work — record keeping",
+          "marks": 3
+        },
+        {
+          "item": "Project work — conduction of activities",
+          "marks": 10
+        },
+        {
+          "item": "Project work — record keeping",
+          "marks": 2
+        },
+        {
+          "item": "Viva of practical and project work",
+          "marks": 5
+        },
+        {
+          "item": "Internal exam — first trimester 5, second trimester 5",
+          "marks": 10
+        }
+      ]
+    },
+    "external": {
+      "marks": 50,
+      "duration": "2 hrs",
+      "basis": "Written examination. \"Questions for the external examination will be based on the specification grid developed by Curriculum Development Centre.\" Paper uses revised Bloom's levels: remembering, understanding, application and higher ability.",
+      "note": "The per-unit marks below are shares of this external paper only — half the subject. No study site can award or predict the internal half."
+    }
+  },
+  "totals": {
+    "subjects": 4,
+    "units": 28,
+    "topics": 169,
+    "creditHours": 256,
+    "externalMarks": 200,
+    "topicsFullyTaught": 0,
+    "topicsPartiallyTaught": 0,
+    "topicsNotImplemented": 169
+  },
+  "coverageStatement": "No Grade 9 lesson has been authored. Every one of the 169 topics is \"not-implemented\". The curriculum structure around them — units, titles, hours and marks — is verified against the CDC document and held by tests/curriculum.test.js.",
+  "statusVocabulary": {
+    "fully-taught": "explanation, worked example and assessment all present and read",
+    "partially-taught": "some content present; named gaps recorded",
+    "practical-missing": "taught, but the curriculum's practical activity is absent",
+    "assessment-missing": "taught, but no question in the bank examines it",
+    "not-implemented": "nothing has been written"
+  },
+  "discrepancies": [
+    {
+      "id": "G9-D1",
+      "subject": "grade9/c-programming",
+      "found": "Phase 11",
+      "status": "fixed",
+      "official": "2.7 \"Operators in C (Arithmetic, Relational, Logical, Bitwise, Assignment)\" is the last topic of Unit 2, Fundamentals of C",
+      "wasInRepo": "the first topic of Unit 3, Control Flow Statements",
+      "whyItMatters": "Unit 2 carries 7 external marks and Unit 3 carries 13. A student revising operators would have weighted them wrongly.",
+      "evidence": "The extracted text reads \"2.6 Input/ Output statements 2.7 Operators in C (...)10 3Control Flow Statements\" — the 10 is Unit 2's credit hours, so 2.7 closes Unit 2."
+    }
+  ],
+  "notTranscribed": [
+    {
+      "item": "Learning outcomes",
+      "where": "a separate column of each subject's scope-and-sequence table",
+      "why": "Phase 11 transcribed units, hours, marks and topic titles. The outcome statements are a per-topic transcription job and belong with the subject that is being authored, not ahead of all four."
+    },
+    {
+      "item": "Practical activities and their hours",
+      "where": "a \"Practical Activities\" table per subject, with its own hour column",
+      "why": "Present in the document and not yet read. These matter: they are 18 of the 50 internal marks, and they are what a practical subject such as Website Design is actually assessed on."
+    },
+    {
+      "item": "Per-topic verification of the topic lists",
+      "where": "the scope-and-sequence tables",
+      "why": "Unit count, unit titles and hours were verified for all four subjects and agree exactly. The TOPIC lists were spot-checked, not verified line by line, and one misplacement was found and fixed (see discrepancies). Each subject needs a full pass before it is authored."
+    },
+    {
+      "item": "Subject codes",
+      "where": "not present",
+      "why": "The document assigns no subject or course code to these subjects. Recorded as absent rather than invented."
+    }
+  ],
+  "subjects": [
+    {
+      "key": "grade9/c-programming",
+      "slug": "c-programming",
+      "name": "Programming Principles & Concept in C Language",
+      "nameNepali": "सी भाषामा प्रोग्रामिङका सिद्धान्त",
+      "shortName": "C Language",
+      "subjectCode": null,
+      "gridSource": "CDC 2078, Specification Grid, Grade 9, Programming Principles and Concept in C Language",
+      "pdfPage": 9,
+      "creditHours": 64,
+      "externalMarks": 50,
+      "unitCount": 7,
+      "topicCount": 35,
+      "authored": false,
+      "units": [
+        {
+          "n": "1",
+          "title": "Principles of Programming",
+          "titleNepali": "प्रोग्रामिङका सिद्धान्त",
+          "creditHours": 6,
+          "externalMarks": 5,
+          "topics": [
+            {
+              "title": "Introduction to Programming (Program, Programmer, Programming Language, Software)",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Categories of Programming Language",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Applications — Scientific Application, Business Application",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Program Design Tools (Algorithm and Flowchart)",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "2",
+          "title": "Fundamentals of C",
+          "titleNepali": "सी भाषाका आधारभूत कुरा",
+          "creditHours": 10,
+          "externalMarks": 7,
+          "topics": [
+            {
+              "title": "Introduction to C Programming",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Basic Program Structure (Preprocessor Directive, Header Files, Tokens, Semicolons, Comments, Identifiers, Whitespace, Escape Sequence)",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Variables and Keywords",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Character Sets, Constants and Variables",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Data Types and Format Specifiers",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Input / Output statements",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Operators in C (Arithmetic, Relational, Logical, Bitwise, Assignment)",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "3",
+          "title": "Control Flow Statements",
+          "titleNepali": "नियन्त्रण प्रवाह कथन",
+          "creditHours": 16,
+          "externalMarks": 13,
+          "topics": [
+            {
+              "title": "Decision Making Statements — if, if…else, switch",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Loop Statements — for, while, do-while, nested loops",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Jump Statements — break, continue, goto, return",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "4",
+          "title": "Functions",
+          "titleNepali": "फङ्सन",
+          "creditHours": 12,
+          "externalMarks": 10,
+          "topics": [
+            {
+              "title": "Introduction to Function",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Declaration, Definition and Calling of a Function",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Types of Functions — Library Function, User-Defined Function",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Types of Function Call — Call by Value, Call by Reference",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Concept of Recursive Functions",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Advantages of Functions",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "5",
+          "title": "Arrays & Strings",
+          "titleNepali": "एरे र स्ट्रिङ",
+          "creditHours": 10,
+          "externalMarks": 8,
+          "topics": [
+            {
+              "title": "Introduction to Array & String",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Declaration and Initialization of Array",
+              "status": "not-implemented"
+            },
+            {
+              "title": "One-Dimensional Array",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Declaration of String",
+              "status": "not-implemented"
+            },
+            {
+              "title": "String Functions — strlen(), strcpy(), strcat(), strcmp(), strrev(), strlwr(), strupr()",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "6",
+          "title": "Structure and Union",
+          "titleNepali": "स्ट्रक्चर र युनियन",
+          "creditHours": 6,
+          "externalMarks": 5,
+          "topics": [
+            {
+              "title": "Introduction to Structure",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Declaration of Structure and Structure Variable",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Accessing Member of Structure",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Introduction to Union",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Declaration of Union and Union Variable",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Accessing Member of Union",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "7",
+          "title": "Pointers",
+          "titleNepali": "पोइन्टर",
+          "creditHours": 4,
+          "externalMarks": 2,
+          "topics": [
+            {
+              "title": "Introduction to Pointer",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Declaring Pointer and Pointer Variable",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Referencing and Dereferencing",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Advantages of Pointer",
+              "status": "not-implemented"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "grade9/computer-fundamentals",
+      "slug": "computer-fundamentals",
+      "name": "Fundamentals of Computer and Application",
+      "nameNepali": "कम्प्युटरका आधारभूत कुरा",
+      "shortName": "Computer Fundamentals",
+      "subjectCode": null,
+      "gridSource": "CDC 2078, Specification Grid, Grade 9, Fundamentals of Computer and Application",
+      "pdfPage": 20,
+      "creditHours": 64,
+      "externalMarks": 50,
+      "unitCount": 7,
+      "topicCount": 37,
+      "authored": false,
+      "units": [
+        {
+          "n": "1",
+          "title": "Introduction to computer",
+          "titleNepali": "कम्प्युटरको परिचय",
+          "creditHours": 8,
+          "externalMarks": 6,
+          "topics": [
+            {
+              "title": "Introduction to computer",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Characteristics of computer",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Modern Applications of computer",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Classification of computers — by size, by data handling, by purpose, by model, by brand",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "2",
+          "title": "Computer Components",
+          "titleNepali": "कम्प्युटरका भागहरू",
+          "creditHours": 10,
+          "externalMarks": 7,
+          "topics": [
+            {
+              "title": "Introduction to Components of computer system",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Input Unit — Keyboard, Mouse, Joystick, OMR, OCR, BCR, MICR, Scanner, Touch Screen, Touchpad, Microphone, Digital Camera",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Output Unit (softcopy) — Monitors (CRT, LCD, LED/Plasma), Speaker, Projector, Headphone",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Output Unit (hardcopy) — Printers (impact, non-impact, 3D), Graphic plotter",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Concept of Memory unit",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Processing unit — Microprocessor: clock speed, word length, components and functions",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "3",
+          "title": "Computer software",
+          "titleNepali": "कम्प्युटर सफ्टवेयर",
+          "creditHours": 10,
+          "externalMarks": 9,
+          "topics": [
+            {
+              "title": "Introduction to Computer software",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Types of software and its features",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Introduction to Operating System",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Functions and characteristics of Operating System",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Types of Operating System",
+              "status": "not-implemented"
+            },
+            {
+              "title": "User interface — CUI and GUI",
+              "status": "not-implemented"
+            },
+            {
+              "title": "OSS (Open Source Software)",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "4",
+          "title": "Memory/Storage Unit",
+          "titleNepali": "मेमोरी र भण्डारण",
+          "creditHours": 10,
+          "externalMarks": 8,
+          "topics": [
+            {
+              "title": "Memory definition",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Types of Memory",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Cache Memory",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Primary / Main memory — characteristics; RAM (SRAM, DRAM); ROM (PROM, EPROM, EEPROM)",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Secondary Memory — characteristics; Magnetic (Hard disk, SSD); Optical (CD/DVD, Blu-ray); Flash (Pen-drive)",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "5",
+          "title": "Internet and its Application",
+          "titleNepali": "इन्टरनेट र यसको प्रयोग",
+          "creditHours": 10,
+          "externalMarks": 8,
+          "topics": [
+            {
+              "title": "Introduction to Internet and its advantages",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Requirements for Internet connection",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Applications — WWW, E-mail, Newsgroup, Telnet, IRC, E-commerce, Search engine, E-Governance, Remote Control",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "6",
+          "title": "Multimedia",
+          "titleNepali": "मल्टिमिडिया",
+          "creditHours": 8,
+          "externalMarks": 6,
+          "topics": [
+            {
+              "title": "Introduction to Multimedia",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Components — Text, Audio, Video, Image, Animation",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Application of Multimedia",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "7",
+          "title": "Emerging Technology",
+          "titleNepali": "उदीयमान प्रविधि",
+          "creditHours": 8,
+          "externalMarks": 6,
+          "topics": [
+            {
+              "title": "Introduction to Emerging Technology",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Concept of AI",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Cloud Computing and distributed computing",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Concept of IoT",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Concept of Big data",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Concept of Data mining",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Cryptography (Encryption and Decryption)",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Concept of VR (Virtual Reality)",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Concept of AR (Augmented Reality)",
+              "status": "not-implemented"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "grade9/electro-system",
+      "slug": "electro-system",
+      "name": "Fundamentals of Electro-System",
+      "nameNepali": "इलेक्ट्रो–सिस्टमका आधारभूत कुरा",
+      "shortName": "Electro-System",
+      "subjectCode": null,
+      "gridSource": "CDC 2078, Specification Grid, Grade 9, Fundamentals of electro-system",
+      "pdfPage": 31,
+      "creditHours": 64,
+      "externalMarks": 50,
+      "unitCount": 7,
+      "topicCount": 47,
+      "authored": false,
+      "units": [
+        {
+          "n": "1",
+          "title": "Introduction to Electrostatics",
+          "titleNepali": "स्थिर विद्युतको परिचय",
+          "creditHours": 9,
+          "externalMarks": 6,
+          "topics": [
+            {
+              "title": "Introduction to Electricity",
+              "status": "not-implemented"
+            },
+            {
+              "title": "History of Electricity",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Types of Electricity — Dynamic, Static",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Application and Uses of electricity",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Atom and its components (electron, proton, neutron)",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Atomic number, atomic weight, free electrons and electric charge",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Coulomb's law and its derivation",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Electric field, potential and potential difference",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Electric Energy, voltage and its unit",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "2",
+          "title": "Electric Fundamentals",
+          "titleNepali": "विद्युतका आधारभूत कुरा",
+          "creditHours": 13,
+          "externalMarks": 10,
+          "topics": [
+            {
+              "title": "Basic electric terms — Voltage, Current, Resistance",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Movement of electrons in a conductor",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Sources of electricity — Hydro, Nuclear fission/fusion, Wind, Thermal, Solar",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Conventional direction of electric current and its uses",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Electrical resistance and its unit",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Use and application of resistance in a circuit",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Classification of objects by resistance — Conductor, Semiconductor, Insulator",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Factors affecting the resistance",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "3",
+          "title": "Electric circuit",
+          "titleNepali": "विद्युत परिपथ",
+          "creditHours": 13,
+          "externalMarks": 10,
+          "topics": [
+            {
+              "title": "Introduction to electric circuit",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Types — Open, Close, Leakage, Series, Parallel, Mixed circuit",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Resistance in series and parallel circuit",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Ohm's Law",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Kirchhoff's Current Law",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Kirchhoff's Voltage Law",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Numericals",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "4",
+          "title": "Electrical Power and Theory",
+          "titleNepali": "विद्युत शक्ति र सिद्धान्त",
+          "creditHours": 6,
+          "externalMarks": 6,
+          "topics": [
+            {
+              "title": "Introduction to electrical power",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Unit of electrical power and its practical concept",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Electrical energy, its unit and applications",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Numericals",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "5",
+          "title": "Cell and capacitor",
+          "titleNepali": "सेल र क्यापासिटर",
+          "creditHours": 10,
+          "externalMarks": 7,
+          "topics": [
+            {
+              "title": "Introduction to cell and battery",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Types of cell — Primary, Secondary",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Series and Parallel connection of a cell",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Capacitor, capacitance and its units",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Factors affecting capacitance",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Characteristics of capacitance",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Series and parallel plate capacitor",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "6",
+          "title": "Magnetism and Electromagnetism",
+          "titleNepali": "चुम्बकत्व र विद्युत चुम्बकत्व",
+          "creditHours": 8,
+          "externalMarks": 6,
+          "topics": [
+            {
+              "title": "Introduction to magnet and magnetism",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Types of Magnet — Temporary, Permanent",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Magnetic and non-magnetic materials",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Magnetic terminologies — magnetic field, field density, lines of magnetic flux, flux density",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Magnetic effect of current and its application",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Principle of electromagnetism",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Faraday's law of electromagnetic induction",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "7",
+          "title": "Fundamentals of Current and phase current",
+          "titleNepali": "करेन्ट र फेज करेन्टका आधारभूत कुरा",
+          "creditHours": 5,
+          "externalMarks": 5,
+          "topics": [
+            {
+              "title": "Introduction to AC and DC",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Differences between AC and DC",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Frequency, Amplitude and Time",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Difference between single phase and three phase system",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Uses and applications of three phase systems",
+              "status": "not-implemented"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "grade9/website-design",
+      "slug": "website-design",
+      "name": "Website Design",
+      "nameNepali": "वेबसाइट डिजाइन",
+      "shortName": "Website Design",
+      "subjectCode": null,
+      "gridSource": "CDC 2078, Specification Grid, Grade 9, Website Design",
+      "pdfPage": 42,
+      "creditHours": 64,
+      "externalMarks": 50,
+      "unitCount": 7,
+      "topicCount": 50,
+      "authored": false,
+      "units": [
+        {
+          "n": "1",
+          "title": "Basics in Website Design",
+          "titleNepali": "वेबसाइट डिजाइनका आधारभूत कुरा",
+          "creditHours": 6,
+          "externalMarks": 6,
+          "topics": [
+            {
+              "title": "Brief History of Internet",
+              "status": "not-implemented"
+            },
+            {
+              "title": "World Wide Web (WWW)",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Web Standards",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Web Protocols",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Web Browser",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Search Engine",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Web Domain",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Web Hosting",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "2",
+          "title": "Website Design Principles",
+          "titleNepali": "वेबसाइट डिजाइनका सिद्धान्त",
+          "creditHours": 4,
+          "externalMarks": 3,
+          "topics": [
+            {
+              "title": "Basic principles of website development",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Phases of website development",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Importance of websites in the contemporary world",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "3",
+          "title": "HTML Basics",
+          "titleNepali": "HTML का आधारभूत कुरा",
+          "creditHours": 6,
+          "externalMarks": 6,
+          "topics": [
+            {
+              "title": "Introduction",
+              "status": "not-implemented"
+            },
+            {
+              "title": "HTML Documents",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Basic Structure of an HTML document",
+              "status": "not-implemented"
+            },
+            {
+              "title": "HTML Tags — Paired and Singular Tags, List of HTML Tags",
+              "status": "not-implemented"
+            },
+            {
+              "title": "HTML Attributes",
+              "status": "not-implemented"
+            },
+            {
+              "title": "HTML Comments",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "4",
+          "title": "HTML Elements",
+          "titleNepali": "HTML एलिमेन्ट",
+          "creditHours": 15,
+          "externalMarks": 9,
+          "topics": [
+            {
+              "title": "Headings",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Paragraphs",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Line Breaking",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Horizontal Line",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Text Formatting",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Lists",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Tables and Frames",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Hyperlinks",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Multimedia (Image, Audio, Video)",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Forms",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "5",
+          "title": "HTML5 Basics",
+          "titleNepali": "HTML5 का आधारभूत कुरा",
+          "creditHours": 5,
+          "externalMarks": 5,
+          "topics": [
+            {
+              "title": "Introduction",
+              "status": "not-implemented"
+            },
+            {
+              "title": "HTML5 Semantic Elements",
+              "status": "not-implemented"
+            },
+            {
+              "title": "HTML5 Audio and Video",
+              "status": "not-implemented"
+            },
+            {
+              "title": "HTML5 Canvas",
+              "status": "not-implemented"
+            },
+            {
+              "title": "HTML5 SVG",
+              "status": "not-implemented"
+            },
+            {
+              "title": "HTML5 Drag and Drop",
+              "status": "not-implemented"
+            },
+            {
+              "title": "HTML5 Forms (new attributes for the input tag)",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "6",
+          "title": "Cascading Style Sheets (CSS)",
+          "titleNepali": "CSS",
+          "creditHours": 18,
+          "externalMarks": 15,
+          "topics": [
+            {
+              "title": "Introduction",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Types of CSS",
+              "status": "not-implemented"
+            },
+            {
+              "title": "CSS Selectors",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Basic Properties — Font, Colors and Background, Borders, Margins and Paddings, Text, Height/Width, Position and Float, Overflow, Box Model, Navigation Bar",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Advanced Properties — Rounded Corners, Border Images, Text Effects, Gradients, Shadows",
+              "status": "not-implemented"
+            },
+            {
+              "title": "CSS Measurement Units",
+              "status": "not-implemented"
+            },
+            {
+              "title": "CSS Website Layout",
+              "status": "not-implemented"
+            }
+          ]
+        },
+        {
+          "n": "7",
+          "title": "JavaScript Fundamentals",
+          "titleNepali": "जाभास्क्रिप्टका आधारभूत कुरा",
+          "creditHours": 10,
+          "externalMarks": 6,
+          "topics": [
+            {
+              "title": "Introduction",
+              "status": "not-implemented"
+            },
+            {
+              "title": "JavaScript in Different Browsers",
+              "status": "not-implemented"
+            },
+            {
+              "title": "JavaScript in HTML Documents",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Variables and Data types",
+              "status": "not-implemented"
+            },
+            {
+              "title": "HTML DOM — Introduction, Methods, Document, Elements, Node Lists",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Control Flow — if, if else, switch; for, while, do while",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Functions",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Prompt, Confirm, Alert",
+              "status": "not-implemented"
+            },
+            {
+              "title": "Objects",
+              "status": "not-implemented"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

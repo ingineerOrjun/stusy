@@ -1,6 +1,6 @@
 # Documentation index
 
-Fifty-one documents accumulated over nine phases of work, plus this index. This is the map.
+Fifty-six documents accumulated over nine phases of work, plus this index. This is the map.
 
 **If you read only one thing:** [`ARCHITECTURE.md`](ARCHITECTURE.md) for how
 the system is put together, then the contract for whatever you are about to
@@ -51,6 +51,11 @@ it records; do not follow its rules.
 | [PHASE-4-DBMS-CURRICULUM-MAP.md](PHASE-4-DBMS-CURRICULUM-MAP.md) | The DBMS syllabus mapped to pages, with six documented ambiguities |
 | [CURRICULUM-APPLICABILITY.md](CURRICULUM-APPLICABILITY.md) | Which CDC edition applies, graded by evidence tier — and what no source establishes |
 | [NEPALI-REVIEW-STATUS.md](NEPALI-REVIEW-STATUS.md) | The review ledger: 1,956 items, all Pending. Generated package: NEPALI-REVIEW-PACKAGE.html |
+| [GRADE-9-CURRICULUM-SOURCE-AUDIT.md](GRADE-9-CURRICULUM-SOURCE-AUDIT.md) | Which Grade 9 course this is, its official source, and what is still unverified |
+| [GRADE-9-CURRICULUM-MAP.md](GRADE-9-CURRICULUM-MAP.md) | 4 subjects, 28 units, 169 topics — and 0 of them taught |
+| [GRADE-9-ARCHITECTURE-PLAN.md](GRADE-9-ARCHITECTURE-PLAN.md) | Why the platform is already multi-grade, and the four small changes Grade 9 needed |
+| [GRADE-9-IMPLEMENTATION-ROADMAP.md](GRADE-9-IMPLEMENTATION-ROADMAP.md) | Subject order, what must be built, and the verification gate before each subject |
+| [GRADE-10-REGRESSION-BASELINE.md](GRADE-10-REGRESSION-BASELINE.md) | The Grade 10 line Grade 9 work must not cross, and the mutations proving it holds |
 
 ## Phase records — historical, do not update
 
