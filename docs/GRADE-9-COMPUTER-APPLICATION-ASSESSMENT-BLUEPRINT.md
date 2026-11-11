@@ -97,37 +97,57 @@ must not end up with the largest bank.
 
 ### Where Unit 1 stands
 
-| | |
-|---|---|
-| Questions | 8 |
-| External marks | 6 |
-| Per mark | 1.33 — inside the target band |
-| Difficulty | 4 easy · 4 medium · 0 hard |
-| Topics covered | 8 distinct, across all four official topics |
-| Duplicate prompts or ids | 0 |
-| Draw | 8 of 8, shuffled |
+| | At Phase 12 | **Now** |
+|---|---|---|
+| Questions | 8 | **12** |
+| External marks | 6 | 6 |
+| Per mark | 1.33 | **2.0** — above the target band, deliberately |
+| Difficulty | 4 easy · 4 medium · 0 hard | **5 easy · 5 medium · 2 hard** |
+| Topics covered | 8 distinct | **9 distinct**, across all four official topics |
+| Duplicate prompts or ids | 0 | 0 |
+| Draw | 8 of 8 — a retake was the same paper | **8 of 12, shuffled** |
+| Retakes measured | — | **12 draws, 12 distinct papers, all 12 questions reachable** |
 
-**Two honest weaknesses, recorded rather than smoothed over.** There are no
-*hard* questions yet, and the bank equals the draw — so a retake is the same
-eight questions in a different order. Both are consequences of a single unit
-being authored. The fix is the same for both: the bank grows past the draw as
-Units 2–7 arrive, and the quiz limit stays at 8 until it does.
+**The three weaknesses recorded at Phase 12 are closed.**
+
+**The gap that mattered most was not in the table.** Official topic 1.3,
+*Modern Applications of computer*, had **no question at all** — found by
+listing the official topics against the bank's `topic` fields rather than by
+counting the bank. It is the same shape as the Grade 10 OOP mistake this
+document was written to prevent, in a bank of eight.
+
+Two *hard* questions were added with it. Both are the kind this unit is lost
+on rather than the kind that is merely longer: one separates accuracy from
+GIGO when the output is visibly wrong, and one gives a machine that is
+genuinely more than one thing and asks for the basis the question named.
+
+Per mark is now 2.0, above the 1.2–1.5 band. That is intentional while one
+unit carries the whole bank: the band describes a complete subject, and a draw
+of 8 needs a bank meaningfully larger than 8 to make a retake worth taking.
+It should fall back inside the band as Units 2–7 arrive.
 
 ---
 
 ## 4 · Practical and project work — what the product owes it
 
-Not built yet, and named here so it is not forgotten.
+**Built for Unit 1 in Phase 12.1.** The full mapping for all seven units is in
+[the practical mapping](GRADE-9-COMPUTER-APPLICATION-PRACTICAL-MAPPING.md);
+this section says only what it means for assessment.
 
-The curriculum gives each unit a practical activity list with its own hours.
-These are 30 of 50 internal marks, and Gyansetu currently has nowhere to put
-them. A **practical-activity block** is needed: for each unit, the activities
-the curriculum names, what a good record of one looks like, and what the viva
-is likely to ask about it.
+Unit 1's page now carries its six curriculum activities with what each needs
+and what to hand in, a record-keeping block explaining the 3 marks most often
+thrown away, and a per-activity log the student keeps on their own device —
+*not done yet / I have done this / done and written up*. The two states are
+separate because the curriculum's mark distribution separates them.
 
-Unit 1's six activities — charts, presentations and a speech competition — are
-summarised in the content blueprint but are not yet on the page. That is the
-first gap to close for this subject after Unit 2.
+**Nothing in it is a mark, and nothing is verified.** The product cannot watch
+a speech competition. What it can do is make sure the student is not surprised
+by 30 marks they did not know were coming, and does not lose the 5 that hang
+on writing the work up.
+
+Still owed: the same block for Units 2–7 as they are written, a field-report
+template for activity 3.4, and some surfacing of practical progress on the
+revision page, which does not yet know the log exists.
 
 ## 5 · Not claimed
 

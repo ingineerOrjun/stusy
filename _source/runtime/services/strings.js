@@ -114,6 +114,24 @@
     modeSet:     { en: 'Mode: set 1s',      ne: 'मोड: 1 राख्ने' },
     modeSelect:  { en: 'Mode: select group', ne: 'मोड: समूह छान्ने' },
 
+    /* PRACTICAL LOG — a student's own record of work done off the screen.
+       Every label here describes WHAT THE STUDENT DID, never what the
+       product knows: it cannot see a chart or hear a speech, and a label
+       that implied otherwise would be a lie told to a child about their
+       own marks. "Not done yet" is a state of the work, not a verdict. */
+    pracTodo:     { en: 'Not done yet',        ne: 'अझै गरेको छैन' },
+    pracDone:     { en: 'I have done this',    ne: 'मैले यो गरें' },
+    pracRecorded: { en: 'Done and written up', ne: 'गरें र अभिलेख पनि लेखें' },
+    pracLogTitle: { en: 'My record of this unit’s practical work',
+                    ne: 'यस युनिटको प्रयोगात्मक कामको मेरो अभिलेख' },
+    pracLogNote:  { en: 'Kept on this device only. It is not a mark and nobody else sees it.',
+                    ne: 'यही यन्त्रमा मात्र रहन्छ। यो अंक होइन र अरू कसैले देख्दैन।' },
+    pracNoSave:   { en: 'This device is not saving — your ticks will be lost when you close the page.',
+                    ne: 'यो यन्त्रले सुरक्षित गरिरहेको छैन — पृष्ठ बन्द गर्दा चिन्ह हराउँछन्।' },
+    pracCount:    { en: 'done', ne: 'गरिएको' },
+    pracWritten:  { en: 'written up', ne: 'अभिलेख लेखिएको' },
+    pracActivity: { en: 'Activity', ne: 'क्रियाकलाप' },
+
     /* announced to assistive technology, never displayed */
     queryResult: { en: 'Query result and the stages that produced it',
                    ne: 'क्वेरीको नतिजा र त्यो बनाउने चरणहरू' },

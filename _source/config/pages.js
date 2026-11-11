@@ -40,7 +40,8 @@ module.exports = {
       { file: 'unit1.html', n: '1',
         title: 'Introduction to Computer', np: 'कम्प्युटरको परिचय',
         chip: 'What a computer is', hrs: 8, marks: 6,
-        sec: ['cf-u1'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js'] },
+        sec: ['cf-u1'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                             'services/progress.js', 'practical.js'] },
 
       { file: 'revise.html', n: '↻', title: 'Your Revision', np: 'तपाईंको दोहोर्‍याइ',
         chip: 'Revision', sec: ['revise'],

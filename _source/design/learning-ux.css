@@ -69,9 +69,14 @@ html, body{ overflow-x: clip; }
      which is exactly the kind of miss a hand-maintained selector list
      accumulates. The links are here too: a revision action and a
      prerequisite are the two things a struggling student taps most. */
-  .rv-act, .prereq-link, .rv-unit-link{
+  .rv-act, .prereq-link, .rv-unit-link,
+  /* Phase 12.1. The practical log's three states are <label>s wrapping a
+     radio, so none of the selectors above reached them: measured 31px at
+     320px. Same miss as .rv-act, one list entry later. */
+  .pr-opt{
     min-height: var(--touch-min);
   }
+  .pr-opt{ display: inline-flex; align-items: center; }
   .rv-act, .prereq-link, .rv-unit-link{ display: inline-flex; align-items: center; }
   /* breadcrumb links are small text; give them tappable padding rather than
      inflating the type, so the crumb still reads as a trail */

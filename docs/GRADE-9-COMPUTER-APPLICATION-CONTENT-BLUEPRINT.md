@@ -264,7 +264,11 @@ authoring.
 ## 5 · What this blueprint does not do
 
 - It does not author Units 2–7. They are planned, not written.
-- It does not transcribe the learning outcomes (folios 11–12) or the practical
-  activity texts (folios 15–17) beyond their summaries here.
+- It does not transcribe the learning outcomes (folios 11–12).
+  **The practical activity texts (folios 15–17) were transcribed in Phase
+  12.1**, read visually as rendered pages as well as by two extractors, and
+  all 32 of them for all seven units are in
+  [the practical mapping](GRADE-9-COMPUTER-APPLICATION-PRACTICAL-MAPPING.md).
+  Unit 1's six are on its page.
 - It does not claim any of it has been reviewed by a teacher or tried with a
   student.
