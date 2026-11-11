@@ -779,10 +779,28 @@ footer .np-cell{font-family:var(--deva);display:block;margin-top:6px}
 .wex-out{margin-top:4px}
 .wex-lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:1.4px;text-transform:uppercase;
   color:var(--green);display:block;margin-bottom:5px}
-pre.out{
+/* The output block of a worked example, and of a retrieval answer. Two
+   elements wear this class: <pre class="out"> for program output, and
+   <div class="out"> for everything else — SQL, truth tables, ER sketches,
+   binary long multiplication. The div was never styled at all, so it fell
+   back to the body font and white-space:normal, and all 92 of those blocks
+   rendered as collapsed prose with their columns gone.
+
+   They keep white-space:pre and scroll sideways when they must, the same
+   bargain .fig strikes above: a column-aligned sketch squeezed to the width
+   of a phone stops being a sketch, so let it overflow and be swiped.
+
+   The exception is the one-line answer. 21 of these blocks are a sentence,
+   not a drawing, and the longest runs to 147 characters. A sentence has no
+   columns to protect and should never ask to be swiped, so it is marked
+   .out-prose at the source and wraps instead. The rule an author follows:
+   a block with a newline in it is a drawing, a block without one is a
+   sentence. */
+pre.out,div.out{
   background:#08110f;border:1.5px solid var(--line);border-left:4px solid var(--green);
   border-radius:10px;font-family:var(--mono);font-size:.85rem;line-height:1.7;
   color:var(--green);padding:12px 15px;margin:0;overflow-x:auto;white-space:pre}
+div.out.out-prose{white-space:pre-wrap;overflow-x:visible}
 .wex-note{font-size:.9rem;color:var(--chalk-dim);margin:12px 0 0}
 .wex-note .np-cell{display:block;font-family:var(--deva);color:#e7d9b4;margin-top:5px}
 .code.nonum .ln .n{display:none}
