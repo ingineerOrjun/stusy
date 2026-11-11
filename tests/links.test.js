@@ -5,7 +5,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
-const SKIP = new Set(['.git', '_source', 'docs', 'tests', 'node_modules']);
+/* `.claude` holds editor and agent tooling, including git worktrees the
+   desktop app creates under .claude/worktrees. A worktree is a second
+   checkout of this same repository, so walking into one counts every
+   built page twice and the page-count assertion fails with a number
+   nobody can interpret — 95 found against 48 expected, from a directory
+   that is not part of the site. It is not tracked and never shipped. */
+const SKIP = new Set(['.git', '.claude', '_source', 'docs', 'tests', 'node_modules']);
 
 function walk(d, acc = []){
   for (const e of fs.readdirSync(d, { withFileTypes: true })){

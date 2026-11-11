@@ -793,3 +793,55 @@ test('one Nepali spelling per concept, across every subject', () => {
       'different term to a student working in Nepali: ' + offenders.join('; '));
   }
 });
+
+/* ============================================================
+   THE NEPALI REVIEW LEDGER
+
+   docs/NEPALI-REVIEW-STATUS.md is the record of what a Nepali teacher
+   has and has not read. Its total was written by hand in Phase 9.5 and
+   said 1,956 for three phases while the real figure reached 2,046 and
+   then 2,090 — the 90 missing items were the whole of Grade 9, which
+   had no row at all.
+
+   An undercounted ledger understates how much review is outstanding, in
+   the one document whose entire job is to say how much review is
+   outstanding. The total is now checked against the generator.
+   ============================================================ */
+test('the Nepali review ledger reports the real number of items', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const root = path.resolve(__dirname, '..');
+
+  const items = JSON.parse(fs.readFileSync(
+    path.join(root, 'docs', 'nepali-review-items.json'), 'utf8'));
+  const list = Array.isArray(items) ? items : (items.items || []);
+  assert.ok(list.length > 0, 'the generated item file is empty');
+
+  const doc = fs.readFileSync(path.join(root, 'docs', 'NEPALI-REVIEW-STATUS.md'), 'utf8');
+  const withCommas = list.length.toLocaleString('en-US');
+  assert.ok(doc.includes(withCommas),
+    'NEPALI-REVIEW-STATUS.md never states the real item count, ' + withCommas +
+    '. The ledger is the only record of how much Nepali is unreviewed, and it ' +
+    'is understating it. Run: node tools/nepali-review.js');
+
+  /* Nothing has been reviewed. When that changes this assertion is the
+     thing that should be edited, deliberately, by whoever changes it. */
+  /* The Total row carries several numbers and an early version of this
+     guard only asked whether the right one appeared ANYWHERE in the row —
+     which a stale items column passed, because the pending column still
+     held the right figure. Both columns are checked by position. */
+  const rows = [...doc.matchAll(/^\| \*\*Total\*\*.*$/gm)];
+  assert.strictEqual(rows.length, 1, 'the ledger has no single Total row to check');
+  const cells = rows[0][0].split('|').map(c => c.trim());
+  const nth = i => (cells[i] || '').replace(/\*/g, '');
+
+  assert.strictEqual(nth(4), withCommas,
+    'the ledger Total row says ' + nth(4) + ' items and there are ' + withCommas +
+    '. Run: node tools/nepali-review.js');
+  /* Nothing has been reviewed. When that changes, this is the assertion
+     whoever changes it should have to edit deliberately. */
+  assert.strictEqual(nth(6), withCommas,
+    'the ledger says ' + nth(6) + ' items are pending review out of ' + withCommas +
+    '. Either a review happened and the four status columns were not updated, or ' +
+    'the row is stale.');
+});

@@ -50,15 +50,16 @@ it records; do not follow its rules.
 | [DIGITAL-DESIGN-DECISIONS.md](DIGITAL-DESIGN-DECISIONS.md) | Subject-level decisions: terminology, notation, what the syllabus left open |
 | [PHASE-4-DBMS-CURRICULUM-MAP.md](PHASE-4-DBMS-CURRICULUM-MAP.md) | The DBMS syllabus mapped to pages, with six documented ambiguities |
 | [CURRICULUM-APPLICABILITY.md](CURRICULUM-APPLICABILITY.md) | Which CDC edition applies, graded by evidence tier — and what no source establishes |
-| [NEPALI-REVIEW-STATUS.md](NEPALI-REVIEW-STATUS.md) | The review ledger: 1,956 items, all Pending. Generated package: NEPALI-REVIEW-PACKAGE.html |
+| [NEPALI-REVIEW-STATUS.md](NEPALI-REVIEW-STATUS.md) | The review ledger: 2,090 items, all Pending. Generated package: NEPALI-REVIEW-PACKAGE.html |
 | [GRADE-9-CURRICULUM-SOURCE-AUDIT.md](GRADE-9-CURRICULUM-SOURCE-AUDIT.md) | Which Grade 9 course this is, its official source, and what is still unverified |
-| [GRADE-9-CURRICULUM-MAP.md](GRADE-9-CURRICULUM-MAP.md) | 4 subjects, 28 units, 169 topics — and 0 of them taught |
+| [GRADE-9-CURRICULUM-MAP.md](GRADE-9-CURRICULUM-MAP.md) | 4 subjects, 28 units, 168 topics — of which 4 are taught |
 | [GRADE-9-ARCHITECTURE-PLAN.md](GRADE-9-ARCHITECTURE-PLAN.md) | Why the platform is already multi-grade, and the four small changes Grade 9 needed |
 | [GRADE-9-IMPLEMENTATION-ROADMAP.md](GRADE-9-IMPLEMENTATION-ROADMAP.md) | Subject order, what must be built, and the verification gate before each subject |
 | [GRADE-10-REGRESSION-BASELINE.md](GRADE-10-REGRESSION-BASELINE.md) | The Grade 10 line Grade 9 work must not cross, and the mutations proving it holds |
 | [GRADE-9-COMPUTER-APPLICATION-CURRICULUM-VERIFICATION.md](GRADE-9-COMPUTER-APPLICATION-CURRICULUM-VERIFICATION.md) | All 36 topics verified against the CDC PDF by two independent extractions |
 | [GRADE-9-COMPUTER-APPLICATION-CONTENT-BLUEPRINT.md](GRADE-9-COMPUTER-APPLICATION-CONTENT-BLUEPRINT.md) | The seven-unit plan: sequence, hours, and where interaction is justified |
 | [GRADE-9-COMPUTER-APPLICATION-ASSESSMENT-BLUEPRINT.md](GRADE-9-COMPUTER-APPLICATION-ASSESSMENT-BLUEPRINT.md) | The 50 external / 50 internal split, and what a study site can and cannot help with |
+| [GRADE-9-COMPUTER-APPLICATION-PRACTICAL-MAPPING.md](GRADE-9-COMPUTER-APPLICATION-PRACTICAL-MAPPING.md) | All 32 practical activities across seven units, and the four levels of help the product can honestly give |
 
 ## Phase records — historical, do not update
 
@@ -85,6 +86,10 @@ Read these to find out *why* something is the way it is.
 | 9.5 — independent validation and release readiness | 47 pages x 5 widths; 24 pages audited with components mounted; curriculum applicability investigated | four readiness verdicts, and a Nepali review package generated from the content | [report](PHASE-9.5-RELEASE-READINESS.md) |
 | 11 — Grade 9 foundation | the CDC Grade 9 grid, transcribed and cross-checked | the platform was already multi-grade; four small changes | [report](GRADE-9-ARCHITECTURE-PLAN.md) |
 | 12 — Grade 9 Computer Application, Unit 1 | all 36 topics read twice; one topic in the wrong shape | the build learned that a subject can be part-written | [implementation](PHASE-12-UNIT-1-IMPLEMENTATION-REPORT.md) · [regression](PHASE-12-REGRESSION-REPORT.md) |
+| 12.1 — practical learning and final verification | the PDF read as rendered pages; three of five quizzes showed no score at the end | half of Grade 9 is practical work, and no website can do any of it | [completion](PHASE-12.1-COMPLETION-REPORT.md) · [practical mapping](GRADE-9-COMPUTER-APPLICATION-PRACTICAL-MAPPING.md) |
+| 12.2 — release audit | the home page credited four finished subjects with a fifth's unit; the grade index gave every subject six units | an audit's job is to read the pages nobody thought to open | [audit](PHASE-12.2-RELEASE-AUDIT.md) |
+| 12.3 — product accuracy and multi-grade status | one boolean was asked a three-state question in six places | a subject is outline, partly written or complete — and the build derives which | [completion](PHASE-12.3-COMPLETION-REPORT.md) |
+| 12.4 — educational focus and final audit | the recommendation line vanished entirely in Nepali mode | "where should I go back to?" has two answers: where the marks are, and what a teacher judged | [audit](PHASE-12.4-FINAL-AUDIT.md) |
 
 ## Two things every document here agrees on
 

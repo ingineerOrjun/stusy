@@ -70,20 +70,24 @@
   "totals": {
     "subjects": 4,
     "units": 28,
+    "unitsAuthored": 1,
     "topics": 168,
     "creditHours": 256,
     "externalMarks": 200,
-    "topicsFullyTaught": 0,
+    "topicsFullyTaught": 4,
     "topicsPartiallyTaught": 0,
-    "topicsNotImplemented": 168
+    "topicsPracticalMissing": 0,
+    "topicsAssessmentMissing": 0,
+    "topicsNotImplemented": 164
   },
-  "coverageStatement": "No Grade 9 lesson has been authored. Every one of the 168 topics is \"not-implemented\". The curriculum structure around them — units, titles, hours and marks — is verified against the CDC document and held by tests/curriculum.test.js.",
+  "coverageStatement": "1 of 28 Grade 9 units are authored, covering 4 of 168 topics. The curriculum structure around all of them — units, titles, hours and marks — is verified against the CDC document and held by tests/curriculum.test.js.",
+  "$statusDerivation": "Every status in this file is derived at generation time from the same data the build validates — config/pages.js, content/coverage.js, the registered question bank, and data-practical ids in the authored lesson. None of it is written by hand, and none of it is a judgement about teaching quality: these states describe what exists, not whether it is any good. No teacher and no student has reviewed any Grade 9 content.",
   "statusVocabulary": {
-    "fully-taught": "explanation, worked example and assessment all present and read",
-    "partially-taught": "some content present; named gaps recorded",
-    "practical-missing": "taught, but the curriculum's practical activity is absent",
-    "assessment-missing": "taught, but no question in the bank examines it",
-    "not-implemented": "nothing has been written"
+    "fully-taught": "the topic is mapped to a section of an authored lesson, the unit has questions in the bank, and the unit's practical activities are on the page",
+    "partially-taught": "the unit has a page but this topic is not in the coverage map",
+    "practical-missing": "taught and assessed, but the curriculum's practical activities for the unit are not on the page",
+    "assessment-missing": "taught, but no question in the bank examines its unit",
+    "not-implemented": "the unit has no page; nothing has been written"
   },
   "discrepancies": [
     {
@@ -141,6 +145,7 @@
           "titleNepali": "प्रोग्रामिङका सिद्धान्त",
           "creditHours": 6,
           "externalMarks": 5,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to Programming (Program, Programmer, Programming Language, Software)",
@@ -166,6 +171,7 @@
           "titleNepali": "सी भाषाका आधारभूत कुरा",
           "creditHours": 10,
           "externalMarks": 7,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to C Programming",
@@ -203,6 +209,7 @@
           "titleNepali": "नियन्त्रण प्रवाह कथन",
           "creditHours": 16,
           "externalMarks": 13,
+          "authored": false,
           "topics": [
             {
               "title": "Decision Making Statements — if, if…else, switch",
@@ -224,6 +231,7 @@
           "titleNepali": "फङ्सन",
           "creditHours": 12,
           "externalMarks": 10,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to Function",
@@ -257,6 +265,7 @@
           "titleNepali": "एरे र स्ट्रिङ",
           "creditHours": 10,
           "externalMarks": 8,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to Array & String",
@@ -286,6 +295,7 @@
           "titleNepali": "स्ट्रक्चर र युनियन",
           "creditHours": 6,
           "externalMarks": 5,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to Structure",
@@ -319,6 +329,7 @@
           "titleNepali": "पोइन्टर",
           "creditHours": 4,
           "externalMarks": 2,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to Pointer",
@@ -353,7 +364,7 @@
       "externalMarks": 50,
       "unitCount": 7,
       "topicCount": 36,
-      "authored": false,
+      "authored": true,
       "units": [
         {
           "n": "1",
@@ -361,22 +372,23 @@
           "titleNepali": "कम्प्युटरको परिचय",
           "creditHours": 8,
           "externalMarks": 6,
+          "authored": true,
           "topics": [
             {
               "title": "Introduction to computer",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Characteristics of computer",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Modern Applications of computer",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Classification of computers — by size, by data handling, by purpose, by model, by brand",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         },
@@ -386,6 +398,7 @@
           "titleNepali": "कम्प्युटरका भागहरू",
           "creditHours": 10,
           "externalMarks": 7,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to Components of computer system",
@@ -415,6 +428,7 @@
           "titleNepali": "कम्प्युटर सफ्टवेयर",
           "creditHours": 10,
           "externalMarks": 9,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to Computer software",
@@ -452,6 +466,7 @@
           "titleNepali": "मेमोरी र भण्डारण",
           "creditHours": 10,
           "externalMarks": 8,
+          "authored": false,
           "topics": [
             {
               "title": "Memory definition",
@@ -481,6 +496,7 @@
           "titleNepali": "इन्टरनेट र यसको प्रयोग",
           "creditHours": 10,
           "externalMarks": 8,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to Internet and its advantages",
@@ -502,6 +518,7 @@
           "titleNepali": "मल्टिमिडिया",
           "creditHours": 8,
           "externalMarks": 6,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to Multimedia",
@@ -523,6 +540,7 @@
           "titleNepali": "उदीयमान प्रविधि",
           "creditHours": 8,
           "externalMarks": 6,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to Emerging Technology",
@@ -585,6 +603,7 @@
           "titleNepali": "स्थिर विद्युतको परिचय",
           "creditHours": 9,
           "externalMarks": 6,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to Electricity",
@@ -630,6 +649,7 @@
           "titleNepali": "विद्युतका आधारभूत कुरा",
           "creditHours": 13,
           "externalMarks": 10,
+          "authored": false,
           "topics": [
             {
               "title": "Basic electric terms — Voltage, Current, Resistance",
@@ -671,6 +691,7 @@
           "titleNepali": "विद्युत परिपथ",
           "creditHours": 13,
           "externalMarks": 10,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to electric circuit",
@@ -708,6 +729,7 @@
           "titleNepali": "विद्युत शक्ति र सिद्धान्त",
           "creditHours": 6,
           "externalMarks": 6,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to electrical power",
@@ -733,6 +755,7 @@
           "titleNepali": "सेल र क्यापासिटर",
           "creditHours": 10,
           "externalMarks": 7,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to cell and battery",
@@ -770,6 +793,7 @@
           "titleNepali": "चुम्बकत्व र विद्युत चुम्बकत्व",
           "creditHours": 8,
           "externalMarks": 6,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to magnet and magnetism",
@@ -807,6 +831,7 @@
           "titleNepali": "करेन्ट र फेज करेन्टका आधारभूत कुरा",
           "creditHours": 5,
           "externalMarks": 5,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction to AC and DC",
@@ -853,6 +878,7 @@
           "titleNepali": "वेबसाइट डिजाइनका आधारभूत कुरा",
           "creditHours": 6,
           "externalMarks": 6,
+          "authored": false,
           "topics": [
             {
               "title": "Brief History of Internet",
@@ -894,6 +920,7 @@
           "titleNepali": "वेबसाइट डिजाइनका सिद्धान्त",
           "creditHours": 4,
           "externalMarks": 3,
+          "authored": false,
           "topics": [
             {
               "title": "Basic principles of website development",
@@ -915,6 +942,7 @@
           "titleNepali": "HTML का आधारभूत कुरा",
           "creditHours": 6,
           "externalMarks": 6,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction",
@@ -948,6 +976,7 @@
           "titleNepali": "HTML एलिमेन्ट",
           "creditHours": 15,
           "externalMarks": 9,
+          "authored": false,
           "topics": [
             {
               "title": "Headings",
@@ -997,6 +1026,7 @@
           "titleNepali": "HTML5 का आधारभूत कुरा",
           "creditHours": 5,
           "externalMarks": 5,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction",
@@ -1034,6 +1064,7 @@
           "titleNepali": "CSS",
           "creditHours": 18,
           "externalMarks": 15,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction",
@@ -1071,6 +1102,7 @@
           "titleNepali": "जाभास्क्रिप्टका आधारभूत कुरा",
           "creditHours": 10,
           "externalMarks": 6,
+          "authored": false,
           "topics": [
             {
               "title": "Introduction",

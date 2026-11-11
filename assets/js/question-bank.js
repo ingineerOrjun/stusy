@@ -287,6 +287,150 @@ QuizService.registerBank("grade9/computer-fundamentals", [
       "en": "Input brings data in and output sends information out; neither keeps anything. Storage is the fourth stage of the definition, and it holds the stored program as well as the data — which is the feature that makes the machine a computer rather than a calculator.",
       "ne": "Input ले data भित्र ल्याउँछ, output ले information बाहिर पठाउँछ; दुवैले केही राख्दैनन्। Storage परिभाषाको चौथो चरण हो, र यसले data सँगै भण्डारण गरिएको प्रोग्राम पनि राख्छ — यही विशेषताले मेसिनलाई क्यालकुलेटर होइन कम्प्युटर बनाउँछ।"
     }
+  },
+  {
+    "id": "g9.cf.q09",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u1",
+    "topic": "modern-applications",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A hospital in Kathmandu keeps patient records, test results and billing on computers. Which application area of the computer is this?",
+      "ne": "काठमाडौंको एउटा अस्पतालले बिरामीको रेकर्ड, जाँचको नतिजा र बिलिङ कम्प्युटरमा राख्छ। यो कम्प्युटरको कुन प्रयोग क्षेत्र हो?"
+    },
+    "options": [
+      {
+        "en": "Education",
+        "ne": "शिक्षा"
+      },
+      {
+        "en": "Health / medicine",
+        "ne": "स्वास्थ्य / चिकित्सा"
+      },
+      {
+        "en": "Entertainment",
+        "ne": "मनोरञ्जन"
+      },
+      {
+        "en": "Communication",
+        "ne": "सञ्चार"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Record keeping, test results and billing inside a hospital are all the health application area. The exam usually gives you a setting and asks for the field, or gives the field and asks for two uses — so learn each area with one Nepali example you could defend.",
+      "ne": "अस्पतालभित्रको रेकर्ड राख्ने काम, जाँचको नतिजा र बिलिङ — सबै स्वास्थ्य प्रयोग क्षेत्रका हुन्। परीक्षाले प्रायः ठाउँ दिएर क्षेत्र सोध्छ, वा क्षेत्र दिएर दुई प्रयोग सोध्छ — त्यसैले हरेक क्षेत्रसँग एउटा नेपाली उदाहरण सम्झनुहोस्।"
+    }
+  },
+  {
+    "id": "g9.cf.q10",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u1",
+    "topic": "characteristics",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "One computer prints report cards all morning, then is used for typing a letter and watching a video. Which TWO characteristics does this best show?",
+      "ne": "एउटै कम्प्युटरले बिहानभरि रिजल्ट छाप्छ, अनि चिठी टाइप गर्न र भिडियो हेर्न प्रयोग हुन्छ। यसले सबैभन्दा राम्रोसँग कुन दुई विशेषता देखाउँछ?"
+    },
+    "options": [
+      {
+        "en": "Accuracy and storage",
+        "ne": "शुद्धता र भण्डारण"
+      },
+      {
+        "en": "Diligence and versatility",
+        "ne": "लगनशीलता र बहुउपयोगिता"
+      },
+      {
+        "en": "Speed and accuracy",
+        "ne": "गति र शुद्धता"
+      },
+      {
+        "en": "Automation and accuracy",
+        "ne": "स्वचालन र शुद्धता"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Working all morning without tiring or losing care is diligence. Doing three unlike jobs on one machine is versatility. Speed and accuracy are true of the machine too, but nothing in this situation demonstrates them — the question asks which the situation SHOWS, not which the computer has.",
+      "ne": "बिहानभरि नथाकी, ध्यान नघटाई काम गर्नु लगनशीलता हो। एउटै मेसिनमा तीन फरक काम गर्नु बहुउपयोगिता। गति र शुद्धता पनि मेसिनमा छन्, तर यो परिस्थितिले ती देखाउँदैन — प्रश्नले परिस्थितिले के देखाउँछ भनेको छ, कम्प्युटरसँग के छ भनेको होइन।"
+    }
+  },
+  {
+    "id": "g9.cf.q11",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u1",
+    "topic": "gigo",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A result sheet shows a student with 950 out of 500. The clerk typed 95 as 950. A friend says \"the computer made a mistake, so computers are not accurate.\" What is the correct reply?",
+      "ne": "नतिजामा एक विद्यार्थीको ५०० मध्ये ९५० देखियो। क्लर्कले ९५ लाई ९५० टाइप गरेछन्। साथी भन्छ \"कम्प्युटरले गल्ती गर्‍यो, त्यसैले कम्प्युटर शुद्ध हुँदैन।\" ठिक जवाफ कुन?"
+    },
+    "options": [
+      {
+        "en": "The friend is right — a wrong output proves the computer is not accurate",
+        "ne": "साथी ठिक छ — गलत आउटपुटले कम्प्युटर शुद्ध छैन भन्ने प्रमाणित गर्छ"
+      },
+      {
+        "en": "The computer processed the data it was given exactly; the data was wrong, which is GIGO, and accuracy is untouched",
+        "ne": "कम्प्युटरले दिइएकै data ठ्याक्कै प्रशोधन गर्‍यो; data नै गलत थियो — यो GIGO हो, र शुद्धतामा कुनै असर पर्दैन"
+      },
+      {
+        "en": "The computer should have noticed that 950 is more than 500 and refused it",
+        "ne": "कम्प्युटरले ९५० ५०० भन्दा बढी हो भनी चाल पाएर अस्वीकार गर्नुपर्थ्यो"
+      },
+      {
+        "en": "This is a storage failure, not an accuracy question",
+        "ne": "यो भण्डारणको असफलता हो, शुद्धताको प्रश्न होइन"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Accuracy is a claim about PROCESSING, not about the data. Given 950, the machine handled 950 correctly — which is exactly what accuracy means, and exactly why a wrong output does not disprove it. Option 3 is the tempting one: a program COULD be written to reject a mark above the full marks, but that is a check someone chose to add, not something a computer does because it is a computer. The characteristic being tested here is accuracy, and the principle is Garbage In, Garbage Out.",
+      "ne": "शुद्धता भनेको प्रशोधन बारेको दाबी हो, data बारेको होइन। ९५० दिइएपछि मेसिनले ९५० लाई ठिकसँग चलायो — शुद्धताको अर्थ यही हो, र गलत आउटपुटले यसलाई गलत साबित नगर्ने कारण पनि यही। तेस्रो विकल्प लोभ्याउने छ: पूर्णाङ्कभन्दा बढी अंक अस्वीकार गर्ने प्रोग्राम लेख्न सकिन्छ, तर त्यो कसैले थपेको जाँच हो, कम्प्युटर भएकै कारण हुने कुरा होइन। यहाँ जाँचिएको विशेषता शुद्धता हो, र सिद्धान्त Garbage In, Garbage Out।"
+    }
+  },
+  {
+    "id": "g9.cf.q12",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u1",
+    "topic": "classification-bases",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "An ECG machine in a clinic measures the smoothly changing electrical signal of a heartbeat and prints a numbered report. A question asks: \"classify it on the basis of working principle.\" Which answer is correct, and why is the other tempting one wrong?",
+      "ne": "क्लिनिकको ECG मेसिनले मुटुको बिस्तारै बदलिने विद्युतीय सङ्केत नाप्छ र संख्या भएको रिपोर्ट छाप्छ। प्रश्न: \"working principle को आधारमा वर्गीकरण गर्नुहोस्।\" ठिक उत्तर कुन, र अर्को लोभ्याउने उत्तर किन गलत?"
+    },
+    "options": [
+      {
+        "en": "Microcomputer — because one person uses it at a time",
+        "ne": "Microcomputer — किनभने एकपटक एक जनाले चलाउँछ"
+      },
+      {
+        "en": "Hybrid — it measures an analog signal and gives digital output",
+        "ne": "Hybrid — यसले analog सङ्केत नाप्छ र digital आउटपुट दिन्छ"
+      },
+      {
+        "en": "Special purpose — because it is built for one job",
+        "ne": "Special purpose — किनभने एउटै कामका लागि बनेको"
+      },
+      {
+        "en": "Digital — because the report is printed in numbers",
+        "ne": "Digital — किनभने रिपोर्ट संख्यामा छापिन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "\"Working principle\" is the data-handling basis, so the answer must be analog, digital or hybrid — which rules out microcomputer (size) and special purpose (purpose) however true they are of the machine. Between the two that remain, digital is the trap: the machine does produce digital output, but it also MEASURES a smoothly changing signal, and doing both is the definition of hybrid. The general lesson is to read which basis the question names before looking at the machine at all.",
+      "ne": "\"Working principle\" भनेको डाटा ह्यान्डलिङको आधार हो, त्यसैले उत्तर analog, digital वा hybrid मध्ये हुनैपर्छ — यसले microcomputer (आकार) र special purpose (प्रयोजन) लाई हटाइदिन्छ, ती मेसिनका लागि जति नै सत्य भए पनि। बाँकी दुईमध्ये digital पासो हो: मेसिनले digital आउटपुट त दिन्छ, तर बिस्तारै बदलिने सङ्केत नाप्छ पनि, र दुवै गर्नु नै hybrid को परिभाषा हो। पाठ यो हो — मेसिन हेर्नुअघि प्रश्नले कुन आधार तोकेको छ पढ्नुहोस्।"
+    }
   }
 ]);
 
@@ -7053,3 +7197,159 @@ QuizService.registerBank("grade10/hardware", [
     }
   }
 ]);
+
+/* Revision focus per subject, in two kinds that are never merged:
+   exam    — derived from each unit's external marks (a fact about the paper)
+   teacher — authored in _source/content/revision-focus.js (a judgement)
+   The quiz labels whichever it shows. See docs/ASSESSMENT-ARCHITECTURE.md. */
+QuizService.registerFocus("grade9/computer-fundamentals", {
+  "exam": [
+    {
+      "n": "1",
+      "marks": 6,
+      "title": {
+        "en": "Introduction to Computer",
+        "ne": "कम्प्युटरको परिचय"
+      },
+      "page": "unit1.html"
+    }
+  ],
+  "teacher": [],
+  "source": null
+});
+
+QuizService.registerFocus("grade10/oop-cpp", {
+  "exam": [
+    {
+      "n": "1",
+      "marks": 15,
+      "title": {
+        "en": "Basic Introduction to Data Structure",
+        "ne": "डाटा स्ट्रक्चरको आधारभूत परिचय"
+      },
+      "page": "unit1.html"
+    },
+    {
+      "n": "2",
+      "marks": 14,
+      "title": {
+        "en": "Concept of OOP using C++",
+        "ne": "OOP को अवधारणा (C++)"
+      },
+      "page": "unit2.html"
+    },
+    {
+      "n": "5",
+      "marks": 7,
+      "title": {
+        "en": "Inheritance",
+        "ne": "इनहेरिटेन्स"
+      },
+      "page": "unit5.html"
+    }
+  ],
+  "teacher": [],
+  "source": null
+});
+
+QuizService.registerFocus("grade10/digital-design", {
+  "exam": [
+    {
+      "n": "1",
+      "marks": 7,
+      "title": {
+        "en": "Number System and Binary Arithmetic",
+        "ne": "संख्या प्रणाली र बाइनरी गणित"
+      },
+      "page": "unit1.html"
+    },
+    {
+      "n": "2",
+      "marks": 15,
+      "title": {
+        "en": "Concept of Logic Gates",
+        "ne": "लजिक गेटको अवधारणा"
+      },
+      "page": "unit2.html"
+    },
+    {
+      "n": "5",
+      "marks": 15,
+      "title": {
+        "en": "Introduction to Microprocessor",
+        "ne": "माइक्रोप्रोसेसर र यसका भाग"
+      },
+      "page": "unit5.html"
+    }
+  ],
+  "teacher": [],
+  "source": null
+});
+
+QuizService.registerFocus("grade10/dbms", {
+  "exam": [
+    {
+      "n": "2",
+      "marks": 10,
+      "title": {
+        "en": "Entity Relationship Model (ER-Model)",
+        "ne": "ई–आर मोडेल"
+      },
+      "page": "unit2.html"
+    },
+    {
+      "n": "3",
+      "marks": 6,
+      "title": {
+        "en": "Relational Model",
+        "ne": "रिलेसनल मोडेल"
+      },
+      "page": "unit3.html"
+    },
+    {
+      "n": "4",
+      "marks": 14,
+      "title": {
+        "en": "SQL — Structured Query Language",
+        "ne": "एसक्युएल — संरचित क्वेरी भाषा"
+      },
+      "page": "unit4.html"
+    }
+  ],
+  "teacher": [],
+  "source": null
+});
+
+QuizService.registerFocus("grade10/hardware", {
+  "exam": [
+    {
+      "n": "3",
+      "marks": 9,
+      "title": {
+        "en": "Overview on System's Core",
+        "ne": "प्रणालीको मुख्य भाग"
+      },
+      "page": "unit3.html"
+    },
+    {
+      "n": "4",
+      "marks": 10,
+      "title": {
+        "en": "Troubleshooting Techniques",
+        "ne": "समस्या समाधानका तरिका"
+      },
+      "page": "unit4.html"
+    },
+    {
+      "n": "5",
+      "marks": 11,
+      "title": {
+        "en": "Repair and Maintenance",
+        "ne": "मर्मत र सम्भार"
+      },
+      "page": "unit5.html"
+    }
+  ],
+  "teacher": [],
+  "source": null
+});

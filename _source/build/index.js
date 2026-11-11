@@ -13,6 +13,15 @@ const SITE      = ctx.site;
 const OUTLINE   = ctx.syllabus;
 const AUTHORED  = ctx.pages;   /* subject key -> { hero, pages[] } */
 
+/* Subject authoring status, derived in context.js from the syllabus and
+   the pages that exist. Nothing below asks `s.done` any more: a boolean
+   cannot describe a subject with one unit of seven written, and when one
+   arrived the home page and the grade index each said something untrue.
+   See the comment on `subjectStatus` in context.js. */
+const STATUS = ctx.subjectStatus;
+const SLABEL = ctx.STATUS_LABEL;
+const statusOf = (gradeId, slug) => STATUS[gradeId + '/' + slug];
+
 /* Fail the build on a content-contract violation before writing anything. */
 validate({ site: SITE, syllabus: OUTLINE, pages: AUTHORED, diagrams: DIA, ctx: ctx });
 
@@ -184,8 +193,16 @@ function deskNav(root, activeGrade){
     h += '<div class="dropmenu">';
     h += `<a class="all" href="${root}${g.id}/index.html">All ${g.label} subjects</a>`;
     g.subjects.forEach(s => {
-      h += `<a href="${root}${g.id}/${s.slug}/index.html">${s.short}` +
-           (s.done ? ' <span class="dn">· notes ready</span>' : '') +
+      const st = statusOf(g.id, s.slug);
+      /* An outline-only subject says nothing here, as before. A partly
+         written one says how far it goes rather than borrowing the
+         finished subjects' words. */
+      const note = st.state === 'complete'
+        ? ` <span class="dn">· ${SLABEL.complete.en}</span>`
+        : st.state === 'partial'
+          ? ` <span class="dn">· ${st.authoredUnits} of ${st.officialUnits} units</span>`
+          : '';
+      h += `<a href="${root}${g.id}/${s.slug}/index.html">${s.short}` + note +
            `<small>${s.np}</small></a>`;
     });
     h += '</div></div>';
@@ -206,8 +223,14 @@ function mobileNav(root, activeGrade, activeHref){
     h += `<a href="${root}${g.id}/index.html">All ${g.label} subjects <small>सबै विषय</small></a>`;
     g.subjects.forEach(s => {
       const href = `${root}${g.id}/${s.slug}/index.html`;
+      const st = statusOf(g.id, s.slug);
+      /* ✓ means finished. A half-written subject gets its fraction, not
+         a tick it has not earned and not the silence of an empty one. */
+      const mark = st.state === 'complete' ? ' ✓'
+                 : st.state === 'partial'  ? ` · ${st.authoredUnits}/${st.officialUnits}`
+                 : '';
       h += `<a href="${href}"${activeHref === `${g.id}/${s.slug}` ? ' class="on"' : ''}>${s.short}` +
-           (s.done ? ' ✓' : '') + `<small>${s.np}</small></a>`;
+           mark + `<small>${s.np}</small></a>`;
     });
   });
   h += '</div>';
@@ -532,7 +555,25 @@ w('assets/js/question-bank.js',
   Object.entries(ctx.questionBanks).map(([subject, qs]) =>
     'QuizService.registerBank(' + JSON.stringify(subject) + ', ' +
     JSON.stringify(qs, null, 2) + ');'
-  ).join('\n\n') + '\n');
+  ).join('\n\n') + '\n\n' +
+  /* The units a low score should send a student back to, derived from
+     each unit's external marks in pages.js. Registered here, beside the
+     bank, because the engine is shared by five subjects and advice that
+     names a unit must arrive as that subject's data rather than be
+     typed into a message every subject reads. */
+  '/* Revision focus per subject, in two kinds that are never merged:\n' +
+  '   exam    — derived from each unit\'s external marks (a fact about the paper)\n' +
+  '   teacher — authored in _source/content/revision-focus.js (a judgement)\n' +
+  '   The quiz labels whichever it shows. See docs/ASSESSMENT-ARCHITECTURE.md. */\n' +
+  Object.keys(ctx.examFocus).map(subject => {
+    const teacher = ctx.teacherFocus[subject];
+    return 'QuizService.registerFocus(' + JSON.stringify(subject) + ', ' +
+      JSON.stringify({
+        exam: ctx.examFocus[subject],
+        teacher: (teacher && teacher.units) || [],
+        source: (teacher && teacher.source) || null
+      }, null, 2) + ');';
+  }).join('\n\n') + '\n');
 
 /* ---------------- home ----------------
    THE LANDING PAGE MAKES ONE ARGUMENT AND THEN PROVES IT.
@@ -601,8 +642,16 @@ w('assets/js/question-bank.js',
     /* Readiness is shown per subject rather than as one number, because
        "4 subjects" beside three outlines and one finished subject is
        true and misleading at the same time. */
-    const chips = g.subjects.map(s =>
-      `<span class="${s.done ? 'on' : ''}">${s.short}</span>`).join('');
+    const chips = g.subjects.map(s => {
+      const st = statusOf(g.id, s.slug);
+      /* Three states, three looks. A half-written subject used to look
+         exactly like an empty one here, so a student had no way to see
+         from the home page that Grade 9 had anything to read at all. */
+      const cls = st.state === 'complete' ? 'on' : st.state === 'partial' ? 'part' : '';
+      const title = st.state === 'partial'
+        ? ` title="${st.authoredUnits} of ${st.officialUnits} units written"` : '';
+      return `<span class="${cls}"${title}>${s.short}</span>`;
+    }).join('');
     cards += `<a class="gcard" href="${g.id}/index.html"><div class="num">${n}</div>
        <h3>${g.label}<span class="np-cell">${g.np}</span></h3>
        <p>${g.subjects.length} subjects · 4 credit hrs each · 128 working hrs</p>
@@ -612,15 +661,36 @@ w('assets/js/question-bank.js',
 
   /* --- what is actually finished, derived rather than typed ---
      This paragraph said "Grade 10 OOP is complete" for four phases
-     after DBMS and Digital Design were finished too. It is now built
-     from the same `done` flags the cards use, so it cannot say
-     something the site map disagrees with. */
-  const readySubjects = [];
-  SITE.forEach(g => g.subjects.forEach(s => {
-    if (s.done) readySubjects.push({ grade: g.label, en: s.short, ne: s.np });
-  }));
-  const readyEn = readySubjects.map(s => `<b>${s.en}</b>`).join(', ');
-  const readyNe = readySubjects.map(s => `<b>${s.ne}</b>`).join(', ');
+     after DBMS and Digital Design were finished too, so it was rebuilt
+     from the status flags the cards use.
+
+     That was only half the lesson. The sentence then took the four
+     FINISHED subjects and gave them the SITE-WIDE totals — and when
+     Grade 9 Unit 1 arrived it read "4 subjects are written in full …
+     across 25 units", crediting them with a fifth subject's unit, two
+     of its diagrams, one of its simulators, four of its questions and
+     eight of its hours. The four have 24 units.
+
+     Both halves now come from `contentStats.complete`, which sums only
+     subjects whose every official unit has a page, and the partly
+     written subject is named separately in its own sentence. A number
+     here cannot describe a subject the sentence beside it excludes. */
+  const ready = Object.values(STATUS).filter(s => s.state === 'complete');
+  const part  = Object.values(STATUS).filter(s => s.state === 'partial');
+  const readyEn = ready.map(s => `<b>${s.short}</b>`).join(', ');
+  const readyNe = ready.map(s => `<b>${s.np}</b>`).join(', ');
+  const C = S.complete;
+
+  /* One sentence per partly written subject, in both languages. Written
+     as a list rather than a fixed string so the second one does not
+     need a code change — and so it disappears entirely when there are
+     none, rather than leaving "0 subjects are partly written". */
+  const partEn = part.map(s =>
+    `<b>${s.short}</b> (${s.gradeLabel}) is <b>partly written</b> — ` +
+    `${s.authoredUnits} of its ${s.officialUnits} units.`).join(' ');
+  const partNe = part.map(s =>
+    `<b>${s.np}</b> (${s.gradeLabel === 'Grade 9' ? 'कक्षा ९' : s.gradeLabel}) ` +
+    `<b>आंशिक लेखिएको</b> छ — ${s.officialUnits} मध्ये ${s.authoredUnits} युनिट।`).join(' ');
 
   const stat = (n, en, ne) =>
     `<div class="stat"><span class="stat-n" data-to="${n}">${n}</span>
@@ -672,18 +742,21 @@ w('assets/js/question-bank.js',
 
 <div class="pair reveal">
   <div class="en"><span class="tag">What is ready right now</span>
-    <p>${readySubjects.length} subjects are written in full — ${readyEn} —
-    across ${S.units} units: ${S.diagrams} diagrams, ${S.animations} of them animated,
-    ${S.simulators} things you can actually operate, and ${S.retrieval} practice questions
+    <p>${C.subjects} subjects are written in full — ${readyEn} —
+    across ${C.units} units: ${C.diagrams} diagrams, ${C.animations} of them animated,
+    ${C.simulators} things you can actually operate, and ${C.retrieval} practice questions
     that ask you to answer before they show you anything.</p>
+    ${partEn ? `<p>${partEn} Its finished units read exactly like the rest; the others
+    are being written.</p>` : ''}
     <p>Every other subject shows its <b>full syllabus outline</b> taken from the CDC
     curriculum, so you can see exactly what you must study. Notes for those are being
     written next.</p>
   </div>
   <div class="np"><span class="tag">अहिले के तयार छ</span>
-    <p>${readySubjects.length} विषय पूरै लेखिएका छन् — ${readyNe} — जम्मा ${S.units} युनिटमा:
-    ${S.diagrams} चित्र, तीमध्ये ${S.animations} चलायमान, ${S.simulators} वटा आफैँ चलाएर हेर्न मिल्ने,
-    र ${S.retrieval} अभ्यास प्रश्न — जसले उत्तर देखाउनुअघि तपाईंलाई नै सोध्छ।</p>
+    <p>${C.subjects} विषय पूरै लेखिएका छन् — ${readyNe} — जम्मा ${C.units} युनिटमा:
+    ${C.diagrams} चित्र, तीमध्ये ${C.animations} चलायमान, ${C.simulators} वटा आफैँ चलाएर हेर्न मिल्ने,
+    र ${C.retrieval} अभ्यास प्रश्न — जसले उत्तर देखाउनुअघि तपाईंलाई नै सोध्छ।</p>
+    ${partNe ? `<p>${partNe} लेखिसकिएका युनिट अरूकै जस्तै छन्; बाँकी लेखिँदैछन्।</p>` : ''}
     <p>अरू सबै विषयमा अहिले CDC पाठ्यक्रमबाट लिइएको <b>पूरा सिलेबस रूपरेखा</b> देखिन्छ, ताकि
     के–के पढ्नुपर्छ थाहा होस्। तिनका नोट्स क्रमशः लेखिँदैछन्।</p>
   </div>
@@ -702,13 +775,31 @@ w('assets/js/question-bank.js',
 SITE.filter(g => g.status === 'open').forEach(g => {
   let cards = '';
   g.subjects.forEach((s, i) => {
-    const key = g.id + '/' + s.slug;
-    const units = s.done ? 6 : (OUTLINE[key] ? OUTLINE[key].length : 0);
+    const st = statusOf(g.id, s.slug);
+    /* THE UNIT COUNT USED TO BE `s.done ? 6`.
+       Right for OOP and Hardware, wrong for DBMS (7) and Digital Design
+       (5) — a figure on a navigation page that no data supported, telling
+       a DBMS student their subject was a unit shorter than it is. It is
+       now the subject's own official unit count, which is also what the
+       outline-only cards were already using, so the two cases stopped
+       needing different code. */
+    const units = st.officialUnits;
+    const cls = { complete: 'done', partial: 'part', outline: 'out' }[st.state];
+    /* A partly written subject says how far it goes. It used to read
+       "syllabus outline", exactly like the three Grade 9 subjects with
+       nothing written, so the one subject with a unit to read looked
+       identical to the ones without. */
+    const label = st.state === 'partial'
+      ? `${st.authoredUnits} of ${st.officialUnits} units written`
+      : SLABEL[st.state].en;
     cards += `<a class="scard" href="${s.slug}/index.html">
       <div class="idx">SUBJECT ${i + 1}</div>
       <h3>${s.name}<span class="np-cell">${s.np}</span></h3>
       <div class="foot">
-        <span class="status ${s.done ? 'done' : 'out'}">${s.done ? 'notes ready' : 'syllabus outline'}</span>
+        <span class="status ${cls}">${label}<span class="np-cell">${
+          st.state === 'partial'
+            ? `${st.officialUnits} मध्ये ${st.authoredUnits} युनिट लेखिएको`
+            : SLABEL[st.state].ne}</span></span>
         <span class="pill">${units} units</span><span class="pill">64 theory hrs</span>
       </div></a>`;
   });

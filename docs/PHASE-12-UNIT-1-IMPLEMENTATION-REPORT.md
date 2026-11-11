@@ -74,6 +74,19 @@ compatible / Apple* for brand. That enumeration is **not** in the curriculum
 document and is flagged here rather than presented as official. A teacher should
 confirm it matches what is taught and examined locally.
 
+> **Corrected in Phase 12.1, after re-reading folio 13.** The statement above
+> is true but incomplete, and the incompleteness mattered. The curriculum
+> enumerates **no categories under any of the five bases** — not under size or
+> data handling either. Its whole text for 1.4 is *"Classification of
+> computers: on the basis of size, on the data handling, on the purpose and on
+> the model, on the brand"*.
+>
+> So the page was presenting five lists in one voice when the curriculum
+> supplies none of them. Unit 1 now carries a note saying exactly that, and
+> singling out model and brand as the two where textbooks genuinely disagree
+> and the *IBM PC / IBM compatible / Apple* convention is dated. The student
+> is told to follow their own textbook and teacher where those differ.
+
 ---
 
 ## 3 · Interactive and learning components

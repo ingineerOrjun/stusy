@@ -39,6 +39,18 @@ noticed.
 | Hardware, Repair & Maintenance | 8 | 6 | 37 | 37 | 30 | 64 | 50 |
 | **Total** | **34** | **24** | **150** | **150** | **188** | | |
 
+> **The pages disagreed with this table until Phase 12.3.** `grade10/index.html`
+> stated **6 units for every subject** — `s.done ? 6` in `build/index.js` — so
+> DBMS was shown a unit short and Digital Design a unit long, on the page a
+> student uses to navigate. The count is now each subject's own, and a test
+> fails if any two Grade 10 subjects report the same number or if the four do
+> not total 24.
+>
+> The **70 diagrams, 15 animated, 82 retrieval questions and 24 units** above
+> are also exactly what the home page now claims for the four complete
+> subjects. Between Phase 12 and Phase 12.3 it claimed 72, 15, 86 and 25,
+> because it was given site-wide totals that included Grade 9's first unit.
+
 ## 2 · The 39 URLs
 
 Each is asserted by name. An existing link to any of them must not become a 404.
@@ -94,7 +106,7 @@ No test was skipped, weakened or removed.
 
 Carried unchanged from Phase 9.5, for Grade 10 and now Grade 9 alike:
 
-- **No Nepali teacher has reviewed any content.** 0 of 1,956 items.
+- **No Nepali teacher has reviewed any content.** 0 of 2,090 items.
 - **No screen reader has been run.** No WCAG 2.1 AA claim.
 - **The applicable examination curriculum edition is unestablished.**
 

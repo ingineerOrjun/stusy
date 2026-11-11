@@ -412,3 +412,53 @@ test('every question bank is registered, and every quiz page has one', () => {
       key + ' has a quiz page but is not keyed in build/context.js questionBanks');
   }
 });
+
+test('the generated Grade 9 specification is current', () => {
+  /* WHY THIS GUARD EXISTS
+     docs/GRADE-9-CURRICULUM-SPECIFICATION.json is a generated document,
+     and a generated document that nobody regenerates is a hand-written
+     one with a misleading header. Phase 11 emitted
+     `status: 'not-implemented'` for all 169 topics as a literal; Phase
+     12 taught four of them and the file went on saying none were
+     taught, for a whole phase, in a document whose own first line calls
+     it machine-readable.
+
+     The generator's --check compares the committed file with what it
+     would write now, ignoring only the generation date. If this fails,
+     run: node tools/grade9-spec.js */
+  const { execFileSync } = require('node:child_process');
+  const tool = path.join(ROOT, 'tools', 'grade9-spec.js');
+  try {
+    execFileSync(process.execPath, [tool, '--check'], { stdio: 'pipe' });
+  } catch (e) {
+    assert.fail('docs/GRADE-9-CURRICULUM-SPECIFICATION.json has drifted from the ' +
+                'curriculum data it is generated from. Run: node tools/grade9-spec.js\n' +
+                String(e.stderr || e.stdout || e.message));
+  }
+});
+
+test('the specification reports what is actually taught, not a literal', () => {
+  /* MUTATION: hard-code any topic status back to a literal and this
+     fails, because the count below is read from the same source the
+     build gates — the coverage map — and not from the document. */
+  const fs = require('node:fs');
+  const spec = JSON.parse(fs.readFileSync(
+    path.join(ROOT, 'docs', 'GRADE-9-CURRICULUM-SPECIFICATION.json'), 'utf8'));
+  const coverage = require(path.join(SRC, 'content', 'coverage.js'));
+
+  let mapped = 0;
+  for (const key of Object.keys(coverage)){
+    if (key.startsWith('grade9/')) mapped += Object.keys(coverage[key]).length;
+  }
+  const taught = spec.totals.topics - spec.totals.topicsNotImplemented;
+  assert.strictEqual(taught, mapped,
+    'the specification says ' + taught + ' Grade 9 topics are implemented and the ' +
+    'coverage map has ' + mapped + '. One of them is lying to a reader who cannot ' +
+    'check.');
+  assert.strictEqual(spec.totals.topicsFullyTaught +
+                     spec.totals.topicsPartiallyTaught +
+                     spec.totals.topicsPracticalMissing +
+                     spec.totals.topicsAssessmentMissing +
+                     spec.totals.topicsNotImplemented,
+                     spec.totals.topics, 'the status tallies do not add up to the topic count');
+});

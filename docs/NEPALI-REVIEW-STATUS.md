@@ -15,7 +15,7 @@ has somewhere to go that is not a claim in a report.
 | Request document | [`NEPALI-REVIEW-PACKAGE.html`](NEPALI-REVIEW-PACKAGE.html) — open in any browser, works offline |
 | Per-item data | `nepali-review-items.json` — the same content, keyed by item id |
 | Generator | `tools/nepali-review.js` — regenerate with `node tools/nepali-review.js` |
-| Items | **1,956** bilingual pairs |
+| Items | **2,090** bilingual pairs |
 | Of those, added or changed in Phase 9 | **217** |
 | Capture | **99.0%** of the distinct Nepali words in the lesson files appear in some item. The remainder is text inside SVG diagrams and code blocks, which is not a bilingual pair. |
 
@@ -33,7 +33,7 @@ to write in.
 
 | Status | Meaning |
 |---|---|
-| **Pending review** | No one has read it. **All 1,956 items are here.** |
+| **Pending review** | No one has read it. **All 2,090 items are here.** |
 | **Reviewed — accepted** | A Nepali-speaking teacher read it and it is fine as it stands. |
 | **Reviewed — correction required** | Read, and wrong or unnatural. The reviewer's note says how. |
 | **Corrected — awaiting re-review** | The correction has been applied to the source and needs confirming. |
@@ -75,7 +75,28 @@ Counts per unit. Every cell in the four status columns starts at zero except
 | DS & OOP | 4 Abstraction and Encapsulation | 5 | 57 | 26 | 57 | 0 | 0 | 0 |
 | DS & OOP | 5 Inheritance | 7 | 70 | 25 | 70 | 0 | 0 | 0 |
 | DS & OOP | 6 Polymorphism | 7 | 66 | 28 | 66 | 0 | 0 | 0 |
-| **Total** | | | **1,956** | **217** | **1,956** | **0** | **0** | **0** |
+| Computer Fundamentals (Grade 9) | 1 Introduction to Computer | 6 | 125 | 125 | 125 | 0 | 0 | 0 |
+| **Total** | | | **2,090** | **217** | **2,090** | **0** | **0** | **0** |
+
+> **The totals above were re-measured in Phase 12.1, and two of them had been
+> wrong.** This ledger said 1,956 and was written in Phase 9.5, before Grade 9
+> existed; running `tools/nepali-review.js` against the Phase 12 commit gives
+> **2,046**, and against the current tree **2,090**. The per-subject rows for
+> Grade 10 were correct — all 90 of the missing items were Grade 9, which had
+> no row at all. The "added in Phase 9" column is left as it was: it is a
+> historical count, not a running one.
+>
+> Counted, not estimated: Grade 9 went from **90 items at Phase 12 to 125**,
+> so **35 are new in Phase 12.1** — the six practical activity briefs, the
+> record-keeping block, the classification source note and four question
+> explanations. The shared interface row grew from 45 to **54**: nine new
+> labels, all of them the practical log's.
+>
+> **If a reviewer has time for one thing, read those 44.** They are the first
+> Nepali on this site that talks about marks, record keeping and what a
+> supervisor will ask, rather than about computers. A mistranslation in an
+> explanation costs a student understanding; a mistranslation about what the
+> examiner wants costs them marks.
 
 ---
 

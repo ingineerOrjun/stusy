@@ -128,6 +128,93 @@ Current behaviour, preserved exactly:
 - On the last answer, a score and a banded message
 - **Retry rebuilds the quiz and resets the score**
 
+### Where to go back to: two answers, never merged
+
+Five subjects share one engine, so a message that names a unit cannot be
+written into the engine. Two were: *"Re-read Units 3, 5 and 6"* and *"use the
+Trace section slowly"* — true of OOP, and read by students of four other
+subjects who have no such units and no Trace section. A Grade 9 student
+scoring 45% was sent to three units their subject does not contain.
+
+Naming units again raised a second question, which Phase 12.3 answered too
+quickly: **"where should I go back to?" has two different answers.**
+
+| | Examination priority | Teacher-directed revision |
+|---|---|---|
+| Answers | which units carry the most marks | which units students struggle with |
+| Source | **derived** — `context.js → examFocus`, from unit marks in `pages.js` | **authored** — `content/revision-focus.js` |
+| Nature | a fact about the paper | a judgement |
+| Can name a light unit? | never | yes, and usually will |
+| Currently | all five subjects | **none** |
+
+They disagree, and that is the point. OOP Unit 3 carries **2 of that subject's
+50 external marks** — its lightest unit — and is where beginners stall.
+Examination weight will never name it; a teacher might. Presenting either as
+the other tells a student something false: that a heavy unit is hard, or that
+a light one is safe to skip.
+
+#### Why the teacher channel is empty
+
+The `Re-read Units 3, 5 and 6` string came from the legacy single-file
+prototype, in a commit titled *"Fix styling and update text"*, with **no
+recorded rationale anywhere** — no design note, no commit body, no teacher
+named. Phase 12.4 searched the repository and its history and found none, so
+it was not reinstated. A recommendation whose only provenance is that it used
+to be on the screen is a string, not a judgement.
+
+Adding one is a content change, not a code change:
+
+```js
+'grade10/oop-cpp': {
+  source: 'R. Shrestha, HOD Computer, <school> — 2026-11-14',
+  units: [ { n: '3', why: 'Objects and classes are where beginners stall, and
+                           Units 4, 5 and 6 all assume it.' } ]
+}
+```
+
+`validate.js` refuses an entry with no `source`, a unit with no `why`, a unit
+the subject does not have, or more units than half the subject — and warns if
+a teacher's list is identical to the derived one, because that is either a
+copy or a coincidence worth saying out loud. Unit titles are **not** written
+in that file; they are joined from `pages.js` by number, so a renamed unit
+cannot leave the override quoting the old name in one language.
+
+#### What the student sees
+
+```js
+QuizService.registerFocus(subjectId, { exam: [...], teacher: [...], source });
+QuizService.focusKind(subjectId)        // 'teacher' | 'exam' | null
+QuizService.getFocus(subjectId, kind)   // [] for an unknown kind — no fallback
+```
+
+The band message says how the attempt went and **names nothing**. Units appear
+on their own line, `#scoreFocus`, with a chip saying which kind of
+recommendation it is:
+
+> **EXAMINATION PRIORITY** — Most marks in the written exam are in: Unit 1
+> Basic Introduction to Data Structure, Unit 2 Concept of OOP using C++ and
+> Unit 5 Inheritance. *That is where the marks are, not where the subject is
+> hardest.*
+
+> **TEACHER'S REVISION LIST** — Your teacher suggests revising: Unit 3 Class
+> and Object.
+
+One line, not two: a teacher's list when the subject has one, examination
+priority otherwise. Two stacked recommendations after a bad score is noise at
+the moment a student is least able to sort it.
+
+The examination wording talks about marks and never about difficulty, and
+carries that caveat sentence; a test fails if any string in `renderFocus()`
+calls a unit hard or easy, or if the caveat is removed. `getFocus` requires a
+kind and returns nothing for an unknown one, so a caller asking for judgement
+can never silently receive marks.
+
+With nothing registered the line does not appear and the band message still
+reads on its own. **Specificity degrades; correctness does not.** The line is
+also rendered *after* the score box is revealed and inside a `try`, because
+Phase 12.1's defect was a throw before the reveal that left a student who
+answered every question looking at nothing.
+
 `QuizService.score()` computes a score with no DOM involvement at all, which is
 what makes scoring testable independently of rendering — and is how a future
 server-side scoring path would work.

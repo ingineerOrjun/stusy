@@ -195,6 +195,10 @@
   border:1px solid var(--line); color:var(--chalk-white);
 }
 .ready .on{border-color:var(--green); color:var(--green)}
+/* A subject with some units written. It used to be indistinguishable
+   from one with none, so the home page gave a student no sign that
+   Grade 9 had anything to read. Dashed, because it is unfinished. */
+.ready .part{border-color:var(--yellow); color:var(--yellow); border-style:dashed}
 
 /* ---------------- narrow screens ---------------- */
 @media (max-width:720px){

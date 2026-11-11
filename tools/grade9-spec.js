@@ -42,6 +42,68 @@ const grid     = require(path.join(SRC, 'content/specification-grid.js'));
 const syllabus = require(path.join(SRC, 'content/syllabus.js'));
 const site     = require(path.join(SRC, 'config/site.js'));
 const pages    = require(path.join(SRC, 'config/pages.js'));
+const coverage = require(path.join(SRC, 'content/coverage.js'));
+const context  = require(path.join(SRC, 'build/context.js'));
+
+/* ------------------------------------------------------------ status
+   WHY THIS IS DERIVED AND NOT DECLARED
+
+   Phase 11 wrote `status: 'not-implemented'` as a literal, because at
+   the time it was true of all 169 topics. Phase 12 taught four of them
+   and the literal did not notice — the specification went on reporting
+   an untouched curriculum while the site served a unit. A generated
+   document that can be wrong about the thing it generates is worse
+   than no document, because it is believed.
+
+   So every status below is read from the same data the build checks:
+
+     a unit has a page          config/pages.js
+     a topic is taught          content/coverage.js maps it to an anchor,
+                                and validate.js fails the build on a
+                                missing topic, a dangling anchor or a
+                                stale entry
+     the unit is assessed       the registered question bank has at
+                                least one question for that unit
+     the unit's practical work  the authored lesson carries the
+       is on the page           curriculum's activities, marked with
+                                data-practical ids
+
+   None of this is a claim that the teaching is GOOD. It is a claim
+   about what exists, which is all a generator can honestly make. The
+   vocabulary below says so in the document itself. */
+function lessonHtml(secIds){
+  let html = '';
+  for (const id of secIds || []){
+    const p = path.join(SRC, 'content/lessons', id + '.html');
+    if (fs.existsSync(p)) html += fs.readFileSync(p, 'utf8');
+  }
+  return html;
+}
+
+function unitFacts(key, unitN){
+  const cfg = pages[key];
+  const page = cfg && (cfg.pages || []).find(p => String(p.n) === String(unitN));
+  if (!page) return { page: false, taught: false, assessed: false, practical: false };
+
+  const html = lessonHtml(page.sec);
+  const bank = context.questionBanks[key] || [];
+  return {
+    page: true,
+    taught: true,
+    assessed: bank.some(q => String(q.unit || '').replace(/^u/, '') === String(unitN)),
+    practical: /data-practical="/.test(html)
+  };
+}
+
+function topicStatus(key, unitN, topic){
+  const f = unitFacts(key, unitN);
+  if (!f.page) return 'not-implemented';
+  const map = coverage[key] || {};
+  if (!Object.prototype.hasOwnProperty.call(map, topic)) return 'partially-taught';
+  if (!f.assessed) return 'assessment-missing';
+  if (!f.practical) return 'practical-missing';
+  return 'fully-taught';
+}
 
 const GRADE = 'grade9';
 
@@ -162,12 +224,10 @@ for (const g of site){
           titleNepali: o.np || null,
           creditHours: u.hrs,
           externalMarks: u.marks,
+          authored: unitFacts(key, u.n).page,
           topics: (o.c || []).map(t => ({
             title: t,
-            /* Nothing is taught yet, so every topic is in the same state.
-               The vocabulary matches the Grade 10 coverage model so the
-               two can be reported together later. */
-            status: 'not-implemented'
+            status: topicStatus(key, u.n, t)
           }))
         };
       })
@@ -175,15 +235,25 @@ for (const g of site){
   }
 }
 
+/* Counted from what was emitted, never asserted alongside it. */
+const everyTopic = [];
+for (const s of subjects){
+  for (const u of s.units) for (const t of u.topics) everyTopic.push(t.status);
+}
+const tally = st => everyTopic.filter(x => x === st).length;
+
 const totals = {
   subjects: subjects.length,
   units: subjects.reduce((a, s) => a + s.unitCount, 0),
+  unitsAuthored: subjects.reduce((a, s) => a + s.units.filter(u => u.authored).length, 0),
   topics: subjects.reduce((a, s) => a + s.topicCount, 0),
   creditHours: subjects.reduce((a, s) => a + s.creditHours, 0),
   externalMarks: subjects.reduce((a, s) => a + s.externalMarks, 0),
-  topicsFullyTaught: 0,
-  topicsPartiallyTaught: 0,
-  topicsNotImplemented: subjects.reduce((a, s) => a + s.topicCount, 0)
+  topicsFullyTaught: tally('fully-taught'),
+  topicsPartiallyTaught: tally('partially-taught'),
+  topicsPracticalMissing: tally('practical-missing'),
+  topicsAssessmentMissing: tally('assessment-missing'),
+  topicsNotImplemented: tally('not-implemented')
 };
 
 const doc = {
@@ -195,16 +265,28 @@ const doc = {
   evaluation: EVALUATION,
   totals,
   coverageStatement:
-    'No Grade 9 lesson has been authored. Every one of the ' + totals.topics +
-    ' topics is "not-implemented". The curriculum structure around them — ' +
+    totals.unitsAuthored + ' of ' + totals.units + ' Grade 9 units are authored, ' +
+    'covering ' + (totals.topics - totals.topicsNotImplemented) + ' of ' +
+    totals.topics + ' topics. The curriculum structure around all of them — ' +
     'units, titles, hours and marks — is verified against the CDC document ' +
     'and held by tests/curriculum.test.js.',
+  $statusDerivation:
+    'Every status in this file is derived at generation time from the same ' +
+    'data the build validates — config/pages.js, content/coverage.js, the ' +
+    'registered question bank, and data-practical ids in the authored ' +
+    'lesson. None of it is written by hand, and none of it is a judgement ' +
+    'about teaching quality: these states describe what exists, not whether ' +
+    'it is any good. No teacher and no student has reviewed any Grade 9 ' +
+    'content.',
   statusVocabulary: {
-    'fully-taught': 'explanation, worked example and assessment all present and read',
-    'partially-taught': 'some content present; named gaps recorded',
-    'practical-missing': 'taught, but the curriculum\'s practical activity is absent',
-    'assessment-missing': 'taught, but no question in the bank examines it',
-    'not-implemented': 'nothing has been written'
+    'fully-taught': 'the topic is mapped to a section of an authored lesson, the ' +
+                    'unit has questions in the bank, and the unit\'s practical ' +
+                    'activities are on the page',
+    'partially-taught': 'the unit has a page but this topic is not in the coverage map',
+    'practical-missing': 'taught and assessed, but the curriculum\'s practical ' +
+                         'activities for the unit are not on the page',
+    'assessment-missing': 'taught, but no question in the bank examines its unit',
+    'not-implemented': 'the unit has no page; nothing has been written'
   },
   discrepancies: DISCREPANCIES,
   notTranscribed: NOT_TRANSCRIBED,
@@ -230,6 +312,12 @@ fs.writeFileSync(OUT, json, 'utf8');
 console.log('Grade 9 specification');
 console.log('  subjects : ' + totals.subjects);
 console.log('  units    : ' + totals.units);
-console.log('  topics   : ' + totals.topics + '  (all not-implemented)');
+console.log('  authored : ' + totals.unitsAuthored + ' of ' + totals.units + ' units');
+console.log('  topics   : ' + totals.topics +
+            '   fully-taught ' + totals.topicsFullyTaught +
+            ', practical-missing ' + totals.topicsPracticalMissing +
+            ', assessment-missing ' + totals.topicsAssessmentMissing +
+            ', partially-taught ' + totals.topicsPartiallyTaught +
+            ', not-implemented ' + totals.topicsNotImplemented);
 console.log('  hours    : ' + totals.creditHours + '   external marks: ' + totals.externalMarks);
 console.log('  wrote docs/GRADE-9-CURRICULUM-SPECIFICATION.json');

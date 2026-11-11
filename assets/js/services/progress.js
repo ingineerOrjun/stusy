@@ -23,6 +23,14 @@
   var SCHEMA_VERSION = 1;
   /* the three self-assessments a retrieval question accepts */
   var GRADE = /^(got|partly|not)$/;
+  /* The three states a curriculum practical activity can be in. These are
+     the STUDENT'S OWN record of physical work done off the screen — a chart
+     drawn, a presentation given. The product cannot verify any of them and
+     does not pretend to: nothing here is a mark, and nothing is sent
+     anywhere. `recorded` is separate from `done` because the curriculum
+     awards record keeping its own marks, and a student who did the work and
+     wrote nothing down loses them. */
+  var PSTATE = /^(todo|done|recorded)$/;
 
   /* ---------- storage adapter ---------------------------------------
      Swap this object to move persistence elsewhere. The service above
@@ -76,7 +84,7 @@
      it and gets an empty one; a newer payload read by older code loses
      only the new field. */
   function emptyState() {
-    return { version: SCHEMA_VERSION, units: {}, quiz: {}, retrieval: {} };
+    return { version: SCHEMA_VERSION, units: {}, quiz: {}, retrieval: {}, practical: {} };
   }
 
   /* A corrupted or foreign payload must never throw into the UI.
@@ -115,6 +123,15 @@
         var v = data.retrieval[r];
         if (v && typeof v === 'object' && GRADE.test(v.grade) && typeof v.at === 'string') {
           s.retrieval[r] = { grade: v.grade, at: v.at, attempts: Number(v.attempts) || 1 };
+        }
+      }
+    }
+    if (data.practical && typeof data.practical === 'object' && !Array.isArray(data.practical)) {
+      for (var p in data.practical) {
+        if (!Object.prototype.hasOwnProperty.call(data.practical, p)) continue;
+        var a = data.practical[p];
+        if (a && typeof a === 'object' && PSTATE.test(a.state) && typeof a.at === 'string') {
+          s.practical[p] = { state: a.state, at: a.at };
         }
       }
     }
@@ -253,6 +270,47 @@
         if (r.grade === 'got') out.got++;
         else if (r.grade === 'partly') out.partly++;
         else out.not++;
+      }
+      return out;
+    },
+
+    /* ---- curriculum practical activities -------------------------------
+       A student's own log of physical work. `todo` is the absence of a
+       record, so setting it removes the entry rather than storing a third
+       kind of row — a cleared checkbox should leave no trace, and an
+       export of this data should not list work nobody did. */
+    recordPractical: function (activityId, pstate) {
+      requireId(activityId, 'activityId');
+      if (!PSTATE.test(pstate)) {
+        throw new RangeError('ProgressService: practical state must be todo, done or recorded');
+      }
+      if (pstate === 'todo') {
+        delete state.practical[activityId];
+      } else {
+        state.practical[activityId] = { state: pstate, at: new Date().toISOString() };
+      }
+      persist();
+      emit('practical:changed', { activityId: activityId, state: pstate });
+      return true;
+    },
+
+    getPractical: function (activityId) {
+      requireId(activityId, 'activityId');
+      var a = state.practical[activityId];
+      return a ? { state: a.state, at: a.at } : { state: 'todo', at: null };
+    },
+
+    /* Counts only. The caller decides the wording, and nothing here is a
+       mark: the marks for this work are awarded by a teacher, in a room. */
+    getPracticalSummary: function (activityIds) {
+      var ids = Array.isArray(activityIds) ? activityIds : Object.keys(state.practical);
+      var out = { total: ids.length, done: 0, recorded: 0, todo: 0 };
+      for (var i = 0; i < ids.length; i++) {
+        var a = state.practical[ids[i]];
+        if (!a) out.todo++;
+        else if (a.state === 'recorded') { out.recorded++; out.done++; }
+        else if (a.state === 'done') out.done++;
+        else out.todo++;
       }
       return out;
     },

@@ -120,18 +120,135 @@ function answer(i, j){
 function showScore(){
   if (!document.getElementById("scoreBox")) return;
   var box = document.getElementById('scoreBox');
-  document.getElementById('scoreNum').textContent = score + ' / ' + QUIZ.length;
+  set('scoreNum', score + ' / ' + QUIZ.length);
   var msg, msgNp;
   var pct = score / QUIZ.length;
   if (pct === 1)        { msg = 'Perfect. You are ready for this subject.';            msgNp = 'पूर्ण अंक! यो विषयका लागि तपाईं तयार हुनुहुन्छ।'; }
   else if (pct >= 0.8)  { msg = 'Very good. Revise only the ones you missed.';          msgNp = 'धेरै राम्रो। गलत भएका मात्र फेरि हेर्नुहोस्।'; }
-  else if (pct >= 0.6)  { msg = 'Good start. Read the comparison tables once more.';    msgNp = 'राम्रो सुरुवात। तुलनात्मक तालिका फेरि एक पटक पढ्नुहोस्।'; }
-  else if (pct >= 0.4)  { msg = 'Keep going. Re-read Units 3, 5 and 6, then try again.';msgNp = 'हार नमान्नुहोस्। युनिट ३, ५ र ६ फेरि पढेर पुनः प्रयास गर्नुहोस्।'; }
-  else                  { msg = 'Start again from Unit 1 and use the Trace section slowly.'; msgNp = 'युनिट १ बाट फेरि सुरु गर्नुहोस् र Trace सेक्सन बिस्तारै चलाउनुहोस्।'; }
-  document.getElementById('scoreMsg').textContent   = msg;
-  document.getElementById('scoreMsgNp').textContent = msgNp;
+  /* WHY NO MESSAGE HERE NAMES A UNIT
+     Two of these used to be written for one subject: "Re-read Units 3,
+     5 and 6" and "use the Trace section slowly". This engine serves five
+     subjects. A Grade 9 student who scored 45% on Fundamentals of
+     Computer and Application was told to re-read three units that do not
+     exist in their subject and to use a Trace section that exists only
+     in C++.
+
+     These five lines say how the attempt went, and nothing else. Units
+     are named on their own line below, with a label saying what kind of
+     recommendation it is, because "where to go back to" has two
+     different answers and a sentence that merges them is the defect in
+     a new shape. See renderFocus(). */
+  else if (pct >= 0.6)  { msg = 'Good start. Re-read the explanations under the ones you missed.';
+                          msgNp = 'राम्रो सुरुवात। छुटेका प्रश्नमुनिको व्याख्या फेरि पढ्नुहोस्।'; }
+  else if (pct >= 0.4)  { msg = 'Keep going. Work through the explanations above, then try again.';
+                          msgNp = 'हार नमान्नुहोस्। माथिका व्याख्या पढेर पुनः प्रयास गर्नुहोस्।'; }
+  else                  { msg = 'Go back over the unit and read it slowly before trying again.';
+                          msgNp = 'पुनः प्रयास गर्नुअघि युनिट फेरि बिस्तारै पढ्नुहोस्।'; }
+  /* WHY THESE ARE GUARDED AND THE DISPLAY COMES FIRST
+     `document.getElementById('scoreMsgNp').textContent = msgNp` threw on
+     three of the five quiz pages — cf-quiz, db-quiz and hw-quiz all ship
+     a score box without the Nepali line. The throw landed BEFORE
+     `box.style.display = 'block'`, so a student who answered every
+     question saw no score at all: the quiz simply stopped. Measured by
+     answering all twelve on each page, not by reading the markup.
+
+     The markup is fixed and validate.js now refuses a score box that is
+     missing a part. This stays guarded anyway, because the cost of the
+     next omission should be one missing line of Nepali, not a student
+     finishing a quiz and being shown nothing. */
+  set('scoreMsg', msg);
+  set('scoreMsgNp', msgNp);
   box.style.display = 'block';
+  /* AFTER the box is shown, deliberately. Phase 12.1's defect was a
+     throw between the writes and the reveal, which left a student who
+     answered every question looking at nothing. The recommendation line
+     is the least important thing here and must never be able to cost
+     the score. */
+  try { renderFocus(); } catch (e) { /* the score is already on screen */ }
   box.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function set(id, text){
+  var el = document.getElementById(id);
+  if (el) el.textContent = text;
+}
+
+/* "Unit 2 Concept of Logic Gates and Unit 5 Introduction to
+   Microprocessor" — named with their real titles so a student does not
+   have to go and look up what Unit 5 was. The Nepali list is joined with
+   र, not a comma and "and", because that is how a list ends in Nepali. */
+function focusList(units, lang){
+  var parts = [];
+  for (var i = 0; i < units.length; i++){
+    var t = units[i].title || {};
+    var title = lang === 'ne' ? (t.ne || t.en || '') : (t.en || '');
+    parts.push((lang === 'ne' ? 'युनिट ' : 'Unit ') + units[i].n +
+               (title ? ' ' + title : ''));
+  }
+  if (!parts.length) return '';
+  if (parts.length === 1) return parts[0];
+  var last = parts.pop();
+  return parts.join(', ') + (lang === 'ne' ? ' र ' : ' and ') + last;
+}
+
+/* THE LABELLED RECOMMENDATION LINE
+
+   "Where should I go back to?" has two answers and they are not
+   interchangeable:
+
+     teacher   units a teacher judged students should revisit
+     exam      units carrying the most marks in the written paper
+
+   A line that showed one in the other's voice would tell a student
+   something false — that a heavy unit is hard, or that a light one is
+   safe to skip. So the line always says which kind it is, and the
+   examination wording talks about MARKS and never about difficulty.
+
+   Only one line is shown: the teacher's list when a subject has one,
+   otherwise examination priority. Two stacked recommendations after a
+   bad score is noise at the moment a student is least able to sort it.
+
+   Nothing is shown at all when a subject has neither — the band message
+   above still reads on its own, so a missing registration costs
+   specificity and never correctness. */
+function renderFocus(){
+  var el = document.getElementById('scoreFocus');
+  if (!el) return;
+  el.innerHTML = '';
+  el.hidden = true;
+
+  if (typeof QuizService === 'undefined' || !QuizService.focusKind) return;
+  var kind = QuizService.focusKind(CFG.subject);
+  if (!kind) return;
+  var units = QuizService.getFocus(CFG.subject, kind);
+  if (!units.length) return;
+
+  var lead = kind === 'teacher'
+    ? { en: 'Your teacher suggests revising', ne: 'शिक्षकले दोहोर्‍याउन सुझाएका' }
+    : { en: 'Most marks in the written exam are in',
+        ne: 'लिखित परीक्षामा सबैभन्दा धेरै अंक यहाँ छन्' };
+
+  /* Said once, plainly, under the examination list: marks are not a
+     measure of how hard something is. A student who reads "most marks
+     are in Unit 2" and concludes "Unit 5 is easy" has been misled by
+     the layout, not by the sentence. */
+  var caveat = kind === 'exam'
+    ? { en: 'That is where the marks are, not where the subject is hardest.',
+        ne: 'यो अंक कहाँ छन् भन्ने हो — कुन कठिन छ भन्ने होइन।' }
+    : null;
+
+  var pair = {
+    en: lead.en + ': ' + focusList(units, 'en') + '.' + (caveat ? ' ' + caveat.en : ''),
+    ne: lead.ne + ': ' + focusList(units, 'ne') + '।' + (caveat ? ' ' + caveat.ne : '')
+  };
+
+  el.innerHTML = '<span class="foc-k" data-kind="' + kind + '">' +
+                 bilingual(kind === 'teacher'
+                   ? { en: 'Teacher’s revision list', ne: 'शिक्षकको दोहोर्‍याउने सूची' }
+                   : { en: 'Examination priority', ne: 'परीक्षाको प्राथमिकता' },
+                   't-en', 't-ne np-cell') + '</span> ' +
+                 bilingual(pair, 't-en', 't-ne np-cell');
+  el.hidden = false;
 }
 
 function resetQuiz(){
@@ -139,7 +256,14 @@ function resetQuiz(){
      paper rather than the same fifteen questions in the same order. */
   if (CFG.shuffle) QUIZ = QuizService.toRenderModel(QuizService.getQuiz(CFG));
   buildQuiz();
-  document.getElementById('quiz').scrollIntoView({behavior:'smooth'});
+  /* Only two of the five quiz sections are id="quiz"; the rest are
+     id="cf-quiz", "db-quiz", "hw-quiz". Scrolling to the box the quiz is
+     actually in works for all of them and cannot go stale when a sixth
+     subject picks its own id. */
+  var box = document.getElementById('quizBox');
+  var target = (box && box.parentNode && box.parentNode.scrollIntoView)
+    ? box.parentNode : box;
+  if (target) target.scrollIntoView({behavior:'smooth'});
 }
 
 buildQuiz();

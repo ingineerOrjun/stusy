@@ -37,7 +37,13 @@ function allPages(){
   const out = [];
   (function walk(d){
     for (const e of fs.readdirSync(d, { withFileTypes: true })){
-      if (['.git','_source','docs','tests','node_modules'].includes(e.name)) continue;
+      /* `.claude` holds agent tooling, including git worktrees the desktop
+         app creates under .claude/worktrees — a second checkout of this
+         repository, whose built pages would be walked as if they were
+         this one's. a11y.test.js already excluded it; links.test.js and
+         this file did not, and a worktree appearing mid-run is what found
+         that out. */
+      if (['.git','.claude','_source','docs','tests','node_modules'].includes(e.name)) continue;
       const p = path.join(d, e.name);
       e.isDirectory() ? walk(p) : p.endsWith('.html') && out.push(p);
     }

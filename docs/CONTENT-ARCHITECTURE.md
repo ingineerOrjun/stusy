@@ -35,6 +35,13 @@ unit can later hold several lessons without renaming anything.
 | Shared section | HTML fragment | `content/sections/<id>.html` |
 | Diagram | Named SVG string | `diagrams.js` |
 | Question | Tagged object | `content/questions/<subject>.js` |
+| Teacher's revision advice | Authored judgement, per subject | `content/revision-focus.js` |
+
+`revision-focus.js` is the one place a human judgement about which units
+students struggle with may live. It is deliberately separate from examination
+marks, which the build derives, and it is currently empty — see
+[ASSESSMENT-ARCHITECTURE.md](ASSESSMENT-ARCHITECTURE.md) §5 for why, and for
+what an entry must carry before the build will accept it.
 
 ### Why HTML for lesson bodies, not JSON or Markdown
 
@@ -68,12 +75,48 @@ enforced by tests rather than by a schema language.
   name:  'Data Structure & OOP Concept using C++',   // full title, English
   short: 'DS & OOP with C++',                        // navigation label
   np:    'डाटा स्ट्रक्चर र OOP (C++)',                 // Nepali — required
-  done:  true                                        // optional: has authored notes
+  done:  true                                        // see below — no longer read by the build
 }
 ```
 
 The addressable key is **`<gradeId>/<slug>`** — for example `grade10/oop-cpp`.
 That key joins the site map, the syllabus, and the question banks.
+
+### Authoring status is derived, not declared
+
+`done` was a boolean asked a three-state question, and six places in
+`build/index.js` consulted it. When Grade 9 arrived with **one unit of seven**
+authored, it made the product say two untrue things: the home page credited
+four finished Grade 10 subjects with the Grade 9 unit and its diagrams,
+simulators, questions and hours; and the grade index labelled the partly
+written subject *"syllabus outline"*, identical to three subjects with nothing
+written. It also carried `s.done ? 6` for the unit count — right for OOP and
+Hardware, wrong for DBMS (7) and Digital Design (5).
+
+Status is now computed in `build/context.js → subjectStatus` from the two
+things that already decide it:
+
+| Source | Gives |
+|---|---|
+| `content/syllabus.js` | `officialUnits` — what the curriculum prescribes |
+| `config/pages.js` | `authoredUnits` — pages that declare hours |
+
+```
+outline    authoredUnits === 0
+partial    0 < authoredUnits < officialUnits
+complete   authoredUnits === officialUnits
+```
+
+`STATUS_LABEL` holds the words for each state in both languages, so the
+navigation, the grade index and the home page cannot describe the same
+subject differently.
+
+**`done` is still in the file and nothing in the build reads it.** It is kept
+for anything outside the build that might, and `validate.js` fails if it
+disagrees with the derived state in either direction — a `done: true` subject
+with an unwritten unit, or a finished subject without the flag. Two records of
+one fact are one record and one bug waiting; this is how they are held
+together.
 
 ### Unit (syllabus outline)
 

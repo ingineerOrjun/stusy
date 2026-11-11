@@ -316,6 +316,198 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
     }
   }
 
+  /* ---------- 4b-ii. a quiz's score box has to be whole ----------
+     showScore() writes the score, the English message, the Nepali
+     message, and only then makes the box visible. Three of the five quiz
+     sections shipped a score box with no #scoreMsgNp in it, so that write
+     threw and the box was never shown: a student answered every question
+     and the quiz went silent. cf-quiz, db-quiz and hw-quiz — Grade 9
+     Fundamentals, DBMS and Hardware. Digital Design and OOP were complete
+     and worked.
+
+     Nothing caught it, for the same reason the empty quiz box was not
+     caught: the tests assert that markup EXISTS, and neither a test nor
+     an author had ever answered the last question. It was found by
+     answering all twelve on each of the four pages in a browser.
+
+     The engine no longer throws on a missing part. This rule is what
+     stops the part going missing. Quiz sections live in content/sections,
+     not content/lessons, which is why this is its own pass — the first
+     attempt put it in the lesson loop and it silently checked nothing. */
+  {
+    const sectionDir = path.join(ctx.SRC, 'content', 'sections');
+    const NEED = [
+      ['id="scoreBox"',   'the score box itself'],
+      ['id="scoreNum"',   'the score figure'],
+      ['id="scoreMsg"',   'the English message'],
+      ['id="scoreMsgNp"', 'the Nepali message — without it a bilingual site gives ' +
+                          'the one result that matters in one language'],
+      ['id="scoreFocus"', 'the recommendation line. Without it the quiz says how the ' +
+                          'attempt went and never where to go next'],
+      ['resetQuiz()',     'the retake button — a bank bigger than the draw is ' +
+                          'pointless with no way to draw again']
+    ];
+    const files = fs.existsSync(sectionDir)
+      ? fs.readdirSync(sectionDir).filter(f => f.endsWith('.html')) : [];
+    let seen = 0;
+    for (const f of files){
+      const html = fs.readFileSync(path.join(sectionDir, f), 'utf8');
+      if (!/id="quizBox"/.test(html)) continue;
+      seen++;
+      for (const [needle, what] of NEED){
+        if (!html.includes(needle)){
+          E(`sections/${f}`, 'mounts a quiz but its score box has no ' + needle +
+                             ' — ' + what);
+        }
+      }
+    }
+    /* A rule that checks nothing passes forever. If the quiz sections are
+       ever moved or renamed, this says so instead of going quiet. */
+    if (!seen) E('sections/', 'no quiz section was found to check — the score-box ' +
+                              'rule is looking in the wrong place');
+  }
+
+  /* ---------- 4c. the `done` flag must agree with reality ----------
+     Subject authoring status is DERIVED in context.js from the syllabus
+     and the pages that exist, and nothing in the build reads
+     site.js's `done` any more. The flag is left in place because it is
+     configuration anyone may read, and a stale flag that nobody checks
+     is how the home page came to say "4 subjects are written in full"
+     across a fifth subject's unit.
+
+     So the two are held together: `done: true` must mean every official
+     unit of that subject has a page, and no `done` subject may be
+     missing one. Either direction is a lie about what a student will
+     find when they open it. */
+  {
+    const status = ctx.subjectStatus || {};
+    for (const key of Object.keys(status)){
+      const s = status[key];
+      if (s.declaredDone && s.state !== 'complete'){
+        E(`site.js ${key}`,
+          `is marked done: true but ${s.authoredUnits} of ${s.officialUnits} units ` +
+          'are authored. The navigation would promise notes that do not exist.');
+      }
+      if (!s.declaredDone && s.state === 'complete'){
+        E(`site.js ${key}`,
+          `has all ${s.officialUnits} units authored but no done: true. The site map ` +
+          'would hide a finished subject from the home page.');
+      }
+      if (s.officialUnits === 0){
+        E(`site.js ${key}`, 'has no syllabus outline, so no status can be derived for it');
+      }
+      if (s.authoredUnits > s.officialUnits){
+        E(`site.js ${key}`,
+          `has ${s.authoredUnits} authored units and only ${s.officialUnits} in the ` +
+          'syllabus — a unit page exists that the curriculum does not list');
+      }
+    }
+  }
+
+  /* ---------- 4c-ii. a quiz may only send a student to a unit that exists
+     The end-of-quiz message names units by number and title. It used to
+     name "Units 3, 5 and 6" from a string in the shared engine, and a
+     Grade 9 student reading it was sent to three units their subject does
+     not have. The focus is derived now, but derived from `pages.js`, so
+     the thing worth checking is that each named unit really has a page
+     and a bank to be examined on. */
+  {
+    const unitsOf = key => new Set((((pages[key] || {}).pages) || [])
+      .filter(p => typeof p.hrs === 'number').map(p => String(p.n)));
+
+    /* --- examination priority: derived, so the checks are about shape --- */
+    const exam = ctx.examFocus || {};
+    for (const key of Object.keys(exam)){
+      const have = unitsOf(key);
+      if (!exam[key].length){
+        E(`examFocus ${key}`, 'has an empty examination focus — the end-of-quiz ' +
+                              'line would name no unit at all');
+      }
+      for (const u of exam[key]){
+        if (!have.has(String(u.n))){
+          E(`examFocus ${key}`,
+            `names Unit ${u.n}, which has no page in this subject. A student ` +
+            'would be sent to revise something that does not exist.');
+        }
+        if (!u.title || !u.title.en || !u.title.ne){
+          E(`examFocus ${key}`, `Unit ${u.n} is missing one of its two titles, so the ` +
+                                'line would be half-English in Nepali mode');
+        }
+        if (typeof u.marks !== 'number'){
+          E(`examFocus ${key}`, `Unit ${u.n} has no marks, and marks are the only ` +
+                                'thing this list is allowed to be derived from');
+        }
+      }
+      if (exam[key].length > Math.max(1, Math.ceil(have.size / 2))){
+        E(`examFocus ${key}`,
+          `names ${exam[key].length} of ${have.size} units. That is not a focus, ` +
+          'it is the syllabus with extra words.');
+      }
+    }
+
+    /* --- teacher-directed revision: authored, so the checks are about
+       provenance. The old "Units 3, 5 and 6" existed for fourteen months
+       with no recorded reason, which is exactly what these rules refuse
+       to let happen again: a judgement with nobody's name on it is a
+       string, and a student is entitled to know whose advice they are
+       taking. --- */
+    const teacher = ctx.teacherFocus || {};
+    for (const key of Object.keys(teacher)){
+      const entry = teacher[key];
+      if (!pages[key]){
+        E(`revision-focus.js ${key}`, 'is not a subject with authored pages');
+        continue;
+      }
+      if (!entry.source || !String(entry.source).trim()){
+        E(`revision-focus.js ${key}`,
+          'has no `source`. A teacher-directed recommendation must record who ' +
+          'made the judgement and when, or it is indistinguishable from the ' +
+          'unattributed string this channel replaced.');
+      }
+      if (!entry.units.length){
+        E(`revision-focus.js ${key}`, 'has a source and no units — remove the entry ' +
+                                      'rather than leaving an empty override');
+      }
+      const have = unitsOf(key);
+      for (const u of entry.units){
+        if (!have.has(String(u.n))){
+          E(`revision-focus.js ${key}`,
+            `names Unit ${u.n}, which this subject does not have. Its units are ` +
+            `${[...have].join(', ')}.`);
+        }
+        if (!u.why || !String(u.why).trim()){
+          E(`revision-focus.js ${key}`,
+            `Unit ${u.n} has no \`why\`. The reason is the whole difference between ` +
+            'a teacher\'s judgement and a number somebody typed.');
+        }
+        if (u.title && (!u.title.en || !u.title.ne)){
+          E(`revision-focus.js ${key}`, `Unit ${u.n} is missing one of its two titles`);
+        }
+      }
+      if (entry.units.length > Math.max(1, Math.ceil(have.size / 2))){
+        E(`revision-focus.js ${key}`,
+          `names ${entry.units.length} of ${have.size} units — too many to be a focus`);
+      }
+    }
+
+    /* The two must stay different KINDS of thing. If a teacher's list is
+       ever exactly the subject's heaviest units, that is worth a human
+       look: either it was copied from the derived list, in which case it
+       adds nothing and claims a judgement nobody made, or it is a
+       coincidence worth a note in the `why`. */
+    for (const key of Object.keys(teacher)){
+      if (!exam[key] || !teacher[key].units.length) continue;
+      const a = exam[key].map(u => String(u.n)).sort().join(',');
+      const b = teacher[key].units.map(u => String(u.n)).sort().join(',');
+      if (a === b){
+        W(`revision-focus.js ${key}`,
+          'the teacher list is identical to the examination-priority list. If that ' +
+          'is deliberate, say so in each unit\'s `why`; if it was copied, the ' +
+          'subject should simply have no override.');
+      }
+    }
+  }
+
   /* ---------- 4d. diagram presentation attributes ----------
      A CSS declaration beats an SVG presentation attribute. The diagram
      classes (.f-val, .f-lbl, …) declare font-size and text-anchor, so any

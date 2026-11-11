@@ -234,13 +234,13 @@ exactly 64 theory hours, matching the curriculum).
 | Grade | Subject | Units | Topics |
 | --- | --- | --- | --- |
 | 9 | Programming Principles & Concept in C | 7 | 35 |
-| 9 | Fundamentals of Computer and Application | 7 | 37 |
+| 9 | Fundamentals of Computer and Application | 7 | 36 |
 | 9 | Fundamentals of Electro-System | 7 | 47 |
 | 9 | Website Design | 7 | 50 |
 | 10 | Computer Hardware, Repair & Maintenance | 6 | 37 |
 | 10 | Database Management System | 7 | 39 |
 | 10 | Digital Design & Microprocessor | 5 | 39 |
-| | **Total** | **46** | **284** |
+| | **Total** | **46** | **283** |
 
 This is genuinely useful as a revision checklist, and it is honestly labelled
 "syllabus outline" rather than pretending to be finished notes.

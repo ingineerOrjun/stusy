@@ -11,7 +11,7 @@ verifying that subject's topic list against the PDF.
 
 | # | Subject | Hrs | Marks | Topics | Why here |
 |---:|---|---:|---:|---:|---|
-| 1 | **Fundamentals of Computer and Application** | 64 | 50 | 37 | The foundation subject, and the one that needs the least new machinery — explanation, diagrams and retrieval, all of which exist. The right place to prove the Grade 9 pattern before committing to it four times |
+| 1 | **Fundamentals of Computer and Application** | 64 | 50 | 36 | The foundation subject, and the one that needs the least new machinery — explanation, diagrams and retrieval, all of which exist. The right place to prove the Grade 9 pattern before committing to it four times |
 | 2 | **Programming Principles and Concept in C Language** | 64 | 50 | 35 | Gyansetu's strongest existing machinery is for code: the tracer, the snippet highlighter, worked-example think gates and the quiz engine were all built for C++. C is the nearest neighbour, and Grade 10's OOP course assumes this one |
 | 3 | **Website Design** | 64 | 50 | 50 | Most topics, heaviest practical weighting, and the only subject where the student's work is itself a web page. Needs a component that does not exist yet — see §3 |
 | 4 | **Fundamentals of electro-system** | 64 | 50 | 47 | Most physical and least served by what exists. Grade 10 Hardware Unit 1 already teaches charge, semiconductors and PN junctions, so some diagrams will transfer, but circuits need their own visual vocabulary |
