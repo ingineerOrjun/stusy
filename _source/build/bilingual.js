@@ -82,7 +82,13 @@ const NEVER_WRAP_TAG = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
    Empty runtime containers elsewhere escape this only because their
    surrounding markup happens to break the run first. This names the one
    that did not; a future one should be named here too. */
-const NEVER_WRAP_CLASS = /\b(eyebrow|badge|hrs|marks|mk|pill|meta|status|idx|sec-num|qn|wex-n|wex-lbl|dia-progress|cpu-addr|revise|bridge-dots|bridge-play)\b/;
+/* `score-focus` is the future one that comment anticipated. It ships
+   empty and the quiz engine fills it with its own .t-en and .t-ne spans
+   after the last question. Wrapped, it became a child of a div.t-en and
+   vanished entirely in Nepali mode — the English half hidden because it
+   was English, the Nepali half hidden because its wrapper was. Caught by
+   switching the finished quiz to Nepali, not by any test. */
+const NEVER_WRAP_CLASS = /\b(eyebrow|badge|hrs|marks|mk|pill|meta|status|idx|sec-num|qn|wex-n|wex-lbl|dia-progress|cpu-addr|revise|bridge-dots|bridge-play|score-focus)\b/;
 
 function neverWrap(child){
   if (child.type !== 'el') return false;

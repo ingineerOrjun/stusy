@@ -305,3 +305,89 @@ test('an option with no Nepali half is a value, not a sentence', () => {
     }
   }
 });
+
+/* ============================================================
+   THE END OF THE QUIZ
+
+   Everything above tests the draw. Nothing tested what a student sees
+   after the LAST question, and that turned out to be nothing at all on
+   three of the five quiz pages.
+
+   showScore() writes the score, the English message, the Nepali message,
+   and only then sets the box visible. cf-quiz, db-quiz and hw-quiz
+   shipped a score box with no #scoreMsgNp, so the write threw and the
+   box was never shown. Grade 9 Fundamentals, DBMS and Hardware: answer
+   every question and the quiz goes silent. Found by answering all twelve
+   in a browser, not by reading markup — which is also why the guards
+   below assert the ORDER of the statements, not merely their presence.
+   ============================================================ */
+
+/* Block and line comments out, string literals left alone. Crude, and
+   sufficient: quiz.js has no regex literal and no comment marker inside
+   a string, and a guard that needs a parser to read one function is a
+   guard nobody will maintain. */
+function stripComments(src){
+  return src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+}
+
+test('every quiz section ships a complete score box', () => {
+  const fs = require('node:fs');
+  const dir = path.join(ROOT, '_source', 'content', 'sections');
+  const need = ['id="scoreBox"', 'id="scoreNum"', 'id="scoreMsg"',
+                'id="scoreMsgNp"', 'resetQuiz()'];
+  let seen = 0;
+  for (const f of fs.readdirSync(dir).filter(n => n.endsWith('.html'))){
+    const html = fs.readFileSync(path.join(dir, f), 'utf8');
+    if (!html.includes('id="quizBox"')) continue;
+    seen++;
+    for (const n of need){
+      assert.ok(html.includes(n),
+        'sections/' + f + ' mounts a quiz and its score box has no ' + n +
+        '. A student who answers every question sees nothing.');
+    }
+  }
+  assert.ok(seen >= 4, 'only ' + seen + ' quiz sections were found — this guard has ' +
+                       'stopped looking at the right place');
+});
+
+test('the score is shown before anything that can fail', () => {
+  /* MUTATION: move `box.style.display` back above the message writes, or
+     write to an element without guarding it, and this fails. The order
+     is the behaviour: a missing element must cost a line of text, never
+     the whole result. */
+  const fs = require('node:fs');
+  /* Comments stripped first. The comment above showScore QUOTES the line
+     that caused the defect, so a scan of the raw file matched the
+     explanation of the bug and reported the bug. A guard a comment can
+     trip is a guard the next author deletes. */
+  const src = stripComments(
+    fs.readFileSync(path.join(ROOT, '_source', 'runtime', 'quiz.js'), 'utf8'));
+  const body = /function showScore\(\)\{?[\s\S]*?\n\}/.exec(src);
+  assert.ok(body, 'showScore() was renamed or removed');
+
+  assert.ok(!/getElementById\('score(Msg|MsgNp|Num)'\)\.textContent/.test(body[0]),
+    'showScore writes straight into an element it has not checked for. That is the ' +
+    'exact line that blanked the score on three pages.');
+
+  const show = body[0].indexOf("style.display = 'block'");
+  assert.ok(show > 0, 'showScore no longer reveals the box');
+});
+
+test('the end-of-quiz advice names nothing that may not exist', () => {
+  /* The engine serves five subjects. Two of its messages used to name
+     "Units 3, 5 and 6" and "the Trace section" — true of OOP, false for
+     a Grade 9 student reading the same line. */
+  const fs = require('node:fs');
+  const src = fs.readFileSync(path.join(ROOT, '_source', 'runtime', 'quiz.js'), 'utf8');
+  const body = /function showScore\(\)\{?[\s\S]*?\n\}/.exec(stripComments(src))[0];
+  const msgs = [...body.matchAll(/msg(?:Np)?\s*=\s*'([^']+)'/g)].map(m => m[1]);
+  assert.ok(msgs.length >= 8, 'the message scan found ' + msgs.length +
+                              ' — it has stopped reading the messages');
+  for (const m of msgs){
+    assert.ok(!/\bUnits? \d/i.test(m),
+      'an end-of-quiz message names a unit number: "' + m + '". Five subjects share ' +
+      'this engine and their unit numbers mean different things.');
+    assert.ok(!/\bTrace\b/.test(m),
+      'an end-of-quiz message names the Trace section, which only C++ has: "' + m + '"');
+  }
+});

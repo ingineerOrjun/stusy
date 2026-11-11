@@ -15,6 +15,7 @@
   'use strict';
 
   var banks = Object.create(null);
+  var focus = Object.create(null);
 
   function isValidQuestion(q) {
     return q && typeof q === 'object' &&
@@ -46,6 +47,87 @@
     },
 
     listSubjects: function () { return Object.keys(banks); },
+
+    /* ---- where to go back to, per subject, in two kinds ----
+       Registered by the generated bank file alongside the questions. The
+       engine serves five subjects from one file, so advice that names a
+       unit has to arrive as data; the alternative is what used to be
+       here — one subject's unit numbers hardcoded into a shared score
+       message, read by students of four other subjects.
+
+       TWO KINDS, NEVER MERGED.
+
+         exam     units carrying the most examination marks. Derived at
+                  build time. A fact about the paper, not about
+                  difficulty: a heavy unit is not hard and a light one is
+                  not easy, and the label the student reads says so.
+
+         teacher  units a teacher has judged students should revisit.
+                  Authored, with a recorded source. Currently empty for
+                  every subject — see content/revision-focus.js.
+
+       They are stored apart and returned apart. A caller that wants one
+       sentence must choose which kind it is showing and label it; it
+       cannot accidentally present marks as a difficulty judgement by
+       reading the wrong key.
+
+       An unregistered subject returns empty lists and the caller says
+       something that names nothing, which is the right failure: a
+       missing registration must cost specificity, never correctness. */
+    registerFocus: function (subjectId, kinds) {
+      if (typeof subjectId !== 'string' || !subjectId) {
+        throw new TypeError('QuizService.registerFocus: subjectId must be a non-empty string');
+      }
+      if (!kinds || typeof kinds !== 'object' || Array.isArray(kinds)) {
+        throw new TypeError('QuizService.registerFocus: expects { exam: [], teacher: [] }');
+      }
+      var slot = { exam: [], teacher: [], source: kinds.source || null };
+      var names = ['exam', 'teacher'];
+      for (var k = 0; k < names.length; k++) {
+        var kind = names[k];
+        var units = kinds[kind];
+        if (units === undefined) continue;
+        if (!Array.isArray(units)) {
+          throw new TypeError('QuizService.registerFocus: ' + kind + ' must be an array');
+        }
+        for (var i = 0; i < units.length; i++) {
+          var u = units[i];
+          if (!u || typeof u !== 'object' || !u.n ||
+              !u.title || typeof u.title.en !== 'string') {
+            throw new Error('QuizService.registerFocus(' + subjectId + ', ' + kind +
+                            '): unit ' + i + ' has no number or no English title');
+          }
+        }
+        slot[kind] = units.slice();
+      }
+      focus[subjectId] = slot;
+      return slot.exam.length + slot.teacher.length;
+    },
+
+    /* `kind` is required, and an unknown one returns nothing rather than
+       quietly falling back to the other — the whole purpose of this pair
+       is that a caller cannot get marks when it asked for judgement. */
+    getFocus: function (subjectId, kind) {
+      var slot = focus[subjectId];
+      if (!slot) return [];
+      if (kind !== 'exam' && kind !== 'teacher') return [];
+      return slot[kind].slice();
+    },
+
+    /* Which kind this subject can actually offer, so a caller picks the
+       label before it picks the units. */
+    focusKind: function (subjectId) {
+      var slot = focus[subjectId];
+      if (!slot) return null;
+      if (slot.teacher.length) return 'teacher';
+      if (slot.exam.length) return 'exam';
+      return null;
+    },
+
+    focusSource: function (subjectId) {
+      var slot = focus[subjectId];
+      return (slot && slot.source) || null;
+    },
 
     /* Select a quiz. Today every caller takes the whole bank in order,
        which is exactly the current behaviour. The filters exist so a
