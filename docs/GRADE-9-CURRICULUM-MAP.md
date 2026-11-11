@@ -2,8 +2,12 @@
 
 **4 subjects · 28 units · 168 topics · 256 theory hours · 200 external marks.**
 
-**Topic coverage today: 0 of 168 taught.** Nothing has been authored. This
-document is the map of what exists to build, not a claim about what is built.
+**Topic coverage today: 71 of 168 authored** — all of *Fundamentals of Computer
+and Application*, whose seven units were written in Phases 12 and 13, and all of
+*Programming Principles & Concept in C Language*, written in Phase 14. The other
+two subjects are outlines: 97 topics with no lesson behind them. This document
+remains the map of what exists to build; §2 says precisely what "authored" has
+been verified to mean.
 
 Machine-readable form:
 [`GRADE-9-CURRICULUM-SPECIFICATION.json`](GRADE-9-CURRICULUM-SPECIFICATION.json),
@@ -84,21 +88,46 @@ reported in one table.
 
 | Status | Meaning | Grade 9 topics |
 |---|---|---:|
-| **fully-taught** | explanation, worked example and assessment all present, and read | **0** |
-| **partially-taught** | some content present, named gaps recorded | **0** |
-| **practical-missing** | taught, but the curriculum's practical activity is absent | **0** |
-| **assessment-missing** | taught, but no question examines it | **0** |
-| **not-implemented** | nothing written | **168** |
+| **explanation traced** | the topic is mapped to an anchor that exists in a lesson, and the build fails if it stops existing | **71** |
+| **not-implemented** | nothing written | **97** |
 
-**The evidence behind that: there are no Grade 9 lesson files.**
-`_source/content/lessons/` contains 24 files, all Grade 10. No Grade 9 subject
-appears in `_source/config/pages.js`, so the build generates one outline page
-per Grade 9 subject and no lessons. A test asserts this and will fail the moment
-it stops being true, which is the signal to come back and add a coverage map.
+**The 71 are all of Fundamentals of Computer and Application (36) and all of Programming Principles in C (35)**, mapped in
+`_source/content/coverage.js` and enforced at build time by three rules in
+`validate.js`: every official topic of an authored unit must have a map entry,
+every anchor named must exist in a lesson of that subject, and no entry may name
+a topic the syllabus has dropped. A missing topic is a build failure, not a
+warning — the message is *"a student would meet this topic for the first time in
+the exam."*
 
-**This is not comparable to Grade 10's 150/150.** That figure means every
-official Grade 10 topic was traced to content someone read. Grade 9's 0/168
-means the work has not started.
+**The five-way vocabulary this section used to carry has been reduced to two
+rows, because the other three were never measured for Grade 9.** The old table
+claimed 0 for *fully-taught*, *partially-taught*, *assessment-missing* and
+*practical-missing* on the strength of there being no Grade 9 content at all.
+Now that there is, those categories would each need a per-topic judgement that
+nobody has made:
+
+- **`fully-taught`** requires a worked example *per topic*. Computer and Application has 14
+  worked examples across 36 topics and C has 14 across 35, so neither figure
+  would be the topic count — and which topics they serve has not been recorded.
+- **`assessment-missing`** requires a per-topic question audit. The two subjects'
+  62 and 63 questions carry their own `topic` keys, which are not the official
+  topic strings, so the two lists have not been reconciled. Unit-level
+  assessment is complete: every unit of both subjects has questions, and Phase
+  12 found by exactly this kind of check that official topic 1.3 had none.
+- **`practical-missing`** is answered elsewhere and favourably: all 32 Computer
+  and Application activities and all 10 C activities are on the unit pages,
+  mapped in [the practical mapping](GRADE-9-COMPUTER-APPLICATION-PRACTICAL-MAPPING.md)
+  and in [the C curriculum map](GRADE-9-C-PROGRAMMING-CURRICULUM-MAP.md) §4.
+
+**So "71 of 168" is a weaker claim than Grade 10's 150/150**, and deliberately
+worded to be. Grade 10's figure came from a dedicated integrity pass that read
+each topic against its content. Grade 9's says the build can prove an
+explanation exists for every topic — which is what stops the Phase 12 class of
+error, and is less than someone having read all 71 and agreed.
+
+The remaining 97 topics are in the two subjects that are still outlines:
+*Fundamentals of Electro-System* and *Website Design*. Each has a syllabus
+outline and a generated outline page, and no lessons.
 
 > **Updated in Phase 12.** This subject was 37 topics here until its scope and
 > sequence was verified line by line against the PDF. Official topic 2.3 is ONE
@@ -106,24 +135,33 @@ means the work has not started.
 > outline had promoted the second to a topic of its own, renumbering 2.4 and 2.5
 > out of step with the curriculum. Corrected: 37 → 36, and Grade 9 169 → 168.
 
-## 3 · What a "covered" Grade 9 topic will have to mean
+## 3 · What a "covered" Grade 9 topic means
 
 Carried over from Grade 10, where it was learned the hard way: a topic is not
-covered because a heading exists. For Grade 9, `content/coverage.js` will map
-each official topic string to the anchor that teaches it, and the build will
-fail on a missing topic, a dangling anchor or a stale entry — the same three
-modes, already mutation-tested.
+covered because a heading exists. `content/coverage.js` maps each official topic
+string to the anchor that teaches it, and the build fails on a missing topic, a
+dangling anchor or a stale entry — the same three modes, mutation-tested. **This
+is in place for Fundamentals of Computer and Application's 36 topics and for
+Programming Principles in C's 35** and will extend to each remaining subject as
+it is written; the map is opt-in per subject, so an outline subject is not
+required to have one.
 
-Two Grade 9-specific additions are needed, because Grade 9's assessment is more
-practical than Grade 10's:
+Two Grade 9-specific additions are still needed, because Grade 9's assessment is
+more practical than Grade 10's. **Neither is built**, and the reason they are
+still listed here after the first subject was finished is that both need a
+per-topic record the content does not currently carry:
 
 - **`practical-missing`** — the curriculum's own practical activity for that
   unit has no counterpart on the page. 18 of 50 internal marks ride on practical
   work; a Grade 9 unit taught only as theory is missing something the syllabus
   explicitly requires.
 - **`assessment-missing`** — taught, but no question examines it. Grade 10
-  reached this through the Phase 9 question-bank audit; Grade 9 can have it from
-  the start.
+  reached this through the Phase 9 question-bank audit. Grade 9 was meant to
+  have it from the start and does not: the question banks key questions to their
+  own topic slugs rather than to the official topic strings, so the reconciliation
+  Grade 10 did by hand has no automated equivalent here yet. Phase 12 caught the
+  one instance that mattered — official topic 1.3 with no question — by listing
+  official topics against the bank manually.
 
 ## 4 · Known gaps in this map
 

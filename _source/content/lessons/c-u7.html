@@ -1,0 +1,560 @@
+<section id="c-u7">
+  <div class="sec-head">
+    <div class="sec-num">7</div>
+    <div>
+      <h2>Pointers</h2>
+      <p class="sec-sub">पोइन्टर</p>
+    </div>
+    <span class="marks">4 hrs · 2 marks · 7 practical hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Say what a pointer is, and what it holds instead of a value.</li>
+      <li>Declare a pointer variable and point it at an existing variable.</li>
+      <li>Use <code>&amp;</code> and <code>*</code>, and say which direction each one works in.</li>
+      <li>Read a program that changes a variable through a pointer and predict the output.</li>
+      <li>Give the advantages of pointers, and name the two places in this subject you have
+      already relied on one.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: pointer भनेको के हो र यसले मानको ठाउँमा के राख्छ भन्न,
+    pointer variable घोषणा गरेर कुनै variable तिर तेर्स्याउन, <code>&amp;</code> र
+    <code>*</code> चलाउन अनि हरेक कुन दिशामा काम गर्छ भन्न, pointer मार्फत variable बदल्ने
+    प्रोग्राम पढेर output अनुमान गर्न, र pointer का फाइदा दिन अनि यसै विषयमा तपाईंले पहिल्यै दुई
+    ठाउँमा pointer मा भर परिसक्नुभएको छ भन्ने देखाउन सक्नुहुनेछ।</span>
+  </div>
+
+  <div class="callout">
+    <b>The lightest unit on paper, and not a light unit.</b> Four of the 64 theory hours and
+    <b>2 of the 50 external marks</b> — less than any other unit. Seven practical hours, though,
+    and two topics you have already met: the <code>&amp;</code> in every <code>scanf</code> since
+    Unit 2, and the whole of call by reference in Unit 4. This unit names what you have been
+    using.
+    <span class="np-cell"><b>कागजमा सबैभन्दा हलुका, तर हलुका युनिट होइन।</b> ६४ मध्ये चार घण्टा
+    र <b>५० मध्ये २ अंक</b> — अरू कुनै युनिटभन्दा कम। तर प्रयोगात्मक सात घण्टा छन्, र तपाईंले
+    पहिल्यै भेटिसकेका दुई विषय पनि: युनिट २ देखि हरेक <code>scanf</code> मा आएको
+    <code>&amp;</code>, र युनिट ४ को पूरै call by reference। यस युनिटले तपाईंले चलाइरहेकै कुरालाई
+    नाम दिन्छ।</span>
+  </div>
+
+  <!-- ============ 7.1 ============ -->
+  <h3 class="topic" id="c-t71">7.1 &nbsp;<span class="t-en">Introduction to pointers</span><span class="t-ne"> — Pointer को परिचय</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Every variable lives somewhere, and the address is a value</span>
+      <p>When you declare <code>int n = 25;</code>, two facts come into existence: n <b>holds</b>
+      25, and n <b>lives at</b> some address in memory. You have been using the first fact since
+      Unit 2. The second is this unit.</p>
+      <p>A <b>pointer</b> is a variable that stores the <b>address</b> of another variable. It is
+      an ordinary variable in every respect — it has a type, it has a name, it lives at an address
+      of its own — and what it holds happens to be a location rather than a quantity.</p>
+      <p>The address a program sees is <b>not fixed</b>. Run the same program twice and n may be
+      at a different address each time. That is why a program never writes an address down and
+      always asks for it with <code>&amp;</code>, and why the number 1000 in the figure below is
+      an illustration and not a fact.</p>
+    </div>
+    <div class="np"><span class="tag">हरेक variable कतै बस्छ, र ठेगाना आफैंमा एउटा मान हो</span>
+      <p><code>int n = 25;</code> घोषणा गर्दा दुई तथ्य जन्मन्छन्: n सँग २५ <b>छ</b>, र n मेमोरीको
+      कुनै ठेगानामा <b>बस्छ</b>। पहिलो तथ्य तपाईंले युनिट २ देखि चलाइरहनुभएको छ। दोस्रो यही
+      युनिट हो।</p>
+      <p><b>Pointer</b> भनेको अर्को variable को <b>ठेगाना</b> राख्ने variable हो। यो हरेक
+      हिसाबले सामान्य variable नै हो — यसको प्रकार छ, नाम छ, आफ्नै ठेगाना छ — र यसले राख्ने
+      कुरा परिमाण नभई स्थान हो।</p>
+      <p>प्रोग्रामले देख्ने ठेगाना <b>स्थिर हुँदैन</b>। उही प्रोग्राम दुई पटक चलाउँदा n हरेक
+      पटक फरक ठेगानामा हुन सक्छ। त्यसैले प्रोग्रामले ठेगाना कहिल्यै लेखेर राख्दैन, सधैं
+      <code>&amp;</code> ले सोध्छ — र तलको चित्रमा देखिने १००० सङ्ख्या उदाहरण हो, तथ्य
+      होइन।</p>
+    </div>
+  </div>
+
+  <!-- ============ 7.2 ============ -->
+  <h3 class="topic" id="c-t72">7.2 &nbsp;<span class="t-en">Declaring a pointer variable</span><span class="t-ne"> — Pointer variable को घोषणा</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The star in the declaration is part of the type</span>
+      <p><code>int *p;</code> declares p as "a pointer to an int". The star here is <b>not</b> the
+      dereference operator — it is part of the type, and it is the one place in C where the same
+      symbol means two different things a line apart.</p>
+      <p>The type matters. <code>int *p;</code> and <code>float *q;</code> both hold an address,
+      and the type tells the compiler how to interpret the bytes found there and how far one step
+      is. A pointer with the wrong type gives nonsense, not an error.</p>
+      <p>A declared pointer points at nothing useful until it is given an address:</p>
+      <ul>
+        <li><code>int *p;</code> — p exists and holds garbage. Dereferencing it now is a genuine
+        crash waiting to happen.</li>
+        <li><code>p = &amp;n;</code> — p now holds n's address.</li>
+        <li><code>int *p = &amp;n;</code> — both on one line, which is the safer habit.</li>
+      </ul>
+      <p>Print an address with <code>%p</code>. Printing it with <code>%d</code> does not fail
+      loudly — it prints a number — but on a 64-bit machine an address is 8 bytes and an
+      <code>int</code> is 4, so the number you see is only part of the address. Checked on gcc:
+      <code>printf("%d", &amp;n)</code> compiled with no message at all and printed
+      <code>830470604</code> for an address whose real value was
+      <code>0x9B659FF94C</code>. <code>gcc -Wall</code> does warn about it.</p>
+    </div>
+    <div class="np"><span class="tag">घोषणामा आउने star प्रकारकै भाग हो</span>
+      <p><code>int *p;</code> ले p लाई "int को pointer" घोषणा गर्छ। यहाँको star dereference
+      operator <b>होइन</b> — यो प्रकारकै भाग हो, र C मा उही चिन्हले एक लाइनको फरकमा दुई फरक अर्थ
+      दिने ठाउँ यही एक हो।</p>
+      <p>प्रकारले फरक पार्छ। <code>int *p;</code> र <code>float *q;</code> दुवैले ठेगाना राख्छन्,
+      र प्रकारले compiler लाई त्यहाँका byte कसरी पढ्ने अनि एक पाइला कति टाढा हो भन्छ। गलत
+      प्रकारको pointer ले त्रुटि होइन, बेकारको नतिजा दिन्छ।</p>
+      <p>घोषणा गरिएको pointer लाई ठेगाना नदिएसम्म यो काम लाग्ने कतै देखाउँदैन:</p>
+      <ul>
+        <li><code>int *p;</code> — p छ र यसमा garbage छ। अहिले dereference गर्नु भनेको crash
+        निम्त्याउनु हो।</li>
+        <li><code>p = &amp;n;</code> — अब p सँग n को ठेगाना छ।</li>
+        <li><code>int *p = &amp;n;</code> — दुवै एउटै लाइनमा, र सुरक्षित बानी यही हो।</li>
+      </ul>
+      <p>ठेगाना छाप्न <code>%p</code> चलाउनुहोस्। <code>%d</code> ले ठाडै असफल हुँदैन — एउटा
+      सङ्ख्या छाप्छ — तर ६४-bit मेसिनमा ठेगाना ८ byte को हुन्छ र <code>int</code> ४ byte को,
+      त्यसैले देखिने सङ्ख्या ठेगानाको अंश मात्र हो। gcc मा जाँचिएको: <code>printf("%d",
+      &amp;n)</code> कुनै सन्देशविनै compile भयो र <code>0x9B659FF94C</code> ठेगानाको ठाउँमा
+      <code>830470604</code> छाप्यो। <code>gcc -Wall</code> ले यसबारे चेतावनी दिन्छ।</p>
+    </div>
+  </div>
+
+  <!-- ============ 7.3 ============ -->
+  <h3 class="topic" id="c-t73">7.3 &nbsp;<span class="t-en">Referencing and dereferencing</span><span class="t-ne"> — Referencing र dereferencing</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Two operators, opposite directions</span>
+      <p><b>Referencing</b> — the <b>address-of</b> operator <code>&amp;</code> takes a variable
+      and gives its address. <code>&amp;n</code> is "where n lives".</p>
+      <p><b>Dereferencing</b> — the <b>value-at</b> operator <code>*</code> takes an address and
+      gives what is stored there. <code>*p</code> is "the value at the address in p".</p>
+      <p>They undo each other: <code>*(&amp;n)</code> is simply <code>n</code>. Reading them as
+      English helps more than memorising them — "address of n", "value at p".</p>
+      <p>The star works in <b>both directions</b>. <code>printf("%d", *p);</code> reads a value
+      out through the pointer; <code>*p = 50;</code> writes a value in through it, and n changes
+      although the line never mentions n. That second use is the whole of call by reference, and
+      the whole of why pointers are treated with care.</p>
+    </div>
+    <div class="np"><span class="tag">दुई operator, उल्टा दिशा</span>
+      <p><b>Referencing</b> — <b>address-of</b> operator <code>&amp;</code> ले variable लिएर
+      त्यसको ठेगाना दिन्छ। <code>&amp;n</code> भनेको "n कहाँ बस्छ" हो।</p>
+      <p><b>Dereferencing</b> — <b>value-at</b> operator <code>*</code> ले ठेगाना लिएर त्यहाँ
+      भएको कुरा दिन्छ। <code>*p</code> भनेको "p मा भएको ठेगानाको मान" हो।</p>
+      <p>यी एकअर्कालाई उल्ट्याउँछन्: <code>*(&amp;n)</code> भनेको <code>n</code> नै हो। कण्ठ
+      गर्नुभन्दा अङ्ग्रेजीमा पढ्दा बढी सजिलो हुन्छ — "address of n", "value at p"।</p>
+      <p>Star <b>दुवै दिशामा</b> चल्छ। <code>printf("%d", *p);</code> ले pointer मार्फत मान
+      निकाल्छ; <code>*p = 50;</code> ले त्यसैमार्फत मान भित्र राख्छ, र लाइनले n को नाम नलिई पनि
+      n बदलिन्छ। दोस्रो प्रयोग नै पूरै call by reference हो, र pointer लाई होसियारीसाथ
+      चलाउनुपर्ने कारण पनि त्यही।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:cPointerMemory}}
+    <figcaption>Two variables, each at its own address. The arrow is not stored anywhere — it is
+    drawn from the <i>value</i> inside p to the <i>location</i> of n, which is exactly what a
+    pointer is.
+    <span class="np-cell">दुई variable, हरेक आफ्नै ठेगानामा। तीर कतै भण्डारण हुँदैन — यो p भित्रको
+    <i>मान</i> बाट n को <i>स्थान</i> सम्म कोरिएको हो, र pointer भनेकै त्यही हो।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h4>A pointer holds an address, not a value</h4>
+      <p class="sim-goal">What you will learn: that p and *p are two different things on the same
+      line, and that writing through a pointer changes a variable the line never names. The last
+      two steps are the ones that matter.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: एउटै लाइनमा p र *p दुई फरक कुरा हुन्, र
+      pointer मार्फत लेख्दा लाइनले नाम नै नलिएको variable बदलिन्छ। महत्त्वपूर्ण चरण अन्तिम
+      दुई हुन्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="pointerBasics"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Read the four variable rows as two pairs: what n is and where n is, then what p holds
+        and what is at that place. The last step changes n through the second pair alone.</p>
+        <span class="np-cell">चारै पङ्क्तिलाई दुई जोडी बनाएर पढ्नुहोस्: n के हो र n कहाँ छ, अनि
+        p सँग के छ र त्यो ठाउँमा के छ। अन्तिम चरणले दोस्रो जोडीबाटै n बदल्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Which pointer operator is needed here?</h4>
+      <p class="sim-goal">What you will learn: to decide between <code>&amp;</code> and
+      <code>*</code> from the direction the line is travelling — taking an address out, or taking
+      a value out of an address.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: लाइन कुन दिशामा गइरहेको छ हेरेर
+      <code>&amp;</code> र <code>*</code> छुट्याउन — ठेगाना निकालेको, कि ठेगानाबाट मान
+      निकालेको।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cptr" data-set="cpointerop"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>One case needs neither operator. An array name is already an address, which is why
+        <code>scanf("%s", name)</code> takes no ampersand while <code>scanf("%d", &amp;n)</code>
+        does.</p>
+        <span class="np-cell">एउटा केसमा कुनै पनि operator चाहिँदैन। Array को नाम आफैं ठेगाना हो
+        — त्यसैले <code>scanf("%s", name)</code> लाई ampersand चाहिँदैन र
+        <code>scanf("%d", &amp;n)</code> लाई चाहिन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>After <code>int n = 7; int *p = &amp;n; *p = *p + 3;</code> what does
+      <code>printf("%d", n);</code> print?
+      <span class="np-cell"><code>int n = 7; int *p = &amp;n; *p = *p + 3;</code> पछि
+      <code>printf("%d", n);</code> ले के छाप्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">7 — n was never assigned to</button>
+      <button class="predict-opt" data-value="b">10</button>
+      <button class="predict-opt" data-value="c">An address, because p was involved</button>
+    </div>
+    <div class="predict-feedback">
+      <p><b>10.</b> Read <code>*p = *p + 3;</code> as "the value at p becomes the value at p plus
+      three". The value at p <i>is</i> n, so this is <code>n = n + 3</code> written another way.</p>
+      <p>Option A is the belief this unit exists to remove: a variable can be changed by a line
+      that does not name it, provided something holds its address. That is not a trick — it is
+      exactly what <code>scanf("%d", &amp;n)</code> has been doing since Unit 2, and what call by
+      reference does in Unit 4.</p>
+      <p>Option C confuses <code>p</code> with <code>*p</code>. Printing <code>p</code> would show
+      an address; printing <code>n</code> or <code>*p</code> shows 10. One star is the whole
+      difference.</p>
+      <span class="np-cell"><b>१०।</b> <code>*p = *p + 3;</code> लाई "p को ठेगानाको मान बराबर
+      p को ठेगानाको मान जोड तीन" भनेर पढ्नुहोस्। P को ठेगानाको मान <i>नै</i> n हो, त्यसैले यो
+      <code>n = n + 3</code> कै अर्को लेखाइ हो। विकल्प (क) यस युनिटले हटाउन खोजेकै विश्वास हो:
+      कसैसँग ठेगाना छ भने नाम नलिने लाइनले पनि variable बदल्न सक्छ। यो जादू होइन — युनिट २ देखि
+      <code>scanf("%d", &amp;n)</code> ले गरिरहेकै काम हो, र युनिट ४ को call by reference ले
+      गर्ने पनि त्यही। विकल्प (ग) ले <code>p</code> र <code>*p</code> मिसाउँछ।
+      <code>p</code> छापे ठेगाना देखिन्थ्यो; <code>n</code> वा <code>*p</code> छापे १०। पूरै फरक
+      एउटा star को हो।</span>
+    </div>
+  </div>
+
+  <!-- ============ 7.4 ============ -->
+  <h3 class="topic" id="c-t74">7.4 &nbsp;<span class="t-en">Advantages of pointers</span><span class="t-ne"> — Pointer का फाइदा</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Four, and you have used two already</span>
+      <ul>
+        <li><b>A function can change the caller's variables.</b> This is call by reference, and
+        it is the only way a function can hand back more than one answer. You met it in Unit 4;
+        this unit is the explanation of how it worked.</li>
+        <li><b>Arrays are passed without copying.</b> An array name is already an address, so
+        sending an array of a thousand elements to a function costs one address rather than a
+        thousand copies — and it is why sorting inside a function changes the caller's array.</li>
+        <li><b>Memory can be asked for while the program runs</b> — <i>dynamic memory
+        allocation</i>, with <code>malloc</code> and <code>free</code>. It is how a program
+        handles a list whose size nobody knew when it was written. Not on the Grade 9 syllabus;
+        named here because it is the reason pointers matter in Grade 10 and beyond.</li>
+        <li><b>Data structures become possible.</b> A linked list, a tree and a graph are built
+        out of items that hold the address of the next item. Without pointers there is no way to
+        write one, which is where Grade 10 Unit 1 begins.</li>
+      </ul>
+      <p>The cost, stated honestly: a pointer that holds a wrong address will read or write
+      somewhere it should not, and C will not stop it. Power and risk are the same property seen
+      from two sides.</p>
+    </div>
+    <div class="np"><span class="tag">चार, र तपाईंले दुई त चलाइसक्नुभयो</span>
+      <ul>
+        <li><b>Function ले बोलाउनेका variable बदल्न सक्छ।</b> यही call by reference हो, र
+        function ले एकभन्दा बढी उत्तर फर्काउने एकमात्र उपाय यही हो। युनिट ४ मा भेट्नुभयो; यो
+        युनिट त्यो कसरी चल्यो भन्ने व्याख्या हो।</li>
+        <li><b>Array प्रतिलिपि नबनाई पठाइन्छ।</b> Array को नाम आफैं ठेगाना हो, त्यसैले हजार
+        element को array function लाई पठाउँदा हजार प्रतिलिपि होइन एउटा ठेगाना मात्र लाग्छ — र
+        function भित्र क्रम मिलाउँदा बोलाउनेकै array बदलिनुको कारण पनि त्यही।</li>
+        <li><b>प्रोग्राम चल्दै गर्दा मेमोरी माग्न सकिन्छ</b> — <i>dynamic memory allocation</i>,
+        <code>malloc</code> र <code>free</code> सहित। लेख्ने बेला आकार कसैलाई थाहा नभएको सूची
+        प्रोग्रामले यसैगरी सम्हाल्छ। कक्षा ९ को पाठ्यक्रममा छैन; कक्षा १० र त्यसपछि pointer किन
+        महत्त्वपूर्ण हुन्छ भन्ने कारण भएकाले यहाँ नाम लिइएको हो।</li>
+        <li><b>Data structure सम्भव हुन्छन्।</b> Linked list, tree र graph अर्को वस्तुको ठेगाना
+        राख्ने वस्तुहरूबाट बन्छन्। Pointer नभए यी लेख्ने उपायै हुँदैन, र कक्षा १० को युनिट १
+        त्यहींबाट सुरु हुन्छ।</li>
+      </ul>
+      <p>लागत, इमानदारीसाथ: गलत ठेगाना बोकेको pointer ले नपुग्नुपर्ने ठाउँमा पढ्छ वा लेख्छ, र
+      C ले रोक्दैन। शक्ति र जोखिम एउटै गुणलाई दुई तिरबाट हेरेको हो।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Reading a variable two ways</div>
+    <p><b>Question:</b> write a program that prints a variable's value, its address, and the same
+    value reached through a pointer.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Three of the four printf lines below are easy.
+      Decide what <code>&amp;p</code> prints and why it is different from <code>p</code>.</span>
+      <span class="np-cell">तलका चार printf मध्ये तीन सजिलो छन्। <code>&amp;p</code> ले के छाप्छ
+      र <code>p</code> भन्दा किन फरक हुन्छ, निर्णय गर्नुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int n = 25;
+    int *p;
+
+    p = &amp;n;                        /* p now holds the address of n */
+
+    printf("Value of n      : %d\n", n);
+    printf("Address of n    : %p\n", (void *) &amp;n);
+    printf("Value in p      : %p\n", (void *) p);   /* same as &amp;n */
+    printf("Value at p (*p) : %d\n", *p);           /* same as n  */
+    printf("Address of p    : %p\n", (void *) &amp;p); /* p's OWN address */
+
+    *p = 50;                       /* write through the pointer    */
+    printf("n is now        : %d\n", n);
+    return 0;
+}</pre>
+      <span class="wex-lbl">Output — the addresses here are illustrative; read the note</span>
+      <pre class="out">Value of n      : 25
+Address of n    : 0x7ffd1a2b3c4c
+Value in p      : 0x7ffd1a2b3c4c
+Value at p (*p) : 25
+Address of p    : 0x7ffd1a2b3c40
+n is now        : 50</pre>
+      <p class="wex-note">Lines 2 and 3 print the <b>same</b> number, which is the point: p's
+      value <i>is</i> n's address. Line 5 prints a different one, because p is itself a variable
+      living somewhere of its own. And the last two lines are the unit in miniature — a line that
+      does not mention n changes n.
+      <span class="np-cell">दोस्रो र तेस्रो लाइनले <b>उही</b> सङ्ख्या छाप्छन्, र मुख्य कुरा
+      त्यही हो: p को मान <i>नै</i> n को ठेगाना हो। पाँचौंले फरक छाप्छ, किनभने p आफैं कतै बस्ने
+      variable हो। अन्तिम दुई लाइन पूरै युनिटको सानो रूप हुन् — n को नाम नलिने लाइनले n
+      बदल्छ।</span></p>
+      <p class="wex-note"><b>Three things in that output are not promised.</b> The addresses
+      change on every run. The <i>shape</i> of them belongs to the compiler's library: gcc on
+      Linux writes an address as <code>0x7ffd1a2b3c4c</code>, and MinGW gcc on Windows writes
+      the same kind of address as <code>000000F7EBBFF74C</code> — sixteen digits, upper case, no
+      <code>0x</code>. And whether p sits above or below n is the compiler's business: when this
+      listing was run on Windows to check it, p turned out to be twelve bytes <i>below</i> n.
+      What <i>is</i> promised is the relationship — lines 2 and 3 equal, line 5 different.
+      The <code>(void *)</code> before each address is there because <code>%p</code> is defined
+      to take a <code>void *</code>; most textbooks write <code>printf("%p", &amp;n)</code> and
+      most compilers accept it, but <code>gcc -Wall</code> will tell you about it.
+      <span class="np-cell"><b>त्यो output का तीन कुराको वाचा छैन।</b> ठेगाना हरेक पटक
+      फेरिन्छ। त्यसको <i>रूप</i> compiler को library को कुरा हो: Linux को gcc ले
+      <code>0x7ffd1a2b3c4c</code> लेख्छ, Windows को MinGW gcc ले उही किसिमको ठेगानालाई
+      <code>000000F7EBBFF74C</code> लेख्छ — सोह्र अङ्क, ठूलो अक्षर, <code>0x</code> छैन। र p,
+      n भन्दा माथि बस्छ कि तल — त्यो compiler को कुरा हो: यो listing जाँच्न Windows मा
+      चलाउँदा p, n भन्दा बाह्र byte <i>तल</i> निस्कियो। <i>वाचा</i> भएको कुरा सम्बन्ध हो —
+      दोस्रो र तेस्रो लाइन बराबर, पाँचौं फरक। हरेक ठेगानाअघिको <code>(void *)</code> त्यहाँ
+      छ किनभने <code>%p</code> ले <code>void *</code> लिने परिभाषा छ; धेरै पाठ्यपुस्तक
+      <code>printf("%p", &amp;n)</code> लेख्छन् र धेरै compiler ले मान्छन्, तर <code>gcc
+      -Wall</code> ले यसबारे भनिदिन्छ।</span></p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> The scanf you have been writing since Unit 2</div>
+    <p><b>Question:</b> explain, using this unit's vocabulary, why <code>scanf</code> needs
+    <code>&amp;n</code> for an <code>int</code> and nothing for a <code>char</code> array.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Answer it in one sentence before opening this,
+      using the word "address" twice.</span>
+      <span class="np-cell">खोल्नुअघि "ठेगाना" शब्द दुई पटक प्रयोग गरेर एक वाक्यमा उत्तर
+      दिनुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int n;
+    char name[20];
+
+    scanf("%d", &amp;n);         /* &amp; REQUIRED : n is an ordinary int    */
+    scanf("%s", name);        /* no &amp;       : the array name IS an    */
+                              /*              address already          */
+    printf("%d %s", n, name);
+    return 0;
+}</pre>
+      <div class="out">WHY scanf NEEDS AN ADDRESS AT ALL
+  Arguments in C are passed BY VALUE, so a function
+  receives copies. scanf has to change the caller's
+  variable, and it cannot change a copy. It therefore
+  takes the ADDRESS and writes through it — which is
+  call by reference, and which is this unit.
+
+WHY THE ARRAY TAKES NO AMPERSAND
+  An array name used on its own already IS the address
+  of its first element. Writing &amp;name is asking for the
+  address of something that is one, which is not what
+  scanf wants here.
+
+printf TAKES NEITHER
+  printf only READS its arguments, so copies are
+  enough and no address is needed.</div>
+      <p class="wex-note">Nothing in this program is new. The only thing that changed between
+      Unit 2 and now is that you can say <i>why</i> — and that sentence is what a two-mark
+      question on pointers is actually asking for.
+      <span class="np-cell">यस प्रोग्राममा नयाँ केही छैन। युनिट २ देखि अहिलेसम्म बदलिएको एउटै
+      कुरा हो — अब तपाईं <i>किन</i> भन्न सक्नुहुन्छ। Pointer बारे दुई अंकको प्रश्नले साँच्चै
+      खोज्ने वाक्य त्यही हो।</span></p>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Confusing <code>p</code> with <code>*p</code>.</b> One is an address, the other is
+      the value there.</li>
+      <li><b>Thinking the star in <code>int *p;</code> dereferences.</b> There it is part of the
+      type; it only dereferences in a statement.</li>
+      <li><b>Dereferencing a pointer that was never given an address.</b> It holds garbage, and
+      the program crashes.</li>
+      <li><b>Writing <code>p = n;</code> instead of <code>p = &amp;n;</code>.</b> That stores a
+      value where an address belongs.</li>
+      <li><b>Putting <code>&amp;</code> before an array name.</b> The name is already the address
+      of the first element.</li>
+      <li><b>Quoting a specific address as a fact.</b> It changes every run; say "the address of
+      n", never "1000".</li>
+    </ul>
+    <span class="np-cell"><b><code>p</code> र <code>*p</code> मिसाउनु:</b> एउटा ठेगाना,
+    अर्को त्यहाँको मान। <b><code>int *p;</code> को star ले dereference गर्छ भन्ठान्नु:</b>
+    त्यहाँ त्यो प्रकारको भाग हो; dereference statement मा मात्र गर्छ। <b>ठेगाना नदिइएको pointer
+    dereference गर्नु:</b> त्यसमा garbage हुन्छ र प्रोग्राम crash हुन्छ।
+    <b><code>p = &amp;n;</code> को ठाउँमा <code>p = n;</code> लेख्नु:</b> ठेगाना चाहिने ठाउँमा
+    मान राखिन्छ। <b>Array को नाम अगाडि <code>&amp;</code> राख्नु:</b> नाम आफैं पहिलो element को
+    ठेगाना हो। <b>कुनै निश्चित ठेगानालाई तथ्य भन्नु:</b> त्यो हरेक पटक बदलिन्छ; "n को ठेगाना"
+    भन्नुहोस्, "१०००" कहिल्यै होइन।</span>
+  </div>
+
+  <p class="hook"><span class="t-en"><b>Memory hook —</b> <i>&amp; asks "where?", * asks
+    "what's there?"</i> Address out, value out — opposite directions.</span>
+    <span class="np-cell"><b>सम्झने तरिका —</b> <i>&amp; ले "कहाँ?" सोध्छ, * ले "त्यहाँ के छ?"</i>
+    ठेगाना बाहिर, मान बाहिर — उल्टा दिशा।</span></p>
+
+  <!-- ============ PRACTICAL ============ -->
+  <h3 class="topic" id="c-prac7"><span class="t-en">Practical work — this unit's other 7 hours</span><span class="t-ne"> — प्रयोगात्मक काम — यस युनिटका अरू ७ घण्टा</span></h3>
+
+  <div class="practical">
+    <div class="h"><span class="pr-kind">Guided practical</span>The activity the curriculum suggests</div>
+    <p>From the curriculum's own list for Unit 7. Seven practical hours against two external
+    marks — the curriculum expects far more doing than examining here, and that is the right way
+    round for pointers. <b>It cannot be done from this site</b>: it needs a C compiler on a real
+    computer.
+    <span class="np-cell">पाठ्यक्रमकै युनिट ७ को सूचीबाट। दुई बाह्य अंकको तुलनामा सात प्रयोगात्मक
+    घण्टा — पाठ्यक्रमले यहाँ जाँच्नुभन्दा धेरै गर्न खोजेको छ, र pointer का लागि त्यही ठिक छ।
+    <b>यो यस साइटबाट गर्न मिल्दैन</b>: साँच्चैको कम्प्युटरमा C compiler चाहिन्छ।</span></p>
+
+    <div class="pr-act" data-practical="g9.c.p7.1">
+      <p><span class="pr-num">7.1</span> Write programs using pointers — <code>*</code> and
+      <code>&amp;</code>.</p>
+      <p class="pr-need"><b>You need:</b> a computer with a C compiler. <b>This cannot be
+      simulated</b> on this site. <b>Builds on:</b> 7.2, 7.3 and Unit 4's call by reference.
+      <b>Hand in:</b> the source files and your practical record. <b>Suggested set:</b> print a
+      variable's value and address; change a variable through a pointer; swap two numbers using
+      pointers; and pass an array to a function that doubles every element, then print the array
+      back in <code>main</code> to prove it changed. <b>Observe and record:</b> run your first
+      program three times and write down the address each time. They will differ, and seeing that
+      for yourself is what stops you ever writing an address into a program.
+      <span class="np-cell"><b>चाहिन्छ:</b> C compiler भएको कम्प्युटर। <b>यो यहाँ simulate गर्न
+      मिल्दैन।</b> <b>आधार:</b> ७.२, ७.३ र युनिट ४ को call by reference। <b>बुझाउने:</b>
+      source फाइल र प्रयोगात्मक अभिलेख। <b>सुझाव:</b> variable को मान र ठेगाना छाप्ने; pointer
+      मार्फत variable बदल्ने; pointer ले दुई सङ्ख्या साट्ने; अनि हरेक element दोब्बर पार्ने
+      function लाई array पठाएर <code>main</code> मा फेरि छापेर बदलियो भनी देखाउने।
+      <b>ध्यान दिएर लेख्ने:</b> पहिलो प्रोग्राम तीन पटक चलाएर हरेक पटकको ठेगाना लेख्नुहोस्।
+      ती फरक हुनेछन्, र आफैंले त्यो देख्नुले तपाईंलाई कहिल्यै प्रोग्राममा ठेगाना लेख्नबाट
+      रोक्छ।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ EXAM FOCUS ============ -->
+  <h3 class="topic" id="c-exam7"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne"> — परीक्षा केन्द्र — यस युनिटबाट के सोधिन्छ</span></h3>
+
+  <div class="exam-connect">
+    <p>This unit carries <b>2 of the 50 external marks</b> — the smallest share in the subject —
+    and 4 of the 64 theory hours. Expect a short question: define a pointer; write the syntax to
+    declare one; what do <code>&amp;</code> and <code>*</code> do; give two advantages of
+    pointers. A long question from this unit alone is unlikely. <b>But Unit 4 is worth 10 marks
+    and its long question needs this unit</b>, so time spent here is not spent for two marks.
+    <span class="np-cell">यो युनिटले <b>बाह्य ५० मध्ये २ अंक</b> ओगट्छ — विषयको सबैभन्दा सानो
+    हिस्सा — र ६४ मध्ये ४ घण्टा। छोटो प्रश्न अपेक्षा गर्नुहोस्: pointer को परिभाषा; घोषणाको
+    syntax; <code>&amp;</code> र <code>*</code> ले के गर्छन्; pointer का दुई फाइदा। यस युनिटबाट
+    मात्र लामो प्रश्न आउने सम्भावना कम छ। <b>तर युनिट ४ को १० अंक छ र त्यसको लामो प्रश्नलाई यही
+    युनिट चाहिन्छ</b>, त्यसैले यहाँ खर्चिएको समय दुई अंकका लागि मात्र होइन।</span></p>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>What is a pointer? Write the syntax to declare a pointer variable with an example.
+    <span class="np-cell">Pointer भनेको के हो? उदाहरणसहित pointer variable घोषणा गर्ने syntax
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca71">Show the answer</button>
+    <div class="ans" id="ca71">
+      <p>A <b>pointer</b> is a variable that stores the memory <b>address</b> of another variable
+      rather than a value of its own.</p>
+      <p><b>Syntax:</b> <code>data_type *pointer_name;</code></p>
+      <p><b>Example:</b> <code>int n = 25; int *p; p = &amp;n;</code> — here <code>p</code> is a
+      pointer to an integer and now holds the address of <code>n</code>. <code>*p</code> would
+      give 25.</p>
+      <span class="np-cell"><b>Pointer</b> भनेको आफ्नो मान नभई अर्को variable को मेमोरी
+      <b>ठेगाना</b> राख्ने variable हो। <b>Syntax:</b> <code>data_type *pointer_name;</code>
+      <b>उदाहरण:</b> <code>int n = 25; int *p; p = &amp;n;</code> — यहाँ <code>p</code> integer
+      को pointer हो र अहिले <code>n</code> को ठेगाना बोकेको छ। <code>*p</code> ले २५
+      दिन्थ्यो।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>What is the difference between <code>&amp;</code> and <code>*</code>? Write any two
+    advantages of pointers.
+    <span class="np-cell"><code>&amp;</code> र <code>*</code> को फरक के हो? Pointer का कुनै दुई
+    फाइदा लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca72">Show the answer</button>
+    <div class="ans" id="ca72">
+      <p><b><code>&amp;</code> is the address-of operator.</b> It is written before a variable
+      and gives that variable's memory address: <code>&amp;n</code>.</p>
+      <p><b><code>*</code> is the value-at, or dereference, operator.</b> It is written before a
+      pointer and gives the value stored at the address the pointer holds: <code>*p</code>. The
+      two work in opposite directions, so <code>*(&amp;n)</code> is just <code>n</code>.</p>
+      <p>Advantages (any two): a function can change the caller's variables, which is call by
+      reference; arrays are passed to functions without being copied; memory can be allocated
+      while the program runs; and data structures such as linked lists can be built.</p>
+      <span class="np-cell"><b><code>&amp;</code> address-of operator हो</b> — variable अगाडि
+      लेखिन्छ र त्यसको मेमोरी ठेगाना दिन्छ। <b><code>*</code> value-at वा dereference operator
+      हो</b> — pointer अगाडि लेखिन्छ र pointer ले बोकेको ठेगानामा भएको मान दिन्छ। दुवै उल्टो
+      दिशामा चल्छन्, त्यसैले <code>*(&amp;n)</code> भनेको <code>n</code> नै हो। फाइदा (कुनै
+      दुई): function ले बोलाउनेका variable बदल्न सक्नु — call by reference; array प्रतिलिपि
+      नबनाई function लाई पठाइनु; प्रोग्राम चल्दै गर्दा मेमोरी छुट्याउन सकिनु; linked list जस्ता
+      data structure बनाउन सकिनु।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h4>Key points from this unit</h4>
+    <ul>
+      <li>A pointer is a variable that stores the address of another variable.</li>
+      <li><code>int *p;</code> declares a pointer to an int; the star there is part of the
+      type.</li>
+      <li><code>&amp;</code> gives an address; <code>*</code> gives the value at an address. They
+      are opposites.</li>
+      <li><code>*p = 50;</code> changes the variable p points at, without naming it.</li>
+      <li>Addresses change on every run, so a program asks for one with <code>&amp;</code> and
+      never writes one down.</li>
+      <li>An array name is already an address, which is why <code>scanf("%s", name)</code> takes
+      no ampersand.</li>
+      <li>Advantages: call by reference, arrays passed without copying, dynamic memory, and data
+      structures.</li>
+      <li>Unit 4's call by reference and Unit 2's <code>scanf</code> were both pointers all
+      along.</li>
+    </ul>
+    <span class="np-cell">Pointer भनेको अर्को variable को ठेगाना राख्ने variable हो।
+    <code>int *p;</code> ले int को pointer घोषणा गर्छ; त्यहाँको star प्रकारकै भाग हो।
+    <code>&amp;</code> ले ठेगाना दिन्छ; <code>*</code> ले ठेगानाको मान — यी उल्टा हुन्।
+    <code>*p = 50;</code> ले नाम नलिई p ले देखाएको variable बदल्छ। ठेगाना हरेक पटक बदलिन्छ,
+    त्यसैले प्रोग्रामले <code>&amp;</code> ले सोध्छ र कहिल्यै लेखेर राख्दैन। Array को नाम आफैं
+    ठेगाना हो, त्यसैले <code>scanf("%s", name)</code> लाई ampersand चाहिँदैन। फाइदा: call by
+    reference, प्रतिलिपि नबनाई array पठाउनु, dynamic memory, र data structure। युनिट ४ को call
+    by reference र युनिट २ को <code>scanf</code> सुरुदेखि नै pointer थिए।</span>
+  </div>
+</section>

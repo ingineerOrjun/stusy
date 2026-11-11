@@ -131,6 +131,23 @@ module.exports = {
   /* PDF p. 9 — "Programming Principles and Concept in C Language" */
   'grade9/c-programming': {
     source: 'CDC 2078, Specification Grid, Grade 9, Programming Principles and Concept in C Language',
+
+    /* THE OTHER HALF, read in Phase 14 from "Suggested Practical and
+       Project Works" on printed p.6 of the same document. Like Computer
+       and Application, this subject's header reads "Credit hrs: 4 /
+       Working hrs: 128": 64 theory hours in the scope and sequence and a
+       separate 64 practical hours here.
+
+       The distribution is NOT the same as the other subject's, which is
+       why it is read per subject rather than assumed — 2 and 3 hours for
+       the first two units, then 15 each for control flow, functions and
+       arrays, where the curriculum expects students to be writing
+       programs rather than reading about them.
+
+       Every one of this subject's ten activities needs a C compiler on a
+       real machine. See docs/GRADE-9-C-PROGRAMMING-CURRICULUM-MAP.md §4. */
+    practicalHours: { '1': 2, '2': 3, '3': 15, '4': 15, '5': 15, '6': 7, '7': 7 },
+
     units: [
       { n: '1', hrs:  6, marks:  5, content: 'Principles of Programming' },
       { n: '2', hrs: 10, marks:  7, content: 'Fundamentals of C' },

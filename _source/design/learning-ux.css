@@ -73,7 +73,13 @@ html, body{ overflow-x: clip; }
   /* Phase 12.1. The practical log's three states are <label>s wrapping a
      radio, so none of the selectors above reached them: measured 31px at
      320px. Same miss as .rv-act, one list entry later. */
-  .pr-opt{
+  .pr-opt,
+  /* Phase 13. The cipher bench's two controls: measured 37px for the
+     text input and 16px for the key slider at 320px. A 16px-tall slider
+     is the worst target in the product on a phone, and the component
+     whose whole lesson is "move the key" is the one that can least
+     afford a key that is hard to move. */
+  .cip-in, .cip-key{
     min-height: var(--touch-min);
   }
   .pr-opt{ display: inline-flex; align-items: center; }

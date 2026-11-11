@@ -21,6 +21,82 @@
 module.exports = {
 
   /* ---------------------------------------------------------------
+     Grade 9 · Programming Principles and Concept in C Language
+
+     LESSON FILES CARRY THE `c-` PREFIX, reserved in the Phase 11
+     architecture plan and asserted by tests/curriculum.test.js.
+
+     The chip bar is where a student decides what to open, so each chip
+     names the SKILL rather than repeating the unit title that is
+     already in the badge beside it.
+
+     Every unit loads sim-crun.js. This subject's one new component is a
+     C program stepper, and it is not decoration: "what does this line do
+     to this variable" is the whole of the subject, and it is the
+     question a static listing cannot answer. See
+     docs/SIMULATION-ARCHITECTURE.md and the module's own header.
+     --------------------------------------------------------------- */
+  'grade9/c-programming': {
+    hero: 'c-hero',
+    pages: [
+      { file: 'unit1.html', n: '1',
+        title: 'Principles of Programming', np: 'प्रोग्रामिङका सिद्धान्त',
+        chip: 'What a program is', hrs: 6, marks: 5,
+        sec: ['c-u1'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                            'services/progress.js', 'practical.js'] },
+
+      { file: 'unit2.html', n: '2',
+        title: 'Fundamentals of C', np: 'सी भाषाका आधारभूत कुरा',
+        chip: 'Variables, types, operators', hrs: 10, marks: 7,
+        sec: ['c-u2'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                            'sim-crun.js', 'program-bank.js', 'services/progress.js', 'practical.js'] },
+
+      { file: 'unit3.html', n: '3',
+        title: 'Control Flow Statements', np: 'नियन्त्रण प्रवाह कथन',
+        chip: 'Choosing and repeating', hrs: 16, marks: 13,
+        /* guided.js before practice-bank.js: the bank is a list of
+           register() calls, so the registry has to exist first. */
+        sec: ['c-u3'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                            'sim-crun.js', 'program-bank.js', 'guided.js', 'practice-bank.js',
+                            'services/progress.js', 'practical.js'] },
+
+      { file: 'unit4.html', n: '4',
+        title: 'Functions', np: 'फङ्सन',
+        chip: 'Breaking a program up', hrs: 12, marks: 10,
+        sec: ['c-u4'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                            'sim-crun.js', 'program-bank.js', 'guided.js', 'practice-bank.js',
+                            'services/progress.js', 'practical.js'] },
+
+      { file: 'unit5.html', n: '5',
+        title: 'Arrays & Strings', np: 'एरे र स्ट्रिङ',
+        chip: 'Many values, one name', hrs: 10, marks: 8,
+        sec: ['c-u5'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                            'sim-crun.js', 'program-bank.js', 'guided.js', 'practice-bank.js',
+                            'services/progress.js', 'practical.js'] },
+
+      { file: 'unit6.html', n: '6',
+        title: 'Structure and Union', np: 'स्ट्रक्चर र युनियन',
+        chip: 'Records, and shared memory', hrs: 6, marks: 5,
+        sec: ['c-u6'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                            'sim-crun.js', 'program-bank.js', 'services/progress.js', 'practical.js'] },
+
+      { file: 'unit7.html', n: '7',
+        title: 'Pointers', np: 'पोइन्टर',
+        chip: 'Addresses, and what they unlock', hrs: 4, marks: 2,
+        sec: ['c-u7'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                            'sim-crun.js', 'program-bank.js', 'services/progress.js', 'practical.js'] },
+
+      { file: 'revise.html', n: '↻', title: 'Your Revision', np: 'तपाईंको दोहोर्‍याइ',
+        chip: 'Revision', sec: ['revise'],
+        js: ['services/progress.js', 'services/revision.js', 'learning-map.js', 'revise.js'] },
+
+      { file: 'quiz.html', n: '?', title: 'Self-Check Quiz', np: 'आफैं जाँच्ने क्विज',
+        chip: 'Quiz', sec: ['c-quiz'],
+        js: ['services/quiz.js', 'question-bank.js', 'quiz.js'] }
+    ]
+  },
+
+  /* ---------------------------------------------------------------
      Grade 9 · Fundamentals of Computer and Application
 
      The first Grade 9 subject with authored lessons. Unit 1 only —
@@ -42,6 +118,42 @@ module.exports = {
         chip: 'What a computer is', hrs: 8, marks: 6,
         sec: ['cf-u1'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
                              'services/progress.js', 'practical.js'] },
+
+      { file: 'unit2.html', n: '2',
+        title: 'Computer Components', np: 'कम्प्युटरका भागहरू',
+        chip: 'The parts and what each does', hrs: 10, marks: 7,
+        sec: ['cf-u2'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                             'sim-parts.js', 'services/progress.js', 'practical.js'] },
+
+      { file: 'unit3.html', n: '3',
+        title: 'Computer Software', np: 'कम्प्युटर सफ्टवेयर',
+        chip: 'Software and the operating system', hrs: 10, marks: 9,
+        sec: ['cf-u3'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                             'services/progress.js', 'practical.js'] },
+
+      { file: 'unit4.html', n: '4',
+        title: 'Memory / Storage Unit', np: 'मेमोरी / भण्डारण एकाइ',
+        chip: 'Memory, and why RAM forgets', hrs: 10, marks: 8,
+        sec: ['cf-u4'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                             'services/progress.js', 'practical.js'] },
+
+      { file: 'unit5.html', n: '5',
+        title: 'Internet and its Application', np: 'इन्टरनेट र यसको प्रयोग',
+        chip: 'The Internet and its services', hrs: 10, marks: 8,
+        sec: ['cf-u5'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                             'services/progress.js', 'practical.js'] },
+
+      { file: 'unit6.html', n: '6',
+        title: 'Multimedia', np: 'मल्टिमिडिया',
+        chip: 'Five media, used together', hrs: 8, marks: 6,
+        sec: ['cf-u6'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                             'services/progress.js', 'practical.js'] },
+
+      { file: 'unit7.html', n: '7',
+        title: 'Emerging Technology', np: 'उदीयमान प्रविधि',
+        chip: 'AI, cloud, IoT and the rest', hrs: 8, marks: 6,
+        sec: ['cf-u7'], js: ['services/simulation.js', 'predict.js', 'sim-drill.js',
+                             'sim-cipher.js', 'services/progress.js', 'practical.js'] },
 
       { file: 'revise.html', n: '↻', title: 'Your Revision', np: 'तपाईंको दोहोर्‍याइ',
         chip: 'Revision', sec: ['revise'],

@@ -1,0 +1,777 @@
+<section id="c-u4">
+  <div class="sec-head">
+    <div class="sec-num">4</div>
+    <div>
+      <h2>Functions</h2>
+      <p class="sec-sub">फङ्सन</p>
+    </div>
+    <span class="marks">12 hrs · 10 marks · 15 practical hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Say what a function is and why a program is divided into them.</li>
+      <li>Write a declaration, a definition and a call, and say which is which from the punctuation.</li>
+      <li>Tell a library function from a user-defined one, and name the header each library function needs.</li>
+      <li>Explain call by value and call by reference, and predict whether the caller's variable changes.</li>
+      <li>Trace a recursive function and name its base case.</li>
+      <li>List the advantages of using functions, with a reason for each.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: function भनेको के हो र प्रोग्रामलाई किन यिनमा बाँडिन्छ
+    भन्न, declaration, definition र call लेख्न अनि चिन्ह हेरेर कुन हो भन्न, library र user-defined
+    function छुट्याउन र हरेक library function लाई कुन header चाहिन्छ भन्न, call by value र call by
+    reference बुझाउन र बोलाउनेको variable बदलिन्छ कि बदलिँदैन अनुमान गर्न, recursive function
+    ट्रेस गरेर यसको base case नाम लिन, र function प्रयोग गर्नुका फाइदा कारणसहित भन्न
+    सक्नुहुनेछ।</span>
+  </div>
+
+  <!-- ============ 4.1 ============ -->
+  <h3 class="topic" id="c-t41">4.1 &nbsp;<span class="t-en">What a function is</span><span class="t-ne"> — Function भनेको के हो</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">A named block of code that does one job</span>
+      <p>A <b>function</b> is a named, self-contained block of statements that performs a
+      particular task and can be called from anywhere in the program.</p>
+      <p>You have been using one since Unit 2 without naming it: <code>main()</code> is a
+      function, and so are <code>printf</code> and <code>scanf</code>. A C program is <b>nothing
+      but functions</b> — which is why C is called a structured language.</p>
+      <p>Three words the examination separates carefully:</p>
+      <ul>
+        <li>an <b>argument</b> is the value you send at the call — <code>larger(a, b)</code>;</li>
+        <li>a <b>parameter</b> is the variable that receives it — <code>int x, int y</code>;</li>
+        <li>the <b>return value</b> is the single answer sent back.</li>
+      </ul>
+      <p>A function takes <b>any number of arguments</b> and returns <b>at most one value</b>.
+      That asymmetry is not an accident of syntax — it is the reason 4.4 exists.</p>
+    </div>
+    <div class="np"><span class="tag">एउटा काम गर्ने, नाम भएको कोडको खण्ड</span>
+      <p><b>Function</b> भनेको नाम भएको, आफैंमा पूरा statement को खण्ड हो, जसले कुनै निश्चित काम
+      गर्छ र प्रोग्रामको जहाँबाट पनि बोलाउन सकिन्छ।</p>
+      <p>युनिट २ देखि नै तपाईंले नाम नलिई यो चलाइरहनुभएको छ: <code>main()</code> function हो, र
+      <code>printf</code> अनि <code>scanf</code> पनि। C प्रोग्राम <b>function बाहेक केही
+      होइन</b> — त्यसैले C लाई structured भाषा भनिन्छ।</p>
+      <p>परीक्षाले ध्यान दिएर छुट्याउने तीन शब्द:</p>
+      <ul>
+        <li><b>argument</b> भनेको call मा पठाइने मान — <code>larger(a, b)</code>;</li>
+        <li><b>parameter</b> भनेको त्यो पाउने variable — <code>int x, int y</code>;</li>
+        <li><b>return value</b> भनेको फर्काइने एउटै उत्तर।</li>
+      </ul>
+      <p>Function ले <b>जति पनि argument</b> लिन्छ र <b>बढीमा एउटा मान</b> फर्काउँछ। यो असमानता
+      syntax को संयोग होइन — ४.४ हुनुको कारण त्यही हो।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:cFunctionCall}}
+    <figcaption>Where the program is while a function runs. main stops at the call and waits; the
+    returned value arrives back at the same line it left from.
+    <span class="np-cell">Function चल्दै गर्दा प्रोग्राम कहाँ हुन्छ। main call मा रोकिएर पर्खन्छ;
+    फर्केको मान जहाँबाट गएको थियो त्यही लाइनमै आइपुग्छ।</span></figcaption>
+  </figure>
+
+  <!-- ============ 4.2 ============ -->
+  <h3 class="topic" id="c-t42">4.2 &nbsp;<span class="t-en">Declaration, definition and calling</span><span class="t-ne"> — घोषणा, परिभाषा र call</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">One function, three appearances</span>
+      <p><b>Declaration (prototype)</b> — tells the compiler the function's name, what it returns
+      and what it takes, so a call can be checked before the body is read. It ends with a
+      <b>semicolon</b> and is written above <code>main</code>.</p>
+      <p><b>Definition</b> — the same heading with the body in braces. This is where the work is.
+      There is <b>no semicolon</b> after the closing brace.</p>
+      <p><b>Call</b> — the name with real values in the brackets, inside another function. This is
+      the only one of the three that makes anything happen.</p>
+      <p>If the definition is written <i>above</i> <code>main</code>, the declaration may be left
+      out — the definition has already told the compiler everything. Writing the prototype anyway
+      is the habit to form, because real programs put definitions in a different file.</p>
+    </div>
+    <div class="np"><span class="tag">एउटै function, तीन पटक देखिने</span>
+      <p><b>Declaration (prototype)</b> — compiler लाई function को नाम, के फर्काउँछ र के लिन्छ
+      भन्छ, ताकि body पढ्नुअघि नै call जाँच्न सकियोस्। यो <b>semicolon</b> ले सकिन्छ र
+      <code>main</code> माथि लेखिन्छ।</p>
+      <p><b>Definition</b> — उही शीर्षक र brace भित्र body। काम यहीँ हुन्छ। बन्द गर्ने brace पछि
+      <b>semicolon हुँदैन</b>।</p>
+      <p><b>Call</b> — अर्को function भित्र, कोष्ठकमा वास्तविक मान राखेर नाम लेख्नु। तीनमध्ये
+      केही गराउने एकमात्र यही हो।</p>
+      <p>Definition <code>main</code> <i>माथि</i> लेखिएको छ भने declaration छाड्न मिल्छ —
+      definition ले compiler लाई सबै भनिसक्यो। तैपनि prototype लेख्ने बानी बसाल्नुहोस्, किनभने
+      वास्तविक प्रोग्राममा definition अर्कै फाइलमा हुन्छ।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> All three, in one program</div>
+    <p><b>Question:</b> write a program that uses a function to find the larger of two numbers,
+    and label the declaration, the definition and the call.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Decide what the function should RETURN before you
+      open this — the larger number, or nothing at all with the printing done inside? Both work;
+      only one of them can be reused.</span>
+      <span class="np-cell">खोल्नुअघि function ले के RETURN गर्नुपर्छ निर्णय गर्नुहोस् — ठूलो
+      सङ्ख्या, कि भित्रै छापेर केही पनि होइन? दुवै चल्छन्; फेरि प्रयोग गर्न मिल्ने चाहिँ एउटै
+      हो।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int larger(int x, int y);        /* 1. DECLARATION — note the semicolon */
+
+int main()
+{
+    int a, b, big;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;a, &amp;b);
+
+    big = larger(a, b);          /* 3. CALL — a and b are the ARGUMENTS */
+
+    printf("Larger = %d", big);
+    return 0;
+}
+
+int larger(int x, int y)         /* 2. DEFINITION — no semicolon here  */
+{
+    if (x &gt; y)
+        return x;
+    return y;                    /* reached only when x is not larger  */
+}</pre>
+      <span class="wex-lbl">Output (if the user types 12 and 8)</span>
+      <pre class="out">Enter two numbers: 12 8
+Larger = 12</pre>
+      <p class="wex-note">Returning the value rather than printing inside the function is what
+      makes <code>larger</code> reusable: the caller decides whether to print it, store it or
+      compare it again. Note also that the second <code>return</code> needs no
+      <code>else</code> — if the first one runs, the function has already ended.
+      <span class="np-cell">Function भित्रै नछापी मान return गर्नुले <code>larger</code> लाई
+      पुनःप्रयोगयोग्य बनाउँछ: छाप्ने, राख्ने कि फेरि तुलना गर्ने भन्ने बोलाउनेले निर्णय गर्छ।
+      अर्को कुरा — दोस्रो <code>return</code> लाई <code>else</code> चाहिँदैन; पहिलो चल्यो भने
+      function त्यहीँ सकिइसक्यो।</span></p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Declaration, definition or call?</h4>
+      <p class="sim-goal">What you will learn: to name the three appearances of a function from
+      the line alone. The punctuation at the end decides it — a semicolon, a brace, or a result
+      being used.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: लाइन मात्र हेरेर function का तीन रूप नाम लिन।
+      अन्त्यको चिन्हले निर्णय गर्छ — semicolon, brace, कि नतिजा प्रयोग भएको।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cfnp" data-set="cfuncpart"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Read the end of the line first. Semicolon after the brackets means a prototype; an
+        opening brace means the definition; real values inside the brackets mean a call.</p>
+        <span class="np-cell">पहिले लाइनको अन्त्य पढ्नुहोस्। कोष्ठकपछि semicolon भए prototype;
+        खुल्ने brace भए definition; कोष्ठकभित्र वास्तविक मान भए call।</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 4.3 ============ -->
+  <h3 class="topic" id="c-t43">4.3 &nbsp;<span class="t-en">Types of function — library and user-defined</span><span class="t-ne"> — Function का प्रकार — library र user-defined</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Written for you, or written by you</span>
+      <p>A <b>library function</b> comes with the compiler, already written and already compiled.
+      You do not define it; you include its header and call it.
+      <code>printf</code> and <code>scanf</code> need <code>stdio.h</code>;
+      <code>strlen</code> and <code>strcpy</code> need <code>string.h</code>;
+      <code>sqrt</code> and <code>pow</code> need <code>math.h</code>.</p>
+      <p>A <b>user-defined function</b> is one you write yourself, because no library function
+      does your particular job — <code>larger</code> above, or a function that computes a
+      student's division from their marks.</p>
+      <p>By what crosses the boundary, a user-defined function is one of four shapes, and the
+      examination sometimes asks for all four:</p>
+      <ul>
+        <li>no arguments, no return value — <code>void greet(void)</code></li>
+        <li>arguments, no return value — <code>void show(int n)</code></li>
+        <li>no arguments, a return value — <code>int readNumber(void)</code></li>
+        <li>arguments and a return value — <code>int larger(int x, int y)</code></li>
+      </ul>
+      <p><b><code>void</code></b> means "nothing here". In front of the name it says no value
+      comes back; inside the brackets it says no argument goes in.</p>
+    </div>
+    <div class="np"><span class="tag">तपाईंका लागि लेखिएको, कि तपाईंले लेखेको</span>
+      <p><b>Library function</b> compiler सँगै आउँछ — पहिल्यै लेखिएको र compile भइसकेको।
+      तपाईंले define गर्नुहुन्न; यसको header include गरेर बोलाउनुहुन्छ।
+      <code>printf</code> र <code>scanf</code> लाई <code>stdio.h</code>;
+      <code>strlen</code> र <code>strcpy</code> लाई <code>string.h</code>;
+      <code>sqrt</code> र <code>pow</code> लाई <code>math.h</code> चाहिन्छ।</p>
+      <p><b>User-defined function</b> भनेको तपाईं आफैंले लेख्ने हो, किनभने तपाईंको त्यो विशेष
+      काम कुनै library function ले गर्दैन — माथिको <code>larger</code>, वा अंकबाट विद्यार्थीको
+      श्रेणी निकाल्ने function।</p>
+      <p>सिमाना के–के नाघ्छ भन्ने आधारमा user-defined function चार आकारमध्ये एक हुन्छ, र परीक्षाले
+      कहिलेकाहीं चारै सोध्छ:</p>
+      <ul>
+        <li>argument छैन, return पनि छैन — <code>void greet(void)</code></li>
+        <li>argument छ, return छैन — <code>void show(int n)</code></li>
+        <li>argument छैन, return छ — <code>int readNumber(void)</code></li>
+        <li>argument पनि छ, return पनि — <code>int larger(int x, int y)</code></li>
+      </ul>
+      <p><b><code>void</code></b> को अर्थ "यहाँ केही छैन" हो। नाम अगाडि भए कुनै मान फर्कंदैन भन्छ;
+      कोष्ठकभित्र भए कुनै argument जाँदैन भन्छ।</p>
+    </div>
+  </div>
+
+  <!-- ============ 4.4 ============ -->
+  <h3 class="topic" id="c-t44">4.4 &nbsp;<span class="t-en">Call by value and call by reference</span><span class="t-ne"> — Call by value र call by reference</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The most-asked question in this unit</span>
+      <p>In <b>call by value</b>, a <b>copy</b> of each argument is made and handed to the
+      function. The function works on the copies, so <b>the caller's variables cannot change</b>.
+      This is what C does by default, and it is safe: a function cannot damage something it was
+      only shown.</p>
+      <p>In <b>call by reference</b>, the <b>address</b> of each argument is sent instead, using
+      <code>&amp;</code> at the call and <code>*</code> in the parameter list. The function can
+      then reach back into the caller's memory, so <b>the originals do change</b>.</p>
+      <p>Strictly, C has only call by value — what is copied in the second case is the address,
+      not the variable. The effect is call by reference and that is the name the syllabus and the
+      examination use, so use it; but knowing that a pointer is itself passed by value is what
+      makes the mechanism make sense rather than being a rule.</p>
+      <p><b>Why bother?</b> A function returns at most one value. A function that must change two
+      variables — a swap — has no other way.</p>
+    </div>
+    <div class="np"><span class="tag">यस युनिटको सबैभन्दा धेरै सोधिने प्रश्न</span>
+      <p><b>Call by value</b> मा हरेक argument को <b>प्रतिलिपि</b> बनाएर function लाई दिइन्छ।
+      Function ले प्रतिलिपिमै काम गर्छ, त्यसैले <b>बोलाउनेका variable बदलिन सक्दैनन्</b>।
+      C ले पूर्वनिर्धारित रूपमा यही गर्छ, र यो सुरक्षित छ: देखाइएको मात्र कुरालाई function ले
+      बिगार्न सक्दैन।</p>
+      <p><b>Call by reference</b> मा हरेक argument को <b>ठेगाना</b> पठाइन्छ — call मा
+      <code>&amp;</code> र parameter सूचीमा <code>*</code> लेखेर। अनि function ले बोलाउनेको
+      मेमोरीसम्म पुग्न सक्छ, त्यसैले <b>मूल variable बदलिन्छन्</b>।</p>
+      <p>कडा अर्थमा C सँग call by value मात्र छ — दोस्रो अवस्थामा प्रतिलिपि बन्ने कुरा ठेगाना हो,
+      variable होइन। असर चाहिँ call by reference कै हो र पाठ्यक्रम अनि परीक्षाले त्यही नाम
+      चलाउँछन्, त्यसैले तपाईं पनि त्यही लेख्नुहोस्; तर pointer आफैं value बाट पठाइन्छ भन्ने
+      थाहा पाउनुले यो नियम होइन, व्यवस्था हो भन्ने बुझाउँछ।</p>
+      <p><b>किन चाहियो?</b> Function ले बढीमा एउटा मान फर्काउँछ। दुई variable बदल्नुपर्ने
+      function — swap — सँग अर्को उपाय छैन।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:cValueVsRef}}
+    <figcaption>The same swap twice. On the left the function owns two copies at different
+    addresses; on the right it owns two addresses that point back into main.
+    <span class="np-cell">उही swap, दुई पटक। बायाँपट्टि function सँग फरक ठेगानाका दुई प्रतिलिपि
+    छन्; दायाँपट्टि main तिरै देखाउने दुई ठेगाना छन्।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h4>The swap that does nothing</h4>
+      <p class="sim-goal">What you will learn: that a correct-looking swap can run perfectly and
+      change nothing outside itself. Keep your eye on the two main rows while the two swap rows
+      do their work.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: ठिकै देखिने swap पूरै सफलतापूर्वक चलेर पनि
+      आफूबाहिर केही नबदल्न सक्छ। swap का दुई पङ्क्तिले काम गर्दा main का दुई पङ्क्तिमा नजर
+      राख्नुहोस्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="swapValue"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Before the last step, predict what the printf will show. The surprise is that
+        everything inside the function was correct.</p>
+        <span class="np-cell">अन्तिम चरणअघि printf ले के देखाउँछ अनुमान गर्नुहोस्। अचम्म यही हो
+        — function भित्रको सबै कुरा ठिकै थियो।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h4>The same swap, with two ampersands</h4>
+      <p class="sim-goal">What you will learn: exactly which step changes main's variable, and
+      that nothing is returned at all. Compare it against the program above — only two characters
+      differ.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: कुन चरणले ठ्याक्कै main को variable बदल्छ, र
+      केही पनि return हुँदैन भन्ने कुरा। माथिको प्रोग्रामसँग तुलना गर्नुहोस् — फरक दुई अक्षरको
+      मात्र छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="swapRef"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Watch the row for a in main. It changes on a line written inside <code>swap</code>,
+        which is the whole idea, and it is the moment worth pausing on.</p>
+        <span class="np-cell">main को a को पङ्क्ति हेर्नुहोस्। <code>swap</code> भित्र लेखिएको
+        लाइनले त्यो बदल्छ — पूरै विचार त्यही हो, र रोकिएर हेर्नुपर्ने क्षण पनि त्यही।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Call by value or call by reference?</h4>
+      <p class="sim-goal">What you will learn: to answer the real question, which is never what
+      the function prints but whether the caller's variable survived unchanged.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: साँचो प्रश्नको उत्तर दिन — function ले के
+      छाप्यो भन्ने होइन, बोलाउनेको variable जस्ताको तस्तै रह्यो कि रहेन भन्ने।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-ccall" data-set="ccallby"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Look for two things together: an <code>&amp;</code> at the call and a <code>*</code> in
+        the parameter list. One without the other is not call by reference. Arrays are the one
+        exception — the name is already an address.</p>
+        <span class="np-cell">दुई कुरा सँगै खोज्नुहोस्: call मा <code>&amp;</code> र parameter
+        सूचीमा <code>*</code>। एउटा मात्र भए त्यो call by reference होइन। Array एक मात्र अपवाद
+        हो — नाम आफैं ठेगाना हो।</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 4.5 ============ -->
+  <h3 class="topic" id="c-t45">4.5 &nbsp;<span class="t-en">Recursive functions</span><span class="t-ne"> — Recursive function</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">A function that calls itself, and the line that stops it</span>
+      <p>A <b>recursive function</b> is one that calls itself, directly or through another
+      function. It is used where a problem is naturally defined in terms of a smaller version of
+      itself: 4! is 4 × 3!, and 3! is 3 × 2!, and so on.</p>
+      <p>Every recursive function needs two parts, and leaving out the first is the classic
+      error:</p>
+      <ul>
+        <li>a <b>base case</b> — a condition under which it returns an answer <b>without</b>
+        calling itself. For factorial that is <code>if (n == 1) return 1;</code></li>
+        <li>a <b>recursive case</b> — the call to itself, with an argument moving <i>towards</i>
+        the base case.</li>
+      </ul>
+      <p>Without a base case the calls never stop. The program does not loop forever quietly: each
+      call takes memory on the <b>stack</b>, the stack fills, and the program crashes with a stack
+      overflow.</p>
+      <p><b>Recursion versus a loop.</b> Anything recursion can do, a loop can do. Recursion is
+      often shorter and closer to the mathematical definition; a loop uses less memory, because it
+      does not stack up unfinished calls. For factorial a loop is the better program and recursion
+      is the better illustration, which is why the curriculum asks for it.</p>
+    </div>
+    <div class="np"><span class="tag">आफैंलाई बोलाउने function, र त्यसलाई रोक्ने लाइन</span>
+      <p><b>Recursive function</b> भनेको सिधै वा अर्को function मार्फत आफैंलाई बोलाउने function
+      हो। समस्या आफैंको सानो रूपमा परिभाषित हुने ठाउँमा यो चलाइन्छ: 4! भनेको 4 × 3! हो, र 3!
+      भनेको 3 × 2!, यसरी नै।</p>
+      <p>हरेक recursive function लाई दुई भाग चाहिन्छ, र पहिलो छुटाउनु नै उत्कृष्ट गल्ती हो:</p>
+      <ul>
+        <li><b>base case</b> — जुन सर्तमा आफैंलाई <b>नबोलाई</b> उत्तर फर्काउँछ। Factorial मा
+        <code>if (n == 1) return 1;</code></li>
+        <li><b>recursive case</b> — आफैंलाई बोलाउने, र argument base case <i>तिर</i> सर्दै
+        जाने।</li>
+      </ul>
+      <p>Base case नभए call कहिल्यै रोकिँदैनन्। प्रोग्राम चुपचाप सधैं चलिरहने होइन: हरेक call ले
+      <b>stack</b> मा मेमोरी लिन्छ, stack भरिन्छ, र प्रोग्राम stack overflow भएर crash हुन्छ।</p>
+      <p><b>Recursion कि loop।</b> Recursion ले गर्न सक्ने सबै loop ले पनि गर्छ। Recursion प्रायः
+      छोटो र गणितीय परिभाषासँग नजिक हुन्छ; loop ले कम मेमोरी खान्छ, किनभने अधुरा call थुपार्दैन।
+      Factorial का लागि loop राम्रो प्रोग्राम हो र recursion राम्रो उदाहरण — त्यसैले पाठ्यक्रमले
+      यो माग्छ।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h4>Four calls down, four returns back</h4>
+      <p class="sim-goal">What you will learn: that every multiplication happens on the way back
+      up, not on the way down, and that four unfinished calls exist at once. The call stack panel
+      is the point of this one.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: हरेक गुणन तल जाँदा होइन फर्कंदा हुन्छ, र
+      एकैचोटि चार अधुरा call हुन्छन्। यसको मुख्य कुरा call stack को प्यानल नै हो।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="factorialRec"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Watch the call stack grow to four and then empty. Ask at each step: has any
+        multiplication happened yet? The answer is no until the base case returns.</p>
+        <span class="np-cell">Call stack चारसम्म बढेर अनि खाली भएको हेर्नुहोस्। हरेक चरणमा
+        सोध्नुहोस्: कुनै गुणन भयो? Base case नफर्कंदासम्म जवाफ होइन हुन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 4.6 ============ -->
+  <h3 class="topic" id="c-t46">4.6 &nbsp;<span class="t-en">Advantages of functions</span><span class="t-ne"> — Function का फाइदा</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Five reasons, each with the problem it solves</span>
+      <ul>
+        <li><b>Reusability</b> — written once, called many times from anywhere in the program.
+        Copying the same ten lines to four places means fixing a mistake in four places.</li>
+        <li><b>Smaller, readable programs</b> — a long <code>main</code> becomes a short list of
+        named steps, and the name is documentation that cannot go out of date.</li>
+        <li><b>Easier testing and debugging</b> — a fault is located in one function instead of
+        searched for across the whole file.</li>
+        <li><b>Division of work</b> — different people can write different functions at the same
+        time, agreeing only on the prototypes.</li>
+        <li><b>Abstraction</b> — the caller needs to know what a function does, not how. You use
+        <code>printf</code> daily and have never read it.</li>
+      </ul>
+      <p>The one cost worth naming: a call has a small overhead in time and stack memory. For
+      Grade 9 programs it is far too small to matter, and clarity wins every time.</p>
+    </div>
+    <div class="np"><span class="tag">पाँच कारण, हरेकसँग त्यसले समाधान गर्ने समस्या</span>
+      <ul>
+        <li><b>पुनःप्रयोग</b> — एक पटक लेखेर प्रोग्रामको जहाँबाट पनि धेरै पटक बोलाउन मिल्छ। उही
+        दस लाइन चार ठाउँमा सार्नु भनेको गल्ती चार ठाउँमा सच्याउनु हो।</li>
+        <li><b>सानो, पढ्न सजिलो प्रोग्राम</b> — लामो <code>main</code> नाम भएका चरणको छोटो सूची
+        बन्छ, र नाम आफैं कहिल्यै पुरानो नहुने documentation हो।</li>
+        <li><b>जाँच्न र सच्याउन सजिलो</b> — त्रुटि पूरै फाइलमा खोज्नुभन्दा एउटै function मा
+        भेटिन्छ।</li>
+        <li><b>कामको बाँडफाँट</b> — prototype मा मात्र सहमत भएर फरक मान्छेले फरक function एकैचोटि
+        लेख्न सक्छन्।</li>
+        <li><b>Abstraction</b> — बोलाउनेलाई function ले के गर्छ थाहा हुनुपर्छ, कसरी गर्छ होइन।
+        तपाईं दिनहुँ <code>printf</code> चलाउनुहुन्छ र कहिल्यै पढ्नुभएको छैन।</li>
+      </ul>
+      <p>नाम लिनै पर्ने एउटा लागत: हरेक call ले समय र stack मेमोरीमा सानो भार थप्छ। कक्षा ९ का
+      प्रोग्रामका लागि त्यो नगण्य छ, र स्पष्टता सधैं जित्छ।</p>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="c">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>A function must give back BOTH the quotient and the remainder of a division. How can it?
+      <span class="np-cell">कुनै function ले भागफल र शेष दुवै फर्काउनुपर्छ। कसरी सक्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Write return q, r; — C returns both values</button>
+      <button class="predict-opt" data-value="b">Call the function twice, once for each answer</button>
+      <button class="predict-opt" data-value="c">Return one and send the other out through a pointer parameter</button>
+    </div>
+    <div class="predict-feedback">
+      <p><b>One comes back through return; the other is written through a pointer.</b>
+      <code>int divide(int a, int b, int *rem) { *rem = a % b; return a / b; }</code> called as
+      <code>q = divide(17, 5, &amp;r);</code> leaves q as 3 and r as 2.</p>
+      <p>Option A is not C. <code>return q, r;</code> compiles — the comma operator evaluates q,
+      throws it away, and returns r — so the function silently returns only the remainder. A
+      wrong answer that compiles is worse than one that does not.</p>
+      <p>Option B works and does the division twice. On this scale that costs nothing; the reason
+      to prefer option C is that the two answers come from one calculation and should leave
+      together.</p>
+      <p>This is why call by reference exists. "A function returns at most one value" is not a
+      limitation you work around — it is the fact that makes pointers necessary.</p>
+      <span class="np-cell"><b>एउटा return ले फर्कन्छ; अर्को pointer मार्फत लेखिन्छ।</b>
+      <code>int divide(int a, int b, int *rem) { *rem = a % b; return a / b; }</code> लाई
+      <code>q = divide(17, 5, &amp;r);</code> ले बोलाउँदा q ३ र r २ हुन्छ। विकल्प (क) C होइन।
+      <code>return q, r;</code> compile त हुन्छ — comma operator ले q मूल्याङ्कन गरेर फाल्छ र
+      r फर्काउँछ — त्यसैले function ले चुपचाप शेष मात्र फर्काउँछ। Compile हुने गलत उत्तर नहुने
+      भन्दा नराम्रो हो। विकल्प (ख) चल्छ तर भाग दुई पटक गर्छ; यति सानो कुरामा लागत छैन, तर (ग)
+      रोज्नुको कारण दुवै उत्तर एउटै गणनाबाट आउँछन् र सँगै निस्कनुपर्छ भन्ने हो। Call by
+      reference हुनुको कारण यही हो। "Function ले बढीमा एउटा मान फर्काउँछ" भन्ने कुरा पन्छाउने
+      बाधा होइन — pointer लाई अनिवार्य बनाउने तथ्य त्यही हो।</span>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> One call, traced through both files of the program</div>
+    <p><b>Question:</b> state the output, and say how many times <code>main</code> is suspended.</p>
+    <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int square(int n)
+{
+    printf("in square, n = %d\n", n);
+    return n * n;
+}
+
+int main()
+{
+    int r;
+    printf("before\n");
+    r = square(4);
+    printf("after, r = %d\n", r);
+    return 0;
+}</pre>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Write the three output lines in the order they
+      appear. The question is not what square does — it is where main is while square is
+      running.</span>
+      <span class="np-cell">तीन output लाइन देखिने क्रममा लेख्नुहोस्। प्रश्न square ले के गर्छ
+      भन्ने होइन — square चल्दै गर्दा main कहाँ हुन्छ भन्ने हो।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">main starts
+  prints   before
+  reaches  r = square(4)
+  SUSPENDS here, and waits
+
+square starts, n is a new variable holding 4
+  prints   in square, n = 4
+  returns  16
+
+main RESUMES at the same line
+  stores   16 into r
+  prints   after, r = 16
+  returns  0</div>
+      <span class="wex-lbl">Output</span>
+      <pre class="out">before
+in square, n = 4
+after, r = 16</pre>
+      <p class="wex-note">main is suspended exactly once, and the line <code>r = square(4);</code>
+      is not finished until the return arrives — the assignment happens <i>after</i> the function
+      has ended, not before it starts. That ordering is what "a call is a round trip" means, and
+      it is why "after" cannot be printed in the middle.
+      <span class="np-cell">main ठ्याक्कै एक पटक रोकिन्छ, र <code>r = square(4);</code> लाइन
+      return नआएसम्म सकिँदैन — assignment function सकिए<i>पछि</i> हुन्छ, सुरु हुनुअघि होइन।
+      "Call भनेको आउने–जाने यात्रा हो" भन्नुको अर्थ त्यही क्रम हो, र "after" बीचमा छापिन
+      नसक्नुको कारण पनि त्यही।</span></p>
+    </div>
+  </div>
+
+  <p class="sim-kicker"><span class="t-en">Practise it — the help comes away</span><span class="t-ne"><span class="t-en"> · </span>अभ्यास गर्नुहोस् — सहयोग घट्दै जान्छ</span></p>
+  <div class="guided" data-skill="c.callby"></div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>A semicolon after the definition's closing brace.</b> A prototype takes one; a
+      definition does not.</li>
+      <li><b>Expecting a call-by-value function to change the caller's variable.</b> It cannot.
+      Look for <code>&amp;</code> and <code>*</code>.</li>
+      <li><b>Writing a recursive function with no base case.</b> It is not an infinite loop, it is
+      a crash.</li>
+      <li><b>Confusing argument with parameter.</b> Argument is at the call; parameter is in the
+      definition.</li>
+      <li><b>Returning two values.</b> A function returns at most one; use pointers for the
+      second.</li>
+      <li><b>Calling a library function without its header.</b> <code>sqrt</code> without
+      <code>math.h</code> is an error, not a warning you can ignore.</li>
+    </ul>
+    <span class="np-cell"><b>Definition को बन्द brace पछि semicolon:</b> prototype लाई चाहिन्छ,
+    definition लाई चाहिँदैन। <b>Call by value ले बोलाउनेको variable बदल्छ भन्ठान्नु:</b> सक्दैन;
+    <code>&amp;</code> र <code>*</code> खोज्नुहोस्। <b>Base case नभएको recursive function:</b>
+    यो अनन्त loop होइन, crash हो। <b>Argument र parameter मिसाउनु:</b> argument call मा,
+    parameter definition मा। <b>दुई मान return गर्न खोज्नु:</b> बढीमा एउटा; दोस्रोका लागि
+    pointer। <b>Header नराखी library function बोलाउनु:</b> <code>math.h</code> विनाको
+    <code>sqrt</code> बेवास्ता गर्न मिल्ने चेतावनी होइन, त्रुटि हो।</span>
+  </div>
+
+  <p class="hook"><span class="t-en"><b>Memory hook —</b> <i>Value sends a photocopy; reference
+    sends the address.</i> No ampersand, no change.</span>
+    <span class="np-cell"><b>सम्झने तरिका —</b> <i>Value ले फोटोकपी पठाउँछ; reference ले
+    ठेगाना।</i> Ampersand छैन भने बदलाव पनि छैन।</span></p>
+
+  <!-- ============ PRACTICAL ============ -->
+  <h3 class="topic" id="c-prac4"><span class="t-en">Practical work — this unit's other 15 hours</span><span class="t-ne"> — प्रयोगात्मक काम — यस युनिटका अरू १५ घण्टा</span></h3>
+
+  <div class="practical">
+    <div class="h"><span class="pr-kind">Guided practical</span>The two activities the curriculum suggests</div>
+    <p>From the curriculum's own list for Unit 4. <b>Neither can be done from this site</b> — both
+    need a C compiler on a real computer. The steppers above show what happens inside a call; they
+    compile nothing.
+    <span class="np-cell">पाठ्यक्रमकै युनिट ४ को सूचीबाट। <b>दुवै यस साइटबाट गर्न मिल्दैन</b> —
+    दुवैलाई साँच्चैको कम्प्युटरमा C compiler चाहिन्छ। माथिका stepper ले call भित्र के हुन्छ
+    देखाउँछन्; केही compile गर्दैनन्।</span></p>
+
+    <div class="pr-act" data-practical="g9.c.p4.1">
+      <p><span class="pr-num">4.1</span> Write programs using functions.</p>
+      <p class="pr-need"><b>You need:</b> a computer with a C compiler. <b>This cannot be
+      simulated</b> on this site. <b>Builds on:</b> 4.2, 4.3 and 4.4. <b>Hand in:</b> the source
+      files and your practical record. <b>Suggested set:</b> a function returning the larger of
+      two numbers; a <code>void</code> function that prints a line of stars; a function returning
+      the area of a circle; and a <code>swap</code> written <b>twice</b> — once by value and once
+      by reference. <b>Observe and record:</b> print a and b in <code>main</code> after each
+      version of the swap and write down both outputs. Having the two results side by side in
+      your own record book is worth more than any explanation of them.
+      <span class="np-cell"><b>चाहिन्छ:</b> C compiler भएको कम्प्युटर। <b>यो यहाँ simulate गर्न
+      मिल्दैन।</b> <b>आधार:</b> ४.२, ४.३ र ४.४। <b>बुझाउने:</b> source फाइल र प्रयोगात्मक
+      अभिलेख। <b>सुझाव:</b> दुई सङ्ख्यामध्ये ठूलो फर्काउने function; ताराको लाइन छाप्ने
+      <code>void</code> function; वृत्तको क्षेत्रफल फर्काउने function; अनि <code>swap</code>
+      <b>दुई पटक</b> — एक पटक value बाट, एक पटक reference बाट। <b>ध्यान दिएर लेख्ने:</b> हरेक
+      swap पछि <code>main</code> मा a र b छापेर दुवै output लेख्नुहोस्। आफ्नै अभिलेख पुस्तिकामा
+      दुई नतिजा छेउछाउ हुनु तिनको जुनसुकै व्याख्याभन्दा बढी काम लाग्छ।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.c.p4.2">
+      <p><span class="pr-num">4.2</span> Write a simple program to familiarise recursive
+      functions.</p>
+      <p class="pr-need"><b>You need:</b> a computer with a C compiler. <b>This cannot be
+      simulated</b> on this site. <b>Builds on:</b> 4.5. <b>Hand in:</b> the source file and your
+      practical record. <b>Suggested set:</b> factorial of a number; sum of the first n natural
+      numbers; the n-th Fibonacci number. <b>Then do this on purpose:</b> delete the base case
+      from your factorial program, run it, and record what happens. It will not hang quietly — it
+      will stop with a crash, and knowing which failure a missing base case produces is the point
+      of the activity.
+      <span class="np-cell"><b>चाहिन्छ:</b> C compiler भएको कम्प्युटर। <b>यो यहाँ simulate गर्न
+      मिल्दैन।</b> <b>आधार:</b> ४.५। <b>बुझाउने:</b> source फाइल र प्रयोगात्मक अभिलेख।
+      <b>सुझाव:</b> सङ्ख्याको factorial; पहिलो n प्राकृतिक सङ्ख्याको जोड; n-औं Fibonacci सङ्ख्या।
+      <b>अनि जानीजानी यो गर्नुहोस्:</b> आफ्नो factorial प्रोग्रामबाट base case हटाएर चलाउनुहोस्
+      र के हुन्छ लेख्नुहोस्। यो चुपचाप अड्किँदैन — crash भएर रोकिन्छ, र base case छुट्दा कुन
+      किसिमको असफलता आउँछ थाहा पाउनु नै क्रियाकलापको उद्देश्य हो।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ EXAM FOCUS ============ -->
+  <h3 class="topic" id="c-exam4"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne"> — परीक्षा केन्द्र — यस युनिटबाट के सोधिन्छ</span></h3>
+
+  <div class="exam-connect">
+    <p>This unit carries <b>10 of the 50 external marks</b> and 12 of the 64 theory hours. The
+    long question is almost always call by value against call by reference, with a swap program to
+    write or trace. Shorter questions ask for the advantages of functions, the difference between
+    a library and a user-defined function, the parts of a function, or what recursion is and what
+    its base case is for.
+    <span class="np-cell">यो युनिटले <b>बाह्य ५० मध्ये १० अंक</b> र ६४ मध्ये १२ घण्टा ओगट्छ।
+    लामो प्रश्न झन्डै सधैं call by value र call by reference कै हुन्छ, र swap प्रोग्राम लेख्न वा
+    ट्रेस गर्न भनिन्छ। छोटा प्रश्नले function का फाइदा, library र user-defined function को फरक,
+    function का भाग, वा recursion भनेको के र base case किन चाहिन्छ सोध्छन्।</span></p>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>What is a function? Write any two advantages of using functions.
+    <span class="np-cell">Function भनेको के हो? Function प्रयोग गर्नुका कुनै दुई फाइदा
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca41">Show the answer</button>
+    <div class="ans" id="ca41">
+      <p>A <b>function</b> is a named, self-contained block of statements that performs a specific
+      task and can be called from anywhere in the program. It may take arguments and returns at
+      most one value.</p>
+      <p>Advantages (any two): <b>reusability</b> — written once and called many times;
+      <b>readability</b> — a long program becomes a short list of named steps;
+      <b>easier debugging</b> — a fault is isolated to one function; <b>division of work</b> —
+      several people can write different functions at once.</p>
+      <span class="np-cell"><b>Function</b> भनेको नाम भएको, आफैंमा पूरा statement को खण्ड हो, जसले
+      निश्चित काम गर्छ र प्रोग्रामको जहाँबाट पनि बोलाउन सकिन्छ। यसले argument लिन सक्छ र बढीमा
+      एउटा मान फर्काउँछ। फाइदा (कुनै दुई): <b>पुनःप्रयोग</b>, <b>पढ्न सजिलो</b>,
+      <b>सच्याउन सजिलो</b>, <b>कामको बाँडफाँट</b>।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>Write a C program to find the factorial of a number using a recursive function.
+    <span class="np-cell">Recursive function प्रयोग गरेर सङ्ख्याको factorial निकाल्ने C प्रोग्राम
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca42">Show the answer</button>
+    <div class="ans" id="ca42">
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int fact(int n);
+
+int main()
+{
+    int n;
+
+    printf("Enter a number: ");
+    scanf("%d", &amp;n);
+
+    printf("Factorial = %d", fact(n));
+    return 0;
+}
+
+int fact(int n)
+{
+    if (n == 1 || n == 0)       /* base case */
+        return 1;
+    return n * fact(n - 1);     /* recursive case */
+}</pre>
+      <p>Marks: the base case, the recursive call with <code>n - 1</code> moving towards it, and a
+      correct prototype. Including <code>n == 0</code> is worth a mark of its own, because 0! is
+      defined as 1 and a base case of <code>n == 1</code> alone would recurse forever on an input
+      of 0.</p>
+      <span class="np-cell">अंक: base case, base case तिर सर्ने <code>n - 1</code> सहितको
+      recursive call, र सही prototype। <code>n == 0</code> समेट्नुको आफ्नै अंक छ, किनभने 0! लाई
+      १ मानिन्छ र <code>n == 1</code> मात्रको base case भए input ० मा सधैं recurse
+      भइरहन्थ्यो।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">8 marks</span> Practice question</div>
+    <p>Differentiate between call by value and call by reference with a suitable program for each.
+    <span class="np-cell">Call by value र call by reference को फरक, हरेकको उपयुक्त प्रोग्रामसहित
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca43">Show the answer</button>
+    <div class="ans" id="ca43">
+      <p><b>Call by value:</b> a copy of each argument is passed. The function works on the
+      copies, so the caller's variables are unchanged. It is the default in C and it is safe.</p>
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+void swap(int x, int y)
+{
+    int t = x;
+    x = y;
+    y = t;
+}
+
+int main()
+{
+    int a = 5, b = 9;
+    swap(a, b);
+    printf("a = %d, b = %d", a, b);   /* a = 5, b = 9 */
+    return 0;
+}</pre>
+      <p><b>Call by reference:</b> the address of each argument is passed, with <code>&amp;</code>
+      at the call and <code>*</code> in the parameter list. The function reaches the caller's
+      memory, so the originals change.</p>
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+void swap(int *x, int *y)
+{
+    int t = *x;
+    *x = *y;
+    *y = t;
+}
+
+int main()
+{
+    int a = 5, b = 9;
+    swap(&amp;a, &amp;b);
+    printf("a = %d, b = %d", a, b);   /* a = 9, b = 5 */
+    return 0;
+}</pre>
+      <p><b>The differences, in a line each.</b> What is passed: a copy, against an address. What
+      the function can change: nothing outside itself, against the caller's variables. Memory: two
+      extra variables, against two pointers. Safety: cannot damage the caller, against can.
+      Use it when: the function only needs to read, against the function must change the caller's
+      data or return more than one answer.</p>
+      <span class="np-cell"><b>Call by value:</b> हरेक argument को प्रतिलिपि जान्छ; function
+      प्रतिलिपिमै काम गर्छ, त्यसैले बोलाउनेका variable नबदलिने। C मा पूर्वनिर्धारित र सुरक्षित।
+      <b>Call by reference:</b> ठेगाना जान्छ — call मा <code>&amp;</code>, parameter मा
+      <code>*</code>; function ले बोलाउनेको मेमोरीसम्म पुगेर मूल variable बदल्छ। <b>फरक:</b>
+      के पठाइन्छ — प्रतिलिपि कि ठेगाना। Function ले के बदल्न सक्छ — आफूबाहिर केही होइन, कि
+      बोलाउनेका variable। सुरक्षा — बिगार्न नसक्ने कि सक्ने। कहिले चलाउने — function ले पढ्ने
+      मात्र भए पहिलो, बोलाउनेको data बदल्नुपर्ने वा एकभन्दा बढी उत्तर चाहिने भए दोस्रो।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h4>Key points from this unit</h4>
+    <ul>
+      <li>A function is a named block doing one job; <code>main</code> is one, and so is
+      <code>printf</code>.</li>
+      <li>Declaration ends with a semicolon, definition has the body and no semicolon, a call
+      carries real values.</li>
+      <li>Argument is at the call; parameter is in the definition.</li>
+      <li>Library functions come with the compiler and need their header; user-defined functions
+      you write.</li>
+      <li>Call by value copies — the caller cannot change. Call by reference sends the address
+      with <code>&amp;</code> and <code>*</code> — the caller does change.</li>
+      <li>An array name is already an address, so a function always gets the real array.</li>
+      <li>A recursive function needs a base case, or the stack overflows.</li>
+      <li>A function returns at most one value; pointers are how a second answer gets out.</li>
+    </ul>
+    <span class="np-cell">Function एउटा काम गर्ने, नाम भएको खण्ड हो; <code>main</code> पनि,
+    <code>printf</code> पनि। Declaration semicolon ले सकिन्छ, definition सँग body हुन्छ र
+    semicolon हुँदैन, call मा वास्तविक मान हुन्छन्। Argument call मा, parameter definition मा।
+    Library function compiler सँगै आउँछ र header चाहिन्छ; user-defined तपाईंले लेख्नुहुन्छ।
+    Call by value ले प्रतिलिपि बनाउँछ — बोलाउनेको बदलिँदैन। Call by reference ले
+    <code>&amp;</code> र <code>*</code> सहित ठेगाना पठाउँछ — बोलाउनेको बदलिन्छ। Array को नाम
+    आफैं ठेगाना हो, त्यसैले function लाई सधैं साँच्चैको array पुग्छ। Recursive function लाई base
+    case चाहिन्छ, नत्र stack overflow हुन्छ। Function ले बढीमा एउटा मान फर्काउँछ; दोस्रो उत्तर
+    pointer ले बाहिर निस्कन्छ।</span>
+  </div>
+</section>

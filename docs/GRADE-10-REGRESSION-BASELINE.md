@@ -106,7 +106,12 @@ No test was skipped, weakened or removed.
 
 Carried unchanged from Phase 9.5, for Grade 10 and now Grade 9 alike:
 
-- **No Nepali teacher has reviewed any content.** 0 of 2,090 items.
+- **No Nepali teacher has reviewed any content.** 0 of 4,891 occurrences, across
+  4,424 distinct translations. Phase 13.1 raised that denominator from 2,603 by
+  finding content the review extractor had never read, not by writing any; see
+  [its report](PHASE-13-1-COMPLETION-REPORT.md) §5. Phase 14 then raised it again
+  by 984, and that increase **is** new content — a whole Grade 9 subject written
+  in one phase and read by nobody.
 - **No screen reader has been run.** No WCAG 2.1 AA claim.
 - **The applicable examination curriculum edition is unestablished.**
 

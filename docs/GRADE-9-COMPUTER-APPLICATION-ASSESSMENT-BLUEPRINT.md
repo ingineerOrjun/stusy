@@ -126,28 +126,84 @@ unit carries the whole bank: the band describes a complete subject, and a draw
 of 8 needs a bank meaningfully larger than 8 to make a retake worth taking.
 It should fall back inside the band as Units 2–7 arrive.
 
+### Where the subject stands, with all seven units authored
+
+Units 2–7 arrived in Phase 13 and the prediction above half came true. Measured
+from the bank and the specification grid, not estimated:
+
+| Unit | Marks | Questions | Per mark | easy/med/hard | Distinct topics |
+|---:|---:|---:|---:|---|---:|
+| 1 Introduction to computer | 6 | 12 | **2.00** — above band | 5/5/2 | 9 |
+| 2 Computer Components | 7 | 8 | 1.14 — below | 3/2/3 | 6 |
+| 3 Computer software | 9 | 10 | 1.11 — below | 2/5/3 | 7 |
+| 4 Memory/Storage Unit | 8 | 9 | 1.13 — below | 2/5/2 | 9 |
+| 5 Internet and its Application | 8 | 8 | **1.00** — below | 2/5/1 | 5 |
+| 6 Multimedia | 6 | 7 | 1.17 — below | 2/3/2 | 5 |
+| 7 Emerging Technology | 6 | 8 | 1.33 — in band | 1/4/3 | 8 |
+| **Total** | **50** | **62** | **1.24** — in band | **17/29/16** | **49** |
+
+**The subject-level figure is inside the band, and that is partly an artefact.**
+1.24 is carried by Unit 1 at 2.00; five of the other six units sit below 1.2,
+and Unit 5 is at exactly 1.00 — eight questions for eight marks, the thinnest
+unit in the subject. The draw is 12 from 62, so a student retaking the whole
+quiz gets a genuinely different paper; the thinness is not visible there. It
+would become visible in per-unit revision, which this subject does not yet
+offer.
+
+**This is a known shortfall, not a finished state.** Bringing Units 2–6 to 1.2
+would need roughly 6 more questions (Unit 2 +1, Unit 3 +1, Unit 4 +1, Unit 5
++2, Unit 6 +1). They were not added in Phase 13 because padding a bank to hit
+a ratio is how the Grade 10 banks acquired their weakest questions — the band
+is a floor to aim at with questions worth asking, and the honest record is that
+six units are under it.
+
+Unit 5 is the clearest case and the reason is worth naming: its three topics are
+few and its marks are high (8), so the ratio punishes it. The questions it does
+have cover 5 distinct topic keys against 3 official topics, so the *coverage* is
+not the problem; the *count* is.
+
+Difficulty across the subject is 17 easy · 29 medium · 16 hard. Unit 5 has a
+single hard question, the fewest of any unit, which is the second thing to fix
+there.
+
 ---
 
 ## 4 · Practical and project work — what the product owes it
 
-**Built for Unit 1 in Phase 12.1.** The full mapping for all seven units is in
+**Built for Unit 1 in Phase 12.1, and for Units 2–7 in Phase 13 — all seven
+units now carry it.** The full mapping is in
 [the practical mapping](GRADE-9-COMPUTER-APPLICATION-PRACTICAL-MAPPING.md);
 this section says only what it means for assessment.
 
-Unit 1's page now carries its six curriculum activities with what each needs
-and what to hand in, a record-keeping block explaining the 3 marks most often
-thrown away, and a per-activity log the student keeps on their own device —
-*not done yet / I have done this / done and written up*. The two states are
-separate because the curriculum's mark distribution separates them.
+Each unit page carries its curriculum activities with what each needs and what
+to hand in, a record-keeping block explaining the 3 marks most often thrown
+away, and a per-activity log the student keeps on their own device — *not done
+yet / I have done this / done and written up*. The last two states are separate
+because the curriculum's mark distribution separates them.
+
+**32 activities across the seven units**, distributed as the curriculum
+distributes the practical hours rather than evenly:
+
+| Unit | 1 | 2 | 3 | 4 | 5 | 6 | 7 | Total |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Practical hours | 10 | 10 | 8 | 6 | **12** | 8 | 10 | 64 |
+| Activities on the page | 6 | 5 | 4 | 5 | 3 | 3 | 6 | **32** |
+
+Unit 5 is the mismatch worth naming: **12 practical hours, the most in the
+subject, and only 3 activities.** That follows the curriculum, which gives the
+unit three broad topics rather than many small ones, so each activity is
+genuinely longer — but a student reading the page sees three items against
+Unit 1's six and may read it as a lighter unit. It is not.
 
 **Nothing in it is a mark, and nothing is verified.** The product cannot watch
 a speech competition. What it can do is make sure the student is not surprised
 by 30 marks they did not know were coming, and does not lose the 5 that hang
 on writing the work up.
 
-Still owed: the same block for Units 2–7 as they are written, a field-report
-template for activity 3.4, and some surfacing of practical progress on the
-revision page, which does not yet know the log exists.
+Still owed: a field-report template for activity 3.4, and some surfacing of
+practical progress on the revision page, which still does not know the log
+exists. The Units 2–7 blocks that this section previously listed as owed were
+built in Phase 13.
 
 ## 5 · Not claimed
 

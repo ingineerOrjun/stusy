@@ -216,8 +216,18 @@ test('every simulation container is complete', () => {
          only once the student has answered. Hand-authoring either would
          be a copy that drifts. Same exemption the build validator
          applies, kept in step with it deliberately. */
+      /* `cipher` added in Phase 13 for the same reason as the rest: the
+         cipher bench builds its own labelled controls — a text input and
+         a key slider, both real form elements with <label for> — from
+         the component. Hand-authoring a duplicate pair in the lesson
+         would be a copy that drifts out of step with the component. */
+      /* `crun` added in Phase 14, kept in step with the build validator
+         as the comment above requires: the C program stepper builds its
+         own Prev / Next / Reset from the UI string table, so a
+         hand-authored set in the lesson would be a copy that drifts out
+         of step with the component. */
       const SELF_CONTROLLED =
-        /class="[^"]*\b(gatelab|comblab|kmap|cpu8085|numlab|sqllab|dbtable|erlab|drill|conclab)\b/;
+        /class="[^"]*\b(gatelab|comblab|kmap|cpu8085|numlab|sqllab|dbtable|erlab|drill|conclab|cipher|crun)\b/;
       if (!SELF_CONTROLLED.test(block)){
         assert.match(block, /class="sim-controls"/, rel + ': simulation has no labelled controls');
       }

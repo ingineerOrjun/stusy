@@ -43,16 +43,17 @@ it records; do not follow its rules.
 
 | Document | What it holds |
 | --- | --- |
-| [PROJECT_REPORT.md](PROJECT_REPORT.md) | What is taught, what is outlined, what remains to write |
+| [PROJECT_REPORT.md](PROJECT_REPORT.md) | **Historical, and says so at the top** — a Phase 1-era snapshot. For what is taught now, read `GRADE-9-CURRICULUM-SPECIFICATION.json`, which is generated from the content |
 | [ACCESSIBILITY-AUDIT.md](ACCESSIBILITY-AUDIT.md) | Measured contrast and keyboard results, and an explicit list of what was **not** verified |
 | [CONTENT-DEPTH-AUDIT.md](CONTENT-DEPTH-AUDIT.md) | Concept-by-concept learning depth across all three subjects, with the STRONG/ADEQUATE/THIN matrix |
 | [PHASE-3-CURRICULUM-MAP.md](PHASE-3-CURRICULUM-MAP.md) | The CDC syllabus mapped to pages, with every ambiguity recorded rather than guessed |
 | [DIGITAL-DESIGN-DECISIONS.md](DIGITAL-DESIGN-DECISIONS.md) | Subject-level decisions: terminology, notation, what the syllabus left open |
 | [PHASE-4-DBMS-CURRICULUM-MAP.md](PHASE-4-DBMS-CURRICULUM-MAP.md) | The DBMS syllabus mapped to pages, with six documented ambiguities |
 | [CURRICULUM-APPLICABILITY.md](CURRICULUM-APPLICABILITY.md) | Which CDC edition applies, graded by evidence tier — and what no source establishes |
-| [NEPALI-REVIEW-STATUS.md](NEPALI-REVIEW-STATUS.md) | The review ledger: 2,090 items, all Pending. Generated package: NEPALI-REVIEW-PACKAGE.html |
+| [NEPALI-REVIEW-STATUS.md](NEPALI-REVIEW-STATUS.md) | The review ledger: 4,424 translations used in 4,891 places, all Pending, 0 reviewed. Generated package: NEPALI-REVIEW-PACKAGE.html |
 | [GRADE-9-CURRICULUM-SOURCE-AUDIT.md](GRADE-9-CURRICULUM-SOURCE-AUDIT.md) | Which Grade 9 course this is, its official source, and what is still unverified |
-| [GRADE-9-CURRICULUM-MAP.md](GRADE-9-CURRICULUM-MAP.md) | 4 subjects, 28 units, 168 topics — of which 4 are taught |
+| [GRADE-9-CURRICULUM-MAP.md](GRADE-9-CURRICULUM-MAP.md) | 4 subjects, 28 units, 168 topics — of which 71 are taught, being all of Fundamentals of Computer and Application and all of Programming Principles in C |
+| [GRADE-9-C-PROGRAMMING-CURRICULUM-MAP.md](GRADE-9-C-PROGRAMMING-CURRICULUM-MAP.md) | The C subject: 35 topics read from the CDC PDF for Phase 14, the ten practical activities, and what was and was not verified about the code |
 | [GRADE-9-ARCHITECTURE-PLAN.md](GRADE-9-ARCHITECTURE-PLAN.md) | Why the platform is already multi-grade, and the four small changes Grade 9 needed |
 | [GRADE-9-IMPLEMENTATION-ROADMAP.md](GRADE-9-IMPLEMENTATION-ROADMAP.md) | Subject order, what must be built, and the verification gate before each subject |
 | [GRADE-10-REGRESSION-BASELINE.md](GRADE-10-REGRESSION-BASELINE.md) | The Grade 10 line Grade 9 work must not cross, and the mutations proving it holds |
@@ -90,6 +91,10 @@ Read these to find out *why* something is the way it is.
 | 12.2 — release audit | the home page credited four finished subjects with a fifth's unit; the grade index gave every subject six units | an audit's job is to read the pages nobody thought to open | [audit](PHASE-12.2-RELEASE-AUDIT.md) |
 | 12.3 — product accuracy and multi-grade status | one boolean was asked a three-state question in six places | a subject is outline, partly written or complete — and the build derives which | [completion](PHASE-12.3-COMPLETION-REPORT.md) |
 | 12.4 — educational focus and final audit | the recommendation line vanished entirely in Nepali mode | "where should I go back to?" has two answers: where the marks are, and what a teacher judged | [audit](PHASE-12.4-FINAL-AUDIT.md) |
+| 13 — Grade 9 Units 2–7, the subject finished | six units that read as complete gave a student nothing to do but read; the review package quietly dropped five Grade 10 items | a plan that withholds interaction from "definitional" units is wrong wherever the marks are for telling things apart | [completion](PHASE-13-COMPLETION-REPORT.md) |
+| 13.1 — Nepali review integrity | 42% of the platform's Nepali was in no review package and nothing recorded that; the five "re-attributed" Grade 10 items were 16 deleted ones, 11 predating Phase 13 | a collector that reports what it found cannot tell you what it missed — count the content, not the collector's output | [completion](PHASE-13-1-COMPLETION-REPORT.md) |
+| 14 — Grade 9 Programming Principles in C, the whole subject | no C compiler in the environment, and all ten official practical activities need one; `unquote()` read the `\n` a C lesson has to teach as a newline | a listing shows the program's final state and a student only ever meets it in intermediate ones — so the stepper, and the programs as content rather than runtime | [curriculum map](GRADE-9-C-PROGRAMMING-CURRICULUM-MAP.md) · [completion](PHASE-14-COMPLETION-REPORT.md) |
+| 14.1 — C compiler verification and execution integrity | a warning taught as a compile error; a stepper that printed a string length with the wrong specifier; the same source crashing at -O0 and exiting 0 at -O1 | a compiler is the only thing that can settle a claim about C, and a hash from a curated manifest is the only thing that can settle which compiler | [verification](PHASE-14.1-VERIFICATION-REPORT.md) |
 
 ## Two things every document here agrees on
 

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Principles of Programming — C Language | </title>
+<meta name="description" content="Principles of Programming explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark" lang="ne">ज्ञ</span>
+      <span class="brand-txt">Gyansetu<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop on"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language <span class="dn">· notes ready</span><small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals <span class="dn">· notes ready</span><small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair <span class="dn">· notes ready</span><small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html" class="on">C Language ✓<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals ✓<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair ✓<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 9</a> <span class="sep">/</span> <a href="index.html">C Language</a> <span class="sep">/</span> <span>Principles of Programming</span></nav>
+<main id="main" tabindex="-1" data-subject="grade9/c-programming">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html" style="color:var(--yellow);border-color:var(--yellow)">1 · What a program is</a><a href="unit2.html">2 · Variables, types, operators</a><a href="unit3.html">3 · Choosing and repeating</a><a href="unit4.html">4 · Breaking a program up</a><a href="unit5.html">5 · Many values, one name</a><a href="unit6.html">6 · Records, and shared memory</a><a href="unit7.html">7 · Addresses, and what they unlock</a><a href="revise.html">↻ · Revision</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="c-u1">
+  <div class="sec-head">
+    <div class="sec-num">1</div>
+    <div>
+      <h1>Principles of Programming</h1>
+      <p class="sec-sub" lang="ne">प्रोग्रामिङका सिद्धान्त</p>
+    </div>
+    <span class="marks">6 hrs · 5 marks · 2 practical hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2><span class="t-en">By the end of this unit you can…</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो युनिट सकिँदा तपाईं यी कुरा गर्न सक्नुहुनेछ</span></h2><div class="t-en">
+    <ol>
+      <li>Define program, programmer, programming language and software, and say what separates a program from software.</li>
+      <li>Name the three categories of programming language and say who or what can read each one.</li>
+      <li>Explain why a high-level program must be translated before a computer can run it.</li>
+      <li>Give scientific and business applications of programming, and say what each one needs from the machine.</li>
+      <li>Write an algorithm for a small problem and draw its flowchart with the correct symbols.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: program, programmer, programming language र software को परिभाषा
+    दिन र program अनि software को फरक भन्न, प्रोग्रामिङ भाषाका तीन श्रेणी नाम लिई हरेकलाई कसले
+    पढ्न सक्छ भन्न, high-level प्रोग्राम चल्नुअघि किन अनुवाद गर्नुपर्छ बुझाउन, वैज्ञानिक र
+    व्यावसायिक प्रयोगका उदाहरण दिन, र सानो समस्याको algorithm लेखेर सही चिन्हसहित flowchart कोर्न
+    सक्नुहुनेछ।</span>
+  </div>
+
+  <!-- ============ 1.1 ============ -->
+  <h2 class="topic" id="c-t11">1.1 &nbsp;<span class="t-en">Program, programmer, programming language, software</span><span class="t-ne" lang="ne"> — प्रोग्राम, प्रोग्रामर, प्रोग्रामिङ भाषा, सफ्टवेयर</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Four words the examination asks for separately</span>
+      <p>A <b>program</b> is a set of instructions, written in order, that tells a computer how to
+      do one particular job. Two things are doing work in that sentence: <i>instructions</i>, and
+      <i>in order</i>. The same four instructions in a different order are a different program,
+      and usually a wrong one.</p>
+      <p>A <b>programmer</b> is the person who writes it. Not the person who uses it, and not the
+      person who installs it — the one who decides what the steps are and writes them down.</p>
+      <p>A <b>programming language</b> is the notation the programmer writes in. It exists because
+      the two sides cannot meet: a computer cannot read Nepali or English, and a person cannot
+      comfortably write binary. The language is a meeting point with rules strict enough that a
+      machine can translate it mechanically.</p>
+      <p><b>Software</b> is the wider word. It is the <b>collection of programs, the data they
+      work on, and the documentation that says how to use them</b>. One program is software, but
+      software is usually many programs — a browser is one program; an operating system is
+      hundreds.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परीक्षाले छुट्टाछुट्टै सोध्ने चार शब्द</span>
+      <p><b>Program</b> भनेको क्रमैसँग लेखिएका निर्देशनको समूह हो, जसले कम्प्युटरलाई कुनै एउटा काम
+      कसरी गर्ने भन्छ। यो वाक्यमा दुई कुराले काम गरिरहेका छन्: <i lang="ne">निर्देशन</i>, र <i lang="ne">क्रम</i>।
+      उही चार निर्देशन फरक क्रममा राखे फरक प्रोग्राम हुन्छ, र प्रायः गलत हुन्छ।</p>
+      <p><b>Programmer</b> भनेको त्यो लेख्ने मान्छे हो। प्रयोग गर्ने होइन, install गर्ने पनि होइन
+      — चरण के–के हुन् भनेर निर्णय गरेर लेख्ने।</p>
+      <p><b>Programming language</b> भनेको प्रोग्रामरले लेख्ने लिपि हो। यो त्यसैले चाहिन्छ कि दुवै
+      पक्ष आपसमा भेट्न सक्दैनन्: कम्प्युटरले नेपाली वा अङ्ग्रेजी पढ्न सक्दैन, र मान्छेले सजिलै
+      binary लेख्न सक्दैन। भाषा बीचको भेटघाट हो, र यसका नियम मेसिनले यान्त्रिक रूपमै अनुवाद गर्न
+      सक्ने गरी कडा हुन्छन्।</p>
+      <p><b>Software</b> फराकिलो शब्द हो। यो <b lang="ne">प्रोग्रामहरूको समूह, तिनले काम गर्ने data, र
+      कसरी चलाउने भन्ने documentation</b> मिलेर बन्छ। एउटा प्रोग्राम पनि software हो, तर software
+      प्रायः धेरै प्रोग्राम हुन्छ — browser एउटा प्रोग्राम हो; operating system सयौं।</p>
+    </div>
+  </div>
+
+  <div class="callout"><span class="t-en">
+    <b>The difference that carries the mark.</b> "Program and software are the same thing" is
+    marked wrong. A program is <i>one</i> set of instructions for <i>one</i> job. Software is the
+    package: the programs, the files they need, and the manual. If a question asks you to
+    differentiate them, the word to reach for is <b>scope</b> — a program is a part, software is
+    the whole.
+    </span><span class="np-cell" lang="ne"><b lang="ne">अंक बोक्ने फरक यही हो।</b> "Program र software एउटै हो" भन्नु गलत
+    मानिन्छ। Program <i lang="ne">एउटा</i> कामका लागि <i lang="ne">एउटा</i> निर्देशन समूह हो। Software चाहिँ पूरा
+    प्याकेज हो: प्रोग्राम, तिनलाई चाहिने फाइल, र म्यानुअल। फरक सोधिए <b lang="ne">दायरा</b> शब्द
+    सम्झनुहोस् — program भाग हो, software सिङ्गो।</span>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-cbr">
+  <title id="t-cbr">A C program travelling from source file through the compiler to an
+  executable file and finally to output on screen, with compile-time errors stopping the
+  compiler and run-time errors stopping the running program</title>
+  <defs><marker id="a-cbr" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
+  <text class="f-ttl" x="10" y="20">THE COMPUTER NEVER READS YOUR C — it reads what the compiler made from it</text>
+
+  <rect class="f-box" x="18" y="60" width="148" height="68" rx="8"/>
+  <text class="f-lbl-y" x="92" y="84" style="font-size:11px">SOURCE CODE</text>
+  <text class="f-code" x="92" y="101" text-anchor="middle" style="font-size:12px">hello.c</text>
+  <text class="f-lbl" x="92" y="118" style="font-size:9px">what you type — English-like</text>
+
+  <path class="f-arr" d="M170 94 L222 94" marker-end="url(#a-cbr)"/>
+
+  <rect class="f-box-y" x="226" y="56" width="150" height="76" rx="8"/>
+  <text class="f-lbl-y" x="301" y="80" style="font-size:11px">COMPILER</text>
+  <text class="f-lbl" x="301" y="97" style="font-size:9px">reads the whole file,</text>
+  <text class="f-lbl" x="301" y="110" style="font-size:9px">translates it, and refuses</text>
+  <text class="f-lbl" x="301" y="123" style="font-size:9px">if the grammar is wrong</text>
+
+  <path class="f-arr" d="M380 94 L432 94" marker-end="url(#a-cbr)"/>
+
+  <rect class="f-box" x="436" y="60" width="150" height="68" rx="8"/>
+  <text class="f-lbl-y" x="511" y="84" style="font-size:11px">EXECUTABLE</text>
+  <text class="f-code" x="511" y="101" text-anchor="middle" style="font-size:12px">hello.exe</text>
+  <text class="f-lbl" x="511" y="118" style="font-size:9px">machine code — 0s and 1s</text>
+
+  <path class="f-arr" d="M590 94 L590 150 L440 150" marker-end="url(#a-cbr)"/>
+
+  <rect class="f-box-g" x="286" y="168" width="150" height="62" rx="8"/>
+  <text class="f-lbl-y" x="361" y="190" style="font-size:11px">OUTPUT</text>
+  <text class="f-lbl" x="361" y="207" style="font-size:9px">what appears on screen</text>
+  <text class="f-lbl" x="361" y="221" style="font-size:9px">when the program RUNS</text>
+
+  <rect class="f-box-c" x="18" y="168" width="248" height="62" rx="8"/>
+  <text class="f-lbl-y" x="142" y="188" style="font-size:10.5px;fill:var(--color-error)">COMPILE-TIME ERROR</text>
+  <text class="f-lbl" x="142" y="204" style="font-size:9px">a missing semicolon, a misspelt name</text>
+  <text class="f-lbl" x="142" y="218" style="font-size:9px">no .exe is produced — nothing runs</text>
+  <path class="f-arr" d="M301 136 L186 164" marker-end="url(#a-cbr)" style="stroke:var(--color-error)"/>
+
+  <rect class="f-box-c" x="456" y="168" width="226" height="62" rx="8"/>
+  <text class="f-lbl-y" x="569" y="188" style="font-size:10.5px;fill:var(--color-error)">RUN-TIME ERROR</text>
+  <text class="f-lbl" x="569" y="204" style="font-size:9px">dividing by zero, a wrong answer</text>
+  <text class="f-lbl" x="569" y="218" style="font-size:9px">it compiled fine; it still fails</text>
+
+  <rect class="f-box-y" x="18" y="256" width="664" height="34" rx="6"/>
+  <text class="f-lbl" x="350" y="272" style="font-size:9.5px">A program that compiles is not a program that is correct. The compiler checks GRAMMAR, not MEANING.</text>
+  <text class="f-lbl" x="350" y="285" style="font-size:9.5px">printf("Sum = %d", a - b); compiles perfectly and is still the wrong program.</text>
+</svg>
+    <figcaption><span class="t-en">Why the four words need each other: the programmer writes the source in a
+    programming language, a translator turns it into something the machine runs, and the result
+    shipped to a user is software. Note where each kind of error appears.
+    </span><span class="np-cell" lang="ne">चारै शब्द किन एकअर्कालाई चाहिन्छन्: प्रोग्रामरले प्रोग्रामिङ भाषामा
+    source लेख्छ, अनुवादकले त्यसलाई मेसिनले चलाउन मिल्ने बनाउँछ, र प्रयोगकर्तासम्म पुग्ने
+    नतिजा software हो। कुन किसिमको त्रुटि कहाँ देखिन्छ, ध्यान दिनुहोस्।</span></figcaption>
+  </figure>
+
+  <!-- ============ 1.2 ============ -->
+  <h2 class="topic" id="c-t12">1.2 &nbsp;<span class="t-en">Categories of programming language</span><span class="t-ne" lang="ne"> — प्रोग्रामिङ भाषाका श्रेणी</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Three levels, and the question that sorts them</span>
+      <p>Languages are classified by <b>how close they are to the machine</b>. The question that
+      decides the category is: <i>who can read this without help?</i></p>
+      <ul>
+        <li><b>Machine level language</b> — 0s and 1s only. The processor reads it directly, with
+        no translation of any kind. It is the fastest to run and almost impossible to write by
+        hand, and it is different on every make of processor. Example:
+        <code>10110000 01100001</code>.</li>
+        <li><b>Assembly level language</b> — short codes called <b>mnemonics</b> that stand
+        one-for-one for machine instructions: <code>MOV</code>, <code>ADD</code>,
+        <code>JMP</code>. A person who knows the processor can read it. It needs an
+        <b>assembler</b> to become machine code, and it is still tied to one processor.</li>
+        <li><b>High level language</b> — English-like words and ordinary arithmetic: C, C++, Java,
+        Python. Anybody who has learnt the language can read it, the same source file works on
+        different machines, and it needs a <b>compiler</b> or an <b>interpreter</b>.</li>
+      </ul>
+      <p>Machine and assembly together are called <b>low level</b> languages, because they are
+      close to the hardware and far from the person. C is a high level language, though it is
+      often called a <b>middle level</b> language as well, because it can reach down to memory
+      addresses in a way that most high level languages cannot. That ability is Unit 7.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">तीन तह, र छुट्याउने प्रश्न</span>
+      <p lang="ne">भाषाको वर्गीकरण <b lang="ne">मेसिनसँग कति नजिक छ</b> भन्ने आधारमा हुन्छ। श्रेणी निर्णय गर्ने प्रश्न
+      यही हो: <i lang="ne">सहायताविना यो कसले पढ्न सक्छ?</i></p>
+      <ul>
+        <li><b>Machine level language</b> — ० र १ मात्र। प्रोसेसरले कुनै अनुवादविनै सिधै पढ्छ।
+        चल्न सबैभन्दा छिटो, हातले लेख्न झन्डै असम्भव, र हरेक बनोटको प्रोसेसरमा फरक। उदाहरण:
+        <code>10110000 01100001</code>।</li>
+        <li><b>Assembly level language</b> — <b>mnemonic</b> भनिने छोटा सङ्केत, जो एक–एक गरी
+        मेसिन निर्देशनका ठाउँमा आउँछन्: <code>MOV</code>, <code>ADD</code>, <code>JMP</code>।
+        प्रोसेसर जान्ने मान्छेले पढ्न सक्छ। मेसिन कोड बन्न <b>assembler</b> चाहिन्छ, र यो पनि
+        एउटै प्रोसेसरसँग बाँधिएको हुन्छ।</li>
+        <li><b>High level language</b> — अङ्ग्रेजीजस्ता शब्द र सामान्य गणित: C, C++, Java, Python।
+        भाषा सिकेको जोसुकैले पढ्न सक्छ, उही source फरक मेसिनमा चल्छ, र <b>compiler</b> वा
+        <b>interpreter</b> चाहिन्छ।</li>
+      </ul>
+      <p lang="ne">Machine र assembly लाई सँगै <b>low level</b> भाषा भनिन्छ, किनभने ती hardware सँग नजिक र
+      मान्छेसँग टाढा छन्। C high level भाषा हो, तर यसलाई <b>middle level</b> पनि भनिन्छ —
+      किनभने यसले धेरै high level भाषाले नसक्ने गरी मेमोरीको ठेगानासम्म पुग्न सक्छ। त्यो क्षमता
+      युनिट ७ मा आउँछ।</p>
+    </div>
+  </div>
+
+  <div class="callout"><span class="t-en">
+    <b>Beyond the topic list, and needed from Unit 2 onwards.</b> The curriculum's topic 1.2 names
+    only the categories. The three <b>translators</b> are not on the list and you will meet all
+    three in this subject, so learn them here: an <b>assembler</b> turns assembly into machine
+    code; a <b>compiler</b> reads a whole high level program and produces an executable file
+    before anything runs; an <b>interpreter</b> reads and runs one line at a time, so the program
+    stops at the first bad line rather than refusing to start. <b>C uses a compiler.</b>
+    </span><span class="np-cell" lang="ne"><b lang="ne">विषयसूचीभन्दा बाहिर, तर युनिट २ देखि चाहिने।</b> पाठ्यक्रमको विषय
+    १.२ ले श्रेणी मात्र नाम लिन्छ। तीन <b lang="ne">अनुवादक</b> सूचीमा छैनन् तर यस विषयमा तीनै भेटिन्छन्,
+    त्यसैले यहीँ सिक्नुहोस्: <b>assembler</b> ले assembly लाई मेसिन कोड बनाउँछ;
+    <b>compiler</b> ले पूरै high level प्रोग्राम पढेर चल्नुअघि नै executable फाइल बनाउँछ;
+    <b>interpreter</b> ले एक–एक लाइन पढेर चलाउँछ, त्यसैले प्रोग्राम सुरु नै नहुने होइन, पहिलो
+    गलत लाइनमा पुगेर रोकिन्छ। <b lang="ne">C ले compiler प्रयोग गर्छ।</b></span>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3><span class="t-en">Which category of language is this?</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो कुन श्रेणीको भाषा हो?</span></h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to classify a language from a sample rather than
+      from its name. The deciding question is always who can read it unaided — the processor, a
+      person with a manual, or anybody who learnt the language.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: नाम होइन, नमुना हेरेर भाषा छुट्याउन। निर्णय
+      गर्ने प्रश्न सधैं यही हो — सहायताविना कसले पढ्न सक्छ: प्रोसेसरले, म्यानुअल भएको मान्छेले,
+      कि भाषा सिकेको जोसुकैले?</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-clang" data-set="clangcat"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Read the sample before the options. If you can see register names, it is assembly; if
+        you can see only digits, it is machine; if you can read it as a sentence, it is high
+        level.</p>
+        </div><span class="np-cell" lang="ne">विकल्पभन्दा पहिले नमुना पढ्नुहोस्। Register का नाम देखिए assembly;
+        अङ्क मात्र देखिए machine; वाक्यजस्तै पढ्न सकिए high level।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="c">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A program written in C is compiled on a Windows computer and the resulting .exe file is
+      copied to a Linux computer. It refuses to run. Was the programmer wrong to call C portable?
+      </span><span class="np-cell" lang="ne">C मा लेखिएको प्रोग्राम Windows कम्प्युटरमा compile गरेर बनेको .exe
+      फाइल Linux कम्प्युटरमा सारियो। त्यो चल्न मानेन। त्यसो भए C लाई portable भन्नु गलत थियो?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Yes — C is not portable after all</button>
+      <button class="predict-opt" data-value="b">Yes — only interpreted languages are portable</button>
+      <button class="predict-opt" data-value="c">No — the SOURCE is portable; the compiled file never was</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>The source is portable, not the executable.</b> Portability means the same
+      <code>.c</code> file can be compiled on each machine and will behave the same way. The
+      <code>.exe</code> is machine code for one processor and one operating system, so copying it
+      across is copying the wrong file.</p>
+      <p>This is the practical meaning of the diagram above. Everything to the left of the
+      compiler travels; everything to the right of it does not.</p>
+      <p>Option B is tempting and still wrong: an interpreted program travels as source too, and
+      it needs the interpreter installed on the other machine before it runs. Nothing is portable
+      without <i>something</i> being installed on the far side.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">Source portable हो, executable होइन।</b> Portability को अर्थ उही
+      <code>.c</code> फाइल हरेक मेसिनमा compile गर्दा उस्तै व्यवहार गर्छ भन्ने हो।
+      <code>.exe</code> चाहिँ एउटा प्रोसेसर र एउटा operating system कै मेसिन कोड हो, त्यसैले
+      त्यसलाई सार्नु गलत फाइल सार्नु हो। माथिको चित्रको व्यावहारिक अर्थ यही हो: compiler को
+      बायाँ भएको सबै सर्छ, दायाँ भएको सर्दैन। विकल्प (ख) लोभलाग्दो छ तर गलत: interpret हुने
+      प्रोग्राम पनि source कै रूपमा सर्छ, र अर्को मेसिनमा interpreter install भएपछि मात्र
+      चल्छ।</span>
+    </div>
+  </div>
+
+  <!-- ============ 1.3 ============ -->
+  <h2 class="topic" id="c-t13">1.3 &nbsp;<span class="t-en">Applications — scientific and business</span><span class="t-ne" lang="ne"> — प्रयोग — वैज्ञानिक र व्यावसायिक</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Two kinds of job, and what each demands</span>
+      <p>The syllabus names two application areas, and they are named together because they pull
+      the machine in opposite directions.</p>
+      <p><b>Scientific applications</b> do a <i>large amount of calculation on a small amount of
+      data</i>. Weather forecasting for the Kathmandu valley, earthquake modelling, satellite
+      image processing, the engineering calculations behind a bridge. What they need is
+      <b>arithmetic speed and accuracy</b> — many decimal places, many operations per second, and
+      floating-point work that does not drift.</p>
+      <p><b>Business applications</b> do a <i>small amount of calculation on a large amount of
+      data</i>. A bank's daily transactions, a school's result processing, payroll for a factory,
+      the stock ledger of a shop. The arithmetic is addition and percentages; what they need is
+      <b>storage, sorting, searching and well-formatted reports</b> — and absolute reliability,
+      because an error here is somebody's salary.</p>
+      <p>C is used for both, and it is used far more for a third kind the syllabus does not name:
+      <b>system programming</b>. Operating systems, compilers and device drivers are written in C
+      because of the memory control Unit 7 introduces.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">दुई किसिमका काम, र हरेकले माग्ने कुरा</span>
+      <p lang="ne">पाठ्यक्रमले दुई प्रयोग क्षेत्र नाम लिन्छ, र सँगै नाम लिनुको कारण यिनले मेसिनलाई उल्टो
+      दिशामा तान्छन् भन्ने हो।</p>
+      <p><b lang="ne">वैज्ञानिक प्रयोग</b> ले <i lang="ne">थोरै data मा धेरै गणना</i> गर्छ। काठमाडौं उपत्यकाको मौसम
+      पूर्वानुमान, भूकम्पको मोडेल, उपग्रह तस्बिरको प्रशोधन, पुल बनाउने इन्जिनियरिङ गणना। यिनलाई
+      <b lang="ne">गणनाको गति र शुद्धता</b> चाहिन्छ — धेरै दशमलव, प्रति सेकेन्ड धेरै क्रिया, र नबग्ने
+      floating-point काम।</p>
+      <p><b lang="ne">व्यावसायिक प्रयोग</b> ले <i lang="ne">धेरै data मा थोरै गणना</i> गर्छ। बैंकको दैनिक कारोबार,
+      विद्यालयको नतिजा, कारखानाको तलब, पसलको मौज्दात खाता। गणना भनेको जोड र प्रतिशत मात्र; यिनलाई
+      <b lang="ne">भण्डारण, क्रम मिलाउने, खोज्ने र राम्ररी ढाँचा मिलेको प्रतिवेदन</b> चाहिन्छ — र पूर्ण
+      भरपर्दोपन, किनभने यहाँको त्रुटि कसैको तलब हो।</p>
+      <p lang="ne">C दुवैमा चल्छ, र पाठ्यक्रमले नाम नलिएको तेस्रो किसिममा झन् बढी:
+      <b>system programming</b>। Operating system, compiler र device driver C मै लेखिन्छन्,
+      किनभने युनिट ७ ले देखाउने मेमोरी नियन्त्रण यसमा छ।</p>
+    </div>
+  </div>
+
+  <!-- ============ 1.4 ============ -->
+  <h2 class="topic" id="c-t14">1.4 &nbsp;<span class="t-en">Program design tools — algorithm and flowchart</span><span class="t-ne" lang="ne"> — प्रोग्राम डिजाइनका साधन — algorithm र flowchart</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The planning you do before any code</span>
+      <p>An <b>algorithm</b> is a finite, step-by-step procedure for solving a problem, written in
+      ordinary language. It is not C, and it does not have to be: its job is to get the
+      <i>method</i> right while mistakes are still cheap to fix.</p>
+      <p>Five properties are expected in an answer, and each one is a way an algorithm can be
+      wrong:</p>
+      <ul>
+        <li><b>Finiteness</b> — it must end after a limited number of steps. A procedure that
+        never stops has not solved anything.</li>
+        <li><b>Definiteness</b> — every step must mean exactly one thing. "Add some numbers" is
+        not a step.</li>
+        <li><b>Input</b> — zero or more values supplied at the start.</li>
+        <li><b>Output</b> — at least one result. An algorithm that produces nothing has no
+        purpose.</li>
+        <li><b>Effectiveness</b> — every step must be simple enough to actually be carried out
+        with paper and pencil.</li>
+      </ul>
+      <p>A <b>flowchart</b> is the same method drawn as a picture, using standard symbols joined
+      by arrows. It shows the <b>path</b> through the steps, which is exactly what a list of
+      sentences hides: a decision with two branches is one line of text and two visible arrows.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">कोड लेख्नुअघिको योजना</span>
+      <p><b>Algorithm</b> भनेको समस्या समाधान गर्ने सीमित, चरणबद्ध विधि हो, सामान्य भाषामा
+      लेखिएको। यो C होइन, र हुनु पनि पर्दैन: गल्ती सच्याउन सस्तै हुँदा <i lang="ne">विधि</i> ठिक बनाउनु
+      यसको काम हो।</p>
+      <p lang="ne">उत्तरमा पाँच गुण खोजिन्छ, र हरेक गुण algorithm बिग्रने एउटा तरिका पनि हो:</p>
+      <ul>
+        <li><b>Finiteness</b> — सीमित चरणपछि सकिनै पर्छ। कहिल्यै नरोकिने विधिले केही समाधान
+        गरेको हुँदैन।</li>
+        <li><b>Definiteness</b> — हरेक चरणको ठ्याक्कै एउटै अर्थ हुनुपर्छ। "केही सङ्ख्या जोड्नुहोस्"
+        चरण होइन।</li>
+        <li><b>Input</b> — सुरुमा शून्य वा बढी मान दिइन्छ।</li>
+        <li><b>Output</b> — कम्तीमा एउटा नतिजा। केही नदिने algorithm को प्रयोजन हुँदैन।</li>
+        <li><b>Effectiveness</b> — हरेक चरण कागज–कलमले साँच्चै गर्न सकिने गरी सरल हुनुपर्छ।</li>
+      </ul>
+      <p><b>Flowchart</b> भनेको त्यही विधि चित्रमा कोरेको हो — मानक चिन्हहरू तीरले जोडेर। यसले
+      चरणहरूबीचको <b lang="ne">बाटो</b> देखाउँछ, जुन वाक्यहरूको सूचीले लुकाउँछ: दुई शाखा भएको decision
+      पाठमा एक लाइन हो, चित्रमा दुई देखिने तीर।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-cfs">
+  <title id="t-cfs">The six standard flowchart symbols: oval for start and stop, parallelogram
+  for input and output, rectangle for processing, diamond for a decision, small circle for a
+  connector, and an arrow for the direction of flow</title>
+  <defs><marker id="a-cfs" viewBox="0 0 10 10" refX="9" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="var(--color-primary)"/></marker></defs>
+  <text class="f-ttl" x="10" y="20">SIX SYMBOLS. The shape IS the meaning — drawing the wrong one changes the answer</text>
+
+  <ellipse cx="90" cy="68" rx="58" ry="24" style="fill:rgba(154,230,160,.12);stroke:var(--color-success);stroke-width:1.6"/>
+  <text class="f-val" x="90" y="73" style="font-size:12px">START / STOP</text>
+  <text class="f-lbl" x="90" y="110" style="font-size:9.5px">OVAL — terminal.</text>
+  <text class="f-lbl" x="90" y="123" style="font-size:9.5px">Every flowchart has exactly</text>
+  <text class="f-lbl" x="90" y="136" style="font-size:9.5px">one start and at least one stop.</text>
+
+  <path d="M250,44 L372,44 L350,92 L228,92 Z" style="fill:rgba(127,209,255,.10);stroke:var(--color-secondary);stroke-width:1.6"/>
+  <text class="f-val" x="300" y="73" style="font-size:12px">READ / PRINT</text>
+  <text class="f-lbl" x="300" y="110" style="font-size:9.5px">PARALLELOGRAM — input/output.</text>
+  <text class="f-lbl" x="300" y="123" style="font-size:9.5px">Anything crossing the boundary</text>
+  <text class="f-lbl" x="300" y="136" style="font-size:9.5px">between program and person.</text>
+
+  <rect x="452" y="44" width="122" height="48" rx="3" style="fill:rgba(255,215,110,.12);stroke:var(--color-primary);stroke-width:1.6"/>
+  <text class="f-val" x="513" y="73" style="font-size:12px">sum = a + b</text>
+  <text class="f-lbl" x="513" y="110" style="font-size:9.5px">RECTANGLE — process.</text>
+  <text class="f-lbl" x="513" y="123" style="font-size:9.5px">Any calculation or assignment.</text>
+  <text class="f-lbl" x="513" y="136" style="font-size:9.5px">The commonest symbol.</text>
+
+  <path d="M90,166 L148,200 L90,234 L32,200 Z" style="fill:rgba(255,143,122,.12);stroke:var(--color-error);stroke-width:1.6"/>
+  <text class="f-val" x="90" y="205" style="font-size:12px">a &gt; b ?</text>
+  <text class="f-lbl" x="90" y="252" style="font-size:9.5px">DIAMOND — decision.</text>
+  <text class="f-lbl" x="90" y="265" style="font-size:9.5px">Exactly ONE arrow in,</text>
+  <text class="f-lbl" x="90" y="278" style="font-size:9.5px">exactly TWO out: yes and no.</text>
+
+  <circle cx="300" cy="200" r="17" style="fill:rgba(127,209,255,.10);stroke:var(--color-secondary);stroke-width:1.6"/>
+  <text class="f-val" x="300" y="205" style="font-size:12px">A</text>
+  <text class="f-lbl" x="300" y="252" style="font-size:9.5px">CIRCLE — connector.</text>
+  <text class="f-lbl" x="300" y="265" style="font-size:9.5px">Joins two parts of a chart</text>
+  <text class="f-lbl" x="300" y="278" style="font-size:9.5px">that will not fit on one page.</text>
+
+  <path class="f-arr" d="M470 180 L556 180" marker-end="url(#a-cfs)"/>
+  <path class="f-arr" d="M513 194 L513 226" marker-end="url(#a-cfs)"/>
+  <text class="f-lbl" x="513" y="252" style="font-size:9.5px">ARROW — flow line.</text>
+  <text class="f-lbl" x="513" y="265" style="font-size:9.5px">Direction is not optional:</text>
+  <text class="f-lbl" x="513" y="278" style="font-size:9.5px">a line with no head is not an answer.</text>
+</svg>
+    <figcaption><span class="t-en">The six symbols. In an examination the shapes are marked as well as the logic, so
+    a correct method drawn with the wrong boxes still loses marks.
+    </span><span class="np-cell" lang="ne">छ वटा चिन्ह। परीक्षामा तर्कसँगै आकारको पनि अंक हुन्छ, त्यसैले सही विधि
+    गलत बाकसमा कोरे पनि अंक जान्छ।</span></figcaption>
+  </figure>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Largest of two numbers — algorithm and flowchart</div>
+    <p><b>Question:</b> write an algorithm and draw a flowchart to find the larger of two numbers
+    entered by the user.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Write the steps out before opening this. Count how
+      many arrows must leave your decision box, and check that every path reaches a Stop.</span>
+      <span class="np-cell" lang="ne">खोल्नुअघि चरणहरू लेख्नुहोस्। Decision बाकसबाट कति तीर बाहिर जानुपर्छ
+      गन्नुहोस्, र हरेक बाटो Stop सम्म पुग्छ कि पुग्दैन जाँच्नुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">ALGORITHM
+  Step 1  Start
+  Step 2  Read a, b
+  Step 3  If a &gt; b then
+             Print a is larger
+          else
+             Print b is larger
+  Step 4  Stop
+
+FLOWCHART (read downwards)
+            ( Start )          oval
+                |
+          / Read a, b /        parallelogram
+                |
+             &lt; a &gt; b &gt;        diamond
+            yes /   \ no
+               /     \
+    / Print a /     / Print b /   two parallelograms
+               \     /
+                \   /
+             ( Stop )          oval</div>
+      <p class="wex-note"><span class="t-en">Three things are being marked here and only one of them is the
+      comparison. Both branches are labelled yes and no; both branches end at the same Stop; and
+      the printing boxes are parallelograms, not rectangles, because printing crosses the boundary
+      to the person. Note also that the algorithm never says what happens when a and b are equal —
+      it prints "b is larger", which is wrong. A complete answer would use three branches or say
+      "a is not larger".
+      </span><span class="np-cell" lang="ne">यहाँ तीन कुराको अंक छ, र तीमध्ये एउटा मात्र तुलना हो। दुवै शाखामा
+      yes र no लेखिएको छ; दुवै शाखा उही Stop मा पुग्छन्; र छाप्ने बाकस rectangle होइन
+      parallelogram हुन्, किनभने छाप्नु मान्छेसम्मको सिमाना नाघ्नु हो। अर्को कुरा — a र b बराबर
+      भए के हुन्छ algorithm ले भनेकै छैन; त्यसले "b is larger" छाप्छ, जुन गलत हो। पूरा उत्तरमा
+      तीन शाखा हुन्थ्यो, वा "a is not larger" लेखिन्थ्यो।</span></p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Sum of the first ten natural numbers</div>
+    <p><b>Question:</b> write an algorithm to find 1 + 2 + 3 + … + 10. This one repeats, so it is
+    where a flowchart earns its keep.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Two variables are needed, not one. Decide what each
+      holds and what its value must be before the repetition starts.</span>
+      <span class="np-cell" lang="ne">एउटा होइन, दुई variable चाहिन्छ। हरेकले के राख्छ र दोहोरिन सुरु
+      हुनुअघि त्यसको मान के हुनुपर्छ, निर्णय गर्नुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">ALGORITHM
+  Step 1  Start
+  Step 2  sum = 0,  i = 1          both must be set FIRST
+  Step 3  If i &gt; 10 go to Step 7
+  Step 4  sum = sum + i
+  Step 5  i = i + 1
+  Step 6  Go to Step 3
+  Step 7  Print sum
+  Step 8  Stop
+
+TRACE (the first three turns and the last)
+  i = 1   sum = 0 + 1  = 1
+  i = 2   sum = 1 + 2  = 3
+  i = 3   sum = 3 + 3  = 6
+   ...
+  i = 10  sum = 45 + 10 = 55
+  i = 11  11 &gt; 10, so jump to Step 7
+Printed: 55</div>
+      <p class="wex-note"><span class="t-en">Step 2 is where this goes wrong in real answers. If <code>sum</code> is
+      not set to 0 first, step 4 adds to an unknown value; if <code>i</code> is not set to 1, the
+      count starts nowhere. The loop ends because step 5 changes the thing step 3 tests — remove
+      step 5 and the algorithm fails <b>finiteness</b> and runs forever.
+      </span><span class="np-cell" lang="ne">वास्तविक उत्तरमा चरण २ कै कारण बिग्रन्छ। <code>sum</code> लाई पहिले
+      ० नराखे चरण ४ ले अज्ञात मानमा जोड्छ; <code>i</code> लाई १ नराखे गन्ती कतैबाट सुरु हुँदैन।
+      Loop सकिनुको कारण चरण ५ ले चरण ३ ले जाँच्ने कुरै बदल्छ — चरण ५ हटाए algorithm
+      <b>finiteness</b> मा असफल हुन्छ र सधैं चलिरहन्छ।</span></p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3><span class="t-en">Which flowchart symbol does this step need?</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो चरणलाई कुन flowchart चिन्ह चाहिन्छ?</span></h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to pick the shape from the kind of step rather
+      than from the words in it. Input and output share one symbol; calculation has its own; a
+      question has two arrows out.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: शब्द होइन, चरणको किसिम हेरेर आकार छान्न।
+      Input र output को एउटै चिन्ह हुन्छ; गणनाको आफ्नै; प्रश्नबाट दुई तीर बाहिर जान्छन्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cflow" data-set="cflowsym"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Ask one question per case: does anything leave or enter the program here? If yes it is
+        a parallelogram. If it is a question with a yes and a no, it is a diamond. Otherwise it is
+        almost always a rectangle.</p>
+        </div><span class="np-cell" lang="ne">हरेक केसमा एउटा प्रश्न सोध्नुहोस्: यहाँ प्रोग्रामबाट केही बाहिर
+        जान्छ वा भित्र आउँछ? भए parallelogram। हो–होइन भएको प्रश्न भए diamond। नत्र झन्डै सधैं
+        rectangle।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h3><span class="t-en">Mistakes that cost marks here</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यहाँ अङ्क गुमाउने गल्तीहरू</span></h3><div class="t-en">
+    <ul>
+      <li><b>Saying a program and software are the same.</b> A program is one set of instructions;
+      software is programs plus data plus documentation.</li>
+      <li><b>Calling assembly language "machine language".</b> Assembly uses mnemonics and needs
+      an assembler. Machine language is binary and needs nothing.</li>
+      <li><b>Drawing a rectangle for Read or Print.</b> Both are input/output and both take the
+      parallelogram.</li>
+      <li><b>Leaving a decision branch unlabelled.</b> A diamond with two unmarked arrows does not
+      say which path is which, and the marks are for the labels.</li>
+      <li><b>Writing an algorithm with no Stop.</b> Finiteness is one of the five properties, and
+      it is the one tested by leaving it out.</li>
+      <li><b>Forgetting to initialise before a loop.</b> <code>sum = 0</code> before the
+      repetition begins, every time.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne"><b lang="ne">Program र software एउटै भन्नु:</b> program एउटा निर्देशन समूह,
+    software चाहिँ program + data + documentation। <b lang="ne">Assembly लाई machine language भन्नु:</b>
+    assembly मा mnemonic हुन्छन् र assembler चाहिन्छ; machine language binary हो र केही
+    चाहिँदैन। <b lang="ne">Read वा Print लाई rectangle कोर्नु:</b> दुवै input/output हुन्, parallelogram।
+    <b lang="ne">Decision का शाखामा नाम नलेख्नु:</b> नाम नभएका दुई तीरले कुन बाटो कुन हो भन्दैनन्, र अंक
+    नाम कै हो। <b lang="ne">Stop नभएको algorithm लेख्नु:</b> finiteness पाँच गुणमध्ये एक हो।
+    <b lang="ne">Loop अघि initialise बिर्सनु:</b> दोहोरिन सुरु हुनुअघि <code>sum = 0</code>, सधैं।</span>
+  </div>
+
+  <p class="hook"><span class="t-en"><b>Memory hook —</b> <i>Oval starts, slanted talks,
+    box works, diamond asks.</i> Four shapes, four jobs.</span>
+    <span class="np-cell" lang="ne"><b lang="ne">सम्झने तरिका —</b> <i lang="ne">Oval सुरु, छड्के बोल्छ, बाकस काम गर्छ,
+    diamond सोध्छ।</i></span></p>
+
+  <!-- ============ PRACTICAL ============ -->
+  <h2 class="topic" id="c-prac1"><span class="t-en">Practical work — this unit's other 2 hours</span><span class="t-ne" lang="ne"> — प्रयोगात्मक काम — यस युनिटका अरू २ घण्टा</span></h2>
+
+  <div class="practical">
+    <div class="h"><span class="pr-kind">Guided practical</span>The activity the curriculum suggests</div>
+    <p><span class="t-en">From the curriculum's own list for Unit 1. Two hours is the smallest practical allocation in
+    the subject, because this activity is about finding your way around a tool rather than writing
+    with it. <b>It cannot be done from this site</b> — it needs a computer with an IDE installed.
+    What is below is what to look for when you are in front of one.
+    </span><span class="np-cell" lang="ne">पाठ्यक्रमकै युनिट १ को सूचीबाट। विषयभरिमा सबैभन्दा सानो प्रयोगात्मक
+    समय यही हो, किनभने यो क्रियाकलाप लेख्नेभन्दा पनि साधनमा बाटो चिन्ने हो। <b lang="ne">यो यस साइटबाट गर्न
+    मिल्दैन</b> — IDE install भएको कम्प्युटर चाहिन्छ। तल कम्प्युटर अगाडि पुग्दा के हेर्ने
+    छ।</span></p>
+
+    <div class="pr-act" data-practical="g9.c.p1.1">
+      <p><span class="pr-num">1.1</span> Familiarisation with programming IDE tools — Visual
+      Studio, DEV C++, Sublime Text, Atom.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> a computer with at least one of these installed. <b>This
+      cannot be simulated</b> on this site — installing and opening a real IDE is the whole
+      activity. <b>Builds on:</b> 1.1 and 1.2. <b>Hand in:</b> your practical record with four
+      things written down for the tool you used — where the <i>editor</i> is, where the
+      <i>Compile</i> or <i>Build</i> command is, where the <i>Run</i> command is, and where
+      error messages appear. <b>Observe:</b> Sublime Text and Atom are text editors with no
+      compiler of their own, while DEV C++ and Visual Studio include one. Note which kind you
+      used, because that difference is the point of the activity.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> यीमध्ये कम्तीमा एउटा install भएको कम्प्युटर।
+      <b lang="ne">यो यहाँ simulate गर्न मिल्दैन</b> — साँच्चैको IDE install गरेर खोल्नु नै पूरै क्रियाकलाप
+      हो। <b lang="ne">आधार:</b> १.१ र १.२। <b lang="ne">बुझाउने:</b> प्रयोग गरेको साधनका चार कुरा अभिलेखमा
+      लेख्नुहोस् — <i>editor</i> कहाँ छ, <i>Compile</i> वा <i>Build</i> कहाँ छ, <i>Run</i>
+      कहाँ छ, र त्रुटि सन्देश कहाँ देखिन्छ। <b lang="ne">ध्यान दिने:</b> Sublime Text र Atom आफ्नै compiler
+      नभएका text editor हुन्, DEV C++ र Visual Studio सँग compiler पनि हुन्छ। कुन किसिमको प्रयोग
+      गर्नुभयो लेख्नुहोस् — क्रियाकलापको मुख्य कुरा त्यही फरक हो।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ EXAM FOCUS ============ -->
+  <h2 class="topic" id="c-exam1"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne" lang="ne"> — परीक्षा केन्द्र — यस युनिटबाट के सोधिन्छ</span></h2>
+
+  <div class="exam-connect">
+    <p><span class="t-en">This unit carries <b>5 of the 50 external marks</b> and 6 of the 64 theory hours. It is the
+    unit with the least C in it and the most definitions, so the questions are predictable: define
+    the four terms; differentiate two of them; list the categories of language; and — the one
+    worth the most — write an algorithm and draw a flowchart for a small problem. Practise drawing
+    flowcharts on paper, because that is where they will be marked.
+    </span><span class="np-cell" lang="ne">यो युनिटले <b lang="ne">बाह्य ५० मध्ये ५ अंक</b> र ६४ मध्ये ६ घण्टा ओगट्छ। C
+    सबैभन्दा कम र परिभाषा सबैभन्दा धेरै भएको युनिट यही हो, त्यसैले प्रश्न अनुमानयोग्य छन्: चार
+    शब्दको परिभाषा; दुईको फरक; भाषाका श्रेणी; र सबैभन्दा बढी अंक बोक्ने — सानो समस्याको algorithm
+    लेख्ने र flowchart कोर्ने। Flowchart कागजमै अभ्यास गर्नुहोस्, किनभने अंक त्यहीँ
+    मिल्छ।</span></p>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">Define program and software. Write one difference between them.
+    </span><span class="np-cell" lang="ne">Program र software को परिभाषा दिनुहोस्। दुईबीचको एउटा फरक
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca11">Show the answer</button>
+    <div class="ans" id="ca11"><div class="t-en">
+      <p>A <b>program</b> is a set of instructions, written in a particular order, that tells a
+      computer how to perform one specific task.</p>
+      <p><b>Software</b> is the collection of programs together with the data they use and the
+      documentation that explains them.</p>
+      <p><b>Difference:</b> a program is a single item; software is the whole package. Every
+      program is software, but software is normally made of many programs.</p>
+      </div><span class="np-cell" lang="ne"><b>Program</b> भनेको निश्चित क्रममा लेखिएका निर्देशनको समूह हो, जसले
+      कम्प्युटरलाई एउटा निश्चित काम कसरी गर्ने भन्छ। <b>Software</b> भनेको प्रोग्रामहरू, तिनले
+      प्रयोग गर्ने data र तिनलाई बुझाउने documentation को समूह हो। <b lang="ne">फरक:</b> program एउटा वस्तु
+      हो; software पूरै प्याकेज। हरेक program software हो, तर software प्रायः धेरै program मिलेर
+      बन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Explain the categories of programming language with one example of each.
+    </span><span class="np-cell" lang="ne">प्रोग्रामिङ भाषाका श्रेणी हरेकको एउटा उदाहरणसहित बुझाउनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca12">Show the answer</button>
+    <div class="ans" id="ca12"><div class="t-en">
+      <p><b>1. Machine level language</b> — written only in 0s and 1s. The processor executes it
+      directly with no translation. It is fastest to run, hardest to write, and different for
+      every processor. Example: <code>10110000 01100001</code>.</p>
+      <p><b>2. Assembly level language</b> — uses mnemonics such as <code>MOV</code> and
+      <code>ADD</code> that correspond one-to-one with machine instructions. It needs an
+      <b>assembler</b> to translate it and it is still processor-specific. Example:
+      <code>MOV AL, 61h</code>.</p>
+      <p><b>3. High level language</b> — uses English-like words and ordinary arithmetic. It is
+      readable, portable between machines, and needs a <b>compiler</b> or <b>interpreter</b>.
+      Example: C, C++, Java.</p>
+      <p>Machine and assembly together are called low level languages.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">१. Machine level</b> — ० र १ मात्र; प्रोसेसरले सिधै चलाउँछ; छिटो,
+      लेख्न गाह्रो, हरेक प्रोसेसरमा फरक। उदाहरण <code>10110000 01100001</code>।
+      <b lang="ne">२. Assembly level</b> — <code>MOV</code>, <code>ADD</code> जस्ता mnemonic, मेसिन
+      निर्देशनसँग एक–एक मिल्ने; <b>assembler</b> चाहिन्छ; प्रोसेसरसँग बाँधिएको। उदाहरण
+      <code>MOV AL, 61h</code>। <b lang="ne">३. High level</b> — अङ्ग्रेजीजस्ता शब्द; पढ्न सजिलो, मेसिनबीच
+      portable; <b>compiler</b> वा <b>interpreter</b> चाहिन्छ। उदाहरण C, C++, Java। Machine र
+      assembly लाई सँगै low level भनिन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Write an algorithm and draw a flowchart to find the sum and average of three numbers.
+    </span><span class="np-cell" lang="ne">तीन सङ्ख्याको जोड र औसत निकाल्ने algorithm लेखेर flowchart
+    कोर्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca13">Show the answer</button>
+    <div class="ans" id="ca13"><div class="t-en">
+      <p><b>Algorithm</b></p>
+      <p>Step 1 Start<br>
+      Step 2 Read a, b, c<br>
+      Step 3 sum = a + b + c<br>
+      Step 4 avg = sum / 3<br>
+      Step 5 Print sum, avg<br>
+      Step 6 Stop</p>
+      <p><b>Flowchart:</b> oval (Start) → parallelogram (Read a, b, c) → rectangle
+      (sum = a + b + c) → rectangle (avg = sum / 3) → parallelogram (Print sum, avg) → oval
+      (Stop), joined by downward arrows.</p>
+      <p>There is no decision in this problem, so there is no diamond and no branch. Marks here
+      are for the right symbols in the right order, and for not merging steps 3 and 4 into one
+      box — each calculation is its own process step.</p>
+      </div><span class="np-cell" lang="ne"><b>Algorithm:</b> चरण १ Start; चरण २ a, b, c पढ्नुहोस्; चरण ३
+      sum = a + b + c; चरण ४ avg = sum / 3; चरण ५ sum र avg छाप्नुहोस्; चरण ६ Stop।
+      <b>Flowchart:</b> oval (Start) → parallelogram (Read a, b, c) → rectangle (sum) →
+      rectangle (avg) → parallelogram (Print) → oval (Stop), तलतिरका तीरले जोडिएको। यस समस्यामा
+      कुनै decision छैन, त्यसैले diamond र शाखा छैनन्। अंक सही चिन्ह सही क्रममा राखेको र चरण ३
+      अनि ४ लाई एउटै बाकसमा नमिसाएको हो — हरेक गणना आफ्नै process चरण हो।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h3>Key points from this unit</h3><div class="t-en">
+    <ul>
+      <li>A program is ordered instructions for one job; software is programs plus data plus
+      documentation.</li>
+      <li>Three categories: machine (binary, no translation), assembly (mnemonics, assembler),
+      high level (English-like, compiler or interpreter).</li>
+      <li>Machine and assembly are low level. C is high level, and is also called middle level.</li>
+      <li>Source code is portable; a compiled executable is not.</li>
+      <li>Scientific work is heavy calculation on little data; business work is light calculation
+      on a lot of data.</li>
+      <li>An algorithm must be finite, definite, effective, and must produce output.</li>
+      <li>Flowchart symbols: oval terminal, parallelogram input/output, rectangle process, diamond
+      decision, circle connector, arrow flow.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne">Program = एउटै कामका लागि क्रमबद्ध निर्देशन; software = program + data +
+    documentation। तीन श्रेणी: machine (binary, अनुवाद नचाहिने), assembly (mnemonic, assembler),
+    high level (अङ्ग्रेजीजस्तो, compiler वा interpreter)। Machine र assembly low level; C high
+    level, जसलाई middle level पनि भनिन्छ। Source portable हुन्छ, compile भएको executable हुँदैन।
+    वैज्ञानिक काम = थोरै data मा धेरै गणना; व्यावसायिक काम = धेरै data मा थोरै गणना। Algorithm
+    finite, definite र effective हुनुपर्छ, र output दिनैपर्छ। Flowchart चिन्ह: oval terminal,
+    parallelogram input/output, rectangle process, diamond decision, circle connector, तीर
+    flow।</span>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="index.html"><span class="lab">◂ Previous</span><span class="ttl">Overview</span></a><a class="nx" href="unit2.html"><span class="lab">Next ▸</span><span class="ttl">Fundamentals of C</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">Gyansetu</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/practical.js"></script>
+</body>
+</html>

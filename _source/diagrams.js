@@ -3478,6 +3478,150 @@ D.cfIpoCycle = `
   <text class="f-lbl" x="350" y="286" style="font-size:9.5px">DATA is what goes in. INFORMATION is what comes out — data that has been processed into something useful.</text>
 </svg>`;
 
+/* ---- 3.1 / 3.2 the software stack: who is allowed to talk to whom ----
+   Topic 3.1 asks what software IS, and the answer students memorise —
+   "a set of instructions" — is true and leaves them unable to say why an
+   application cannot reach the disk by itself. The stack makes the
+   dependency visible, and once it is visible "the operating system is an
+   interface between user and hardware" stops being a sentence to recite
+   and becomes a position on a picture. ---- */
+D.cfSoftwareLayers = `
+<svg viewBox="0 0 700 330" role="img" aria-labelledby="t-cfsw">
+  <title id="t-cfsw">The software stack from the user at the top down to the hardware at the
+  bottom: user, application software, the operating system, and hardware, with each layer able
+  to talk only to the layer directly below it</title>
+  <text class="f-ttl" x="10" y="20">EACH LAYER TALKS ONLY TO THE ONE BELOW IT — which is why software is organised this way</text>
+
+  <rect class="f-box-c" x="150" y="40" width="400" height="44" rx="8"/>
+  <text class="f-lbl" x="350" y="60" style="font-size:12px">USER</text>
+  <text class="f-lbl" x="350" y="76" style="font-size:9px">types, clicks, speaks — knows nothing about voltage</text>
+
+  <rect class="f-box-g" x="100" y="104" width="500" height="58" rx="8"/>
+  <text class="f-lbl" x="350" y="124" style="font-size:12px">APPLICATION SOFTWARE</text>
+  <text class="f-lbl" x="350" y="140" style="font-size:9px">word processor, browser, game, a school result system</text>
+  <text class="f-lbl" x="350" y="154" style="font-size:9px">does the job the user actually wants done</text>
+
+  <rect class="f-box-y" x="60" y="182" width="580" height="62" rx="8"/>
+  <text class="f-lbl" x="350" y="202" style="font-size:12px">SYSTEM SOFTWARE — the operating system</text>
+  <text class="f-lbl" x="350" y="218" style="font-size:9px">manages memory, files, devices and processes</text>
+  <text class="f-lbl" x="350" y="232" style="font-size:9px">the only software allowed to speak to the hardware</text>
+
+  <rect class="f-box" x="24" y="264" width="652" height="50" rx="8"/>
+  <text class="f-lbl" x="350" y="284" style="font-size:12px">HARDWARE</text>
+  <text class="f-lbl" x="350" y="300" style="font-size:9px">CPU, memory, disk, keyboard — understands only electrical signals</text>
+
+  <path class="f-arr" d="M110 162 L110 182"/>
+  <path class="f-arr" d="M590 162 L590 182"/>
+  <path class="f-arr" d="M110 244 L110 264"/>
+  <path class="f-arr" d="M590 244 L590 264"/>
+  <text class="f-lbl" x="350" y="176" style="font-size:8.5px">an application asks the OS — it never reaches the disk itself</text>
+  <text class="f-lbl" x="350" y="258" style="font-size:8.5px">the OS turns that request into instructions the hardware obeys</text>
+</svg>`;
+
+/* ---- 4.1–4.5 the memory hierarchy ----
+   Every fact this unit asks for is a consequence of one trade-off:
+   fast memory is expensive, so there is little of it, and cheap memory
+   is slow, so there is a lot. Taught as a list — registers, cache, RAM,
+   disk — students memorise the order and cannot say why cache exists.
+   Drawn as a pyramid with the three arrows on it, the order stops being
+   something to remember and becomes something to read off. ---- */
+D.cfMemoryHierarchy = `
+<svg viewBox="0 0 700 400" role="img" aria-labelledby="t-cfmem">
+  <title id="t-cfmem">The memory hierarchy drawn as a pyramid: registers at the narrow top,
+  then cache, then RAM, then secondary storage at the wide base, with speed and cost per byte
+  increasing towards the top and capacity increasing towards the bottom</title>
+  <text class="f-ttl" x="10" y="20">ONE TRADE-OFF EXPLAINS THE WHOLE PYRAMID — fast costs more, so there is less of it</text>
+
+  <path class="f-box-c" d="M330 44 L370 44 L392 96 L308 96 z"/>
+  <text class="f-lbl" x="350" y="68" style="font-size:10px">REGISTERS</text>
+  <text class="f-lbl" x="350" y="82" style="font-size:8px">inside the CPU · bytes</text>
+
+  <path class="f-box-g" d="M308 100 L392 100 L428 156 L272 156 z"/>
+  <text class="f-lbl" x="350" y="124" style="font-size:11px">CACHE</text>
+  <text class="f-lbl" x="350" y="140" style="font-size:8px">a few MB · holds what the CPU just used</text>
+
+  <path class="f-box-y" d="M272 160 L428 160 L484 230 L216 230 z"/>
+  <text class="f-lbl" x="350" y="186" style="font-size:12px">PRIMARY MEMORY — RAM</text>
+  <text class="f-lbl" x="350" y="202" style="font-size:8.5px">4–16 GB · the program being run lives here</text>
+  <text class="f-lbl" x="350" y="217" style="font-size:8.5px">VOLATILE — empties when the power goes</text>
+
+  <path class="f-box" d="M216 234 L484 234 L556 334 L144 334 z"/>
+  <text class="f-lbl" x="350" y="262" style="font-size:12px">SECONDARY STORAGE</text>
+  <text class="f-lbl" x="350" y="280" style="font-size:8.5px">hard disk, SSD, CD/DVD, pen drive · 500 GB and up</text>
+  <text class="f-lbl" x="350" y="296" style="font-size:8.5px">NON-VOLATILE — survives the power going off</text>
+  <text class="f-lbl" x="350" y="314" style="font-size:8.5px">the CPU cannot use this directly — it is copied into RAM first</text>
+
+  <path class="f-arr" d="M110 330 L110 60"/>
+  <text class="f-lbl" x="78" y="200" style="font-size:9px" transform="rotate(-90 78 200)">FASTER · COSTS MORE PER BYTE</text>
+
+  <path class="f-arr" d="M612 60 L612 330"/>
+  <text class="f-lbl" x="644" y="200" style="font-size:9px" transform="rotate(90 644 200)">BIGGER · COSTS LESS PER BYTE</text>
+
+  <rect class="f-box-y" x="24" y="352" width="652" height="36" rx="6"/>
+  <text class="f-lbl" x="350" y="368" style="font-size:9.5px">Why cache exists: RAM is far slower than the CPU, so a small fast copy sits in between.</text>
+  <text class="f-lbl" x="350" y="382" style="font-size:9.5px">Why RAM exists: secondary storage is far slower than the CPU can tolerate for work in progress.</text>
+</svg>`;
+
+/* ---- 5.2 what is actually needed to get online ----
+   "Requirements for Internet connection" is a list question, and a list
+   learned as a list collapses under the follow-up: WHY does a modem
+   exist? Drawn as a chain from the device to the wider internet, each
+   requirement sits at the point where it is needed, and the modem's job
+   — translating between two kinds of signal — is visible rather than
+   asserted. ---- */
+D.cfInternetChain = `
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-cfnet">
+  <title id="t-cfnet">The chain of requirements for an Internet connection: a computer or phone,
+  a modem or router that converts the signal, a telephone or fibre or wireless line, an Internet
+  Service Provider, and finally the wider Internet, with browser software needed on the device
+  itself</title>
+  <text class="f-ttl" x="10" y="20">EACH LINK IS A REQUIREMENT — and the chain shows why each one is needed</text>
+
+  <rect class="f-box-c" x="18" y="92" width="110" height="74" rx="8"/>
+  <text class="f-lbl" x="73" y="116" style="font-size:11px">DEVICE</text>
+  <text class="f-lbl" x="73" y="132" style="font-size:8px">computer, phone</text>
+  <text class="f-lbl" x="73" y="146" style="font-size:8px">+ browser or app</text>
+  <text class="f-lbl" x="73" y="159" style="font-size:8px">+ TCP/IP software</text>
+
+  <path class="f-arr" d="M130 128 L166 128"/>
+
+  <rect class="f-box-g" x="168" y="92" width="118" height="74" rx="8"/>
+  <text class="f-lbl" x="227" y="116" style="font-size:11px">MODEM / ROUTER</text>
+  <text class="f-lbl" x="227" y="134" style="font-size:8px">converts the computer's</text>
+  <text class="f-lbl" x="227" y="147" style="font-size:8px">digital signal to the line's</text>
+  <text class="f-lbl" x="227" y="160" style="font-size:8px">signal, and back again</text>
+
+  <path class="f-arr" d="M288 128 L324 128"/>
+
+  <rect class="f-box-y" x="326" y="92" width="112" height="74" rx="8"/>
+  <text class="f-lbl" x="382" y="116" style="font-size:11px">THE LINE</text>
+  <text class="f-lbl" x="382" y="134" style="font-size:8px">telephone wire, fibre,</text>
+  <text class="f-lbl" x="382" y="147" style="font-size:8px">cable, or wireless /</text>
+  <text class="f-lbl" x="382" y="160" style="font-size:8px">mobile data</text>
+
+  <path class="f-arr" d="M440 128 L476 128"/>
+
+  <rect class="f-box-g" x="478" y="92" width="96" height="74" rx="8"/>
+  <text class="f-lbl" x="526" y="116" style="font-size:11px">ISP</text>
+  <text class="f-lbl" x="526" y="134" style="font-size:8px">the company you</text>
+  <text class="f-lbl" x="526" y="147" style="font-size:8px">pay — it has the</text>
+  <text class="f-lbl" x="526" y="160" style="font-size:8px">connection you rent</text>
+
+  <path class="f-arr" d="M576 128 L612 128"/>
+
+  <rect class="f-box" x="614" y="92" width="68" height="74" rx="8"/>
+  <text class="f-lbl" x="648" y="124" style="font-size:10px">THE</text>
+  <text class="f-lbl" x="648" y="140" style="font-size:10px">INTERNET</text>
+
+  <rect class="f-box-y" x="18" y="196" width="664" height="34" rx="6"/>
+  <text class="f-lbl" x="350" y="211" style="font-size:9.5px">MODEM = MOdulator + DEModulator. Modulate: digital out of the computer becomes a signal the line carries.</text>
+  <text class="f-lbl" x="350" y="225" style="font-size:9.5px">Demodulate: the arriving signal becomes digital again. A fibre line still needs one — the signal is light, not voltage.</text>
+
+  <rect class="f-box" x="18" y="240" width="664" height="34" rx="6"/>
+  <text class="f-lbl" x="350" y="255" style="font-size:9.5px">Remove any one link and there is no connection. That is why the examination answer is a LIST — but each item is here for a reason.</text>
+  <text class="f-lbl" x="350" y="269" style="font-size:9.5px">Hardware: device, modem/router, line. Software: browser or app, and the TCP/IP protocols. Service: an ISP account.</text>
+</svg>`;
+
 /* ---- 1.4 five bases of classification ---- */
 D.cfClassify = `
 <svg viewBox="0 0 700 392" role="img" aria-labelledby="t-cfcl">
@@ -3503,6 +3647,358 @@ D.cfClassify = `
 
   <rect class="f-box-y" x="16" y="364" width="668" height="20" rx="6"/>
   <text class="f-lbl" x="350" y="378" style="font-size:9.5px">One computer sits in ALL five lists at once. A laptop is micro, digital, general purpose, laptop model, and some brand.</text>
+</svg>`;
+
+/* ---------------------------------------------------------------
+   GRADE 9 — PROGRAMMING PRINCIPLES IN C
+
+   The subject's figures answer questions a listing cannot. A page of
+   code shows WHAT was written; these show what happens to it, where it
+   lives, and what the words on it mean.
+   --------------------------------------------------------------- */
+
+/* ---- hero / 2.1: what actually happens between typing and output ----
+   Students meet "compiler" as a definition — "software that converts
+   source code into machine code" — and can recite it while believing
+   the computer reads their C. Separating the three files makes the
+   definition into a sequence with a before and an after, and it puts
+   the two kinds of error where they really occur: one BEFORE the
+   program ever runs, one only while it is running. ---- */
+D.cBuildRun = `
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-cbr">
+  <title id="t-cbr">A C program travelling from source file through the compiler to an
+  executable file and finally to output on screen, with compile-time errors stopping the
+  compiler and run-time errors stopping the running program</title>
+  ${ah('a-cbr')}
+  <text class="f-ttl" x="10" y="20">THE COMPUTER NEVER READS YOUR C — it reads what the compiler made from it</text>
+
+  <rect class="f-box" x="18" y="60" width="148" height="68" rx="8"/>
+  <text class="f-lbl-y" x="92" y="84" style="font-size:11px">SOURCE CODE</text>
+  <text class="f-code" x="92" y="101" text-anchor="middle" style="font-size:12px">hello.c</text>
+  <text class="f-lbl" x="92" y="118" style="font-size:9px">what you type — English-like</text>
+
+  <path class="f-arr" d="M170 94 L222 94" marker-end="url(#a-cbr)"/>
+
+  <rect class="f-box-y" x="226" y="56" width="150" height="76" rx="8"/>
+  <text class="f-lbl-y" x="301" y="80" style="font-size:11px">COMPILER</text>
+  <text class="f-lbl" x="301" y="97" style="font-size:9px">reads the whole file,</text>
+  <text class="f-lbl" x="301" y="110" style="font-size:9px">translates it, and refuses</text>
+  <text class="f-lbl" x="301" y="123" style="font-size:9px">if the grammar is wrong</text>
+
+  <path class="f-arr" d="M380 94 L432 94" marker-end="url(#a-cbr)"/>
+
+  <rect class="f-box" x="436" y="60" width="150" height="68" rx="8"/>
+  <text class="f-lbl-y" x="511" y="84" style="font-size:11px">EXECUTABLE</text>
+  <text class="f-code" x="511" y="101" text-anchor="middle" style="font-size:12px">hello.exe</text>
+  <text class="f-lbl" x="511" y="118" style="font-size:9px">machine code — 0s and 1s</text>
+
+  <path class="f-arr" d="M590 94 L590 150 L440 150" marker-end="url(#a-cbr)"/>
+
+  <rect class="f-box-g" x="286" y="168" width="150" height="62" rx="8"/>
+  <text class="f-lbl-y" x="361" y="190" style="font-size:11px">OUTPUT</text>
+  <text class="f-lbl" x="361" y="207" style="font-size:9px">what appears on screen</text>
+  <text class="f-lbl" x="361" y="221" style="font-size:9px">when the program RUNS</text>
+
+  <rect class="f-box-c" x="18" y="168" width="248" height="62" rx="8"/>
+  <text class="f-lbl-y" x="142" y="188" style="font-size:10.5px;fill:var(--color-error)">COMPILE-TIME ERROR</text>
+  <text class="f-lbl" x="142" y="204" style="font-size:9px">a missing semicolon, a misspelt name</text>
+  <text class="f-lbl" x="142" y="218" style="font-size:9px">no .exe is produced — nothing runs</text>
+  <path class="f-arr" d="M301 136 L186 164" marker-end="url(#a-cbr)" style="stroke:var(--color-error)"/>
+
+  <rect class="f-box-c" x="456" y="168" width="226" height="62" rx="8"/>
+  <text class="f-lbl-y" x="569" y="188" style="font-size:10.5px;fill:var(--color-error)">RUN-TIME ERROR</text>
+  <text class="f-lbl" x="569" y="204" style="font-size:9px">dividing by zero, a wrong answer</text>
+  <text class="f-lbl" x="569" y="218" style="font-size:9px">it compiled fine; it still fails</text>
+
+  <rect class="f-box-y" x="18" y="256" width="664" height="34" rx="6"/>
+  <text class="f-lbl" x="350" y="272" style="font-size:9.5px">A program that compiles is not a program that is correct. The compiler checks GRAMMAR, not MEANING.</text>
+  <text class="f-lbl" x="350" y="285" style="font-size:9.5px">printf("Sum = %d", a - b); compiles perfectly and is still the wrong program.</text>
+</svg>`;
+
+/* ---- 1.4: the flowchart symbols, with the mark each one carries ----
+   Topic 1.4 is reliably examined by drawing: "draw a flowchart to find
+   the largest of three numbers". A student who confuses the rectangle
+   with the parallelogram loses marks on a diagram they otherwise had
+   right. The symbols are therefore shown as SHAPES at the size they are
+   drawn, each with the one word that decides it. ---- */
+D.cFlowSymbols = `
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-cfs">
+  <title id="t-cfs">The six standard flowchart symbols: oval for start and stop, parallelogram
+  for input and output, rectangle for processing, diamond for a decision, small circle for a
+  connector, and an arrow for the direction of flow</title>
+  ${ah('a-cfs')}
+  <text class="f-ttl" x="10" y="20">SIX SYMBOLS. The shape IS the meaning — drawing the wrong one changes the answer</text>
+
+  <ellipse cx="90" cy="68" rx="58" ry="24" style="fill:rgba(154,230,160,.12);stroke:var(--color-success);stroke-width:1.6"/>
+  <text class="f-val" x="90" y="73" style="font-size:12px">START / STOP</text>
+  <text class="f-lbl" x="90" y="110" style="font-size:9.5px">OVAL — terminal.</text>
+  <text class="f-lbl" x="90" y="123" style="font-size:9.5px">Every flowchart has exactly</text>
+  <text class="f-lbl" x="90" y="136" style="font-size:9.5px">one start and at least one stop.</text>
+
+  <path d="M250,44 L372,44 L350,92 L228,92 Z" style="fill:rgba(127,209,255,.10);stroke:var(--color-secondary);stroke-width:1.6"/>
+  <text class="f-val" x="300" y="73" style="font-size:12px">READ / PRINT</text>
+  <text class="f-lbl" x="300" y="110" style="font-size:9.5px">PARALLELOGRAM — input/output.</text>
+  <text class="f-lbl" x="300" y="123" style="font-size:9.5px">Anything crossing the boundary</text>
+  <text class="f-lbl" x="300" y="136" style="font-size:9.5px">between program and person.</text>
+
+  <rect x="452" y="44" width="122" height="48" rx="3" style="fill:rgba(255,215,110,.12);stroke:var(--color-primary);stroke-width:1.6"/>
+  <text class="f-val" x="513" y="73" style="font-size:12px">sum = a + b</text>
+  <text class="f-lbl" x="513" y="110" style="font-size:9.5px">RECTANGLE — process.</text>
+  <text class="f-lbl" x="513" y="123" style="font-size:9.5px">Any calculation or assignment.</text>
+  <text class="f-lbl" x="513" y="136" style="font-size:9.5px">The commonest symbol.</text>
+
+  <path d="M90,166 L148,200 L90,234 L32,200 Z" style="fill:rgba(255,143,122,.12);stroke:var(--color-error);stroke-width:1.6"/>
+  <text class="f-val" x="90" y="205" style="font-size:12px">a &gt; b ?</text>
+  <text class="f-lbl" x="90" y="252" style="font-size:9.5px">DIAMOND — decision.</text>
+  <text class="f-lbl" x="90" y="265" style="font-size:9.5px">Exactly ONE arrow in,</text>
+  <text class="f-lbl" x="90" y="278" style="font-size:9.5px">exactly TWO out: yes and no.</text>
+
+  <circle cx="300" cy="200" r="17" style="fill:rgba(127,209,255,.10);stroke:var(--color-secondary);stroke-width:1.6"/>
+  <text class="f-val" x="300" y="205" style="font-size:12px">A</text>
+  <text class="f-lbl" x="300" y="252" style="font-size:9.5px">CIRCLE — connector.</text>
+  <text class="f-lbl" x="300" y="265" style="font-size:9.5px">Joins two parts of a chart</text>
+  <text class="f-lbl" x="300" y="278" style="font-size:9.5px">that will not fit on one page.</text>
+
+  <path class="f-arr" d="M470 180 L556 180" marker-end="url(#a-cfs)"/>
+  <path class="f-arr" d="M513 194 L513 226" marker-end="url(#a-cfs)"/>
+  <text class="f-lbl" x="513" y="252" style="font-size:9.5px">ARROW — flow line.</text>
+  <text class="f-lbl" x="513" y="265" style="font-size:9.5px">Direction is not optional:</text>
+  <text class="f-lbl" x="513" y="278" style="font-size:9.5px">a line with no head is not an answer.</text>
+</svg>`;
+
+/* ---- 4.2 the round trip a call makes ----
+   "A function is a block of code that performs a task" is the sentence
+   students memorise, and it leaves them unable to say WHERE the program
+   is while the function runs. Drawing the control transfer as a round
+   trip makes two examinable facts visible at once: main stops and waits,
+   and the value comes back to the exact point the call was made from. ---- */
+D.cFunctionCall = `
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-cfc">
+  <title id="t-cfc">Control leaving main at the call, running the function body, and returning
+  to the same line with a value, while main waits</title>
+  ${ah('a-cfc')}
+  <text class="f-ttl" x="10" y="20">A CALL IS A ROUND TRIP. main does not carry on — it waits</text>
+
+  <rect class="f-box-d" x="16" y="38" width="320" height="170" rx="10"/>
+  <text class="f-lbl-y" x="176" y="58" style="font-size:11px">main()</text>
+  <text class="f-code" x="34" y="86" style="font-size:12.5px">int a = 5, b = 9;</text>
+  <text class="f-code" x="34" y="116" style="font-size:12.5px">big = larger(a, b);</text>
+  <text class="f-code" x="34" y="176" style="font-size:12.5px">printf("%d", big);</text>
+  <text class="f-lbl" x="176" y="200" style="font-size:9px">this line runs only after the call returns</text>
+
+  <rect class="f-box-d" x="380" y="38" width="304" height="170" rx="10"/>
+  <text class="f-lbl-y" x="532" y="58" style="font-size:11px">int larger(int x, int y)</text>
+  <text class="f-code" x="398" y="92" style="font-size:12.5px">if (x &gt; y)</text>
+  <text class="f-code" x="398" y="116" style="font-size:12.5px">    return x;</text>
+  <text class="f-code" x="398" y="140" style="font-size:12.5px">return y;</text>
+  <text class="f-lbl" x="532" y="176" style="font-size:9px">x and y are NEW variables, filled from the arguments</text>
+
+  <path class="f-arr" d="M232 112 L392 92" marker-end="url(#a-cfc)"/>
+  <text class="f-lbl-y" x="312" y="94" style="font-size:9.5px">1 · call: the ARGUMENTS 5 and 9 are copied in</text>
+
+  <path class="f-arr" d="M392 150 L232 126" marker-end="url(#a-cfc)" style="stroke:var(--color-success)"/>
+  <text class="f-lbl-y" x="312" y="150" style="font-size:9.5px;fill:var(--color-success)">2 · return: ONE value comes back to the same line</text>
+
+  <rect class="f-box-y" x="16" y="226" width="668" height="56" rx="8"/>
+  <text class="f-lbl" x="350" y="246" style="font-size:9.5px">ARGUMENT is what you send at the call — larger(a, b). PARAMETER is what the function receives — int x, int y.</text>
+  <text class="f-lbl" x="350" y="262" style="font-size:9.5px">A function may take many arguments and return at most ONE value. Needing two answers back is what pointers are for.</text>
+  <text class="f-lbl" x="350" y="276" style="font-size:9px">The names need not match: a and b outside, x and y inside, and nothing in C requires them to be the same words.</text>
+</svg>`;
+
+/* ---- 4.4 the one picture that settles call by value ----
+   Students can recite "call by value sends a copy" and still expect a
+   swap function to work. The reason is that nothing in that sentence
+   has an ADDRESS in it. Two memory maps side by side — the same program
+   twice, once with & and once without — is the smallest thing that
+   makes the difference visible rather than asserted. ---- */
+D.cValueVsRef = `
+<svg viewBox="0 0 700 320" role="img" aria-labelledby="t-cvr">
+  <title id="t-cvr">Two memory maps: in call by value the function works on separate copies and
+  the originals are unchanged; in call by reference the function holds the addresses of the
+  originals and changes them directly</title>
+  ${ah('a-cvr')}
+  <text class="f-ttl" x="10" y="20">THE SAME SWAP, TWICE. The only difference is whether an ADDRESS was sent</text>
+
+  <text class="f-lbl-y" x="176" y="46" style="font-size:11px;fill:var(--color-error)">CALL BY VALUE &nbsp; swap(a, b)</text>
+  <rect class="f-box-d" x="16" y="56" width="320" height="110" rx="8"/>
+  <text class="f-lbl" x="90" y="76" style="font-size:9.5px">main</text>
+  <rect class="f-box" x="34" y="84" width="54" height="40" rx="6"/>
+  <text class="f-val" x="61" y="108" style="font-size:13px">5</text>
+  <text class="f-addr" x="61" y="138">a &#183; 1000</text>
+  <rect class="f-box" x="96" y="84" width="54" height="40" rx="6"/>
+  <text class="f-val" x="123" y="108" style="font-size:13px">9</text>
+  <text class="f-addr" x="123" y="138">b &#183; 1004</text>
+
+  <text class="f-lbl" x="256" y="76" style="font-size:9.5px">swap</text>
+  <rect class="f-box-c" x="186" y="84" width="54" height="40" rx="6"/>
+  <text class="f-val" x="213" y="108" style="font-size:13px">9</text>
+  <text class="f-addr" x="213" y="138">x &#183; 2000</text>
+  <rect class="f-box-c" x="248" y="84" width="54" height="40" rx="6"/>
+  <text class="f-val" x="275" y="108" style="font-size:13px">5</text>
+  <text class="f-addr" x="275" y="138">y &#183; 2004</text>
+  <path class="f-ln" d="M156 104 L180 104"/>
+  <text class="f-lbl" x="176" y="158" style="font-size:9px">copies made at the call &#183; swapped here &#183; destroyed on return</text>
+
+  <text class="f-lbl-y" x="524" y="46" style="font-size:11px;fill:var(--color-success)">CALL BY REFERENCE &nbsp; swap(&amp;a, &amp;b)</text>
+  <rect class="f-box-d" x="364" y="56" width="320" height="110" rx="8"/>
+  <text class="f-lbl" x="438" y="76" style="font-size:9.5px">main</text>
+  <rect class="f-box-g" x="382" y="84" width="54" height="40" rx="6"/>
+  <text class="f-val" x="409" y="108" style="font-size:13px">9</text>
+  <text class="f-addr" x="409" y="138">a &#183; 1000</text>
+  <rect class="f-box-g" x="444" y="84" width="54" height="40" rx="6"/>
+  <text class="f-val" x="471" y="108" style="font-size:13px">5</text>
+  <text class="f-addr" x="471" y="138">b &#183; 1004</text>
+
+  <text class="f-lbl" x="604" y="76" style="font-size:9.5px">swap</text>
+  <rect class="f-box" x="534" y="84" width="60" height="40" rx="6"/>
+  <text class="f-val" x="564" y="108" style="font-size:11px">1000</text>
+  <text class="f-addr" x="564" y="138">x &#183; a pointer</text>
+  <rect class="f-box" x="602" y="84" width="60" height="40" rx="6"/>
+  <text class="f-val" x="632" y="108" style="font-size:11px">1004</text>
+  <text class="f-addr" x="632" y="138">y &#183; a pointer</text>
+  <path class="f-arr" d="M534 118 Q470 182 409 128" marker-end="url(#a-cvr)" style="stroke:var(--color-success)"/>
+  <path class="f-arr" d="M604 120 Q540 190 471 128" marker-end="url(#a-cvr)" style="stroke:var(--color-success)"/>
+  <text class="f-lbl" x="524" y="158" style="font-size:9px">the pointers reach back into main &#183; *x = *y writes there</text>
+
+  <rect class="f-box-c" x="16" y="212" width="320" height="42" rx="8"/>
+  <text class="f-lbl" x="176" y="230" style="font-size:9.5px">After the call: a is still 5, b is still 9.</text>
+  <text class="f-lbl" x="176" y="246" style="font-size:9px">The swap happened — to the copies, which no longer exist.</text>
+
+  <rect class="f-box-g" x="364" y="212" width="320" height="42" rx="8"/>
+  <text class="f-lbl" x="524" y="230" style="font-size:9.5px">After the call: a is 9, b is 5.</text>
+  <text class="f-lbl" x="524" y="246" style="font-size:9px">Nothing was returned. The function wrote into main's memory.</text>
+
+  <rect class="f-box-y" x="16" y="268" width="668" height="38" rx="8"/>
+  <text class="f-lbl" x="350" y="286" style="font-size:9.5px">An array is the exception: its name IS an address, so a function always receives the real array and never a copy of it.</text>
+  <text class="f-lbl" x="350" y="300" style="font-size:9px">That is why sorting inside a function changes the caller's array although no ampersand was written at the call.</text>
+</svg>`;
+
+/* ---- 5.4 the character nobody types ----
+   "A string is an array of characters" is true and leaves out the one
+   fact every string question turns on. Drawing the array with its
+   terminator in place answers three of them at once: why a five-letter
+   word needs six boxes, why strlen says 5 rather than 6, and why a
+   char array declared exactly as long as the word is a bug. ---- */
+D.cStringNull = `
+<svg viewBox="0 0 720 230" role="img" aria-labelledby="t-cstr">
+  <title id="t-cstr">A character array holding the word NEPAL, with a null character stored
+  automatically in the sixth position and four unused positions after it</title>
+  <text class="f-ttl" x="10" y="20">char name[10] = "NEPAL";   &#8212; you typed five letters and six were stored</text>
+
+  ${[['N', 0], ['E', 1], ['P', 2], ['A', 3], ['L', 4]].map(function (c){
+    const x = 40 + c[1] * 68;
+    return `<g>
+    <rect class="f-box-y" x="${x}" y="46" width="60" height="50" rx="6"/>
+    <text class="f-val" x="${x + 30}" y="78">${c[0]}</text>
+    <text class="f-lbl-y" x="${x + 30}" y="114" style="font-size:10px">name[${c[1]}]</text>
+  </g>`; }).join('')}
+
+  <rect class="f-box-c" x="380" y="46" width="60" height="50" rx="6"/>
+  <text class="f-val" x="410" y="78" style="fill:var(--color-error)">\\0</text>
+  <text class="f-lbl-y" x="410" y="114" style="font-size:10px;fill:var(--color-error)">name[5]</text>
+
+  ${[6, 7, 8, 9].map(function (i){
+    const x = 40 + i * 68;
+    return `<g>
+    <rect class="f-box-d" x="${x}" y="46" width="60" height="50" rx="6"/>
+    <text class="f-lbl" x="${x + 30}" y="78" style="font-size:11px">?</text>
+    <text class="f-lbl" x="${x + 30}" y="114" style="font-size:10px">name[${i}]</text>
+  </g>`; }).join('')}
+
+  <path class="f-ln" d="M40,132 L40,142 L380,142 L380,132"/>
+  <text class="f-lbl" x="210" y="160" style="font-size:10px">strlen(name) counts THESE five &#8212; it stops at the null and does not count it</text>
+
+  <path class="f-ln" d="M380,132 L380,142 L720,142 L720,132" style="stroke-dasharray:4 3;opacity:.7"/>
+  <text class="f-lbl" x="550" y="160" style="font-size:10px">sizeof(name) is 10 &#8212; the whole array, used or not</text>
+
+  <rect class="f-box-c" x="24" y="176" width="672" height="44" rx="8"/>
+  <text class="f-lbl" x="360" y="196" style="font-size:9.5px">char name[5] = "NEPAL"; LEAVES NO ROOM FOR THE NULL. Nothing marks the end, and printf keeps going into whatever is next in memory.</text>
+  <text class="f-lbl" x="360" y="212" style="font-size:9.5px">A char array must be declared at least ONE longer than the longest word it will hold. That one byte is the whole rule.</text>
+</svg>`;
+
+/* ---- 6.1 / 6.4 the one difference, drawn ----
+   Structure and union are declared with the same shape and taught in
+   the same breath, so students learn them as a pair of words rather
+   than as a pair of memory layouts. The declaration cannot show the
+   difference; the memory can, and the standard comparison question is
+   answered entirely by this picture. ---- */
+D.cStructUnion = `
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-csu">
+  <title id="t-csu">The same two members declared as a structure and as a union: the structure
+  gives each member its own memory and its size is the total, while the union gives both members
+  one shared block and its size is that of the largest member</title>
+  <text class="f-ttl" x="10" y="20">SAME MEMBERS, SAME SYNTAX, DIFFERENT MEMORY &#8212; and that is the whole answer</text>
+
+  <text class="f-code" x="16" y="48" style="font-size:12.5px">struct Box { int n; char c; };</text>
+  <text class="f-code" x="372" y="48" style="font-size:12.5px">union Box { int n; char c; };</text>
+
+  <rect class="f-box-d" x="16" y="62" width="320" height="116" rx="8"/>
+  <rect class="f-box" x="36" y="84" width="150" height="48" rx="6"/>
+  <text class="f-val" x="111" y="113">n</text>
+  <text class="f-addr" x="111" y="148">4 bytes &#183; its own</text>
+  <rect class="f-box-g" x="200" y="84" width="60" height="48" rx="6"/>
+  <text class="f-val" x="230" y="113">c</text>
+  <text class="f-addr" x="230" y="148">1 byte &#183; its own</text>
+  <text class="f-lbl-y" x="176" y="170" style="font-size:10.5px">sizeof = 4 + 1 (+ padding) &#8212; the TOTAL</text>
+
+  <rect class="f-box-d" x="372" y="62" width="312" height="116" rx="8"/>
+  <rect class="f-box-y" x="400" y="84" width="150" height="48" rx="6"/>
+  <text class="f-val" x="475" y="113">n and c</text>
+  <text class="f-addr" x="475" y="148">4 bytes &#183; SHARED</text>
+  <text class="f-lbl" x="616" y="100" style="font-size:9.5px">both members start</text>
+  <text class="f-lbl" x="616" y="114" style="font-size:9.5px">at the same address</text>
+  <text class="f-lbl" x="616" y="128" style="font-size:9.5px">c uses the first byte</text>
+  <text class="f-lbl-y" x="528" y="170" style="font-size:10.5px">sizeof = 4 &#8212; the LARGEST member</text>
+
+  <rect class="f-box-g" x="16" y="196" width="320" height="44" rx="8"/>
+  <text class="f-lbl" x="176" y="214" style="font-size:9.5px">Write n, then read c: c still holds its own value.</text>
+  <text class="f-lbl" x="176" y="230" style="font-size:9.5px">Both members are usable at the same time.</text>
+
+  <rect class="f-box-c" x="372" y="196" width="312" height="44" rx="8"/>
+  <text class="f-lbl" x="528" y="214" style="font-size:9.5px">Write n, then read c: c reads the SAME bytes back.</text>
+  <text class="f-lbl" x="528" y="230" style="font-size:9.5px">Only the member written last holds a meaningful value.</text>
+
+  <rect class="f-box-y" x="16" y="254" width="668" height="36" rx="8"/>
+  <text class="f-lbl" x="350" y="272" style="font-size:9.5px">USE A STRUCTURE when every member must hold its value at once &#8212; a student record, a date, a point.</text>
+  <text class="f-lbl" x="350" y="286" style="font-size:9.5px">USE A UNION when only one member is ever in use and memory is short. Saving memory is the only reason it exists.</text>
+</svg>`;
+
+/* ---- 7.1 / 7.3 two boxes, one arrow ----
+   The sentence "a pointer is a variable that stores the address of
+   another variable" contains everything and shows nothing. Two boxes
+   with their own addresses, and an arrow drawn from the value of one to
+   the location of the other, is what makes &n and *p read as opposite
+   directions rather than as two unrelated symbols. ---- */
+D.cPointerMemory = `
+<svg viewBox="0 0 700 280" role="img" aria-labelledby="t-cpm">
+  <title id="t-cpm">An integer variable at one memory address and a pointer variable at another,
+  with the pointer holding the first variable's address and an arrow showing what it points to</title>
+  ${ah('a-cpm')}
+  <text class="f-ttl" x="10" y="20">int n = 25;   int *p;   p = &amp;n;   &#8212; two variables, and one holds the other's address</text>
+
+  <rect class="f-box-y" x="60" y="60" width="180" height="70" rx="8"/>
+  <text class="f-val" x="150" y="102" style="font-size:20px">25</text>
+  <text class="f-lbl-y" x="150" y="150" style="font-size:12px">n</text>
+  <text class="f-addr" x="150" y="168">lives at address 1000</text>
+  <text class="f-lbl" x="150" y="188" style="font-size:9.5px">an ordinary int &#183; 4 bytes</text>
+
+  <rect class="f-box" x="440" y="60" width="180" height="70" rx="8"/>
+  <text class="f-val" x="530" y="102" style="font-size:20px">1000</text>
+  <text class="f-lbl-y" x="530" y="150" style="font-size:12px">p</text>
+  <text class="f-addr" x="530" y="168">lives at address 2000</text>
+  <text class="f-lbl" x="530" y="188" style="font-size:9.5px">a pointer &#183; holds an ADDRESS, not a value</text>
+
+  <path class="f-arr" d="M436 95 Q340 40 244 95" marker-end="url(#a-cpm)"/>
+  <text class="f-lbl-y" x="340" y="44" style="font-size:10.5px">p points at n</text>
+
+  <rect class="f-box-g" x="24" y="206" width="320" height="30" rx="7"/>
+  <text class="f-lbl" x="184" y="225" style="font-size:10px">&amp;n gives 1000 &#8212; take the ADDRESS out of a variable</text>
+
+  <rect class="f-box-g" x="356" y="206" width="320" height="30" rx="7"/>
+  <text class="f-lbl" x="516" y="225" style="font-size:10px">*p gives 25 &#8212; take the VALUE out of an address</text>
+
+  <rect class="f-box-c" x="24" y="244" width="652" height="30" rx="7"/>
+  <text class="f-lbl" x="350" y="263" style="font-size:9.5px">*p = 50; changes n itself, although the line never mentions n. That is how call by reference works, and why pointers are worth the care.</text>
 </svg>`;
 
 module.exports = D;

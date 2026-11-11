@@ -1,6 +1,173 @@
 /* GENERATED from config/pages.js and content/prerequisites.js — do not edit by hand. */
 RevisionService.load({
  "units": {
+  "grade9/c-programming/u1": {
+   "id": "grade9/c-programming/u1",
+   "subject": "grade9/c-programming",
+   "n": "1",
+   "page": "grade9/c-programming/unit1.html",
+   "title": {
+    "en": "Principles of Programming",
+    "ne": "प्रोग्रामिङका सिद्धान्त"
+   },
+   "hrs": 6,
+   "marks": 5,
+   "prereqs": []
+  },
+  "grade9/c-programming/u2": {
+   "id": "grade9/c-programming/u2",
+   "subject": "grade9/c-programming",
+   "n": "2",
+   "page": "grade9/c-programming/unit2.html",
+   "title": {
+    "en": "Fundamentals of C",
+    "ne": "सी भाषाका आधारभूत कुरा"
+   },
+   "hrs": 10,
+   "marks": 7,
+   "prereqs": [
+    {
+     "unit": "grade9/c-programming/u1",
+     "why": {
+      "en": "Unit 2 is the C syntax for ideas Unit 1 named without any code: a variable is the box an algorithm assigns to, and an operator is the step a flowchart puts in a rectangle. Without that mapping, C reads as arbitrary punctuation.",
+      "ne": "युनिट १ ले कोडविना नाम लिएका विचारको C syntax नै युनिट २ हो: algorithm ले मान राख्ने बाकस variable हो, र flowchart ले rectangle मा राख्ने चरण operator। त्यो नजोडिए C मनपरी चिन्हजस्तो पढिन्छ।"
+     }
+    }
+   ]
+  },
+  "grade9/c-programming/u3": {
+   "id": "grade9/c-programming/u3",
+   "subject": "grade9/c-programming",
+   "n": "3",
+   "page": "grade9/c-programming/unit3.html",
+   "title": {
+    "en": "Control Flow Statements",
+    "ne": "नियन्त्रण प्रवाह कथन"
+   },
+   "hrs": 16,
+   "marks": 13,
+   "prereqs": [
+    {
+     "unit": "grade9/c-programming/u2",
+     "why": {
+      "en": "Every loop condition is a relational expression and every counter is an assignment, both from 2.7. If i = i + 1 and i == 1 still look like the same kind of line, a loop cannot be traced and the output question cannot be answered.",
+      "ne": "हरेक loop को सर्त relational expression हो र हरेक counter assignment — दुवै २.७ बाट। i = i + 1 र i == 1 अझै उस्तै लाइन देखिन्छन् भने loop ट्रेस गर्न सकिँदैन र output को प्रश्नको उत्तर आउँदैन।"
+     }
+    },
+    {
+     "unit": "grade9/c-programming/u1",
+     "why": {
+      "en": "A flowchart diamond is an if and a loop is an arrow going back. Drawing the control flow before writing it is what makes a nested loop tractable.",
+      "ne": "Flowchart को diamond नै if हो र पछाडि फर्कने तीर नै loop। लेख्नुअघि नियन्त्रण प्रवाह कोर्नुले nested loop सम्हाल्न सकिने बनाउँछ।"
+     }
+    }
+   ]
+  },
+  "grade9/c-programming/u4": {
+   "id": "grade9/c-programming/u4",
+   "subject": "grade9/c-programming",
+   "n": "4",
+   "page": "grade9/c-programming/unit4.html",
+   "title": {
+    "en": "Functions",
+    "ne": "फङ्सन"
+   },
+   "hrs": 12,
+   "marks": 10,
+   "prereqs": [
+    {
+     "unit": "grade9/c-programming/u2",
+     "why": {
+      "en": "A parameter is a variable with a type and a scope, and an argument is an expression evaluated at the call. Both are Unit 2 ideas wearing new names, and the names are what the examination asks you to tell apart.",
+      "ne": "Parameter भनेको प्रकार र क्षेत्र भएको variable हो, र argument भनेको call मा मूल्याङ्कन हुने expression। दुवै युनिट २ कै विचार नयाँ नाममा छन्, र परीक्षाले छुट्याउन भन्ने ती नाम नै हुन्।"
+     }
+    },
+    {
+     "unit": "grade9/c-programming/u3",
+     "why": {
+      "en": "return inside a function behaves like break inside a loop — it leaves early and nothing below it runs. A recursive function is also a repetition, and its base case is doing the job a loop condition does.",
+      "ne": "Function भित्रको return loop भित्रको break जस्तै हो — चाँडै बाहिरिन्छ र तलको केही चल्दैन। Recursive function पनि दोहोरिने नै हो, र यसको base case ले loop को सर्तकै काम गर्छ।"
+     }
+    }
+   ]
+  },
+  "grade9/c-programming/u5": {
+   "id": "grade9/c-programming/u5",
+   "subject": "grade9/c-programming",
+   "n": "5",
+   "page": "grade9/c-programming/unit5.html",
+   "title": {
+    "en": "Arrays & Strings",
+    "ne": "एरे र स्ट्रिङ"
+   },
+   "hrs": 10,
+   "marks": 8,
+   "prereqs": [
+    {
+     "unit": "grade9/c-programming/u3",
+     "why": {
+      "en": "An array without a loop is fifty variables with brackets. Every array operation in this unit — read, print, total, find the largest, sort — is a for loop whose counter is the index, so a shaky loop makes every one of them shaky.",
+      "ne": "Loop नभएको array भनेको कोष्ठकसहितका पचास variable मात्र हो। यस युनिटका हरेक काम — पढ्ने, छाप्ने, जोड्ने, ठूलो खोज्ने, क्रम मिलाउने — for loop हुन् जसको counter नै index हो; त्यसैले loop कमजोर भए सबै कमजोर हुन्छन्।"
+     }
+    },
+    {
+     "unit": "grade9/c-programming/u2",
+     "why": {
+      "en": "A string is a char array and %s, %c and the escape sequence \\0 all come from 2.2 and 2.5. The null character is a char constant, not a new idea.",
+      "ne": "String भनेको char array हो, र %s, %c अनि escape sequence \\0 सबै २.२ र २.५ बाट आउँछन्। Null अक्षर नयाँ विचार होइन, char constant हो।"
+     }
+    }
+   ]
+  },
+  "grade9/c-programming/u6": {
+   "id": "grade9/c-programming/u6",
+   "subject": "grade9/c-programming",
+   "n": "6",
+   "page": "grade9/c-programming/unit6.html",
+   "title": {
+    "en": "Structure and Union",
+    "ne": "स्ट्रक्चर र युनियन"
+   },
+   "hrs": 6,
+   "marks": 5,
+   "prereqs": [
+    {
+     "unit": "grade9/c-programming/u5",
+     "why": {
+      "en": "A structure is the answer to the question an array leaves open: an array holds many values of ONE type, and a record needs several values of DIFFERENT types. The comparison only lands if the array half is solid.",
+      "ne": "Array ले खुला छाडेको प्रश्नको उत्तर नै structure हो: array ले एउटै प्रकारका धेरै मान राख्छ, record लाई फरक प्रकारका धेरै मान चाहिन्छ। Array को भाग पक्का भए मात्र यो तुलना बुझिन्छ।"
+     }
+    },
+    {
+     "unit": "grade9/c-programming/u2",
+     "why": {
+      "en": "Why a union saves memory is a question about SIZE, and size is 2.5 — how many bytes an int takes against a char. Without that, \"the largest member\" is a phrase rather than a number.",
+      "ne": "Union ले किन मेमोरी बचाउँछ भन्ने प्रश्न आकारको हो, र आकार २.५ हो — int ले कति byte लिन्छ, char ले कति। त्यो नभए \"सबैभन्दा ठूलो member\" सङ्ख्या नभई वाक्यांश मात्र हुन्छ।"
+     }
+    }
+   ]
+  },
+  "grade9/c-programming/u7": {
+   "id": "grade9/c-programming/u7",
+   "subject": "grade9/c-programming",
+   "n": "7",
+   "page": "grade9/c-programming/unit7.html",
+   "title": {
+    "en": "Pointers",
+    "ne": "पोइन्टर"
+   },
+   "hrs": 4,
+   "marks": 2,
+   "prereqs": [
+    {
+     "unit": "grade9/c-programming/u4",
+     "why": {
+      "en": "You have already used pointers twice without the word: the & in every scanf since Unit 2, and the whole of call by reference in 4.4. This unit is the explanation of a mechanism you have been relying on, so start by re-reading the swap that worked and asking why it did.",
+      "ne": "शब्द नजानिकनै तपाईंले pointer दुई पटक चलाइसक्नुभएको छ: युनिट २ देखि हरेक scanf को &, र ४.४ को पूरै call by reference। यो युनिट तपाईंले भर परिरहेकै व्यवस्थाको व्याख्या हो — त्यसैले चलेको swap फेरि पढेर किन चल्यो सोध्दै सुरु गर्नुहोस्।"
+     }
+    }
+   ]
+  },
   "grade9/computer-fundamentals/u1": {
    "id": "grade9/computer-fundamentals/u1",
    "subject": "grade9/computer-fundamentals",
@@ -9,6 +176,84 @@ RevisionService.load({
    "title": {
     "en": "Introduction to Computer",
     "ne": "कम्प्युटरको परिचय"
+   },
+   "hrs": 8,
+   "marks": 6,
+   "prereqs": []
+  },
+  "grade9/computer-fundamentals/u2": {
+   "id": "grade9/computer-fundamentals/u2",
+   "subject": "grade9/computer-fundamentals",
+   "n": "2",
+   "page": "grade9/computer-fundamentals/unit2.html",
+   "title": {
+    "en": "Computer Components",
+    "ne": "कम्प्युटरका भागहरू"
+   },
+   "hrs": 10,
+   "marks": 7,
+   "prereqs": []
+  },
+  "grade9/computer-fundamentals/u3": {
+   "id": "grade9/computer-fundamentals/u3",
+   "subject": "grade9/computer-fundamentals",
+   "n": "3",
+   "page": "grade9/computer-fundamentals/unit3.html",
+   "title": {
+    "en": "Computer Software",
+    "ne": "कम्प्युटर सफ्टवेयर"
+   },
+   "hrs": 10,
+   "marks": 9,
+   "prereqs": []
+  },
+  "grade9/computer-fundamentals/u4": {
+   "id": "grade9/computer-fundamentals/u4",
+   "subject": "grade9/computer-fundamentals",
+   "n": "4",
+   "page": "grade9/computer-fundamentals/unit4.html",
+   "title": {
+    "en": "Memory / Storage Unit",
+    "ne": "मेमोरी / भण्डारण एकाइ"
+   },
+   "hrs": 10,
+   "marks": 8,
+   "prereqs": []
+  },
+  "grade9/computer-fundamentals/u5": {
+   "id": "grade9/computer-fundamentals/u5",
+   "subject": "grade9/computer-fundamentals",
+   "n": "5",
+   "page": "grade9/computer-fundamentals/unit5.html",
+   "title": {
+    "en": "Internet and its Application",
+    "ne": "इन्टरनेट र यसको प्रयोग"
+   },
+   "hrs": 10,
+   "marks": 8,
+   "prereqs": []
+  },
+  "grade9/computer-fundamentals/u6": {
+   "id": "grade9/computer-fundamentals/u6",
+   "subject": "grade9/computer-fundamentals",
+   "n": "6",
+   "page": "grade9/computer-fundamentals/unit6.html",
+   "title": {
+    "en": "Multimedia",
+    "ne": "मल्टिमिडिया"
+   },
+   "hrs": 8,
+   "marks": 6,
+   "prereqs": []
+  },
+  "grade9/computer-fundamentals/u7": {
+   "id": "grade9/computer-fundamentals/u7",
+   "subject": "grade9/computer-fundamentals",
+   "n": "7",
+   "page": "grade9/computer-fundamentals/unit7.html",
+   "title": {
+    "en": "Emerging Technology",
+    "ne": "उदीयमान प्रविधि"
    },
    "hrs": 8,
    "marks": 6,
@@ -507,6 +752,82 @@ RevisionService.load({
   }
  },
  "questions": {
+  "ca11": {
+   "unit": "grade9/c-programming/u1",
+   "page": "grade9/c-programming/unit1.html"
+  },
+  "ca12": {
+   "unit": "grade9/c-programming/u1",
+   "page": "grade9/c-programming/unit1.html"
+  },
+  "ca13": {
+   "unit": "grade9/c-programming/u1",
+   "page": "grade9/c-programming/unit1.html"
+  },
+  "ca21": {
+   "unit": "grade9/c-programming/u2",
+   "page": "grade9/c-programming/unit2.html"
+  },
+  "ca22": {
+   "unit": "grade9/c-programming/u2",
+   "page": "grade9/c-programming/unit2.html"
+  },
+  "ca23": {
+   "unit": "grade9/c-programming/u2",
+   "page": "grade9/c-programming/unit2.html"
+  },
+  "ca31": {
+   "unit": "grade9/c-programming/u3",
+   "page": "grade9/c-programming/unit3.html"
+  },
+  "ca32": {
+   "unit": "grade9/c-programming/u3",
+   "page": "grade9/c-programming/unit3.html"
+  },
+  "ca33": {
+   "unit": "grade9/c-programming/u3",
+   "page": "grade9/c-programming/unit3.html"
+  },
+  "ca41": {
+   "unit": "grade9/c-programming/u4",
+   "page": "grade9/c-programming/unit4.html"
+  },
+  "ca42": {
+   "unit": "grade9/c-programming/u4",
+   "page": "grade9/c-programming/unit4.html"
+  },
+  "ca43": {
+   "unit": "grade9/c-programming/u4",
+   "page": "grade9/c-programming/unit4.html"
+  },
+  "ca51": {
+   "unit": "grade9/c-programming/u5",
+   "page": "grade9/c-programming/unit5.html"
+  },
+  "ca52": {
+   "unit": "grade9/c-programming/u5",
+   "page": "grade9/c-programming/unit5.html"
+  },
+  "ca53": {
+   "unit": "grade9/c-programming/u5",
+   "page": "grade9/c-programming/unit5.html"
+  },
+  "ca61": {
+   "unit": "grade9/c-programming/u6",
+   "page": "grade9/c-programming/unit6.html"
+  },
+  "ca62": {
+   "unit": "grade9/c-programming/u6",
+   "page": "grade9/c-programming/unit6.html"
+  },
+  "ca71": {
+   "unit": "grade9/c-programming/u7",
+   "page": "grade9/c-programming/unit7.html"
+  },
+  "ca72": {
+   "unit": "grade9/c-programming/u7",
+   "page": "grade9/c-programming/unit7.html"
+  },
   "cfa11": {
    "unit": "grade9/computer-fundamentals/u1",
    "page": "grade9/computer-fundamentals/unit1.html"
@@ -522,6 +843,98 @@ RevisionService.load({
   "cfa14": {
    "unit": "grade9/computer-fundamentals/u1",
    "page": "grade9/computer-fundamentals/unit1.html"
+  },
+  "cfa21": {
+   "unit": "grade9/computer-fundamentals/u2",
+   "page": "grade9/computer-fundamentals/unit2.html"
+  },
+  "cfa22": {
+   "unit": "grade9/computer-fundamentals/u2",
+   "page": "grade9/computer-fundamentals/unit2.html"
+  },
+  "cfa23": {
+   "unit": "grade9/computer-fundamentals/u2",
+   "page": "grade9/computer-fundamentals/unit2.html"
+  },
+  "cfa24": {
+   "unit": "grade9/computer-fundamentals/u2",
+   "page": "grade9/computer-fundamentals/unit2.html"
+  },
+  "cfa31": {
+   "unit": "grade9/computer-fundamentals/u3",
+   "page": "grade9/computer-fundamentals/unit3.html"
+  },
+  "cfa32": {
+   "unit": "grade9/computer-fundamentals/u3",
+   "page": "grade9/computer-fundamentals/unit3.html"
+  },
+  "cfa33": {
+   "unit": "grade9/computer-fundamentals/u3",
+   "page": "grade9/computer-fundamentals/unit3.html"
+  },
+  "cfa34": {
+   "unit": "grade9/computer-fundamentals/u3",
+   "page": "grade9/computer-fundamentals/unit3.html"
+  },
+  "cfa41": {
+   "unit": "grade9/computer-fundamentals/u4",
+   "page": "grade9/computer-fundamentals/unit4.html"
+  },
+  "cfa42": {
+   "unit": "grade9/computer-fundamentals/u4",
+   "page": "grade9/computer-fundamentals/unit4.html"
+  },
+  "cfa43": {
+   "unit": "grade9/computer-fundamentals/u4",
+   "page": "grade9/computer-fundamentals/unit4.html"
+  },
+  "cfa44": {
+   "unit": "grade9/computer-fundamentals/u4",
+   "page": "grade9/computer-fundamentals/unit4.html"
+  },
+  "cfa51": {
+   "unit": "grade9/computer-fundamentals/u5",
+   "page": "grade9/computer-fundamentals/unit5.html"
+  },
+  "cfa52": {
+   "unit": "grade9/computer-fundamentals/u5",
+   "page": "grade9/computer-fundamentals/unit5.html"
+  },
+  "cfa53": {
+   "unit": "grade9/computer-fundamentals/u5",
+   "page": "grade9/computer-fundamentals/unit5.html"
+  },
+  "cfa54": {
+   "unit": "grade9/computer-fundamentals/u5",
+   "page": "grade9/computer-fundamentals/unit5.html"
+  },
+  "cfa61": {
+   "unit": "grade9/computer-fundamentals/u6",
+   "page": "grade9/computer-fundamentals/unit6.html"
+  },
+  "cfa62": {
+   "unit": "grade9/computer-fundamentals/u6",
+   "page": "grade9/computer-fundamentals/unit6.html"
+  },
+  "cfa63": {
+   "unit": "grade9/computer-fundamentals/u6",
+   "page": "grade9/computer-fundamentals/unit6.html"
+  },
+  "cfa71": {
+   "unit": "grade9/computer-fundamentals/u7",
+   "page": "grade9/computer-fundamentals/unit7.html"
+  },
+  "cfa72": {
+   "unit": "grade9/computer-fundamentals/u7",
+   "page": "grade9/computer-fundamentals/unit7.html"
+  },
+  "cfa73": {
+   "unit": "grade9/computer-fundamentals/u7",
+   "page": "grade9/computer-fundamentals/unit7.html"
+  },
+  "cfa74": {
+   "unit": "grade9/computer-fundamentals/u7",
+   "page": "grade9/computer-fundamentals/unit7.html"
   },
   "a1": {
    "unit": "grade10/oop-cpp/u1",

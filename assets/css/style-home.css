@@ -829,6 +829,97 @@ pre.out{
 .pr-need{font-size:.86rem;color:var(--chalk-faint);margin-top:5px}
 .pr-need b{color:var(--chalk)}
 
+/* ---- cipher bench (runtime/sim-cipher.js) ----
+   Two real form controls and a result. No animation: the output changes
+   when the input does, and that cause-and-effect IS the lesson, so
+   anything that delayed it would get in the way. */
+.cipher{border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+  background:rgba(0,0,0,.14);margin:16px 0}
+.cip-h{font-size:.86rem;color:var(--chalk-faint);margin:0 0 10px}
+.cip-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px}
+.cip-lab{flex:1 1 100%;font-size:.78rem;color:var(--chalk-faint);margin:0}
+.cip-in{flex:1 1 220px;font-family:var(--mono);font-size:.95rem;letter-spacing:.06em;
+  padding:7px 10px;border-radius:8px;border:1px solid var(--line-strong);
+  background:rgba(0,0,0,.3);color:var(--chalk-white)}
+.cip-in:focus-visible,.cip-key:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+.cip-key{flex:1 1 180px;accent-color:var(--yellow)}
+.cip-keyval{font-family:var(--mono);font-size:1.05rem;color:var(--yellow);min-width:2.2em;
+  text-align:center}
+.cip-out{font-family:var(--mono);font-size:1.05rem;letter-spacing:.14em;color:var(--green,#7ed9a0);
+  word-break:break-word;padding:8px 10px;border-radius:8px;background:rgba(126,217,160,.08);
+  border:1px solid rgba(126,217,160,.3);min-height:1.6em}
+.cip-back{font-size:.8rem;color:var(--chalk-faint);margin:10px 0 0;line-height:1.5}
+.cipher .np-cell{display:block;font-family:var(--deva);margin-top:4px;line-height:var(--lh-deva)}
+@media (max-width:420px){
+  .cip-in,.cip-key{flex:1 1 100%}
+}
+
+/* ---- C program stepper (runtime/sim-crun.js) ----
+   Three panels that must be read TOGETHER — the code, the variables and
+   the console — so on a wide screen they sit side by side and on a
+   phone they stack in that order. The variable table is the panel that
+   earns the component: it is the only one showing something the source
+   listing cannot.
+
+   No animation anywhere. The student presses Next; the state changes.
+   A transition between states would put a wait between the press and
+   the answer, which is the one place in this component where a delay
+   costs understanding rather than adding polish. */
+.crun{border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+  background:rgba(0,0,0,.14);margin:16px 0}
+.crun-title{font-size:.92rem;font-weight:600;color:var(--chalk-white);margin:0 0 10px}
+.crun-title .np-cell{display:block;font-family:var(--deva);font-weight:400;
+  color:var(--chalk-faint);margin-top:3px;line-height:var(--lh-deva)}
+.crun-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:14px;
+  align-items:start}
+.crun-code{margin:0}
+.crun-side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.crun-cap{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:1.3px;
+  text-transform:uppercase;color:var(--chalk-faint);margin-bottom:5px}
+.crun-cap .np-cell{display:block;font-family:var(--deva);letter-spacing:0;
+  text-transform:none;margin-top:2px}
+
+/* The variable table. A row is a variable's whole life; the highlight
+   says which one THIS line touched, which is the question a student is
+   actually asking when they press Next. */
+/* `min-width:560px` on the global table rule is right for a content
+   table inside a .tablewrap that can scroll. This one lives in a
+   narrow side column that cannot, so it would push the whole component
+   sideways — measured at 560px inside a 376px column. Fixed layout and
+   a width floor of zero keep it inside its column at every width. */
+.crun-vars{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse;
+  font-size:.82rem;overflow-wrap:anywhere}
+.crun-vars caption{font-family:var(--mono);font-size:.64rem;letter-spacing:1.3px;
+  text-transform:uppercase;color:var(--chalk-faint);text-align:left;padding-bottom:5px}
+.crun-vars caption .np-cell{display:block;font-family:var(--deva);letter-spacing:0;
+  text-transform:none;margin-top:2px}
+.crun-vars th,.crun-vars td{border:1px solid var(--line);padding:5px 9px;text-align:left;
+  font-family:var(--mono);font-weight:400}
+.crun-vars th{color:var(--chalk-faint);width:52%}
+.crun-vars td{color:var(--chalk-white)}
+.crun-vars tr.is-changed th{color:var(--yellow)}
+.crun-vars tr.is-changed td{color:var(--yellow);background:rgba(255,215,110,.13)}
+
+.crun-stack ol{list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:.8rem}
+.crun-stack li{border:1px solid var(--line);border-radius:7px;padding:4px 9px;margin:0 0 4px;
+  color:var(--chalk-faint)}
+.crun-stack li.is-top{border-color:var(--yellow);color:var(--yellow)}
+.crun-stack li.is-empty{opacity:.55}
+
+.crun-con{min-height:64px;max-height:170px}
+.crun-con .np-cell{display:block;font-family:var(--deva);line-height:var(--lh-deva)}
+
+.crun-progress{font-family:var(--mono);font-size:.76rem;color:var(--chalk-faint)}
+.crun-say{margin-top:10px;font-size:.88rem;color:var(--chalk-dim);line-height:1.6}
+.crun-say-ne{display:block;font-family:var(--deva);color:#e7d9b4;margin-top:5px;
+  line-height:var(--lh-deva)}
+.crun-missing{color:var(--coral);font-size:.86rem;margin:0}
+.crun-missing .np-cell{display:block;font-family:var(--deva);margin-top:4px}
+
+@media (max-width:760px){
+  .crun-grid{grid-template-columns:minmax(0,1fr)}
+}
+
 /* ---- the end-of-quiz recommendation line (runtime/quiz.js) ----
    A separate line from the band message, because "where to go back to"
    has two different answers — a teacher's judgement and where the marks
@@ -999,7 +1090,13 @@ html, body{ overflow-x: clip; }
   /* Phase 12.1. The practical log's three states are <label>s wrapping a
      radio, so none of the selectors above reached them: measured 31px at
      320px. Same miss as .rv-act, one list entry later. */
-  .pr-opt{
+  .pr-opt,
+  /* Phase 13. The cipher bench's two controls: measured 37px for the
+     text input and 16px for the key slider at 320px. A 16px-tall slider
+     is the worst target in the product on a phone, and the component
+     whose whole lesson is "move the key" is the one that can least
+     afford a key that is hard to move. */
+  .cip-in, .cip-key{
     min-height: var(--touch-min);
   }
   .pr-opt{ display: inline-flex; align-items: center; }

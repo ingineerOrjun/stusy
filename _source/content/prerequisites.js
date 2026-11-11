@@ -36,6 +36,115 @@
 module.exports = {
 
   /* ---------------------------------------------------------------
+     GRADE 9 · PROGRAMMING PRINCIPLES IN C
+
+     A programming subject has a real dependency chain rather than a
+     notional one: a student cannot trace a loop without knowing what an
+     assignment does, and cannot read a swap function without knowing
+     what a parameter is.
+
+     ONE EDGE RUNS BACKWARDS AGAINST THE CURRICULUM ORDER, and it is
+     recorded rather than smoothed over. Unit 4's call by reference
+     needs the two pointer operators, and pointers are Unit 7. The
+     lesson handles it by introducing & and * as the two operators that
+     unit needs and naming Unit 7 as where they are properly taught; the
+     edge below points FORWARD from 7 to 4 as well, so a student who
+     reaches Unit 7 is told that it explains something they have already
+     used. The graph has no cycle: 4 does not list 7 as a prerequisite,
+     because a student can and does learn Unit 4 first.
+     --------------------------------------------------------------- */
+
+  'grade9/c-programming/u1': [],
+
+  'grade9/c-programming/u2': [
+    { unit: 'grade9/c-programming/u1',
+      why: { en: 'Unit 2 is the C syntax for ideas Unit 1 named without any code: a variable is ' +
+                 'the box an algorithm assigns to, and an operator is the step a flowchart puts ' +
+                 'in a rectangle. Without that mapping, C reads as arbitrary punctuation.',
+             ne: 'युनिट १ ले कोडविना नाम लिएका विचारको C syntax नै युनिट २ हो: algorithm ले मान ' +
+                 'राख्ने बाकस variable हो, र flowchart ले rectangle मा राख्ने चरण operator। ' +
+                 'त्यो नजोडिए C मनपरी चिन्हजस्तो पढिन्छ।' } }
+  ],
+
+  'grade9/c-programming/u3': [
+    { unit: 'grade9/c-programming/u2',
+      why: { en: 'Every loop condition is a relational expression and every counter is an ' +
+                 'assignment, both from 2.7. If i = i + 1 and i == 1 still look like the same ' +
+                 'kind of line, a loop cannot be traced and the output question cannot be ' +
+                 'answered.',
+             ne: 'हरेक loop को सर्त relational expression हो र हरेक counter assignment — दुवै ' +
+                 '२.७ बाट। i = i + 1 र i == 1 अझै उस्तै लाइन देखिन्छन् भने loop ट्रेस गर्न ' +
+                 'सकिँदैन र output को प्रश्नको उत्तर आउँदैन।' } },
+    { unit: 'grade9/c-programming/u1',
+      why: { en: 'A flowchart diamond is an if and a loop is an arrow going back. Drawing the ' +
+                 'control flow before writing it is what makes a nested loop tractable.',
+             ne: 'Flowchart को diamond नै if हो र पछाडि फर्कने तीर नै loop। लेख्नुअघि नियन्त्रण ' +
+                 'प्रवाह कोर्नुले nested loop सम्हाल्न सकिने बनाउँछ।' } }
+  ],
+
+  'grade9/c-programming/u4': [
+    { unit: 'grade9/c-programming/u2',
+      why: { en: 'A parameter is a variable with a type and a scope, and an argument is an ' +
+                 'expression evaluated at the call. Both are Unit 2 ideas wearing new names, ' +
+                 'and the names are what the examination asks you to tell apart.',
+             ne: 'Parameter भनेको प्रकार र क्षेत्र भएको variable हो, र argument भनेको call मा ' +
+                 'मूल्याङ्कन हुने expression। दुवै युनिट २ कै विचार नयाँ नाममा छन्, र परीक्षाले ' +
+                 'छुट्याउन भन्ने ती नाम नै हुन्।' } },
+    { unit: 'grade9/c-programming/u3',
+      why: { en: 'return inside a function behaves like break inside a loop — it leaves early ' +
+                 'and nothing below it runs. A recursive function is also a repetition, and ' +
+                 'its base case is doing the job a loop condition does.',
+             ne: 'Function भित्रको return loop भित्रको break जस्तै हो — चाँडै बाहिरिन्छ र तलको ' +
+                 'केही चल्दैन। Recursive function पनि दोहोरिने नै हो, र यसको base case ले ' +
+                 'loop को सर्तकै काम गर्छ।' } }
+  ],
+
+  'grade9/c-programming/u5': [
+    { unit: 'grade9/c-programming/u3',
+      why: { en: 'An array without a loop is fifty variables with brackets. Every array ' +
+                 'operation in this unit — read, print, total, find the largest, sort — is a ' +
+                 'for loop whose counter is the index, so a shaky loop makes every one of them ' +
+                 'shaky.',
+             ne: 'Loop नभएको array भनेको कोष्ठकसहितका पचास variable मात्र हो। यस युनिटका हरेक ' +
+                 'काम — पढ्ने, छाप्ने, जोड्ने, ठूलो खोज्ने, क्रम मिलाउने — for loop हुन् जसको ' +
+                 'counter नै index हो; त्यसैले loop कमजोर भए सबै कमजोर हुन्छन्।' } },
+    { unit: 'grade9/c-programming/u2',
+      why: { en: 'A string is a char array and %s, %c and the escape sequence \\0 all come ' +
+                 'from 2.2 and 2.5. The null character is a char constant, not a new idea.',
+             ne: 'String भनेको char array हो, र %s, %c अनि escape sequence \\0 सबै २.२ र २.५ ' +
+                 'बाट आउँछन्। Null अक्षर नयाँ विचार होइन, char constant हो।' } }
+  ],
+
+  'grade9/c-programming/u6': [
+    { unit: 'grade9/c-programming/u5',
+      why: { en: 'A structure is the answer to the question an array leaves open: an array ' +
+                 'holds many values of ONE type, and a record needs several values of ' +
+                 'DIFFERENT types. The comparison only lands if the array half is solid.',
+             ne: 'Array ले खुला छाडेको प्रश्नको उत्तर नै structure हो: array ले एउटै प्रकारका ' +
+                 'धेरै मान राख्छ, record लाई फरक प्रकारका धेरै मान चाहिन्छ। Array को भाग ' +
+                 'पक्का भए मात्र यो तुलना बुझिन्छ।' } },
+    { unit: 'grade9/c-programming/u2',
+      why: { en: 'Why a union saves memory is a question about SIZE, and size is 2.5 — how many ' +
+                 'bytes an int takes against a char. Without that, "the largest member" is a ' +
+                 'phrase rather than a number.',
+             ne: 'Union ले किन मेमोरी बचाउँछ भन्ने प्रश्न आकारको हो, र आकार २.५ हो — int ले ' +
+                 'कति byte लिन्छ, char ले कति। त्यो नभए "सबैभन्दा ठूलो member" सङ्ख्या नभई ' +
+                 'वाक्यांश मात्र हुन्छ।' } }
+  ],
+
+  'grade9/c-programming/u7': [
+    { unit: 'grade9/c-programming/u4',
+      why: { en: 'You have already used pointers twice without the word: the & in every scanf ' +
+                 'since Unit 2, and the whole of call by reference in 4.4. This unit is the ' +
+                 'explanation of a mechanism you have been relying on, so start by re-reading ' +
+                 'the swap that worked and asking why it did.',
+             ne: 'शब्द नजानिकनै तपाईंले pointer दुई पटक चलाइसक्नुभएको छ: युनिट २ देखि हरेक ' +
+                 'scanf को &, र ४.४ को पूरै call by reference। यो युनिट तपाईंले भर परिरहेकै ' +
+                 'व्यवस्थाको व्याख्या हो — त्यसैले चलेको swap फेरि पढेर किन चल्यो सोध्दै ' +
+                 'सुरु गर्नुहोस्।' } }
+  ],
+
+  /* ---------------------------------------------------------------
      DIGITAL DESIGN & MICROPROCESSOR
      Number systems is the entry point: everything else in the subject
      is expressed in binary sooner or later.

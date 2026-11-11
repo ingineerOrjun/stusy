@@ -5,9 +5,9 @@ are practical and project work.** This document maps every practical activity
 the curriculum lists, for all seven units, and says plainly what Gyansetu can
 do about each one and what it cannot.
 
-It is a map, not a plan of record. **Unit 1's practical experience is built.
-Units 2–7 are mapped and not built**, because Units 2–7 themselves are not
-written.
+It is a map, not a plan of record. **All seven units' practical experience is
+now built** — Unit 1 in Phase 12.1, Units 2–7 in Phase 13 — giving 32 activity
+briefs with a three-state log on each unit page.
 
 ---
 
@@ -226,10 +226,10 @@ that a later phase does not have to re-derive the judgement.
 
 ## 6 · What is built, and what is not
 
-**Built, Unit 1 only:**
+**Built, all seven units — 32 activities** (6 · 5 · 4 · 5 · 3 · 3 · 6):
 
-- Six activities on the page with requirements, expected outcome and what to
-  hand in
+- Each unit's activities on the page with requirements, expected outcome and
+  what to hand in
 - A record-keeping block that explains the 3 marks and what a record contains
 - Two independent exercises, clearly marked as not from the curriculum
 - A persistent three-state log per activity, with a per-unit tally
@@ -239,7 +239,6 @@ that a later phase does not have to re-derive the judgement.
 
 **Not built:**
 
-- Units 2–7's activity briefs, because Units 2–7 are not written
 - The field-report template for 3.4, the strongest single addition available
   to this subject's practical half
 - Any revision-page surfacing of practical progress. The log is per unit and

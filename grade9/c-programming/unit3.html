@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Control Flow Statements — C Language | </title>
+<meta name="description" content="Control Flow Statements explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark" lang="ne">ज्ञ</span>
+      <span class="brand-txt">Gyansetu<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop on"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language <span class="dn">· notes ready</span><small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals <span class="dn">· notes ready</span><small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair <span class="dn">· notes ready</span><small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html" class="on">C Language ✓<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals ✓<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair ✓<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 9</a> <span class="sep">/</span> <a href="index.html">C Language</a> <span class="sep">/</span> <span>Control Flow Statements</span></nav>
+<main id="main" tabindex="-1" data-subject="grade9/c-programming">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · What a program is</a><a href="unit2.html">2 · Variables, types, operators</a><a href="unit3.html" style="color:var(--yellow);border-color:var(--yellow)">3 · Choosing and repeating</a><a href="unit4.html">4 · Breaking a program up</a><a href="unit5.html">5 · Many values, one name</a><a href="unit6.html">6 · Records, and shared memory</a><a href="unit7.html">7 · Addresses, and what they unlock</a><a href="revise.html">↻ · Revision</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="c-u3">
+  <div class="sec-head">
+    <div class="sec-num">3</div>
+    <div>
+      <h1>Control Flow Statements</h1>
+      <p class="sec-sub" lang="ne">नियन्त्रण प्रवाह कथन</p>
+    </div>
+    <span class="marks">16 hrs · 13 marks · 15 practical hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <aside class="prereq" aria-labelledby="prereq-h"><h2 class="prereq-h" id="prereq-h"><span class="t-en">You should already know</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>तपाईंलाई पहिले यति आउनुपर्छ</span></h2><ul class="prereq-list"><li class="prereq-item"><a class="prereq-link" href="unit2.html"><span class="prereq-n">2</span><span class="prereq-t"><span class="t-en">Fundamentals of C</span><span class="np-cell" lang="ne">सी भाषाका आधारभूत कुरा</span></span></a><p class="prereq-why"><span class="t-en">Every loop condition is a relational expression and every counter is an assignment, both from 2.7. If i = i + 1 and i == 1 still look like the same kind of line, a loop cannot be traced and the output question cannot be answered.</span><span class="np-cell" lang="ne">हरेक loop को सर्त relational expression हो र हरेक counter assignment — दुवै २.७ बाट। i = i + 1 र i == 1 अझै उस्तै लाइन देखिन्छन् भने loop ट्रेस गर्न सकिँदैन र output को प्रश्नको उत्तर आउँदैन।</span></p></li><li class="prereq-item"><a class="prereq-link" href="unit1.html"><span class="prereq-n">1</span><span class="prereq-t"><span class="t-en">Principles of Programming</span><span class="np-cell" lang="ne">प्रोग्रामिङका सिद्धान्त</span></span></a><p class="prereq-why"><span class="t-en">A flowchart diamond is an if and a loop is an arrow going back. Drawing the control flow before writing it is what makes a nested loop tractable.</span><span class="np-cell" lang="ne">Flowchart को diamond नै if हो र पछाडि फर्कने तीर नै loop। लेख्नुअघि नियन्त्रण प्रवाह कोर्नुले nested loop सम्हाल्न सकिने बनाउँछ।</span></p></li></ul></aside>
+
+  <div class="outcomes">
+    <h2><span class="t-en">By the end of this unit you can…</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो युनिट सकिँदा तपाईं यी कुरा गर्न सक्नुहुनेछ</span></h2><div class="t-en">
+    <ol>
+      <li>Choose between <code>if</code>, an <code>if…else if</code> ladder and <code>switch</code>, and say why.</li>
+      <li>Write all three loops correctly and say which one a problem calls for.</li>
+      <li>Trace a loop on paper and give the value of every variable after each turn.</li>
+      <li>Explain the difference between <code>break</code> and <code>continue</code> by what each one abandons.</li>
+      <li>Use nested loops to print a pattern, and say which loop controls rows and which controls columns.</li>
+      <li>Find the three mistakes that stop a loop ending: no initialisation, no update, and a stray semicolon.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: <code>if</code>, <code>if…else if</code> शृंखला र
+    <code>switch</code> बीच छान्न र किन भन्न, तीनै loop सही लेख्न र कुन समस्यालाई कुन चाहिन्छ भन्न,
+    कागजमै loop ट्रेस गरेर हरेक पटकपछि हरेक variable को मान दिन, <code>break</code> र
+    <code>continue</code> ले के–के छाड्छन् भनेर फरक बुझाउन, nested loop ले ढाँचा छाप्न र कुन loop
+    ले पङ्क्ति अनि कुनले स्तम्भ नियन्त्रण गर्छ भन्न, अनि loop नरोकिने तीन गल्ती — initialise
+    नगर्नु, update नगर्नु र बीचमा semicolon छुट्नु — पत्ता लगाउन सक्नुहुनेछ।</span>
+  </div>
+
+  <div class="callout"><span class="t-en">
+    <b>The heaviest unit in the subject.</b> 16 of the 64 theory hours, 13 of the 50 external
+    marks, and 15 of the 64 practical hours — more than any other unit on all three counts. Three
+    official topics carry all of it, so each one below is taught in several sections. If time is
+    short, this is the unit to spend it on.
+    </span><span class="np-cell" lang="ne"><b lang="ne">विषयको सबैभन्दा भारी युनिट।</b> ६४ मध्ये १६ घण्टा, ५० मध्ये १३ अंक,
+    र ६४ मध्ये १५ प्रयोगात्मक घण्टा — तीनै हिसाबले अरू कुनै युनिटभन्दा बढी। आधिकारिक तीन विषयले
+    यो सबै बोक्छन्, त्यसैले तलका हरेकलाई धेरै खण्डमा सिकाइएको छ। समय थोरै छ भने यही युनिटमा
+    खर्चनुहोस्।</span>
+  </div>
+
+  <!-- ============ 3.1 ============ -->
+  <h2 class="topic" id="c-t31">3.1 &nbsp;<span class="t-en">Decision making — if, if…else, switch</span><span class="t-ne" lang="ne"> — निर्णय — if, if…else, switch</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Four shapes, in the order you meet them</span>
+      <p><b>1. Simple if</b> — do something only when a condition is true.</p>
+      <p><b>2. if…else</b> — two paths, exactly one of which runs.</p>
+      <p><b>3. if…else if…else (the ladder)</b> — several conditions tested in order. The first
+      true one wins and the rest are never tested. Order matters: if you test
+      <code>marks &gt;= 40</code> before <code>marks &gt;= 80</code>, nobody ever gets a
+      distinction.</p>
+      <p><b>4. switch</b> — one value compared against a list of exact constants.</p>
+      <p>A condition is any expression. In C <b>zero is false and anything that is not zero is
+      true</b>, which is why <code>if (n)</code> means "if n is not zero" and is perfectly legal.</p>
+      <p>Without braces, an <code>if</code> controls <b>exactly one statement</b>. Two indented
+      lines under an if look like a block and are not one — the second runs every time. Use braces
+      always; the compiler does not care and the next reader does.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">चार आकार, भेटिने क्रममा</span>
+      <p><b lang="ne">१. साधारण if</b> — सर्त सत्य भएमा मात्र केही गर्ने।</p>
+      <p><b lang="ne">२. if…else</b> — दुई बाटो, जसमध्ये ठ्याक्कै एउटा चल्छ।</p>
+      <p><b lang="ne">३. if…else if…else (शृंखला)</b> — धेरै सर्त क्रमैसँग जाँचिन्छन्। पहिलो सत्य जित्छ र
+      बाँकी कहिल्यै जाँचिँदैनन्। क्रम महत्त्वपूर्ण छ: <code>marks &gt;= 80</code> भन्दा अघि
+      <code>marks &gt;= 40</code> जाँच्नुभयो भने कसैले पनि distinction पाउँदैन।</p>
+      <p><b lang="ne">४. switch</b> — एउटा मानलाई ठ्याक्कै मिल्ने constant को सूचीसँग तुलना गर्ने।</p>
+      <p lang="ne">सर्त भनेको जुनसुकै expression हो। C मा <b lang="ne">शून्य असत्य र शून्य नभएको जे पनि सत्य</b> हो —
+      त्यसैले <code>if (n)</code> को अर्थ "n शून्य होइन भने" हुन्छ र यो पूरै मान्य छ।</p>
+      <p lang="ne">Brace नभए <code>if</code> ले <b lang="ne">ठ्याक्कै एउटा statement</b> मात्र नियन्त्रण गर्छ। if
+      मुनि indent गरेका दुई लाइन block जस्तो देखिन्छन् तर होइनन् — दोस्रो सधैं चल्छ। सधैं brace
+      लगाउनुहोस्; compiler लाई फरक पर्दैन, पछि पढ्नेलाई पर्छ।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> The same decision, written four ways</div>
+    <p><b>Question:</b> print the division a student gets from their marks, using a ladder and
+    then using <code>switch</code>. Which is right for this problem?</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Decide, before opening this, whether switch can test
+      a RANGE of marks. The answer decides the whole question.</span>
+      <span class="np-cell" lang="ne">खोल्नुअघि निर्णय गर्नुहोस्: switch ले अंकको दायरा जाँच्न सक्छ कि
+      सक्दैन? त्यही उत्तरले पूरै प्रश्न टुङ्ग्याउँछ।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <pre class="cpp">
+/* (a) the ladder — the right tool here */
+if (marks &gt;= 80)
+    printf("Distinction");
+else if (marks &gt;= 60)
+    printf("First division");
+else if (marks &gt;= 40)
+    printf("Second division");
+else
+    printf("Fail");
+
+/* (b) switch — the wrong tool here */
+switch (marks)
+{
+    case 80: printf("Distinction"); break;
+    case 79: printf("First division"); break;
+    /* ...and 99 more cases. This cannot work. */
+    default: printf("Fail");
+}</pre>
+      <p class="wex-note"><span class="t-en"><b>switch compares a value against exact constants, so it cannot test a
+      range.</b> Grading by marks needs the ladder. switch is right when the value is a small set
+      of exact choices — a menu option, a grade letter, a day number. Note also the descending
+      order in the ladder: with 40 first, a student scoring 95 would be told "second division",
+      because the first true test wins.
+      </span><span class="np-cell" lang="ne"><b lang="ne">switch ले मानलाई ठ्याक्कै मिल्ने constant सँग तुलना गर्छ, त्यसैले
+      दायरा जाँच्न सक्दैन।</b> अंकबाट श्रेणी निकाल्न शृंखला नै चाहिन्छ। मान सानो र ठ्याक्कै
+      मिल्ने छनोटको समूह भएमा switch ठिक हुन्छ — menu विकल्प, grade अक्षर, बारको नम्बर।
+      शृंखलाको घट्दो क्रम पनि हेर्नुहोस्: ४० पहिले राखे ९५ ल्याउने विद्यार्थीलाई "second
+      division" भनिन्थ्यो, किनभने पहिलो सत्य जाँच नै जित्छ।</span></p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h3><span class="t-en">Only one branch of a ladder ever runs</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>शृंखलाको एउटै शाखा मात्र चल्छ</span></h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: where control actually goes after a branch
+      succeeds. It does not fall into the else, and it does not test anything further — watch the
+      line marker jump past both.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: शाखा सफल भएपछि नियन्त्रण साँच्चै कता जान्छ।
+      यो else मा झर्दैन र थप केही जाँच्दैन — लाइनको चिन्ह दुवै नाघेर जाँदा हेर्नुहोस्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="ifElseGrade"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Before stepping, say which line will run and which lines will be skipped. Then check
+        whether the else was tested at all.</p>
+        </div><span class="np-cell" lang="ne">चरण सुरु गर्नुअघि कुन लाइन चल्छ र कुन छुट्छ भन्नुहोस्। अनि else
+        जाँचियो कि जाँचिएन हेर्नुहोस्।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout"><span class="t-en">
+    <b>switch has three rules that are all examinable.</b> The expression must be an
+    <code>int</code> or a <code>char</code> — never a <code>float</code> and never a string. Each
+    <code>case</code> label must be a constant, not a variable. And <b>without
+    <code>break</code>, control falls through into the next case and keeps going</b> — which is
+    occasionally useful and usually a bug. <code>default</code> is optional and runs when nothing
+    matched.
+    </span><span class="np-cell" lang="ne"><b lang="ne">switch का तीन नियम सबै परीक्षामा सोधिन्छन्।</b> Expression
+    <code>int</code> वा <code>char</code> हुनुपर्छ — <code>float</code> कहिल्यै होइन, string पनि
+    होइन। हरेक <code>case</code> को label constant हुनुपर्छ, variable होइन। अनि
+    <b><code>break</code> नभए नियन्त्रण अर्को case मा झरेर चलिरहन्छ</b> — कहिलेकाहीं काम लाग्ने,
+    प्रायः गल्ती। <code>default</code> ऐच्छिक हो र केही नमिले चल्छ।</span>
+  </div>
+
+  <!-- ============ 3.2 ============ -->
+  <h2 class="topic" id="c-t32">3.2 &nbsp;<span class="t-en">Loop statements — for, while, do-while, nested</span><span class="t-ne" lang="ne"> — Loop — for, while, do-while, nested</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Three loops, one question that chooses between them</span>
+      <p>Every loop needs the same three things, and the difference between the loops is only
+      <i>where</i> those three are written:</p>
+      <ul>
+        <li><b>Initialisation</b> — the counter gets a starting value.</li>
+        <li><b>Condition</b> — tested each time; the loop continues while it is true.</li>
+        <li><b>Update</b> — the counter changes, or the condition never becomes false.</li>
+      </ul>
+      <p><b><code>for</code></b> puts all three on one line:
+      <code>for (i = 1; i &lt;= 10; i++)</code>. Use it when the number of repetitions is known
+      before the loop starts.</p>
+      <p><b><code>while</code></b> puts only the condition in the brackets; the other two are
+      yours to place. Use it when you do not know how many times — "keep reading until the user
+      types 0".</p>
+      <p><b><code>do…while</code></b> runs the body <i>first</i> and tests afterwards, so it
+      always runs <b>at least once</b>. Use it when the body has to happen before anyone can judge
+      the condition — a menu, a password prompt. It is the only loop that ends with a semicolon
+      after the <code>while</code>.</p>
+      <p><b>Nested loops</b> are a loop inside a loop. The inner one completes <i>all</i> of its
+      turns for <i>each single</i> turn of the outer one. In a pattern, the <b>outer loop is
+      rows</b> and the <b>inner loop is columns</b>.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">तीन loop, र तिनलाई छुट्याउने एउटै प्रश्न</span>
+      <p lang="ne">हरेक loop लाई उही तीन कुरा चाहिन्छ, र loop बीचको फरक ती तीन <i lang="ne">कहाँ</i> लेखिन्छन् भन्ने
+      मात्र हो:</p>
+      <ul>
+        <li><b>Initialisation</b> — counter ले सुरुको मान पाउँछ।</li>
+        <li><b>Condition</b> — हरेक पटक जाँचिन्छ; सत्य रहेसम्म loop चल्छ।</li>
+        <li><b>Update</b> — counter बदलिन्छ, नत्र सर्त कहिल्यै असत्य हुँदैन।</li>
+      </ul>
+      <p><b><code>for</code></b> ले तीनै कुरा एउटै लाइनमा राख्छ:
+      <code>for (i = 1; i &lt;= 10; i++)</code>। दोहोरिने सङ्ख्या loop सुरु हुनुअघि नै थाहा भएमा
+      यसलाई प्रयोग गर्नुहोस्।</p>
+      <p><b><code>while</code></b> ले कोष्ठकमा सर्त मात्र राख्छ; अरू दुई तपाईंले राख्नुपर्छ।
+      कति पटक भन्ने थाहा नभएमा प्रयोग गर्नुहोस् — "प्रयोगकर्ताले ० नटाइपेसम्म पढिरहनुहोस्"।</p>
+      <p><b><code>do…while</code></b> ले पहिले body चलाएर पछि जाँच्छ, त्यसैले यो सधैं
+      <b lang="ne">कम्तीमा एक पटक</b> चल्छ। सर्त जाँच्नुअघि नै body हुनैपर्ने भए प्रयोग गर्नुहोस् — menu,
+      password। <code>while</code> पछि semicolon चाहिने एकमात्र loop यही हो।</p>
+      <p><b>Nested loop</b> भनेको loop भित्रको loop हो। बाहिरी loop को <i lang="ne">एक पटक</i> का लागि
+      भित्री loop ले आफ्ना <i lang="ne">सबै</i> पटक पूरा गर्छ। ढाँचामा <b lang="ne">बाहिरी loop पङ्क्ति</b> र
+      <b lang="ne">भित्री loop स्तम्भ</b> हो।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h3><span class="t-en">A for loop, one turn at a time</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>For loop, एक–एक पटक</span></h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: the order the three parts of a for line actually
+      run in — initialise once, then test, body, update, test, body, update — and what i holds
+      when the loop finally stops. That last value is what output questions are built on.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: for लाइनका तीन भाग साँच्चै कुन क्रममा चल्छन् —
+      एक पटक initialise, अनि जाँच, body, update, जाँच, body, update — र loop अन्ततः रोकिँदा i मा
+      के हुन्छ। Output का प्रश्न त्यही अन्तिम मानमा बनेका हुन्छन्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="forSum"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Write the two columns — i and sum — on paper and fill them in before each press. That
+        is exactly what "trace the following program" asks you to do in an examination.</p>
+        </div><span class="np-cell" lang="ne">कागजमा i र sum का दुई स्तम्भ बनाएर हरेक पटक थिच्नुअघि भर्नुहोस्।
+        परीक्षामा "तलको प्रोग्राम ट्रेस गर्नुहोस्" भन्दा ठ्याक्कै त्यही खोजिएको हुन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h3><span class="t-en">Why do-while always runs at least once</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>do-while किन कम्तीमा एक पटक सधैं चल्छ</span></h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: the single difference between while and do-while,
+      shown by giving both the same false condition. One prints nothing and the other prints a
+      line, from the same starting state.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: while र do-while बीचको एउटै फरक — दुवैलाई उही
+      असत्य सर्त दिएर देखाइएको। उही सुरुवातबाट एउटाले केही छाप्दैन, अर्कोले एक लाइन
+      छाप्छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="doWhileOnce"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Both loops are given <code>n &lt; 5</code> with n already 10. Predict how many lines
+        the program prints in total before you step. Most people say zero.</p>
+        </div><span class="np-cell" lang="ne">दुवै loop लाई n पहिल्यै १० हुँदा <code>n &lt; 5</code> दिइएको छ।
+        चरण सुरु गर्नुअघि प्रोग्रामले जम्मा कति लाइन छाप्छ अनुमान गर्नुहोस्। धेरैले शून्य
+        भन्छन्।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3><span class="t-en">Which loop fits this job best?</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो कामलाई कुन loop ठिक हुन्छ?</span></h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to choose a loop from the problem rather than from
+      habit. The deciding fact is always whether the number of repetitions is known before the
+      loop starts.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: बानीले होइन, समस्या हेरेर loop छान्न। निर्णय
+      गर्ने कुरा सधैं loop सुरु हुनुअघि दोहोरिने सङ्ख्या थाहा छ कि छैन भन्ने हो।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cloop" data-set="cloop"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Ask two questions in order. Do I know the count in advance? If yes, <code>for</code>.
+        If no, must the body happen at least once? If yes, <code>do-while</code>; if no,
+        <code>while</code>.</p>
+        </div><span class="np-cell" lang="ne">क्रमैसँग दुई प्रश्न सोध्नुहोस्। गन्ती पहिल्यै थाहा छ? छ भने
+        <code>for</code>। छैन भने — body कम्तीमा एक पटक हुनैपर्छ? पर्छ भने
+        <code>do-while</code>; पर्दैन भने <code>while</code>।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="c">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">How many times does the body run?<br><code>for (i = 1; i &lt;= 5; i++);</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>printf("Hello");</code>
+      </span><span class="np-cell" lang="ne">body कति पटक चल्छ? माथिको for लाइनको अन्त्यमा semicolon छ।</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Five times — Hello is printed five times</button>
+      <button class="predict-opt" data-value="b">Never — the program does not compile</button>
+      <button class="predict-opt" data-value="c">The loop runs five times doing nothing, then Hello is printed once</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>Once.</b> The semicolon at the end of the <code>for</code> line is a complete, empty
+      statement, and that empty statement is the loop's body. The loop faithfully does nothing
+      five times. The <code>printf</code> is simply the next statement after the loop, so it runs
+      once.</p>
+      <p>The program compiles without a single warning, which is exactly what makes this mistake
+      expensive: nothing tells you, and the output is one line where you expected five.</p>
+      <p>The same trap exists on <code>if</code>: <code>if (x &gt; 5);</code> tests x, does
+      nothing, and then runs the next line unconditionally. Be suspicious of a semicolon directly
+      after a closing bracket.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">एक पटक।</b> <code>for</code> लाइनको अन्त्यको semicolon पूरै खाली
+      statement हो, र त्यही खाली statement loop को body हो। Loop ले इमानदारीपूर्वक पाँच पटक केही
+      गर्दैन। <code>printf</code> loop पछिको अर्को statement मात्र हो, त्यसैले एक पटक चल्छ।
+      प्रोग्राम एउटै चेतावनीविना compile हुन्छ, र यही गल्ती महँगो हुनुको कारण त्यही हो: कसैले
+      भन्दैन, र पाँच लाइनको ठाउँमा एक लाइन आउँछ। <code>if</code> मा पनि उही पासो छ:
+      <code>if (x &gt; 5);</code> ले x जाँच्छ, केही गर्दैन, अनि अर्को लाइन सर्तविनै चलाउँछ।
+      कोष्ठक बन्द भएपछि सिधै आउने semicolon देखे शंका गर्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Nested loops — printing a triangle</div>
+    <p><b>Question:</b> write a program that prints this pattern, and say which loop controls what.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Count the stars on each row before opening this.
+      Row 1 has one, row 4 has four — so what must the inner loop's condition depend on?</span>
+      <span class="np-cell" lang="ne">खोल्नुअघि हरेक पङ्क्तिका तारा गन्नुहोस्। पहिलो पङ्क्तिमा एउटा, चौथोमा
+      चार — त्यसो भए भित्री loop को सर्त केमा भर पर्नुपर्छ?</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int i, j;
+
+    for (i = 1; i &lt;= 4; i++)        /* OUTER: one turn per ROW */
+    {
+        for (j = 1; j &lt;= i; j++)    /* INNER: j goes up to i   */
+        {
+            printf("* ");
+        }
+        printf("\n");               /* end of the row          */
+    }
+    return 0;
+}</pre>
+      <span class="wex-lbl">Output</span>
+      <pre class="out">*
+* *
+* * *
+* * * *</pre>
+      <p class="wex-note"><span class="t-en">Every row really ends with a space you cannot see here, because
+      <code>printf("* ")</code> prints a space after each star — the first row is
+      <code>"* "</code> and the last is <code>"* * * * "</code>. Nothing in the pattern depends
+      on it, but it is the kind of thing that makes an automatic checker disagree with you.
+      </span><span class="np-cell" lang="ne">हरेक पङ्क्ति वास्तवमा यहाँ नदेखिने एउटा खाली ठाउँमा सकिन्छ,
+      किनभने <code>printf("* ")</code> ले हरेक तारापछि एक खाली ठाउँ छाप्छ — पहिलो पङ्क्ति
+      <code>"* "</code> र अन्तिम <code>"* * * * "</code>। नमुनाको कुनै कुरा त्यसमा अडिँदैन,
+      तर स्वचालित जाँचकर्ता तपाईंसँग बाझ्ने ठाउँ यही हो।</span></p>
+      <p class="wex-note"><span class="t-en">Two details carry the marks. The inner condition is
+      <code>j &lt;= i</code> and not <code>j &lt;= 4</code>: the number of stars has to grow with
+      the row, and <code>i</code> is the row number. And the <code>printf("\n")</code> sits
+      <i>inside the outer loop but outside the inner one</i> — move it inside the inner loop and
+      every star lands on its own line; move it outside both and the whole pattern becomes one
+      long row.
+      </span><span class="np-cell" lang="ne">अंक दुई कुराले बोक्छन्। भित्री सर्त <code>j &lt;= 4</code> होइन
+      <code>j &lt;= i</code> हो: ताराको सङ्ख्या पङ्क्तिसँगै बढ्नुपर्छ, र <code>i</code> नै
+      पङ्क्ति नम्बर हो। अनि <code>printf("\n")</code> <i lang="ne">बाहिरी loop भित्र तर भित्री loop
+      बाहिर</i> छ — भित्री loop भित्र सारे हरेक तारा आफ्नै लाइनमा जान्छ; दुवैभन्दा बाहिर सारे
+      पूरै ढाँचा एउटै लामो पङ्क्ति बन्छ।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ 3.3 ============ -->
+  <h2 class="topic" id="c-t33">3.3 &nbsp;<span class="t-en">Jump statements — break, continue, goto, return</span><span class="t-ne" lang="ne"> — Jump statement — break, continue, goto, return</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Four ways to leave somewhere early</span>
+      <ul>
+        <li><b><code>break</code></b> — leaves the <b>whole loop</b> immediately and continues
+        after it. Inside a <code>switch</code> it stops the fall-through into the next case.</li>
+        <li><b><code>continue</code></b> — abandons <b>the rest of this turn only</b> and goes
+        straight to the next one. The loop is not left.</li>
+        <li><b><code>goto</code></b> — jumps to a labelled line elsewhere in the same function:
+        <code>goto end;</code> with <code>end:</code> somewhere below. It is examinable, and
+        almost every real program is clearer without it, because a reader can no longer tell what
+        reaches a line by reading downwards.</li>
+        <li><b><code>return</code></b> — ends the <b>whole function</b> and hands a value back.
+        Inside a loop it leaves the loop too, because the function it belonged to has finished.</li>
+      </ul>
+      <p>In a nested loop, <code>break</code> leaves <b>only the inner loop</b>. This is asked
+      often and answered wrongly often: one <code>break</code> does not escape two loops.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">समयअघि बाहिरिने चार तरिका</span>
+      <ul>
+        <li><b><code>break</code></b> — <b lang="ne">पूरै loop</b> तुरुन्तै छाडेर त्यसपछिबाट अघि बढ्छ।
+        <code>switch</code> भित्र यसले अर्को case मा झर्न रोक्छ।</li>
+        <li><b><code>continue</code></b> — <b lang="ne">यस पटकको बाँकी मात्र</b> छाडेर सिधै अर्को पटकमा
+        जान्छ। Loop छाडिँदैन।</li>
+        <li><b><code>goto</code></b> — उही function भित्र label लेखिएको लाइनमा हाम फाल्छ:
+        <code>goto end;</code> र तल कतै <code>end:</code>। परीक्षामा सोधिन्छ, तर झन्डै हरेक
+        वास्तविक प्रोग्राम यसविना स्पष्ट हुन्छ — किनभने कुन लाइनमा के पुग्छ भन्ने कुरा तलतिर
+        पढेर थाहा पाउन सकिँदैन।</li>
+        <li><b><code>return</code></b> — <b lang="ne">पूरै function</b> सिध्याएर मान फर्काउँछ। Loop भित्र
+        भए loop पनि छुट्छ, किनभने त्यो भएको function नै सकियो।</li>
+      </ul>
+      <p lang="ne">Nested loop मा <code>break</code> ले <b lang="ne">भित्री loop मात्र</b> छाड्छ। यो धेरै सोधिन्छ र
+      धेरै गलत उत्तर आउँछ: एउटा <code>break</code> ले दुई loop उम्कँदैन।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h3><span class="t-en">break and continue in one loop</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>एउटै loop मा break र continue</span></h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: why the output skips a number in the middle and
+      stops early at the end, from one loop containing both statements. Watch where control jumps
+      on the continue and where it jumps on the break.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: दुवै statement भएको एउटै loop ले बीचमा एउटा
+      सङ्ख्या किन छाड्छ र अन्त्यमा किन चाँडै रोकिन्छ। continue मा नियन्त्रण कता हाम फाल्छ र break
+      मा कता, हेर्नुहोस्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="breakContinue"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Predict the complete output before you start. Then check two things: is 3 missing, and
+        does the output stop before 5?</p>
+        </div><span class="np-cell" lang="ne">सुरु गर्नुअघि पूरै output अनुमान गर्नुहोस्। अनि दुई कुरा जाँच्नुहोस्:
+        ३ छुटेको छ? र output ५ भन्दा अगाडि रोकिएको छ?</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3><span class="t-en">Which jump statement does this describe?</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो वर्णन कुन jump statement को हो?</span></h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to tell the four apart by effect rather than by
+      definition, which is how the examination asks about them.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: परिभाषाले होइन असरले चारैलाई छुट्याउन —
+      परीक्षाले सोध्ने तरिका त्यही हो।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cjump" data-set="cjump"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>For each case ask what is abandoned: this turn, this loop, or this function. Those
+        three answers separate continue, break and return, and only goto names a destination.</p>
+        </div><span class="np-cell" lang="ne">हरेक केसमा के छाडिन्छ सोध्नुहोस्: यस पटक, यो loop, कि यो function।
+        यी तीन उत्तरले continue, break र return छुट्याउँछन्, र गन्तव्यको नाम goto ले मात्र
+        लिन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="sim-kicker"><span class="t-en">Practise it — the help comes away</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>अभ्यास गर्नुहोस् — सहयोग घट्दै जान्छ</span></p>
+  <div class="guided" data-skill="c.traceloop"></div>
+
+  <div class="mistake">
+    <h3><span class="t-en">Mistakes that cost marks here</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यहाँ अङ्क गुमाउने गल्तीहरू</span></h3><div class="t-en">
+    <ul>
+      <li><b>A semicolon after <code>for</code>, <code>while</code> or <code>if</code>.</b> It
+      makes an empty body, compiles cleanly, and silently changes the program.</li>
+      <li><b>Forgetting <code>break</code> in a <code>switch</code>.</b> Every case below the
+      matching one runs as well.</li>
+      <li><b>Using <code>switch</code> for a range of values.</b> It compares exact constants
+      only.</li>
+      <li><b>Forgetting the update inside a <code>while</code>.</b> The condition never becomes
+      false and the loop never ends.</li>
+      <li><b>Thinking one <code>break</code> leaves two nested loops.</b> It leaves the inner one
+      only.</li>
+      <li><b>Writing <code>=</code> instead of <code>==</code> in a condition.</b>
+      <code>if (a = 0)</code> is always false and <code>if (a = 5)</code> is always true.</li>
+      <li><b>Omitting braces around two statements.</b> Only the first belongs to the
+      <code>if</code> or the loop.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne"><b><code>for</code>, <code>while</code> वा <code>if</code> पछि
+    semicolon:</b> खाली body बन्छ, सफा compile हुन्छ, र प्रोग्राम चुपचाप बदलिन्छ।
+    <b><code>switch</code> मा <code>break</code> बिर्सनु:</b> मिलेको case मुनिका सबै पनि चल्छन्।
+    <b lang="ne">दायराका लागि <code>switch</code> चलाउनु:</b> यसले ठ्याक्कै मिल्ने constant मात्र तुलना
+    गर्छ। <b><code>while</code> भित्र update बिर्सनु:</b> सर्त कहिल्यै असत्य हुँदैन र loop
+    रोकिँदैन। <b lang="ne">एउटा <code>break</code> ले दुई nested loop छाड्छ भन्ठान्नु:</b> भित्री मात्र
+    छाड्छ। <b lang="ne">सर्तमा <code>==</code> को ठाउँमा <code>=</code> लेख्नु:</b>
+    <code>if (a = 0)</code> सधैं असत्य, <code>if (a = 5)</code> सधैं सत्य। <b lang="ne">दुई statement
+    वरिपरि brace नलगाउनु:</b> <code>if</code> वा loop को भाग पहिलो मात्र हुन्छ।</span>
+  </div>
+
+  <p class="hook"><span class="t-en"><b>Memory hook —</b> <i>continue skips a turn; break ends
+    the game; return leaves the ground.</i></span>
+    <span class="np-cell" lang="ne"><b lang="ne">सम्झने तरिका —</b> <i lang="ne">continue ले एक पटक छाड्छ; break ले खेल
+    सिध्याउँछ; return ले मैदानै छाड्छ।</i></span></p>
+
+  <!-- ============ PRACTICAL ============ -->
+  <h2 class="topic" id="c-prac3"><span class="t-en">Practical work — this unit's other 15 hours</span><span class="t-ne" lang="ne"> — प्रयोगात्मक काम — यस युनिटका अरू १५ घण्टा</span></h2>
+
+  <div class="practical">
+    <div class="h"><span class="pr-kind">Guided practical</span>The two activities the curriculum suggests</div>
+    <p><span class="t-en">From the curriculum's own list for Unit 3. Fifteen hours — the joint largest practical
+    allocation in the subject — because this is where a student stops reading programs and starts
+    writing them. <b>Neither can be done from this site</b>: both need a C compiler on a real
+    computer.
+    </span><span class="np-cell" lang="ne">पाठ्यक्रमकै युनिट ३ को सूचीबाट। पन्ध्र घण्टा — विषयको सबैभन्दा ठूलो
+    प्रयोगात्मक समयमध्ये एक — किनभने विद्यार्थीले प्रोग्राम पढ्न छाडेर लेख्न सुरु गर्ने ठाउँ यही
+    हो। <b lang="ne">दुवै यस साइटबाट गर्न मिल्दैन</b>: दुवैलाई साँच्चैको कम्प्युटरमा C compiler
+    चाहिन्छ।</span></p>
+
+    <div class="pr-act" data-practical="g9.c.p3.1">
+      <p><span class="pr-num">3.1</span> Write programs to implement sequential structure.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> a computer with a C compiler. <b>This cannot be
+      simulated</b> on this site. <b>Builds on:</b> Unit 2. <b>Hand in:</b> the source files and
+      your practical record. <b>Suggested set:</b> area and perimeter of a rectangle; simple
+      interest from principal, rate and time; conversion of temperature from Celsius to
+      Fahrenheit; swapping two numbers using a third variable. <b>Observe:</b> every one of these
+      runs top to bottom with no decision and no repetition — that is what sequential means, and
+      it is the baseline the next activity departs from.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> C compiler भएको कम्प्युटर। <b lang="ne">यो यहाँ simulate गर्न
+      मिल्दैन।</b> <b lang="ne">आधार:</b> युनिट २। <b lang="ne">बुझाउने:</b> source फाइल र प्रयोगात्मक अभिलेख।
+      <b lang="ne">सुझाव:</b> आयातको क्षेत्रफल र परिमिति; साँवा, दर र समयबाट साधारण ब्याज; सेल्सियसबाट
+      फरेनहाइट; तेस्रो variable प्रयोग गरेर दुई सङ्ख्या साट्ने। <b lang="ne">ध्यान दिने:</b> यी सबै कुनै
+      निर्णय र दोहोरिनविना माथिबाट तल चल्छन् — sequential भनेको त्यही हो, र अर्को क्रियाकलाप
+      यहींबाट अलग हुन्छ।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.c.p3.2">
+      <p><span class="pr-num">3.2</span> Write programs to implement conditional and iterative
+      structure.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> a computer with a C compiler. <b>This cannot be
+      simulated</b> on this site. <b>Builds on:</b> 3.1, 3.2 and 3.3. <b>Hand in:</b> the source
+      files and your practical record. <b>Suggested set:</b> largest of three numbers; odd or
+      even; a grade from marks using a ladder; a simple calculator using <code>switch</code>;
+      multiplication table of any number; sum of the first n natural numbers; factorial;
+      prime or not; and the star triangle from Example 2. <b>Observe and record:</b> for each
+      looping program, write down the value of the counter when the loop ends. Being able to say
+      why it is one more than the last value used is worth more than the program itself.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> C compiler भएको कम्प्युटर। <b lang="ne">यो यहाँ simulate गर्न
+      मिल्दैन।</b> <b lang="ne">आधार:</b> ३.१, ३.२ र ३.३। <b lang="ne">बुझाउने:</b> source फाइल र प्रयोगात्मक
+      अभिलेख। <b lang="ne">सुझाव:</b> तीन सङ्ख्यामध्ये ठूलो; जोर कि बिजोर; शृंखला प्रयोग गरेर अंकबाट
+      grade; <code>switch</code> ले साधारण calculator; कुनै सङ्ख्याको गुणन तालिका; पहिलो n
+      प्राकृतिक सङ्ख्याको जोड; factorial; prime हो कि होइन; र उदाहरण २ को तारा त्रिभुज।
+      <b lang="ne">ध्यान दिएर लेख्ने:</b> हरेक loop भएको प्रोग्राममा loop सकिँदा counter को मान लेख्नुहोस्।
+      त्यो अन्तिम प्रयोग भएको मानभन्दा एक बढी किन हुन्छ भन्न सक्नु प्रोग्राम आफैंभन्दा बढी
+      काम लाग्छ।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ EXAM FOCUS ============ -->
+  <h2 class="topic" id="c-exam3"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne" lang="ne"> — परीक्षा केन्द्र — यस युनिटबाट के सोधिन्छ</span></h2>
+
+  <div class="exam-connect">
+    <p><span class="t-en">This unit carries <b>13 of the 50 external marks</b> — more than any other — and 16 of the
+    64 theory hours. Expect a long question asking you to write a program with a loop, a
+    differentiate question on <code>break</code> against <code>continue</code> or
+    <code>while</code> against <code>do-while</code>, and at least one "what is the output"
+    question where the answer turns on a stray semicolon, a missing <code>break</code>, or the
+    counter's value after the loop.
+    </span><span class="np-cell" lang="ne">यो युनिटले <b lang="ne">बाह्य ५० मध्ये १३ अंक</b> ओगट्छ — अरू कुनैभन्दा बढी — र
+    ६४ मध्ये १६ घण्टा। Loop भएको प्रोग्राम लेख्न भन्ने लामो प्रश्न, <code>break</code> र
+    <code>continue</code> वा <code>while</code> र <code>do-while</code> को फरक सोध्ने प्रश्न, र
+    कम्तीमा एउटा "output के हुन्छ" प्रश्न अपेक्षा गर्नुहोस् — जसको उत्तर छुट्टै semicolon,
+    छुटेको <code>break</code>, वा loop पछिको counter को मानमा भर पर्छ।</span></p>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">Differentiate between <code>break</code> and <code>continue</code> with an example of each.
+    </span><span class="np-cell" lang="ne"><code>break</code> र <code>continue</code> को फरक हरेकको उदाहरणसहित
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca31">Show the answer</button>
+    <div class="ans" id="ca31"><div class="t-en">
+      <p><b>break</b> terminates the loop completely. Control passes to the first statement after
+      the loop, and no further turn happens. Example: in
+      <code>for (i=1; i&lt;=5; i++) { if (i==3) break; printf("%d", i); }</code> the output is
+      <code>12</code>.</p>
+      <p><b>continue</b> skips only the remaining statements of the current turn and goes on to
+      the next turn. The loop itself continues. Example: in
+      <code>for (i=1; i&lt;=5; i++) { if (i==3) continue; printf("%d", i); }</code> the output is
+      <code>1245</code>.</p>
+      <p>The difference in one line: <code>break</code> ends the loop, <code>continue</code> ends
+      only that pass.</p>
+      </div><span class="np-cell" lang="ne"><b>break</b> ले loop पूरै सिध्याउँछ; नियन्त्रण loop पछिको पहिलो
+      statement मा जान्छ। उदाहरणको output <code>12</code> हुन्छ। <b>continue</b> ले यस पटकका
+      बाँकी statement मात्र छाडेर अर्को पटकमा जान्छ; loop चलिरहन्छ। उदाहरणको output
+      <code>1245</code> हुन्छ। एक लाइनमा फरक: <code>break</code> ले loop सिध्याउँछ,
+      <code>continue</code> ले त्यो एक पटक मात्र।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Write a C program to print the multiplication table of a number entered by the user, from
+    1 to 10.
+    </span><span class="np-cell" lang="ne">प्रयोगकर्ताले दिएको सङ्ख्याको १ देखि १० सम्मको गुणन तालिका छाप्ने C
+    प्रोग्राम लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca32">Show the answer</button>
+    <div class="ans" id="ca32"><div class="t-en">
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int n, i;
+
+    printf("Enter a number: ");
+    scanf("%d", &amp;n);
+
+    for (i = 1; i &lt;= 10; i++)
+    {
+        printf("%d x %d = %d\n", n, i, n * i);
+    }
+    return 0;
+}</pre>
+      <p>Marks: a <code>for</code> loop is correct here because ten turns are known in advance.
+      Note that <code>i</code> is used inside the <code>printf</code> as well as in the condition
+      — a counter is a variable, not just a tally.</p>
+      </div><span class="np-cell" lang="ne">अंक: दस पटक पहिल्यै थाहा भएकाले यहाँ <code>for</code> ठिक छ।
+      <code>i</code> सर्तमा मात्र होइन <code>printf</code> भित्र पनि प्रयोग भएको ध्यान दिनुहोस् —
+      counter गन्ती मात्र होइन, variable हो।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">8 marks</span> Practice question</div>
+    <p><span class="t-en">Explain the three looping statements of C with syntax and one example each. State clearly
+    when each should be used.
+    </span><span class="np-cell" lang="ne">C का तीन looping statement लाई syntax र हरेकको एउटा उदाहरणसहित
+    बुझाउनुहोस्। हरेक कहिले प्रयोग गर्ने स्पष्ट लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca33">Show the answer</button>
+    <div class="ans" id="ca33"><div class="t-en">
+      <p><b>1. for loop</b> — all three control parts on one line.</p>
+      <pre class="cpp" data-nonum>for (initialisation; condition; update)
+{
+    statements;
+}</pre>
+      <p>Example: <code>for (i = 1; i &lt;= 5; i++) printf("%d ", i);</code> prints
+      <code>1 2 3 4 5</code>. <b>Use it when the number of repetitions is known before the loop
+      starts.</b></p>
+      <p><b>2. while loop</b> — only the condition is in the brackets; the condition is tested
+      before every turn, so the body may run zero times.</p>
+      <pre class="cpp" data-nonum>initialisation;
+while (condition)
+{
+    statements;
+    update;
+}</pre>
+      <p>Example: <code>i = 1; while (i &lt;= 5) { printf("%d ", i); i++; }</code> prints the
+      same. <b>Use it when the number of repetitions is not known in advance</b> — reading until
+      the user types a sentinel value.</p>
+      <p><b>3. do-while loop</b> — the body runs first and the condition is tested afterwards, so
+      the body always runs <b>at least once</b>. It is the only loop with a semicolon after the
+      condition.</p>
+      <pre class="cpp" data-nonum>do
+{
+    statements;
+    update;
+} while (condition);</pre>
+      <p>Example: <code>i = 1; do { printf("%d ", i); i++; } while (i &lt;= 5);</code> prints the
+      same. <b>Use it when the body must happen at least once</b> — showing a menu, or asking for
+      a password before it can be judged wrong.</p>
+      <p>All three can solve the same problem; the choice states the intention, which is what the
+      marks are for.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">१. for</b> — नियन्त्रणका तीनै भाग एउटै लाइनमा; दोहोरिने सङ्ख्या
+      पहिल्यै थाहा भएमा। <b lang="ne">२. while</b> — कोष्ठकमा सर्त मात्र; हरेक पटकअघि जाँचिने भएकाले body
+      शून्य पटक पनि चल्न सक्छ; सङ्ख्या पहिल्यै थाहा नभएमा। <b lang="ne">३. do-while</b> — पहिले body, पछि
+      जाँच; त्यसैले कम्तीमा एक पटक सधैं चल्छ; सर्तपछि semicolon चाहिने एकमात्र loop यही;
+      body कम्तीमा एक पटक हुनैपर्ने भएमा। तीनैले उही समस्या समाधान गर्न सक्छन्; छनोटले नियत
+      देखाउँछ, र अंक त्यसैको हो।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h3>Key points from this unit</h3><div class="t-en">
+    <ul>
+      <li>An <code>if…else if</code> ladder runs exactly one branch — the first true one.</li>
+      <li><code>switch</code> compares exact constants, works on <code>int</code> or
+      <code>char</code>, and needs <code>break</code> after each case.</li>
+      <li>Every loop needs initialisation, a condition and an update. <code>for</code> puts all
+      three on one line.</li>
+      <li><code>while</code> may run zero times; <code>do-while</code> always runs at least
+      once.</li>
+      <li>In nested loops the inner loop completes fully for each single turn of the outer one;
+      outer is rows, inner is columns.</li>
+      <li><code>break</code> leaves the loop, <code>continue</code> skips a turn,
+      <code>return</code> leaves the function, <code>goto</code> jumps to a label.</li>
+      <li>A semicolon straight after <code>for</code>, <code>while</code> or <code>if</code>
+      creates an empty body and compiles without warning.</li>
+      <li>After <code>for (i = 1; i &lt;= 5; i++)</code> ends, <code>i</code> holds 6.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne"><code>if…else if</code> शृंखलाले ठ्याक्कै एउटा शाखा चलाउँछ — पहिलो
+    सत्य भएको। <code>switch</code> ले ठ्याक्कै मिल्ने constant तुलना गर्छ, <code>int</code> वा
+    <code>char</code> मा चल्छ, र हरेक case पछि <code>break</code> चाहिन्छ। हरेक loop लाई
+    initialisation, सर्त र update चाहिन्छ; <code>for</code> ले तीनै एउटै लाइनमा राख्छ।
+    <code>while</code> शून्य पटक पनि चल्न सक्छ; <code>do-while</code> कम्तीमा एक पटक सधैं चल्छ।
+    Nested loop मा बाहिरीको एक पटकका लागि भित्री पूरै चल्छ; बाहिरी पङ्क्ति, भित्री स्तम्भ।
+    <code>break</code> ले loop छाड्छ, <code>continue</code> ले एक पटक, <code>return</code> ले
+    function, <code>goto</code> ले label मा हाम फाल्छ। <code>for</code>, <code>while</code> वा
+    <code>if</code> पछि सिधै semicolon राखे खाली body बन्छ र चेतावनीविनै compile हुन्छ।
+    <code>for (i = 1; i &lt;= 5; i++)</code> सकिएपछि <code>i</code> मा ६ हुन्छ।</span>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit2.html"><span class="lab">◂ Previous</span><span class="ttl">Fundamentals of C</span></a><a class="nx" href="unit4.html"><span class="lab">Next ▸</span><span class="ttl">Functions</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">Gyansetu</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
+<script src="../../assets/js/sim-crun.js"></script>
+<script src="../../assets/js/program-bank.js"></script>
+<script src="../../assets/js/guided.js"></script>
+<script src="../../assets/js/practice-bank.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/practical.js"></script>
+</body>
+</html>

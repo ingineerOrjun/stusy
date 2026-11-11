@@ -1,0 +1,49 @@
+<section id="c-quiz">
+  <div class="sec-head">
+    <div class="sec-num">?</div>
+    <div>
+      <h2>Self-Check Quiz</h2>
+      <p class="sec-sub">आफैं जाँच्नुहोस्</p>
+    </div>
+    <span class="marks">12 questions</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">How this quiz works</span>
+      <p>Twelve questions are drawn from a larger bank each time, so <b>a second attempt is a
+      different paper</b> — you cannot pass by remembering the order of the answers.</p>
+      <p>The bank covers <b>all seven units</b>, weighted to the marks each unit carries in the
+      written paper, so Control Flow Statements comes up more often than Pointers. Nothing here
+      asks about a topic this site has not taught you.</p>
+      <p>Many of the questions are <b>code questions</b>: read the program, work out what it
+      prints, then choose. Doing that on paper first is the practice, not the clicking.</p>
+      <p>These are <b>practice questions written for Gyansetu</b>. They follow the kinds of
+      question this subject is examined with, but they are not past CDC or SEE papers and are
+      not presented as such.</p>
+    </div>
+    <div class="np"><span class="tag">यो क्विज कसरी चल्छ</span>
+      <p>हरेक पटक ठूलो बैंकबाट बाह्र प्रश्न छानिन्छन्, त्यसैले <b>दोस्रो पटक फरक प्रश्न आउँछन्</b> —
+      उत्तरको क्रम सम्झेर पास हुन मिल्दैन।</p>
+      <p>बैंकले <b>सातै युनिट</b> समेट्छ — लिखित परीक्षामा हरेक युनिटले बोक्ने अंकअनुसार भार
+      मिलाएर। त्यसैले Control Flow Statements बाट Pointers भन्दा बढी सोधिन्छ। यहाँ यो साइटमा
+      नपढाइएको कुनै विषय सोधिँदैन।</p>
+      <p>धेरै प्रश्न <b>कोडका प्रश्न</b> हुन्: प्रोग्राम पढ्नुहोस्, के छाप्छ पत्ता लगाउनुहोस्,
+      अनि छान्नुहोस्। अभ्यास भनेको कागजमा पहिले त्यो गर्नु हो, क्लिक गर्नु होइन।</p>
+      <p>यी <b>Gyansetu का लागि लेखिएका अभ्यास प्रश्न</b> हुन्। यस विषयमा सोधिने किसिमका प्रश्न
+      पछ्याइएका छन्, तर यी CDC वा SEE का पुराना प्रश्नपत्र होइनन् र त्यसो भनिएको पनि छैन।</p>
+    </div>
+  </div>
+
+  <div id="quizBox" data-limit="12" data-shuffle="true"></div>
+
+  <div class="score" id="scoreBox" role="status" style="display:none">
+    <div class="big" id="scoreNum">0 / 12</div>
+    <div id="scoreMsg"></div>
+    <div class="np-cell" id="scoreMsgNp"></div>
+    <p class="score-focus" id="scoreFocus" hidden></p>
+    <div class="btns" style="justify-content:center;margin-top:12px">
+      <button class="primary" data-ui="tryAgain" onclick="resetQuiz()">Try again</button>
+    </div>
+  </div>
+</section>

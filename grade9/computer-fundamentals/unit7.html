@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Emerging Technology — Computer Fundamentals | </title>
+<meta name="description" content="Emerging Technology explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark" lang="ne">ज्ञ</span>
+      <span class="brand-txt">Gyansetu<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop on"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language <span class="dn">· notes ready</span><small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals <span class="dn">· notes ready</span><small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair <span class="dn">· notes ready</span><small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language ✓<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html" class="on">Computer Fundamentals ✓<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair ✓<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 9</a> <span class="sep">/</span> <a href="index.html">Computer Fundamentals</a> <span class="sep">/</span> <span>Emerging Technology</span></nav>
+<main id="main" tabindex="-1" data-subject="grade9/computer-fundamentals">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · What a computer is</a><a href="unit2.html">2 · The parts and what each does</a><a href="unit3.html">3 · Software and the operating system</a><a href="unit4.html">4 · Memory, and why RAM forgets</a><a href="unit5.html">5 · The Internet and its services</a><a href="unit6.html">6 · Five media, used together</a><a href="unit7.html" style="color:var(--yellow);border-color:var(--yellow)">7 · AI, cloud, IoT and the rest</a><a href="revise.html">↻ · Revision</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="cf-u7">
+  <div class="sec-head">
+    <div class="sec-num">7</div>
+    <div>
+      <h1>Emerging Technology</h1>
+      <p class="sec-sub" lang="ne">उदीयमान प्रविधि</p>
+    </div>
+    <span class="marks">8 hrs · 6 marks · 10 practical hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2><span class="t-en">By the end of this unit you can…</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो युनिट सकिँदा तपाईं यी कुरा गर्न सक्नुहुनेछ</span></h2><div class="t-en">
+    <ol>
+      <li>Say what makes a technology "emerging" rather than merely new.</li>
+      <li>Define AI, cloud computing, distributed computing, IoT, big data and data mining.</li>
+      <li>Separate cloud computing from distributed computing, and big data from data mining.</li>
+      <li>Encrypt and decrypt a message, and say what the key is for.</li>
+      <li>Separate VR from AR by what the user can still see.</li>
+      <li>Give a Nepali example for at least four of these technologies.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: कुनै प्रविधि नयाँ मात्र नभई "उदीयमान" किन भनिन्छ
+    भन्न, AI, cloud computing, distributed computing, IoT, big data र data mining परिभाषित
+    गर्न, cloud र distributed अनि big data र data mining छुट्याउन, सन्देश encrypt–decrypt गरेर
+    key किन चाहिन्छ भन्न, VR र AR लाई प्रयोगकर्ताले के देख्न सक्छ भन्ने आधारमा छुट्याउन, र
+    कम्तीमा चारवटा प्रविधिको नेपाली उदाहरण दिन सक्नुहुनेछ।</span>
+  </div>
+
+  <!-- ============ 7.1 ============ -->
+  <h2 class="topic" id="cf-t71">7.1 &nbsp;<span class="t-en">What "emerging technology" means</span><span class="t-ne" lang="ne"> — "उदीयमान प्रविधि" भनेको के हो</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Not new — becoming important</span>
+      <p><b>Emerging technologies</b> are technologies that are still developing, are not yet in
+      ordinary everyday use, and are expected to change how people live and work within the next
+      several years.</p>
+      <p>"New" is not the test. A new model of phone is new and changes nothing. A technology is
+      emerging when it is moving <b>out of the laboratory and into use</b>, fast enough that the
+      rules and the jobs around it have not settled yet.</p>
+      <p>That also means the list changes. Everything in this unit is emerging as this
+      curriculum is written; some of it will be ordinary by the time you are working, and that
+      is what the word predicts.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">नयाँ होइन — महत्त्वपूर्ण बन्दै गरेको</span>
+      <p><b lang="ne">उदीयमान प्रविधि</b> भनेका ती प्रविधि हुन् जो अझै विकसित हुँदै छन्, दैनिक सामान्य
+      प्रयोगमा आइसकेका छैनन्, र आउँदा केही वर्षभित्रै मानिसको जीवन र कामको तरिका बदल्ने अपेक्षा
+      गरिन्छ।</p>
+      <p lang="ne">जाँच "नयाँ" भन्नु होइन। फोनको नयाँ मोडेल नयाँ त हो, तर केही बदल्दैन। कुनै प्रविधि
+      <b lang="ne">प्रयोगशालाबाट निस्केर प्रयोगमा</b> यति छिटो सर्दै छ कि वरिपरिका नियम र पेसा नै
+      थामिइसकेका छैनन् भने त्यो उदीयमान हो।</p>
+      <p lang="ne">यसको अर्थ सूची बदलिन्छ पनि। यो पाठ्यक्रम लेखिँदा यस युनिटका सबै उदीयमान छन्; तपाईं काम
+      गर्ने बेलासम्म केही सामान्य भइसक्नेछन् — शब्दले भनेकै त्यही हो।</p>
+    </div>
+  </div>
+
+  <!-- ============ 7.2 ============ -->
+  <h2 class="topic" id="cf-t72">7.2 &nbsp;<span class="t-en">Artificial Intelligence (AI)</span><span class="t-ne" lang="ne"> — आर्टिफिसियल इन्टेलिजेन्स (AI)</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Machines doing what used to need a person</span>
+      <p><b>Artificial Intelligence</b> is the branch of computer science concerned with making
+      machines perform tasks that normally require human intelligence — understanding language,
+      recognising images and speech, making decisions, and learning from experience.</p>
+      <p>The phrase that carries the mark is <b>learning from experience</b>. An ordinary program
+      does exactly what it was told. An AI system is given examples and works out the rule
+      itself, which is why it can improve without being rewritten.</p>
+      <p>Examples you already meet: voice assistants, face unlock on a phone, the suggestions in
+      a search box, machine translation between Nepali and English, and the fraud checks a bank
+      runs on your transactions.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">पहिले मान्छे चाहिने काम मेसिनले गर्नु</span>
+      <p><b>Artificial Intelligence</b> कम्प्युटर विज्ञानको त्यो शाखा हो जसले मेसिनलाई सामान्यतया
+      मानवीय बुद्धि चाहिने काम गर्न लगाउँछ — भाषा बुझ्ने, तस्बिर र बोली चिन्ने, निर्णय गर्ने, र
+      अनुभवबाट सिक्ने।</p>
+      <p lang="ne">अंक बोक्ने वाक्यांश <b lang="ne">अनुभवबाट सिक्ने</b> हो। साधारण प्रोग्रामले भनेकै गर्छ। AI
+      प्रणालीलाई उदाहरण दिइन्छ र नियम आफैं निकाल्छ — त्यसैले फेरि नलेखिकनै सुध्रन सक्छ।</p>
+      <p lang="ne">तपाईंले भेटिसकेका उदाहरण: भ्वाइस असिस्टेन्ट, फोनको face unlock, खोज बाकसका सुझाव,
+      नेपाली–अंग्रेजी मेसिन अनुवाद, र बैंकले तपाईंको कारोबारमा गर्ने ठगी जाँच।</p>
+    </div>
+  </div>
+
+  <!-- ============ 7.3 ============ -->
+  <h2 class="topic" id="cf-t73">7.3 &nbsp;<span class="t-en">Cloud computing and distributed computing</span><span class="t-ne" lang="ne"> — Cloud computing र distributed computing</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Two ideas that share a picture and answer different questions</span>
+      <p><b>Cloud computing</b> is using computing resources — storage, processing, software —
+      that are owned and run by somebody else and reached over the Internet, paying for what you
+      use instead of buying the machines. Google Drive, Gmail and online backup are cloud
+      services.</p>
+      <p><b>Distributed computing</b> is splitting one large task across many computers that work
+      on it together, so that it finishes faster than any one of them could manage. Weather
+      forecasting and large scientific calculations are done this way.</p>
+      <p>The examination asks you to separate them, and the clean separation is this:
+      <b>cloud computing is about WHO OWNS the computer; distributed computing is about HOW MANY
+      computers share the work.</b> A cloud service may be distributed underneath, and a
+      distributed system may sit entirely inside one organisation's own building. They are not
+      opposites and they are not the same.</p>
+      <p>Cloud computing's advantages: no hardware to buy, reachable from anywhere, grows when
+      you need more. Its disadvantages: it needs a working Internet connection, your data sits on
+      someone else's computer, and the monthly cost never stops — all three matter in Nepal,
+      where connections fail and electricity is not guaranteed.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">एउटै चित्र बाँड्ने, फरक प्रश्नको उत्तर दिने दुई विचार</span>
+      <p><b>Cloud computing</b> भनेको अर्कैले किनेर चलाएका कम्प्युटिङ स्रोत — भण्डारण, प्रशोधन,
+      सफ्टवेयर — इन्टरनेटमार्फत प्रयोग गर्नु हो, मेसिन किन्नुको साटो जति चलायो त्यति तिरेर।
+      Google Drive, Gmail र अनलाइन ब्याकअप cloud सेवा हुन्।</p>
+      <p><b>Distributed computing</b> भनेको एउटै ठूलो काम धेरै कम्प्युटरमा बाँडेर सँगै गराउनु हो,
+      ताकि एउटैले सक्ने भन्दा छिटो सकियोस्। मौसम पूर्वानुमान र ठूला वैज्ञानिक गणना यसरी
+      गरिन्छन्।</p>
+      <p lang="ne">परीक्षाले यी छुट्याउन भन्छ, र सफा फरक यही हो: <b lang="ne">cloud computing कम्प्युटर कसको हो
+      भन्ने कुरा हो; distributed computing काम कति कम्प्युटरले बाँड्छन् भन्ने।</b> Cloud सेवा
+      भित्री रूपमा distributed हुन सक्छ, र distributed प्रणाली एउटै संस्थाकै भवनभित्र हुन सक्छ।
+      यी उल्टा पनि होइनन्, उही पनि होइनन्।</p>
+      <p lang="ne">Cloud का फाइदा: हार्डवेयर किन्नु नपर्ने, जहाँबाट पनि पुग्न सकिने, चाहिएअनुसार बढ्ने।
+      बेफाइदा: चल्ने इन्टरनेट चाहिने, तपाईंको data अर्कैको कम्प्युटरमा रहने, र मासिक खर्च कहिल्यै
+      नसकिने — नेपालमा तीनै कुरा महत्त्वपूर्ण छन्, जहाँ जडान बिग्रन्छ र बिजुलीको ग्यारेन्टी
+      छैन।</p>
+    </div>
+  </div>
+
+  <!-- ============ 7.4 ============ -->
+  <h2 class="topic" id="cf-t74">7.4 &nbsp;<span class="t-en">Internet of Things (IoT)</span><span class="t-ne" lang="ne"> — इन्टरनेट अफ थिङ्स (IoT)</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Ordinary objects that can report and be told</span>
+      <p>The <b>Internet of Things</b> is the connection of everyday physical objects — fitted
+      with sensors and software — to the Internet, so that they can collect data, send it, and
+      be controlled remotely.</p>
+      <p>The test for an IoT device is simple: it is <b>a thing that is not a computer</b>, and
+      it is <b>on the network</b>. A laptop on Wi-Fi is not IoT, because a laptop is a computer.
+      A water tank with a level sensor that messages you when it is low is IoT, because a water
+      tank is not a computer.</p>
+      <p>Examples: smart meters that report electricity use without a reader visiting; soil
+      sensors that tell a farmer when to irrigate; health bands; vehicle trackers; street lights
+      that switch themselves on. The risk is the same in every case — a thing on the network can
+      be reached by people you did not intend.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">जानकारी दिन र आदेश लिन सक्ने सामान्य वस्तु</span>
+      <p><b>Internet of Things</b> भनेको दैनिक प्रयोगका भौतिक वस्तुहरूलाई — सेन्सर र सफ्टवेयर
+      राखेर — इन्टरनेटमा जोड्नु हो, ताकि तिनले data जम्मा गरून्, पठाऊन् र टाढैबाट नियन्त्रण
+      गर्न सकियोस्।</p>
+      <p lang="ne">IoT हो कि होइन भन्ने जाँच सरल छ: त्यो <b lang="ne">कम्प्युटर नभएको वस्तु</b> हो, र
+      <b lang="ne">नेटवर्कमा</b> छ। Wi-Fi मा जोडिएको ल्यापटप IoT होइन, किनभने ल्यापटप कम्प्युटर हो।
+      पानीको ट्यांकीमा लेभल सेन्सर राखेर कम भएपछि सन्देश पठाउने प्रणाली IoT हो, किनभने ट्यांकी
+      कम्प्युटर होइन।</p>
+      <p lang="ne">उदाहरण: मिटर पढ्न कोही नआई बिजुली खपत पठाउने स्मार्ट मिटर; कहिले सिँचाइ गर्ने भन्ने
+      किसानलाई बताउने माटोको सेन्सर; स्वास्थ्य ब्यान्ड; सवारी ट्र्याकर; आफैं बल्ने सडक बत्ती।
+      जोखिम हरेक ठाउँमा उही हो — नेटवर्कमा भएको वस्तुमा तपाईंले नचाहेका मानिस पनि पुग्न
+      सक्छन्।</p>
+    </div>
+  </div>
+
+  <!-- ============ 7.5 ============ -->
+  <h2 class="topic" id="cf-t75">7.5 &nbsp;<span class="t-en">Big data</span><span class="t-ne" lang="ne"> — Big data</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Too big, too fast, too mixed for ordinary tools</span>
+      <p><b>Big data</b> means collections of data so large, so fast-arriving and so varied that
+      ordinary database software cannot store or process them usefully.</p>
+      <p>It is usually described by three Vs: <b>Volume</b> — terabytes and beyond;
+      <b>Velocity</b> — arriving continuously rather than in batches; <b>Variety</b> — text,
+      images, video, sensor readings and records all mixed together.</p>
+      <p><b>Size alone is not the point.</b> A single enormous video file is large and is not big
+      data. Big data is large <i>and</i> messy <i>and</i> continuous — which is why it needs
+      different tools, not just a bigger disk.</p>
+      <p>Examples: every transaction of a mobile wallet; every post on a social network; the
+      readings of thousands of weather sensors; a telecom company's call records.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">साधारण उपकरणका लागि निकै ठूलो, छिटो र मिश्रित</span>
+      <p><b>Big data</b> भनेको यति ठूलो, यति छिटो आउने र यति विविध data को संग्रह हो कि साधारण
+      डाटाबेस सफ्टवेयरले काम लाग्ने गरी राख्न वा प्रशोधन गर्नै सक्दैन।</p>
+      <p lang="ne">यसलाई प्रायः तीन V ले वर्णन गरिन्छ: <b>Volume</b> — टेराबाइट र त्योभन्दा माथि;
+      <b>Velocity</b> — पोकामा होइन, निरन्तर आउने; <b>Variety</b> — पाठ, तस्बिर, भिडियो, सेन्सरका
+      मान र अभिलेख सबै मिसिएका।</p>
+      <p><b lang="ne">ठूलो हुनु मात्र मुख्य कुरा होइन।</b> एउटै विशाल भिडियो फाइल ठूलो त हो, big data
+      होइन। Big data ठूलो <i lang="ne">र</i> अव्यवस्थित <i lang="ne">र</i> निरन्तर हुन्छ — त्यसैले ठूलो डिस्क
+      होइन, फरक उपकरण चाहिन्छ।</p>
+      <p lang="ne">उदाहरण: मोबाइल वालेटका हरेक कारोबार; सामाजिक सञ्जालका हरेक पोस्ट; हजारौं मौसम सेन्सरका
+      मान; टेलिकम कम्पनीका कल रेकर्ड।</p>
+    </div>
+  </div>
+
+  <!-- ============ 7.6 ============ -->
+  <h2 class="topic" id="cf-t76">7.6 &nbsp;<span class="t-en">Data mining</span><span class="t-ne" lang="ne"> — Data mining</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Digging patterns out of data you already have</span>
+      <p><b>Data mining</b> is the process of examining large amounts of stored data to discover
+      <b>patterns and relationships</b> that were not obvious, and using them to predict or to
+      decide.</p>
+      <p><b>Big data and data mining are a pair and are not the same.</b> Big data is the
+      <i>material</i>; data mining is the <i>activity</i>. One is a noun you have; the other is a
+      verb you do to it. An examination answer that says "big data is mining large data" has
+      merged the two and loses the mark.</p>
+      <p>The classic example: a shop analyses thousands of receipts and finds that customers who
+      buy bread often buy eggs on the same visit — so the two are placed near each other. Nobody
+      told the computer to look for bread and eggs; it found the pattern. In Nepal the same
+      technique finds which crops fail together in a district, or which transactions look like
+      fraud.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">भएकै data बाट बान्की खोतल्नु</span>
+      <p><b>Data mining</b> भनेको भण्डारण गरिएको ठूलो मात्राको data केलाएर स्पष्ट नदेखिएका
+      <b lang="ne">बान्की र सम्बन्ध</b> पत्ता लगाउने र त्यसैबाट अनुमान वा निर्णय गर्ने प्रक्रिया हो।</p>
+      <p><b lang="ne">Big data र data mining जोडी हुन्, उही होइनन्।</b> Big data <i lang="ne">सामग्री</i> हो; data
+      mining <i lang="ne">काम</i>। एउटा तपाईंसँग भएको नाम हो, अर्को त्यसमाथि गरिने क्रिया। "Big data भनेको
+      ठूलो data को mining हो" लेख्ने उत्तरले दुईलाई मिसाएको हुन्छ र अंक गुमाउँछ।</p>
+      <p lang="ne">उत्कृष्ट उदाहरण: पसलले हजारौं बिल केलाउँदा पाउरोटी किन्नेले प्रायः उही पटक अन्डा पनि
+      किन्छन् भन्ने भेट्छ — त्यसैले दुवै नजिक राखिन्छ। पाउरोटी र अन्डा खोज् भनेर कसैले भनेको
+      थिएन; बान्की कम्प्युटरले भेट्यो। नेपालमा यही तरिकाले कुन जिल्लामा कुन बाली सँगै बिग्रन्छ
+      वा कुन कारोबार ठगी जस्तो देखिन्छ पत्ता लाग्छ।</p>
+    </div>
+  </div>
+
+  <!-- ============ 7.7 ============ -->
+  <h2 class="topic" id="cf-t77">7.7 &nbsp;<span class="t-en">Cryptography — encryption and decryption</span><span class="t-ne" lang="ne"> — Cryptography — encryption र decryption</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Making a message unreadable on purpose</span>
+      <p><b>Cryptography</b> is the practice of protecting information by converting it into a
+      form that cannot be read by anyone who is not meant to read it.</p>
+      <p><b>Encryption</b> converts <b>plaintext</b> — the readable message — into
+      <b>ciphertext</b>, using an algorithm and a <b>key</b>. <b>Decryption</b> is the reverse:
+      ciphertext back to plaintext, using the key.</p>
+      <p>The <b>key</b> is the part worth understanding. The algorithm is usually public —
+      everyone knows how the method works. What the sender and receiver keep secret is the key.
+      Security that depends on hiding the method fails as soon as somebody works the method out;
+      security that depends on a key survives, because the method can be published and the key
+      changed.</p>
+      <p>Where you already rely on it: the padlock in a browser when you pay online, the
+      encryption on a messaging app, and the password stored by a website — stored encrypted, so
+      that stealing the file does not hand over the passwords.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">जानीजानी सन्देश नपढिने बनाउनु</span>
+      <p><b>Cryptography</b> भनेको सूचनालाई पढ्न नहुनेले पढ्नै नसक्ने रूपमा बदलेर जोगाउने
+      अभ्यास हो।</p>
+      <p><b>Encryption</b> ले <b>plaintext</b> — पढ्न मिल्ने सन्देश — लाई एल्गोरिदम र
+      <b>key</b> प्रयोग गरी <b>ciphertext</b> मा बदल्छ। <b>Decryption</b> उल्टो हो: key कै
+      प्रयोगले ciphertext बाट फेरि plaintext।</p>
+      <p lang="ne">बुझ्नुपर्ने भाग <b>key</b> हो। एल्गोरिदम प्रायः सार्वजनिक हुन्छ — तरिका सबैलाई थाहा
+      हुन्छ। पठाउने र पाउनेले गोप्य राख्ने भनेको key हो। तरिका लुकाएर पाइने सुरक्षा कसैले तरिका
+      पत्ता लगाउने बित्तिकै सकिन्छ; key मा अडेको सुरक्षा टिक्छ, किनभने तरिका छापे पनि key
+      फेर्न सकिन्छ।</p>
+      <p lang="ne">तपाईं अहिल्यै भर परिरहेका ठाउँ: अनलाइन तिर्दा browser मा देखिने ताल्चा, messaging app
+      को encryption, र वेबसाइटले राख्ने पासवर्ड — encrypt गरेर राखिन्छ, ताकि फाइल चोरिए पनि
+      पासवर्ड नपाइयोस्।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Do it yourself</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>आफैं गरेर हेर्नुहोस्</span></p>
+      <h3>Encrypt a message, then decrypt it</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: what the <b>key</b> actually does. Move it and the
+      ciphertext changes; the algorithm never changes. That is why secrecy lives in the key, and
+      why decryption is the same operation run backwards.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: <b>key</b> ले साँच्चै के गर्छ। सार्नुहोस्,
+      ciphertext बदलिन्छ; एल्गोरिदम कहिल्यै बदलिँदैन। गोपनीयता key मै बस्नुको र decryption उही
+      कामको उल्टो हुनुको कारण यही हो।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="cipher" data-text="MEET AT DAWN"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">Three things to try</span>
+        <p><b>1.</b> Set the key to 3 and read the ciphertext — this exact cipher is about 2000
+        years old. <b>2.</b> Set it to 0 and see why a key of zero is no key at all.
+        <b>3.</b> Notice that the spaces do not move: the <i>shape</i> of the message leaks even
+        when the letters do not. A real weakness, and one reason this cipher is not used for
+        anything that matters — a computer breaks it by trying all 25 keys in well under a
+        second.</p>
+        </div><span class="np-cell" lang="ne"><b lang="ne">१.</b> Key ३ राखेर ciphertext पढ्नुहोस् — यही cipher करिब दुई
+        हजार वर्ष पुरानो हो। <b lang="ne">२.</b> ० राखेर हेर्नुहोस्, शून्य key किन key नै होइन।
+        <b lang="ne">३.</b> खाली ठाउँ नसरेको ध्यान दिनुहोस्: अक्षर नसरे पनि सन्देशको <i lang="ne">आकार</i> चुहिन्छ।
+        यो साँचो कमजोरी हो, र यस cipher लाई महत्त्वपूर्ण काममा नचलाइनुको एउटा कारण — कम्प्युटरले
+        २५ वटै key एक सेकेन्डभित्रै प्रयास गरेर फोड्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 7.8 / 7.9 ============ -->
+  <h2 class="topic" id="cf-t78">7.8 &nbsp;<span class="t-en">Virtual Reality (VR)</span><span class="t-ne" lang="ne"> — भर्चुअल रियालिटी (VR)</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The real world replaced</span>
+      <p><b>Virtual Reality</b> is a computer-generated environment that <b>replaces</b> the
+      user's surroundings entirely. Wearing a headset, you see and hear only what the computer
+      produces; the room you are standing in is gone.</p>
+      <p>Uses: pilot and surgical training where a mistake must not cost anything real; walking
+      through a building before it is built; games; and visiting a place — a museum, a mountain —
+      that you cannot travel to.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">वास्तविक संसार नै प्रतिस्थापित</span>
+      <p><b>Virtual Reality</b> भनेको कम्प्युटरले बनाएको त्यस्तो वातावरण हो जसले प्रयोगकर्ताको
+      वरिपरिको संसार <b lang="ne">पूरै प्रतिस्थापन</b> गर्छ। हेडसेट लगाएपछि तपाईंले कम्प्युटरले देखाएको र
+      सुनाएको मात्र पाउनुहुन्छ; उभिएको कोठा हराउँछ।</p>
+      <p lang="ne">प्रयोग: गल्तीले वास्तविक क्षति नहुनुपर्ने पाइलट र शल्यक्रिया तालिम; नबनेकै भवनभित्र
+      हिँड्ने; खेल; र पुग्नै नसकिने ठाउँ — संग्रहालय, हिमाल — घुम्ने।</p>
+    </div>
+  </div>
+
+  <h2 class="topic" id="cf-t79">7.9 &nbsp;<span class="t-en">Augmented Reality (AR)</span><span class="t-ne" lang="ne"> — अग्मेन्टेड रियालिटी (AR)</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The real world added to</span>
+      <p><b>Augmented Reality</b> <b>adds</b> computer-generated information to the real world
+      instead of replacing it. Through a phone camera or clear glasses you still see the room,
+      with extra things drawn on top of it.</p>
+      <p>Uses: a phone showing how furniture would look in your own room; navigation arrows drawn
+      on the street ahead; a repair manual that labels the parts of the engine you are actually
+      looking at; and classroom apps that place a 3D heart on your desk.</p>
+      <p><b>The whole difference is what you can still see.</b> VR: the real world is gone. AR:
+      the real world is there with something added. If an examination question describes a
+      headset that blocks everything out, it is VR; if the user can still see the road, it is AR.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">वास्तविक संसारमा थपिएको</span>
+      <p><b>Augmented Reality</b> ले वास्तविक संसार हटाउने होइन, त्यसमाथि कम्प्युटरले बनाएको
+      सूचना <b lang="ne">थप्छ</b>। फोनको क्यामेरा वा पारदर्शी चस्माबाट तपाईंले कोठा देख्दै गर्नुहुन्छ,
+      माथि थप कुरा कोरिएको हुन्छ।</p>
+      <p lang="ne">प्रयोग: आफ्नै कोठामा फर्निचर कस्तो देखिन्छ देखाउने फोन; अगाडिको सडकमै कोरिएका बाटो
+      देखाउने तीर; हेरिरहेकै इन्जिनका भाग नाम लेखिदिने मर्मत निर्देशिका; र डेस्कमै ३डी मुटु
+      राख्ने कक्षा app।</p>
+      <p><b lang="ne">पूरै फरक तपाईंले अझै के देख्न सक्नुहुन्छ भन्नेमा छ।</b> VR: वास्तविक संसार हराउँछ।
+      AR: वास्तविक संसार छँदै छ, केही थपिएको। प्रश्नमा सबै छेक्ने हेडसेटको कुरा छ भने VR;
+      प्रयोगकर्ताले सडक अझै देख्छ भने AR।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3>Which emerging technology is this?</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to identify a technology from a situation, which
+      is how this unit is examined. The pairs that get confused — cloud against distributed, big
+      data against data mining, VR against AR — are all here.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: परिस्थितिबाटै प्रविधि चिन्न — यो युनिट
+      यसरी नै जाँचिन्छ। अलमल पार्ने जोडी — cloud र distributed, big data र data mining, VR र
+      AR — सबै यहीँ छन्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cfemerge" data-set="cfemerging"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Three questions settle most of them: whose computer is it, is the user still able to
+        see the room, and is this the data or the digging?</p>
+        </div><span class="np-cell" lang="ne">तीन प्रश्नले धेरैजसो टुङ्ग्याउँछन्: कम्प्युटर कसको हो,
+        प्रयोगकर्ताले कोठा अझै देख्छ कि देख्दैन, र यो data हो कि खोतल्ने काम?</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="c">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A cipher's algorithm is published in a textbook that anyone can buy. Does publishing it
+      make messages encrypted with that algorithm insecure?
+      </span><span class="np-cell" lang="ne">कुनै cipher को एल्गोरिदम जोसुकैले किन्न सक्ने पाठ्यपुस्तकमा छापिएको
+      छ। छापिएकै कारण त्यस एल्गोरिदमले encrypt गरिएका सन्देश असुरक्षित हुन्छन्?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Yes — anyone who knows the method can read the message</button>
+      <button class="predict-opt" data-value="b">Yes, but only if they also own a fast computer</button>
+      <button class="predict-opt" data-value="c">No — the method being known is fine; it is the key that must stay secret</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>No, and this is the central idea of the whole topic.</b> Security that depends on
+      hiding the method collapses the moment somebody works the method out, and it cannot be
+      repaired — you would have to invent a new cipher. Security that depends on a key survives
+      publication: the algorithm can be printed, studied and attacked by experts, and if a key is
+      ever exposed you simply change the key.</p>
+      <p>That is why the same published algorithm can protect millions of different conversations
+      at once. Each pair of people uses a different key, and knowing the method tells you nothing
+      about any of them.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">हुँदैनन्, र पूरै विषयको केन्द्रीय विचार यही हो।</b> तरिका
+      लुकाएर पाइने सुरक्षा कसैले तरिका पत्ता लगाउने बित्तिकै ढल्छ, र मर्मत गर्न मिल्दैन — नयाँ
+      cipher नै बनाउनुपर्छ। Key मा अडेको सुरक्षा छापिए पनि टिक्छ: एल्गोरिदम छापेर विज्ञहरूले
+      अध्ययन र आक्रमण गर्न दिन सकिन्छ, र key चुहिए key फेरे पुग्छ। एउटै छापिएको एल्गोरिदमले
+      एकैपटक लाखौं फरक कुराकानी जोगाउन सक्नुको कारण यही हो। हरेक जोडीले फरक key चलाउँछ, र तरिका
+      थाहा हुँदैमा कुनैको key थाहा हुँदैन।</span>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Encrypt and decrypt by hand</div>
+    <p><b>Question:</b> encrypt the word <code>NEPAL</code> with a shift of 4, then decrypt
+    <code>XSVOH</code> with the same key.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Do both on paper before opening this. Remember that
+      the alphabet wraps: after Z comes A again.</span>
+      <span class="np-cell" lang="ne">खोल्नुअघि दुवै कागजमै गर्नुहोस्। वर्णमाला घुम्छ भन्ने नबिर्सनुहोस्:
+      Z पछि फेरि A आउँछ।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">ENCRYPT  shift each letter FORWARD 4
+  N -> R    E -> I    P -> T    A -> E    L -> P
+  NEPAL  ->  RITEP
+
+DECRYPT  shift each letter BACK 4
+  X -> T    S -> O    V -> R    O -> K    H -> D
+  XSVOH  ->  TORKD
+
+Check the wrap: with a shift of 4, W -> A, X -> B, Y -> C,
+Z -> D. Nothing falls off the end of the alphabet.</div>
+      <p class="wex-note"><span class="t-en">Notice that decryption used no new method — the same operation, run in
+      the other direction with the same key. That is the point the bench above is making, and it
+      is what makes the key, not the algorithm, the thing worth keeping secret.
+      </span><span class="np-cell" lang="ne">Decryption मा नयाँ तरिका लागेन — उही काम, उही key, उल्टो दिशामा।
+      माथिको बेन्चले भन्न खोजेको कुरा यही हो, र एल्गोरिदम होइन key नै गोप्य राख्नुपर्ने कारण
+      पनि।</span></p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Naming the technology in one paragraph</div>
+    <p><b>Question:</b> "A municipality fits sensors to 500 water taps. The readings go to a
+    server rented from a company in Singapore. Software examines two years of those readings and
+    finds which wards lose the most water at night." Name the three technologies, in order.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Three different things are happening in three
+      sentences. Name each before opening this.</span>
+      <span class="np-cell" lang="ne">तीन वाक्यमा तीन फरक कुरा भइरहेका छन्। खोल्नुअघि हरेकको नाम
+      भन्नुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">1  sensors on 500 taps           IoT
+   a tap is not a computer, and now it is on the network
+
+2  a server rented in Singapore  CLOUD COMPUTING
+   whose computer? somebody else's, reached over the
+   Internet. NOT distributed — nothing says the work is
+   split across many machines
+
+3  examining two years of        DATA MINING
+   readings to FIND a pattern    the readings themselves are
+                                 big data; the examining is
+                                 the mining</div>
+      <p class="wex-note"><span class="t-en">Questions in this unit often hide three technologies in one short
+      paragraph, exactly like this. Read it sentence by sentence rather than looking for one
+      answer.
+      </span><span class="np-cell" lang="ne">यस युनिटका प्रश्नले प्रायः छोटो अनुच्छेदमै तीन प्रविधि लुकाउँछन्,
+      ठ्याक्कै यसरी। एउटा उत्तर खोज्नुभन्दा वाक्य–वाक्य गरी पढ्नुहोस्।</span></p>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h3><span class="t-en">Mistakes that cost marks here</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यहाँ अङ्क गुमाउने गल्तीहरू</span></h3><div class="t-en">
+    <ul>
+      <li><b>Saying cloud computing and distributed computing are the same.</b> Cloud is about
+      whose computer; distributed is about how many.</li>
+      <li><b>Defining big data as "mining big data".</b> Big data is the material, data mining is
+      the activity.</li>
+      <li><b>Calling a laptop on Wi-Fi an IoT device.</b> IoT is for things that are
+      <i>not</i> computers.</li>
+      <li><b>Swapping VR and AR.</b> VR replaces the world, AR adds to it.</li>
+      <li><b>Saying encryption hides the method.</b> The algorithm is usually public — the key is
+      what is secret.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne"><b lang="ne">Cloud र distributed उस्तै भन्नु:</b> cloud — कम्प्युटर कसको;
+    distributed — कतिवटा। <b lang="ne">Big data लाई "ठूलो data को mining" भन्नु:</b> big data सामग्री,
+    data mining काम। <b lang="ne">Wi-Fi मा जोडिएको ल्यापटपलाई IoT भन्नु:</b> IoT कम्प्युटर नभएका वस्तुका
+    लागि हो। <b lang="ne">VR र AR साट्नु:</b> VR ले संसार हटाउँछ, AR ले थप्छ। <b lang="ne">Encryption ले तरिका
+    लुकाउँछ भन्नु:</b> एल्गोरिदम प्रायः सार्वजनिक हुन्छ — गोप्य त key हो।</span>
+  </div>
+
+  <p class="hook"><span class="t-en"><b>Memory hook —</b> VR replaces, AR adds. Big data is the
+    pile; data mining is the digging.</span>
+    <span class="np-cell" lang="ne"><b lang="ne">सम्झने तरिका —</b> VR ले हटाउँछ, AR ले थप्छ। Big data थुप्रो,
+    data mining खन्ने काम।</span></p>
+
+  <!-- ============ PRACTICAL ============ -->
+  <h2 class="topic" id="cf-prac7"><span class="t-en">Practical work — this unit's other 10 hours</span><span class="t-ne" lang="ne"> — प्रयोगात्मक काम — यस युनिटका अरू १० घण्टा</span></h2>
+
+  <div class="practical">
+    <div class="h"><span class="pr-kind">Guided practical</span>The six activities the curriculum suggests</div>
+    <p><span class="t-en">From the curriculum's own list for Unit 7, which calls these <b>samples</b>. Note that 7.2
+    is the <b>only activity in the whole subject that is a computer task</b> — every other one of
+    the thirty-two produces paper, slides or speech.
+    </span><span class="np-cell" lang="ne">पाठ्यक्रमकै युनिट ७ को सूचीबाट; यसले यिनलाई <b lang="ne">नमुना</b> भनेको छ। ७.२
+    <b lang="ne">पूरै विषयकै एक मात्र कम्प्युटर चलाउने क्रियाकलाप</b> हो — बत्तीसमध्ये अरू सबैले कागज,
+    स्लाइड वा बोली उत्पादन गर्छन्।</span></p>
+
+    <div class="pr-act" data-practical="g9.cf.p7.1">
+      <p><span class="pr-num">7.1</span> Make a presentation on emerging technology.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> presentation software or paper slides. <b>Builds on:</b>
+      7.1. <b>Hand in:</b> the file and your notes. Say for each one why it counts as
+      <i>emerging</i> and not merely new — that is the question behind the topic.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> प्रस्तुतीकरण सफ्टवेयर वा कागजकै स्लाइड। <b lang="ne">आधार:</b>
+      ७.१। <b lang="ne">बुझाउने:</b> फाइल र नोट। हरेकलाई नयाँ मात्र नभई <i lang="ne">उदीयमान</i> किन भनिन्छ
+      भन्नुहोस् — विषयपछाडिको प्रश्न त्यही हो।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p7.2">
+      <p><span class="pr-num">7.2</span> With your computer teacher, follow the steps to
+      <b>store information in cloud storage</b>, and demonstrate it.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> a computer, a working Internet connection, an account,
+      and <b>your teacher</b> — the curriculum names the teacher in this activity, and account
+      creation is not something to do unsupervised. <b>Builds on:</b> 7.3. <b>Hand in:</b> a
+      written list of the steps you followed and what you uploaded. <b>This site cannot do this
+      for you</b>, and should not: the point is operating a real service.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> कम्प्युटर, चल्ने इन्टरनेट, खाता, र <b lang="ne">शिक्षक</b> —
+      पाठ्यक्रमले यस क्रियाकलापमा शिक्षकको नाम लिएको छ, र खाता खोल्ने काम एक्लै गर्ने होइन।
+      <b lang="ne">आधार:</b> ७.३। <b lang="ne">बुझाउने:</b> पछ्याएका चरणको लिखित सूची र के अपलोड गर्नुभयो।
+      <b lang="ne">यो साइटले यो गरिदिन सक्दैन</b>, र गर्नु पनि हुँदैन: मुख्य कुरा वास्तविक सेवा चलाउनु
+      हो।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p7.3">
+      <p><span class="pr-num">7.3</span> Prepare a presentation file on <b>"Examples of Services
+      over Cloud"</b> and demonstrate it in your class.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> presentation software or paper slides. <b>Builds on:</b>
+      7.3. <b>Hand in:</b> the file. Group the services by what is being rented — storage,
+      software, or processing — rather than listing company names.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> प्रस्तुतीकरण सफ्टवेयर वा कागजकै स्लाइड।
+      <b lang="ne">आधार:</b> ७.३। <b lang="ne">बुझाउने:</b> फाइल। कम्पनीका नाम सूचीबद्ध गर्नुभन्दा के भाडामा लिइँदै
+      छ — भण्डारण, सफ्टवेयर, कि प्रशोधन — अनुसार समूह बनाउनुहोस्।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p7.4">
+      <p><span class="pr-num">7.4</span> Prepare a presentation file on the topic <b>"Sophia
+      Robot in Nepal"</b> and demonstrate it.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> presentation software, and sources you can name.
+      <b>This one needs care:</b> it is a specific, dateable claim about a real event, so every
+      fact you state needs a source — a news report, with its date. <b>Builds on:</b> 7.2.
+      <b>Hand in:</b> the file and your source list. A presentation with three sourced facts is
+      worth more than one with ten unsourced ones.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> प्रस्तुतीकरण सफ्टवेयर र नाम भन्न मिल्ने स्रोत।
+      <b lang="ne">यसमा ध्यान चाहिन्छ:</b> यो वास्तविक घटनाबारे मिति सहितको ठोस दाबी हो, त्यसैले हरेक
+      तथ्यको स्रोत — समाचार र त्यसको मिति — चाहिन्छ। <b lang="ne">आधार:</b> ७.२। <b lang="ne">बुझाउने:</b> फाइल र
+      स्रोतको सूची। स्रोतसहितका तीन तथ्य, स्रोतविहीन दस भन्दा बढी मूल्यवान्।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p7.5">
+      <p><span class="pr-num">7.5</span> Prepare a presentation file on <b>Internet of Things
+      (IoT) with an example</b> and demonstrate it.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> presentation software or paper slides. <b>Builds on:</b>
+      7.4. <b>Hand in:</b> the file. Choose an example from Nepal if you can — a smart electricity
+      meter, or a vehicle tracker — and say what data it sends and to whom.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> प्रस्तुतीकरण सफ्टवेयर वा कागजकै स्लाइड।
+      <b lang="ne">आधार:</b> ७.४। <b lang="ne">बुझाउने:</b> फाइल। सकेसम्म नेपालकै उदाहरण — स्मार्ट बिजुली मिटर वा
+      सवारी ट्र्याकर — छान्नुहोस् र कुन data कसलाई पठाउँछ भन्नुहोस्।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p7.6">
+      <p><span class="pr-num">7.6</span> Prepare a presentation file on <b>E-Governance</b> and
+      demonstrate it.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> presentation software or paper slides. <b>Builds on:</b>
+      Unit 5 topic 5.3 as well as this unit. <b>Hand in:</b> the file. The strongest version
+      names a service you or your family have actually used, and says what it replaced.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> प्रस्तुतीकरण सफ्टवेयर वा कागजकै स्लाइड।
+      <b lang="ne">आधार:</b> युनिट ५ को ५.३ र यो युनिट। <b lang="ne">बुझाउने:</b> फाइल। बलियो प्रस्तुतीकरणले तपाईं
+      वा परिवारले साँच्चै चलाएको सेवा नाम लिन्छ र त्यसले केलाई विस्थापित गर्‍यो भन्छ।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ EXAM FOCUS ============ -->
+  <h2 class="topic" id="cf-exam7"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne" lang="ne"> — परीक्षा केन्द्र — यस युनिटबाट के सोधिन्छ</span></h2>
+
+  <div class="exam-connect">
+    <p><span class="t-en">This unit carries <b>6 of the 50 external marks</b> and 8 of the 64 theory hours — nine
+    topics for six marks, so each is asked briefly. Expect short definitions and one
+    differentiate question. The three pairs worth preparing are cloud against distributed, big
+    data against data mining, and VR against AR.
+    </span><span class="np-cell" lang="ne">यो युनिटले <b lang="ne">बाह्य ५० मध्ये ६ अंक</b> र ६४ मध्ये ८ घण्टा ओगट्छ — छ
+    अंकका लागि नौ विषय, त्यसैले हरेक छोटो सोधिन्छ। छोटा परिभाषा र एउटा "फरक लेख्नुहोस्" अपेक्षा
+    गर्नुहोस्। तयारी गर्नुपर्ने तीन जोडी: cloud–distributed, big data–data mining, VR–AR।</span></p>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">What is artificial intelligence? Write any two of its applications.
+    </span><span class="np-cell" lang="ne">Artificial intelligence भनेको के हो? यसका कुनै दुई प्रयोग
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa71">Show the answer</button>
+    <div class="ans" id="cfa71"><div class="t-en">
+      <p>Artificial intelligence is the branch of computer science that develops machines and
+      programs able to <b>perform tasks that normally require human intelligence</b>, such as
+      understanding language, recognising images, making decisions and <b>learning from
+      experience</b>.</p>
+      <p>Applications: voice assistants; face recognition; machine translation; medical diagnosis;
+      self-driving vehicles; fraud detection. Any two.</p>
+      </div><span class="np-cell" lang="ne">AI भनेको कम्प्युटर विज्ञानको त्यो शाखा हो जसले <b lang="ne">सामान्यतया मानवीय
+      बुद्धि चाहिने काम</b> — भाषा बुझ्ने, तस्बिर चिन्ने, निर्णय गर्ने र <b lang="ne">अनुभवबाट सिक्ने</b> —
+      गर्न सक्ने मेसिन र प्रोग्राम बनाउँछ। प्रयोग: भ्वाइस असिस्टेन्ट, अनुहार पहिचान, मेसिन
+      अनुवाद, रोग पहिचान, स्वचालित सवारी, ठगी पत्ता लगाउने — कुनै दुई।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Differentiate between virtual reality and augmented reality with examples.
+    </span><span class="np-cell" lang="ne">Virtual reality र augmented reality बीचको फरक उदाहरणसहित
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa72">Show the answer</button>
+    <div class="ans" id="cfa72"><div class="t-en">
+      <p><b>Virtual Reality (VR)</b> creates a completely computer-generated environment that
+      <b>replaces</b> the real world. The user wears a headset and cannot see the real
+      surroundings. It needs special hardware. Example: a flight simulator used for pilot
+      training; a VR game.</p>
+      <p><b>Augmented Reality (AR)</b> <b>adds</b> computer-generated information on top of the
+      real world, which the user can still see. It usually works on an ordinary smartphone.
+      Example: an app that shows how furniture would look in your room; navigation arrows drawn
+      on a live camera view.</p>
+      <p>The single difference to state clearly: VR replaces reality, AR adds to it.</p>
+      </div><span class="np-cell" lang="ne"><b>VR</b> ले पूरै कम्प्युटरले बनाएको वातावरण दिन्छ जसले वास्तविक
+      संसार <b lang="ne">प्रतिस्थापन</b> गर्छ; हेडसेट लगाएपछि वरिपरि देखिँदैन; विशेष हार्डवेयर चाहिन्छ।
+      उदाहरण: पाइलट तालिमको फ्लाइट सिमुलेटर। <b>AR</b> ले वास्तविक संसारमाथि सूचना <b lang="ne">थप्छ</b>,
+      प्रयोगकर्ताले वरिपरि देख्दै गर्छ; प्रायः साधारण स्मार्टफोनमै चल्छ। उदाहरण: कोठामा फर्निचर
+      कस्तो देखिन्छ देखाउने app। मुख्य फरक: VR ले हटाउँछ, AR ले थप्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">What is cloud computing? Write any one advantage and one disadvantage.
+    </span><span class="np-cell" lang="ne">Cloud computing भनेको के हो? कुनै एक फाइदा र एक बेफाइदा
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa73">Show the answer</button>
+    <div class="ans" id="cfa73"><div class="t-en">
+      <p>Cloud computing is the use of <b>computing resources — storage, processing and software
+      — owned and maintained by a service provider and accessed over the Internet</b>, paying for
+      what is used rather than buying the equipment.</p>
+      <p><b>Advantage:</b> no hardware to purchase or maintain; data can be reached from anywhere;
+      capacity can be increased when needed.</p>
+      <p><b>Disadvantage:</b> it requires a reliable Internet connection; data is stored on
+      someone else's computer, raising privacy and security concerns; the cost is ongoing.</p>
+      </div><span class="np-cell" lang="ne">Cloud computing भनेको <b lang="ne">सेवा प्रदायकले राखेका कम्प्युटिङ स्रोत —
+      भण्डारण, प्रशोधन, सफ्टवेयर — इन्टरनेटमार्फत प्रयोग गर्नु</b> हो; उपकरण किन्नुको साटो जति
+      चलायो त्यति तिर्ने। <b lang="ne">फाइदा:</b> हार्डवेयर किन्नु/मर्मत गर्नु नपर्ने; जहाँबाट पनि पुग्न
+      सकिने; चाहिएअनुसार बढाउन मिल्ने। <b lang="ne">बेफाइदा:</b> भरपर्दो इन्टरनेट चाहिने; data अर्कैको
+      कम्प्युटरमा रहने; खर्च निरन्तर चलिरहने।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">What is encryption? What is the role of the key?
+    </span><span class="np-cell" lang="ne">Encryption भनेको के हो? Key को भूमिका के हो?</span></p>
+    <button class="btn-ans" data-answer="cfa74">Show the answer</button>
+    <div class="ans" id="cfa74"><div class="t-en">
+      <p>Encryption is the process of <b>converting plaintext (a readable message) into
+      ciphertext (an unreadable form)</b> so that only an authorised person can read it.
+      Decryption is the reverse process.</p>
+      <p>The <b>key</b> is the secret value used by the algorithm to perform the conversion. The
+      algorithm is usually publicly known; the security depends on keeping the key secret, and a
+      different key produces a different ciphertext from the same message.</p>
+      </div><span class="np-cell" lang="ne">Encryption भनेको <b lang="ne">plaintext (पढ्न मिल्ने सन्देश) लाई ciphertext
+      (पढ्न नमिल्ने रूप) मा बदल्ने</b> प्रक्रिया हो, ताकि अधिकार पाएकोले मात्र पढोस्। Decryption
+      उल्टो प्रक्रिया। <b>Key</b> भनेको एल्गोरिदमले रूपान्तरण गर्न प्रयोग गर्ने गोप्य मान हो।
+      एल्गोरिदम प्रायः सार्वजनिक हुन्छ; सुरक्षा key गोप्य राख्नुमा भर पर्छ, र फरक key ले उही
+      सन्देशबाट फरक ciphertext बनाउँछ।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h3>Key points from this unit</h3><div class="t-en">
+    <ul>
+      <li>Emerging means moving into use fast enough that the rules have not settled — not merely
+      new.</li>
+      <li>AI: machines doing what needs human intelligence, and <b>learning from experience</b>.</li>
+      <li>Cloud = whose computer. Distributed = how many computers.</li>
+      <li>IoT: things that are <i>not</i> computers, put on the network.</li>
+      <li>Big data is the material (volume, velocity, variety); data mining is the activity.</li>
+      <li>Encryption needs an algorithm and a key; the algorithm is public, the key is not.</li>
+      <li>VR replaces the real world; AR adds to it.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne">उदीयमान = नियम नै थामिनसक्दै प्रयोगमा छिर्दै गरेको, नयाँ मात्र होइन।
+    AI: मानवीय बुद्धि चाहिने काम गर्ने र <b lang="ne">अनुभवबाट सिक्ने</b>। Cloud = कम्प्युटर कसको;
+    distributed = कतिवटा। IoT: कम्प्युटर <i lang="ne">नभएका</i> वस्तु नेटवर्कमा। Big data सामग्री
+    (volume, velocity, variety), data mining काम। Encryption लाई एल्गोरिदम र key चाहिन्छ;
+    एल्गोरिदम सार्वजनिक, key गोप्य। VR ले हटाउँछ, AR ले थप्छ।</span>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit6.html"><span class="lab">◂ Previous</span><span class="ttl">Multimedia</span></a><a class="nx" href="revise.html"><span class="lab">Next ▸</span><span class="ttl">Your Revision</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">Gyansetu</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
+<script src="../../assets/js/sim-cipher.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/practical.js"></script>
+</body>
+</html>

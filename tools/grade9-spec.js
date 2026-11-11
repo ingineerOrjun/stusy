@@ -297,8 +297,23 @@ const json = JSON.stringify(doc, null, 2) + '\n';
 
 if (process.argv.includes('--check')){
   const have = fs.existsSync(OUT) ? fs.readFileSync(OUT, 'utf8') : '';
-  /* the generation date is expected to differ; compare everything else */
-  const strip = s => s.replace(/"generated": "[^"]*"/, '"generated": "-"');
+  /* The generation date is expected to differ; compare everything else.
+
+     LINE ENDINGS ARE NORMALISED, and that is not cosmetic. This
+     repository runs with core.autocrlf=true and no .gitattributes, so a
+     checkout materialises this file with CRLF while the generator above
+     writes LF. The comparison was byte-for-byte, so it reported drift on
+     every line of a file that had not changed at all — on any fresh
+     Windows checkout, and on nothing else.
+
+     It passed for a whole phase because the working copy under test was
+     the one the generator had just written. It failed the moment the
+     file came from git instead: `git checkout main` after a merge was
+     enough. Dates differ by design; line endings differ by platform;
+     neither is drift. */
+  const strip = s => s
+    .replace(/\r\n/g, '\n')
+    .replace(/"generated": "[^"]*"/, '"generated": "-"');
   if (strip(have) === strip(json)){
     console.log('GRADE-9-CURRICULUM-SPECIFICATION.json is current.');
     process.exit(0);

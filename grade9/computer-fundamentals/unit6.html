@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Multimedia — Computer Fundamentals | </title>
+<meta name="description" content="Multimedia explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark" lang="ne">ज्ञ</span>
+      <span class="brand-txt">Gyansetu<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop on"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language <span class="dn">· notes ready</span><small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals <span class="dn">· notes ready</span><small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair <span class="dn">· notes ready</span><small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language ✓<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html" class="on">Computer Fundamentals ✓<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair ✓<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 9</a> <span class="sep">/</span> <a href="index.html">Computer Fundamentals</a> <span class="sep">/</span> <span>Multimedia</span></nav>
+<main id="main" tabindex="-1" data-subject="grade9/computer-fundamentals">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · What a computer is</a><a href="unit2.html">2 · The parts and what each does</a><a href="unit3.html">3 · Software and the operating system</a><a href="unit4.html">4 · Memory, and why RAM forgets</a><a href="unit5.html">5 · The Internet and its services</a><a href="unit6.html" style="color:var(--yellow);border-color:var(--yellow)">6 · Five media, used together</a><a href="unit7.html">7 · AI, cloud, IoT and the rest</a><a href="revise.html">↻ · Revision</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="cf-u6">
+  <div class="sec-head">
+    <div class="sec-num">6</div>
+    <div>
+      <h1>Multimedia</h1>
+      <p class="sec-sub" lang="ne">मल्टिमिडिया</p>
+    </div>
+    <span class="marks">8 hrs · 6 marks · 8 practical hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2><span class="t-en">By the end of this unit you can…</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो युनिट सकिँदा तपाईं यी कुरा गर्न सक्नुहुनेछ</span></h2><div class="t-en">
+    <ol>
+      <li>Define multimedia and say how many of its components are needed before the word applies.</li>
+      <li>Name all five components and give a file format for each.</li>
+      <li>Explain the difference between an image and an animation, and between animation and video.</li>
+      <li>Give real applications of multimedia across at least five fields.</li>
+      <li>Say why a video file is so much larger than a text file about the same subject.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: मल्टिमिडियाको परिभाषा र यो शब्द लाग्न कतिवटा भाग
+    चाहिन्छ भन्न, पाँचै भाग नाम लिई हरेकको एउटा फाइल ढाँचा दिन, image र animation अनि animation
+    र video को फरक बुझाउन, कम्तीमा पाँच क्षेत्रमा मल्टिमिडियाको वास्तविक प्रयोग देखाउन, र उही
+    विषयको पाठ फाइलभन्दा भिडियो फाइल किन यति ठूलो हुन्छ भन्न सक्नुहुनेछ।</span>
+  </div>
+
+  <!-- ============ 6.1 ============ -->
+  <h2 class="topic" id="cf-t61">6.1 &nbsp;<span class="t-en">What multimedia is</span><span class="t-ne" lang="ne"> — मल्टिमिडिया भनेको के हो</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The word means "many media", and the number matters</span>
+      <p><b>Multimedia</b> is the use of <b>more than one</b> medium — text, audio, video, image
+      and animation — together in one presentation, usually with some <b>interactivity</b> for
+      the user.</p>
+      <p>"More than one" is the part worth marks. A page of plain text is not multimedia. A
+      photograph on its own is not multimedia. A page with text <i>and</i> a photograph is, and
+      a lesson with text, a diagram, a narration and a clip you can replay is a strong example.</p>
+      <p>Many definitions add <b>interactivity</b> — the user can choose what happens next rather
+      than only watching. A film is many media and no interactivity; a learning app is many media
+      and plenty. If an examination question asks for the features of multimedia, interactivity
+      belongs in the answer.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">शब्दकै अर्थ "धेरै माध्यम", र संख्या महत्त्वपूर्ण छ</span>
+      <p><b lang="ne">मल्टिमिडिया</b> भनेको पाठ, अडियो, भिडियो, तस्बिर र एनिमेसनमध्ये <b lang="ne">एकभन्दा बढी</b>
+      माध्यम एउटै प्रस्तुतीकरणमा सँगै प्रयोग गर्नु हो, प्रायः प्रयोगकर्ताका लागि केही
+      <b lang="ne">अन्तरक्रियात्मकता</b> सहित।</p>
+      <p lang="ne">अंक बोक्ने भाग "एकभन्दा बढी" हो। सादा पाठको पाना मल्टिमिडिया होइन। एक्लो फोटो पनि
+      होइन। पाठ <i lang="ne">र</i> फोटो भएको पाना हो, र पाठ, चित्र, स्वर अनि फेरि बजाउन मिल्ने क्लिप
+      भएको पाठ बलियो उदाहरण हो।</p>
+      <p lang="ne">धेरै परिभाषाले <b lang="ne">अन्तरक्रियात्मकता</b> थप्छन् — प्रयोगकर्ताले हेर्ने मात्र होइन,
+      अब के हुने छान्न पाउने। चलचित्रमा धेरै माध्यम छन् तर अन्तरक्रिया छैन; सिकाइ app मा
+      दुवै प्रशस्त छन्। मल्टिमिडियाका विशेषता सोधिए अन्तरक्रियात्मकता उत्तरमा पर्नुपर्छ।</p>
+    </div>
+  </div>
+
+  <!-- ============ 6.2 ============ -->
+  <h2 class="topic" id="cf-t62">6.2 &nbsp;<span class="t-en">The components of multimedia</span><span class="t-ne" lang="ne"> — मल्टिमिडियाका भागहरू</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Five, and each is a different kind of data</span>
+      <p>The syllabus names five. Learn each with a format, because "give an example of a file
+      format" is a standard follow-up.</p>
+      <ul>
+        <li><b>Text</b> — letters, numbers and symbols. The oldest component and still the one
+        that carries exact meaning. Formats: <code>.txt</code>, <code>.doc</code>,
+        <code>.pdf</code>. Smallest of the five by far.</li>
+        <li><b>Audio</b> — recorded or generated sound: speech, music, effects. Formats:
+        <code>.mp3</code>, <code>.wav</code>. A microphone is the input device.</li>
+        <li><b>Video</b> — moving pictures of <b>real</b> events, captured by a camera, almost
+        always with sound. Formats: <code>.mp4</code>, <code>.avi</code>. Largest of the five.</li>
+        <li><b>Image</b> — a single still picture: photograph, drawing, diagram, chart. Formats:
+        <code>.jpg</code>, <code>.png</code>, <code>.gif</code>.</li>
+        <li><b>Animation</b> — a sequence of <b>drawn or computer-generated</b> images shown fast
+        enough to look like movement. Formats: <code>.gif</code>, <code>.swf</code>.</li>
+      </ul>
+      <p><b>Animation and video are the pair that is confused.</b> Both move. Video is
+      <i>recorded</i> from something real; animation is <i>created</i>, frame by frame, from
+      something that never happened. A cartoon is animation even though it moves; a film of a
+      cartoonist drawing is video.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">पाँच, र हरेक फरक किसिमको data</span>
+      <p lang="ne">पाठ्यक्रमले पाँच वटा नाम लिन्छ। हरेकलाई ढाँचासहित सिक्नुहोस्, किनभने "फाइल ढाँचाको
+      उदाहरण दिनुहोस्" मानक थप प्रश्न हो।</p>
+      <ul>
+        <li><b>Text</b> — अक्षर, अंक र चिन्ह। सबैभन्दा पुरानो, र ठ्याक्कै अर्थ बोक्ने अझै यही।
+        ढाँचा: <code>.txt</code>, <code>.doc</code>, <code>.pdf</code>। पाँचैमध्ये सबैभन्दा
+        सानो।</li>
+        <li><b>Audio</b> — रेकर्ड गरिएको वा बनाइएको आवाज: बोली, सङ्गीत, प्रभाव। ढाँचा:
+        <code>.mp3</code>, <code>.wav</code>। Input device — microphone।</li>
+        <li><b>Video</b> — <b lang="ne">वास्तविक</b> घटनाको चल्ने तस्बिर, क्यामेराले खिचेको, झन्डै सधैं
+        आवाजसहित। ढाँचा: <code>.mp4</code>, <code>.avi</code>। पाँचैमध्ये सबैभन्दा ठूलो।</li>
+        <li><b>Image</b> — एउटा स्थिर तस्बिर: फोटो, चित्र, रेखाचित्र, चार्ट। ढाँचा:
+        <code>.jpg</code>, <code>.png</code>, <code>.gif</code>।</li>
+        <li><b>Animation</b> — <b lang="ne">कोरिएका वा कम्प्युटरले बनाएका</b> तस्बिरको शृंखला, चल्दै
+        गरेजस्तो देखिने गरी छिटो देखाइने। ढाँचा: <code>.gif</code>, <code>.swf</code>।</li>
+      </ul>
+      <p><b lang="ne">अलमल पार्ने जोडी animation र video हो।</b> दुवै चल्छन्। Video वास्तविक कुराबाट
+      <i lang="ne">रेकर्ड</i> गरिन्छ; animation कहिल्यै नभएको कुराबाट फ्रेम–फ्रेम <i lang="ne">बनाइन्छ</i>। कार्टुन
+      चल्छ तर animation हो; कार्टुनिस्टले कोरेको फिल्म चाहिँ video।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3>Which component of multimedia is this?</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to tell the five components apart from a
+      description. Two cases both move, and the difference is where the pictures came from.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: वर्णनबाटै पाँच भाग छुट्याउन। दुई केसमा दुवै
+      चल्छन्, र फरक तस्बिर कहाँबाट आयो भन्नेमा छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cfmm" data-set="cfmultimedia"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Ask two questions: does it move, and was it recorded or created? Those two sort all
+        five.</p>
+        </div><span class="np-cell" lang="ne">दुई प्रश्न सोध्नुहोस्: चल्छ? र रेकर्ड गरिएको हो कि बनाइएको?
+        यी दुईले पाँचै छुट्याउँछन्।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A one-page essay about Mount Everest is about 4 KB. A one-minute video about Mount
+      Everest is about 50,000 KB — more than ten thousand times larger. Why?
+      </span><span class="np-cell" lang="ne">सगरमाथाबारे एक पानाको निबन्ध करिब ४ KB हुन्छ। सगरमाथाकै एक मिनेटको
+      भिडियो करिब ५०,००० KB — दस हजार गुणाभन्दा ठूलो। किन?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Video files are stored less efficiently than text</button>
+      <button class="predict-opt" data-value="b">A video is thousands of images plus sound, and each image is already far bigger than the essay</button>
+      <button class="predict-opt" data-value="c">The video contains more information about Everest</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>It is thousands of images.</b> Video runs at around 25 to 30 frames per second, so one
+      minute is roughly 1,500 separate images, and sound on top. A single photograph is already
+      hundreds of times larger than a page of text, because text stores one byte per character
+      while an image stores colour values for every pixel.</p>
+      <p>Note that option C is wrong in an interesting way: the video may well <i>feel</i> more
+      informative, but file size measures data, not meaning. A page of text can carry an idea
+      that an hour of video does not.</p>
+      <p>This is why multimedia needs <b>compression</b>, and why a school with a slow connection
+      can download notes easily and video with difficulty.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">हजारौं तस्बिर भएकाले।</b> भिडियो प्रति सेकेन्ड करिब २५–३० फ्रेममा
+      चल्छ, त्यसैले एक मिनेट भनेको झन्डै १,५०० छुट्टाछुट्टै तस्बिर, माथि आवाज। एउटै फोटो नै
+      पानाभरिको पाठभन्दा सयौं गुणा ठूलो हुन्छ, किनभने पाठले प्रति अक्षर एक byte राख्छ भने
+      तस्बिरले हरेक pixel को रङको मान। विकल्प (ग) रोचक किसिमले गलत छ: भिडियो बढी जानकारीमूलक
+      <i lang="ne">लाग्न</i> सक्छ, तर फाइलको आकारले data नाप्छ, अर्थ होइन। त्यसैले मल्टिमिडियालाई
+      <b>compression</b> चाहिन्छ, र ढिलो जडान भएको विद्यालयले नोट सजिलै तर भिडियो गाह्रोसँग
+      डाउनलोड गर्छ।</span>
+    </div>
+  </div>
+
+  <!-- ============ 6.3 ============ -->
+  <h2 class="topic" id="cf-t63">6.3 &nbsp;<span class="t-en">Applications of multimedia</span><span class="t-ne" lang="ne"> — मल्टिमिडियाका प्रयोग</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Where more than one medium does better than one</span>
+      <ul>
+        <li><b>Education</b> — lessons with diagrams, narration and animation. A process that
+        changes over time, like a heartbeat or a sorting algorithm, is far clearer animated than
+        described.</li>
+        <li><b>Entertainment</b> — films, games, music and streaming. Games are the purest case,
+        because they are many media <i>and</i> fully interactive.</li>
+        <li><b>Business and advertising</b> — product demonstrations, presentations,
+        advertisements, websites.</li>
+        <li><b>Medicine</b> — scan images, animated anatomy, surgical simulators on which a
+        surgeon practises before operating on a person.</li>
+        <li><b>Engineering and architecture</b> — 3D models walked through before a building
+        exists.</li>
+        <li><b>Public information</b> — in Nepal, earthquake and monsoon safety messages that
+        reach people who do not read easily, because sound and pictures do not require
+        literacy.</li>
+      </ul>
+      <p>The thread through all of these: multimedia is used where <b>one medium alone would
+      leave something out</b> — a shape, a sound, a movement or a choice.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">जहाँ एउटा माध्यमभन्दा धेरै माध्यम राम्रो हुन्छ</span>
+      <ul>
+        <li><b lang="ne">शिक्षा</b> — चित्र, स्वर र एनिमेसन भएका पाठ। मुटुको धड्कन वा sorting जस्तो समयसँगै
+        बदलिने प्रक्रिया वर्णन गर्नुभन्दा चलाएर देखाउँदा धेरै स्पष्ट हुन्छ।</li>
+        <li><b lang="ne">मनोरञ्जन</b> — चलचित्र, खेल, सङ्गीत, स्ट्रिमिङ। खेल सबैभन्दा शुद्ध उदाहरण हो —
+        धेरै माध्यम <i lang="ne">र</i> पूरै अन्तरक्रियात्मक।</li>
+        <li><b lang="ne">व्यवसाय र विज्ञापन</b> — उत्पादन देखाउने, प्रस्तुतीकरण, विज्ञापन, वेबसाइट।</li>
+        <li><b lang="ne">चिकित्सा</b> — स्क्यानका तस्बिर, चल्ने शरीर रचना, र मानिसमा शल्यक्रिया गर्नुअघि
+        अभ्यास गर्ने सिमुलेटर।</li>
+        <li><b lang="ne">इन्जिनियरिङ र वास्तुकला</b> — भवन बन्नुअघि नै घुमेर हेर्न मिल्ने ३डी मोडेल।</li>
+        <li><b lang="ne">सार्वजनिक सूचना</b> — नेपालमा भूकम्प र वर्षायामका सुरक्षा सन्देश, जुन पढ्न
+        नसक्नेसम्म पनि पुग्छन्, किनभने आवाज र तस्बिरलाई साक्षरता चाहिँदैन।</li>
+      </ul>
+      <p lang="ne">सबैमा साझा कुरा: <b lang="ne">एउटै माध्यमले केही छुटाउने</b> ठाउँमा मल्टिमिडिया चल्छ — आकार,
+      आवाज, चाल वा छनोट।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Counting the media in one slide</div>
+    <p><b>Question:</b> a slide shows a photograph of Machhapuchhre, a caption giving its height,
+    a recorded narration, and a bar chart that grows as the presenter clicks. How many components
+    of multimedia are present, and is the slide multimedia?</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Name each item before opening this. One of the four
+      is not the component it first appears to be.</span>
+      <span class="np-cell" lang="ne">खोल्नुअघि हरेक वस्तुको नाम भन्नुहोस्। चारमध्ये एउटा पहिलो नजरमा
+      देखिएको भाग होइन।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">photograph          IMAGE       a single still picture
+caption with height TEXT        letters and numbers
+recorded narration  AUDIO       sound
+growing bar chart   ANIMATION   not image — it CHANGES over time,
+                                and the frames are generated,
+                                not filmed
+
+Components present: 4 of the 5 (video is missing)
+Is it multimedia?  YES — more than one medium is the test,
+                   and four is comfortably more than one</div>
+      <p class="wex-note"><span class="t-en">The chart is the one that moves. A static chart would be an image; this
+      one changes over time and was generated rather than recorded, which is animation.
+      </span><span class="np-cell" lang="ne">सर्ने वस्तु चार्ट नै हो। स्थिर चार्ट image हुन्थ्यो; यो समयसँगै
+      बदलिन्छ र रेकर्ड होइन, बनाइएको हो — त्यही animation।</span></p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Which medium is doing the work?</div>
+    <p><b>Question:</b> a health message must reach villagers, some of whom cannot read. Which
+    components of multimedia should carry the message, and which one cannot be relied on?</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">One component requires a skill the audience may not
+      have. Decide which, and what replaces it.</span>
+      <span class="np-cell" lang="ne">एउटा भागलाई श्रोतासँग नहुन सक्ने सीप चाहिन्छ। कुन हो र त्यसको
+      ठाउँमा के आउँछ, निर्णय गर्नुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">TEXT        cannot be relied on — it needs literacy
+AUDIO       works — spoken Nepali needs no reading
+IMAGE       works — a picture of the right action
+ANIMATION   works, and is better than an image where the
+            message is a SEQUENCE: wash, then cover, then store
+VIDEO       works, but the file is large and a village
+            connection may not carry it
+
+Answer: audio + image, with animation where a process must
+be shown. Keep text as a caption for those who can read it,
+not as the carrier of the message.</div>
+      <p class="wex-note"><span class="t-en">This is the real argument for multimedia, and it is not that pictures
+      are nicer. One medium alone would have left part of the audience out.
+      </span><span class="np-cell" lang="ne">मल्टिमिडियाको साँचो तर्क यही हो, र त्यो "तस्बिर राम्रो देखिन्छ"
+      भन्नु होइन। एउटै माध्यमले श्रोताको एक हिस्सा छुटाउँथ्यो।</span></p>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h3><span class="t-en">Mistakes that cost marks here</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यहाँ अङ्क गुमाउने गल्तीहरू</span></h3><div class="t-en">
+    <ul>
+      <li><b>Calling a single photograph multimedia.</b> One medium is not many. The word needs
+      at least two.</li>
+      <li><b>Saying animation and video are the same.</b> Video is recorded from reality;
+      animation is created frame by frame.</li>
+      <li><b>Listing only four components.</b> Text, audio, video, image, animation — five. The
+      one usually dropped is text, which is also the oldest.</li>
+      <li><b>Leaving interactivity out of the features.</b> It is what separates a multimedia
+      application from a film.</li>
+      <li><b>Giving a file format for the wrong component.</b> <code>.mp3</code> is audio,
+      <code>.mp4</code> is video. The digits are not decoration.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne"><b lang="ne">एउटै फोटोलाई मल्टिमिडिया भन्नु:</b> एउटा माध्यम धेरै होइन।
+    <b lang="ne">Animation र video उस्तै भन्नु:</b> video वास्तविकताबाट रेकर्ड, animation फ्रेम–फ्रेम
+    बनाइएको। <b lang="ne">चार भाग मात्र लेख्नु:</b> पाँच हुन् — प्रायः छुट्ने text, जुन सबैभन्दा पुरानो
+    पनि हो। <b lang="ne">विशेषतामा अन्तरक्रियात्मकता छुटाउनु:</b> चलचित्रभन्दा मल्टिमिडिया app लाई
+    छुट्याउने त्यही हो। <b lang="ne">गलत भागको ढाँचा दिनु:</b> <code>.mp3</code> audio,
+    <code>.mp4</code> video।</span>
+  </div>
+
+  <p class="hook"><span class="t-en"><b>Memory hook —</b> <i>TAVIA</i>: Text, Audio, Video,
+    Image, Animation. Recorded moves is video; drawn moves is animation.</span>
+    <span class="np-cell" lang="ne"><b lang="ne">सम्झने तरिका —</b> <i>TAVIA</i>। रेकर्ड गरेको चल्छ भने video,
+    कोरेको चल्छ भने animation।</span></p>
+
+  <!-- ============ PRACTICAL ============ -->
+  <h2 class="topic" id="cf-prac6"><span class="t-en">Practical work — this unit's other 8 hours</span><span class="t-ne" lang="ne"> — प्रयोगात्मक काम — यस युनिटका अरू ८ घण्टा</span></h2>
+
+  <div class="practical">
+    <div class="h"><span class="pr-kind">Guided practical</span>The three activities the curriculum suggests</div>
+    <p><span class="t-en">From the curriculum's own list for Unit 6, which calls these <b>samples</b>. This is the
+    one unit where <b>the medium is the assessment</b>: 6.3 asks you to use multimedia, not to
+    describe it.
+    </span><span class="np-cell" lang="ne">पाठ्यक्रमकै युनिट ६ को सूचीबाट; यसले यिनलाई <b lang="ne">नमुना</b> भनेको छ।
+    <b lang="ne">माध्यम आफैं मूल्याङ्कन हुने</b> एक मात्र युनिट यही हो: ६.३ ले मल्टिमिडिया वर्णन गर्न
+    होइन, प्रयोग गर्न भन्छ।</span></p>
+
+    <div class="pr-act" data-practical="g9.cf.p6.1">
+      <p><span class="pr-num">6.1</span> Make a presentation on multimedia applications.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> presentation software or paper slides. <b>Builds on:</b>
+      6.3. <b>Hand in:</b> the file and your notes. For each field, say what one medium alone
+      would have left out — that is the argument, not the list.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> प्रस्तुतीकरण सफ्टवेयर वा कागजकै स्लाइड। <b lang="ne">आधार:</b>
+      ६.३। <b lang="ne">बुझाउने:</b> फाइल र नोट। हरेक क्षेत्रमा एउटै माध्यमले के छुटाउँथ्यो भन्नुहोस् —
+      तर्क त्यही हो, सूची होइन।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p6.2">
+      <p><span class="pr-num">6.2</span> Make a presentation on the elements of multimedia.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> presentation software or paper slides. <b>Builds on:</b>
+      6.2. <b>Hand in:</b> the file. Five elements, each with a format and an example you can
+      point at in the room.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> प्रस्तुतीकरण सफ्टवेयर वा कागजकै स्लाइड। <b lang="ne">आधार:</b>
+      ६.२। <b lang="ne">बुझाउने:</b> फाइल। पाँच भाग, हरेकको ढाँचा र कोठामै देखाउन मिल्ने उदाहरणसहित।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p6.3">
+      <p><span class="pr-num">6.3</span> Prepare a <b>multimedia presentation</b> on any
+      contemporary topic.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> a computer with presentation software, and whatever you
+      choose to include. <b>This one is different from every other activity in the subject:</b>
+      here the multimedia is the work itself, not a description of it. <b>Hand in:</b> the file.
+      Use at least three of the five components and be ready to say why each is there. A topic
+      with a process in it — load shedding, monsoon flooding, how a vaccine works — gives
+      animation something to do.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> प्रस्तुतीकरण सफ्टवेयर भएको कम्प्युटर र तपाईंले
+      छान्ने सामग्री। <b lang="ne">यो क्रियाकलाप विषयका अरू सबैभन्दा फरक छ:</b> यहाँ मल्टिमिडिया नै काम
+      हो, त्यसको वर्णन होइन। <b lang="ne">बुझाउने:</b> फाइल। पाँचमध्ये कम्तीमा तीन भाग प्रयोग गर्नुहोस्
+      र हरेक किन राखियो भन्न तयार रहनुहोस्। प्रक्रिया भएको विषय — लोडसेडिङ, वर्षायामको बाढी,
+      खोपले कसरी काम गर्छ — ले एनिमेसनलाई काम दिन्छ।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ EXAM FOCUS ============ -->
+  <h2 class="topic" id="cf-exam6"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne" lang="ne"> — परीक्षा केन्द्र — यस युनिटबाट के सोधिन्छ</span></h2>
+
+  <div class="exam-connect">
+    <p><span class="t-en">This unit carries <b>6 of the 50 external marks</b> and 8 of the 64 theory hours. It is a
+    small unit with predictable questions: define multimedia; list its components; differentiate
+    two of them; and give applications. The differentiate question is almost always animation
+    against video.
+    </span><span class="np-cell" lang="ne">यो युनिटले <b lang="ne">बाह्य ५० मध्ये ६ अंक</b> र ६४ मध्ये ८ घण्टा ओगट्छ। सानो
+    युनिट, अनुमानयोग्य प्रश्न: मल्टिमिडियाको परिभाषा; भागहरूको सूची; दुई भाग छुट्याउने; र
+    प्रयोगका क्षेत्र। छुट्याउने प्रश्न झन्डै सधैं animation र video कै हुन्छ।</span></p>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">What is multimedia? Write its components.
+    </span><span class="np-cell" lang="ne">मल्टिमिडिया भनेको के हो? यसका भागहरू लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa61">Show the answer</button>
+    <div class="ans" id="cfa61"><div class="t-en">
+      <p>Multimedia is the <b>combination of more than one medium</b> — text, audio, video, image
+      and animation — presented together by a computer, usually with interactivity for the user.</p>
+      <p>Components: <b>text, audio, video, image and animation</b>. All five.</p>
+      </div><span class="np-cell" lang="ne">मल्टिमिडिया भनेको <b lang="ne">एकभन्दा बढी माध्यमको संयोजन</b> — पाठ, अडियो,
+      भिडियो, तस्बिर र एनिमेसन — कम्प्युटरले सँगै प्रस्तुत गर्नु, प्रायः प्रयोगकर्ताका लागि
+      अन्तरक्रियासहित। भाग: पाँचै।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">Differentiate between animation and video.
+    </span><span class="np-cell" lang="ne">Animation र video बीचको फरक लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa62">Show the answer</button>
+    <div class="ans" id="cfa62"><div class="t-en">
+      <p><b>Animation</b> is a sequence of <b>drawn or computer-generated</b> images displayed
+      quickly so that they appear to move. The content never existed in front of a camera.
+      Example: a cartoon, a <code>.gif</code>.</p>
+      <p><b>Video</b> is a sequence of images <b>recorded from real events</b> by a camera,
+      usually with sound. Example: a <code>.mp4</code> of a school programme.</p>
+      <p>The difference is the source of the frames: created versus recorded.</p>
+      </div><span class="np-cell" lang="ne"><b>Animation</b> — <b lang="ne">कोरिएका वा कम्प्युटरले बनाएका</b> तस्बिरको
+      शृंखला, चल्दै गरेजस्तो देखिने गरी छिटो देखाइने; क्यामेरा अगाडि कहिल्यै नभएको।
+      <b>Video</b> — क्यामेराले <b lang="ne">वास्तविक घटनाबाट रेकर्ड गरेका</b> तस्बिरको शृंखला, प्रायः
+      आवाजसहित। फरक फ्रेम कहाँबाट आयो भन्नेमा: बनाइएको कि रेकर्ड गरिएको।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Explain any four applications of multimedia.
+    </span><span class="np-cell" lang="ne">मल्टिमिडियाका कुनै चार प्रयोग बुझाउनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa63">Show the answer</button>
+    <div class="ans" id="cfa63"><div class="t-en">
+      <p>Any four of:</p>
+      <p><b>1. Education</b> — lessons combining text, diagrams, narration and animation make
+      processes easier to understand than description alone.<br>
+      <b>2. Entertainment</b> — films, music, streaming and games, which are both multimedia and
+      interactive.<br>
+      <b>3. Business and advertising</b> — product demonstrations, presentations and
+      advertisements that show a product working.<br>
+      <b>4. Medicine</b> — scan images, animated anatomy and surgical simulators used for
+      training.<br>
+      <b>5. Engineering and architecture</b> — 3D models explored before anything is built.<br>
+      <b>6. Public information</b> — safety messages that reach people who cannot read easily.</p>
+      <p>One mark each: name the field and say what multimedia adds there.</p>
+      </div><span class="np-cell" lang="ne">कुनै चार: शिक्षा, मनोरञ्जन, व्यवसाय र विज्ञापन, चिकित्सा,
+      इन्जिनियरिङ/वास्तुकला, सार्वजनिक सूचना। प्रत्येकको एक अंक: क्षेत्रको नाम र त्यहाँ
+      मल्टिमिडियाले के थप्छ।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h3>Key points from this unit</h3><div class="t-en">
+    <ul>
+      <li>Multimedia means more than one medium together, usually with interactivity.</li>
+      <li>Five components: text, audio, video, image, animation — and text is the one forgotten.</li>
+      <li>Video is recorded; animation is created frame by frame.</li>
+      <li>Formats: <code>.txt</code> text, <code>.mp3</code> audio, <code>.mp4</code> video,
+      <code>.jpg</code> image, <code>.gif</code> animation.</li>
+      <li>Video files are huge because a minute is roughly 1,500 images plus sound.</li>
+      <li>Multimedia is used wherever one medium alone would leave something out.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne">मल्टिमिडिया = एकभन्दा बढी माध्यम सँगै, प्रायः अन्तरक्रियासहित। पाँच
+    भाग: text, audio, video, image, animation — छुट्ने प्रायः text। Video रेकर्ड गरिन्छ,
+    animation बनाइन्छ। ढाँचा: <code>.txt</code>, <code>.mp3</code>, <code>.mp4</code>,
+    <code>.jpg</code>, <code>.gif</code>। एक मिनेट भिडियो झन्डै १,५०० तस्बिर र आवाज भएकाले
+    फाइल ठूलो हुन्छ।</span>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit5.html"><span class="lab">◂ Previous</span><span class="ttl">Internet and its Application</span></a><a class="nx" href="unit7.html"><span class="lab">Next ▸</span><span class="ttl">Emerging Technology</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">Gyansetu</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/practical.js"></script>
+</body>
+</html>

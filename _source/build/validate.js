@@ -129,8 +129,8 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
            still have to be nameable from a page. Kept as an explicit
            list rather than a pattern, so a typo in a page's js array is
            still caught — which is the whole point of this check. */
-        const GENERATED = ['question-bank.js', 'practice-bank.js', 'diagram-data.js',
-                           'learning-map.js'];
+        const GENERATED = ['question-bank.js', 'practice-bank.js', 'program-bank.js',
+                           'diagram-data.js', 'learning-map.js'];
         const published = Object.values(ctx.RUNTIME_PUBLISHED).concat(GENERATED);
         if (!published.includes(f)) E(at, `references runtime module "${f}" which the build does not publish`);
       });
@@ -270,8 +270,16 @@ module.exports = function validate({ site, syllabus, pages, diagrams, ctx }){
          that renders its own (the gate workbench builds its input
          switches from the gate definition, so hand-authoring them would
          be a copy that could drift out of step with the circuit). */
+      /* `cipher` joins the list for the same reason the others are on it:
+         the cipher bench builds its own labelled controls — a text input
+         and a key slider — from the component, and hand-authoring a
+         duplicate set in the lesson would be a copy that drifts. */
+      /* `crun` is on the list for the same reason as the rest: the C
+         program stepper builds its own Prev / Next / Reset from the
+         string table, so a hand-authored set in the lesson would be a
+         copy that drifts out of step with the component. */
       const SELF_CONTROLLED =
-        /class="[^"]*\b(gatelab|comblab|kmap|cpu8085|numlab|sqllab|dbtable|erlab|drill|conclab)\b/;
+        /class="[^"]*\b(gatelab|comblab|kmap|cpu8085|numlab|sqllab|dbtable|erlab|drill|conclab|cipher|crun)\b/;
       if (!/class="sim-controls"/.test(raw) && !SELF_CONTROLLED.test(raw)){
         E(which, 'missing .sim-controls');
       }

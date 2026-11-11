@@ -15,13 +15,15 @@ module.exports = [
         "slug": "c-programming",
         "name": "Programming Principles & Concept in C Language",
         "short": "C Language",
-        "np": "सी भाषामा प्रोग्रामिङका सिद्धान्त"
+        "np": "सी भाषामा प्रोग्रामिङका सिद्धान्त",
+        "done": true
       },
       {
         "slug": "computer-fundamentals",
         "name": "Fundamentals of Computer and Application",
         "short": "Computer Fundamentals",
-        "np": "कम्प्युटरका आधारभूत कुरा"
+        "np": "कम्प्युटरका आधारभूत कुरा",
+        "done": true
       },
       {
         "slug": "electro-system",

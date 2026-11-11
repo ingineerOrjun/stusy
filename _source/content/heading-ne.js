@@ -186,6 +186,42 @@ module.exports = {
   'A. Compile-time Polymorphism':               'क. Compile-time polymorphism',
   '▶ Experiment — Which function actually runs?':
     '▶ प्रयोग — साँच्चै कुन function चल्छ?',
-  'Overloading vs Overriding — the key table':  'Overloading र Overriding — मुख्य तालिका'
+  'Overloading vs Overriding — the key table':  'Overloading र Overriding — मुख्य तालिका',
+
+  /* ---- Grade 9 · Programming Principles in C ----
+     Every heading below belongs to a simulation or a worked panel. The
+     numbered topic headings are split by hand in the lesson, as they are
+     everywhere else, so they are not repeated here. ---- */
+  'Which category of language is this?':        'यो कुन श्रेणीको भाषा हो?',
+  'Which flowchart symbol does this step need?': 'यो चरणलाई कुन flowchart चिन्ह चाहिन्छ?',
+
+  'The smallest complete C program':            'सबैभन्दा सानो पूरा C प्रोग्राम',
+  'Which format specifier does this need?':     'यसलाई कुन format specifier चाहिन्छ?',
+  'Reading two numbers and adding them':        'दुई सङ्ख्या पढेर जोड्ने',
+  'Integer division, and where the remainder goes':
+    'Integer division, र शेष कहाँ जान्छ',
+  'Which family does this operator belong to?': 'यो operator कुन परिवारको हो?',
+
+  'Only one branch of a ladder ever runs':      'शृंखलाको एउटै शाखा मात्र चल्छ',
+  'A for loop, one turn at a time':             'For loop, एक–एक पटक',
+  'Why do-while always runs at least once':     'do-while किन कम्तीमा एक पटक सधैं चल्छ',
+  'Which loop fits this job best?':             'यो कामलाई कुन loop ठिक हुन्छ?',
+  'break and continue in one loop':             'एउटै loop मा break र continue',
+  'Which jump statement does this describe?':   'यो वर्णन कुन jump statement को हो?',
+
+  'Declaration, definition or call?':           'Declaration, definition कि call?',
+  'The swap that does nothing':                 'केही नगर्ने swap',
+  'The same swap, with two ampersands':         'उही swap, दुई ampersand सहित',
+  'Call by value or call by reference?':        'Call by value कि call by reference?',
+  'Four calls down, four returns back':         'चार call तल, चार return माथि',
+
+  'An array, an index, and a running total':    'Array, index, र चल्दै गरेको जोड',
+  'Where the sixth character came from':        'छैटौं अक्षर कहाँबाट आयो',
+  'Which string function does this job?':       'यो काम कुन string function ले गर्छ?',
+
+  'Writing one member changes the other':       'एउटा member लेख्दा अर्को बदलिन्छ',
+  'Structure or union?':                        'Structure कि union?',
+  'A pointer holds an address, not a value':    'Pointer ले मान होइन ठेगाना राख्छ',
+  'Which pointer operator is needed here?':     'यहाँ कुन pointer operator चाहिन्छ?'
 
 };

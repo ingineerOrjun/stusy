@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Computer Software — Computer Fundamentals | </title>
+<meta name="description" content="Computer Software explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark" lang="ne">ज्ञ</span>
+      <span class="brand-txt">Gyansetu<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop on"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language <span class="dn">· notes ready</span><small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals <span class="dn">· notes ready</span><small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair <span class="dn">· notes ready</span><small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language ✓<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html" class="on">Computer Fundamentals ✓<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair ✓<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 9</a> <span class="sep">/</span> <a href="index.html">Computer Fundamentals</a> <span class="sep">/</span> <span>Computer Software</span></nav>
+<main id="main" tabindex="-1" data-subject="grade9/computer-fundamentals">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · What a computer is</a><a href="unit2.html">2 · The parts and what each does</a><a href="unit3.html" style="color:var(--yellow);border-color:var(--yellow)">3 · Software and the operating system</a><a href="unit4.html">4 · Memory, and why RAM forgets</a><a href="unit5.html">5 · The Internet and its services</a><a href="unit6.html">6 · Five media, used together</a><a href="unit7.html">7 · AI, cloud, IoT and the rest</a><a href="revise.html">↻ · Revision</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="cf-u3">
+  <div class="sec-head">
+    <div class="sec-num">3</div>
+    <div>
+      <h1>Computer Software</h1>
+      <p class="sec-sub" lang="ne">कम्प्युटर सफ्टवेयर</p>
+    </div>
+    <span class="marks">10 hrs · 9 marks · 8 practical hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2><span class="t-en">By the end of this unit you can…</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो युनिट सकिँदा तपाईं यी कुरा गर्न सक्नुहुनेछ</span></h2><div class="t-en">
+    <ol>
+      <li>Say what software is and why hardware cannot work without it.</li>
+      <li>Separate system software from application software, and place utility software.</li>
+      <li>Define an operating system by the job it does, not by naming Windows.</li>
+      <li>List the functions of an operating system and give one example of each.</li>
+      <li>Name the types of operating system and say which situation each suits.</li>
+      <li>Compare CUI and GUI, with an advantage of each — including an advantage of CUI.</li>
+      <li>Explain what makes software open source, and what it does not mean.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: सफ्टवेयर के हो र हार्डवेयर यसविना किन चल्दैन भन्न,
+    system र application software छुट्याउन अनि utility software कहाँ पर्छ भन्न, operating system
+    लाई Windows को नाम लिएर होइन कामले परिभाषित गर्न, OS का कार्य उदाहरणसहित लेख्न, OS का किसिम
+    र कुन अवस्थामा कुन सुहाउँछ भन्न, CUI र GUI तुलना गर्न — CUI को पनि एउटा फाइदासहित — र
+    open source सफ्टवेयर के हो अनि के होइन बुझाउन सक्नुहुनेछ।</span>
+  </div>
+
+  <!-- ============ 3.1 ============ -->
+  <h2 class="topic" id="cf-t31">3.1 &nbsp;<span class="t-en">What software is</span><span class="t-ne" lang="ne"> — सफ्टवेयर भनेको के हो</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The part you cannot drop on your foot</span>
+      <p><b>Software</b> is the set of instructions that tells the hardware what to do. Hardware
+      is every physical part you can touch; software is everything you cannot.</p>
+      <p>A computer with no software is a complete and useless machine. The circuits are willing
+      and the screen is lit, and nothing happens, because nothing has told the processor which of
+      its billions of possible operations to perform next. Hardware supplies the <i>ability</i>;
+      software supplies the <i>instructions</i>.</p>
+      <p>That is also why the same computer can be a typewriter in the morning and a calculator
+      in the afternoon. The hardware did not change. The instructions did.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">खुट्टामा खसाल्न नमिल्ने भाग</span>
+      <p><b lang="ne">सफ्टवेयर</b> भनेको हार्डवेयरलाई के गर्ने भन्ने निर्देशनको सेट हो। छुन मिल्ने हरेक
+      भौतिक भाग हार्डवेयर; छुन नमिल्ने सबै सफ्टवेयर।</p>
+      <p lang="ne">सफ्टवेयर नभएको कम्प्युटर पूरा तर बेकामको मेसिन हो। सर्किट तयार छ, पर्दा बलेको छ, तर केही
+      हुँदैन — किनभने प्रोसेसरलाई आफ्ना अर्बौं सम्भावित काममध्ये अब कुन गर्ने कसैले भनेको छैन।
+      हार्डवेयरले <i lang="ne">क्षमता</i> दिन्छ; सफ्टवेयरले <i lang="ne">निर्देशन</i>।</p>
+      <p lang="ne">एउटै कम्प्युटर बिहान टाइपराइटर र दिउँसो क्यालकुलेटर हुन सक्नुको कारण पनि यही हो।
+      हार्डवेयर बदलिएन, निर्देशन बदलियो।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 330" role="img" aria-labelledby="t-cfsw">
+  <title id="t-cfsw">The software stack from the user at the top down to the hardware at the
+  bottom: user, application software, the operating system, and hardware, with each layer able
+  to talk only to the layer directly below it</title>
+  <text class="f-ttl" x="10" y="20">EACH LAYER TALKS ONLY TO THE ONE BELOW IT — which is why software is organised this way</text>
+
+  <rect class="f-box-c" x="150" y="40" width="400" height="44" rx="8"/>
+  <text class="f-lbl" x="350" y="60" style="font-size:12px">USER</text>
+  <text class="f-lbl" x="350" y="76" style="font-size:9px">types, clicks, speaks — knows nothing about voltage</text>
+
+  <rect class="f-box-g" x="100" y="104" width="500" height="58" rx="8"/>
+  <text class="f-lbl" x="350" y="124" style="font-size:12px">APPLICATION SOFTWARE</text>
+  <text class="f-lbl" x="350" y="140" style="font-size:9px">word processor, browser, game, a school result system</text>
+  <text class="f-lbl" x="350" y="154" style="font-size:9px">does the job the user actually wants done</text>
+
+  <rect class="f-box-y" x="60" y="182" width="580" height="62" rx="8"/>
+  <text class="f-lbl" x="350" y="202" style="font-size:12px">SYSTEM SOFTWARE — the operating system</text>
+  <text class="f-lbl" x="350" y="218" style="font-size:9px">manages memory, files, devices and processes</text>
+  <text class="f-lbl" x="350" y="232" style="font-size:9px">the only software allowed to speak to the hardware</text>
+
+  <rect class="f-box" x="24" y="264" width="652" height="50" rx="8"/>
+  <text class="f-lbl" x="350" y="284" style="font-size:12px">HARDWARE</text>
+  <text class="f-lbl" x="350" y="300" style="font-size:9px">CPU, memory, disk, keyboard — understands only electrical signals</text>
+
+  <path class="f-arr" d="M110 162 L110 182"/>
+  <path class="f-arr" d="M590 162 L590 182"/>
+  <path class="f-arr" d="M110 244 L110 264"/>
+  <path class="f-arr" d="M590 244 L590 264"/>
+  <text class="f-lbl" x="350" y="176" style="font-size:8.5px">an application asks the OS — it never reaches the disk itself</text>
+  <text class="f-lbl" x="350" y="258" style="font-size:8.5px">the OS turns that request into instructions the hardware obeys</text>
+</svg>
+    <figcaption><span class="t-en">Read it downwards. An application asks the operating system, and the operating
+    system is the only layer that speaks to the hardware — which is what "the OS is an interface
+    between the user and the hardware" means.
+    </span><span class="np-cell" lang="ne">माथिबाट तल पढ्नुहोस्। Application ले OS सँग माग्छ, र हार्डवेयरसँग
+    बोल्ने एक मात्र तह OS हो — "OS प्रयोगकर्ता र हार्डवेयरबीचको इन्टरफेस हो" भन्नुको अर्थ
+    यही।</span></figcaption>
+  </figure>
+
+  <!-- ============ 3.2 ============ -->
+  <h2 class="topic" id="cf-t32">3.2 &nbsp;<span class="t-en">Types of software and their features</span><span class="t-ne" lang="ne"> — सफ्टवेयरका किसिम र तिनका विशेषता</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Ask who the software is working for</span>
+      <p>Software divides by <b>who it serves</b>. That one question settles almost every case.</p>
+      <p><b>System software</b> serves the <b>computer</b>. It runs the machine itself and makes
+      it usable: the operating system, language translators (compiler, interpreter, assembler)
+      and device drivers. It starts without being asked and most of it you never see.</p>
+      <p><b>Application software</b> serves the <b>user</b>. It does the job you sat down to do:
+      word processor, spreadsheet, browser, game, a school's result system. You choose to start
+      it, and the computer runs perfectly well without it.</p>
+      <p><b>Utility software</b> sits between them. It serves the computer — cleaning, compressing,
+      scanning for viruses, backing up — but you start it yourself, like an application. Most
+      books treat it as a kind of system software, and a few list it separately. Either is
+      accepted if you say what it does.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">सफ्टवेयर कसका लागि काम गर्दै छ सोध्नुहोस्</span>
+      <p lang="ne">सफ्टवेयरको भाग <b lang="ne">कसको सेवा गर्छ</b> भन्नेले निर्धारण हुन्छ। यो एउटै प्रश्नले झन्डै
+      हरेक केस टुङ्ग्याउँछ।</p>
+      <p><b>System software</b> ले <b lang="ne">कम्प्युटर</b> को सेवा गर्छ। मेसिन आफैं चलाउँछ र प्रयोगयोग्य
+      बनाउँछ: operating system, भाषा अनुवादक (compiler, interpreter, assembler) र device driver।
+      नभनिकनै सुरु हुन्छ र धेरैजसो तपाईंले देख्नै पर्दैन।</p>
+      <p><b>Application software</b> ले <b lang="ne">प्रयोगकर्ता</b> को सेवा गर्छ। तपाईं जुन काम गर्न बस्नु
+      भयो त्यही गर्छ: word processor, spreadsheet, browser, खेल, विद्यालयको नतिजा प्रणाली।
+      तपाईंले छानेर खोल्नुहुन्छ, र यो नभए पनि कम्प्युटर राम्रै चल्छ।</p>
+      <p><b>Utility software</b> बीचमा पर्छ। सेवा कम्प्युटरकै गर्छ — सफा गर्ने, थिच्ने, भाइरस
+      खोज्ने, ब्याकअप लिने — तर application जस्तै तपाईं आफैं खोल्नुहुन्छ। धेरै पुस्तकले यसलाई
+      system software कै किसिम मान्छन्, केहीले छुट्टै लेख्छन्। के गर्छ भन्यौं भने दुवै मान्य
+      हुन्छ।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3>System, application or utility?</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to classify software by who it serves rather than
+      by whether you have heard of it. Two of the cases are the ones students reliably get
+      wrong.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: नाम सुनेको छ कि छैन होइन, कसको सेवा गर्छ
+      हेरेर वर्गीकरण गर्न। दुई केस विद्यार्थीले नियमित रूपमा बिगार्ने खालका छन्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cfsoft" data-set="cfsoftware"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>For each case ask: would the computer still work without it? If no, it is system
+        software. If yes but it still looks after the machine, it is a utility. If yes and it
+        does a job for you, it is an application.</p>
+        </div><span class="np-cell" lang="ne">हरेक केसमा सोध्नुहोस्: यो नभए पनि कम्प्युटर चल्छ? चल्दैन भने system
+        software। चल्छ तर मेसिनकै हेरचाह गर्छ भने utility। चल्छ र तपाईंको काम गर्छ भने
+        application।</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 3.3 ============ -->
+  <h2 class="topic" id="cf-t33">3.3 &nbsp;<span class="t-en">What an operating system is</span><span class="t-ne" lang="ne"> — Operating system भनेको के हो</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Defined by its job, not by its name</span>
+      <p>An <b>operating system</b> is the system software that controls the hardware, manages the
+      computer's resources, and provides an interface between the user and the machine. Windows,
+      Linux, macOS and Android are examples; none of them is the definition.</p>
+      <p>Two words in that sentence carry the marks. <b>Resources</b> means the processor's time,
+      the memory, the disk and the devices — all limited, all wanted by several programs at once.
+      <b>Interface</b> means you ask for a file by its name and never need to know which part of
+      which disk it is on.</p>
+      <p>It is also the <b>first</b> software to load. The hardware starts, finds the operating
+      system, and hands control to it; everything else you run is started <i>by</i> the operating
+      system afterwards.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">नामले होइन, कामले परिभाषित</span>
+      <p><b>Operating system</b> त्यो system software हो जसले हार्डवेयर नियन्त्रण गर्छ,
+      कम्प्युटरका स्रोत व्यवस्थापन गर्छ, र प्रयोगकर्ता तथा मेसिनबीच इन्टरफेस दिन्छ। Windows,
+      Linux, macOS र Android उदाहरण हुन्; तीमध्ये कुनै पनि परिभाषा होइन।</p>
+      <p lang="ne">यो वाक्यका दुई शब्दले अंक बोक्छन्। <b lang="ne">स्रोत</b> भनेको प्रोसेसरको समय, मेमोरी, डिस्क र
+      उपकरण — सबै सीमित, सबै एकैपटक धेरै प्रोग्रामलाई चाहिने। <b lang="ne">इन्टरफेस</b> भनेको तपाईंले
+      फाइललाई नामले माग्नुहुन्छ र त्यो कुन डिस्कको कुन भागमा छ जान्नै पर्दैन।</p>
+      <p lang="ne">यो लोड हुने <b lang="ne">पहिलो</b> सफ्टवेयर पनि हो। हार्डवेयर सुरु हुन्छ, OS भेट्छ र नियन्त्रण
+      सुम्पिन्छ; त्यसपछि तपाईंले चलाउने सबै OS <i lang="ne">ले नै</i> सुरु गर्छ।</p>
+    </div>
+  </div>
+
+  <!-- ============ 3.4 ============ -->
+  <h2 class="topic" id="cf-t34">3.4 &nbsp;<span class="t-en">Functions and characteristics of an operating system</span><span class="t-ne" lang="ne"> — Operating system का कार्य र विशेषता</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Six jobs, each with something you can point at</span>
+      <p>Examiners want the function <b>named</b> and then <b>shown</b>. Learn each with its
+      example attached.</p>
+      <ul>
+        <li><b>Process management</b> — decides which program gets the processor and for how long.
+        You see it when music keeps playing while you type.</li>
+        <li><b>Memory management</b> — gives each program its own area of RAM and takes it back
+        when the program closes. You see it when one program crashing does not erase another's
+        work.</li>
+        <li><b>File management</b> — creates, names, stores, finds and deletes files, and keeps
+        the folder tree. You see it every time you save by name.</li>
+        <li><b>Device management</b> — talks to the keyboard, printer and disk through drivers.
+        You see it when a printer works without the program knowing its model.</li>
+        <li><b>Security</b> — passwords, user accounts, permissions. You see it at the login
+        screen.</li>
+        <li><b>User interface</b> — the desktop or the command prompt through which you ask for
+        anything at all.</li>
+      </ul>
+      <p><b>Characteristics</b> are different from functions: an OS is <i>reliable</i> (it must not
+      crash), <i>efficient</i> (it must not waste the resources it is managing), <i>convenient</i>
+      and <i>able to run several programs at once</i>.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">छ काम, हरेकसँग देखाउन मिल्ने उदाहरण</span>
+      <p lang="ne">परीक्षकले कार्यको <b lang="ne">नाम</b> र त्यसपछि <b lang="ne">उदाहरण</b> खोज्छन्। उदाहरण जोडेरै सिक्नुहोस्।</p>
+      <ul>
+        <li><b>Process management</b> — कुन प्रोग्रामले प्रोसेसर कति बेर पाउने तय गर्छ। टाइप
+        गर्दागर्दै गीत बजिरहनुमा यही देखिन्छ।</li>
+        <li><b>Memory management</b> — हरेक प्रोग्रामलाई RAM को आफ्नै भाग दिन्छ र बन्द भएपछि
+        फिर्ता लिन्छ। एउटा प्रोग्राम क्र्यास हुँदा अर्कोको काम नमेटिनुमा यही देखिन्छ।</li>
+        <li><b>File management</b> — फाइल बनाउने, नाम राख्ने, राख्ने, खोज्ने, मेट्ने र फोल्डर
+        रुख मिलाउने। नाम दिएर सेभ गर्दा हरेक पटक देखिन्छ।</li>
+        <li><b>Device management</b> — driver मार्फत keyboard, printer र disk सँग कुरा गर्छ।
+        प्रोग्रामलाई प्रिन्टरको मोडेल थाहै नभई छापिनुमा देखिन्छ।</li>
+        <li><b>Security</b> — पासवर्ड, प्रयोगकर्ता खाता, अनुमति। लगइन पर्दामा देखिन्छ।</li>
+        <li><b>User interface</b> — डेस्कटप वा command prompt, जसमार्फत तपाईं केही पनि माग्न
+        सक्नुहुन्छ।</li>
+      </ul>
+      <p><b lang="ne">विशेषता</b> कार्यभन्दा फरक हो: OS <i lang="ne">भरपर्दो</i> हुनुपर्छ (क्र्यास नहुने),
+      <i lang="ne">दक्ष</i> (आफैंले व्यवस्थापन गरेको स्रोत नखेर फाल्ने), <i lang="ne">सुविधाजनक</i>, र
+      <i lang="ne">एकैपटक धेरै प्रोग्राम चलाउन सक्ने</i>।</p>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">You open a document, a browser and a music player at the same time on a computer with one
+      processor. Which operating system function makes it <i>look</i> as if all three are running
+      at once?
+      </span><span class="np-cell" lang="ne">एउटै प्रोसेसर भएको कम्प्युटरमा तपाईंले एकैपटक document, browser र
+      music player खोल्नुभयो। तीनै एकैचोटि चलिरहेको <i lang="ne">देखिनु</i> कुन OS कार्यले
+      बनाउँछ?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Memory management</button>
+      <button class="predict-opt" data-value="b">Process management</button>
+      <button class="predict-opt" data-value="c">Device management</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>Process management.</b> One processor can run exactly one instruction at a time. The
+      operating system gives each program a slice of processor time — a few milliseconds each —
+      and switches between them so quickly that all three appear continuous to you. Memory
+      management is also happening, and it is what keeps the three programs from overwriting each
+      other, but it is not what creates the <i>appearance</i> of simultaneity. The word for this
+      is <b>multitasking</b>, and it is a scheduling job.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">Process management।</b> एउटा प्रोसेसरले एकैपटक एउटै निर्देशन
+      चलाउन सक्छ। OS ले हरेक प्रोग्रामलाई प्रोसेसरको समयको टुक्रा — केही मिलिसेकेन्ड — दिन्छ र
+      यति छिटो फेरिदिन्छ कि तीनै निरन्तर देखिन्छन्। Memory management पनि भइरहेको हुन्छ र त्यसैले
+      तीन प्रोग्रामले एकअर्काको ठाउँ बिगार्दैनन्, तर एकैचोटि चलेको <i lang="ne">देखावट</i> त्यसले
+      बनाउँदैन। यसको नाम <b>multitasking</b> हो, र यो समय बाँड्ने काम हो।</span>
+    </div>
+  </div>
+
+  <!-- ============ 3.5 ============ -->
+  <h2 class="topic" id="cf-t35">3.5 &nbsp;<span class="t-en">Types of operating system</span><span class="t-ne" lang="ne"> — Operating system का किसिम</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Each type answers a different pressure</span>
+      <p>Operating systems are grouped by <b>how many users</b>, <b>how many jobs</b>, and
+      <b>how urgently</b> a job must finish.</p>
+      <ul>
+        <li><b>Single-user, single-tasking</b> — one person, one job at a time. MS-DOS. Simple,
+        and it wastes the processor whenever the user is thinking.</li>
+        <li><b>Single-user, multi-tasking</b> — one person, several jobs at once. Windows on your
+        own laptop. This is the ordinary case today.</li>
+        <li><b>Multi-user</b> — several people use one computer at the same time, through
+        terminals or over a network. Unix and Linux servers.</li>
+        <li><b>Real-time</b> — a job must finish inside a guaranteed time, every time. The
+        computer in an ambulance monitor or an aircraft. Being late is the same as being wrong.</li>
+        <li><b>Batch</b> — jobs are collected and run together with no user waiting. Payroll and
+        electricity-bill printing, run overnight.</li>
+        <li><b>Distributed</b> — several computers work together and appear as one system to the
+        user.</li>
+      </ul>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">हरेक किसिमले फरक दबाबको जवाफ दिन्छ</span>
+      <p lang="ne">OS लाई <b lang="ne">कति प्रयोगकर्ता</b>, <b lang="ne">कति काम</b> र <b lang="ne">कति हतारो</b> भन्ने आधारमा समूह
+      बनाइन्छ।</p>
+      <ul>
+        <li><b>Single-user, single-tasking</b> — एक जना, एकैपटक एउटा काम। MS-DOS। सरल, तर
+        प्रयोगकर्ता सोचिरहेको बेला प्रोसेसर खेर जान्छ।</li>
+        <li><b>Single-user, multi-tasking</b> — एक जना, एकैपटक धेरै काम। आफ्नै ल्यापटपको
+        Windows। आजको सामान्य अवस्था यही हो।</li>
+        <li><b>Multi-user</b> — धेरै जनाले एउटै कम्प्युटर एकैपटक चलाउँछन्, terminal वा नेटवर्क
+        मार्फत। Unix र Linux सर्भर।</li>
+        <li><b>Real-time</b> — काम तोकिएकै समयभित्र, हरेक पटक सकिनैपर्छ। एम्बुलेन्सको मोनिटर वा
+        विमानको कम्प्युटर। ढिलो हुनु र गलत हुनु उस्तै हो।</li>
+        <li><b>Batch</b> — कामहरू जम्मा गरेर सँगै चलाइन्छ, कोही पर्खेर बस्दैन। तलब र बिजुलीको
+        बिल, रातभरि चल्ने।</li>
+        <li><b>Distributed</b> — धेरै कम्प्युटर मिलेर काम गर्छन् र प्रयोगकर्तालाई एउटै प्रणाली
+        जस्तो देखिन्छ।</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ 3.6 ============ -->
+  <h2 class="topic" id="cf-t36">3.6 &nbsp;<span class="t-en">User interface — CUI and GUI</span><span class="t-ne" lang="ne"> — प्रयोगकर्ता इन्टरफेस — CUI र GUI</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Typing a command, or pointing at a picture</span>
+      <p>The <b>user interface</b> is how you tell the computer what you want.</p>
+      <p>In a <b>CUI</b> — Character User Interface, also called a command-line interface — you
+      type a command and press Enter. <code>dir</code> lists a folder. You must know the command
+      exists and how to spell it; the screen offers no clue.</p>
+      <p>In a <b>GUI</b> — Graphical User Interface — you point at windows, icons, menus and
+      buttons. Nothing has to be remembered, because everything available is on the screen to be
+      seen.</p>
+      <p>The examination likes this question because students write only the obvious half: GUI is
+      easier. It is, and it is not the whole answer. <b>CUI is faster for someone who knows the
+      commands</b>, uses far less memory, and — the important one — a typed command can be
+      <b>saved in a file and run again</b> on a thousand computers. You cannot save a sequence of
+      mouse clicks that way. That is why servers are still administered by command line.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">आदेश टाइप गर्ने, कि चित्रमा देखाउने</span>
+      <p><b>User interface</b> भनेको तपाईंले कम्प्युटरलाई के चाहियो भन्ने तरिका हो।</p>
+      <p><b>CUI</b> — Character User Interface, वा command-line interface — मा तपाईं आदेश टाइप
+      गरेर Enter थिच्नुहुन्छ। <code>dir</code> ले फोल्डरको सूची देखाउँछ। आदेश छ भन्ने र कसरी
+      लेख्ने थाहा हुनैपर्छ; पर्दाले केही सुराक दिँदैन।</p>
+      <p><b>GUI</b> — Graphical User Interface — मा तपाईं window, icon, menu र button मा
+      देखाउनुहुन्छ। केही सम्झनै पर्दैन, किनभने उपलब्ध सबै कुरा पर्दामै देखिन्छ।</p>
+      <p lang="ne">परीक्षालाई यो प्रश्न मन पर्छ किनभने विद्यार्थीले स्पष्ट आधा मात्र लेख्छन्: GUI सजिलो।
+      सजिलो हो, तर पूरा उत्तर होइन। <b lang="ne">आदेश थाहा भएकालाई CUI छिटो हुन्छ</b>, मेमोरी निकै कम
+      खान्छ, र — मुख्य कुरा — टाइप गरेको आदेश <b lang="ne">फाइलमा राखेर हजार कम्प्युटरमा फेरि चलाउन
+      सकिन्छ</b>। माउसका क्लिकको शृंखला त्यसरी राख्न मिल्दैन। सर्भर अहिले पनि command line बाटै
+      चलाइनुको कारण यही हो।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Rename three hundred files</div>
+    <p><b>Question:</b> a school has 300 photographs named <code>IMG_0001.jpg</code> onwards and
+    wants every one renamed to start with <code>Grade9_</code>. Which interface, and why?</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Think before opening: how many actions is this in a
+      GUI, and how many in a CUI? Count, do not guess.</span>
+      <span class="np-cell" lang="ne">खोल्नुअघि सोच्नुहोस्: यो काम GUI मा कति कार्य हो, CUI मा कति?
+      अनुमान होइन, गन्नुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">In a GUI    select file, rename, type new name, press Enter
+            = 4 actions × 300 files = about 1200 actions
+In a CUI    one command describing the pattern, run once
+            = 1 action, and it can be saved and reused next year
+Answer      CUI — the work is repetitive and identical, which is
+            exactly what a command describes well
+Note        for renaming ONE file, the GUI wins: you can see the
+            file, and no command has to be remembered</div>
+      <p class="wex-note"><span class="t-en">The lesson is not that one interface is better. It is that repetitive
+      work suits a command and one-off work suits a picture — which is why both still exist.
+      </span><span class="np-cell" lang="ne">पाठ यो होइन कि कुनै एउटा राम्रो हो। दोहोरिने काम आदेशलाई सुहाउँछ,
+      एकपटकको काम चित्रलाई — त्यसैले दुवै अझै छन्।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ 3.7 ============ -->
+  <h2 class="topic" id="cf-t37">3.7 &nbsp;<span class="t-en">Open Source Software (OSS)</span><span class="t-ne" lang="ne"> — खुला स्रोत सफ्टवेयर (OSS)</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Open means the source code, not the price</span>
+      <p><b>Open source software</b> is software whose <b>source code</b> is published, so that
+      anyone may read it, change it and share their changed version. Linux, LibreOffice, Firefox,
+      GIMP and VLC are examples.</p>
+      <p>The word that is misread is <b>free</b>. Open source software is usually free of charge,
+      but that is a side effect, not the definition — you may legally sell open source software.
+      What you may not do is take the code away from the people you sell it to. Closed or
+      <b>proprietary</b> software — Windows, MS Office, Photoshop — keeps its source code secret,
+      whether or not you paid for it.</p>
+      <p><b>Advantages:</b> usually free, can be studied and modified, faults are found and fixed
+      by many people, and no single company can withdraw it.
+      <b>Disadvantages:</b> no company is obliged to help you, documentation can be thin, and
+      hardware makers may not supply drivers for it.</p>
+      <p>This matters in Nepal in a specific way: a school that uses open source software is not
+      paying a licence fee for each of its computers, and is not breaking the law to avoid it.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">खुला भनेको source code, मूल्य होइन</span>
+      <p><b>Open source software</b> त्यो हो जसको <b>source code</b> सार्वजनिक गरिएको हुन्छ —
+      जोसुकैले पढ्न, बदल्न र बदलेको संस्करण बाँड्न पाउँछ। Linux, LibreOffice, Firefox, GIMP र
+      VLC उदाहरण हुन्।</p>
+      <p lang="ne">गलत बुझिने शब्द <b lang="ne">निःशुल्क</b> हो। Open source प्रायः निःशुल्क हुन्छ, तर त्यो
+      परिभाषा होइन, परिणाम हो — open source सफ्टवेयर कानुनी रूपमै बेच्न पाइन्छ। नपाइने कुरा के
+      भने जसलाई बेच्नुभयो उसबाट code लुकाउन मिल्दैन। बन्द वा <b>proprietary</b> सफ्टवेयर —
+      Windows, MS Office, Photoshop — ले पैसा तिरे पनि source code गोप्य राख्छ।</p>
+      <p><b lang="ne">फाइदा:</b> प्रायः निःशुल्क, अध्ययन र परिमार्जन गर्न मिल्ने, धेरैले गल्ती भेट्ने र
+      सच्याउने, र कुनै एउटै कम्पनीले फिर्ता लिन नसक्ने। <b lang="ne">बेफाइदा:</b> कुनै कम्पनीले सहयोग
+      गर्नैपर्ने बाध्यता छैन, कागजात पातलो हुन सक्छ, र हार्डवेयर बनाउनेले driver नदिन सक्छन्।</p>
+      <p lang="ne">नेपालका सन्दर्भमा यसको खास अर्थ छ: open source चलाउने विद्यालयले हरेक कम्प्युटरको
+      लाइसेन्स शुल्क तिर्नु पर्दैन, र त्यो बचाउन कानुन मिच्नु पनि पर्दैन।</p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> One computer, three kinds of software</div>
+    <p><b>Question:</b> a school computer has Windows, MS-Word, an antivirus, a C compiler and a
+    file-compression tool installed. Classify each, and name the one that would stop the machine
+    working if it were removed.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">For each one ask: would the computer still work
+      without it? Write your five answers first — two of them are the ones people get wrong.</span>
+      <span class="np-cell" lang="ne">हरेकका लागि सोध्नुहोस्: यो नभए पनि कम्प्युटर चल्छ? पहिले आफ्ना पाँच
+      उत्तर लेख्नुहोस् — तीमध्ये दुई प्रायः गलत हुन्छन्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">Windows           SYSTEM       the machine cannot run at all without it
+C compiler        SYSTEM       produces machine code the processor needs;
+                               serves the MACHINE, not your task
+MS-Word           APPLICATION  does the job you sat down to do
+antivirus         UTILITY      looks after the machine; you start it
+compression tool  UTILITY      maintenance on files, not your task
+
+Remove-and-it-stops: WINDOWS. Remove any of the other four
+and the computer still starts and runs.</div>
+      <p class="wex-note"><span class="t-en">The compiler and the antivirus are the two that move. Both are started
+      by a person, which is why they feel like applications — but who starts it is not the test.
+      Who it serves is.
+      </span><span class="np-cell" lang="ne">सर्ने दुई — compiler र antivirus। दुवै मान्छेले खोल्छ, त्यसैले
+      application जस्तो लाग्छ — तर कसले खोल्छ भन्ने जाँच होइन। कसको सेवा गर्छ भन्ने
+      हो।</span></p>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h3><span class="t-en">Mistakes that cost marks here</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यहाँ अङ्क गुमाउने गल्तीहरू</span></h3><div class="t-en">
+    <ul>
+      <li><b>Defining an operating system as "Windows".</b> Windows is an example. The definition
+      is about controlling hardware, managing resources and providing an interface.</li>
+      <li><b>Calling antivirus an application.</b> It serves the machine, not your task — it is
+      utility software.</li>
+      <li><b>Saying open source means free of cost.</b> It means the source code is open. Free of
+      charge is usual, not required.</li>
+      <li><b>Writing only "GUI is easier" for a CUI/GUI comparison.</b> Four marks want two
+      advantages each way, and CUI's advantages are speed for an expert, low memory use, and
+      commands that can be saved and repeated.</li>
+      <li><b>Confusing functions with characteristics of an OS.</b> A function is a job it
+      performs; a characteristic is a quality it has.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne"><b lang="ne">OS लाई "Windows" भन्नु:</b> Windows उदाहरण हो; परिभाषा हार्डवेयर
+    नियन्त्रण, स्रोत व्यवस्थापन र इन्टरफेसको हो। <b lang="ne">Antivirus लाई application भन्नु:</b> यसले
+    मेसिनको सेवा गर्छ — utility software हो। <b lang="ne">Open source लाई निःशुल्क भन्नु:</b> अर्थ source
+    code खुला हुनु हो। <b lang="ne">CUI/GUI मा "GUI सजिलो" मात्र लेख्नु:</b> चार अंकले दुवैतिरका दुई–दुई
+    फाइदा खोज्छ। <b lang="ne">OS का कार्य र विशेषता मिसाउनु:</b> कार्य भनेको गर्ने काम, विशेषता भनेको
+    गुण।</span>
+  </div>
+
+  <p class="hook"><span class="t-en"><b>Memory hook —</b> System serves the machine, application
+    serves you, utility serves the machine but waits to be asked.</span>
+    <span class="np-cell" lang="ne"><b lang="ne">सम्झने तरिका —</b> System ले मेसिनको, application ले तपाईंको सेवा
+    गर्छ; utility ले मेसिनकै गर्छ तर भनेपछि।</span></p>
+
+  <!-- ============ PRACTICAL ============ -->
+  <h2 class="topic" id="cf-prac3"><span class="t-en">Practical work — this unit's other 8 hours</span><span class="t-ne" lang="ne"> — प्रयोगात्मक काम — यस युनिटका अरू ८ घण्टा</span></h2>
+
+  <div class="practical">
+    <div class="h"><span class="pr-kind">Guided practical</span>The four activities the curriculum suggests</div>
+    <p><span class="t-en">From the curriculum's own practical list for Unit 3, which calls these <b>samples</b>. The
+    8 hours are not a sample.
+    </span><span class="np-cell" lang="ne">पाठ्यक्रमकै युनिट ३ को सूचीबाट; यसले यिनलाई <b lang="ne">नमुना</b> भनेको छ। ८
+    घण्टा चाहिँ नमुना होइन।</span></p>
+
+    <div class="pr-act" data-practical="g9.cf.p3.1">
+      <p><span class="pr-num">3.1</span> Collect the names of software used in hospitals, hotels,
+      the education sector and other fields around you, and hold a group discussion on the main
+      objectives of that software.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> people to ask, and a group to discuss with.
+      <b>Builds on:</b> 3.2. <b>Hand in:</b> your list, grouped by sector, with one sentence per
+      item saying what problem it solves. The discussion is the activity; the list is the
+      evidence.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> सोध्ने मानिस र छलफल गर्ने समूह। <b lang="ne">आधार:</b> ३.२।
+      <b lang="ne">बुझाउने:</b> क्षेत्रअनुसार मिलाएको सूची, हरेकमा कुन समस्या हल गर्छ भन्ने एक वाक्य।
+      छलफल नै क्रियाकलाप हो; सूची प्रमाण।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p3.2">
+      <p><span class="pr-num">3.2</span> Make a presentation of the system, application and
+      utility software used in your computer lab.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> access to your school lab. <b>Builds on:</b> 3.2.
+      <b>Hand in:</b> the file, with every program placed in one of the three groups and a reason
+      for each placement. The reason is where the marks are.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> विद्यालयको ल्याबमा पुग्ने अनुमति। <b lang="ne">आधार:</b> ३.२।
+      <b lang="ne">बुझाउने:</b> फाइल, जहाँ हरेक प्रोग्राम तीनमध्ये एउटा समूहमा राखिएको र कारण लेखिएको
+      होस्। अंक कारणमै छ।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p3.3">
+      <p><span class="pr-num">3.3</span> Prepare a presentation and demonstrate an open-source
+      program you are familiar with, and list its features.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> a computer with the program installed — LibreOffice,
+      GIMP, VLC or Firefox are all open source and all free to install. <b>Builds on:</b> 3.7.
+      <b>Hand in:</b> the file and your notes. Demonstrating means showing it running, not
+      showing a screenshot.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> प्रोग्राम इन्स्टल भएको कम्प्युटर — LibreOffice,
+      GIMP, VLC, Firefox सबै open source र निःशुल्क। <b lang="ne">आधार:</b> ३.७। <b lang="ne">बुझाउने:</b> फाइल र
+      नोट। देखाउनु भनेको चलिरहेको देखाउनु हो, स्क्रिनसट होइन।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p3.4">
+      <p><span class="pr-num">3.4</span> Interview your teachers, friends, parents and relatives,
+      and prepare a field report on what computers, laptops or other devices they use, what
+      operating system is installed, and which apps they use on their phones.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> at least eight people and a notebook. <b>This is the
+      largest piece of fieldwork in the subject</b> and the strongest candidate for your project
+      work. <b>Builds on:</b> 3.3 and 3.5. <b>Hand in:</b> a table — one row per person, columns
+      for device, operating system and apps — then a short paragraph on what the pattern shows.
+      The paragraph is the report; the table is only the data.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> कम्तीमा आठ जना र नोटबुक। <b lang="ne">यो विषयकै सबैभन्दा ठूलो
+      क्षेत्रकार्य हो</b> र प्रोजेक्ट कामका लागि सबैभन्दा उपयुक्त। <b lang="ne">आधार:</b> ३.३ र ३.५।
+      <b lang="ne">बुझाउने:</b> तालिका — प्रति व्यक्ति एक हरफ, स्तम्भमा उपकरण, OS र app — अनि बान्कीले के
+      देखाउँछ भन्ने छोटो अनुच्छेद। रिपोर्ट भनेको अनुच्छेद हो; तालिका त data मात्र।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ EXAM FOCUS ============ -->
+  <h2 class="topic" id="cf-exam3"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne" lang="ne"> — परीक्षा केन्द्र — यस युनिटबाट के सोधिन्छ</span></h2>
+
+  <div class="exam-connect">
+    <p><span class="t-en">This unit carries <b>9 of the 50 external marks</b> — the most of any unit in this
+    subject — and 10 of the 64 theory hours. Expect a definition of software or operating system,
+    a classification question on types of software or types of OS, and a CUI/GUI comparison. The
+    OS functions list is the most reliable 4-mark question in the paper.
+    </span><span class="np-cell" lang="ne">यो युनिटले <b lang="ne">बाह्य ५० मध्ये ९ अंक</b> ओगट्छ — यस विषयमा सबैभन्दा
+    धेरै — र ६४ मध्ये १० घण्टा। सफ्टवेयर वा OS को परिभाषा, सफ्टवेयर/OS का किसिमको वर्गीकरण, र
+    CUI/GUI तुलना अपेक्षा गर्नुहोस्। OS का कार्यको सूची प्रश्नपत्रकै सबैभन्दा भरपर्दो ४ अंकको
+    प्रश्न हो।</span></p>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">What is system software? Give two examples.
+    </span><span class="np-cell" lang="ne">System software भनेको के हो? दुई उदाहरण दिनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa31">Show the answer</button>
+    <div class="ans" id="cfa31"><div class="t-en">
+      <p>System software is software that <b>controls and manages the computer itself</b> and
+      makes it ready for the user and for application software to run on.</p>
+      <p>Examples: operating system (Windows, Linux), language translators (compiler, interpreter,
+      assembler), device drivers. Any two.</p>
+      </div><span class="np-cell" lang="ne">System software ले <b lang="ne">कम्प्युटर आफैंलाई नियन्त्रण र व्यवस्थापन</b>
+      गर्छ र प्रयोगकर्ता तथा application चल्न तयार बनाउँछ। उदाहरण: operating system, भाषा अनुवादक,
+      device driver — कुनै दुई।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">List any four functions of an operating system.
+    </span><span class="np-cell" lang="ne">Operating system का कुनै चार कार्य लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa32">Show the answer</button>
+    <div class="ans" id="cfa32"><div class="t-en">
+      <p>Any four of:</p>
+      <p><b>1. Process management</b> — decides which program uses the processor and for how long.
+      <br><b>2. Memory management</b> — allocates RAM to each program and reclaims it afterwards.
+      <br><b>3. File management</b> — creates, stores, finds and deletes files and folders.
+      <br><b>4. Device management</b> — controls input and output devices through drivers.
+      <br><b>5. Security</b> — protects the system with user accounts and passwords.
+      <br><b>6. Providing a user interface</b> — CUI or GUI.</p>
+      <p>One mark each. Naming the function is enough, but a short phrase of explanation protects
+      you if the marker wants it.</p>
+      </div><span class="np-cell" lang="ne">कुनै चार: process management, memory management, file management,
+      device management, security, user interface दिने। प्रत्येकको एक अंक; नाम लेखे पुग्छ, तर
+      छोटो व्याख्या थपे सुरक्षित हुन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Differentiate between CUI and GUI with examples.
+    </span><span class="np-cell" lang="ne">CUI र GUI बीचको फरक उदाहरणसहित लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa33">Show the answer</button>
+    <div class="ans" id="cfa33"><div class="t-en">
+      <p><b>CUI (Character User Interface)</b> — the user types commands. It needs the commands to
+      be memorised, uses little memory, is fast for a trained user, and commands can be saved and
+      run again. Example: MS-DOS, the Linux terminal.</p>
+      <p><b>GUI (Graphical User Interface)</b> — the user points at windows, icons and menus.
+      Nothing has to be memorised, it is easy for a beginner, but it needs more memory and more
+      processing. Example: Windows, macOS, Android.</p>
+      <p>Write it as pairs of opposites. Four marks usually means two differences stated from both
+      sides.</p>
+      </div><span class="np-cell" lang="ne"><b>CUI</b> — आदेश टाइप गर्ने; आदेश सम्झनुपर्ने, मेमोरी थोरै, दक्ष
+      प्रयोगकर्तालाई छिटो, आदेश सुरक्षित गरेर फेरि चलाउन मिल्ने। उदाहरण: MS-DOS, Linux terminal।
+      <b>GUI</b> — window, icon, menu मा देखाउने; सम्झनै नपर्ने, नयाँलाई सजिलो, तर बढी मेमोरी र
+      प्रशोधन चाहिने। उदाहरण: Windows, macOS, Android।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">What is open source software? Write any one advantage.
+    </span><span class="np-cell" lang="ne">Open source software भनेको के हो? कुनै एक फाइदा लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa34">Show the answer</button>
+    <div class="ans" id="cfa34"><div class="t-en">
+      <p>Open source software is software whose <b>source code is made publicly available</b>, so
+      that anyone can read it, modify it and redistribute it.</p>
+      <p>One advantage: it is usually free of cost; or it can be modified to suit a particular
+      need; or faults are found and corrected by a large community.</p>
+      <p>Do not define it as "free software" — that is a consequence, not the meaning.</p>
+      </div><span class="np-cell" lang="ne">Open source software त्यो हो जसको <b lang="ne">source code सार्वजनिक</b> हुन्छ —
+      जोसुकैले पढ्न, बदल्न र पुनर्वितरण गर्न सक्छ। फाइदा: प्रायः निःशुल्क; वा आवश्यकताअनुसार
+      बदल्न मिल्ने; वा ठूलो समुदायले गल्ती भेटेर सच्याउने। "निःशुल्क सफ्टवेयर" भनेर परिभाषा
+      नलेख्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h3>Key points from this unit</h3><div class="t-en">
+    <ul>
+      <li>Software is the instructions; hardware is the ability. Neither works alone.</li>
+      <li>System software serves the computer, application software serves the user, utility
+      software serves the computer but is started by the user.</li>
+      <li>An OS controls hardware, manages resources and provides an interface — and is the first
+      software to load.</li>
+      <li>Its functions: process, memory, file, device management, security, user interface.</li>
+      <li>OS types follow the pressure: how many users, how many tasks, how urgent.</li>
+      <li>CUI: memorise, fast, scriptable, light. GUI: see, easy, heavier.</li>
+      <li>Open source = published source code. Free of charge is usual, not the definition.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne">सफ्टवेयर = निर्देशन, हार्डवेयर = क्षमता। System ले कम्प्युटरको,
+    application ले प्रयोगकर्ताको, utility ले कम्प्युटरकै सेवा गर्छ तर प्रयोगकर्ताले खोल्छ। OS ले
+    हार्डवेयर नियन्त्रण, स्रोत व्यवस्थापन र इन्टरफेस दिन्छ, र सबैभन्दा पहिले लोड हुन्छ। कार्य:
+    process, memory, file, device management, security, user interface। CUI: सम्झने, छिटो,
+    स्क्रिप्ट गर्न मिल्ने, हलुका। GUI: देखिने, सजिलो, गह्रौं। Open source = खुला source code।</span>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit2.html"><span class="lab">◂ Previous</span><span class="ttl">Computer Components</span></a><a class="nx" href="unit4.html"><span class="lab">Next ▸</span><span class="ttl">Memory / Storage Unit</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">Gyansetu</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/practical.js"></script>
+</body>
+</html>

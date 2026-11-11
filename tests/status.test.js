@@ -64,9 +64,15 @@ const textOf = html => html
    ============================================================ */
 
 test('every subject has a status derived from its syllabus and its pages', () => {
+  /* Updated in Phase 13, when Computer Fundamentals went from 1 of 7
+     units to 7 of 7, and again in Phase 14 for Programming Principles
+     in C. The figures below are the authoring state, so they move
+     whenever a unit is written — which is the point. What must never
+     move is the RELATIONSHIP between them, and the test below this one
+     checks that independently against the syllabus and the pages. */
   const expected = {
-    'grade9/c-programming':         { authored: 0, official: 7, state: 'outline'  },
-    'grade9/computer-fundamentals': { authored: 1, official: 7, state: 'partial'  },
+    'grade9/c-programming':         { authored: 7, official: 7, state: 'complete' },
+    'grade9/computer-fundamentals': { authored: 7, official: 7, state: 'complete' },
     'grade9/electro-system':        { authored: 0, official: 7, state: 'outline'  },
     'grade9/website-design':        { authored: 0, official: 7, state: 'outline'  },
     'grade10/oop-cpp':              { authored: 6, official: 6, state: 'complete' },
@@ -176,50 +182,84 @@ test('no subject’s unit count is a constant', () => {
    3 · FINDING C — GRADE 9 SUBJECT STATUS ON THE PAGE
    ============================================================ */
 
-test('the Grade 9 index distinguishes all three authoring states', () => {
-  /* MUTATION: label the partial subject with SLABEL.outline.en and this
-     fails, because the outline label would then appear four times. */
-  const html = readPage(path.join('grade9', 'index.html'));
-  const cards = [...html.matchAll(/<a class="scard"[\s\S]*?<\/a>/g)].map(m => m[0]);
+test('every grade index labels each subject by its actual state', () => {
+  /* REWRITTEN IN PHASE 13. This test used to name Computer Fundamentals
+     and assert "1 of 7 units written". That was the authoring state of
+     one day, and when the remaining six units were written the test
+     failed for being out of date rather than for finding anything.
 
-  const byName = {};
-  for (const card of cards){
-    byName[cardName(card)] = textOf(card);
+     It now reads the expected label off the derived status, so it holds
+     whatever any subject's state happens to be — and it still fails if a
+     page labels a subject as something it is not, which is the defect
+     this guard exists for.
+
+     MUTATION: give the partial branch SLABEL.outline.en in index.js and
+     this fails on whichever subject is partial at the time. */
+  const labelFor = st => st.state === 'partial'
+    ? st.authoredUnits + ' of ' + st.officialUnits + ' units written'
+    : { outline: 'syllabus outline', complete: 'notes ready' }[st.state];
+
+  let checked = 0;
+  for (const grade of ['grade9', 'grade10']){
+    const html = readPage(path.join(grade, 'index.html'));
+    const cards = [...html.matchAll(/<a class="scard"[\s\S]*?<\/a>/g)].map(m => m[0]);
+    const byName = {};
+    for (const card of cards) byName[cardName(card)] = textOf(card);
+
+    for (const st of Object.values(ctx.subjectStatus)){
+      if (st.grade !== grade) continue;
+      const card = byName[st.name];
+      assert.ok(card, grade + ': no card for ' + st.name);
+      assert.ok(card.includes(labelFor(st)),
+        st.name + ' is ' + st.state + ' (' + st.authoredUnits + '/' + st.officialUnits +
+        ') and its card does not say "' + labelFor(st) + '": ' + card);
+
+      /* and must not claim either of the other two states */
+      for (const other of ['outline', 'partial', 'complete']){
+        if (other === st.state) continue;
+        const wrong = { outline: 'syllabus outline', complete: 'notes ready',
+                        partial: 'units written' }[other];
+        assert.ok(!card.includes(wrong),
+          st.name + ' is ' + st.state + ' and its card also claims "' + wrong + '"');
+      }
+      checked++;
+    }
   }
+  assert.strictEqual(checked, 8, 'expected 8 subject cards across the two grades');
+});
 
-  const partial = byName['Fundamentals of Computer and Application'];
-  assert.ok(partial, 'the partly written subject has no card');
-  assert.match(partial, /1 of 7 units written/,
-    'Computer and Application does not say how much of it is written: ' + partial);
-  assert.ok(!/syllabus outline/.test(partial),
-    'the partly written subject is labelled like the empty ones');
-  assert.ok(!/notes ready/.test(partial),
-    'a subject with 1 of 7 units written is being called finished');
-
-  for (const name of ['Programming Principles & Concept in C Language',
-                      'Fundamentals of Electro-System',
-                      'Website Design']){
-    assert.match(byName[name], /syllabus outline/,
-      name + ' has no authored unit and should read as an outline: ' + byName[name]);
-    assert.ok(!/units written/.test(byName[name]),
-      name + ' has nothing written and claims otherwise');
+test('a status label that appears is also stated in Nepali', () => {
+  /* Whatever state a subject is in, a Nepali-mode reader must get the
+     same information. Checked for every card rather than for one named
+     subject, so it keeps working as subjects are written. */
+  for (const grade of ['grade9', 'grade10']){
+    const html = readPage(path.join(grade, 'index.html'));
+    for (const card of html.matchAll(/<a class="scard"[\s\S]*?<\/a>/g)){
+      const status = /<span class="status [^"]*">([\s\S]*?)<\/span>\s*<span class="pill">/.exec(card[0]);
+      assert.ok(status, grade + ': a subject card has no status label');
+      assert.match(status[1], /[ऀ-ॿ]/,
+        grade + ': a status label carries no Nepali — ' + textOf(status[1]));
+      assert.match(status[1], /lang="ne"/,
+        grade + ': the Nepali half of a status label does not declare its language');
+    }
   }
 });
 
-test('the partial status is stated in Nepali too', () => {
-  const html = readPage(path.join('grade9', 'index.html'));
-  const card = (html.match(/<a class="scard"[\s\S]*?Fundamentals of Computer[\s\S]*?<\/a>/) || [])[0];
-  assert.ok(card, 'card not found');
-  assert.match(card, /[ऀ-ॿ]/, 'the status carries no Nepali at all');
-  assert.match(textOf(card), /7 मध्ये 1 युनिट/,
-    'the Nepali half does not state the fraction a Nepali-mode reader would see');
-});
-
-test('Grade 9 Unit 1 is still reachable from the subject page', () => {
-  const html = readPage(path.join('grade9', 'computer-fundamentals', 'index.html'));
-  assert.match(html, /href="unit1\.html"/, 'the one authored unit is not linked');
-  assert.ok(fs.existsSync(path.join(ROOT, 'grade9', 'computer-fundamentals', 'unit1.html')),
-    'unit1.html does not exist');
+test('every authored unit of a complete subject is reachable from its index', () => {
+  /* Was "Grade 9 Unit 1 is still reachable". Generalised in Phase 13:
+     a subject page that links six of its seven units is a page a student
+     cannot finish the subject from, and nothing else would catch it. */
+  for (const [key, st] of Object.entries(ctx.subjectStatus)){
+    if (!st.authoredUnits) continue;
+    const html = readPage(path.join(key, 'index.html'));
+    for (const p of pages[key].pages){
+      if (typeof p.hrs !== 'number') continue;
+      assert.ok(html.includes('href="' + p.file + '"'),
+        key + '/index.html does not link ' + p.file);
+      assert.ok(fs.existsSync(path.join(ROOT, key, p.file)),
+        key + '/' + p.file + ' is linked and does not exist');
+    }
+  }
 });
 
 /* ============================================================
@@ -227,13 +267,24 @@ test('Grade 9 Unit 1 is still reachable from the subject page', () => {
    ============================================================ */
 
 test('the home page credits finished subjects with finished subjects’ numbers', () => {
-  /* MUTATION: put `S.units` back in place of `C.units` and this fails
-     with "across 25 units" against 24. */
+  /* MUTATION: put `S.units` back in place of `C.units` and this fails,
+     because the sentence would then carry the site-wide total.
+
+     The two assertions that used to pin C.subjects to 4 and C.units to
+     24 were removed in Phase 13. They were a snapshot of one day's
+     authoring state, and when Computer Fundamentals was finished they
+     failed for being out of date rather than for finding anything — the
+     page had already updated itself correctly to 5 and 31. What this
+     test is for is that the SENTENCE matches the COMPLETE-subject
+     totals, whatever those totals are, and the regex below checks
+     exactly that. The arithmetic behind the totals is checked
+     independently by the site-wide-equals-the-sum test. */
   const text = textOf(readPage('index.html'));
   const C = ctx.contentStats.complete;
 
-  assert.strictEqual(C.subjects, 4);
-  assert.strictEqual(C.units, 24, 'the four complete subjects hold 24 units');
+  assert.ok(C.subjects > 0 && C.units > 0,
+    'no subject is complete, so this guard has nothing to check — if that is ' +
+    'intended, the home page sentence should not exist either');
 
   const claim = new RegExp(
     C.subjects + ' subjects are written in full[^.]*?across ' + C.units + ' units: ' +
@@ -269,25 +320,36 @@ test('every number in the finished-subjects sentence excludes the partial subjec
   }
 });
 
-test('the home page names the partly written subject separately, in both languages', () => {
+test('the home page names every partly written subject, in both languages', () => {
+  /* In Phase 13 the last partial subject was finished, so there is
+     currently none. The sentence is generated per partial subject and
+     must disappear entirely when there are none — leaving "0 subjects
+     are partly written" would be its own defect — so that is what this
+     asserts when the list is empty, and the full check runs whenever a
+     subject is partial again. */
   const html = readPage('index.html');
   const text = textOf(html);
   const partial = Object.values(ctx.subjectStatus).filter(s => s.state === 'partial');
-  assert.strictEqual(partial.length, 1, 'this guard assumes exactly one partial subject');
-  const p = partial[0];
 
-  assert.match(text, new RegExp(p.short + ' \\(' + p.gradeLabel + '\\) is partly written'),
-    'the partly written subject is not named on the home page');
-  assert.match(text, new RegExp(p.authoredUnits + ' of its ' + p.officialUnits + ' units'),
-    'the home page does not say how much of it is written');
+  if (!partial.length){
+    assert.ok(!/is partly written/.test(text),
+      'no subject is partly written and the home page says one is');
+    assert.ok(!/आंशिक लेखिएको/.test(text),
+      'no subject is partly written and the Nepali half says one is');
+    return;
+  }
 
-  /* markNepali adds lang="ne" to the container and to the tag inside it,
-     so the opening tag cannot be matched literally. */
   const ne = (html.match(/<div class="np"[^>]*>[\s\S]*?अहिले के तयार छ[\s\S]*?<\/div>\s*<\/div>/) || [])[0];
   assert.ok(ne, 'the Nepali half of the readiness block is missing');
-  assert.match(textOf(ne), /आंशिक लेखिएको/,
-    'the Nepali half does not mention the partly written subject');
-  assert.match(textOf(ne), new RegExp(p.officialUnits + ' मध्ये ' + p.authoredUnits + ' युनिट'));
+
+  for (const p of partial){
+    assert.match(text, new RegExp(p.short + ' \\(' + p.gradeLabel + '\\) is partly written'),
+      p.short + ' is partly written and is not named on the home page');
+    assert.match(text, new RegExp(p.authoredUnits + ' of its ' + p.officialUnits + ' units'),
+      'the home page does not say how much of ' + p.short + ' is written');
+    assert.match(textOf(ne), new RegExp(p.officialUnits + ' मध्ये ' + p.authoredUnits + ' युनिट'),
+      'the Nepali half does not state ' + p.short + '’s fraction');
+  }
 });
 
 test('the home page marks a partly written subject differently from an empty one', () => {
@@ -303,17 +365,94 @@ test('the home page marks a partly written subject differently from an empty one
   const chips = [...ready.matchAll(/<span class="([^"]*)"[^>]*>([^<]+)<\/span>/g)]
     .map(m => ({ cls: m[1], name: m[2] }));
 
-  const partial = chips.find(c => /Computer Fundamentals/.test(c.name));
-  assert.ok(partial, 'Computer Fundamentals has no chip on the Grade 9 card');
-  assert.strictEqual(partial.cls, 'part',
-    'the partly written subject looks like ' +
-    (partial.cls === 'on' ? 'a finished one' : 'one with nothing written'));
+  /* Read off the derived status rather than naming a subject, so this
+     holds as subjects are written. Phase 13 finished Computer
+     Fundamentals, and before that change this test named it directly. */
+  const EXPECT = { complete: 'on', partial: 'part', outline: '' };
+  assert.strictEqual(chips.length, 4, 'the Grade 9 card should show four subject chips');
 
-  const empties = chips.filter(c => !/Computer Fundamentals/.test(c.name));
-  assert.strictEqual(empties.length, 3);
-  for (const c of empties){
-    assert.strictEqual(c.cls, '', c.name + ' has nothing written and is marked "' + c.cls + '"');
+  for (const chip of chips){
+    const st = Object.values(ctx.subjectStatus)
+      .find(s => s.grade === 'grade9' && s.short === chip.name);
+    assert.ok(st, 'no subject matches the chip "' + chip.name + '"');
+    assert.strictEqual(chip.cls, EXPECT[st.state],
+      chip.name + ' is ' + st.state + ' and its chip is marked "' + chip.cls +
+      '" instead of "' + EXPECT[st.state] + '"');
   }
+
+  /* The point of the three looks is that they differ. If every Grade 9
+     subject ever reaches the same state this assertion should be the one
+     a future author has to think about, rather than the styling quietly
+     ceasing to mean anything. */
+  const states = new Set(chips.map(c => c.cls));
+  assert.ok(states.size > 1,
+    'every Grade 9 chip now looks the same, so the readiness styling tells a student nothing');
+});
+
+test('a diagram used by two subjects is counted once, not twice', () => {
+  /* PHASE 13 DEFECT. Every other figure in the roll-up belongs to one
+     subject, so adding them is right. A diagram does not: the registry
+     is shared. Grade 9 Unit 2 reuses Hardware's hwSystemUnits, and the
+     roll-up was a plain sum, so the home page claimed 76 distinct
+     diagrams when 75 exist.
+
+     The existing sentence test did not catch it. It compared the page
+     against the same context object that produced the page, so both
+     sides carried the same wrong number. This one compares against the
+     lesson files and the registry instead.
+
+     MUTATION: restoring `out[f] += ...` for diagrams in sumWhere makes
+     this fail with 76 against 75. Confirmed. */
+  const S = ctx.contentStats;
+  const registry = require(path.join(SRC, 'diagrams.js'));
+  const pages = require(path.join(SRC, 'config', 'pages.js'));
+  const lessonDir = path.join(SRC, 'content', 'lessons');
+
+  const setFor = key => {
+    const cfg = pages[key];
+    const ids = [];
+    if (cfg) for (const p of cfg.pages){
+      if (typeof p.hrs !== 'number') continue;
+      for (const id of (p.sec || [])) ids.push(id);
+    }
+    const text = ids.map(id => {
+      const f = path.join(lessonDir, id + '.html');
+      return fs.existsSync(f) ? fs.readFileSync(f, 'utf8') : '';
+    }).join('\n');
+    return new Set([...text.matchAll(/\{\{dia:([A-Za-z0-9_]+)\}\}/g)].map(m => m[1]));
+  };
+
+  /* The overlap has to exist, or this test proves nothing. */
+  const owners = {};
+  for (const key of Object.keys(pages)){
+    for (const d of setFor(key)) (owners[d] = owners[d] || []).push(key);
+  }
+  const shared = Object.entries(owners).filter(([, v]) => v.length > 1);
+  assert.ok(shared.length > 0,
+    'no diagram is shared between subjects any more, so this guard is vacuous — ' +
+    'either restore the reuse or delete the test, but do not leave it passing for ' +
+    'the wrong reason');
+
+  const union = new Set();
+  let sum = 0;
+  for (const key of Object.keys(pages)){
+    const s = setFor(key);
+    sum += s.size;
+    for (const d of s) union.add(d);
+  }
+
+  assert.ok(sum > union.size,
+    'the sum and the union agree, so the bug could not reproduce; check the fixture');
+
+  assert.strictEqual(S.complete.diagrams, union.size,
+    'the complete-subjects roll-up says ' + S.complete.diagrams +
+    ' diagrams; the lessons of those subjects use ' + union.size +
+    ' distinct ones (a plain sum would give ' + sum + ')');
+
+  assert.ok(S.complete.diagrams <= Object.keys(registry).length,
+    'the roll-up claims ' + S.complete.diagrams + ' diagrams, but only ' +
+    Object.keys(registry).length + ' are defined — a count of distinct things ' +
+    'can never exceed the number that exist');
 });
 
 test('the site-wide and complete-subject totals differ by exactly the partial subject', () => {
@@ -355,11 +494,21 @@ test('a revision focus never names a unit the subject does not have', () => {
   }
 });
 
-test('Grade 9 is sent only to the one unit that exists', () => {
-  const focus = ctx.examFocus['grade9/computer-fundamentals'];
-  assert.deepStrictEqual(focus.map(u => u.n), ['1'],
-    'Grade 9 has one authored unit and its quiz points at ' +
-    focus.map(u => 'Unit ' + u.n).join(', '));
+test('the Grade 9 focus names only units that exist', () => {
+  /* The original defect this guards against: a Grade 9 student sent to
+     "Units 3, 5 and 6" when the subject had one unit. Phase 13 wrote the
+     other six, so the focus is now three units rather than one — which
+     is why this reads the authored units rather than expecting ['1']. */
+  const key = 'grade9/computer-fundamentals';
+  const have = new Set(pages[key].pages
+    .filter(p => typeof p.hrs === 'number').map(p => String(p.n)));
+  const focus = ctx.examFocus[key];
+  assert.ok(focus.length, 'Grade 9 has no revision focus at all');
+  for (const u of focus){
+    assert.ok(have.has(String(u.n)),
+      'the Grade 9 quiz points at Unit ' + u.n + ', which it does not have. It has ' +
+      [...have].join(', '));
+  }
 });
 
 test('each subject’s focus is its own, and is where its marks are', () => {

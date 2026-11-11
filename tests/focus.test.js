@@ -80,8 +80,19 @@ test('examination priority names only units that exist, with both titles', () =>
   }
 });
 
-test('Grade 9 is offered only the one unit that exists', () => {
-  assert.deepStrictEqual(ctx.examFocus['grade9/computer-fundamentals'].map(u => u.n), ['1']);
+test('the Grade 9 focus is drawn from its own authored units', () => {
+  /* When this subject had one unit, the whole content of this test was
+     that the focus must be ['1']. Phase 13 authored the other six, so it
+     now checks the property that mattered all along: every unit named is
+     one this subject actually has. */
+  const key = 'grade9/computer-fundamentals';
+  const have = new Set(unitsOf(key).map(p => String(p.n)));
+  const focus = ctx.examFocus[key];
+  assert.ok(focus.length, 'Grade 9 has no examination focus');
+  for (const u of focus){
+    assert.ok(have.has(String(u.n)),
+      'Grade 9 is pointed at Unit ' + u.n + '; its units are ' + [...have].join(', '));
+  }
 });
 
 /* ---------------------------------------------- B · teacher-directed */
@@ -269,7 +280,10 @@ test('every quiz section ships the recommendation line, empty and hidden', () =>
     assert.match(html, /<p class="score-focus" id="scoreFocus" hidden><\/p>/,
       'sections/' + f + ' has no recommendation line, or it does not ship empty and hidden');
   }
-  assert.strictEqual(seen, 5, 'expected 5 quiz sections, found ' + seen);
+  /* Six since Phase 14 added the Grade 9 C quiz. The count is asserted
+     rather than left open so that a new subject's quiz section cannot be
+     added without this guard being pointed at it. */
+  assert.strictEqual(seen, 6, 'expected 6 quiz sections, found ' + seen);
 });
 
 test('the recommendation line is not swept into an English wrapper', () => {

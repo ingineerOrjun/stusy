@@ -1,0 +1,698 @@
+<section id="c-u5">
+  <div class="sec-head">
+    <div class="sec-num">5</div>
+    <div>
+      <h2>Arrays &amp; Strings</h2>
+      <p class="sec-sub">एरे र स्ट्रिङ</p>
+    </div>
+    <span class="marks">10 hrs · 8 marks · 15 practical hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Say what an array is and why fifty separate variables is not an answer.</li>
+      <li>Declare and initialise a one-dimensional array, and name its first and last index.</li>
+      <li>Use a loop to read, print and total the elements of an array.</li>
+      <li>Explain what a string is in C and what the null character does.</li>
+      <li>Use <code>strlen</code>, <code>strcpy</code>, <code>strcat</code> and
+      <code>strcmp</code>, and say which header they need.</li>
+      <li>Say which of the seven string functions in the syllabus are not standard C, and what
+      that means for a program you write.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: array भनेको के हो र पचास छुट्टाछुट्टै variable किन
+    उत्तर होइन भन्न, एक-आयामिक array घोषणा र initialise गरेर पहिलो अनि अन्तिम index नाम लिन,
+    loop ले array का element पढ्न, छाप्न र जोड्न, C मा string भनेको के हो र null अक्षरले के गर्छ
+    बुझाउन, <code>strlen</code>, <code>strcpy</code>, <code>strcat</code> र
+    <code>strcmp</code> चलाउन अनि कुन header चाहिन्छ भन्न, र पाठ्यक्रमका सात string function मध्ये
+    कुन मानक C मा छैनन् र त्यसको तपाईंको प्रोग्राममा के अर्थ हुन्छ भन्न सक्नुहुनेछ।</span>
+  </div>
+
+  <!-- ============ 5.1 ============ -->
+  <h3 class="topic" id="c-t51">5.1 &nbsp;<span class="t-en">What arrays and strings are</span><span class="t-ne"> — Array र string भनेको के हुन्</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">One name, many boxes</span>
+      <p>An <b>array</b> is a collection of elements of the <b>same data type</b>, stored in
+      <b>continuous memory locations</b>, under <b>one name</b>, reached by an <b>index</b>.</p>
+      <p>Each of those four parts earns its place. Same type, so the compiler knows how far apart
+      the boxes are. Continuous, so the address of element <i>i</i> can be worked out by
+      arithmetic rather than looked up. One name, so fifty marks need one declaration. An index,
+      so a <b>loop</b> can reach every element — which is the whole reason arrays exist.</p>
+      <p>Without an array, storing fifty students' marks needs fifty variables, fifty
+      <code>scanf</code> lines, and no way to write "add them all up" in fewer than fifty
+      additions. With one, it is a loop of three lines.</p>
+      <p>A <b>string</b> in C is not a separate type. It is an <b>array of
+      <code>char</code></b> that ends with the <b>null character</b> <code>\0</code>. Everything
+      true of arrays is true of strings, plus that one extra rule.</p>
+    </div>
+    <div class="np"><span class="tag">एउटै नाम, धेरै बाकस</span>
+      <p><b>Array</b> भनेको <b>एउटै data type</b> का element को समूह हो, जुन <b>लगातार मेमोरी
+      स्थान</b> मा, <b>एउटै नाम</b> मुनि राखिन्छ र <b>index</b> ले पुगिन्छ।</p>
+      <p>यी चारै भागको आफ्नै काम छ। एउटै प्रकार, ताकि बाकसहरू कति टाढा छन् compiler लाई थाहा
+      होस्। लगातार, ताकि <i>i</i> औं element को ठेगाना खोज्नु नपरी गणनाले निस्कियोस्। एउटै नाम,
+      ताकि पचास अंकलाई एउटै घोषणा पुगोस्। Index, ताकि <b>loop</b> ले हरेक element मा पुग्न सकोस् —
+      array हुनुको पूरै कारण त्यही हो।</p>
+      <p>Array नभए पचास विद्यार्थीको अंक राख्न पचास variable, पचास <code>scanf</code> लाइन, र
+      "सबै जोड्नुहोस्" भन्ने कुरा पचास जोडभन्दा कममा लेख्ने उपाय नै हुँदैन। Array भए तीन लाइनको
+      loop पुग्छ।</p>
+      <p>C मा <b>string</b> छुट्टै प्रकार होइन। यो <b><code>char</code> को array</b> हो, जुन
+      <b>null अक्षर</b> <code>\0</code> ले सकिन्छ। Array का सबै कुरा string मा पनि लागू हुन्छन्,
+      माथि यो एउटा थप नियम।</p>
+    </div>
+  </div>
+
+  <!-- ============ 5.2 ============ -->
+  <h3 class="topic" id="c-t52">5.2 &nbsp;<span class="t-en">Declaration and initialisation of an array</span><span class="t-ne"> — Array को घोषणा र initialisation</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Four ways to start one</span>
+      <p><b>Declaration</b> — <code>int marks[5];</code> reserves five integer boxes. The number
+      in the brackets is the <b>size</b>, and in standard C before C99 it has to be a constant:
+      <code>int a[n];</code> with a variable <code>n</code> is not something to rely on in an
+      examination answer.</p>
+      <p><b>Initialisation</b> — four forms, all legal:</p>
+      <ul>
+        <li><code>int marks[5] = {70, 85, 60, 90, 45};</code> — size and values both given.</li>
+        <li><code>int marks[] = {70, 85, 60, 90, 45};</code> — the compiler counts five for
+        you.</li>
+        <li><code>int marks[5] = {70, 85};</code> — the rest become <b>zero</b>, not garbage.</li>
+        <li><code>int marks[5] = {0};</code> — a common idiom for "all zero".</li>
+      </ul>
+      <p><b>Indexing starts at 0.</b> An array of size 5 has indices 0, 1, 2, 3, 4, so the
+      <b>last index is size − 1</b>. There is no <code>marks[5]</code>, and C will not stop you
+      from writing one — it has no bounds checking at all. Reading past the end gives whatever
+      happens to be in that memory; writing past the end damages something else.</p>
+    </div>
+    <div class="np"><span class="tag">सुरु गर्ने चार तरिका</span>
+      <p><b>घोषणा</b> — <code>int marks[5];</code> ले पाँच integer बाकस छुट्याउँछ। कोष्ठकभित्रको
+      सङ्ख्या <b>आकार</b> हो, र C99 भन्दा अघिको मानक C मा यो constant नै हुनुपर्छ: variable
+      <code>n</code> सहितको <code>int a[n];</code> परीक्षाको उत्तरमा भर पर्ने कुरा होइन।</p>
+      <p><b>Initialisation</b> — चार रूप, सबै मान्य:</p>
+      <ul>
+        <li><code>int marks[5] = {70, 85, 60, 90, 45};</code> — आकार र मान दुवै दिइएको।</li>
+        <li><code>int marks[] = {70, 85, 60, 90, 45};</code> — compiler ले आफैं पाँच गन्छ।</li>
+        <li><code>int marks[5] = {70, 85};</code> — बाँकी <b>शून्य</b> हुन्छन्, garbage
+        होइन।</li>
+        <li><code>int marks[5] = {0};</code> — "सबै शून्य" भन्ने चलनचल्तीको तरिका।</li>
+      </ul>
+      <p><b>Index ० बाट सुरु हुन्छ।</b> पाँच आकारको array का index ०, १, २, ३, ४ हुन्छन्, त्यसैले
+      <b>अन्तिम index आकार − १</b> हो। <code>marks[5]</code> भन्ने छैन, र C ले तपाईंलाई त्यो
+      लेख्नबाट रोक्दैन — यसमा bound जाँच्ने व्यवस्थै छैन। अन्त्यभन्दा पर पढ्दा त्यो मेमोरीमा जे
+      छ त्यही आउँछ; पर लेख्दा अरू केही बिग्रन्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:arrayMemory}}
+    <figcaption>Five integers in one block. The addresses go up by four because an
+    <code>int</code> is four bytes here; the index goes up by one. Those are two different
+    counts, and the compiler does the conversion.
+    <span class="np-cell">एउटै block मा पाँच integer। यहाँ <code>int</code> चार byte भएकाले
+    ठेगाना चार–चारले बढ्छ; index एक–एकले। यी दुई फरक गन्ती हुन्, र बदल्ने काम compiler ले
+    गर्छ।</span></figcaption>
+  </figure>
+
+  <!-- ============ 5.3 ============ -->
+  <h3 class="topic" id="c-t53">5.3 &nbsp;<span class="t-en">One-dimensional arrays in use</span><span class="t-ne"> — एक-आयामिक array को प्रयोग</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">An array and a loop are one idea</span>
+      <p>The index in <code>marks[i]</code> is a <b>variable</b>, and that is the hinge of the
+      whole unit: one line of code inside a loop reaches a different element each turn.</p>
+      <p>The three things always written together:</p>
+      <ul>
+        <li><b>Reading</b> — <code>for (i = 0; i &lt; 5; i++) scanf("%d", &amp;marks[i]);</code>
+        Note <code>&amp;marks[i]</code>: one element is an ordinary <code>int</code>, so
+        <code>scanf</code> still needs its address.</li>
+        <li><b>Printing</b> — the same loop with <code>printf("%d ", marks[i]);</code></li>
+        <li><b>Totalling</b> — <code>total = total + marks[i];</code> with
+        <code>total</code> set to 0 before the loop.</li>
+      </ul>
+      <p>The condition is <code>i &lt; 5</code> and not <code>i &lt;= 5</code>. Both compile.
+      One of them reads a box that is not part of the array, and nothing warns you — this is the
+      <b>off-by-one</b> error, and it is the most common bug in this unit by a wide margin.</p>
+    </div>
+    <div class="np"><span class="tag">Array र loop एउटै विचार हुन्</span>
+      <p><code>marks[i]</code> को index <b>variable</b> हो, र पूरै युनिटको कब्जा त्यही हो: loop
+      भित्रको एउटै लाइनले हरेक पटक फरक element मा पुग्छ।</p>
+      <p>सधैं सँगै लेखिने तीन कुरा:</p>
+      <ul>
+        <li><b>पढ्ने</b> — <code>for (i = 0; i &lt; 5; i++) scanf("%d", &amp;marks[i]);</code>
+        <code>&amp;marks[i]</code> हेर्नुहोस्: एउटा element सामान्य <code>int</code> हो, त्यसैले
+        <code>scanf</code> लाई यसको ठेगाना चाहिन्छ।</li>
+        <li><b>छाप्ने</b> — उही loop, <code>printf("%d ", marks[i]);</code> सहित।</li>
+        <li><b>जोड्ने</b> — loop अघि <code>total</code> लाई ० राखेर
+        <code>total = total + marks[i];</code></li>
+      </ul>
+      <p>सर्त <code>i &lt;= 5</code> होइन <code>i &lt; 5</code> हो। दुवै compile हुन्छन्।
+      एउटाले array को भाग नभएको बाकस पढ्छ, र कसैले चेतावनी दिँदैन — यही <b>off-by-one</b>
+      त्रुटि हो, र यस युनिटको सबैभन्दा धेरै हुने गल्ती निकै फरकसहित यही हो।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h4>An array, an index, and a running total</h4>
+      <p class="sim-goal">What you will learn: which element <code>marks[i]</code> is on each
+      turn, and what happens at the end when i reaches 5. The last two steps are the ones worth
+      the attention — they are the off-by-one error, shown rather than described.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: हरेक पटक <code>marks[i]</code> कुन element हो,
+      र अन्त्यमा i ५ पुग्दा के हुन्छ। अन्तिम दुई चरण नै ध्यान दिनुपर्ने ठाउँ हुन् — off-by-one
+      त्रुटि वर्णन होइन, देखाइएको छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="arraySum"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Keep asking "which box is this?" rather than "what number is this?". The index row and
+        the element row are deliberately separate, because confusing them is the error.</p>
+        <span class="np-cell">"यो कुन बाकस हो?" सोध्नुहोस्, "यो कुन सङ्ख्या हो?" होइन। Index को
+        पङ्क्ति र element को पङ्क्ति जानीजानी छुट्याइएका छन्, किनभने तिनलाई मिसाउनु नै गल्ती
+        हो।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>A program declares <code>int a[5];</code> and then writes to <code>a[5]</code>. What does
+      the compiler do?
+      <span class="np-cell">प्रोग्रामले <code>int a[5];</code> घोषणा गरेर <code>a[5]</code> मा
+      लेख्छ। Compiler ले के गर्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Refuses to compile and reports an index error</button>
+      <button class="predict-opt" data-value="b">Compiles it without complaint, and the program may do anything at run time</button>
+      <button class="predict-opt" data-value="c">Compiles it and silently grows the array to six elements</button>
+    </div>
+    <div class="predict-feedback">
+      <p><b>It compiles.</b> C performs <b>no bounds checking</b> — not at compile time and not at
+      run time. <code>a[5]</code> is simply "the memory five boxes past the start of a", and the
+      compiler works out that address and uses it.</p>
+      <p>What is at that address is whatever came next in memory: another variable, part of the
+      function's bookkeeping, or nothing in particular. The program may print a strange number,
+      may quietly corrupt a different variable, or may crash — and it may do a different one of
+      those on each run.</p>
+      <p>This is the price C pays for speed: no check means no cost, and the responsibility moves
+      to you. It is also why <code>i &lt; size</code> rather than <code>i &lt;= size</code> is
+      worth checking every single time you write a loop over an array.</p>
+      <span class="np-cell"><b>Compile हुन्छ।</b> C ले <b>bound जाँच्दैन</b> — न compile गर्दा,
+      न चल्दा। <code>a[5]</code> भनेको "a को सुरुदेखि पाँच बाकस पर भएको मेमोरी" मात्र हो, र
+      compiler ले त्यही ठेगाना निकालेर चलाउँछ। त्यहाँ के छ भन्ने मेमोरीमा पछि जे आयो त्यही हो:
+      अर्को variable, function को आफ्नै हिसाब, वा केही पनि होइन। प्रोग्रामले अनौठो सङ्ख्या छाप्न
+      सक्छ, अर्कै variable चुपचाप बिगार्न सक्छ, वा crash हुन सक्छ — र हरेक पटक फरक नतिजा दिन
+      सक्छ। गतिका लागि C ले तिरेको मूल्य यही हो: जाँच छैन भने लागत पनि छैन, र जिम्मेवारी
+      तपाईंमा सर्छ। Array मा loop लेख्दा हरेक पटक <code>i &lt;= size</code> होइन
+      <code>i &lt; size</code> हो कि भनेर जाँच्नुपर्ने कारण पनि त्यही।</span>
+    </div>
+  </div>
+
+  <!-- ============ 5.4 ============ -->
+  <h3 class="topic" id="c-t54">5.4 &nbsp;<span class="t-en">Declaration of a string</span><span class="t-ne"> — String को घोषणा</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">A char array with one hidden rule</span>
+      <p>Three ways to declare one, and they are not all the same:</p>
+      <ul>
+        <li><code>char name[10] = "NEPAL";</code> — the compiler stores N, E, P, A, L and then
+        <code>\0</code>, and leaves four boxes unused.</li>
+        <li><code>char name[] = "NEPAL";</code> — the compiler counts <b>six</b>, not five,
+        because it has to make room for the null.</li>
+        <li><code>char name[6] = {'N','E','P','A','L','\0'};</code> — the long way, and the one
+        that shows what the other two are doing.</li>
+      </ul>
+      <p><b>The null character is the string's end marker.</b> Nothing in C records a string's
+      length anywhere; every function that handles one walks forward until it meets
+      <code>\0</code>. That is why <code>char name[5] = "NEPAL";</code> is a real bug: there is
+      no room for the terminator, so nothing marks the end, and <code>printf</code> carries on
+      printing whatever is next in memory until it happens to meet a zero byte.</p>
+      <p>Reading one with <code>scanf("%s", name)</code> takes <b>no ampersand</b>, because an
+      array name is already an address. It also <b>stops at the first space</b>, so "Ram Bahadur"
+      arrives as "Ram".</p>
+    </div>
+    <div class="np"><span class="tag">एउटा लुकेको नियम भएको char array</span>
+      <p>घोषणा गर्ने तीन तरिका, र तीनै उस्तै होइनन्:</p>
+      <ul>
+        <li><code>char name[10] = "NEPAL";</code> — compiler ले N, E, P, A, L अनि
+        <code>\0</code> राख्छ, र चार बाकस खाली छाड्छ।</li>
+        <li><code>char name[] = "NEPAL";</code> — compiler ले पाँच होइन <b>छ</b> गन्छ, किनभने
+        null का लागि ठाउँ चाहिन्छ।</li>
+        <li><code>char name[6] = {'N','E','P','A','L','\0'};</code> — लामो तरिका, र अरू दुईले
+        के गरिरहेका छन् देखाउने तरिका पनि।</li>
+      </ul>
+      <p><b>Null अक्षर नै string को अन्त्यको चिन्ह हो।</b> C मा string को लम्बाइ कतै लेखिँदैन;
+      string चलाउने हरेक function <code>\0</code> नभेटेसम्म अगाडि बढ्छ। त्यसैले
+      <code>char name[5] = "NEPAL";</code> साँच्चैको bug हो: terminator का लागि ठाउँ छैन, अन्त्य
+      केहीले जनाउँदैन, र <code>printf</code> ले मेमोरीमा पछि जे छ त्यही छाप्दै जान्छ — कतै शून्य
+      byte नभेटेसम्म।</p>
+      <p><code>scanf("%s", name)</code> ले पढ्दा <b>ampersand चाहिँदैन</b>, किनभने array को नाम
+      आफैं ठेगाना हो। यसले <b>पहिलो खाली ठाउँमै रोकिन्छ</b>, त्यसैले "Ram Bahadur" लेख्दा
+      "Ram" मात्र आउँछ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:cStringNull}}
+    <figcaption>Six boxes used for a five-letter word. The red box is the one you never typed and
+    the one every string function is looking for.
+    <span class="np-cell">पाँच अक्षरको शब्दका लागि छ बाकस। रातो बाकस तपाईंले कहिल्यै नटाइपेको हो,
+    र हरेक string function ले खोज्ने पनि त्यही हो।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h4>Where the sixth character came from</h4>
+      <p class="sim-goal">What you will learn: that storing a five-letter word writes six
+      characters, that strlen reports five, and that the two numbers are both right. Watch the
+      name[5] row appear without any line having put something there.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: पाँच अक्षरको शब्द राख्दा छ अक्षर लेखिन्छ,
+      strlen ले पाँच भन्छ, र दुवै सङ्ख्या ठिक छन्। कुनै लाइनले केही नराखी name[5] को पङ्क्ति
+      देखिएको हेर्नुहोस्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="stringLen"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Before the strlen step, predict the number. Then ask why it is not six, and why the
+        array was declared as ten.</p>
+        <span class="np-cell">strlen को चरणअघि सङ्ख्या अनुमान गर्नुहोस्। अनि सोध्नुहोस् — यो छ
+        किन भएन, र array दस किन घोषणा गरियो?</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 5.5 ============ -->
+  <h3 class="topic" id="c-t55">5.5 &nbsp;<span class="t-en">String functions</span><span class="t-ne"> — String function</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Seven in the syllabus, four of them standard</span>
+      <p>All of them need <code>#include &lt;string.h&gt;</code>.</p>
+      <ul>
+        <li><b><code>strlen(s)</code></b> — returns the number of characters <b>before</b> the
+        null. <code>strlen("NEPAL")</code> is 5.</li>
+        <li><b><code>strcpy(dest, src)</code></b> — copies src into dest, null included. Needed
+        because <code>dest = src</code> does not work on arrays.</li>
+        <li><b><code>strcat(dest, src)</code></b> — joins src onto the end of dest. dest must be
+        large enough for both.</li>
+        <li><b><code>strcmp(s1, s2)</code></b> — compares them and returns <b>0 when they are
+        equal</b>, a negative number if s1 comes first alphabetically, a positive number if it
+        comes after. Zero meaning equal is the opposite of what everyone expects.</li>
+      </ul>
+      <p>The other three — <code>strrev</code>, <code>strlwr</code>, <code>strupr</code> — reverse
+      a string, lower-case it and upper-case it. Learn them: they are on the syllabus and they
+      are examined.</p>
+    </div>
+    <div class="np"><span class="tag">पाठ्यक्रममा सात, तीमध्ये चार मानक</span>
+      <p>सबैलाई <code>#include &lt;string.h&gt;</code> चाहिन्छ।</p>
+      <ul>
+        <li><b><code>strlen(s)</code></b> — null <b>भन्दा अघिका</b> अक्षरको सङ्ख्या फर्काउँछ।
+        <code>strlen("NEPAL")</code> को ५।</li>
+        <li><b><code>strcpy(dest, src)</code></b> — src लाई null सहित dest मा सार्छ। चाहिनुको
+        कारण — array मा <code>dest = src</code> चल्दैन।</li>
+        <li><b><code>strcat(dest, src)</code></b> — src लाई dest को अन्त्यमा जोड्छ। dest दुवै
+        अट्ने ठूलो हुनुपर्छ।</li>
+        <li><b><code>strcmp(s1, s2)</code></b> — तुलना गरेर <b>बराबर भए ०</b> फर्काउँछ, s1
+        वर्णक्रममा पहिले भए ऋणात्मक, पछि भए धनात्मक। शून्यको अर्थ बराबर हुनु सबैको अपेक्षाविपरीत
+        छ।</li>
+      </ul>
+      <p>अरू तीन — <code>strrev</code>, <code>strlwr</code>, <code>strupr</code> — ले string
+      उल्टाउँछ, सानो अक्षर बनाउँछ र ठूलो अक्षर बनाउँछ। सिक्नुहोस्: यी पाठ्यक्रममा छन् र
+      सोधिन्छन्।</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b><code>strrev</code>, <code>strlwr</code> and <code>strupr</code> are not standard C.</b>
+    They exist in Turbo C and in some Microsoft compilers and are <b>absent from the C standard
+    library</b>, so a program using them compiles on DEV C++ on a Windows machine and fails on a
+    Linux one with "undefined reference". They are on the syllabus and they are examinable, so
+    write them in an examination answer; but if you are writing a program that has to run
+    anywhere, reverse a string with a loop and swap case with a loop. Knowing which of the seven
+    your program can rely on is worth more than knowing all seven.
+    <span class="np-cell"><b><code>strrev</code>, <code>strlwr</code> र <code>strupr</code> मानक
+    C मा छैनन्।</b> यी Turbo C र केही Microsoft compiler मा छन् तर <b>C मानक library मा
+    छैनन्</b>, त्यसैले यी चलाएको प्रोग्राम Windows को DEV C++ मा compile भएर Linux मा
+    "undefined reference" भन्दै असफल हुन्छ। यी पाठ्यक्रममा छन् र सोधिन्छन्, त्यसैले परीक्षाको
+    उत्तरमा लेख्नुहोस्; तर जहाँ पनि चल्नुपर्ने प्रोग्राम लेख्दै हुनुहुन्छ भने string loop ले
+    उल्टाउनुहोस् र अक्षरको case loop ले बदल्नुहोस्। सातै जान्नुभन्दा आफ्नो प्रोग्रामले कुनमा
+    भर पर्न सक्छ भन्ने जान्नु बढी काम लाग्छ।</span>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Which string function does this job?</h4>
+      <p class="sim-goal">What you will learn: to pick the function from what has to come back —
+      a number, a changed string, or a comparison result. That is how the one-mark questions on
+      this topic are framed.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: के फर्कनुपर्छ हेरेर function छान्न — सङ्ख्या,
+      बदलिएको string, कि तुलनाको नतिजा। यस विषयका एक अंकका प्रश्न यसरी नै सोधिन्छन्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cstr" data-set="cstrfunc"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Watch for the <code>strcmp</code> case. It returns 0 for a match, so the condition that
+        means "the passwords are the same" is <code>== 0</code>, which reads backwards and is
+        right.</p>
+        <span class="np-cell"><code>strcmp</code> को केस ध्यान दिनुहोस्। मिल्दा ० फर्काउने
+        भएकाले "password मिल्यो" भन्ने सर्त <code>== 0</code> हुन्छ — उल्टो पढिन्छ, र ठिक
+        छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Reading five marks and finding the largest</div>
+    <p><b>Question:</b> write a program that reads five marks into an array and prints the largest
+    one.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Decide what the "largest so far" variable should
+      start at. Zero is the obvious choice and it is wrong for one kind of input — work out
+      which.</span>
+      <span class="np-cell">"अहिलेसम्मको ठूलो" variable कहाँबाट सुरु गर्ने निर्णय गर्नुहोस्।
+      शून्य स्वाभाविक लाग्छ तर एक किसिमको input मा गलत हुन्छ — कुनमा, पत्ता लगाउनुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int marks[5], i, max;
+
+    printf("Enter five marks: ");
+    for (i = 0; i &lt; 5; i++)
+        scanf("%d", &amp;marks[i]);      /* &amp; needed: one element is an int */
+
+    max = marks[0];                  /* start from a REAL element       */
+
+    for (i = 1; i &lt; 5; i++)          /* start at 1: 0 is already in max */
+    {
+        if (marks[i] &gt; max)
+            max = marks[i];
+    }
+
+    printf("Largest = %d", max);
+    return 0;
+}</pre>
+      <span class="wex-lbl">Output (if the user types 70 85 60 90 45)</span>
+      <pre class="out">Enter five marks: 70 85 60 90 45
+Largest = 90</pre>
+      <p class="wex-note">Starting <code>max</code> at <code>marks[0]</code> rather than at 0 is
+      the detail worth the mark. If every value entered were negative — a temperature program, a
+      profit-and-loss program — then <code>max = 0</code> would report 0, a number that was never
+      entered. Starting from a real element cannot be wrong whatever the data is. Note too that
+      the second loop starts at 1, because element 0 is already the answer so far.
+      <span class="np-cell">अंक बोक्ने कुरा <code>max</code> लाई ० होइन <code>marks[0]</code>
+      बाट सुरु गर्नु हो। सबै मान ऋणात्मक भए — तापक्रमको वा नाफा–नोक्सानको प्रोग्राममा —
+      <code>max = 0</code> ले कहिल्यै नहालिएको ० लाई उत्तर भन्थ्यो। साँच्चैको element बाट सुरु
+      गरे data जस्तोसुकै भए पनि गलत हुँदैन। अर्को कुरा — दोस्रो loop १ बाट सुरु हुन्छ, किनभने
+      element ० अहिलेसम्मको उत्तर भइसक्यो।</span></p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Sorting a list into ascending order</div>
+    <p><b>Question:</b> sort five numbers using two nested loops, and say what the outer loop is
+    counting.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Work out how many comparisons are needed for five
+      numbers before opening this. If your answer is five, trace the first pass on paper
+      instead.</span>
+      <span class="np-cell">खोल्नुअघि पाँच सङ्ख्याका लागि कति तुलना चाहिन्छ निकाल्नुहोस्।
+      उत्तर पाँच आयो भने बरु कागजमा पहिलो पटक ट्रेस गर्नुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a[5] = {40, 10, 50, 20, 30};
+    int i, j, t;
+
+    for (i = 0; i &lt; 4; i++)              /* 4 passes over the list   */
+    {
+        for (j = 0; j &lt; 4 - i; j++)      /* each pass is one shorter */
+        {
+            if (a[j] &gt; a[j + 1])         /* neighbours out of order? */
+            {
+                t = a[j];                /* the three-line swap      */
+                a[j] = a[j + 1];
+                a[j + 1] = t;
+            }
+        }
+    }
+
+    for (i = 0; i &lt; 5; i++)
+        printf("%d ", a[i]);
+    return 0;
+}</pre>
+      <span class="wex-lbl">The list after each pass of the outer loop</span>
+      <div class="out">start    40 10 50 20 30
+pass 1   10 40 20 30 50     50 has travelled to the end
+pass 2   10 20 30 40 50     40 is now in place
+pass 3   10 20 30 40 50     nothing left to move
+pass 4   10 20 30 40 50</div>
+      <span class="wex-lbl">Output</span>
+      <pre class="out">10 20 30 40 50 </pre>
+      <p class="wex-note">The outer loop counts <b>passes</b>, not elements: five numbers need
+      four passes, because once four are in place the fifth has nowhere else to be. The inner
+      condition is <code>j &lt; 4 - i</code> rather than <code>j &lt; 4</code> because the end of
+      the list is already sorted after each pass and comparing it again wastes time. And
+      <code>a[j + 1]</code> is why the inner loop must stop at <code>4 - i</code> and not
+      <code>5 - i</code>: at <code>j = 4</code> it would reach <code>a[5]</code>, which is
+      outside the array.
+      <span class="np-cell">बाहिरी loop ले element होइन <b>पटक</b> गन्छ: पाँच सङ्ख्यालाई चार
+      पटक चाहिन्छ, किनभने चार ठाउँमा पुगेपछि पाँचौंको अर्को ठाउँ नै हुँदैन। भित्री सर्त
+      <code>j &lt; 4</code> होइन <code>j &lt; 4 - i</code> हुनुको कारण हरेक पटकपछि सूचीको अन्त्य
+      मिलिसकेको हुन्छ र फेरि तुलना गर्नु समय खेर फाल्नु हो। अनि <code>a[j + 1]</code> नै भित्री
+      loop <code>5 - i</code> होइन <code>4 - i</code> मा रोकिनुपर्ने कारण हो:
+      <code>j = 4</code> मा यो <code>a[5]</code> सम्म पुग्थ्यो, जुन array बाहिर छ।</span></p>
+    </div>
+  </div>
+
+  <p class="sim-kicker"><span class="t-en">Practise it — the help comes away</span><span class="t-ne"><span class="t-en"> · </span>अभ्यास गर्नुहोस् — सहयोग घट्दै जान्छ</span></p>
+  <div class="guided" data-skill="c.arrayindex"></div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Starting the index at 1.</b> The first element is <code>a[0]</code> and the last is
+      <code>a[size - 1]</code>.</li>
+      <li><b>Writing <code>i &lt;= size</code> in the loop.</b> It reads one box past the end, and
+      nothing warns you.</li>
+      <li><b>Declaring <code>char name[5]</code> for a five-letter word.</b> The null needs a
+      sixth box.</li>
+      <li><b>Using <code>==</code> to compare two strings.</b> It compares addresses, not text.
+      Use <code>strcmp</code>, and remember it returns 0 for equal.</li>
+      <li><b>Using <code>=</code> to copy a string.</b> Arrays cannot be assigned; use
+      <code>strcpy</code>.</li>
+      <li><b>Writing <code>&amp;name</code> in <code>scanf("%s", name)</code>.</b> The array name
+      is already an address.</li>
+      <li><b>Calling <code>strrev</code> and expecting it everywhere.</b> It is not standard C.</li>
+    </ul>
+    <span class="np-cell"><b>Index १ बाट सुरु गर्नु:</b> पहिलो element <code>a[0]</code>, अन्तिम
+    <code>a[size - 1]</code>। <b>Loop मा <code>i &lt;= size</code> लेख्नु:</b> अन्त्यभन्दा एक
+    बाकस पर पढिन्छ र चेतावनी आउँदैन। <b>पाँच अक्षरका लागि <code>char name[5]</code>:</b> null
+    लाई छैटौं बाकस चाहिन्छ। <b>दुई string तुलना गर्न <code>==</code>:</b> यसले ठेगाना तुलना
+    गर्छ, पाठ होइन; <code>strcmp</code> चलाउनुहोस् र बराबर भए ० फर्काउँछ सम्झनुहोस्।
+    <b>String सार्न <code>=</code>:</b> array मा assignment चल्दैन; <code>strcpy</code>
+    चलाउनुहोस्। <b><code>scanf("%s", name)</code> मा <code>&amp;name</code> लेख्नु:</b> array को
+    नाम आफैं ठेगाना हो। <b><code>strrev</code> जताततै चल्छ भन्ठान्नु:</b> यो मानक C मा
+    छैन।</span>
+  </div>
+
+  <p class="hook"><span class="t-en"><b>Memory hook —</b> <i>Index from zero, last is size minus
+    one; a string is one box longer than it looks.</i></span>
+    <span class="np-cell"><b>सम्झने तरिका —</b> <i>Index शून्यबाट, अन्तिम आकार घटाउ एक; string
+    देखिनेभन्दा एक बाकस लामो।</i></span></p>
+
+  <!-- ============ PRACTICAL ============ -->
+  <h3 class="topic" id="c-prac5"><span class="t-en">Practical work — this unit's other 15 hours</span><span class="t-ne"> — प्रयोगात्मक काम — यस युनिटका अरू १५ घण्टा</span></h3>
+
+  <div class="practical">
+    <div class="h"><span class="pr-kind">Guided practical</span>The two activities the curriculum suggests</div>
+    <p>From the curriculum's own list for Unit 5. <b>Neither can be done from this site</b> — both
+    need a C compiler on a real computer.
+    <span class="np-cell">पाठ्यक्रमकै युनिट ५ को सूचीबाट। <b>दुवै यस साइटबाट गर्न मिल्दैन</b> —
+    दुवैलाई साँच्चैको कम्प्युटरमा C compiler चाहिन्छ।</span></p>
+
+    <div class="pr-act" data-practical="g9.c.p5.1">
+      <p><span class="pr-num">5.1</span> Write programs using arrays, including sorting a list.</p>
+      <p class="pr-need"><b>You need:</b> a computer with a C compiler. <b>This cannot be
+      simulated</b> on this site. <b>Builds on:</b> 5.2, 5.3 and Unit 3's nested loops.
+      <b>Hand in:</b> the source files and your practical record. <b>Suggested set:</b> read ten
+      numbers and print them backwards; find the largest and the smallest; find the average; then
+      <b>sort the list into ascending order</b> using two nested loops that compare neighbouring
+      elements and swap them. <b>Observe and record:</b> print the whole array after each pass of
+      the outer loop, and write the passes down. Watching the largest value travel to the end one
+      pass at a time is the clearest thing in this unit and it only happens if you print it.
+      <span class="np-cell"><b>चाहिन्छ:</b> C compiler भएको कम्प्युटर। <b>यो यहाँ simulate गर्न
+      मिल्दैन।</b> <b>आधार:</b> ५.२, ५.३ र युनिट ३ का nested loop। <b>बुझाउने:</b> source फाइल
+      र प्रयोगात्मक अभिलेख। <b>सुझाव:</b> दस सङ्ख्या पढेर उल्टो छाप्ने; ठूलो र सानो पत्ता
+      लगाउने; औसत निकाल्ने; अनि छेउछाउका element तुलना गरेर साट्ने दुई nested loop ले
+      <b>सूचीलाई बढ्दो क्रममा मिलाउने</b>। <b>ध्यान दिएर लेख्ने:</b> बाहिरी loop को हरेक पटकपछि
+      पूरै array छापेर ती चरण लेख्नुहोस्। सबैभन्दा ठूलो मान एक–एक पटक गर्दै अन्त्यतिर सर्दै
+      गएको हेर्नु यस युनिटको सबैभन्दा स्पष्ट कुरा हो, र छापे मात्र देखिन्छ।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.c.p5.2">
+      <p><span class="pr-num">5.2</span> Write programs using strings.</p>
+      <p class="pr-need"><b>You need:</b> a computer with a C compiler. <b>This cannot be
+      simulated</b> on this site. <b>Builds on:</b> 5.4 and 5.5. <b>Hand in:</b> the source files
+      and your practical record. <b>Suggested set:</b> read a name and print it; find its length
+      with <code>strlen</code> and again with a loop of your own, and check the two agree; copy
+      one string to another; join two strings; compare two strings and report whether they match.
+      <b>Then record one result that matters:</b> try <code>strrev</code> on your compiler and
+      write down whether it worked. If your school later uses a different compiler, that note in
+      your record book will explain why a program that worked stopped working.
+      <span class="np-cell"><b>चाहिन्छ:</b> C compiler भएको कम्प्युटर। <b>यो यहाँ simulate गर्न
+      मिल्दैन।</b> <b>आधार:</b> ५.४ र ५.५। <b>बुझाउने:</b> source फाइल र प्रयोगात्मक अभिलेख।
+      <b>सुझाव:</b> नाम पढेर छाप्ने; <code>strlen</code> ले अनि आफ्नै loop ले लम्बाइ निकालेर
+      दुवै मिल्यो कि मिलेन जाँच्ने; एउटा string अर्कोमा सार्ने; दुई string जोड्ने; दुई string
+      तुलना गरेर मिल्यो कि मिलेन भन्ने। <b>अनि एउटा महत्त्वपूर्ण नतिजा लेख्नुहोस्:</b> आफ्नो
+      compiler मा <code>strrev</code> चलाएर चल्यो कि चलेन लेख्नुहोस्। पछि विद्यालयले अर्को
+      compiler चलायो भने अभिलेखको त्यही टिपोटले चलिरहेको प्रोग्राम किन रोकियो बुझाउनेछ।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ EXAM FOCUS ============ -->
+  <h3 class="topic" id="c-exam5"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne"> — परीक्षा केन्द्र — यस युनिटबाट के सोधिन्छ</span></h3>
+
+  <div class="exam-connect">
+    <p>This unit carries <b>8 of the 50 external marks</b> and 10 of the 64 theory hours. The
+    program to write is nearly always "read n numbers into an array and do something with them" —
+    sum, average, largest, smallest, or reverse. Short questions ask what an array is, how it is
+    declared and initialised, what the null character does, and what a named string function
+    returns. One-mark questions love the index: what is the last index of <code>int a[10]</code>?
+    <span class="np-cell">यो युनिटले <b>बाह्य ५० मध्ये ८ अंक</b> र ६४ मध्ये १० घण्टा ओगट्छ।
+    लेख्नुपर्ने प्रोग्राम झन्डै सधैं "n सङ्ख्या array मा पढेर केही गर्ने" हुन्छ — जोड, औसत,
+    ठूलो, सानो, वा उल्टो। छोटा प्रश्नले array भनेको के हो, कसरी घोषणा र initialise गरिन्छ, null
+    अक्षरले के गर्छ, र नाम तोकिएको string function ले के फर्काउँछ सोध्छन्। एक अंकका प्रश्नलाई
+    index मन पर्छ: <code>int a[10]</code> को अन्तिम index कति?</span></p>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>What is an array? Write the syntax for declaring a one-dimensional array with an example.
+    <span class="np-cell">Array भनेको के हो? एक-आयामिक array घोषणा गर्ने syntax उदाहरणसहित
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca51">Show the answer</button>
+    <div class="ans" id="ca51">
+      <p>An <b>array</b> is a collection of elements of the same data type stored in continuous
+      memory locations under a single name, where each element is reached by an index starting
+      from 0.</p>
+      <p><b>Syntax:</b> <code>data_type array_name[size];</code></p>
+      <p><b>Example:</b> <code>int marks[5];</code> declares an array of five integers with
+      indices <code>marks[0]</code> to <code>marks[4]</code>.</p>
+      <span class="np-cell"><b>Array</b> भनेको एउटै data type का element लाई एउटै नाममुनि लगातार
+      मेमोरी स्थानमा राखेको समूह हो, जहाँ हरेक element ० बाट सुरु हुने index ले पुगिन्छ।
+      <b>Syntax:</b> <code>data_type array_name[size];</code> <b>उदाहरण:</b>
+      <code>int marks[5];</code> ले पाँच integer को array घोषणा गर्छ, जसका index
+      <code>marks[0]</code> देखि <code>marks[4]</code> सम्म हुन्छन्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>What is the null character? Why is <code>char name[5] = "NEPAL";</code> a mistake?
+    <span class="np-cell">Null अक्षर भनेको के हो? <code>char name[5] = "NEPAL";</code> किन गल्ती
+    हो?</span></p>
+    <button class="btn-ans" data-answer="ca52">Show the answer</button>
+    <div class="ans" id="ca52">
+      <p>The <b>null character</b> <code>\0</code> is a character with the value zero that is
+      stored automatically at the end of every string in C. It marks where the string stops; no
+      length is recorded anywhere else, so every string function walks forward until it finds
+      this character.</p>
+      <p><code>char name[5] = "NEPAL";</code> is a mistake because NEPAL is five characters and
+      needs a <b>sixth</b> position for the null. With only five boxes there is no terminator, so
+      nothing marks the end of the string, and functions such as <code>printf</code> and
+      <code>strlen</code> read past the array into whatever memory follows. Compiled and run to
+      check this: <code>sizeof(name)</code> gave 5 as it must, and
+      <code>strlen(name)</code> gave <b>10</b> — it had walked five characters past the end of
+      the array before it happened to meet a zero byte.</p>
+      <span class="np-cell"><b>Null अक्षर</b> <code>\0</code> शून्य मान भएको अक्षर हो, जुन C मा
+      हरेक string को अन्त्यमा आफैं राखिन्छ। यसले string कहाँ सकिन्छ जनाउँछ; लम्बाइ अन्त कतै
+      लेखिँदैन, त्यसैले हरेक string function यही अक्षर नभेटेसम्म अगाडि बढ्छ।
+      <code>char name[5] = "NEPAL";</code> गल्ती हो किनभने NEPAL पाँच अक्षर हो र null का लागि
+      <b>छैटौं</b> ठाउँ चाहिन्छ। पाँच बाकस मात्र भए terminator नै हुँदैन, string को अन्त्य
+      केहीले जनाउँदैन, र <code>printf</code> अनि <code>strlen</code> जस्ता function array नाघेर
+      पछाडिको मेमोरी पढ्छन्। यो जाँच्न compile गरेर चलाइयो: <code>sizeof(name)</code> ले
+      हुनुपर्ने ५ दियो, र <code>strlen(name)</code> ले <b>१०</b> — array को अन्त्यभन्दा पाँच
+      अक्षर पर पुगेपछि संयोगले शून्य byte भेटेको थियो।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>Write a C program to read ten numbers into an array and print their sum and average.
+    <span class="np-cell">दस सङ्ख्या array मा पढेर तिनको जोड र औसत छाप्ने C प्रोग्राम
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca53">Show the answer</button>
+    <div class="ans" id="ca53">
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a[10], i, sum = 0;
+    float avg;
+
+    printf("Enter ten numbers: ");
+    for (i = 0; i &lt; 10; i++)
+        scanf("%d", &amp;a[i]);
+
+    for (i = 0; i &lt; 10; i++)
+        sum = sum + a[i];
+
+    avg = sum / 10.0;              /* 10.0, not 10 — see the note */
+
+    printf("Sum = %d\n", sum);
+    printf("Average = %.2f\n", avg);
+    return 0;
+}</pre>
+      <p>Two details carry marks beyond the loop itself. <code>sum</code> is set to 0 before any
+      addition. And the average is divided by <code>10.0</code> and not <code>10</code>: two
+      integers would give integer division and an average of 85.7 would print as 85.00, which is
+      the Unit 2 trap arriving in a Unit 5 program.</p>
+      <span class="np-cell">Loop बाहेक दुई कुराले अंक बोक्छन्। कुनै जोड हुनुअघि <code>sum</code>
+      लाई ० राखिएको छ। अनि औसत <code>10</code> होइन <code>10.0</code> ले भाग गरिएको छ: दुई
+      integer भए integer division हुन्थ्यो र ८५.७ को औसत ८५.०० छापिन्थ्यो — युनिट २ को पासो
+      युनिट ५ को प्रोग्राममा आइपुगेको।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h4>Key points from this unit</h4>
+    <ul>
+      <li>An array holds elements of one type in continuous memory under one name, reached by an
+      index.</li>
+      <li>Indexing starts at 0; the last index is size − 1; C checks no bounds at all.</li>
+      <li><code>int a[5] = {70, 85};</code> fills the remaining three with zero.</li>
+      <li>A string is a <code>char</code> array ending in <code>\0</code>, so it needs one box
+      more than its letters.</li>
+      <li><code>scanf("%s", name)</code> takes no ampersand and stops at the first space.</li>
+      <li><code>strlen</code> counts before the null; <code>strcpy</code> copies;
+      <code>strcat</code> joins; <code>strcmp</code> returns 0 when equal.</li>
+      <li>All string functions need <code>string.h</code>.</li>
+      <li><code>strrev</code>, <code>strlwr</code> and <code>strupr</code> are on the syllabus and
+      are not standard C.</li>
+    </ul>
+    <span class="np-cell">Array ले एउटै प्रकारका element लाई एउटै नाममुनि लगातार मेमोरीमा राख्छ
+    र index ले पुगिन्छ। Index ० बाट सुरु; अन्तिम index आकार − १; C ले bound जाँच्दै जाँच्दैन।
+    <code>int a[5] = {70, 85};</code> ले बाँकी तीनलाई शून्य बनाउँछ। String भनेको
+    <code>\0</code> ले सकिने <code>char</code> array हो, त्यसैले अक्षरभन्दा एक बाकस बढी चाहिन्छ।
+    <code>scanf("%s", name)</code> लाई ampersand चाहिँदैन र पहिलो खाली ठाउँमा रोकिन्छ।
+    <code>strlen</code> ले null अघिका गन्छ; <code>strcpy</code> सार्छ; <code>strcat</code>
+    जोड्छ; <code>strcmp</code> बराबर भए ० फर्काउँछ। सबै string function लाई
+    <code>string.h</code> चाहिन्छ। <code>strrev</code>, <code>strlwr</code> र
+    <code>strupr</code> पाठ्यक्रममा छन् तर मानक C मा छैनन्।</span>
+  </div>
+</section>

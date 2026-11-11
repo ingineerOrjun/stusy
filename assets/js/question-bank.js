@@ -1,4 +1,2275 @@
 /* GENERATED from _source/content/questions — do not edit by hand. */
+QuizService.registerBank("grade9/c-programming", [
+  {
+    "id": "g9.c.q01",
+    "subject": "grade9/c-programming",
+    "unit": "u1",
+    "topic": "program-vs-software",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which statement correctly separates a program from software?",
+      "ne": "Program र software लाई ठिक तरिकाले छुट्याउने कथन कुन हो?"
+    },
+    "options": [
+      {
+        "en": "They mean the same thing",
+        "ne": "दुवैको अर्थ एउटै हो"
+      },
+      {
+        "en": "A program is one set of instructions; software is programs together with their data and documentation",
+        "ne": "Program भनेको एउटा निर्देशन समूह हो; software चाहिँ प्रोग्रामहरू, तिनका data र documentation सहित"
+      },
+      {
+        "en": "A program runs on hardware; software runs on the internet",
+        "ne": "Program hardware मा चल्छ; software इन्टरनेटमा चल्छ"
+      },
+      {
+        "en": "Software is written by a programmer; a program is written by a user",
+        "ne": "Software प्रोग्रामरले लेख्छ; program प्रयोगकर्ताले लेख्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The difference is scope. A program is a single ordered set of instructions for one task. Software is the whole package — one or more programs, the data files they need, and the documentation. Every program is software, but software is normally many programs: a browser is one, an operating system is hundreds.",
+      "ne": "फरक दायराको हो। Program एउटै कामका लागि क्रमबद्ध निर्देशनको एउटा समूह हो। Software चाहिँ पूरै प्याकेज — एक वा धेरै program, तिनलाई चाहिने data फाइल, र documentation। हरेक program software हो, तर software प्रायः धेरै program हुन्छ: browser एउटा हो, operating system सयौं।"
+    }
+  },
+  {
+    "id": "g9.c.q02",
+    "subject": "grade9/c-programming",
+    "unit": "u1",
+    "topic": "language-levels",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which of these is a LOW level language?",
+      "ne": "यीमध्ये कुन LOW level भाषा हो?"
+    },
+    "options": [
+      {
+        "en": "C",
+        "ne": "C"
+      },
+      {
+        "en": "Java",
+        "ne": "Java"
+      },
+      {
+        "en": "Assembly language",
+        "ne": "Assembly language"
+      },
+      {
+        "en": "Python",
+        "ne": "Python"
+      }
+    ],
+    "answer": 2,
+    "explanation": {
+      "en": "Low level means close to the hardware, and only two categories qualify: machine language and assembly language. C, Java and Python are all high level. C is sometimes called a middle level language because it can reach memory addresses directly, but it is still translated by a compiler and it is still written in English-like words.",
+      "ne": "Low level को अर्थ hardware सँग नजिक हुनु हो, र दुई श्रेणी मात्र यसमा पर्छन्: machine language र assembly language। C, Java र Python सबै high level हुन्। C लाई कहिलेकाहीं middle level भनिन्छ किनभने यसले मेमोरीको ठेगानासम्म सिधै पुग्न सक्छ, तर यो पनि compiler ले अनुवाद गर्छ र अङ्ग्रेजीजस्ता शब्दमै लेखिन्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q03",
+    "subject": "grade9/c-programming",
+    "unit": "u1",
+    "topic": "translator-choice",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A C program has one missing semicolon on line 20. What happens when the programmer tries to run it?",
+      "ne": "C प्रोग्रामको लाइन २० मा एउटा semicolon छुटेको छ। प्रोग्रामरले चलाउन खोज्दा के हुन्छ?"
+    },
+    "options": [
+      {
+        "en": "Lines 1 to 19 run, then the program stops at line 20",
+        "ne": "लाइन १ देखि १९ चल्छन्, अनि लाइन २० मा प्रोग्राम रोकिन्छ"
+      },
+      {
+        "en": "Nothing runs at all — the compiler refuses and no executable is produced",
+        "ne": "केही पनि चल्दैन — compiler ले इन्कार गर्छ र executable बन्दैन"
+      },
+      {
+        "en": "The program runs and prints a warning at the end",
+        "ne": "प्रोग्राम चल्छ र अन्त्यमा चेतावनी छाप्छ"
+      },
+      {
+        "en": "The missing semicolon is added automatically",
+        "ne": "छुटेको semicolon आफैं थपिन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "C is compiled, not interpreted. The compiler reads the whole file before anything runs, so a grammar mistake anywhere means no executable file is created and nothing executes. Option A describes an interpreter, which runs line by line and therefore does stop part way. This is the practical difference between the two translators.",
+      "ne": "C compile हुने भाषा हो, interpret हुने होइन। Compiler ले केही चल्नुअघि पूरै फाइल पढ्छ, त्यसैले जहाँसुकैको व्याकरण गल्तीले executable फाइल बन्दैन र केही चल्दैन। विकल्प (क) ले interpreter को वर्णन गर्छ, जसले एक–एक लाइन चलाउँछ र त्यसैले बीचमै रोकिन्छ। दुई अनुवादकबीचको व्यावहारिक फरक यही हो।"
+    }
+  },
+  {
+    "id": "g9.c.q04",
+    "subject": "grade9/c-programming",
+    "unit": "u1",
+    "topic": "flowchart-symbols",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "In a flowchart, which symbol is used for the step \"Print the result on the screen\"?",
+      "ne": "Flowchart मा \"नतिजा पर्दामा छाप्नुहोस्\" भन्ने चरणका लागि कुन चिन्ह प्रयोग हुन्छ?"
+    },
+    "options": [
+      {
+        "en": "Rectangle",
+        "ne": "Rectangle"
+      },
+      {
+        "en": "Parallelogram",
+        "ne": "Parallelogram"
+      },
+      {
+        "en": "Diamond",
+        "ne": "Diamond"
+      },
+      {
+        "en": "Oval",
+        "ne": "Oval"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Printing sends something out of the program to the person, so it is output, and input and output share the same slanted parallelogram. The rectangle is for processing — a calculation or an assignment that happens inside the program where nobody sees it. Drawing a rectangle here is one of the commonest ways marks are lost on a flowchart question.",
+      "ne": "छाप्नु भनेको प्रोग्रामबाट मान्छेसम्म केही पठाउनु हो, त्यसैले यो output हो, र input अनि output दुवैलाई उही छड्के parallelogram प्रयोग हुन्छ। Rectangle चाहिँ processing का लागि हो — प्रोग्रामभित्रै हुने गणना वा assignment, जुन कसैले देख्दैन। यहाँ rectangle कोर्नु flowchart को प्रश्नमा अंक गुमाउने सबैभन्दा सामान्य तरिकामध्ये एक हो।"
+    }
+  },
+  {
+    "id": "g9.c.q05",
+    "subject": "grade9/c-programming",
+    "unit": "u1",
+    "topic": "algorithm-properties",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "An algorithm reads a number, prints it, and goes back to the printing step forever. Which property of an algorithm does it break?",
+      "ne": "एउटा algorithm ले सङ्ख्या पढ्छ, छाप्छ, र छाप्ने चरणमै सधैं फर्किरहन्छ। यसले algorithm को कुन गुण भङ्ग गर्छ?"
+    },
+    "options": [
+      {
+        "en": "Input",
+        "ne": "Input"
+      },
+      {
+        "en": "Output",
+        "ne": "Output"
+      },
+      {
+        "en": "Finiteness",
+        "ne": "Finiteness"
+      },
+      {
+        "en": "Definiteness",
+        "ne": "Definiteness"
+      }
+    ],
+    "answer": 2,
+    "explanation": {
+      "en": "Finiteness says an algorithm must end after a limited number of steps. This one has an input and it certainly has output, and every step is clear enough to carry out, so those three properties hold. What it never does is stop, and a procedure that never stops has not solved the problem. Missing the Stop box in a flowchart is the drawn version of the same mistake.",
+      "ne": "Finiteness ले algorithm सीमित चरणपछि सकिनै पर्छ भन्छ। यसमा input छ र output पक्कै छ, र हरेक चरण गर्न पुग्ने गरी स्पष्ट छ — त्यसैले ती तीन गुण पूरा भए। नहुने कुरा रोकिनु हो, र कहिल्यै नरोकिने विधिले समस्या समाधान गरेको हुँदैन। Flowchart मा Stop बाकस छुटाउनु यही गल्तीको कोरिएको रूप हो।"
+    }
+  },
+  {
+    "id": "g9.c.q06",
+    "subject": "grade9/c-programming",
+    "unit": "u1",
+    "topic": "application-areas",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A program stores 40,000 customer records and prints a monthly statement for each, adding up the amounts. Which application area is this, and what does it mainly demand from the computer?",
+      "ne": "एउटा प्रोग्रामले ४०,००० ग्राहकको विवरण राख्छ र हरेकको मासिक विवरण छाप्छ, रकम जोड्दै। यो कुन प्रयोग क्षेत्र हो, र यसले कम्प्युटरसँग मुख्यतः के माग्छ?"
+    },
+    "options": [
+      {
+        "en": "Scientific — it demands floating-point speed",
+        "ne": "वैज्ञानिक — यसलाई floating-point को गति चाहिन्छ"
+      },
+      {
+        "en": "Business — it demands storage, sorting and well-formatted reports",
+        "ne": "व्यावसायिक — यसलाई भण्डारण, क्रम मिलाउने र राम्रो ढाँचाको प्रतिवेदन चाहिन्छ"
+      },
+      {
+        "en": "Scientific — it demands a large number of calculations",
+        "ne": "वैज्ञानिक — यसलाई ठूलो सङ्ख्यामा गणना चाहिन्छ"
+      },
+      {
+        "en": "Business — it demands many decimal places of accuracy",
+        "ne": "व्यावसायिक — यसलाई धेरै दशमलवसम्मको शुद्धता चाहिन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The test is the ratio between data and calculation. Here there is a very large amount of data and the arithmetic is addition, so it is a business application, and what it needs is storage, retrieval, sorting and readable output. A scientific application is the opposite shape: a small amount of data and an enormous amount of calculation, which is why option A names floating-point speed for the wrong kind of job.",
+      "ne": "जाँच data र गणनाको अनुपात हो। यहाँ data धेरै छ र गणना भनेको जोड मात्र, त्यसैले यो व्यावसायिक प्रयोग हो, र यसलाई भण्डारण, खोजी, क्रम मिलाउने र पढ्न मिल्ने output चाहिन्छ। वैज्ञानिक प्रयोगको आकार उल्टो हुन्छ: थोरै data र ठूलो गणना — त्यसैले विकल्प (क) ले गलत किसिमको कामलाई floating-point गति तोकेको छ।"
+    }
+  },
+  {
+    "id": "g9.c.q07",
+    "subject": "grade9/c-programming",
+    "unit": "u1",
+    "topic": "portability",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which file should be carried to another computer so that the same C program can be used there?",
+      "ne": "उही C प्रोग्राम अर्को कम्प्युटरमा प्रयोग गर्न कुन फाइल लैजानुपर्छ?"
+    },
+    "options": [
+      {
+        "en": "The .exe file, because it is ready to run",
+        "ne": ".exe फाइल, किनभने त्यो चल्न तयार छ"
+      },
+      {
+        "en": "The .c source file, because it can be compiled again on the other machine",
+        "ne": ".c source फाइल, किनभने अर्को मेसिनमा त्यसलाई फेरि compile गर्न सकिन्छ"
+      },
+      {
+        "en": "Either one — both work anywhere",
+        "ne": "जुनसुकै — दुवै जताततै चल्छन्"
+      },
+      {
+        "en": "Neither — a C program cannot be moved",
+        "ne": "कुनै पनि होइन — C प्रोग्राम सार्नै मिल्दैन"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Portability in C belongs to the source, not to the executable. The .exe is machine code built for one processor and one operating system, so copying it to a different kind of machine gives a file that cannot run. The .c file is ordinary text: compile it again on the far side and the same program is available there. This is why \"C is portable\" and \"my .exe will not run on Linux\" are both true at once.",
+      "ne": "C मा portability source को गुण हो, executable को होइन। .exe एउटा प्रोसेसर र एउटा operating system का लागि बनेको मेसिन कोड हो, त्यसैले फरक किसिमको मेसिनमा सार्दा नचल्ने फाइल मात्र पुग्छ। .c फाइल सामान्य पाठ हो: त्यहाँ पुगेर फेरि compile गरे उही प्रोग्राम त्यहाँ पनि चल्छ। त्यसैले \"C portable छ\" र \"मेरो .exe Linux मा चल्दैन\" दुवै एकैचोटि सत्य हुन्छन्।"
+    }
+  },
+  {
+    "id": "g9.c.q08",
+    "subject": "grade9/c-programming",
+    "unit": "u2",
+    "topic": "identifier-rules",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which of these is a VALID identifier in C?",
+      "ne": "यीमध्ये कुन C को मान्य identifier हो?"
+    },
+    "options": [
+      {
+        "en": "2marks",
+        "ne": "2marks"
+      },
+      {
+        "en": "total marks",
+        "ne": "total marks"
+      },
+      {
+        "en": "_total2",
+        "ne": "_total2"
+      },
+      {
+        "en": "float",
+        "ne": "float"
+      }
+    ],
+    "answer": 2,
+    "explanation": {
+      "en": "Check the four rules in order. \"2marks\" starts with a digit, which is not allowed. \"total marks\" contains a space. \"float\" is a keyword, so the compiler could not tell which meaning you intended. \"_total2\" begins with an underscore, contains only letters, digits and underscores, and is not a keyword, so it is valid.",
+      "ne": "चारै नियम क्रमैसँग जाँच्नुहोस्। \"2marks\" अङ्कबाट सुरु भएको छ, जुन मिल्दैन। \"total marks\" मा खाली ठाउँ छ। \"float\" keyword हो, त्यसैले तपाईंले कुन अर्थ चाहनुभयो compiler ले छुट्याउन सक्दैनथ्यो। \"_total2\" underscore बाट सुरु भएको छ, अक्षर, अङ्क र underscore मात्र छन्, र keyword पनि होइन — त्यसैले मान्य छ।"
+    }
+  },
+  {
+    "id": "g9.c.q09",
+    "subject": "grade9/c-programming",
+    "unit": "u2",
+    "topic": "c-origin",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Who developed the C language, and for what purpose?",
+      "ne": "C भाषा कसले र कुन उद्देश्यले विकास गरे?"
+    },
+    "options": [
+      {
+        "en": "Bjarne Stroustrup, to add classes to C",
+        "ne": "Bjarne Stroustrup ले, C मा class थप्न"
+      },
+      {
+        "en": "Dennis Ritchie, to write the UNIX operating system",
+        "ne": "Dennis Ritchie ले, UNIX operating system लेख्न"
+      },
+      {
+        "en": "James Gosling, to make programs run on any machine",
+        "ne": "James Gosling ले, प्रोग्राम जुनसुकै मेसिनमा चलाउन"
+      },
+      {
+        "en": "Charles Babbage, to control the Analytical Engine",
+        "ne": "Charles Babbage ले, Analytical Engine चलाउन"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "C was developed by Dennis Ritchie at Bell Laboratories in 1972, and UNIX was rewritten in it. That origin explains the language: an operating system needs direct access to memory and almost no overhead, which is why C has pointers and why it stays fast. Bjarne Stroustrup developed C++ from C, which is a different language and a later one.",
+      "ne": "C लाई Dennis Ritchie ले Bell Laboratories मा १९७२ मा विकास गरे, र UNIX त्यसैमा फेरि लेखियो। त्यही उत्पत्तिले भाषा बुझाउँछ: operating system लाई मेमोरीमा सिधै पहुँच र झन्डै शून्य थप भार चाहिन्छ — त्यसैले C मा pointer छन् र यो छिटो रहन्छ। Bjarne Stroustrup ले C बाट C++ बनाए, जुन फरक र पछिको भाषा हो।"
+    }
+  },
+  {
+    "id": "g9.c.q10",
+    "subject": "grade9/c-programming",
+    "unit": "u2",
+    "topic": "escape-sequence",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What does the escape sequence \\n do inside a printf string?",
+      "ne": "printf को string भित्र escape sequence \\n ले के गर्छ?"
+    },
+    "options": [
+      {
+        "en": "It prints a backslash followed by the letter n",
+        "ne": "यसले backslash र त्यसपछि n अक्षर छाप्छ"
+      },
+      {
+        "en": "It moves the output to a new line",
+        "ne": "यसले output लाई नयाँ लाइनमा सार्छ"
+      },
+      {
+        "en": "It ends the program",
+        "ne": "यसले प्रोग्राम सिध्याउँछ"
+      },
+      {
+        "en": "It inserts a tab space",
+        "ne": "यसले tab को खाली ठाउँ हाल्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "An escape sequence is a backslash and a letter that together stand for one character that cannot be typed directly. \\n is the newline character: two characters in the source file, one invisible character in the output. \\t is the tab, which is why option D is wrong. Without \\n, two printf calls run their text together on the same line.",
+      "ne": "Escape sequence भनेको backslash र एउटा अक्षर मिलेर सिधै टाइप गर्न नमिल्ने एउटा अक्षर जनाउने कुरा हो। \\n newline अक्षर हो: source फाइलमा दुई अक्षर, output मा एउटा नदेखिने अक्षर। Tab चाहिँ \\t हो, त्यसैले विकल्प (घ) गलत छ। \\n नभए दुई printf को पाठ उही लाइनमा जोडिन्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q11",
+    "subject": "grade9/c-programming",
+    "unit": "u2",
+    "topic": "semicolon-rule",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which of these lines must NOT end with a semicolon?",
+      "ne": "यीमध्ये कुन लाइन semicolon ले सकिनु हुँदैन?"
+    },
+    "options": [
+      {
+        "en": "int a, b, sum;",
+        "ne": "int a, b, sum;"
+      },
+      {
+        "en": "#include <stdio.h>",
+        "ne": "#include <stdio.h>"
+      },
+      {
+        "en": "sum = a + b;",
+        "ne": "sum = a + b;"
+      },
+      {
+        "en": "return 0;",
+        "ne": "return 0;"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The semicolon is a statement terminator, so it belongs after every statement — a declaration, an assignment, a return. #include is not a statement at all: it is a preprocessor directive, handled before compiling begins, and it ends at the end of the line. A function heading and a closing brace are the other two places where no semicolon belongs.",
+      "ne": "Semicolon statement terminator हो, त्यसैले हरेक statement पछि आउँछ — घोषणा, assignment, return। #include statement नै होइन: यो preprocessor directive हो, compile सुरु हुनुअघि नै चल्छ, र लाइनकै अन्त्यमा सकिन्छ। Function को शीर्षक र बन्द गर्ने brace अरू दुई ठाउँ हुन् जहाँ semicolon चाहिँदैन।"
+    }
+  },
+  {
+    "id": "g9.c.q12",
+    "subject": "grade9/c-programming",
+    "unit": "u2",
+    "topic": "char-vs-string",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What is the difference between 'A' and \"A\" in C?",
+      "ne": "C मा 'A' र \"A\" बीच के फरक छ?"
+    },
+    "options": [
+      {
+        "en": "There is no difference; both are the letter A",
+        "ne": "कुनै फरक छैन; दुवै A अक्षर हुन्"
+      },
+      {
+        "en": "'A' is a character constant of one byte; \"A\" is a string of two bytes, A and the null character",
+        "ne": "'A' एक byte को character constant हो; \"A\" दुई byte को string हो — A र null अक्षर"
+      },
+      {
+        "en": "'A' is a string and \"A\" is a character",
+        "ne": "'A' string हो र \"A\" character हो"
+      },
+      {
+        "en": "Double quotes are only used in comments",
+        "ne": "दोहोरो उद्धरण comment मा मात्र चल्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Single quotes make a character constant, which occupies exactly one byte and is printed with %c. Double quotes make a string constant, which is an array of characters ending in the invisible null character \\0 — so even a one-letter string takes two bytes and is printed with %s. This is the difference that becomes the whole of Unit 5.",
+      "ne": "एकल उद्धरणले character constant बनाउँछ, जुन ठ्याक्कै एक byte ओगट्छ र %c ले छापिन्छ। दोहोरो उद्धरणले string constant बनाउँछ, जुन नदेखिने null अक्षर \\0 ले सकिने character को array हो — त्यसैले एक अक्षरको string ले पनि दुई byte लिन्छ र %s ले छापिन्छ। यही फरक युनिट ५ को पूरै कुरा बन्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q13",
+    "subject": "grade9/c-programming",
+    "unit": "u2",
+    "topic": "scanf-address",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Why is the ampersand written in scanf(\"%d\", &n) but not in printf(\"%d\", n)?",
+      "ne": "scanf(\"%d\", &n) मा ampersand लेखिन्छ तर printf(\"%d\", n) मा किन लेखिँदैन?"
+    },
+    "options": [
+      {
+        "en": "It is only a style convention and either form works",
+        "ne": "यो शैलीको चलन मात्र हो र दुवै रूप चल्छन्"
+      },
+      {
+        "en": "scanf must put a value INTO n, so it needs the address of n; printf only reads n, so the value is enough",
+        "ne": "scanf ले n भित्र मान राख्नुपर्छ, त्यसैले n को ठेगाना चाहिन्छ; printf ले n पढ्ने मात्र हो, त्यसैले मान पुग्छ"
+      },
+      {
+        "en": "Because %d requires an ampersand and %s does not",
+        "ne": "किनभने %d लाई ampersand चाहिन्छ र %s लाई चाहिँदैन"
+      },
+      {
+        "en": "Because printf is a library function and scanf is not",
+        "ne": "किनभने printf library function हो र scanf होइन"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Arguments in C are passed by value, so a function receives copies. printf only needs to look at the value, and a copy is enough. scanf has to change n, and it cannot change a copy — it needs the address, which is what & supplies. This is call by reference meeting you in Unit 2, four units before it is named.",
+      "ne": "C मा argument value बाट पठाइन्छन्, त्यसैले function ले प्रतिलिपि पाउँछ। printf लाई मान हेर्नु मात्र भएकाले प्रतिलिपि पुग्छ। scanf ले n बदल्नुपर्छ, र प्रतिलिपि बदल्न सक्दैन — ठेगाना चाहिन्छ, र & ले त्यही दिन्छ। नाम लिनुभन्दा चार युनिट अघि नै युनिट २ मा भेटिने call by reference यही हो।"
+    }
+  },
+  {
+    "id": "g9.c.q14",
+    "subject": "grade9/c-programming",
+    "unit": "u2",
+    "topic": "operator-precedence",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What value is stored in a by: a = 10 + 4 * 2 % 3;",
+      "ne": "a = 10 + 4 * 2 % 3; ले a मा कुन मान राख्छ?"
+    },
+    "options": [
+      {
+        "en": "12",
+        "ne": "12"
+      },
+      {
+        "en": "1",
+        "ne": "1"
+      },
+      {
+        "en": "11",
+        "ne": "11"
+      },
+      {
+        "en": "0",
+        "ne": "0"
+      }
+    ],
+    "answer": 0,
+    "explanation": {
+      "en": "* and % have the same precedence, which is higher than +, and they associate left to right. So 4 * 2 is worked out first giving 8, then 8 % 3 gives the remainder 2, then 10 + 2 gives 12. Reading the line left to right like a sentence would give 14 * 2 = 28, then 28 % 3 = 1, which is option B and is how this question is usually got wrong.",
+      "ne": "* र % को precedence उस्तै छ, + भन्दा माथि, र यी बायाँबाट दायाँ जान्छन्। त्यसैले पहिले 4 * 2 = 8, अनि 8 % 3 को शेष 2, अनि 10 + 2 = 12। वाक्यजस्तै बायाँबाट दायाँ पढे 14 * 2 = 28, अनि 28 % 3 = 1 आउँथ्यो — त्यो विकल्प (ख) हो र यो प्रश्न प्रायः त्यसरी नै बिग्रन्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q15",
+    "subject": "grade9/c-programming",
+    "unit": "u2",
+    "topic": "integer-division",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "float x; x = 7 / 2; printf(\"%.1f\", x);  What is printed?",
+      "ne": "float x; x = 7 / 2; printf(\"%.1f\", x);  के छापिन्छ?"
+    },
+    "options": [
+      {
+        "en": "3.5",
+        "ne": "3.5"
+      },
+      {
+        "en": "3.0",
+        "ne": "3.0"
+      },
+      {
+        "en": "4.0",
+        "ne": "4.0"
+      },
+      {
+        "en": "The program does not compile",
+        "ne": "प्रोग्राम compile हुँदैन"
+      }
+    ],
+    "explanation": {
+      "en": "7 and 2 are both integers, so the division is integer division and the remainder is discarded before anything is stored: the result is 3, not 3.5 and not rounded to 4. Storing 3 in a float gives 3.0, and that is what prints. The variable being a float does not help, because the division finished before the float was involved. Writing 7.0 / 2 or (float) 7 / 2 gives 3.5.",
+      "ne": "7 र 2 दुवै integer भएकाले भाग integer division हो र केही भण्डारण हुनुअघि नै शेष फालिन्छ: नतिजा 3 हो — 3.5 पनि होइन, round गरेर 4 पनि होइन। 3 लाई float मा राख्दा 3.0 हुन्छ र त्यही छापिन्छ। Variable float हुनुले सहयोग गर्दैन, किनभने float बीचमा आउनुअघि नै भाग सकियो। 7.0 / 2 वा (float) 7 / 2 लेखे 3.5 आउँछ।"
+    },
+    "answer": 1
+  },
+  {
+    "id": "g9.c.q16",
+    "subject": "grade9/c-programming",
+    "unit": "u2",
+    "topic": "increment-operator",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "int i = 5, j; j = i++; What are i and j afterwards?",
+      "ne": "int i = 5, j; j = i++; पछि i र j को मान के हुन्छ?"
+    },
+    "options": [
+      {
+        "en": "i = 6 and j = 6",
+        "ne": "i = 6 र j = 6"
+      },
+      {
+        "en": "i = 6 and j = 5",
+        "ne": "i = 6 र j = 5"
+      },
+      {
+        "en": "i = 5 and j = 5",
+        "ne": "i = 5 र j = 5"
+      },
+      {
+        "en": "i = 5 and j = 6",
+        "ne": "i = 5 र j = 6"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "i++ is the POST-increment: the old value of i is used in the expression first, and only then is i increased. So j receives 5 and i becomes 6. Writing j = ++i instead would increase i first and give j the new value, making both 6. On a line of its own, i++ and ++i do exactly the same thing, which is why the difference only shows up when the value is being used.",
+      "ne": "i++ POST-increment हो: पहिले expression मा i को पुरानो मान प्रयोग हुन्छ, अनि मात्र i बढ्छ। त्यसैले j ले 5 पाउँछ र i 6 हुन्छ। बरु j = ++i लेखे पहिले i बढेर j ले नयाँ मान पाउँथ्यो र दुवै 6 हुन्थे। एक्लै लाइनमा i++ र ++i ले ठ्याक्कै उही काम गर्छन् — त्यसैले फरक मान प्रयोग हुँदा मात्र देखिन्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q17",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "loop-at-least-once",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which loop always executes its body at least once?",
+      "ne": "कुन loop ले आफ्नो body कम्तीमा एक पटक सधैं चलाउँछ?"
+    },
+    "options": [
+      {
+        "en": "for loop",
+        "ne": "for loop"
+      },
+      {
+        "en": "while loop",
+        "ne": "while loop"
+      },
+      {
+        "en": "do-while loop",
+        "ne": "do-while loop"
+      },
+      {
+        "en": "All three do",
+        "ne": "तीनै ले"
+      }
+    ],
+    "answer": 2,
+    "explanation": {
+      "en": "A do-while runs the body first and tests the condition afterwards, so the body has already happened by the time the condition is looked at. for and while both test before each turn, so if the condition is false at the start the body runs zero times. This is the single difference between the loops and it is the most asked question from this unit.",
+      "ne": "do-while ले पहिले body चलाउँछ र पछि सर्त जाँच्छ, त्यसैले सर्त हेरिने बेलासम्म body भइसकेको हुन्छ। for र while दुवैले हरेक पटकअघि जाँच्छन्, त्यसैले सुरुमै सर्त असत्य भए body शून्य पटक चल्छ। Loop बीचको एउटै फरक यही हो र यस युनिटबाट सबैभन्दा धेरै सोधिने प्रश्न पनि यही।"
+    }
+  },
+  {
+    "id": "g9.c.q18",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "switch-fallthrough",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "int n = 2; switch (n) { case 1: printf(\"A\"); case 2: printf(\"B\"); case 3: printf(\"C\"); default: printf(\"D\"); }  What is printed?",
+      "ne": "int n = 2; switch (n) { case 1: printf(\"A\"); case 2: printf(\"B\"); case 3: printf(\"C\"); default: printf(\"D\"); }  के छापिन्छ?"
+    },
+    "options": [
+      {
+        "en": "B",
+        "ne": "B"
+      },
+      {
+        "en": "BCD",
+        "ne": "BCD"
+      },
+      {
+        "en": "ABCD",
+        "ne": "ABCD"
+      },
+      {
+        "en": "BD",
+        "ne": "BD"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "There is no break anywhere in this switch. Control enters at the matching label, case 2, and then FALLS THROUGH every case below it, including default, running each printf in turn: B, then C, then D. The case labels only decide where execution starts; break is what decides where it stops. Adding break after each case would print B alone.",
+      "ne": "यो switch मा कतै break छैन। नियन्त्रण मिल्ने label — case 2 — मा छिर्छ र त्यसपछि default सहित तलका हरेक case मा FALL THROUGH गर्दै हरेक printf चलाउँछ: B, अनि C, अनि D। Case का label ले चल्न कहाँबाट सुरु हुने मात्र तय गर्छन्; कहाँ रोकिने break ले तय गर्छ। हरेक case पछि break थपे B मात्र छापिन्थ्यो।"
+    }
+  },
+  {
+    "id": "g9.c.q19",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "for-iteration-count",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "How many times does the body run in: for (i = 0; i < 5; i++) ?",
+      "ne": "for (i = 0; i < 5; i++) मा body कति पटक चल्छ?"
+    },
+    "options": [
+      {
+        "en": "4 times",
+        "ne": "४ पटक"
+      },
+      {
+        "en": "5 times",
+        "ne": "५ पटक"
+      },
+      {
+        "en": "6 times",
+        "ne": "६ पटक"
+      },
+      {
+        "en": "Forever",
+        "ne": "सधैं"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "i takes the values 0, 1, 2, 3 and 4 — five turns — and then becomes 5, at which point 5 < 5 is false and the loop ends. Counting from zero with a strictly-less-than condition always gives exactly the number in the condition, which is why array loops are written this way. Changing the condition to i <= 5 would give six turns and, over an array of size 5, would read past the end.",
+      "ne": "i ले 0, 1, 2, 3 र 4 मान लिन्छ — पाँच पटक — अनि 5 हुन्छ, र त्यहाँ 5 < 5 असत्य भएर loop सकिन्छ। शून्यबाट सुरु गरेर \"भन्दा सानो\" सर्त राख्दा सधैं सर्तमा लेखिएकै सङ्ख्या जति पटक चल्छ — त्यसैले array का loop यसरी लेखिन्छन्। सर्त i <= 5 बनाए छ पटक चल्थ्यो र पाँच आकारको array मा अन्त्यभन्दा पर पढ्थ्यो।"
+    }
+  },
+  {
+    "id": "g9.c.q20",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "continue-output",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "for (i = 1; i <= 5; i++) { if (i == 3) continue; printf(\"%d\", i); }  What is printed?",
+      "ne": "for (i = 1; i <= 5; i++) { if (i == 3) continue; printf(\"%d\", i); }  के छापिन्छ?"
+    },
+    "options": [
+      {
+        "en": "12",
+        "ne": "12"
+      },
+      {
+        "en": "1245",
+        "ne": "1245"
+      },
+      {
+        "en": "12345",
+        "ne": "12345"
+      },
+      {
+        "en": "345",
+        "ne": "345"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "continue abandons only the rest of the current turn and jumps to i++, so when i is 3 the printf below it is skipped and the loop carries on. The output is therefore 1, 2, 4, 5 with 3 missing. If the statement had been break, the loop itself would have ended at i == 3 and the output would be 12 — which is option A, and telling the two apart is exactly what this question is for.",
+      "ne": "continue ले यस पटकको बाँकी मात्र छाडेर i++ मा हाम फाल्छ, त्यसैले i 3 हुँदा तलको printf छुट्छ र loop चलिरहन्छ। त्यसैले output 1, 2, 4, 5 हुन्छ, 3 छुटेर। Statement break भएको भए i == 3 मै loop सकिन्थ्यो र output 12 हुन्थ्यो — त्यो विकल्प (क) हो, र यी दुई छुट्याउनु नै यो प्रश्नको उद्देश्य हो।"
+    }
+  },
+  {
+    "id": "g9.c.q21",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "empty-body-semicolon",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "for (i = 1; i <= 3; i++);  printf(\"Hi\");   How many times is Hi printed?",
+      "ne": "for (i = 1; i <= 3; i++);  printf(\"Hi\");   Hi कति पटक छापिन्छ?"
+    },
+    "options": [
+      {
+        "en": "Three times",
+        "ne": "तीन पटक"
+      },
+      {
+        "en": "Once",
+        "ne": "एक पटक"
+      },
+      {
+        "en": "Never — it is a compile error",
+        "ne": "कहिल्यै होइन — यो compile त्रुटि हो"
+      },
+      {
+        "en": "Four times",
+        "ne": "चार पटक"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The semicolon straight after the for brackets is a complete, empty statement, and that empty statement is the loop body. So the loop runs three times doing nothing at all, and the printf is simply the next statement after the loop, which runs once. The program compiles without a single warning, which is what makes this mistake expensive: nothing tells you, and the output is one line where three were expected.",
+      "ne": "For को कोष्ठकपछि सिधै आउने semicolon पूरै खाली statement हो, र त्यही खाली statement loop को body हो। त्यसैले loop तीन पटक केही नगरी चल्छ, र printf loop पछिको अर्को statement मात्र भएकाले एक पटक चल्छ। प्रोग्राम एउटै चेतावनीविना compile हुन्छ — यही गल्ती महँगो हुनुको कारण त्यही हो: कसैले भन्दैन, र तीन लाइनको अपेक्षामा एक लाइन आउँछ।"
+    }
+  },
+  {
+    "id": "g9.c.q22",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "nested-loop-count",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "for (i = 1; i <= 3; i++) for (j = 1; j <= 4; j++) printf(\"*\");  How many stars are printed?",
+      "ne": "for (i = 1; i <= 3; i++) for (j = 1; j <= 4; j++) printf(\"*\");  कति तारा छापिन्छन्?"
+    },
+    "options": [
+      {
+        "en": "7",
+        "ne": "७"
+      },
+      {
+        "en": "12",
+        "ne": "१२"
+      },
+      {
+        "en": "4",
+        "ne": "४"
+      },
+      {
+        "en": "3",
+        "ne": "३"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The inner loop completes all of its turns for each single turn of the outer loop, so the counts multiply rather than add: 3 x 4 = 12. Adding them would give 7, which is option A and the usual wrong answer. In a pattern program the outer loop is the rows and the inner loop is the columns, so this is a rectangle of three rows and four columns.",
+      "ne": "बाहिरी loop को हरेक एक पटकका लागि भित्री loop ले आफ्ना सबै पटक पूरा गर्छ, त्यसैले गन्ती जोडिँदैन, गुणन हुन्छ: 3 x 4 = 12। जोडे 7 आउँथ्यो — त्यो विकल्प (क) हो र सामान्य गलत उत्तर पनि। ढाँचाको प्रोग्राममा बाहिरी loop पङ्क्ति र भित्री loop स्तम्भ हो, त्यसैले यो तीन पङ्क्ति र चार स्तम्भको आयात हो।"
+    }
+  },
+  {
+    "id": "g9.c.q23",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "ladder-order",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A grading program tests if (marks >= 40) first, then else if (marks >= 80). A student scores 95. What is reported?",
+      "ne": "एउटा grading प्रोग्रामले पहिले if (marks >= 40) जाँच्छ, अनि else if (marks >= 80)। विद्यार्थीले ९५ ल्यायो। के भनिन्छ?"
+    },
+    "options": [
+      {
+        "en": "Distinction, because 95 is at least 80",
+        "ne": "Distinction, किनभने ९५ कम्तीमा ८० छ"
+      },
+      {
+        "en": "The grade for 40 and above, because the first true test wins and the rest are never reached",
+        "ne": "४० माथिको grade, किनभने पहिलो सत्य जाँच जित्छ र बाँकीसम्म पुगिँदैन"
+      },
+      {
+        "en": "Both branches run",
+        "ne": "दुवै शाखा चल्छन्"
+      },
+      {
+        "en": "Nothing — the conditions overlap so the program is invalid",
+        "ne": "केही पनि होइन — सर्त बाझिएकाले प्रोग्राम अमान्य हुन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "An if-else-if ladder tests its conditions in order and stops at the first one that is true. 95 is at least 40, so that branch runs and the else if below it is never even evaluated. The conditions overlap, which is legal and is exactly why order matters: a ladder on ranges must be written from the narrowest or highest condition downwards.",
+      "ne": "if-else-if शृंखलाले सर्तहरू क्रमैसँग जाँच्छ र पहिलो सत्यमा रोकिन्छ। ९५ कम्तीमा ४० छ, त्यसैले त्यही शाखा चल्छ र तलको else if मूल्याङ्कन नै हुँदैन। सर्त बाझिनु मान्य छ, र क्रम महत्त्वपूर्ण हुनुको कारण पनि त्यही: दायराको शृंखला सबैभन्दा साँघुरो वा अग्लो सर्तबाट तलतिर लेख्नुपर्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q24",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "counter-after-loop",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "After for (i = 1; i <= 5; i++) { } finishes, what is the value of i?",
+      "ne": "for (i = 1; i <= 5; i++) { } सकिएपछि i को मान कति हुन्छ?"
+    },
+    "options": [
+      {
+        "en": "5",
+        "ne": "५"
+      },
+      {
+        "en": "6",
+        "ne": "६"
+      },
+      {
+        "en": "0",
+        "ne": "०"
+      },
+      {
+        "en": "It is undefined after the loop",
+        "ne": "Loop पछि यो अनिश्चित हुन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The loop ends only when the condition becomes false, and that cannot happen until i has already been increased past 5. The last body turn runs with i = 5, then i++ makes it 6, then 6 <= 5 is false and the loop stops — so i is 6. The counter is an ordinary variable declared outside the loop, so it keeps that value afterwards, and output questions are regularly built on exactly this.",
+      "ne": "Loop सर्त असत्य भएपछि मात्र सकिन्छ, र त्यो i ५ नाघेर नबढेसम्म हुन सक्दैन। अन्तिम पटक body i = 5 मा चल्छ, अनि i++ ले 6 बनाउँछ, अनि 6 <= 5 असत्य भएर loop रोकिन्छ — त्यसैले i 6 हुन्छ। Counter loop बाहिर घोषणा गरिएको सामान्य variable भएकाले पछि पनि त्यही मान राख्छ, र output का प्रश्न ठ्याक्कै यसैमा बनेका हुन्छन्।"
+    }
+  },
+  {
+    "id": "g9.c.q25",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "while-zero-times",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "int n = 10; while (n < 5) { printf(\"Hello\"); }  What does this print?",
+      "ne": "int n = 10; while (n < 5) { printf(\"Hello\"); }  यसले के छाप्छ?"
+    },
+    "options": [
+      {
+        "en": "Hello, once",
+        "ne": "Hello, एक पटक"
+      },
+      {
+        "en": "Nothing at all",
+        "ne": "केही पनि होइन"
+      },
+      {
+        "en": "Hello forever",
+        "ne": "Hello सधैं"
+      },
+      {
+        "en": "Hello five times",
+        "ne": "Hello पाँच पटक"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "A while loop tests its condition before every turn, including the first. 10 < 5 is false immediately, so the body never runs and nothing is printed. Note that this is not an infinite loop: it would be one if the condition were true and nothing inside changed n, which is a different mistake. The same code written as a do-while would print Hello once.",
+      "ne": "While loop ले हरेक पटकअघि — पहिलो पटक पनि — सर्त जाँच्छ। 10 < 5 तुरुन्तै असत्य छ, त्यसैले body कहिल्यै चल्दैन र केही छापिँदैन। ध्यान दिनुहोस् — यो अनन्त loop होइन: सर्त सत्य भएर भित्र n नबदलिएको भए त्यो हुन्थ्यो, र त्यो अर्कै गल्ती हो। उही कोड do-while मा लेखे Hello एक पटक छापिन्थ्यो।"
+    }
+  },
+  {
+    "id": "g9.c.q26",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "goto-statement",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What does the goto statement do?",
+      "ne": "goto statement ले के गर्छ?"
+    },
+    "options": [
+      {
+        "en": "It ends the loop it is inside",
+        "ne": "यो भएको loop सिध्याउँछ"
+      },
+      {
+        "en": "It transfers control to a labelled statement elsewhere in the same function",
+        "ne": "यसले नियन्त्रण उही function भित्र label लेखिएको statement मा सार्छ"
+      },
+      {
+        "en": "It calls another function",
+        "ne": "यसले अर्को function बोलाउँछ"
+      },
+      {
+        "en": "It skips the current turn of a loop",
+        "ne": "यसले loop को यस पटकको काम छाड्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "goto is written as goto label; with label: marking the destination somewhere in the same function. It is the only one of the four jump statements that names a destination — break ends a loop, continue skips a turn, and return ends a function. It is on the syllabus and examinable, and almost every real program is clearer without it, because a reader can no longer work out what reaches a line by reading downwards.",
+      "ne": "goto लाई goto label; लेखिन्छ र उही function भित्र कतै label: ले गन्तव्य जनाउँछ। चार jump statement मध्ये गन्तव्यको नाम लिने एकमात्र यही हो — break ले loop सिध्याउँछ, continue ले एक पटक छाड्छ, return ले function सिध्याउँछ। यो पाठ्यक्रममा छ र सोधिन्छ, तर झन्डै हरेक वास्तविक प्रोग्राम यसविना स्पष्ट हुन्छ, किनभने कुन लाइनमा के पुग्छ तलतिर पढेर थाहा पाउन सकिँदैन।"
+    }
+  },
+  {
+    "id": "g9.c.q27",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "switch-expression-type",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which of these can NOT be used in a switch statement?",
+      "ne": "यीमध्ये कुन switch statement मा प्रयोग गर्न मिल्दैन?"
+    },
+    "options": [
+      {
+        "en": "An int variable",
+        "ne": "int variable"
+      },
+      {
+        "en": "A char variable",
+        "ne": "char variable"
+      },
+      {
+        "en": "A float variable, or a range such as case 40 to 59",
+        "ne": "float variable, वा case 40 देखि 59 जस्तो दायरा"
+      },
+      {
+        "en": "A default label",
+        "ne": "default label"
+      }
+    ],
+    "answer": 2,
+    "explanation": {
+      "en": "A switch tests one value against exact constant labels, so the expression must be an integer type — int or char — and each case must be a single constant. A float cannot be used, and a range cannot be written as a case at all. That is why grading from marks needs an if-else-if ladder: the ladder can test ranges and the switch cannot.",
+      "ne": "Switch ले एउटा मानलाई ठ्याक्कै मिल्ने constant label सँग जाँच्छ, त्यसैले expression पूर्णाङ्क प्रकारको — int वा char — हुनुपर्छ र हरेक case एउटै constant। Float चल्दैन, र दायरा case मा लेख्नै मिल्दैन। अंकबाट grade निकाल्न if-else-if शृंखला चाहिनुको कारण त्यही हो: शृंखलाले दायरा जाँच्न सक्छ, switch ले सक्दैन।"
+    }
+  },
+  {
+    "id": "g9.c.q28",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "dowhile-syntax",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which loop requires a semicolon after its closing condition?",
+      "ne": "कुन loop लाई सर्तको कोष्ठकपछि semicolon चाहिन्छ?"
+    },
+    "options": [
+      {
+        "en": "for",
+        "ne": "for"
+      },
+      {
+        "en": "while",
+        "ne": "while"
+      },
+      {
+        "en": "do-while",
+        "ne": "do-while"
+      },
+      {
+        "en": "None of them",
+        "ne": "कुनैलाई पनि होइन"
+      }
+    ],
+    "answer": 2,
+    "explanation": {
+      "en": "A do-while ends with while (condition); and that semicolon is compulsory, because the whole do-while is one statement that finishes there. A for or a while heading is followed by the body, so a semicolon after it would end the statement early and leave an empty body — which compiles and silently changes the program.",
+      "ne": "do-while while (condition); ले सकिन्छ र त्यो semicolon अनिवार्य छ, किनभने पूरै do-while एउटै statement हो जो त्यहीँ सकिन्छ। for वा while को शीर्षकपछि body आउँछ, त्यसैले त्यहाँ semicolon राखे statement चाँडै सकिन्छ र body खाली रहन्छ — जुन compile हुन्छ र प्रोग्राम चुपचाप बदल्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q29",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "infinite-loop-cause",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "i = 1; while (i <= 5) { printf(\"%d\", i); }  Why does this never stop?",
+      "ne": "i = 1; while (i <= 5) { printf(\"%d\", i); }  यो किन कहिल्यै रोकिँदैन?"
+    },
+    "options": [
+      {
+        "en": "Because while loops cannot be stopped",
+        "ne": "किनभने while loop रोक्नै मिल्दैन"
+      },
+      {
+        "en": "Because nothing inside the loop changes i, so the condition stays true forever",
+        "ne": "किनभने loop भित्र i लाई केहीले बदल्दैन, त्यसैले सर्त सधैं सत्य रहन्छ"
+      },
+      {
+        "en": "Because i was initialised outside the loop",
+        "ne": "किनभने i loop बाहिर initialise गरिएको थियो"
+      },
+      {
+        "en": "Because printf resets i to 1 each time",
+        "ne": "किनभने printf ले हरेक पटक i लाई १ बनाउँछ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Every loop needs three things: an initialisation, a condition and an UPDATE. A for loop puts all three on one line so the update is hard to forget; a while loop leaves the update inside the body, and here it is missing. i stays 1, the condition stays true, and the loop runs until the program is killed. Adding i++ inside the braces fixes it.",
+      "ne": "हरेक loop लाई तीन कुरा चाहिन्छ: initialisation, सर्त र UPDATE। For loop ले तीनै एउटै लाइनमा राख्छ त्यसैले update बिर्सन गाह्रो हुन्छ; while ले update body भित्र छाड्छ, र यहाँ त्यही छुटेको छ। i १ मै रहन्छ, सर्त सत्य रहन्छ, र प्रोग्राम नमारेसम्म loop चल्छ। Brace भित्र i++ थपे ठिक हुन्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q30",
+    "subject": "grade9/c-programming",
+    "unit": "u3",
+    "topic": "break-nested-scope",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A break statement is placed inside the INNER of two nested loops. What does it leave?",
+      "ne": "दुई nested loop मध्ये भित्रीमा break राखिएको छ। यसले के छाड्छ?"
+    },
+    "options": [
+      {
+        "en": "Both loops",
+        "ne": "दुवै loop"
+      },
+      {
+        "en": "Only the inner loop; the outer loop continues with its next turn",
+        "ne": "भित्री loop मात्र; बाहिरी loop आफ्नो अर्को पटकबाट चलिरहन्छ"
+      },
+      {
+        "en": "Only the outer loop",
+        "ne": "बाहिरी loop मात्र"
+      },
+      {
+        "en": "The whole function",
+        "ne": "पूरै function"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "break leaves the single nearest enclosing loop and nothing more. Control resumes after the inner loop, still inside the outer one, which then carries on with its next turn. Leaving both needs a flag variable tested by the outer condition, or a return if the loops are alone in a function. Expecting one break to escape two loops is one of the standard wrong answers in this unit.",
+      "ne": "break ले आफूलाई घेर्ने सबैभन्दा नजिकको एउटै loop छाड्छ, त्योभन्दा बढी होइन। नियन्त्रण भित्री loop पछि, तर बाहिरी loop भित्रै फर्कन्छ, र बाहिरी loop आफ्नो अर्को पटक सुरु गर्छ। दुवै छाड्न बाहिरी सर्तले जाँच्ने flag variable चाहिन्छ, वा loop हरू function मा एक्लै भए return। एउटा break ले दुई loop उम्कन्छ भन्ने अपेक्षा यस युनिटका मानक गलत उत्तरमध्ये एक हो।"
+    }
+  },
+  {
+    "id": "g9.c.q31",
+    "subject": "grade9/c-programming",
+    "unit": "u4",
+    "topic": "prototype-identification",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which of these is a function DECLARATION (prototype)?",
+      "ne": "यीमध्ये कुन function को DECLARATION (prototype) हो?"
+    },
+    "options": [
+      {
+        "en": "int add(int a, int b) { return a + b; }",
+        "ne": "int add(int a, int b) { return a + b; }"
+      },
+      {
+        "en": "int add(int a, int b);",
+        "ne": "int add(int a, int b);"
+      },
+      {
+        "en": "sum = add(5, 7);",
+        "ne": "sum = add(5, 7);"
+      },
+      {
+        "en": "add;",
+        "ne": "add;"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "A prototype gives the return type, the name and the parameter types, and ends with a semicolon. It promises the compiler that the function exists somewhere so a call can be checked before the body is read. Option A is the definition, with the body in braces and no semicolon after the closing brace. Option C is a call, with real values inside the brackets.",
+      "ne": "Prototype ले return प्रकार, नाम र parameter का प्रकार दिन्छ र semicolon ले सकिन्छ। यसले compiler लाई function कतै छ भन्ने वाचा दिन्छ, ताकि body पढ्नुअघि call जाँच्न सकियोस्। विकल्प (क) definition हो — brace भित्र body र बन्द brace पछि semicolon छैन। विकल्प (ग) call हो, कोष्ठकभित्र वास्तविक मान सहित।"
+    }
+  },
+  {
+    "id": "g9.c.q32",
+    "subject": "grade9/c-programming",
+    "unit": "u4",
+    "topic": "call-by-value-output",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "void change(int x) { x = 100; }  int main() { int n = 5; change(n); printf(\"%d\", n); }  What is printed?",
+      "ne": "void change(int x) { x = 100; }  int main() { int n = 5; change(n); printf(\"%d\", n); }  के छापिन्छ?"
+    },
+    "options": [
+      {
+        "en": "100",
+        "ne": "100"
+      },
+      {
+        "en": "5",
+        "ne": "5"
+      },
+      {
+        "en": "0",
+        "ne": "0"
+      },
+      {
+        "en": "The program does not compile",
+        "ne": "प्रोग्राम compile हुँदैन"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "change is called by value, so a copy of n is made and handed over as x. The function sets the copy to 100 and then ends, taking the copy with it. n in main was never touched and still holds 5. To change n the function would need its address: void change(int *x) with *x = 100; called as change(&n).",
+      "ne": "change call by value बाट बोलाइएको छ, त्यसैले n को प्रतिलिपि बनेर x का रूपमा जान्छ। Function ले प्रतिलिपिलाई 100 बनाएर सकिन्छ, र प्रतिलिपि पनि सँगै जान्छ। main को n छोइएकै थिएन र अझै 5 छ। n बदल्न function लाई ठेगाना चाहिन्थ्यो: void change(int *x) र भित्र *x = 100;, change(&n) ले बोलाएर।"
+    }
+  },
+  {
+    "id": "g9.c.q33",
+    "subject": "grade9/c-programming",
+    "unit": "u4",
+    "topic": "call-by-reference-output",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "void swap(int *x, int *y) { int t = *x; *x = *y; *y = t; }  int main() { int a = 5, b = 9; swap(&a, &b); printf(\"%d %d\", a, b); }  What is printed?",
+      "ne": "void swap(int *x, int *y) { int t = *x; *x = *y; *y = t; }  int main() { int a = 5, b = 9; swap(&a, &b); printf(\"%d %d\", a, b); }  के छापिन्छ?"
+    },
+    "options": [
+      {
+        "en": "5 9",
+        "ne": "5 9"
+      },
+      {
+        "en": "9 5",
+        "ne": "9 5"
+      },
+      {
+        "en": "9 9",
+        "ne": "9 9"
+      },
+      {
+        "en": "Two addresses",
+        "ne": "दुई ठेगाना"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The ampersands send the addresses of a and b, and the stars inside the function reach back to those addresses. t keeps the value at x, which is 5; then *x = *y writes 9 into a; then *y = t writes 5 into b. Nothing is returned and nothing needs to be, because the function wrote directly into main's memory. Remove the two ampersands and the two stars and the same program would print 5 9.",
+      "ne": "Ampersand ले a र b का ठेगाना पठाउँछन्, र function भित्रका star ले ती ठेगानासम्म पुग्छन्। t ले x को ठेगानाको मान — 5 — राख्छ; अनि *x = *y ले a मा 9 लेख्छ; अनि *y = t ले b मा 5 लेख्छ। केही फर्काइँदैन र चाहिँदैन पनि, किनभने function ले सिधै main को मेमोरीमा लेख्यो। दुई ampersand र दुई star हटाए उही प्रोग्रामले 5 9 छाप्थ्यो।"
+    }
+  },
+  {
+    "id": "g9.c.q34",
+    "subject": "grade9/c-programming",
+    "unit": "u4",
+    "topic": "library-function",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which of these is a library function, and which header does it need?",
+      "ne": "यीमध्ये कुन library function हो, र यसलाई कुन header चाहिन्छ?"
+    },
+    "options": [
+      {
+        "en": "larger() — it needs stdio.h",
+        "ne": "larger() — यसलाई stdio.h चाहिन्छ"
+      },
+      {
+        "en": "strlen() — it needs string.h",
+        "ne": "strlen() — यसलाई string.h चाहिन्छ"
+      },
+      {
+        "en": "main() — it needs math.h",
+        "ne": "main() — यसलाई math.h चाहिन्छ"
+      },
+      {
+        "en": "swap() — it needs stdlib.h",
+        "ne": "swap() — यसलाई stdlib.h चाहिन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "A library function comes with the compiler already written and already compiled; you include its header and call it. strlen lives in string.h, as strcpy, strcat and strcmp do. printf and scanf need stdio.h, and sqrt and pow need math.h. larger and swap are names a programmer chooses, which makes them user-defined, and main is the function the program starts from rather than a library one.",
+      "ne": "Library function compiler सँगै पहिल्यै लेखिएर compile भइसकेको आउँछ; तपाईंले header include गरेर बोलाउनुहुन्छ। strlen string.h मा छ, strcpy, strcat र strcmp जस्तै। printf र scanf लाई stdio.h, sqrt र pow लाई math.h चाहिन्छ। larger र swap प्रोग्रामरले छानेका नाम हुन् — त्यसैले ती user-defined हुन् — र main प्रोग्राम सुरु हुने function हो, library को होइन।"
+    }
+  },
+  {
+    "id": "g9.c.q35",
+    "subject": "grade9/c-programming",
+    "unit": "u4",
+    "topic": "base-case",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What happens if a recursive function is written without a base case?",
+      "ne": "Base case नलेखी recursive function बनाए के हुन्छ?"
+    },
+    "options": [
+      {
+        "en": "It returns 0 automatically",
+        "ne": "यसले आफैं ० फर्काउँछ"
+      },
+      {
+        "en": "The calls never stop, the stack fills up and the program crashes",
+        "ne": "Call कहिल्यै रोकिँदैनन्, stack भरिन्छ र प्रोग्राम crash हुन्छ"
+      },
+      {
+        "en": "The compiler adds one for you",
+        "ne": "Compiler ले आफैं एउटा थपिदिन्छ"
+      },
+      {
+        "en": "It runs once and stops",
+        "ne": "यो एक पटक चलेर रोकिन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The base case is the condition under which the function returns an answer WITHOUT calling itself, and it is the only thing that ends the recursion. Without it every call makes another call. Each unfinished call occupies memory on the stack, so this is not a quiet infinite loop — the stack runs out and the program stops with a stack overflow. That is a different failure from an endless while loop, and knowing which one you get is the point of the question.",
+      "ne": "Base case भनेको function ले आफैंलाई नबोलाई उत्तर फर्काउने सर्त हो, र recursion सिध्याउने एकमात्र कुरा त्यही हो। त्यो नभए हरेक call ले अर्को call गर्छ। हरेक अधुरो call ले stack मा मेमोरी ओगट्छ, त्यसैले यो चुपचापको अनन्त loop होइन — stack सकिन्छ र प्रोग्राम stack overflow भएर रोकिन्छ। अनन्त while loop भन्दा यो फरक असफलता हो, र कुन आउँछ थाहा पाउनु नै प्रश्नको उद्देश्य हो।"
+    }
+  },
+  {
+    "id": "g9.c.q36",
+    "subject": "grade9/c-programming",
+    "unit": "u4",
+    "topic": "recursion-trace",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "int f(int n) { if (n == 1) return 1; return n * f(n - 1); }  What does f(4) return, and how many times is f called in total?",
+      "ne": "int f(int n) { if (n == 1) return 1; return n * f(n - 1); }  f(4) ले के फर्काउँछ, र जम्मा कति पटक f बोलाइन्छ?"
+    },
+    "options": [
+      {
+        "en": "24, called 4 times",
+        "ne": "२४, ४ पटक बोलाइन्छ"
+      },
+      {
+        "en": "24, called 3 times",
+        "ne": "२४, ३ पटक बोलाइन्छ"
+      },
+      {
+        "en": "10, called 4 times",
+        "ne": "१०, ४ पटक बोलाइन्छ"
+      },
+      {
+        "en": "12, called 2 times",
+        "ne": "१२, २ पटक बोलाइन्छ"
+      }
+    ],
+    "answer": 0,
+    "explanation": {
+      "en": "This is factorial. f(4) calls f(3), which calls f(2), which calls f(1); f(1) hits the base case and returns 1 without calling again. That is four calls in all. The multiplications then happen on the way back: 2 x 1 = 2, 3 x 2 = 6, 4 x 6 = 24. Every multiplication waits until the innermost call has returned, which is why four unfinished calls exist on the stack at the same moment.",
+      "ne": "यो factorial हो। f(4) ले f(3) बोलाउँछ, त्यसले f(2), त्यसले f(1); f(1) base case मा पुगेर फेरि नबोलाई 1 फर्काउँछ। जम्मा चार call भए। गुणन फर्कंदा हुन्छ: 2 x 1 = 2, 3 x 2 = 6, 4 x 6 = 24। हरेक गुणन सबैभन्दा भित्रको call नफर्कंदासम्म पर्खन्छ — त्यसैले एकै क्षणमा stack मा चार अधुरा call हुन्छन्।"
+    }
+  },
+  {
+    "id": "g9.c.q37",
+    "subject": "grade9/c-programming",
+    "unit": "u4",
+    "topic": "void-meaning",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "In void show(void), what do the two uses of void mean?",
+      "ne": "void show(void) मा void को दुई प्रयोगको अर्थ के हो?"
+    },
+    "options": [
+      {
+        "en": "The function is empty and does nothing",
+        "ne": "Function खाली छ र केही गर्दैन"
+      },
+      {
+        "en": "The first says no value is returned; the second says no argument is taken",
+        "ne": "पहिलोले कुनै मान फर्कंदैन भन्छ; दोस्रोले कुनै argument लिँदैन भन्छ"
+      },
+      {
+        "en": "The function may be called only once",
+        "ne": "Function एक पटक मात्र बोलाउन मिल्छ"
+      },
+      {
+        "en": "Both mean the function returns zero",
+        "ne": "दुवैको अर्थ function ले शून्य फर्काउँछ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "void means \"nothing here\". In front of the name it is the return type, saying no value comes back — so the call cannot be used on the right of an assignment. Inside the brackets it is the parameter list, saying nothing goes in. A function that prints a line of stars is the usual example: it needs no input and produces no value, only an effect on the screen.",
+      "ne": "void को अर्थ \"यहाँ केही छैन\" हो। नाम अगाडि यो return प्रकार हो — कुनै मान फर्कंदैन भन्छ, त्यसैले call लाई assignment को दायाँपट्टि राख्न मिल्दैन। कोष्ठकभित्र यो parameter सूची हो — केही भित्र जाँदैन भन्छ। ताराको लाइन छाप्ने function सामान्य उदाहरण हो: यसलाई input चाहिँदैन र मान दिँदैन, पर्दामा असर मात्र पार्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q38",
+    "subject": "grade9/c-programming",
+    "unit": "u4",
+    "topic": "return-count",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "How many values can a C function return to its caller through return?",
+      "ne": "C को function ले return मार्फत बोलाउनेलाई कति मान फर्काउन सक्छ?"
+    },
+    "options": [
+      {
+        "en": "Any number, separated by commas",
+        "ne": "जति पनि, comma ले छुट्याएर"
+      },
+      {
+        "en": "At most one",
+        "ne": "बढीमा एउटा"
+      },
+      {
+        "en": "Exactly two",
+        "ne": "ठ्याक्कै दुई"
+      },
+      {
+        "en": "None — functions cannot return values",
+        "ne": "एउटा पनि होइन — function ले मान फर्काउनै सक्दैन"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "A function takes any number of arguments and returns at most one value. That asymmetry is not a detail of syntax — it is the whole reason call by reference exists. A function that must give back two answers, such as a swap, sends them out through pointers instead, by writing into the caller's memory rather than returning anything at all.",
+      "ne": "Function ले जति पनि argument लिन्छ र बढीमा एउटा मान फर्काउँछ। यो असमानता syntax को सानो कुरा होइन — call by reference हुनुको पूरै कारण त्यही हो। swap जस्तो दुई उत्तर फर्काउनुपर्ने function ले केही नफर्काई बोलाउनेको मेमोरीमै लेखेर pointer मार्फत ती बाहिर पठाउँछ।"
+    }
+  },
+  {
+    "id": "g9.c.q39",
+    "subject": "grade9/c-programming",
+    "unit": "u4",
+    "topic": "argument-vs-parameter",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "In int larger(int x, int y) called as larger(a, b), which are the arguments and which are the parameters?",
+      "ne": "int larger(int x, int y) लाई larger(a, b) ले बोलाउँदा argument कुन हुन् र parameter कुन?"
+    },
+    "options": [
+      {
+        "en": "x and y are the arguments; a and b are the parameters",
+        "ne": "x र y argument हुन्; a र b parameter हुन्"
+      },
+      {
+        "en": "a and b are the arguments; x and y are the parameters",
+        "ne": "a र b argument हुन्; x र y parameter हुन्"
+      },
+      {
+        "en": "All four are arguments",
+        "ne": "चारै argument हुन्"
+      },
+      {
+        "en": "All four are parameters",
+        "ne": "चारै parameter हुन्"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The argument is what you send at the call, so a and b are the arguments. The parameter is the variable in the function heading that receives it, so x and y are the parameters. The names do not have to match and usually do not — the connection is made by position, first argument into first parameter, which is also why passing them in the wrong order is a bug no compiler will catch.",
+      "ne": "Argument भनेको call मा पठाइने कुरा हो, त्यसैले a र b argument हुन्। Parameter भनेको function को शीर्षकमा त्यो पाउने variable हो, त्यसैले x र y parameter हुन्। नाम मिल्नै पर्दैन र प्रायः मिल्दैन पनि — जोडाइ स्थानले हुन्छ, पहिलो argument पहिलो parameter मा। त्यसैले क्रम उल्टो पठाउनु compiler ले नसमात्ने गल्ती हो।"
+    }
+  },
+  {
+    "id": "g9.c.q40",
+    "subject": "grade9/c-programming",
+    "unit": "u4",
+    "topic": "function-advantage",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A programmer copies the same ten lines into four places instead of writing a function. What is the main cost?",
+      "ne": "प्रोग्रामरले function नलेखी उही दस लाइन चार ठाउँमा सार्छ। मुख्य लागत के हो?"
+    },
+    "options": [
+      {
+        "en": "The program runs four times slower",
+        "ne": "प्रोग्राम चार गुणा ढिलो चल्छ"
+      },
+      {
+        "en": "A mistake in those lines must be found and fixed in four places, and one will be missed",
+        "ne": "ती लाइनको गल्ती चार ठाउँमा खोजेर सच्याउनुपर्छ, र एउटा छुट्छ"
+      },
+      {
+        "en": "The compiler refuses duplicate code",
+        "ne": "Compiler ले दोहोरिएको कोड अस्वीकार गर्छ"
+      },
+      {
+        "en": "Nothing — it is exactly the same",
+        "ne": "केही होइन — ठ्याक्कै उस्तै हो"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Reusability is the first advantage of functions, and the cost of not having it is maintenance rather than speed. Four copies means four places to change, and the one that gets missed is a bug that appears only in that part of the program. A function also makes the code shorter and easier to read and test, and its name documents what the ten lines were for — which a copy does not.",
+      "ne": "Function को पहिलो फाइदा पुनःप्रयोग हो, र त्यो नहुँदाको लागत गति होइन, मर्मत हो। चार प्रतिलिपि भनेको सच्याउने चार ठाउँ, र छुट्ने त्यो एउटा प्रोग्रामको त्यही भागमा मात्र देखिने bug बन्छ। Function ले कोड छोटो, पढ्न र जाँच्न सजिलो पनि बनाउँछ, र यसको नामले ती दस लाइन केका लागि थिए भन्छ — प्रतिलिपिले भन्दैन।"
+    }
+  },
+  {
+    "id": "g9.c.q41",
+    "subject": "grade9/c-programming",
+    "unit": "u4",
+    "topic": "array-as-argument",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A function sorts an array passed to it as fill(marks, 5), with no ampersand at the call. Is the caller's array changed?",
+      "ne": "कुनै function ले fill(marks, 5) ले पठाइएको array क्रम मिलाउँछ, र call मा ampersand छैन। बोलाउनेको array बदलिन्छ?"
+    },
+    "options": [
+      {
+        "en": "No — without & it is call by value, so a copy is sorted",
+        "ne": "बदलिँदैन — & नभएपछि call by value हो, त्यसैले प्रतिलिपि मिलाइन्छ"
+      },
+      {
+        "en": "Yes — an array name is already an address, so the function receives the real array",
+        "ne": "बदलिन्छ — array को नाम आफैं ठेगाना हो, त्यसैले function लाई साँच्चैको array पुग्छ"
+      },
+      {
+        "en": "Only if the array is declared globally",
+        "ne": "Array global घोषणा गरिएको भए मात्र"
+      },
+      {
+        "en": "Only the first element is changed",
+        "ne": "पहिलो element मात्र बदलिन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "An array name used on its own is the address of its first element, so passing marks passes an address and the function works on the caller's array. No ampersand is written because none is needed — the array is already what & would have produced. This is the exception students find surprising, and it is the reason a sorting function changes the list in main without returning anything.",
+      "ne": "Array को नाम एक्लै प्रयोग गर्दा त्यो पहिलो element को ठेगाना हो, त्यसैले marks पठाउनु ठेगाना पठाउनु हो र function ले बोलाउनेकै array मा काम गर्छ। Ampersand नलेखिनुको कारण चाहिँदैन भन्ने हो — & ले बनाउने कुरा array आफैं भइसक्यो। विद्यार्थीलाई अचम्म लाग्ने अपवाद यही हो, र क्रम मिलाउने function ले केही नफर्काई main को सूची बदल्नुको कारण पनि त्यही।"
+    }
+  },
+  {
+    "id": "g9.c.q42",
+    "subject": "grade9/c-programming",
+    "unit": "u5",
+    "topic": "last-index",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "For int marks[10]; what is the index of the LAST element?",
+      "ne": "int marks[10]; मा अन्तिम element को index कति हो?"
+    },
+    "options": [
+      {
+        "en": "10",
+        "ne": "१०"
+      },
+      {
+        "en": "9",
+        "ne": "९"
+      },
+      {
+        "en": "11",
+        "ne": "११"
+      },
+      {
+        "en": "1",
+        "ne": "१"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Indexing starts at 0, so an array of size 10 has indices 0 to 9 and the last index is size minus one. There is no marks[10]: that is the eleventh box and it is not part of the array. C performs no bounds checking, so writing to it compiles and quietly damages whatever happens to be in that memory.",
+      "ne": "Index ० बाट सुरु हुन्छ, त्यसैले १० आकारको array का index ० देखि ९ सम्म हुन्छन् र अन्तिम index आकार घटाउ एक हो। marks[10] भन्ने छैन: त्यो एघारौं बाकस हो र array को भाग होइन। C ले bound जाँच्दैन, त्यसैले त्यहाँ लेख्दा compile हुन्छ र त्यो मेमोरीमा जे छ त्यो चुपचाप बिग्रन्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q43",
+    "subject": "grade9/c-programming",
+    "unit": "u5",
+    "topic": "partial-initialisation",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "int a[5] = {7, 3}; What are a[2], a[3] and a[4]?",
+      "ne": "int a[5] = {7, 3}; मा a[2], a[3] र a[4] के हुन्छन्?"
+    },
+    "options": [
+      {
+        "en": "Garbage — whatever was in that memory",
+        "ne": "Garbage — त्यो मेमोरीमा जे थियो"
+      },
+      {
+        "en": "All three are 0",
+        "ne": "तीनै ० हुन्छन्"
+      },
+      {
+        "en": "All three are 3",
+        "ne": "तीनै ३ हुन्छन्"
+      },
+      {
+        "en": "The program does not compile",
+        "ne": "प्रोग्राम compile हुँदैन"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "When an array is given an initialiser list that is shorter than its size, the remaining elements are set to zero rather than left as garbage. That is a rule about initialisation, not about declaration: int a[5]; with no list at all leaves all five holding garbage. It is also why int a[100] = {0}; is the usual way of writing \"an array of a hundred zeros\".",
+      "ne": "Array लाई आकारभन्दा छोटो initialiser सूची दिइँदा बाँकी element garbage नभई शून्य हुन्छन्। यो initialisation को नियम हो, घोषणाको होइन: सूची नै नभएको int a[5]; मा पाँचै मा garbage रहन्छ। \"सय शून्यको array\" लेख्ने चलनचल्तीको तरिका int a[100] = {0}; हुनुको कारण पनि त्यही।"
+    }
+  },
+  {
+    "id": "g9.c.q44",
+    "subject": "grade9/c-programming",
+    "unit": "u5",
+    "topic": "string-array-size",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What is the smallest size that will safely hold the word \"KATHMANDU\" in a char array?",
+      "ne": "\"KATHMANDU\" शब्द char array मा सुरक्षित रूपमा राख्न सबैभन्दा सानो आकार कति हुनुपर्छ?"
+    },
+    "options": [
+      {
+        "en": "9",
+        "ne": "९"
+      },
+      {
+        "en": "10",
+        "ne": "१०"
+      },
+      {
+        "en": "8",
+        "ne": "८"
+      },
+      {
+        "en": "20 — strings always need 20",
+        "ne": "२० — string लाई सधैं २० चाहिन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "KATHMANDU is nine letters, and every string in C ends with the null character, which needs a box of its own. So ten is the smallest safe size. Declaring char city[9] leaves no room for the terminator, so nothing marks the end of the string and printf carries on into whatever follows in memory. The rule is always: length plus one.",
+      "ne": "KATHMANDU नौ अक्षरको हो, र C मा हरेक string null अक्षरले सकिन्छ जसलाई आफ्नै बाकस चाहिन्छ। त्यसैले सुरक्षित सबैभन्दा सानो आकार दस हो। char city[9] घोषणा गरे terminator का लागि ठाउँ रहँदैन, string को अन्त्य केहीले जनाउँदैन र printf मेमोरीमा पछि जे छ त्यतै बढ्छ। नियम सधैं यही हो: लम्बाइ जोड एक।"
+    }
+  },
+  {
+    "id": "g9.c.q45",
+    "subject": "grade9/c-programming",
+    "unit": "u5",
+    "topic": "strlen-result",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "char s[20] = \"NEPAL\"; What does strlen(s) return?",
+      "ne": "char s[20] = \"NEPAL\"; मा strlen(s) ले के फर्काउँछ?"
+    },
+    "options": [
+      {
+        "en": "20",
+        "ne": "२०"
+      },
+      {
+        "en": "5",
+        "ne": "५"
+      },
+      {
+        "en": "6",
+        "ne": "६"
+      },
+      {
+        "en": "19",
+        "ne": "१९"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "strlen counts the characters up to the null terminator and does not count the null itself, so it returns 5. Three different numbers describe this one variable and all three are right: the length is 5, the characters stored are 6 including the null, and the array size is 20. Confusing the length with the size is the usual error, and sizeof(s) would give 20.",
+      "ne": "strlen ले null terminator सम्मका अक्षर गन्छ र null आफैंलाई गन्दैन, त्यसैले ५ फर्काउँछ। यही एउटै variable लाई तीन फरक सङ्ख्याले वर्णन गर्छन् र तीनै ठिक छन्: लम्बाइ ५, null सहित भण्डारण भएका अक्षर ६, र array को आकार २०। लम्बाइ र आकार मिसाउनु सामान्य गल्ती हो, र sizeof(s) ले २० दिन्थ्यो।"
+    }
+  },
+  {
+    "id": "g9.c.q46",
+    "subject": "grade9/c-programming",
+    "unit": "u5",
+    "topic": "strcmp-return",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What does strcmp(s1, s2) return when the two strings are identical?",
+      "ne": "दुई string ठ्याक्कै उस्तै हुँदा strcmp(s1, s2) ले के फर्काउँछ?"
+    },
+    "options": [
+      {
+        "en": "1, meaning true",
+        "ne": "१, अर्थात् सत्य"
+      },
+      {
+        "en": "0",
+        "ne": "०"
+      },
+      {
+        "en": "The length of the strings",
+        "ne": "String को लम्बाइ"
+      },
+      {
+        "en": "It returns nothing",
+        "ne": "यसले केही फर्काउँदैन"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "strcmp returns 0 when the strings match, a negative number when the first comes earlier alphabetically, and a positive number when it comes later. Zero meaning \"equal\" is the opposite of what most people expect, so the condition for \"the passwords are the same\" reads if (strcmp(a, b) == 0), which looks backwards and is correct. Writing if (strcmp(a, b)) tests for DIFFERENT, because any non-zero value is true in C.",
+      "ne": "String मिल्दा strcmp ले ० फर्काउँछ, पहिलो वर्णक्रममा अघि भए ऋणात्मक, पछि भए धनात्मक। ० को अर्थ \"बराबर\" हुनु धेरैको अपेक्षाविपरीत छ, त्यसैले \"password मिल्यो\" भन्ने सर्त if (strcmp(a, b) == 0) हुन्छ — उल्टो देखिन्छ र ठिक छ। if (strcmp(a, b)) लेखे फरक छ कि भनेर जाँचिन्छ, किनभने C मा शून्य नभएको जुनसुकै मान सत्य हो।"
+    }
+  },
+  {
+    "id": "g9.c.q47",
+    "subject": "grade9/c-programming",
+    "unit": "u5",
+    "topic": "string-comparison-operator",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Why can two strings not be compared with if (s1 == s2)?",
+      "ne": "दुई string लाई if (s1 == s2) ले किन तुलना गर्न मिल्दैन?"
+    },
+    "options": [
+      {
+        "en": "Because == only works on numbers and the program will not compile",
+        "ne": "किनभने == सङ्ख्यामा मात्र चल्छ र प्रोग्राम compile हुँदैन"
+      },
+      {
+        "en": "Because s1 and s2 are addresses, so == compares where the two arrays are, not what they contain",
+        "ne": "किनभने s1 र s2 ठेगाना हुन्, त्यसैले == ले दुई array कहाँ छन् तुलना गर्छ, भित्र के छ होइन"
+      },
+      {
+        "en": "Because strings must always be compared letter by letter in a loop",
+        "ne": "किनभने string सधैं loop मा अक्षर–अक्षर तुलना गर्नुपर्छ"
+      },
+      {
+        "en": "It works perfectly well",
+        "ne": "यो राम्ररी चल्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "An array name is the address of its first element, so s1 == s2 compares two addresses. Two separate arrays are always at different addresses, so the test is false even when both hold exactly the same word. It compiles and runs, which is what makes it dangerous. strcmp walks both strings character by character and is the only correct way — and it returns 0 for a match.",
+      "ne": "Array को नाम पहिलो element को ठेगाना हो, त्यसैले s1 == s2 ले दुई ठेगाना तुलना गर्छ। छुट्टाछुट्टै दुई array सधैं फरक ठेगानामा हुन्छन्, त्यसैले दुवैमा ठ्याक्कै उही शब्द भए पनि जाँच असत्य हुन्छ। यो compile हुन्छ र चल्छ पनि — त्यसैले खतरनाक छ। strcmp ले दुवै string अक्षर–अक्षर हिँड्छ र सही तरिका त्यही हो — र मिल्दा ० फर्काउँछ।"
+    }
+  },
+  {
+    "id": "g9.c.q48",
+    "subject": "grade9/c-programming",
+    "unit": "u5",
+    "topic": "scanf-string",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "char name[20]; Which scanf line is correct, and what happens if the user types \"Ram Bahadur\"?",
+      "ne": "char name[20]; कुन scanf लाइन सही छ, र प्रयोगकर्ताले \"Ram Bahadur\" टाइप गरे के हुन्छ?"
+    },
+    "options": [
+      {
+        "en": "scanf(\"%s\", &name); and the whole name is read",
+        "ne": "scanf(\"%s\", &name); र पूरै नाम पढिन्छ"
+      },
+      {
+        "en": "scanf(\"%s\", name); and only \"Ram\" is read, because %s stops at the first space",
+        "ne": "scanf(\"%s\", name); र \"Ram\" मात्र पढिन्छ, किनभने %s पहिलो खाली ठाउँमा रोकिन्छ"
+      },
+      {
+        "en": "scanf(\"%c\", name); and the whole name is read",
+        "ne": "scanf(\"%c\", name); र पूरै नाम पढिन्छ"
+      },
+      {
+        "en": "scanf(\"%d\", &name); and the name is converted to a number",
+        "ne": "scanf(\"%d\", &name); र नाम सङ्ख्यामा बदलिन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "An array name is already an address, so %s takes no ampersand — this is the one scanf in the subject that does not need one. And %s stops reading at the first whitespace, so \"Ram Bahadur\" leaves \"Ram\" in name and \"Bahadur\" waiting in the input. Reading a whole line needs fgets, not scanf, and gets() is not an option because it was removed from the C standard.",
+      "ne": "Array को नाम आफैं ठेगाना हो, त्यसैले %s लाई ampersand चाहिँदैन — विषयभरिमा ampersand नचाहिने scanf यही एक हो। अनि %s पहिलो खाली ठाउँमै पढ्न छाड्छ, त्यसैले \"Ram Bahadur\" मा name भित्र \"Ram\" रहन्छ र \"Bahadur\" input मै पर्खिरहन्छ। पूरै लाइन पढ्न scanf होइन fgets चाहिन्छ, र gets() विकल्प होइन किनभने त्यो C मानकबाट हटाइएको छ।"
+    }
+  },
+  {
+    "id": "g9.c.q49",
+    "subject": "grade9/c-programming",
+    "unit": "u5",
+    "topic": "out-of-bounds",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A loop over int a[5] is written as for (i = 0; i <= 5; i++). What is the consequence?",
+      "ne": "int a[5] मा loop लाई for (i = 0; i <= 5; i++) लेखियो। यसको परिणाम के हुन्छ?"
+    },
+    "options": [
+      {
+        "en": "The compiler reports an index error and refuses to build",
+        "ne": "Compiler ले index त्रुटि देखाएर बनाउन मान्दैन"
+      },
+      {
+        "en": "It compiles and the loop touches a[5], which is outside the array — giving a wrong result or a crash",
+        "ne": "यो compile हुन्छ र loop ले array बाहिरको a[5] छुन्छ — गलत नतिजा वा crash आउँछ"
+      },
+      {
+        "en": "The array automatically grows to six elements",
+        "ne": "Array आफैं छ element को हुन्छ"
+      },
+      {
+        "en": "The last element is simply read twice",
+        "ne": "अन्तिम element दुई पटक पढिन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The loop runs six times, with i taking 0 to 5, and a[5] is one box past the end of an array whose last valid index is 4. C does no bounds checking at compile time or at run time, so this builds cleanly. What is at that address is whatever came next in memory, so the program may print a strange number, may corrupt another variable, or may crash — possibly a different one of those on each run.",
+      "ne": "Loop छ पटक चल्छ, i ले ० देखि ५ लिन्छ, र अन्तिम मान्य index ४ भएको array मा a[5] अन्त्यभन्दा एक बाकस पर हो। C ले compile गर्दा पनि, चल्दा पनि bound जाँच्दैन, त्यसैले यो सफा build हुन्छ। त्यो ठेगानामा मेमोरीमा पछि जे आयो त्यही हुन्छ, त्यसैले प्रोग्रामले अनौठो सङ्ख्या छाप्न सक्छ, अर्को variable बिगार्न सक्छ, वा crash हुन सक्छ — हरेक पटक फरक पनि हुन सक्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q50",
+    "subject": "grade9/c-programming",
+    "unit": "u5",
+    "topic": "array-sum-trace",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "int a[5] = {70, 85, 60, 90, 45}; int i, t = 0; for (i = 0; i < 5; i++) t = t + a[i];  What is t?",
+      "ne": "int a[5] = {70, 85, 60, 90, 45}; int i, t = 0; for (i = 0; i < 5; i++) t = t + a[i];  t कति हुन्छ?"
+    },
+    "options": [
+      {
+        "en": "350",
+        "ne": "३५०"
+      },
+      {
+        "en": "280",
+        "ne": "२८०"
+      },
+      {
+        "en": "45",
+        "ne": "४५"
+      },
+      {
+        "en": "70",
+        "ne": "७०"
+      }
+    ],
+    "answer": 0,
+    "explanation": {
+      "en": "70 + 85 + 60 + 90 + 45 = 350. Two details make this work and both are examined. t is set to 0 before the loop, so the first addition has something known to add to; if t were left uninitialised the answer would be a different wrong number on every run. And the index runs 0 to 4, covering all five elements — option B is the total without the first element, which is what starting the loop at 1 would give.",
+      "ne": "70 + 85 + 60 + 90 + 45 = 350। दुई कुराले यो चल्छ र दुवै सोधिन्छन्। Loop अघि t लाई ० राखिएको छ, त्यसैले पहिलो जोडसँग जोड्न थाहा भएको कुरा हुन्छ; t लाई मान नदिए हरेक पटक फरक गलत उत्तर आउँथ्यो। अनि index ० देखि ४ सम्म चल्छ र पाँचै element समेट्छ — विकल्प (ख) पहिलो element नगनेको जोड हो, जुन loop १ बाट सुरु गर्दा आउँथ्यो।"
+    }
+  },
+  {
+    "id": "g9.c.q51",
+    "subject": "grade9/c-programming",
+    "unit": "u5",
+    "topic": "nonstandard-string-functions",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A program using strrev() compiles on DEV C++ at school and fails on a Linux machine with \"undefined reference\". Why?",
+      "ne": "strrev() प्रयोग गरेको प्रोग्राम विद्यालयको DEV C++ मा compile हुन्छ र Linux मेसिनमा \"undefined reference\" भन्दै असफल हुन्छ। किन?"
+    },
+    "options": [
+      {
+        "en": "Because Linux cannot run C programs",
+        "ne": "किनभने Linux ले C प्रोग्राम चलाउनै सक्दैन"
+      },
+      {
+        "en": "Because strrev is not part of the standard C library — it is a Turbo C and Microsoft extension",
+        "ne": "किनभने strrev मानक C library को भाग होइन — यो Turbo C र Microsoft को थप हो"
+      },
+      {
+        "en": "Because string.h was not included",
+        "ne": "किनभने string.h include गरिएको थिएन"
+      },
+      {
+        "en": "Because strrev needs an array of at least 100 characters",
+        "ne": "किनभने strrev लाई कम्तीमा १०० अक्षरको array चाहिन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The syllabus names seven string functions and only four of them — strlen, strcpy, strcat and strcmp — are in the C standard. strrev, strlwr and strupr are compiler extensions, present in Turbo C and some Microsoft tools and absent from glibc, so the header declares nothing for them on Linux and the linker cannot find the code. They are examinable, so write them in an answer; but a program that must run anywhere should reverse a string with a loop instead.",
+      "ne": "पाठ्यक्रमले सात string function नाम लिन्छ र तीमध्ये चार — strlen, strcpy, strcat र strcmp — मात्र C मानकमा छन्। strrev, strlwr र strupr compiler का थप हुन्, Turbo C र केही Microsoft साधनमा छन् र glibc मा छैनन् — त्यसैले Linux मा header ले तिनका लागि केही घोषणा गर्दैन र linker ले कोड भेट्दैन। यी सोधिन्छन्, त्यसैले उत्तरमा लेख्नुहोस्; तर जहाँ पनि चल्नुपर्ने प्रोग्रामले string loop ले नै उल्टाउनुपर्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q52",
+    "subject": "grade9/c-programming",
+    "unit": "u6",
+    "topic": "structure-definition",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What is a structure in C?",
+      "ne": "C मा structure भनेको के हो?"
+    },
+    "options": [
+      {
+        "en": "A collection of elements of the same data type in continuous memory",
+        "ne": "लगातार मेमोरीमा एउटै data type का element को समूह"
+      },
+      {
+        "en": "A user-defined data type that groups variables of DIFFERENT data types under one name",
+        "ne": "फरक data type का variable लाई एउटै नाममुनि राख्ने प्रयोगकर्ता-परिभाषित data type"
+      },
+      {
+        "en": "A function that returns more than one value",
+        "ne": "एकभन्दा बढी मान फर्काउने function"
+      },
+      {
+        "en": "Another name for an array of characters",
+        "ne": "Character array कै अर्को नाम"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Option A describes an array, which holds many values of ONE type. A structure is the opposite shape: several values of DIFFERENT types about one thing — a student with a name, a roll number and a percentage. Each variable inside it is called a member and each member has its own memory, which is what separates a structure from a union.",
+      "ne": "विकल्प (क) ले array को वर्णन गर्छ, जसले एउटै प्रकारका धेरै मान राख्छ। Structure उल्टो आकारको हो: एउटै कुराबारे फरक प्रकारका धेरै मान — नाम, roll नम्बर र प्रतिशत भएको विद्यार्थी। भित्रका हरेक variable लाई member भनिन्छ र हरेकको आफ्नै मेमोरी हुन्छ — structure लाई union बाट छुट्याउने कुरा त्यही हो।"
+    }
+  },
+  {
+    "id": "g9.c.q53",
+    "subject": "grade9/c-programming",
+    "unit": "u6",
+    "topic": "union-size",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "union Box { int n; char c; }; On a machine where int is 4 bytes and char is 1, what is sizeof(union Box)?",
+      "ne": "union Box { int n; char c; }; int ४ byte र char १ byte भएको मेसिनमा sizeof(union Box) कति हुन्छ?"
+    },
+    "options": [
+      {
+        "en": "5 bytes — the total of the members",
+        "ne": "५ byte — member को जोड"
+      },
+      {
+        "en": "4 bytes — the size of the largest member",
+        "ne": "४ byte — सबैभन्दा ठूलो member को आकार"
+      },
+      {
+        "en": "1 byte — the size of the smallest member",
+        "ne": "१ byte — सबैभन्दा सानो member को आकार"
+      },
+      {
+        "en": "8 bytes — unions always use 8",
+        "ne": "८ byte — union ले सधैं ८ लिन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "A union gives every member the same block of memory, so the block only has to be big enough for the largest member — 4 bytes here. A structure with the same two members would need space for both, so its size would be 5 plus any padding the compiler adds. Size is the clearest single difference between the two and it is the standard way the comparison question is marked.",
+      "ne": "Union ले हरेक member लाई उही मेमोरी block दिन्छ, त्यसैले block सबैभन्दा ठूलो member अट्ने मात्र हुनुपर्छ — यहाँ ४ byte। उही दुई member भएको structure लाई दुवैका लागि ठाउँ चाहिन्थ्यो, त्यसैले आकार ५ र compiler ले थप्ने padding हुन्थ्यो। दुईबीचको सबैभन्दा स्पष्ट फरक आकार नै हो र तुलनात्मक प्रश्नको अंक पनि प्रायः यसैमा दिइन्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q54",
+    "subject": "grade9/c-programming",
+    "unit": "u6",
+    "topic": "union-overwrite",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "union Box b; b.n = 65; then b.c = 88; then printf(\"%d\", b.n);  What is printed?",
+      "ne": "union Box b; b.n = 65; अनि b.c = 88; अनि printf(\"%d\", b.n);  के छापिन्छ?"
+    },
+    "options": [
+      {
+        "en": "65 — n was never written to again",
+        "ne": "६५ — n मा फेरि लेखिएकै थिएन"
+      },
+      {
+        "en": "88 — the two members share one block, so writing c overwrote n",
+        "ne": "८८ — दुवै member ले एउटै block बाँड्छन्, त्यसैले c लेख्दा n मेटियो"
+      },
+      {
+        "en": "153 — the two values are added",
+        "ne": "१५३ — दुई मान जोडिन्छन्"
+      },
+      {
+        "en": "0 — the union is cleared after each write",
+        "ne": "० — हरेक पटक लेखेपछि union खाली हुन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "There is only one block of memory and both members read it. Writing 88 into b.c put 88 into the first byte of the shared block, so reading b.n afterwards reads the changed bytes and gives 88. A line that named only c has changed what n reads — and that is a union's whole behaviour. In a STRUCTURE both members would keep their own values and the answer would be 65.",
+      "ne": "मेमोरीको एउटै block छ र दुवै member ले त्यही पढ्छन्। b.c मा ८८ लेख्दा साझा block को पहिलो byte मा ८८ पुग्यो, त्यसैले पछि b.n पढ्दा बदलिएका byte पढिन्छन् र ८८ आउँछ। c को मात्र नाम लिने लाइनले n ले पढ्ने कुरा बदल्यो — union को पूरै व्यवहार त्यही हो। STRUCTURE मा दुवै member ले आफ्नो मान राख्थे र उत्तर ६५ हुन्थ्यो।"
+    }
+  },
+  {
+    "id": "g9.c.q55",
+    "subject": "grade9/c-programming",
+    "unit": "u6",
+    "topic": "dot-operator",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "struct Student s1; How is the roll member of s1 accessed?",
+      "ne": "struct Student s1; मा s1 को roll member मा कसरी पुगिन्छ?"
+    },
+    "options": [
+      {
+        "en": "Student.roll",
+        "ne": "Student.roll"
+      },
+      {
+        "en": "s1.roll",
+        "ne": "s1.roll"
+      },
+      {
+        "en": "roll.s1",
+        "ne": "roll.s1"
+      },
+      {
+        "en": "s1->roll",
+        "ne": "s1->roll"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The dot operator joins a structure VARIABLE to one of its members, so it is s1.roll. Student is the type, and a type reserves no memory, so Student.roll names nothing that exists. The arrow -> is used when you hold a POINTER to a structure rather than the structure itself, which is Grade 10 work; for a plain variable the dot is the operator.",
+      "ne": "Dot operator ले structure को VARIABLE लाई यसको member सँग जोड्छ, त्यसैले s1.roll हुन्छ। Student प्रकार हो, र प्रकारले मेमोरी छुट्याउँदैन — त्यसैले Student.roll ले अस्तित्वमा भएको केही जनाउँदैन। Arrow -> त्यतिबेला चलाइन्छ जब structure आफैं होइन, त्यसको POINTER हुन्छ — त्यो कक्षा १० को कुरा हो; सामान्य variable का लागि dot नै operator हो।"
+    }
+  },
+  {
+    "id": "g9.c.q56",
+    "subject": "grade9/c-programming",
+    "unit": "u6",
+    "topic": "struct-semicolon",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Where is a semicolon required that students often leave out?",
+      "ne": "विद्यार्थीले प्रायः छुटाउने semicolon कहाँ चाहिन्छ?"
+    },
+    "options": [
+      {
+        "en": "After the closing brace of a function definition",
+        "ne": "Function definition को बन्द brace पछि"
+      },
+      {
+        "en": "After the closing brace of a structure declaration",
+        "ne": "Structure घोषणाको बन्द brace पछि"
+      },
+      {
+        "en": "After #include <stdio.h>",
+        "ne": "#include <stdio.h> पछि"
+      },
+      {
+        "en": "After int main()",
+        "ne": "int main() पछि"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "A structure declaration is a statement, so it ends with a semicolon after the closing brace: struct Student { ... }; A function definition is not a statement and takes no semicolon there; #include is a preprocessor directive and takes none; and a semicolon after int main() would make an empty function and then leave the braces as a stray block. Leaving out the structure semicolon produces an error message pointing at the NEXT line, which is why it is hard to find.",
+      "ne": "Structure को घोषणा statement हो, त्यसैले बन्द brace पछि semicolon ले सकिन्छ: struct Student { ... }; Function definition statement होइन र त्यहाँ semicolon लिँदैन; #include preprocessor directive हो र लिँदैन; अनि int main() पछि semicolon राखे खाली function बन्थ्यो र brace छुट्टै block बन्थ्यो। Structure को semicolon छुटाउँदा त्रुटि सन्देशले पछिल्लो लाइन देखाउँछ — त्यसैले भेट्न गाह्रो हुन्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q57",
+    "subject": "grade9/c-programming",
+    "unit": "u6",
+    "topic": "struct-keyword",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "After struct Student { ... }; which line correctly declares a variable in C?",
+      "ne": "struct Student { ... }; पछि C मा variable घोषणा गर्ने सही लाइन कुन हो?"
+    },
+    "options": [
+      {
+        "en": "Student s1;",
+        "ne": "Student s1;"
+      },
+      {
+        "en": "struct Student s1;",
+        "ne": "struct Student s1;"
+      },
+      {
+        "en": "new Student s1;",
+        "ne": "new Student s1;"
+      },
+      {
+        "en": "Student s1 = new Student();",
+        "ne": "Student s1 = new Student();"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "In C the keyword struct is part of the type name, so the declaration is struct Student s1;. Writing Student s1; alone does not compile unless a typedef has given the type a shorter name. The other two options are C++ and Java syntax: C has no new operator, and a structure variable is created by declaring it, exactly like an int.",
+      "ne": "C मा struct keyword प्रकारकै नामको भाग हो, त्यसैले घोषणा struct Student s1; हुन्छ। typedef ले छोटो नाम नदिएसम्म Student s1; मात्रले compile हुँदैन। अरू दुई विकल्प C++ र Java का syntax हुन्: C मा new operator छैन, र structure को variable int जस्तै घोषणा गरेरै बन्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q58",
+    "subject": "grade9/c-programming",
+    "unit": "u6",
+    "topic": "choosing-union",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A sensor reading is sometimes a whole count and sometimes a decimal measurement, never both at once, and the device has very little memory. Which should be used, and why?",
+      "ne": "Sensor को रिडिङ कहिले पूर्ण गन्ती र कहिले दशमलव नाप हुन्छ, एकैचोटि कहिल्यै दुवै हुँदैन, र यन्त्रमा मेमोरी निकै थोरै छ। कुन चलाउने र किन?"
+    },
+    "options": [
+      {
+        "en": "A structure, because it is safer and keeps both values",
+        "ne": "Structure, किनभने यो सुरक्षित छ र दुवै मान राख्छ"
+      },
+      {
+        "en": "A union, because only one member is ever in use, so sharing one block wastes nothing and saves the rest",
+        "ne": "Union, किनभने एक पटकमा एउटै member प्रयोगमा हुन्छ — एउटै block बाँड्दा केही खेर जाँदैन र बाँकी बच्छ"
+      },
+      {
+        "en": "An array, because readings are a list",
+        "ne": "Array, किनभने रिडिङ सूची हो"
+      },
+      {
+        "en": "Either one — the choice makes no difference",
+        "ne": "जुनसुकै — छनोटले फरक पार्दैन"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The two conditions in the question are exactly the two a union needs: only one member is in use at any moment, and memory is scarce. Sharing one block then costs nothing, because the unused member had no value worth keeping. A structure would be safe but would reserve space for both members, which is the memory the device does not have. Saving memory is the only reason a union exists, and it is the reason to give in an answer.",
+      "ne": "प्रश्नका दुई सर्त union लाई चाहिने ठ्याक्कै दुई सर्त हुन्: कुनै पनि क्षणमा एउटै member प्रयोगमा हुनु, र मेमोरी थोरै हुनु। तब एउटै block बाँड्दा केही लागत छैन, किनभने प्रयोगमा नभएको member सँग राख्नुपर्ने मान नै थिएन। Structure सुरक्षित त हुन्थ्यो तर दुवै member का लागि ठाउँ छुट्याउँथ्यो — र त्यही मेमोरी यन्त्रसँग छैन। Union हुनुको एकमात्र कारण मेमोरी बचत हो, र उत्तरमा दिनुपर्ने कारण पनि त्यही।"
+    }
+  },
+  {
+    "id": "g9.c.q59",
+    "subject": "grade9/c-programming",
+    "unit": "u7",
+    "topic": "pointer-definition",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What does a pointer variable store?",
+      "ne": "Pointer variable ले के राख्छ?"
+    },
+    "options": [
+      {
+        "en": "A copy of another variable's value",
+        "ne": "अर्को variable को मानको प्रतिलिपि"
+      },
+      {
+        "en": "The memory address of another variable",
+        "ne": "अर्को variable को मेमोरी ठेगाना"
+      },
+      {
+        "en": "The name of another variable",
+        "ne": "अर्को variable को नाम"
+      },
+      {
+        "en": "The data type of another variable",
+        "ne": "अर्को variable को data type"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "A pointer is an ordinary variable in every respect — it has a type, a name and an address of its own — and what it holds is a location rather than a quantity. int *p; p = &n; leaves p holding where n lives, not what n contains. *p is how you reach the value from there, and the two must not be confused: p is an address and *p is the number at it.",
+      "ne": "Pointer हरेक हिसाबले सामान्य variable नै हो — यसको प्रकार, नाम र आफ्नै ठेगाना हुन्छ — र यसले राख्ने कुरा परिमाण नभई स्थान हो। int *p; p = &n; पछि p सँग n कहाँ बस्छ भन्ने हुन्छ, n मा के छ भन्ने होइन। त्यहाँबाट मानसम्म पुग्ने तरिका *p हो, र यी दुई मिसाउनु हुँदैन: p ठेगाना हो र *p त्यहाँको सङ्ख्या।"
+    }
+  },
+  {
+    "id": "g9.c.q60",
+    "subject": "grade9/c-programming",
+    "unit": "u7",
+    "topic": "address-vs-dereference",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which statement about & and * is correct?",
+      "ne": "& र * बारे कुन कथन सही छ?"
+    },
+    "options": [
+      {
+        "en": "& gives the value at an address; * gives the address of a variable",
+        "ne": "& ले ठेगानाको मान दिन्छ; * ले variable को ठेगाना दिन्छ"
+      },
+      {
+        "en": "& gives the address of a variable; * gives the value at an address",
+        "ne": "& ले variable को ठेगाना दिन्छ; * ले ठेगानाको मान दिन्छ"
+      },
+      {
+        "en": "Both do the same thing",
+        "ne": "दुवैले उही काम गर्छन्"
+      },
+      {
+        "en": "& works on pointers only and * works on integers only",
+        "ne": "& pointer मा मात्र र * integer मा मात्र चल्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "& is the address-of operator: written before a variable, it gives where that variable lives. * is the value-at, or dereference, operator: written before a pointer, it gives what is stored at the address the pointer holds. They work in opposite directions and undo each other, so *(&n) is simply n. Option A is the two definitions swapped, which is the usual way this is got wrong.",
+      "ne": "& address-of operator हो: variable अगाडि लेख्दा त्यो variable कहाँ बस्छ भन्ने दिन्छ। * value-at वा dereference operator हो: pointer अगाडि लेख्दा pointer ले बोकेको ठेगानामा भएको कुरा दिन्छ। यी उल्टा दिशामा चल्छन् र एकअर्कालाई उल्ट्याउँछन्, त्यसैले *(&n) भनेको n नै हो। विकल्प (क) मा दुई परिभाषा साटिएका छन्, र यो प्रायः त्यसरी नै बिग्रन्छ।"
+    }
+  },
+  {
+    "id": "g9.c.q61",
+    "subject": "grade9/c-programming",
+    "unit": "u7",
+    "topic": "write-through-pointer",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "int n = 7; int *p = &n; *p = *p + 3; printf(\"%d\", n);  What is printed?",
+      "ne": "int n = 7; int *p = &n; *p = *p + 3; printf(\"%d\", n);  के छापिन्छ?"
+    },
+    "options": [
+      {
+        "en": "7, because n was never assigned to",
+        "ne": "७, किनभने n मा कहिल्यै मान राखिएन"
+      },
+      {
+        "en": "10",
+        "ne": "१०"
+      },
+      {
+        "en": "3",
+        "ne": "३"
+      },
+      {
+        "en": "An address, because p was involved",
+        "ne": "ठेगाना, किनभने p संलग्न थियो"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Read *p = *p + 3 as \"the value at p becomes the value at p plus three\". The value at p is n, so this line is n = n + 3 written another way, and n becomes 10. A variable can be changed by a line that never names it, provided something holds its address — which is not a trick but exactly what scanf(\"%d\", &n) has been doing since Unit 2. Printing p rather than n would show an address; one star is the whole difference.",
+      "ne": "*p = *p + 3 लाई \"p को ठेगानाको मान बराबर p को ठेगानाको मान जोड तीन\" भनेर पढ्नुहोस्। P को ठेगानाको मान n हो, त्यसैले यो लाइन n = n + 3 कै अर्को लेखाइ हो र n १० हुन्छ। कसैसँग ठेगाना छ भने नाम नै नलिने लाइनले variable बदल्न सक्छ — यो जादू होइन, युनिट २ देखि scanf(\"%d\", &n) ले गरिरहेकै काम हो। n होइन p छापेको भए ठेगाना देखिन्थ्यो; पूरै फरक एउटा star को हो।"
+    }
+  },
+  {
+    "id": "g9.c.q62",
+    "subject": "grade9/c-programming",
+    "unit": "u7",
+    "topic": "pointer-declaration",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which line correctly declares p as a pointer to an integer and points it at n?",
+      "ne": "कुन लाइनले p लाई integer को pointer घोषणा गरेर n तिर तेर्स्याउँछ?"
+    },
+    "options": [
+      {
+        "en": "int p; p = n;",
+        "ne": "int p; p = n;"
+      },
+      {
+        "en": "int *p; p = &n;",
+        "ne": "int *p; p = &n;"
+      },
+      {
+        "en": "int *p; p = n;",
+        "ne": "int *p; p = n;"
+      },
+      {
+        "en": "int p; *p = &n;",
+        "ne": "int p; *p = &n;"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "int *p; declares p as a pointer to an int — the star there is part of the type, not a dereference. p = &n; then stores n's address in it. Option C declares the pointer correctly and then puts a VALUE where an address belongs. Option A declares an ordinary int, and option D declares an ordinary int and then dereferences it, which is not something the compiler will accept.",
+      "ne": "int *p; ले p लाई int को pointer घोषणा गर्छ — त्यहाँको star प्रकारको भाग हो, dereference होइन। अनि p = &n; ले यसमा n को ठेगाना राख्छ। विकल्प (ग) ले pointer त ठिकै घोषणा गर्छ तर ठेगाना चाहिने ठाउँमा मान राख्छ। विकल्प (क) ले सामान्य int घोषणा गर्छ, र (घ) ले सामान्य int घोषणा गरेर त्यसलाई dereference गर्छ, जुन compiler ले स्वीकार गर्दैन।"
+    }
+  },
+  {
+    "id": "g9.c.q63",
+    "subject": "grade9/c-programming",
+    "unit": "u7",
+    "topic": "pointer-advantage",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which of these is a genuine advantage of pointers that you have already used in this subject?",
+      "ne": "यीमध्ये कुन pointer को साँचो फाइदा हो, जुन तपाईंले यसै विषयमा चलाइसक्नुभएको छ?"
+    },
+    "options": [
+      {
+        "en": "They make a program compile faster",
+        "ne": "यिनले प्रोग्राम छिटो compile गराउँछन्"
+      },
+      {
+        "en": "They let a function change the caller's variables — call by reference, and the & in every scanf",
+        "ne": "यिनले function लाई बोलाउनेका variable बदल्न दिन्छन् — call by reference, र हरेक scanf को &"
+      },
+      {
+        "en": "They remove the need for data types",
+        "ne": "यिनले data type को आवश्यकता हटाउँछन्"
+      },
+      {
+        "en": "They check array bounds automatically",
+        "ne": "यिनले array को bound आफैं जाँच्छन्"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Call by reference is the advantage this subject has already relied on twice: the ampersand in every scanf since Unit 2, and the swap function in Unit 4. The other advantages are passing an array without copying it, allocating memory while the program runs, and building data structures such as linked lists. Option D is the opposite of the truth — C checks no bounds at all, which is part of the same bargain that makes pointers powerful.",
+      "ne": "Call by reference यस विषयले पहिल्यै दुई पटक भर परेको फाइदा हो: युनिट २ देखि हरेक scanf को ampersand, र युनिट ४ को swap function। अरू फाइदा हुन् — प्रतिलिपि नबनाई array पठाउनु, प्रोग्राम चल्दै गर्दा मेमोरी छुट्याउनु, र linked list जस्ता data structure बनाउनु। विकल्प (घ) सत्यको ठिक उल्टो हो — C ले bound जाँच्दै जाँच्दैन, र pointer लाई शक्तिशाली बनाउने सम्झौताकै भाग त्यो हो।"
+    }
+  }
+]);
+
 QuizService.registerBank("grade9/computer-fundamentals", [
   {
     "id": "g9.cf.q01",
@@ -430,6 +2701,1806 @@ QuizService.registerBank("grade9/computer-fundamentals", [
     "explanation": {
       "en": "\"Working principle\" is the data-handling basis, so the answer must be analog, digital or hybrid — which rules out microcomputer (size) and special purpose (purpose) however true they are of the machine. Between the two that remain, digital is the trap: the machine does produce digital output, but it also MEASURES a smoothly changing signal, and doing both is the definition of hybrid. The general lesson is to read which basis the question names before looking at the machine at all.",
       "ne": "\"Working principle\" भनेको डाटा ह्यान्डलिङको आधार हो, त्यसैले उत्तर analog, digital वा hybrid मध्ये हुनैपर्छ — यसले microcomputer (आकार) र special purpose (प्रयोजन) लाई हटाइदिन्छ, ती मेसिनका लागि जति नै सत्य भए पनि। बाँकी दुईमध्ये digital पासो हो: मेसिनले digital आउटपुट त दिन्छ, तर बिस्तारै बदलिने सङ्केत नाप्छ पनि, र दुवै गर्नु नै hybrid को परिभाषा हो। पाठ यो हो — मेसिन हेर्नुअघि प्रश्नले कुन आधार तोकेको छ पढ्नुहोस्।"
+    }
+  },
+  {
+    "id": "g9.cf.q13",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u2",
+    "topic": "system-units",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which unit of a computer system performs all the comparisons?",
+      "ne": "कम्प्युटर प्रणालीको कुन एकाइले सबै तुलना गर्छ?"
+    },
+    "options": [
+      {
+        "en": "The control unit",
+        "ne": "Control unit"
+      },
+      {
+        "en": "The ALU",
+        "ne": "ALU"
+      },
+      {
+        "en": "The memory unit",
+        "ne": "Memory unit"
+      },
+      {
+        "en": "The input unit",
+        "ne": "Input unit"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The ALU is the Arithmetic and LOGIC Unit, and comparison is a logical operation. The control unit decides what happens next and in what order, but it does not do the comparing itself. This pair is asked almost every year.",
+      "ne": "ALU भनेको Arithmetic and LOGIC Unit हो, र तुलना तार्किक काम हो। Control unit ले अब के हुने र कुन क्रममा हुने तय गर्छ, तर तुलना आफैं गर्दैन। यो जोडी झन्डै हरेक वर्ष सोधिन्छ।"
+    }
+  },
+  {
+    "id": "g9.cf.q14",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u2",
+    "topic": "input-readers",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "An entrance examination uses answer sheets on which candidates shade boxes with a pencil. Which device reads them?",
+      "ne": "प्रवेश परीक्षामा विद्यार्थीले पेन्सिलले बाकस कालो पार्ने उत्तरपुस्तिका प्रयोग हुन्छ। ती कसले पढ्छ?"
+    },
+    "options": [
+      {
+        "en": "OCR",
+        "ne": "OCR"
+      },
+      {
+        "en": "OMR",
+        "ne": "OMR"
+      },
+      {
+        "en": "MICR",
+        "ne": "MICR"
+      },
+      {
+        "en": "Bar code reader",
+        "ne": "Bar code reader"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "OMR is the Optical MARK Reader. It only needs to detect which box is filled — the position of the mark carries the meaning, so no letter has to be recognised. OCR would be the answer if the machine had to read what was written inside the boxes.",
+      "ne": "OMR भनेको Optical MARK Reader हो। कुन बाकस भरिएको छ भेट्टाए पुग्छ — अर्थ चिन्हको ठाउँले बोक्छ, अक्षर चिन्नु पर्दैन। बाकसभित्र लेखिएको पढ्नुपर्ने भए OCR उत्तर हुन्थ्यो।"
+    }
+  },
+  {
+    "id": "g9.cf.q15",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u2",
+    "topic": "input-readers",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Why do banks print cheque numbers in magnetic ink rather than ordinary ink?",
+      "ne": "बैंकहरूले चेकको नम्बर साधारण मसीको साटो चुम्बकीय मसीमा किन छाप्छन्?"
+    },
+    "options": [
+      {
+        "en": "Magnetic ink is cheaper to produce",
+        "ne": "चुम्बकीय मसी सस्तो पर्छ"
+      },
+      {
+        "en": "A photocopy of the cheque cannot be read by the machine, so forgery is harder",
+        "ne": "चेकको फोटोकपी मेसिनले पढ्न सक्दैन, त्यसैले नक्कल गर्न गाह्रो हुन्छ"
+      },
+      {
+        "en": "Magnetic ink can be read in the dark",
+        "ne": "चुम्बकीय मसी अँध्यारोमा पढ्न सकिन्छ"
+      },
+      {
+        "en": "It allows the cheque to be scanned in colour",
+        "ne": "चेक रङ्गीन स्क्यान गर्न मिल्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "MICR senses magnetism, not shape. A photocopy reproduces the appearance of the characters perfectly and none of the magnetism, so the reader rejects it. Security is the reason the technology survives even though it is old and expensive.",
+      "ne": "MICR ले आकार होइन, चुम्बकत्व पहिचान गर्छ। फोटोकपीले अक्षरको रूप पूरै उतार्छ तर चुम्बकत्व पटक्कै उतार्दैन, त्यसैले reader ले अस्वीकार गर्छ। पुरानो र महँगो भए पनि यो प्रविधि टिकिरहनुको कारण सुरक्षा नै हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q16",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u2",
+    "topic": "input-readers",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A school scans a page of a printed book and wants to correct a spelling mistake in the text afterwards. A scanner alone is not enough. What else is needed, and why?",
+      "ne": "विद्यालयले छापिएको पुस्तकको पाना स्क्यान गर्छ र पछि पाठको हिज्जे सच्याउन चाहन्छ। Scanner मात्रले पुग्दैन। अरू के चाहिन्छ, र किन?"
+    },
+    "options": [
+      {
+        "en": "A bar code reader, because the page has a code on it",
+        "ne": "Bar code reader, किनभने पानामा कोड हुन्छ"
+      },
+      {
+        "en": "OCR, because the scanner produces a picture and OCR turns the letter shapes in it into editable text",
+        "ne": "OCR, किनभने scanner ले तस्बिर बनाउँछ र OCR ले त्यसभित्रका अक्षरको आकारलाई सम्पादनयोग्य पाठ बनाउँछ"
+      },
+      {
+        "en": "A printer, because the text must be printed before it can be edited",
+        "ne": "Printer, किनभने सम्पादन गर्नुअघि पाठ छाप्नुपर्छ"
+      },
+      {
+        "en": "Nothing else — a scanner already produces editable text",
+        "ne": "अरू केही चाहिँदैन — scanner ले नै सम्पादनयोग्य पाठ दिन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "A scanner captures an image of the page. To a computer that image is just coloured dots — you cannot place a cursor in it. OCR examines the shapes in the image, recognises them as characters, and produces text that can be edited. Scanner and OCR are often sold together, which is why students think they are one thing.",
+      "ne": "Scanner ले पानाको तस्बिर खिच्छ। कम्प्युटरका लागि त्यो तस्बिर रङका थोप्ला मात्र हो — त्यसमा कर्सर राख्नै मिल्दैन। OCR ले तस्बिरभित्रका आकार केलाएर अक्षर चिन्छ र सम्पादन गर्न मिल्ने पाठ बनाउँछ। Scanner र OCR प्रायः सँगै बेचिने भएकाले विद्यार्थीले एउटै ठान्छन्।"
+    }
+  },
+  {
+    "id": "g9.cf.q17",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u2",
+    "topic": "output-classification",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which of these is a hardcopy output device?",
+      "ne": "यीमध्ये कुन hardcopy output device हो?"
+    },
+    "options": [
+      {
+        "en": "Monitor",
+        "ne": "Monitor"
+      },
+      {
+        "en": "Speaker",
+        "ne": "Speaker"
+      },
+      {
+        "en": "Graphic plotter",
+        "ne": "Graphic plotter"
+      },
+      {
+        "en": "Projector",
+        "ne": "Projector"
+      }
+    ],
+    "answer": 2,
+    "explanation": {
+      "en": "A plotter draws on paper, and paper output you can carry away is hardcopy. Monitor, speaker and projector all produce output that exists only while the device is running, which is softcopy. The plotter is the one students most often put on the wrong side.",
+      "ne": "Plotter ले कागजमा कोर्छ, र बोकेर लैजान मिल्ने कागजको आउटपुट hardcopy हो। Monitor, speaker र projector को आउटपुट उपकरण चलेसम्म मात्र रहन्छ — त्यो softcopy। गलत पक्षमा सबैभन्दा धेरै राखिने यही plotter हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q18",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u2",
+    "topic": "output-printers",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A shop must print a bill in three copies in a single pass — customer, shop and tax file. Which printer, and what makes it possible?",
+      "ne": "पसलले एकै पटकमा तीन प्रति बिल छाप्नुपर्छ — ग्राहक, पसल र कर फाइल। कुन प्रिन्टर, र यो सम्भव बनाउने कुरा के हो?"
+    },
+    "options": [
+      {
+        "en": "Laser printer — it is the fastest",
+        "ne": "Laser printer — सबैभन्दा छिटो"
+      },
+      {
+        "en": "Inkjet printer — the ink soaks through the paper",
+        "ne": "Inkjet printer — मसी कागज छिचोल्छ"
+      },
+      {
+        "en": "Dot-matrix printer — the print head strikes the paper, and the pressure carries through to the sheets below",
+        "ne": "Dot-matrix printer — head ले कागजमा ठोक्छ, र त्यो दबाब तलका पानासम्म पुग्छ"
+      },
+      {
+        "en": "3D printer — it can build several objects at once",
+        "ne": "3D printer — एकैपटक धेरै वस्तु बनाउन सक्छ"
+      }
+    ],
+    "answer": 2,
+    "explanation": {
+      "en": "This is the one job where the old noisy technology is the right answer. An IMPACT printer physically strikes the paper, and that pressure presses through carbon sheets underneath. Laser and inkjet are non-impact — nothing touches the page, so sheets two and three stay blank no matter how fast the printer is.",
+      "ne": "हल्ला गर्ने पुरानो प्रविधि नै ठिक उत्तर हुने काम यही हो। IMPACT प्रिन्टरले कागजमा भौतिक रूपमै ठोक्छ, र त्यो दबाब तलका कार्बन पानासम्म पुग्छ। Laser र inkjet non-impact हुन् — कागज छुँदै छुँदैनन्, त्यसैले प्रिन्टर जतिसुकै छिटो भए पनि दोस्रो र तेस्रो पाना खाली रहन्छ।"
+    }
+  },
+  {
+    "id": "g9.cf.q19",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u2",
+    "topic": "memory-unit",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "How many bytes are there in one kilobyte?",
+      "ne": "एक kilobyte मा कति byte हुन्छन्?"
+    },
+    "options": [
+      {
+        "en": "1000",
+        "ne": "१०००"
+      },
+      {
+        "en": "1024",
+        "ne": "१०२४"
+      },
+      {
+        "en": "512",
+        "ne": "५१२"
+      },
+      {
+        "en": "8",
+        "ne": "८"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "1 KB = 1024 bytes, because memory addresses are binary and 1024 is 2 to the power 10 — the nearest round number in a system that counts in twos. Writing 1000 is the single most common slip in this unit, and the marker is checking whether you know why it is not 1000.",
+      "ne": "1 KB = 1024 byte, किनभने मेमोरीका ठेगाना binary मा हुन्छन् र १०२४ भनेको २ को घात १० हो — दुईमा गन्ने प्रणालीको नजिकको पूरा संख्या। यस युनिटमा सबैभन्दा धेरै हुने गल्ती १००० लेख्नु हो, र परीक्षकले १००० किन होइन भन्ने थाहा छ कि छैन जाँचिरहेका हुन्छन्।"
+    }
+  },
+  {
+    "id": "g9.cf.q20",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u2",
+    "topic": "microprocessor",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Processor A runs at 2 GHz with a 64-bit word length. Processor B runs at 4 GHz with an 8-bit word length. Both must add eight bytes of data. Which needs fewer clock cycles, and why?",
+      "ne": "प्रोसेसर A: 2 GHz, word length 64-bit। प्रोसेसर B: 4 GHz, word length 8-bit। दुवैले आठ byte data जोड्नुपर्छ। कसलाई कम clock cycle चाहिन्छ, र किन?"
+    },
+    "options": [
+      {
+        "en": "B, because its clock speed is twice as high",
+        "ne": "B, किनभने यसको clock speed दोब्बर छ"
+      },
+      {
+        "en": "A, because 64 bits is 8 bytes, so all eight arrive in one cycle while B needs eight",
+        "ne": "A, किनभने ६४ bit = ८ byte, त्यसैले आठै byte एक चक्रमा पुग्छन् भने B लाई आठ चक्र चाहिन्छ"
+      },
+      {
+        "en": "Both need the same number of cycles",
+        "ne": "दुवैलाई उत्तिकै चक्र चाहिन्छ"
+      },
+      {
+        "en": "It cannot be worked out without knowing the cache size",
+        "ne": "Cache को आकार नजानी भन्न सकिँदैन"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Word length is how much data moves per cycle; clock speed is how many cycles per second. A 64-bit word is 8 bytes, so A finishes in one cycle. B handles one byte per cycle and needs eight. B does more cycles per second, but it needs eight times as many of them — which is exactly why both numbers are quoted and neither alone tells you how fast a processor is.",
+      "ne": "Word length भनेको प्रति चक्र कति data सर्छ; clock speed भनेको प्रति सेकेन्ड कति चक्र। ६४-bit word = ८ byte, त्यसैले A एक चक्रमै सक्छ। B ले प्रति चक्र एक byte चलाउँछ, आठ चक्र चाहिन्छ। B ले सेकेन्डमा बढी चक्र चलाउँछ तर उसलाई आठ गुणा बढी चक्र चाहिन्छ — दुवै संख्या किन भनिन्छ र एक्लैले गति नबताउने कारण यही हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q21",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u3",
+    "topic": "software-types",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Antivirus software is best classified as:",
+      "ne": "Antivirus सफ्टवेयरलाई कुन वर्गमा राख्नु सबैभन्दा ठिक हुन्छ?"
+    },
+    "options": [
+      {
+        "en": "Application software, because the user starts it",
+        "ne": "Application software, किनभने प्रयोगकर्ताले खोल्छ"
+      },
+      {
+        "en": "Utility software, because it maintains the computer rather than doing the user’s own task",
+        "ne": "Utility software, किनभने यसले प्रयोगकर्ताको आफ्नो काम होइन, कम्प्युटरकै हेरचाह गर्छ"
+      },
+      {
+        "en": "An operating system, because it controls the whole machine",
+        "ne": "Operating system, किनभने पूरै मेसिन नियन्त्रण गर्छ"
+      },
+      {
+        "en": "A device driver, because it works with the disk",
+        "ne": "Device driver, किनभने डिस्कसँग काम गर्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The test is who the software serves. Nobody sits down to scan for viruses as a goal in itself — it is maintenance on the machine, which makes it a utility. You do start it like an application, and that is exactly why this question is asked.",
+      "ne": "जाँच यही हो — सफ्टवेयरले कसको सेवा गर्छ। भाइरस खोज्नु आफैंमा कसैको उद्देश्य होइन — यो मेसिनकै मर्मत हो, त्यसैले utility। खोल्ने चाहिँ application जस्तै हो, र प्रश्न सोधिनुको कारण पनि त्यही हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q22",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u3",
+    "topic": "software-types",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A C compiler translates a student’s program into machine code. Which type of software is it?",
+      "ne": "C compiler ले विद्यार्थीको प्रोग्राम machine code मा अनुवाद गर्छ। यो कुन किसिमको सफ्टवेयर हो?"
+    },
+    "options": [
+      {
+        "en": "Application software",
+        "ne": "Application software"
+      },
+      {
+        "en": "System software",
+        "ne": "System software"
+      },
+      {
+        "en": "Utility software",
+        "ne": "Utility software"
+      },
+      {
+        "en": "Firmware",
+        "ne": "Firmware"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Language translators — compiler, interpreter and assembler — are system software. They serve the MACHINE: without the machine code a compiler produces, the processor cannot run the program at all. Being started by a programmer does not change who the software is working for.",
+      "ne": "भाषा अनुवादक — compiler, interpreter, assembler — system software हुन्। यिनले मेसिनकै सेवा गर्छन्: compiler ले बनाउने machine code विना प्रोसेसरले प्रोग्राम चलाउनै सक्दैन। प्रोग्रामरले खोल्छ भन्दैमा सफ्टवेयर कसका लागि काम गर्दै छ भन्ने बदलिँदैन।"
+    }
+  },
+  {
+    "id": "g9.cf.q23",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u3",
+    "topic": "os-definition",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which statement best defines an operating system?",
+      "ne": "Operating system को सबैभन्दा राम्रो परिभाषा कुन हो?"
+    },
+    "options": [
+      {
+        "en": "Windows, Linux and macOS",
+        "ne": "Windows, Linux र macOS"
+      },
+      {
+        "en": "System software that controls the hardware, manages the computer’s resources and provides an interface between the user and the machine",
+        "ne": "हार्डवेयर नियन्त्रण गर्ने, कम्प्युटरका स्रोत व्यवस्थापन गर्ने र प्रयोगकर्ता तथा मेसिनबीच इन्टरफेस दिने system software"
+      },
+      {
+        "en": "A program that lets the user type documents",
+        "ne": "प्रयोगकर्तालाई कागजात टाइप गर्न दिने प्रोग्राम"
+      },
+      {
+        "en": "The physical parts that make the computer start",
+        "ne": "कम्प्युटर सुरु गराउने भौतिक भाग"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Option A names three examples, and examples are not a definition — that is the mistake the question is testing. The definition has three parts worth stating: controls hardware, manages resources, provides an interface.",
+      "ne": "विकल्प (क) ले तीन उदाहरण दिन्छ, र उदाहरण परिभाषा होइन — प्रश्नले जाँच्न खोजेको गल्ती त्यही हो। परिभाषाका तीन भाग छन्: हार्डवेयर नियन्त्रण, स्रोत व्यवस्थापन, इन्टरफेस।"
+    }
+  },
+  {
+    "id": "g9.cf.q24",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u3",
+    "topic": "os-functions",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "On a computer with one processor, a student types a document while music plays. Which operating system function makes both appear to run at once?",
+      "ne": "एउटै प्रोसेसर भएको कम्प्युटरमा विद्यार्थीले गीत बजाउँदै कागजात टाइप गर्छ। दुवै एकैचोटि चलेजस्तो कुन OS कार्यले बनाउँछ?"
+    },
+    "options": [
+      {
+        "en": "File management",
+        "ne": "File management"
+      },
+      {
+        "en": "Process management",
+        "ne": "Process management"
+      },
+      {
+        "en": "Device management",
+        "ne": "Device management"
+      },
+      {
+        "en": "Security",
+        "ne": "Security"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "One processor runs one instruction at a time. Process management gives each program a slice of processor time and switches between them fast enough that both look continuous. The word for the effect is multitasking, and it is a scheduling job. Memory management is also running, but it is what keeps the two programs apart, not what makes them look simultaneous.",
+      "ne": "एउटा प्रोसेसरले एकैपटक एउटै निर्देशन चलाउँछ। Process management ले हरेक प्रोग्रामलाई प्रोसेसरको समयको टुक्रा दिन्छ र यति छिटो फेरिदिन्छ कि दुवै निरन्तर देखिन्छन्। यसको नाम multitasking हो। Memory management पनि चलिरहेको हुन्छ, तर त्यसले दुई प्रोग्रामलाई छुट्याएर राख्छ, एकैचोटि चलेजस्तो बनाउँदैन।"
+    }
+  },
+  {
+    "id": "g9.cf.q25",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u3",
+    "topic": "os-types",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "The computer in a hospital patient monitor must respond to a change in heartbeat within a guaranteed time, every time. Which type of operating system does it need?",
+      "ne": "अस्पतालको बिरामी मोनिटरको कम्प्युटरले मुटुको धड्कनमा आएको परिवर्तनलाई हरेक पटक तोकिएकै समयभित्र जवाफ दिनुपर्छ। यसलाई कुन किसिमको OS चाहिन्छ?"
+    },
+    "options": [
+      {
+        "en": "Batch operating system",
+        "ne": "Batch operating system"
+      },
+      {
+        "en": "Multi-user operating system",
+        "ne": "Multi-user operating system"
+      },
+      {
+        "en": "Real-time operating system",
+        "ne": "Real-time operating system"
+      },
+      {
+        "en": "Single-user, single-tasking operating system",
+        "ne": "Single-user, single-tasking operating system"
+      }
+    ],
+    "answer": 2,
+    "explanation": {
+      "en": "A guaranteed deadline, every time, is the definition of real-time. In this kind of system being late is the same as being wrong — a correct reading delivered two seconds afterwards has not helped the patient. Batch is the opposite: jobs are collected and run when convenient, with nobody waiting.",
+      "ne": "हरेक पटक तोकिएकै समयसीमा — यही real-time को परिभाषा हो। यस्तो प्रणालीमा ढिलो हुनु र गलत हुनु उस्तै हो; दुई सेकेन्डपछि आएको सही नतिजाले बिरामीलाई केही गरेन। Batch ठिक उल्टो हो: काम जम्मा गरेर सुविधाअनुसार चलाइन्छ, कोही पर्खेर बस्दैन।"
+    }
+  },
+  {
+    "id": "g9.cf.q26",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u3",
+    "topic": "user-interface",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A school must rename 300 photographs, all in the same way. Why is a command-line interface the better choice here?",
+      "ne": "विद्यालयले ३०० फोटोको नाम उही तरिकाले फेर्नुपर्छ। यहाँ command-line interface किन उपयुक्त हुन्छ?"
+    },
+    "options": [
+      {
+        "en": "Because a CUI looks more professional",
+        "ne": "किनभने CUI बढी व्यावसायिक देखिन्छ"
+      },
+      {
+        "en": "Because one command describes the whole pattern and runs once, while a GUI needs roughly four actions per file",
+        "ne": "किनभने एउटै आदेशले पूरै बान्की बताउँछ र एक पटक चल्छ, GUI मा प्रति फाइल करिब चार कार्य चाहिन्छ"
+      },
+      {
+        "en": "Because a GUI cannot rename files at all",
+        "ne": "किनभने GUI ले फाइलको नाम फेर्नै सक्दैन"
+      },
+      {
+        "en": "Because a CUI uses more memory and is therefore faster",
+        "ne": "किनभने CUI ले बढी मेमोरी खान्छ र त्यसैले छिटो हुन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Repetitive and identical work is exactly what a command describes well: about 1200 actions in a GUI against one command that can also be saved and reused next year. Note that a GUI wins for renaming ONE file — you can see it and nothing has to be remembered. Neither interface is simply better; they suit different work, which is why both still exist.",
+      "ne": "दोहोरिने र उस्तै काम आदेशले राम्ररी बताउँछ: GUI मा करिब १२०० कार्य, CUI मा एउटै आदेश — जुन सुरक्षित गरेर अर्को वर्ष फेरि चलाउन पनि मिल्छ। एउटै फाइलको नाम फेर्न भने GUI जित्छ: देखिन्छ र केही सम्झनै पर्दैन। कुनै एउटा राम्रो होइन; फरक काममा फरक सुहाउँछ, त्यसैले दुवै अझै छन्।"
+    }
+  },
+  {
+    "id": "g9.cf.q27",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u3",
+    "topic": "user-interface",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which is an advantage of a GUI over a CUI?",
+      "ne": "CUI भन्दा GUI को फाइदा कुन हो?"
+    },
+    "options": [
+      {
+        "en": "It uses less memory",
+        "ne": "यसले कम मेमोरी खान्छ"
+      },
+      {
+        "en": "Commands can be saved in a file and repeated",
+        "ne": "आदेश फाइलमा राखेर दोहोर्‍याउन मिल्छ"
+      },
+      {
+        "en": "The user does not have to memorise commands, because the options are visible on screen",
+        "ne": "प्रयोगकर्ताले आदेश सम्झनु पर्दैन, किनभने विकल्प पर्दामै देखिन्छन्"
+      },
+      {
+        "en": "It works faster on very old computers",
+        "ne": "धेरै पुराना कम्प्युटरमा छिटो चल्छ"
+      }
+    ],
+    "answer": 2,
+    "explanation": {
+      "en": "Visibility is the GUI’s real advantage — everything available is on the screen, so nothing has to be recalled. The other three options are all advantages of the CUI, which is the half of this comparison students usually leave out.",
+      "ne": "देखिनु नै GUI को साँचो फाइदा हो — उपलब्ध सबै पर्दामै हुन्छ, सम्झनै पर्दैन। बाँकी तीनै विकल्प CUI का फाइदा हुन्, र यही आधा भाग विद्यार्थीले प्रायः छुटाउँछन्।"
+    }
+  },
+  {
+    "id": "g9.cf.q28",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u3",
+    "topic": "open-source",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What does it mean to say software is open source?",
+      "ne": "सफ्टवेयर open source हो भन्नुको अर्थ के हो?"
+    },
+    "options": [
+      {
+        "en": "It is free of charge",
+        "ne": "यो निःशुल्क हुन्छ"
+      },
+      {
+        "en": "Its source code is published, so anyone may read, modify and redistribute it",
+        "ne": "यसको source code सार्वजनिक हुन्छ, जोसुकैले पढ्न, बदल्न र पुनर्वितरण गर्न सक्छ"
+      },
+      {
+        "en": "It can be downloaded from the Internet",
+        "ne": "इन्टरनेटबाट डाउनलोड गर्न मिल्छ"
+      },
+      {
+        "en": "It runs on any operating system",
+        "ne": "जुनसुकै OS मा चल्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Open refers to the SOURCE CODE, not the price. Open source software is usually free of charge, but that is a consequence rather than the definition — it may legally be sold. What may not be done is withhold the code from the people who receive it.",
+      "ne": "खुला भनेको source code हो, मूल्य होइन। Open source प्रायः निःशुल्क हुन्छ, तर त्यो परिभाषा होइन परिणाम हो — कानुनी रूपमा बेच्न पाइन्छ। नपाइने कुरा चाहिँ पाउनेबाट code लुकाउनु हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q29",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u3",
+    "topic": "open-source",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which of these is NOT open source software?",
+      "ne": "यीमध्ये कुन open source सफ्टवेयर होइन?"
+    },
+    "options": [
+      {
+        "en": "Linux",
+        "ne": "Linux"
+      },
+      {
+        "en": "LibreOffice",
+        "ne": "LibreOffice"
+      },
+      {
+        "en": "Microsoft Office",
+        "ne": "Microsoft Office"
+      },
+      {
+        "en": "Firefox",
+        "ne": "Firefox"
+      }
+    ],
+    "answer": 2,
+    "explanation": {
+      "en": "Microsoft Office is proprietary: its source code is not published, whether or not you have paid for it. Linux, LibreOffice and Firefox all publish their code. A school choosing the open-source alternatives is not paying a licence fee per computer, and is not breaking the law to avoid one.",
+      "ne": "Microsoft Office proprietary हो: पैसा तिरे पनि नतिरे पनि यसको source code सार्वजनिक हुँदैन। Linux, LibreOffice र Firefox ले code सार्वजनिक गर्छन्। Open source छान्ने विद्यालयले प्रति कम्प्युटर लाइसेन्स शुल्क तिर्नु पर्दैन, र त्यो बचाउन कानुन मिच्नु पनि पर्दैन।"
+    }
+  },
+  {
+    "id": "g9.cf.q30",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u3",
+    "topic": "software-layers",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Why can a word processor not write directly to the hard disk itself?",
+      "ne": "Word processor ले आफैं सिधै hard disk मा किन लेख्न सक्दैन?"
+    },
+    "options": [
+      {
+        "en": "Because the hard disk is too slow for application software",
+        "ne": "किनभने hard disk application software का लागि धेरै ढिलो छ"
+      },
+      {
+        "en": "Because the operating system is the layer that talks to the hardware, and applications ask it to do so on their behalf",
+        "ne": "किनभने हार्डवेयरसँग बोल्ने तह OS हो, र application ले त्यही मार्फत अनुरोध गर्छ"
+      },
+      {
+        "en": "Because only utility software may touch a disk",
+        "ne": "किनभने डिस्क छुन utility software लाई मात्र पाइन्छ"
+      },
+      {
+        "en": "It can — applications read and write disks directly",
+        "ne": "सक्छ — application ले सिधै डिस्कमा पढ्छ र लेख्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The software stack runs user to application to operating system to hardware, and each layer talks only to the one below it. The operating system is the only software permitted to reach the hardware, which is what \"the OS provides an interface\" actually means. It also means one program cannot damage another’s files by accident.",
+      "ne": "सफ्टवेयरको तह प्रयोगकर्ता → application → OS → हार्डवेयर क्रममा चल्छ, र हरेक तहले तलको एउटासँग मात्र कुरा गर्छ। हार्डवेयरसम्म पुग्न पाउने एक मात्र सफ्टवेयर OS हो — \"OS ले इन्टरफेस दिन्छ\" भन्नुको साँचो अर्थ यही हो। यसैले एउटा प्रोग्रामले अर्काको फाइल संयोगले बिगार्न पनि सक्दैन।"
+    }
+  },
+  {
+    "id": "g9.cf.q31",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u4",
+    "topic": "volatility",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A student is typing an essay when the power fails before saving. The essay is lost but last year’s photographs are not. Why?",
+      "ne": "विद्यार्थीले निबन्ध टाइप गर्दागर्दै सेभ नगरी बत्ती गयो। निबन्ध हरायो, तर गत वर्षका फोटा हराएनन्। किन?"
+    },
+    "options": [
+      {
+        "en": "The essay was too new to be stored properly",
+        "ne": "निबन्ध नयाँ भएकाले राम्ररी राखिएको थिएन"
+      },
+      {
+        "en": "The essay was in RAM, which is volatile, while the photographs were in secondary storage, which is not",
+        "ne": "निबन्ध volatile RAM मा थियो, फोटा चाहिँ non-volatile secondary storage मा"
+      },
+      {
+        "en": "Photographs are smaller files and so are safer",
+        "ne": "फोटो साना फाइल भएकाले सुरक्षित हुन्छन्"
+      },
+      {
+        "en": "The hard disk has its own battery",
+        "ne": "Hard disk को आफ्नै ब्याट्री हुन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "RAM stores each bit as an electrical charge that must be refreshed, so cutting the power empties it — volatile. A hard disk stores each bit as a direction of magnetism and an SSD as a trapped charge; neither needs power to stay put. \"Save\" is precisely the act of copying from the volatile place to the non-volatile one.",
+      "ne": "RAM ले हरेक bit लाई ताजा पार्नुपर्ने विद्युतीय चार्जका रूपमा राख्छ, त्यसैले बत्ती गए रित्तिन्छ — volatile। Hard disk ले चुम्बकत्वको दिशाका रूपमा र SSD ले थुनिएको चार्जका रूपमा राख्छ; दुवैलाई रहन बिजुली चाहिँदैन। \"Save\" भनेकै volatile ठाउँबाट non-volatile ठाउँमा सार्ने काम हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q32",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u4",
+    "topic": "cache",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Why is cache memory used in a computer?",
+      "ne": "कम्प्युटरमा cache memory किन प्रयोग गरिन्छ?"
+    },
+    "options": [
+      {
+        "en": "To store files permanently when the power is off",
+        "ne": "बत्ती नहुँदा फाइल स्थायी रूपमा राख्न"
+      },
+      {
+        "en": "Because the CPU is far faster than RAM, so a small fast memory holding recently used data reduces waiting",
+        "ne": "किनभने CPU, RAM भन्दा धेरै छिटो छ — भर्खर चलाएको data राख्ने सानो छिटो मेमोरीले पर्खाइ घटाउँछ"
+      },
+      {
+        "en": "To increase the total storage capacity of the computer",
+        "ne": "कम्प्युटरको कुल भण्डारण क्षमता बढाउन"
+      },
+      {
+        "en": "To hold the instructions that run when the computer starts",
+        "ne": "कम्प्युटर सुरु हुँदा चल्ने निर्देशन राख्न"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Cache exists because of a speed mismatch: a CPU can execute an instruction in well under a nanosecond while fetching from RAM takes tens of nanoseconds. Without cache the processor would spend most of its time waiting. Option D describes ROM, not cache.",
+      "ne": "Cache हुनुको कारण गतिको बेमेल हो: CPU ले एक निर्देशन नानोसेकेन्डभन्दा कममा सक्छ, तर RAM बाट ल्याउन दसौं नानोसेकेन्ड लाग्छ। Cache नभए प्रोसेसरको धेरैजसो समय पर्खाइमै जान्थ्यो। विकल्प (घ) ले ROM को वर्णन गर्छ, cache को होइन।"
+    }
+  },
+  {
+    "id": "g9.cf.q33",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u4",
+    "topic": "ram-types",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What is the essential difference between SRAM and DRAM?",
+      "ne": "SRAM र DRAM बीचको मूल फरक के हो?"
+    },
+    "options": [
+      {
+        "en": "SRAM is volatile and DRAM is not",
+        "ne": "SRAM volatile छ, DRAM छैन"
+      },
+      {
+        "en": "DRAM stores each bit as a charge in a capacitor that leaks, so it must be refreshed; SRAM holds each bit in a circuit and needs no refreshing",
+        "ne": "DRAM ले हरेक bit लाई चुहिने capacitor मा चार्जका रूपमा राख्छ, त्यसैले refresh गर्नुपर्छ; SRAM ले सर्किटमा राख्छ र refresh चाहिँदैन"
+      },
+      {
+        "en": "SRAM can be written to and DRAM can only be read",
+        "ne": "SRAM मा लेख्न मिल्छ, DRAM पढ्न मात्र"
+      },
+      {
+        "en": "DRAM is used for cache and SRAM for main memory",
+        "ne": "DRAM cache मा र SRAM main memory मा चल्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Refreshing is the real difference, and everything else follows from it: DRAM is slower because of the refreshing and far cheaper because a capacitor is simpler than a circuit, which is why main memory is DRAM and the small, costly cache is SRAM. Option D has those two the wrong way round. Both are volatile.",
+      "ne": "साँचो फरक refresh हो, र बाँकी सबै त्यसैबाट निस्कन्छ: refresh का कारण DRAM ढिलो हुन्छ, र capacitor सर्किटभन्दा सरल भएकाले निकै सस्तो — त्यसैले main memory DRAM र सानो, महँगो cache SRAM हुन्छ। विकल्प (घ) ले दुईलाई उल्टो पारेको छ। दुवै volatile हुन्।"
+    }
+  },
+  {
+    "id": "g9.cf.q34",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u4",
+    "topic": "rom-types",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which type of ROM is erased using ultraviolet light?",
+      "ne": "कुन किसिमको ROM पराबैजनी किरणले मेटिन्छ?"
+    },
+    "options": [
+      {
+        "en": "PROM",
+        "ne": "PROM"
+      },
+      {
+        "en": "EPROM",
+        "ne": "EPROM"
+      },
+      {
+        "en": "EEPROM",
+        "ne": "EEPROM"
+      },
+      {
+        "en": "DRAM",
+        "ne": "DRAM"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "EPROM is Erasable Programmable ROM, and the chip carries a small quartz window for the ultraviolet light to reach the cells. PROM can be written once and never erased; EEPROM is erased electrically, with no window and without removing the chip — which is why flash memory, a development of EEPROM, can be rewritten in place.",
+      "ne": "EPROM भनेको Erasable Programmable ROM हो, र पराबैजनी किरण कक्षसम्म पुग्न चिपमा सानो क्वार्ज झ्याल हुन्छ। PROM एक पटक लेखिन्छ, कहिल्यै मेटिँदैन; EEPROM विद्युतीय रूपमा मेटिन्छ — झ्याल नचाहिने, चिप नझिकी — त्यसैले EEPROM कै विकास flash memory ठाउँमै पुनर्लेखन गर्न मिल्छ।"
+    }
+  },
+  {
+    "id": "g9.cf.q35",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u4",
+    "topic": "secondary-access",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A student double-clicks a large video stored on the hard disk and there is a short pause before it plays. What is the pause?",
+      "ne": "विद्यार्थीले hard disk मा भएको ठूलो भिडियोमा डबल-क्लिक गर्छ र बज्नुअघि केही क्षण रोकिन्छ। त्यो रोकाइ के हो?"
+    },
+    "options": [
+      {
+        "en": "The CPU is decoding the whole video before starting",
+        "ne": "CPU ले सुरु गर्नुअघि पूरै भिडियो decode गर्दै छ"
+      },
+      {
+        "en": "The file is being copied from the disk into RAM, because the CPU cannot read secondary storage directly",
+        "ne": "फाइल disk बाट RAM मा सारिँदै छ, किनभने CPU ले secondary storage सिधै पढ्न सक्दैन"
+      },
+      {
+        "en": "The monitor is warming up",
+        "ne": "Monitor तात्दै छ"
+      },
+      {
+        "en": "The operating system is checking the file for viruses",
+        "ne": "OS ले फाइलमा भाइरस जाँच्दै छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The CPU can only work on what is in primary memory, so part of the file must be copied from the slow mechanical disk into fast electronic RAM first. That copy is the slowest link in the chain and it is what you are waiting for. This is also why fitting an SSD makes an old computer feel new while a faster processor often does not — the wait was never the CPU.",
+      "ne": "CPU ले primary memory मा भएको कुरामा मात्र काम गर्न सक्छ, त्यसैले फाइलको केही भाग ढिलो यान्त्रिक डिस्कबाट छिटो विद्युतीय RAM मा पहिले सार्नुपर्छ। त्यही सार्ने काम शृंखलाको सबैभन्दा ढिलो कडी हो र तपाईं त्यसैलाई पर्खिरहनुभएको हुन्छ। पुरानो कम्प्युटरमा SSD हाल्दा नयाँ जस्तो हुनु तर छिटो प्रोसेसरले प्रायः फरक नपर्नुको कारण पनि यही हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q36",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u4",
+    "topic": "storage-families",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A CD and a DVD store data by which physical method?",
+      "ne": "CD र DVD ले कुन भौतिक तरिकाले data राख्छन्?"
+    },
+    "options": [
+      {
+        "en": "Direction of magnetism on a coated surface",
+        "ne": "लेपित सतहमा चुम्बकत्वको दिशा"
+      },
+      {
+        "en": "Pits and flat areas burned into a surface and read by a laser",
+        "ne": "सतहमा पोलिएका खाल्डा र समथर भाग, लेजरले पढिने"
+      },
+      {
+        "en": "Charge trapped in insulated cells",
+        "ne": "इन्सुलेट कक्षमा थुनिएको चार्ज"
+      },
+      {
+        "en": "Holes punched through card",
+        "ne": "कार्डमा पारेका प्वाल"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Optical storage: a laser burns pits, and reading detects whether light reflects from a pit or a flat area. Magnetism is the hard disk, trapped charge is flash memory such as a pen drive. The three families are told apart by exactly this — how a single bit is physically held.",
+      "ne": "Optical storage: लेजरले खाल्डा पोल्छ, र पढ्दा प्रकाश खाल्डाबाट फर्कियो कि समथर भागबाट भनेर थाहा पाइन्छ। चुम्बकत्व hard disk को, थुनिएको चार्ज pen drive जस्ता flash memory को। तीन परिवार छुट्याउने आधार यही हो — एउटा bit भौतिक रूपमा कसरी राखिन्छ।"
+    }
+  },
+  {
+    "id": "g9.cf.q37",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u4",
+    "topic": "hierarchy",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Arrange these from fastest to slowest: RAM, registers, hard disk, cache.",
+      "ne": "यिनलाई सबैभन्दा छिटोदेखि ढिलोसम्म मिलाउनुहोस्: RAM, register, hard disk, cache।"
+    },
+    "options": [
+      {
+        "en": "Registers, cache, RAM, hard disk",
+        "ne": "Register, cache, RAM, hard disk"
+      },
+      {
+        "en": "Cache, registers, RAM, hard disk",
+        "ne": "Cache, register, RAM, hard disk"
+      },
+      {
+        "en": "RAM, cache, registers, hard disk",
+        "ne": "RAM, cache, register, hard disk"
+      },
+      {
+        "en": "Registers, RAM, cache, hard disk",
+        "ne": "Register, RAM, cache, hard disk"
+      }
+    ],
+    "answer": 0,
+    "explanation": {
+      "en": "The hierarchy runs registers, cache, RAM, secondary storage — closest to the CPU is fastest, smallest and costliest per byte. The common error is placing cache below RAM; cache sits between the CPU and RAM precisely because it is faster than RAM.",
+      "ne": "तह यसरी चल्छ: register, cache, RAM, secondary storage — CPU सँग जति नजिक, त्यति छिटो, सानो र प्रति byte महँगो। सामान्य गल्ती cache लाई RAM भन्दा तल राख्नु हो; cache, RAM भन्दा छिटो भएकैले CPU र RAM बीचमा बस्छ।"
+    }
+  },
+  {
+    "id": "g9.cf.q38",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u4",
+    "topic": "rom-purpose",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Why must the instructions that run the moment a computer is switched on be stored in ROM rather than on the hard disk?",
+      "ne": "कम्प्युटर खोल्ने बित्तिकै चल्ने निर्देशन hard disk मा होइन, ROM मा किन राख्नुपर्छ?"
+    },
+    "options": [
+      {
+        "en": "Because ROM is faster than a hard disk",
+        "ne": "किनभने ROM, hard disk भन्दा छिटो छ"
+      },
+      {
+        "en": "Because at that moment nothing yet knows how to read a disk, and ROM keeps its contents without power",
+        "ne": "किनभने त्यो बेला डिस्क कसरी पढ्ने भन्नै कसैलाई थाहा हुँदैन, र ROM ले बत्तीविनै सामग्री राख्छ"
+      },
+      {
+        "en": "Because the hard disk is always full",
+        "ne": "किनभने hard disk सधैं भरिएको हुन्छ"
+      },
+      {
+        "en": "Because ROM can be rewritten easily",
+        "ne": "किनभने ROM सजिलै पुनर्लेखन गर्न मिल्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Two conditions must both hold at startup: the contents must have survived the power being off, which rules out RAM, and they must be reachable before any disk driver has loaded, which rules out the disk. Only non-volatile memory on the board itself satisfies both, and that is ROM holding the BIOS.",
+      "ne": "सुरु हुँदा दुवै सर्त पूरा हुनुपर्छ: बत्ती बन्द हुँदा पनि सामग्री बाँचेको हुनुपर्‍यो — यसले RAM हटाउँछ; र कुनै disk driver लोड हुनुअघि नै पुग्न सकिनुपर्‍यो — यसले disk हटाउँछ। दुवै पूरा गर्ने भनेको बोर्डमै भएको non-volatile मेमोरी हो, अर्थात् BIOS बोक्ने ROM।"
+    }
+  },
+  {
+    "id": "g9.cf.q39",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u4",
+    "topic": "units",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "How many bits are there in one byte?",
+      "ne": "एक byte मा कति bit हुन्छन्?"
+    },
+    "options": [
+      {
+        "en": "4",
+        "ne": "४"
+      },
+      {
+        "en": "8",
+        "ne": "८"
+      },
+      {
+        "en": "16",
+        "ne": "१६"
+      },
+      {
+        "en": "1024",
+        "ne": "१०२४"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "One byte is 8 bits, and one byte holds roughly one character. Do not confuse this with 1 KB = 1024 bytes — the 8 and the 1024 are different relationships and both are asked.",
+      "ne": "एक byte = ८ bit, र एक byte ले लगभग एक अक्षर राख्छ। यसलाई 1 KB = 1024 byte सँग नमिसाउनुहोस् — ८ र १०२४ फरक सम्बन्ध हुन् र दुवै सोधिन्छन्।"
+    }
+  },
+  {
+    "id": "g9.cf.q40",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u5",
+    "topic": "internet-vs-web",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which statement about the Internet and the World Wide Web is correct?",
+      "ne": "इन्टरनेट र World Wide Web बारे कुन कथन ठिक छ?"
+    },
+    "options": [
+      {
+        "en": "They are two names for the same thing",
+        "ne": "दुवै एउटै कुराका दुई नाम हुन्"
+      },
+      {
+        "en": "The Internet is the network of networks; the Web is one service that runs on it",
+        "ne": "इन्टरनेट नेटवर्कहरूको नेटवर्क हो; वेब त्यसमाथि चल्ने एउटा सेवा हो"
+      },
+      {
+        "en": "The Web is the network and the Internet is the collection of websites",
+        "ne": "वेब नेटवर्क हो र इन्टरनेट वेबसाइटहरूको संग्रह"
+      },
+      {
+        "en": "E-mail is part of the Web",
+        "ne": "इमेल वेबको भाग हो"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The Internet is the connection itself — cables, routers and the agreement on how a message is addressed. The Web is pages joined by links and read with a browser, and it is only one of the services the Internet carries; e-mail and file transfer are others. Defining the Internet as \"a collection of websites\" describes one service and calls it the whole network.",
+      "ne": "इन्टरनेट भनेको जडान आफैं हो — तार, राउटर र सन्देशको ठेगाना कसरी लेख्ने भन्ने सहमति। वेब भनेको लिंकले जोडिएका र browser ले पढिने पृष्ठ, र यो इन्टरनेटले बोक्ने धेरै सेवामध्ये एउटा मात्र हो; इमेल र file transfer अरू हुन्। \"वेबसाइटहरूको संग्रह\" भन्नु एउटा सेवालाई पूरै नेटवर्क भन्नु हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q41",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u5",
+    "topic": "modem",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What does a modem do, and what does its name stand for?",
+      "ne": "Modem ले के गर्छ, र यसको नामको अर्थ के हो?"
+    },
+    "options": [
+      {
+        "en": "Modern Memory — it stores the connection settings",
+        "ne": "Modern Memory — जडानका सेटिङ राख्छ"
+      },
+      {
+        "en": "MOdulator-DEModulator — it converts the computer’s digital signal for the line, and the arriving signal back to digital",
+        "ne": "MOdulator-DEModulator — कम्प्युटरको digital सङ्केत लाइनका लागि बदल्छ र आउने सङ्केत फेरि digital बनाउँछ"
+      },
+      {
+        "en": "Mobile Demand — it requests data from the ISP",
+        "ne": "Mobile Demand — ISP सँग data माग्छ"
+      },
+      {
+        "en": "It amplifies the signal so it can travel further",
+        "ne": "सङ्केत टाढासम्म जान सकोस् भनेर बढाउँछ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The name is the answer. Modulating turns the computer’s digital output into something the line can carry; demodulating turns the arriving signal back into digital. It is a translator and it must work in both directions. Note that amplifying is a different job done by a different device.",
+      "ne": "नाम नै उत्तर हो। Modulate गर्नु भनेको कम्प्युटरको digital आउटपुटलाई लाइनले बोक्न सक्ने रूपमा बदल्नु; demodulate भनेको आउने सङ्केतलाई फेरि digital बनाउनु। यो अनुवादक हो र दुवै दिशामा काम गर्नैपर्छ। सङ्केत बढाउने काम फरक हो र त्यो अर्कै उपकरणले गर्छ।"
+    }
+  },
+  {
+    "id": "g9.cf.q42",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u5",
+    "topic": "requirements",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which of these is NOT required to connect a home computer to the Internet?",
+      "ne": "घरको कम्प्युटरलाई इन्टरनेटमा जोड्न यीमध्ये कुन चाहिँदैन?"
+    },
+    "options": [
+      {
+        "en": "A modem or router",
+        "ne": "Modem वा router"
+      },
+      {
+        "en": "An account with an Internet Service Provider",
+        "ne": "ISP को खाता"
+      },
+      {
+        "en": "A printer",
+        "ne": "Printer"
+      },
+      {
+        "en": "A transmission line such as telephone, fibre or wireless",
+        "ne": "टेलिफोन, फाइबर वा वायरलेस जस्तो प्रसारण लाइन"
+      }
+    ],
+    "answer": 2,
+    "explanation": {
+      "en": "A printer is an output device and has nothing to do with connecting. The requirements group into hardware (device, modem or router, line), software (TCP/IP and a browser) and a service (the ISP account) — and every one of those is required, which is why the ISP is the item most often forgotten.",
+      "ne": "Printer output device हो, जडानसँग कुनै सम्बन्ध छैन। आवश्यकता हार्डवेयर (उपकरण, modem/router, लाइन), सफ्टवेयर (TCP/IP र browser) र सेवा (ISP खाता) मा बाँडिन्छ — र हरेक अनिवार्य छ। सबैभन्दा धेरै छुट्ने ISP नै हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q43",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u5",
+    "topic": "services",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Paying your land revenue to the municipality through its website is an example of:",
+      "ne": "नगरपालिकाको वेबसाइटबाट मालपोत तिर्नु कुनको उदाहरण हो?"
+    },
+    "options": [
+      {
+        "en": "E-commerce",
+        "ne": "E-commerce"
+      },
+      {
+        "en": "E-governance",
+        "ne": "E-governance"
+      },
+      {
+        "en": "Telnet",
+        "ne": "Telnet"
+      },
+      {
+        "en": "Newsgroup",
+        "ne": "Newsgroup"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "A government service delivered online is e-governance. Money changing hands makes e-commerce tempting, but e-commerce is buying and selling between a customer and a business — not paying the state what you owe it. Nepali examples of e-governance: online PAN registration, passport applications, result publication.",
+      "ne": "सरकारी सेवा अनलाइन दिनु e-governance हो। पैसा सर्ने भएकाले e-commerce लोभ्याउँछ, तर e-commerce भनेको ग्राहक र व्यवसायबीचको किनबेच हो — राज्यलाई तिर्नुपर्ने तिर्नु होइन। नेपालका उदाहरण: अनलाइन PAN दर्ता, राहदानी आवेदन, नतिजा प्रकाशन।"
+    }
+  },
+  {
+    "id": "g9.cf.q44",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u5",
+    "topic": "services",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A technician in Pokhara takes over the full desktop of a faulty computer in Butwal to repair it. Which service is this, and how does it differ from Telnet?",
+      "ne": "पोखराको प्राविधिकले बुटवलको बिग्रेको कम्प्युटरको पूरै डेस्कटप नियन्त्रणमा लिएर मर्मत गर्छ। यो कुन सेवा हो, र Telnet भन्दा कसरी फरक छ?"
+    },
+    "options": [
+      {
+        "en": "Telnet — both give the same kind of access",
+        "ne": "Telnet — दुवैले उस्तै पहुँच दिन्छन्"
+      },
+      {
+        "en": "Remote control — it gives the whole desktop as a picture, whereas Telnet gives a text command line",
+        "ne": "Remote control — यसले पूरै डेस्कटप तस्बिरका रूपमा दिन्छ, Telnet ले पाठको command line"
+      },
+      {
+        "en": "E-mail — the screen is sent as an attachment",
+        "ne": "E-mail — पर्दा attachment बनेर जान्छ"
+      },
+      {
+        "en": "IRC — the two computers chat with each other",
+        "ne": "IRC — दुई कम्प्युटर आपसमा कुरा गर्छन्"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Both let you use a distant machine, and that is why they are confused. The difference is what you get: Telnet gives a text command line on the far computer, remote control gives its whole graphical desktop. Telnet is also old and insecure, because it sends passwords without encryption.",
+      "ne": "दुवैले टाढाको मेसिन चलाउन दिन्छन्, त्यसैले अलमल हुन्छ। फरक के पाइन्छ भन्नेमा छ: Telnet ले पारिको कम्प्युटरमा पाठको command line दिन्छ, remote control ले पूरै ग्राफिकल डेस्कटप। Telnet पुरानो र असुरक्षित पनि छ, किनभने पासवर्ड नलुकाई पठाउँछ।"
+    }
+  },
+  {
+    "id": "g9.cf.q45",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u5",
+    "topic": "disadvantages",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A question asks for the advantages AND disadvantages of the Internet. Which of these is a genuine disadvantage?",
+      "ne": "प्रश्नले इन्टरनेटका फाइदा र बेफाइदा दुवै सोध्छ। यीमध्ये कुन साँचो बेफाइदा हो?"
+    },
+    "options": [
+      {
+        "en": "It allows communication over long distances",
+        "ne": "टाढासम्म सञ्चार गर्न दिन्छ"
+      },
+      {
+        "en": "False information can be spread and presented as fact",
+        "ne": "झूटो सूचना तथ्य जस्तो देखाएर फैलाउन सकिन्छ"
+      },
+      {
+        "en": "It provides access to online learning",
+        "ne": "अनलाइन सिकाइमा पहुँच दिन्छ"
+      },
+      {
+        "en": "It makes government services available online",
+        "ne": "सरकारी सेवा अनलाइन उपलब्ध गराउँछ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The other three are advantages. Real disadvantages include false information, fraud and theft of money or identity, viruses, loss of privacy, wasted time and content unsuitable for children. A four-mark answer that lists only advantages has answered half the question, and this is one of the commonest ways marks are lost in this unit.",
+      "ne": "बाँकी तीन फाइदा हुन्। साँचो बेफाइदामा पर्छन्: झूटो सूचना, ठगी र पैसा/परिचयको चोरी, भाइरस, गोपनीयताको क्षति, समय खेर जानु, र बालबालिकालाई नसुहाउने सामग्री। फाइदा मात्र लेख्ने ४ अंकको उत्तरले आधा प्रश्नको जवाफ दिएको हुन्छ, र यस युनिटमा अंक गुम्ने सबैभन्दा सामान्य तरिका यही हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q46",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u5",
+    "topic": "services",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which service lets you send a written message to one person, who reads it whenever they next look, even if they are offline now?",
+      "ne": "अहिले अफलाइन भए पनि पछि हेर्दा पढ्न मिल्ने गरी एक जनालाई लिखित सन्देश पठाउन कुन सेवाले दिन्छ?"
+    },
+    "options": [
+      {
+        "en": "IRC",
+        "ne": "IRC"
+      },
+      {
+        "en": "E-mail",
+        "ne": "E-mail"
+      },
+      {
+        "en": "Newsgroup",
+        "ne": "Newsgroup"
+      },
+      {
+        "en": "Search engine",
+        "ne": "Search engine"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "E-mail is store-and-forward: the message waits at an address until the recipient looks. IRC is live typed conversation needing both people present at once; a newsgroup posts to everybody rather than to one named person. The giveaway here is \"one person\" plus \"even if they are offline\".",
+      "ne": "E-mail store-and-forward हो: सन्देश ठेगानामा पर्खिरहन्छ, प्रापकले हेरेपछि पढिन्छ। IRC मा दुवै एकैपटक चाहिन्छ; newsgroup ले एक जनालाई होइन सबैलाई पठाउँछ। सुराक \"एक जना\" र \"अफलाइन भए पनि\" मा छ।"
+    }
+  },
+  {
+    "id": "g9.cf.q47",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u5",
+    "topic": "services",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Without which service would the World Wide Web be almost unusable, because no one could find a page among billions?",
+      "ne": "कुन सेवाविना अर्बौं पृष्ठमध्ये कुनै भेट्टाउनै नसकिने भएर World Wide Web झन्डै अनुपयोगी हुन्थ्यो?"
+    },
+    "options": [
+      {
+        "en": "Telnet",
+        "ne": "Telnet"
+      },
+      {
+        "en": "A search engine",
+        "ne": "Search engine"
+      },
+      {
+        "en": "E-commerce",
+        "ne": "E-commerce"
+      },
+      {
+        "en": "Remote control",
+        "ne": "Remote control"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "A search engine indexes pages and finds the ones matching your words. Without one you would have to know a page’s address before you could reach it, which makes a network of billions of pages useless to anybody who does not already know what is on it.",
+      "ne": "Search engine ले पृष्ठको सूची बनाएर तपाईंका शब्दसँग मिल्ने खोज्छ। यो नभए पृष्ठको ठेगाना पहिल्यै थाहा हुनुपर्थ्यो, र अर्बौं पृष्ठको नेटवर्क त्यहाँ के छ थाहा नभएकाका लागि बेकामको हुन्थ्यो।"
+    }
+  },
+  {
+    "id": "g9.cf.q48",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u6",
+    "topic": "definition",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which of these is multimedia?",
+      "ne": "यीमध्ये कुन मल्टिमिडिया हो?"
+    },
+    "options": [
+      {
+        "en": "A page containing only printed text",
+        "ne": "केवल छापिएको पाठ भएको पाना"
+      },
+      {
+        "en": "A single photograph on its own",
+        "ne": "एक्लै राखिएको एउटा फोटो"
+      },
+      {
+        "en": "A lesson combining text, a diagram, narration and a clip you can replay",
+        "ne": "पाठ, चित्र, स्वर र फेरि बजाउन मिल्ने क्लिप मिलेको पाठ"
+      },
+      {
+        "en": "A recorded song with nothing else",
+        "ne": "अरू केही नभएको रेकर्ड गरिएको गीत"
+      }
+    ],
+    "answer": 2,
+    "explanation": {
+      "en": "Multi means more than one. A single medium — text alone, one photograph, one song — is not multimedia however good it is. Option C combines four media and adds interactivity through replay, which most definitions also require.",
+      "ne": "Multi भनेको एकभन्दा बढी। एउटै माध्यम — केवल पाठ, एउटा फोटो, एउटा गीत — जतिसुकै राम्रो भए पनि मल्टिमिडिया होइन। विकल्प (ग) ले चार माध्यम मिलाउँछ र फेरि बजाउन दिएर अन्तरक्रिया पनि थप्छ, जुन धेरै परिभाषाले खोज्छन्।"
+    }
+  },
+  {
+    "id": "g9.cf.q49",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u6",
+    "topic": "components",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A bar chart on a slide grows upward as the presenter clicks, drawn by the software itself. Which component of multimedia is it?",
+      "ne": "स्लाइडको बार चार्ट प्रस्तुतकर्ताले क्लिक गर्दा माथितिर बढ्छ, र त्यो सफ्टवेयरले आफैं कोरेको हो। यो मल्टिमिडियाको कुन भाग हो?"
+    },
+    "options": [
+      {
+        "en": "Image, because a chart is a picture",
+        "ne": "Image, किनभने चार्ट तस्बिर हो"
+      },
+      {
+        "en": "Animation, because it changes over time and the frames are computer-generated",
+        "ne": "Animation, किनभने यो समयसँगै बदलिन्छ र फ्रेम कम्प्युटरले बनाएका हुन्"
+      },
+      {
+        "en": "Video, because it moves",
+        "ne": "Video, किनभने यो चल्छ"
+      },
+      {
+        "en": "Text, because it displays numbers",
+        "ne": "Text, किनभने संख्या देखाउँछ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "A static chart would be an image, but this one changes over time, and the frames are generated rather than filmed. Movement plus created equals animation. It is not video because nothing was recorded by a camera. This is the case most often answered \"image\".",
+      "ne": "स्थिर चार्ट भए image हुन्थ्यो, तर यो समयसँगै बदलिन्छ र फ्रेम खिचिएका होइनन्, बनाइएका हुन्। चाल + बनाइएको = animation। क्यामेराले केही रेकर्ड नगरेकाले video होइन। \"image\" भनेर सबैभन्दा धेरै गलत हुने केस यही हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q50",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u6",
+    "topic": "components",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What is the essential difference between animation and video?",
+      "ne": "Animation र video बीचको मूल फरक के हो?"
+    },
+    "options": [
+      {
+        "en": "Animation is in colour and video is not",
+        "ne": "Animation रङ्गीन हुन्छ, video हुँदैन"
+      },
+      {
+        "en": "Video is recorded from real events by a camera; animation is created frame by frame and never happened in front of a camera",
+        "ne": "Video क्यामेराले वास्तविक घटनाबाट रेकर्ड गर्छ; animation फ्रेम–फ्रेम बनाइन्छ र क्यामेरा अगाडि कहिल्यै भएकै हुँदैन"
+      },
+      {
+        "en": "Animation always has sound and video does not",
+        "ne": "Animation मा सधैं आवाज हुन्छ, video मा हुँदैन"
+      },
+      {
+        "en": "Video files are smaller than animation files",
+        "ne": "Video फाइल animation भन्दा सानो हुन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The difference is the source of the frames: recorded versus created. A cartoon is animation even though it moves convincingly; a film of a cartoonist at work is video. Colour and sound are not the test — both can have either.",
+      "ne": "फरक फ्रेम कहाँबाट आयो भन्नेमा छ: रेकर्ड गरिएको कि बनाइएको। कार्टुन विश्वसनीय रूपमा चले पनि animation हो; कार्टुनिस्टले काम गरेको फिल्म video। रङ र आवाज जाँच होइनन् — दुवैमा दुवै हुन सक्छ।"
+    }
+  },
+  {
+    "id": "g9.cf.q51",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u6",
+    "topic": "formats",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which file format is an audio format?",
+      "ne": "कुन फाइल ढाँचा audio ढाँचा हो?"
+    },
+    "options": [
+      {
+        "en": ".mp4",
+        "ne": ".mp4"
+      },
+      {
+        "en": ".mp3",
+        "ne": ".mp3"
+      },
+      {
+        "en": ".jpg",
+        "ne": ".jpg"
+      },
+      {
+        "en": ".txt",
+        "ne": ".txt"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": ".mp3 is audio and .mp4 is video — the digits are not decoration, and swapping them is a common slip. .jpg is an image and .txt is text.",
+      "ne": ".mp3 audio र .mp4 video हो — अंक सजावट होइनन्, र यी साट्नु सामान्य गल्ती हो। .jpg image, .txt text।"
+    }
+  },
+  {
+    "id": "g9.cf.q52",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u6",
+    "topic": "file-size",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Why is a one-minute video file thousands of times larger than a one-page essay on the same subject?",
+      "ne": "उही विषयको एक पानाको निबन्धभन्दा एक मिनेटको भिडियो फाइल हजारौं गुणा किन ठूलो हुन्छ?"
+    },
+    "options": [
+      {
+        "en": "Because the video contains more information about the subject",
+        "ne": "किनभने भिडियोमा विषयबारे बढी जानकारी हुन्छ"
+      },
+      {
+        "en": "Because a minute of video is roughly 1,500 separate images plus sound, and one image already stores a colour value for every pixel",
+        "ne": "किनभने एक मिनेट भिडियो झन्डै १,५०० छुट्टाछुट्टै तस्बिर र आवाज हो, र एउटै तस्बिरले हरेक pixel को रङ मान राख्छ"
+      },
+      {
+        "en": "Because video files are stored inefficiently",
+        "ne": "किनभने भिडियो फाइल अदक्ष तरिकाले राखिन्छ"
+      },
+      {
+        "en": "Because video must be stored twice for safety",
+        "ne": "किनभने सुरक्षाका लागि भिडियो दुई पटक राख्नुपर्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Video runs at around 25 to 30 frames per second. Text stores one byte per character; an image stores colour values for every pixel, which is already hundreds of times more. Option A is wrong in an interesting way: file size measures data, not meaning — a page of text can carry an idea an hour of video does not. This is also why multimedia needs compression, and why a school on a slow connection downloads notes easily and video with difficulty.",
+      "ne": "भिडियो प्रति सेकेन्ड करिब २५–३० फ्रेममा चल्छ। पाठले प्रति अक्षर एक byte राख्छ; तस्बिरले हरेक pixel को रङ मान राख्छ, जुन पहिल्यै सयौं गुणा बढी हो। विकल्प (क) रोचक किसिमले गलत छ: फाइलको आकारले data नाप्छ, अर्थ होइन। त्यसैले मल्टिमिडियालाई compression चाहिन्छ, र ढिलो जडान भएको विद्यालयले नोट सजिलै तर भिडियो गाह्रोसँग डाउनलोड गर्छ।"
+    }
+  },
+  {
+    "id": "g9.cf.q53",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u6",
+    "topic": "components",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which component of multimedia is most often left out when students list them?",
+      "ne": "विद्यार्थीले सूची बनाउँदा मल्टिमिडियाको कुन भाग सबैभन्दा धेरै छुटाउँछन्?"
+    },
+    "options": [
+      {
+        "en": "Video",
+        "ne": "Video"
+      },
+      {
+        "en": "Text",
+        "ne": "Text"
+      },
+      {
+        "en": "Audio",
+        "ne": "Audio"
+      },
+      {
+        "en": "Animation",
+        "ne": "Animation"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Text. It is the oldest component and the least exciting, so it is the one dropped — and the question asks for all five: text, audio, video, image and animation. Text is also the only component that carries an exact figure, such as a mountain’s height, without ambiguity.",
+      "ne": "Text। सबैभन्दा पुरानो र कम आकर्षक भएकाले यही छुट्छ — तर प्रश्नले पाँचै खोज्छ: text, audio, video, image, animation। ठ्याक्कै संख्या, जस्तै हिमालको उचाइ, अन्योलबिना बोक्ने एक मात्र भाग पनि text नै हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q54",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u6",
+    "topic": "applications",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A surgeon practises an operation on a computer simulation before performing it on a patient. This is multimedia used in:",
+      "ne": "शल्यचिकित्सकले बिरामीमा गर्नुअघि कम्प्युटर सिमुलेसनमा अभ्यास गर्छन्। यो मल्टिमिडियाको कुन क्षेत्रमा प्रयोग हो?"
+    },
+    "options": [
+      {
+        "en": "Entertainment",
+        "ne": "मनोरञ्जन"
+      },
+      {
+        "en": "Medicine",
+        "ne": "चिकित्सा"
+      },
+      {
+        "en": "Advertising",
+        "ne": "विज्ञापन"
+      },
+      {
+        "en": "E-governance",
+        "ne": "E-governance"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Medicine — scan images, animated anatomy and surgical simulators are all standard multimedia applications in that field. The argument for multimedia here is the same as everywhere: a description alone would leave out the shape and the movement, which are exactly what the surgeon needs to rehearse.",
+      "ne": "चिकित्सा — स्क्यानका तस्बिर, चल्ने शरीर रचना र शल्यक्रिया सिमुलेटर सबै त्यस क्षेत्रका मानक प्रयोग हुन्। यहाँ मल्टिमिडियाको तर्क अन्यत्रकै जस्तै हो: वर्णनले आकार र चाल छुटाउँछ, र शल्यचिकित्सकलाई अभ्यास चाहिने तिनै हुन्।"
+    }
+  },
+  {
+    "id": "g9.cf.q55",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u7",
+    "topic": "cloud-vs-distributed",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A weather office splits one forecast calculation across forty of its own computers so it finishes by morning. This is:",
+      "ne": "मौसम विभागले एउटै पूर्वानुमानको गणना आफ्नै चालीस कम्प्युटरमा बाँडेर बिहानसम्म सक्छ। यो हो:"
+    },
+    "options": [
+      {
+        "en": "Cloud computing, because many computers are involved",
+        "ne": "Cloud computing, किनभने धेरै कम्प्युटर छन्"
+      },
+      {
+        "en": "Distributed computing, because one task is shared among many computers working together",
+        "ne": "Distributed computing, किनभने एउटै काम धेरै कम्प्युटरले सँगै बाँड्छन्"
+      },
+      {
+        "en": "Big data, because the calculation is large",
+        "ne": "Big data, किनभने गणना ठूलो छ"
+      },
+      {
+        "en": "IoT, because the computers are networked",
+        "ne": "IoT, किनभने कम्प्युटर नेटवर्कमा छन्"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Cloud computing is about WHOSE computer — renting someone else’s over the Internet. Distributed computing is about HOW MANY computers share one task. Here all forty belong to the weather office itself, so ownership is not the point; sharing the work is. They are not opposites, and a cloud service may well be distributed underneath.",
+      "ne": "Cloud computing कम्प्युटर कसको भन्ने कुरा हो — इन्टरनेटमार्फत अर्कैको भाडामा लिनु। Distributed computing एउटै काम कतिवटा कम्प्युटरले बाँड्छन् भन्ने। यहाँ चालीसै मेसिन मौसम विभागकै हुन्, त्यसैले स्वामित्व होइन, काम बाँड्नु मुख्य कुरा हो। यी उल्टा होइनन्, र cloud सेवा भित्री रूपमा distributed हुन सक्छ।"
+    }
+  },
+  {
+    "id": "g9.cf.q56",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u7",
+    "topic": "iot",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which of these is an Internet of Things device?",
+      "ne": "यीमध्ये कुन Internet of Things उपकरण हो?"
+    },
+    "options": [
+      {
+        "en": "A laptop connected to Wi-Fi",
+        "ne": "Wi-Fi मा जोडिएको ल्यापटप"
+      },
+      {
+        "en": "A water tank with a level sensor that messages the owner when it runs low",
+        "ne": "पानी घट्दा मालिकलाई सन्देश पठाउने लेभल सेन्सर भएको ट्यांकी"
+      },
+      {
+        "en": "A desktop computer in a school lab",
+        "ne": "विद्यालय ल्याबको डेस्कटप कम्प्युटर"
+      },
+      {
+        "en": "A printer attached by cable to one computer",
+        "ne": "एउटै कम्प्युटरमा तारले जोडिएको प्रिन्टर"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The test has two parts: it must be a thing that is NOT a computer, and it must be on the network. A water tank is not a computer, so adding a sensor and a connection makes it IoT. A laptop on Wi-Fi fails the first part — it was already a computer.",
+      "ne": "जाँचका दुई भाग छन्: त्यो कम्प्युटर नभएको वस्तु हुनुपर्छ, र नेटवर्कमा हुनुपर्छ। पानीको ट्यांकी कम्प्युटर होइन, त्यसैले सेन्सर र जडान थपेपछि IoT बन्छ। Wi-Fi मा जोडिएको ल्यापटप पहिलो भागमै असफल हुन्छ — त्यो त पहिल्यै कम्प्युटर थियो।"
+    }
+  },
+  {
+    "id": "g9.cf.q57",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u7",
+    "topic": "bigdata-vs-mining",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A telecom company examines years of call records and discovers which customers are likely to leave. Which term describes what the company DID?",
+      "ne": "टेलिकम कम्पनीले वर्षौंका कल रेकर्ड केलाएर कुन ग्राहक छाड्न लागेका छन् पत्ता लगाउँछ। कम्पनीले गरेको कामलाई के भनिन्छ?"
+    },
+    "options": [
+      {
+        "en": "Big data",
+        "ne": "Big data"
+      },
+      {
+        "en": "Data mining",
+        "ne": "Data mining"
+      },
+      {
+        "en": "Cloud computing",
+        "ne": "Cloud computing"
+      },
+      {
+        "en": "Cryptography",
+        "ne": "Cryptography"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The call records are big data — the material. Examining them to discover a pattern nobody asked for is the activity, and that activity is data mining. Big data is a noun you have; data mining is a verb you do to it. Writing \"big data is mining large data\" merges the two and loses the mark.",
+      "ne": "कल रेकर्ड big data हुन् — सामग्री। कसैले नखोजेको बान्की भेट्न केलाउनु काम हो, र त्यो काम data mining। Big data तपाईंसँग भएको नाम हो; data mining त्यसमाथि गरिने क्रिया। \"Big data भनेको ठूलो data को mining हो\" लेख्नु दुईलाई मिसाउनु हो र अंक गुम्छ।"
+    }
+  },
+  {
+    "id": "g9.cf.q58",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u7",
+    "topic": "vr-vs-ar",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "A mechanic points a phone at an engine and sees the part names drawn over the real engine on the screen. This is:",
+      "ne": "मेकानिकले इन्जिनतिर फोन तेर्स्याउँदा पर्दामा वास्तविक इन्जिनमाथि भागका नाम कोरिएको देख्छ। यो हो:"
+    },
+    "options": [
+      {
+        "en": "Virtual Reality",
+        "ne": "Virtual Reality"
+      },
+      {
+        "en": "Augmented Reality",
+        "ne": "Augmented Reality"
+      },
+      {
+        "en": "Artificial Intelligence",
+        "ne": "Artificial Intelligence"
+      },
+      {
+        "en": "Cloud computing",
+        "ne": "Cloud computing"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "The real engine is still visible and information has been ADDED on top — that is AR. VR would replace the surroundings entirely with a computer-generated world, and would need a headset that blocks the room out. The ordinary phone is the clue.",
+      "ne": "वास्तविक इन्जिन देखिँदै छ र माथि सूचना थपिएको छ — यही AR। VR ले वरिपरिको संसार पूरै कम्प्युटरले बनाएको संसारले बदल्थ्यो र कोठा छेक्ने हेडसेट चाहिन्थ्यो। साधारण फोन नै सुराक हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q59",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u7",
+    "topic": "cryptography",
+    "difficulty": "hard",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "In cryptography, what is kept secret — the algorithm or the key?",
+      "ne": "Cryptography मा गोप्य के राखिन्छ — एल्गोरिदम कि key?"
+    },
+    "options": [
+      {
+        "en": "The algorithm, because if people knew the method they could read the message",
+        "ne": "एल्गोरिदम, किनभने तरिका थाहा भए मानिसले सन्देश पढ्न सक्थे"
+      },
+      {
+        "en": "The key — the algorithm is usually public, and security depends on the key being secret",
+        "ne": "Key — एल्गोरिदम प्रायः सार्वजनिक हुन्छ, र सुरक्षा key गोप्य रहनुमा भर पर्छ"
+      },
+      {
+        "en": "Both must be secret at all times",
+        "ne": "दुवै सधैं गोप्य हुनुपर्छ"
+      },
+      {
+        "en": "Neither — encryption does not rely on secrecy",
+        "ne": "कुनै पनि होइन — encryption गोपनीयतामा भर पर्दैन"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Security that depends on hiding the method collapses as soon as somebody works the method out, and it cannot be repaired. Security that depends on a key survives: the algorithm can be published and studied, and if a key is exposed you change the key. This is why the same public algorithm protects millions of different conversations.",
+      "ne": "तरिका लुकाएर पाइने सुरक्षा कसैले तरिका पत्ता लगाउने बित्तिकै ढल्छ, र त्यसलाई मर्मत गर्न मिल्दैन। Key मा अडेको सुरक्षा टिक्छ: एल्गोरिदम छापेर अध्ययन गर्न दिन सकिन्छ, र key चुहियो भने key फेरे पुग्छ। एउटै सार्वजनिक एल्गोरिदमले लाखौं फरक कुराकानी जोगाउनुको कारण यही हो।"
+    }
+  },
+  {
+    "id": "g9.cf.q60",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u7",
+    "topic": "ai",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What distinguishes an artificial intelligence system from an ordinary computer program?",
+      "ne": "Artificial intelligence प्रणालीलाई साधारण कम्प्युटर प्रोग्रामभन्दा छुट्याउने कुरा के हो?"
+    },
+    "options": [
+      {
+        "en": "It runs faster",
+        "ne": "यो छिटो चल्छ"
+      },
+      {
+        "en": "It can learn from examples and improve without being rewritten",
+        "ne": "यसले उदाहरणबाट सिक्न र फेरि नलेखिकनै सुध्रन सक्छ"
+      },
+      {
+        "en": "It needs an Internet connection",
+        "ne": "यसलाई इन्टरनेट जडान चाहिन्छ"
+      },
+      {
+        "en": "It is always written in a special language",
+        "ne": "यो सधैं विशेष भाषामा लेखिन्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Learning from experience is the phrase that carries the mark. An ordinary program does exactly what it was told; an AI system is given examples and works out the rule itself, which is why it can improve without a programmer rewriting it. Speed, Internet and language are not part of the definition.",
+      "ne": "अंक बोक्ने वाक्यांश \"अनुभवबाट सिक्ने\" हो। साधारण प्रोग्रामले भनेकै गर्छ; AI प्रणालीलाई उदाहरण दिइन्छ र नियम आफैं निकाल्छ, त्यसैले प्रोग्रामरले फेरि नलेखिकनै सुध्रन सक्छ। गति, इन्टरनेट र भाषा परिभाषाका भाग होइनन्।"
+    }
+  },
+  {
+    "id": "g9.cf.q61",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u7",
+    "topic": "cloud",
+    "difficulty": "medium",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "Which is a genuine disadvantage of cloud computing for a school in Nepal?",
+      "ne": "नेपालको विद्यालयका लागि cloud computing को साँचो बेफाइदा कुन हो?"
+    },
+    "options": [
+      {
+        "en": "It requires buying expensive servers",
+        "ne": "महँगो सर्भर किन्नुपर्छ"
+      },
+      {
+        "en": "It needs a reliable Internet connection, and the data sits on someone else’s computer",
+        "ne": "भरपर्दो इन्टरनेट चाहिन्छ, र data अर्कैको कम्प्युटरमा रहन्छ"
+      },
+      {
+        "en": "It cannot be reached from more than one place",
+        "ne": "एक ठाउँभन्दा बढीबाट पुग्न सकिँदैन"
+      },
+      {
+        "en": "Capacity cannot be increased later",
+        "ne": "पछि क्षमता बढाउन मिल्दैन"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "Option A is backwards — not buying servers is cloud computing’s main advantage, and options C and D describe the opposite of what it offers. The real disadvantages are dependence on a working connection, data held by someone else, and a cost that never stops. All three matter in Nepal, where connections fail and electricity is not guaranteed.",
+      "ne": "विकल्प (क) उल्टो छ — सर्भर नकिन्नु नै cloud को मुख्य फाइदा हो, र (ग) तथा (घ) ले यसले दिने कुराको ठिक उल्टो भन्छन्। साँचो बेफाइदा: चल्ने जडानमा निर्भरता, data अर्कैसँग रहनु, र कहिल्यै नसकिने खर्च। नेपालमा तीनै महत्त्वपूर्ण छन्।"
+    }
+  },
+  {
+    "id": "g9.cf.q62",
+    "subject": "grade9/computer-fundamentals",
+    "unit": "u7",
+    "topic": "emerging-definition",
+    "difficulty": "easy",
+    "type": "single-choice",
+    "examRelevant": true,
+    "prompt": {
+      "en": "What makes a technology \"emerging\" rather than merely new?",
+      "ne": "कुनै प्रविधि नयाँ मात्र नभई \"उदीयमान\" किन भनिन्छ?"
+    },
+    "options": [
+      {
+        "en": "It was invented this year",
+        "ne": "यो यसै वर्ष आविष्कार भयो"
+      },
+      {
+        "en": "It is still developing, is not yet in ordinary everyday use, and is expected to change how people live and work",
+        "ne": "यो अझै विकसित हुँदै छ, दैनिक सामान्य प्रयोगमा आइसकेको छैन, र मानिसको जीवन तथा कामको तरिका बदल्ने अपेक्षा छ"
+      },
+      {
+        "en": "It is expensive",
+        "ne": "यो महँगो छ"
+      },
+      {
+        "en": "It uses artificial intelligence",
+        "ne": "यसले AI प्रयोग गर्छ"
+      }
+    ],
+    "answer": 1,
+    "explanation": {
+      "en": "New is not the test — a new model of phone is new and changes nothing. A technology is emerging when it is moving out of the laboratory into use fast enough that the rules and the jobs around it have not settled. That also means the list changes over time, which is what the word predicts.",
+      "ne": "जाँच \"नयाँ\" होइन — फोनको नयाँ मोडेल नयाँ त हो, तर केही बदल्दैन। कुनै प्रविधि प्रयोगशालाबाट प्रयोगमा यति छिटो सर्दै छ कि वरिपरिका नियम र पेसा नै थामिइसकेका छैनन् भने त्यो उदीयमान हो। यसैले सूची समयसँगै बदलिन्छ — शब्दले भनेकै त्यही हो।"
     }
   }
 ]);
@@ -7202,16 +11273,68 @@ QuizService.registerBank("grade10/hardware", [
    exam    — derived from each unit's external marks (a fact about the paper)
    teacher — authored in _source/content/revision-focus.js (a judgement)
    The quiz labels whichever it shows. See docs/ASSESSMENT-ARCHITECTURE.md. */
+QuizService.registerFocus("grade9/c-programming", {
+  "exam": [
+    {
+      "n": "3",
+      "marks": 13,
+      "title": {
+        "en": "Control Flow Statements",
+        "ne": "नियन्त्रण प्रवाह कथन"
+      },
+      "page": "unit3.html"
+    },
+    {
+      "n": "4",
+      "marks": 10,
+      "title": {
+        "en": "Functions",
+        "ne": "फङ्सन"
+      },
+      "page": "unit4.html"
+    },
+    {
+      "n": "5",
+      "marks": 8,
+      "title": {
+        "en": "Arrays & Strings",
+        "ne": "एरे र स्ट्रिङ"
+      },
+      "page": "unit5.html"
+    }
+  ],
+  "teacher": [],
+  "source": null
+});
+
 QuizService.registerFocus("grade9/computer-fundamentals", {
   "exam": [
     {
-      "n": "1",
-      "marks": 6,
+      "n": "3",
+      "marks": 9,
       "title": {
-        "en": "Introduction to Computer",
-        "ne": "कम्प्युटरको परिचय"
+        "en": "Computer Software",
+        "ne": "कम्प्युटर सफ्टवेयर"
       },
-      "page": "unit1.html"
+      "page": "unit3.html"
+    },
+    {
+      "n": "4",
+      "marks": 8,
+      "title": {
+        "en": "Memory / Storage Unit",
+        "ne": "मेमोरी / भण्डारण एकाइ"
+      },
+      "page": "unit4.html"
+    },
+    {
+      "n": "5",
+      "marks": 8,
+      "title": {
+        "en": "Internet and its Application",
+        "ne": "इन्टरनेट र यसको प्रयोग"
+      },
+      "page": "unit5.html"
     }
   ],
   "teacher": [],

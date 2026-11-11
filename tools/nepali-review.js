@@ -49,6 +49,8 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 
+const BI = require('./nepali-bilingual.js');
+
 const ROOT = path.resolve(__dirname, '..');
 const SRC = path.join(ROOT, '_source');
 const BASELINE = '72e8bc5';            /* the commit Phase 9 started from */
@@ -376,17 +378,227 @@ function collectDrills(){
   }
 }
 
-/* ---- 4. runtime labels that carry Nepali ---- */
-function collectRuntimeStrings(){
-  const f = path.join(SRC, 'runtime/services/strings.js');
-  if (!fs.existsSync(f)) return;
-  const src = fs.readFileSync(f, 'utf8');
-  for (const m of src.matchAll(
-    /(['"]?)([A-Za-z0-9_.]+)\1\s*:\s*\{\s*en\s*:\s*(['"])([\s\S]*?)\3\s*,\s*ne\s*:\s*(['"])([\s\S]*?)\5/g)){
-    if (!DEVA.test(m[6])) continue;
-    add({ kind: 'interface label', file: 'runtime/services/strings.js',
-          meta: { subject: '(shared across every page)', unitNo: '-', unitTitle: '', marks: 0 },
-          topic: 'user interface', ref: m[2], en: m[4], ne: m[6] });
+/* ---- 4. the runtime, read as source ----
+
+   WHAT THIS REPLACED, AND WHY
+
+   The previous version of this function read ONE file,
+   runtime/services/strings.js, with one regex:
+
+       ne\s*:\s*(['"])([\s\S]*?)\1
+
+   It found 54 of that file's 56 pairs and nothing at all in the other
+   twenty-eight runtime files, which between them hold 707. Those files
+   were not an oversight in the usual sense — they were invisible to
+   the technique. A simulator keeps its content inside its closure and
+   exports the mount API, so requiring it gives you functions; and its
+   Nepali is written as a bi() argument, as an `np:` key, as a
+   concatenation with a number in the middle, or as markup it builds
+   itself. One regex sees none of that.
+
+   tools/nepali-bilingual.js parses instead, and reports what it cannot
+   parse. See its header for the five shapes and the failure mode.
+
+   ATTRIBUTION comes from config/pages.js, which already records which
+   runtime modules each page loads. That is better than guessing from
+   file names and it is how sim-parts.js is correctly attributed to TWO
+   subjects: Grade 9 Unit 2 and Grade 10 Hardware Unit 2 both mount its
+   `systemunits` set, so its Nepali belongs to both reviews. */
+const RUNTIME_SKIP = new Set(['sim-drill.js']);   /* has its own collector */
+
+function runtimeMounts(){
+  const by = {};
+  for (const [subject, cfg] of Object.entries(pages)){
+    for (const p of cfg.pages){
+      for (const j of (p.js || [])){
+        (by[j] = by[j] || []).push({ subject, p });
+      }
+    }
+  }
+  return by;
+}
+
+function collectInlineRuntime(){
+  const mounts = runtimeMounts();
+  const files = [];
+  const add1 = (base, prefix) => (function walk(d, p){
+    for (const e of fs.readdirSync(d, { withFileTypes: true })){
+      if (e.isDirectory()) walk(path.join(d, e.name), p + e.name + '/');
+      else if (e.name.endsWith('.js')) files.push({ rel: p + e.name, base, prefix });
+    }
+  })(base, '');
+  add1(path.join(SRC, 'runtime'), 'runtime/');
+  /* The BUILD writes Nepali too. index.js holds the homepage's Nepali
+     paragraphs — "४ विषय पूरै लेखिएका छन्…" — inside template literals
+     with the figures interpolated. It is the first Nepali a visitor
+     reads and it had never been in a review package. */
+  add1(path.join(SRC, 'build'), 'build/');
+  files.sort((a, b) => (a.prefix + a.rel).localeCompare(b.prefix + b.rel));
+
+  const unsupported = [];
+  for (const entry of files){
+    const rel = entry.rel;
+    if (RUNTIME_SKIP.has(rel)) continue;
+    const src = fs.readFileSync(path.join(entry.base, rel), 'utf8');
+    if (!DEVA.test(src)) continue;
+    const isBuild = entry.prefix === 'build/';
+    const found = BI.scanSource(src, entry.prefix + rel);
+    for (const u of found.unsupported) unsupported.push(u);
+    if (!found.pairs.length) continue;
+
+    /* who shows it */
+    const where = isBuild ? [] : (mounts[rel] || []);
+    const subjects = [...new Set(where.map(w => w.subject))];
+    const shared = isBuild || rel.indexOf('services/') === 0 || subjects.length >= 3;
+    const contexts = [];
+    if (shared || !subjects.length){
+      contexts.push({ subject: shared ? '(shared across every page)' : '(not mounted on any page)',
+                      unitNo: '-', unitTitle: '', marks: 0, hrs: 0 });
+    } else {
+      for (const s of subjects){
+        const ps = where.filter(w => w.subject === s).map(w => w.p);
+        const units = ps.map(p => String(p.n)).filter(n => n && n !== 'undefined');
+        contexts.push({
+          subject: s,
+          unitNo: units.length ? [...new Set(units)].join(', ') : '-',
+          unitTitle: ps.map(p => p.title).filter(Boolean).join(' / '),
+          marks: ps[0] && ps[0].marks, hrs: ps[0] && ps[0].hrs,
+          mounts: ps.map(p => p.file)
+        });
+      }
+    }
+
+    for (const p of found.pairs){
+      for (const meta of contexts){
+        add({ kind: isBuild ? 'page furniture' : shared ? 'interface label' : 'simulator text',
+              file: entry.prefix + rel, meta,
+              topic: isBuild ? 'written by the build'
+                   : shared ? 'user interface'
+                   : 'simulator: ' + rel.replace(/\.js$/, ''),
+              ref: p.ref, en: p.en, ne: p.ne,
+              interpolated: p.interpolated || false });
+      }
+    }
+  }
+  return unsupported;
+}
+
+/* ---- 5. content that is exported, walked as data ----
+
+   The practice banks, the prerequisite graph, the Nepali heading table
+   and the animated diagrams' narration are all requireable. Reading
+   the VALUE beats reading the source for those: no quoting to undo, no
+   concatenation to rejoin, and the path through the object is a precise
+   reference for a reviewer.
+
+   `content/practice` is the largest single thing the previous package
+   was missing — 305 Devanagari literals of guided practice, four
+   files, every one of them carrying its own `subject` and `unit`. They
+   were not hard to attribute. Nothing had ever looked. */
+const DATA_MODULES = [
+  { dir: 'content/practice', kind: 'guided practice', topic: 'guided practice' },
+  /* Phase 14. The C program stepper's captions — two per step, fourteen
+     programs — are content and live beside the practice banks, so they
+     are collected the same way and attributed by the subject and unit
+     each program declares. */
+  { dir: 'content/programs', kind: 'program stepper', topic: 'stepping through a program' },
+  { file: 'content/prerequisites.js', kind: 'prerequisite reason',
+    topic: 'what this unit assumes', keyIsSubjectUnit: true },
+  { file: 'content/heading-ne.js', kind: 'section heading',
+    topic: 'heading', stringMap: true, byHeading: true },
+  { file: 'diagrams.js', kind: 'diagram narration',
+    topic: 'diagram', byDiagram: true },
+  /* Titles. A student meets these in navigation, in the grade index and
+     at the top of every page, which makes them the most-read Nepali on
+     the platform and the last to be reviewed. The unit titles reach the
+     package twice over — once from here and once from each lesson's own
+     <h2> — and the occurrence key keeps both, correctly: the heading on
+     the page and the label in the menu are two places the same
+     translation is read. */
+  { file: 'content/syllabus.js', kind: 'syllabus unit title',
+    topic: 'syllabus', keyIsSubject: true },
+  { file: 'config/pages.js', kind: 'unit title', topic: 'navigation',
+    keyIsSubject: true },
+  { file: 'config/site.js', kind: 'subject title', topic: 'navigation' },
+  { file: 'config/brand.js', kind: 'brand name', topic: 'the product name' }
+];
+
+function collectDataModules(){
+  /* which lesson uses which diagram, read from the placeholders */
+  const lessonDir = path.join(SRC, 'content/lessons');
+  const lessonSrc = {};
+  for (const f of fs.readdirSync(lessonDir).filter(f => f.endsWith('.html'))){
+    lessonSrc[f.replace(/\.html$/, '')] = fs.readFileSync(path.join(lessonDir, f), 'utf8');
+  }
+  const diaUse = {};
+  const headingUse = {};
+  for (const [sec, html] of Object.entries(lessonSrc)){
+    for (const m of html.matchAll(/\{\{dia:([A-Za-z0-9_]+)\}\}/g)){
+      (diaUse[m[1]] = diaUse[m[1]] || []).push(sec);
+    }
+  }
+  const metaFor = secs => {
+    const out = [];
+    for (const s of [...new Set(secs)]){
+      if (SECTION[s]) out.push(SECTION[s]);
+    }
+    return out.length ? out : [{ subject: '(not used by any lesson)', unitNo: '-', unitTitle: '', marks: 0 }];
+  };
+
+  for (const d of DATA_MODULES){
+    const files = d.dir
+      ? fs.readdirSync(path.join(SRC, d.dir)).filter(f => f.endsWith('.js')).map(f => d.dir + '/' + f)
+      : [d.file];
+    for (const rel of files){
+      const abs = path.join(SRC, rel);
+      if (!fs.existsSync(abs)) continue;
+      let mod;
+      try { mod = require(abs); } catch (e){ continue; }
+      const found = BI.walkValue(mod, { stringMap: !!d.stringMap });
+      for (const p of found){
+        let metas;
+        if (d.byDiagram){
+          metas = metaFor(diaUse[String(p.ref).split('.')[0]] || []);
+        } else if (d.byHeading){
+          /* a heading's context is every lesson whose text contains it */
+          if (!(p.en in headingUse)){
+            headingUse[p.en] = Object.keys(lessonSrc)
+              .filter(sec => lessonSrc[sec].indexOf(p.en) >= 0);
+          }
+          metas = metaFor(headingUse[p.en]);
+        } else if (d.keyIsSubject){
+          const key = String(p.ref).split('.')[0];
+          metas = [{ subject: pages[key] ? key : (SUBJECT_NAME[key] ? key : key),
+                     unitNo: '-', unitTitle: '', marks: 0 }];
+        } else if (d.keyIsSubjectUnit){
+          /* prerequisites.js keys a unit `u7` inside its subject, while a
+             lesson section is `db-u7`. Resolve through pages.js on the
+             unit NUMBER so the item lands on the unit's own row rather
+             than inventing one called "u7". */
+          const key = String(p.ref).split('.')[0];
+          const subject = key.slice(0, key.lastIndexOf('/'));
+          const n = key.split('/').pop().replace(/^u/, '');
+          const page = ((pages[subject] || { pages: [] }).pages || [])
+            .find(x => String(x.n) === n);
+          metas = page && page.sec && SECTION[page.sec[0]]
+            ? [SECTION[page.sec[0]]]
+            : [{ subject, unitNo: n, unitTitle: page ? page.title : '', marks: 0 }];
+        } else if (p.ctx && p.ctx.unit){
+          metas = metaFor([p.ctx.unit]);
+          if (metas[0].subject.indexOf('(') === 0 && p.ctx.subject){
+            metas = [{ subject: p.ctx.subject, unitNo: p.ctx.unit,
+                       unitTitle: '', marks: 0 }];
+          }
+        } else {
+          metas = [{ subject: p.ctx && p.ctx.subject ? p.ctx.subject : '(shared across every page)',
+                     unitNo: '-', unitTitle: '', marks: 0 }];
+        }
+        for (const meta of metas){
+          add({ kind: d.kind, file: rel, meta, topic: d.topic,
+                ref: p.ref, en: p.en, ne: p.ne });
+        }
+      }
+    }
   }
 }
 
@@ -395,16 +607,52 @@ function collectRuntimeStrings(){
 collectLessons();
 collectQuestions();
 collectDrills();
-collectRuntimeStrings();
+const scanGaps = collectInlineRuntime();
+collectDataModules();
 
-/* de-duplicate: the same string may be matched by two patterns */
-{
-  const seen = new Set();
-  for (let i = items.length - 1; i >= 0; i--){
-    const k = items[i].id + '|' + items[i].kind;
-    if (seen.has(k)) items.splice(i, 1); else seen.add(k);
-  }
-}
+/* ------------------------------------------------------- the dedup rule
+
+   WHAT THE OLD KEY DID
+
+       const k = items[i].id + '|' + items[i].kind;
+
+   `id` is a hash of the NEPALI TEXT ALONE. `kind` is "quiz option" or
+   "gloss". So two quiz options with the same Nepali collapsed into one
+   item — whatever subject, unit or question they belonged to, and
+   whichever English they were translating.
+
+   For a repeated section label on six lesson pages that was right. For
+   content it was not, and the cost is measurable:
+
+     - 40 question-bank occurrences collapsed under that key;
+     - 16 of the 40 crossed a SUBJECT boundary;
+     - 5 of those 16 moved in Phase 13, which is the whole of the
+       "Grade 10 lost five items" that the Phase 13 report recorded as
+       harmless re-attribution. It was not harmless: a reviewer opening
+       Digital Design Unit 4 could no longer see that its question 406
+       offers "१६" as an option, because Grade 9's identical option had
+       won the key.
+     - the other 11 predate Phase 13 and nobody had noticed them.
+
+   An option reading "चार" under a Hardware question about bus lines and
+   the same "चार" under a DBMS question about cardinality are ONE
+   translation and TWO things to review. Those are different counts and
+   the package now reports both.
+
+   THE KEY NOW is the occurrence: the pair, plus where it occurs. Two
+   extraction patterns reaching the same text at the same place in the
+   same file still collapse — that is the duplicate this is for. A
+   second subject does not.
+
+   The three functions that do it — occurrenceId, dedupeOccurrences and
+   groupPairs — live in tools/nepali-bilingual.js, where they can be
+   tested on plain objects without reading the repository. See
+   tests/nepali-review.test.js.
+   ------------------------------------------------------------------- */
+const deduped = BI.dedupeOccurrences(items);
+items.length = 0;
+items.push(...deduped.items);
+const duplicateOccurrences = deduped.duplicates;
 
 /* Mark what Phase 9 added: present now, absent at the baseline.
 
@@ -433,18 +681,162 @@ items.sort((a, b) =>
   String(a.meta.unitNo).localeCompare(String(b.meta.unitNo), undefined, { numeric: true }) ||
   String(a.kind).localeCompare(String(b.kind)));
 
+/* ---------------------------------------------- pairs and occurrences
+
+   A UNIQUE PAIR is one translation: one Nepali text, reviewed once.
+   An OCCURRENCE is one place that translation is used: subject, unit,
+   topic, file.
+
+   These are not the same number and must never be printed as if they
+   were. A reviewer's workload is the pair count. The platform's
+   coverage is the occurrence count. "2,603 items" in the old package
+   was neither — it was occurrences after some of them had been
+   silently merged into each other.
+
+   A pair whose occurrences disagree about the ENGLISH is flagged. That
+   is not a bookkeeping nicety: one Nepali sentence standing in for two
+   different English sentences is either a translation that fits
+   neither, or two pieces of English that should have said the same
+   thing. Both are findings for the reviewer, and neither is visible
+   unless the contexts are kept. */
+const pairs = BI.groupPairs(items);
+
 const stats = {
-  total: items.length,
+  /* occurrences: every place a bilingual pair is used */
+  occurrences: items.length,
+  /* unique pairs: what a reviewer actually has to read */
+  pairs: pairs.size,
+  /* pairs used in more than one place at all */
+  sharedPairs: [...pairs.values()].filter(p => p.occurrences.length > 1).length,
+  /* pairs used by more than one SUBJECT — the attribution that the
+     previous dedup key destroyed */
+  pairsAcrossSubjects: [...pairs.values()].filter(p => p.subjects.length > 1).length,
+  /* one Nepali text standing in for two different English texts */
+  pairsWithEnglishVariants: [...pairs.values()].filter(p => p.enVariants.length).length,
+  /* identical (pair, place, kind) reached by two extraction patterns */
+  duplicateOccurrences,
+  /* new since the review baseline commit */
   phase9: items.filter(i => i.phase9).length,
+  phase9Pairs: [...pairs.values()].filter(p => p.phase9).length,
+  /* Devanagari the scanner found but could not pair; see --audit */
+  unsupportedPatterns: scanGaps.filter(u => !u.fragment).length,
+  unsupportedFragments: scanGaps.filter(u => u.fragment).length,
+  /* NOT A MEASURE OF QUALITY. It is zero, and it stays zero until a
+     Nepali-speaking teacher has actually read an item and said so. No
+     code path in this tool can raise it: it is counted from statuses
+     carried forward out of the previous ledger file, which is where a
+     returned review is recorded by hand. */
+  humanReviewed: 0,
+  /* kept for continuity with the previous ledger, which called the
+     occurrence count `total` */
+  total: items.length,
   byKind: {},
   bySubject: {}
 };
 for (const it of items){
   stats.byKind[it.kind] = (stats.byKind[it.kind] || 0) + 1;
   const s = it.meta.subject;
-  stats.bySubject[s] = stats.bySubject[s] || { total: 0, phase9: 0 };
+  stats.bySubject[s] = stats.bySubject[s] || { total: 0, pairs: 0, phase9: 0 };
   stats.bySubject[s].total++;
   if (it.phase9) stats.bySubject[s].phase9++;
+}
+for (const p of pairs.values()){
+  for (const s of p.subjects) if (stats.bySubject[s]) stats.bySubject[s].pairs++;
+}
+
+/* ------------------------------------------- carry a review forward
+
+   A reviewer's verdict is recorded in the ledger file by hand, keyed
+   by occurrence id where one exists and by pair id otherwise. It must
+   survive regeneration — losing it would mean asking for the review
+   twice — so the previous ledger is read before this one replaces it.
+
+   Only a status that is NOT the default is carried. Nothing in here
+   can invent one. */
+const PREV = path.join(ROOT, 'docs', 'nepali-review-items.json');
+let prevItems = [];
+if (fs.existsSync(PREV)){
+  try {
+    prevItems = JSON.parse(fs.readFileSync(PREV, 'utf8')).items || [];
+  } catch (e){
+    console.error('! the previous ledger could not be read; no review status is carried forward');
+  }
+}
+const carried = BI.carryStatus(items, prevItems);
+stats.humanReviewed = items.filter(i => i.status === 'human-reviewed').length;
+void carried;
+stats.withReviewerVerdict = items.filter(i => i.status !== 'pending-review').length;
+
+/* ------------------------------------------------------------- audit
+
+   The question this answers is not "how many pairs did we find" — a
+   collector can always be asked how much it found and will always say
+   "all of it". It is "how much Devanagari is in the shipped source,
+   and how much of it is in the package".
+
+   Literals are the denominator because they are countable without
+   reference to any collector. A file's Nepali either reaches a
+   reviewer or it does not. */
+function audit(){
+  const out = [];
+  let total = 0, covered = 0;
+  const blob = items.map(i => cmp(i.ne)).join(' \u0000 ');
+  const walk = (d, pre) => {
+    for (const e of fs.readdirSync(d, { withFileTypes: true })){
+      if (e.name === 'archive') continue;
+      if (e.isDirectory()) walk(path.join(d, e.name), pre + e.name + '/');
+      else if (e.name.endsWith('.js')) files.push(pre + e.name);
+    }
+  };
+  const files = [];
+  walk(SRC, '');
+  files.sort();
+  for (const rel of files){
+    const src = fs.readFileSync(path.join(SRC, rel), 'utf8');
+    if (!DEVA.test(src)) continue;
+    let n = 0, c = 0;
+    const missing = [];
+    for (const lit of BI.devaLiterals(BI.blankNoise(src))){
+      const text = cmp(BI.stripMarkup(BI.unquote(lit.text)));
+      const deva = (text.match(/[ऀ-ॿ]/g) || []).length;
+      if (deva < 3) continue;                /* a fragment, not a sentence */
+      n++;
+      const probe = text.slice(0, 40);
+      if (blob.includes(probe)) c++;
+      else missing.push(BI.lineAt(src, lit.at) + ': ' + text.slice(0, 70));
+    }
+    if (!n) continue;
+    total += n; covered += c;
+    out.push({ file: rel, literals: n, inPackage: c, missing });
+  }
+  return { total, covered, files: out };
+}
+
+if (process.argv.includes('--audit')){
+  const a = audit();
+  console.log('DEVANAGARI LITERAL AUDIT — _source/**/*.js');
+  console.log('(lesson HTML is read directly by collectLessons and is not counted here)\n');
+  for (const f of a.files.slice().sort((x, y) =>
+      (y.literals - y.inPackage) - (x.literals - x.inPackage))){
+    const gap = f.literals - f.inPackage;
+    console.log(f.file.padEnd(46) + 'literals=' + String(f.literals).padStart(4) +
+                '  in package=' + String(f.inPackage).padStart(4) +
+                '  MISSING=' + String(gap).padStart(4));
+    if (process.argv.includes('--detail')){
+      for (const x of f.missing.slice(0, 8)) console.log('      ' + x);
+      if (f.missing.length > 8) console.log('      … +' + (f.missing.length - 8) + ' more');
+    }
+  }
+  console.log('\ntotal literals      : ' + a.total);
+  console.log('in the package      : ' + a.covered);
+  console.log('missing             : ' + (a.total - a.covered));
+  console.log('\nshapes the scanner could not pair (reported, not dropped):');
+  for (const u of scanGaps.filter(u => !u.fragment)){
+    console.log('  ' + u.file + ':' + u.line + '  ' + u.snippet.slice(0, 70));
+  }
+  console.log('  ' + scanGaps.filter(u => u.fragment).length +
+              ' further Devanagari fragments too short to review on their own');
+  process.exit(0);
 }
 
 if (process.argv.includes('--stats')){
@@ -460,11 +852,29 @@ const json = {
   note: 'Generated by tools/nepali-review.js. Do not edit by hand — regenerate. ' +
         'Reviewer answers belong in docs/NEPALI-REVIEW-STATUS.md, keyed by item id.',
   stats,
+  /* ONE ENTRY PER UNIQUE PAIR — what a reviewer reads, and the thing a
+     returned verdict is really about. `occurrences` names every place
+     it is used, so ticking it once cannot lose a context. */
+  pairs: [...pairs.values()].map(p => ({
+    id: p.id, ne: p.ne, en: p.en,
+    englishVariants: p.enVariants,
+    subjects: p.subjects,
+    occurrences: p.occurrences,
+    occurrenceCount: p.occurrences.length,
+    phase9: p.phase9, terms: p.terms
+  })),
+  /* ONE ENTRY PER OCCURRENCE — where each pair appears. `status` is
+     per occurrence so a translation can be right in one unit and wrong
+     in another, which is the commonest real review outcome for a
+     string that was reused. */
   items: items.map(i => ({
-    id: i.id, status: 'pending-review',
+    occId: i.occId, id: i.id, pairId: i.pairId, status: i.status,
+    reviewNote: i.reviewNote || null,
     subject: i.meta.subject, unit: i.meta.unitNo, unitTitle: i.meta.unitTitle,
     marks: i.meta.marks, topic: i.topic, kind: i.kind, ref: i.ref || null,
     file: i.file, anchor: i.anchor || null,
+    sharedWith: i.sharedWith, alsoIn: i.alsoIn,
+    interpolated: i.interpolated || false,
     phase9: i.phase9, terms: i.terms, en: i.en, ne: i.ne
   }))
 };
@@ -483,15 +893,28 @@ for (const it of items){
 }
 
 function itemHTML(it){
+  const p = pairs.get(it.id);
+  const alsoHere = p.occurrences.length - 1;
   return `
-  <article class="item${it.phase9 ? ' is-new' : ''}" id="${esc(it.id)}">
+  <article class="item${it.phase9 ? ' is-new' : ''}" id="${esc(it.occId)}">
     <header>
-      <span class="id">${esc(it.id)}</span>
+      <span class="id">${esc(it.occId)}</span>
       <span class="kind">${esc(it.kind)}</span>
-      ${it.phase9 ? '<span class="new">added in Phase 9</span>' : ''}
+      ${it.phase9 ? '<span class="new">new since the baseline</span>' : ''}
       ${it.ref ? '<span class="ref">' + esc(it.ref) + '</span>' : ''}
+      ${it.status !== 'pending-review' ? '<span class="new">' + esc(it.status) + '</span>' : ''}
     </header>
     <p class="where">${esc(it.topic || '')} <span class="file">${esc(it.file)}</span></p>
+    ${alsoHere ? '<p class="reuse"><b>This same Nepali is used in ' + alsoHere +
+      ' other place' + (alsoHere === 1 ? '' : 's') + '</b>' +
+      (it.alsoIn.length ? ', including ' + it.alsoIn.map(s => esc(SUBJECT_NAME[s] || s)).join(' and ') : ' in this subject') +
+      '. Translation id <code>' + esc(it.id) + '</code>' +
+      (it.interpolated ? ' · a number or name is filled in where <code>' + esc(BI.PLACEHOLDER) + '</code> stands' : '') +
+      '</p>' : (it.interpolated ? '<p class="reuse">A number or name is filled in at run time where <code>' +
+        esc(BI.PLACEHOLDER) + '</code> stands.</p>' : '')}
+    ${p.enVariants.length ? '<p class="reuse"><b>This one Nepali text stands in for ' +
+      (p.enVariants.length + 1) + ' different English texts.</b> The others read: ' +
+      p.enVariants.slice(0, 3).map(v => '“' + esc(v.slice(0, 120)) + '”').join('; ') + '</p>' : ''}
     ${it.evidence ? '<pre class="evidence">' + esc(it.evidence) + '</pre>' : ''}
     <div class="texts">
       <div class="en"><span class="lbl">English — what it is meant to say</span>
@@ -534,7 +957,7 @@ for (const [subject, units] of Object.entries(BY_SUBJECT)){
 const kindRows = Object.entries(stats.byKind).sort((a, b) => b[1] - a[1])
   .map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('');
 const subjRows = Object.entries(stats.bySubject)
-  .map(([k, v]) => `<tr><td>${esc(SUBJECT_NAME[k] || k)}</td><td>${v.total}</td><td>${v.phase9}</td></tr>`).join('');
+  .map(([k, v]) => `<tr><td>${esc(SUBJECT_NAME[k] || k)}</td><td>${v.total}</td><td>${v.pairs}</td><td>${v.phase9}</td></tr>`).join('');
 
 const html = `<!doctype html>
 <html lang="en">
@@ -567,6 +990,9 @@ const html = `<!doctype html>
  .new{ color:var(--new); font-weight:600 }
  .ref{ color:var(--dim); font-family:ui-monospace,monospace }
  .where{ margin:0 0 10px; font-size:.82rem; color:var(--dim) }
+ .reuse{ margin:0 0 10px; font-size:.8rem; color:var(--new); background:var(--newbg);
+         border-left:3px solid #e3c37a; padding:6px 10px; border-radius:0 4px 4px 0 }
+ .reuse code{ font-family:ui-monospace,monospace; font-size:.75rem }
  .file{ font-family:ui-monospace,monospace; font-size:.75rem; margin-left:8px }
  .evidence{ font-family:ui-monospace,monospace; font-size:.78rem; background:#f4f2ec;
             border:1px solid var(--line); border-radius:6px; padding:8px 10px; overflow-x:auto }
@@ -607,41 +1033,54 @@ const html = `<!doctype html>
 
 <h1>Gyansetu — Nepali review package</h1>
 <p class="sub">Generated ${json.generated} from the content itself, by
-<code>tools/nepali-review.js</code>. ${stats.total} bilingual items,
-${stats.phase9} of them added or changed in Phase 9.</p>
+<code>tools/nepali-review.js</code>. <b>${stats.pairs} distinct translations</b>,
+used in <b>${stats.occurrences} places</b> across the platform.
+${stats.phase9Pairs} of the translations are new since the review baseline
+(commit ${BASELINE}).</p>
 
 <div class="warn">
 <b>No review has taken place.</b> This document is the request for one. Every item
 below is <b>Pending review</b> until a Nepali-speaking Computer Engineering teacher
 has read it and said otherwise. Nothing here has been checked by a human for natural
 wording or reading level.
+${stats.humanReviewed ? '<p><b>' + stats.humanReviewed + '</b> occurrences carry a recorded human verdict.</p>' : ''}
 </div>
 
 <div class="intro">
-<b>What this is, and what we are asking.</b> Gyansetu teaches Nepal's CDC Grade 10
-Computer Engineering curriculum in English and Nepali at the same time. Every item
-below is one pair: an English text, and the Nepali meant to say the same thing to the
-same student.
+<b>What this is, and what we are asking.</b> Gyansetu teaches Nepal's CDC Computer
+Engineering curriculum for Grades 9 and 10 in English and Nepali at the same time.
+Every item below is one pair: an English text, and the Nepali meant to say the same
+thing to the same student.
 <ol>
   <li>Read the Nepali. Does it say what the English says?</li>
-  <li>Would a Grade 10 student read it naturally — or does it read as translation?</li>
+  <li>Would a Grade 9 or 10 student read it naturally — or does it read as translation?</li>
   <li>Is the technical terminology the wording a Nepali teacher would use in class?</li>
-  <li>Items marked <b>added in Phase 9</b> are the newest and least reviewed. If time
-      is short, start there.</li>
+  <li>Items marked <b>new since the baseline</b> are the newest and least reviewed. If
+      time is short, start there.</li>
 </ol>
-Tick a box and write in the field under any item. The boxes and fields are for writing
-in on screen or on paper; nothing is sent anywhere.
+<b>Two numbers, not one.</b> ${stats.pairs} translations are used in
+${stats.occurrences} places: ${stats.sharedPairs} of them appear more than once, and
+${stats.pairsAcrossSubjects} are shared between <i>different subjects</i>. An item
+that is reused says so, and lists the other places — because a sentence that reads
+well in one unit can read wrongly in another, and that is worth saying separately.
+${stats.pairsWithEnglishVariants ? '<p><b>' + stats.pairsWithEnglishVariants +
+  ' translations stand in for more than one English text.</b> Those are marked, and are' +
+  ' worth a second look: one Nepali sentence doing two jobs usually fits neither.</p>' : ''}
+<p>Tick a box and write in the field under any item. The boxes and fields are for
+writing in on screen or on paper; nothing is sent anywhere.</p>
 </div>
 
-<h2>What is in the package <span class="count">${stats.total} items</span></h2>
-<table><tr><th>Subject</th><th>Items</th><th>Added in Phase 9</th></tr>${subjRows}</table>
-<table><tr><th>Kind</th><th>Items</th></tr>${kindRows}</table>
+<h2>What is in the package
+  <span class="count">${stats.pairs} translations</span>
+  <span class="count">${stats.occurrences} occurrences</span></h2>
+<table><tr><th>Subject</th><th>Occurrences</th><th>Translations</th><th>New since baseline</th></tr>${subjRows}</table>
+<table><tr><th>Kind</th><th>Occurrences</th></tr>${kindRows}</table>
 
 <h2>Where to start</h2>
-<p>If you have an hour rather than a week, read the <b>${stats.phase9} items added in
-Phase 9</b> — press the button below to hide everything else. They are the newest
-Nepali on the site and the least looked at. Everything else has at least shipped and
-been read by students.</p>
+<p>If you have an hour rather than a week, read the <b>${stats.phase9} occurrences new
+since the baseline</b> — press the button below to hide everything else. They are the
+newest Nepali on the site and the least looked at. Everything else has at least
+shipped and been read by students.</p>
 
 <div class="toc">${
   Object.entries(BY_SUBJECT).map(([s, units]) => {
@@ -656,8 +1095,8 @@ been read by students.</p>
 
 <div class="bar">
   <span class="note">Show:</span>
-  <button type="button" data-filter="all" aria-pressed="true">Everything (${stats.total})</button>
-  <button type="button" data-filter="new" aria-pressed="false">Added in Phase 9 (${stats.phase9})</button>
+  <button type="button" data-filter="all" aria-pressed="true">Everything (${stats.occurrences})</button>
+  <button type="button" data-filter="new" aria-pressed="false">New since the baseline (${stats.phase9})</button>
   <span class="note" id="shown"></span>
 </div>
 
@@ -703,7 +1142,17 @@ ${body}
 fs.writeFileSync(path.join(ROOT, 'docs', 'NEPALI-REVIEW-PACKAGE.html'), html, 'utf8');
 
 console.log('Nepali review package');
-console.log('  items            : ' + stats.total);
-console.log('  added in Phase 9 : ' + stats.phase9);
+console.log('  distinct translations    : ' + stats.pairs);
+console.log('  occurrences of them      : ' + stats.occurrences);
+console.log('    reused somewhere       : ' + stats.sharedPairs);
+console.log('    reused across subjects : ' + stats.pairsAcrossSubjects);
+console.log('    one Nepali, two English: ' + stats.pairsWithEnglishVariants);
+console.log('  duplicate occurrences    : ' + stats.duplicateOccurrences + ' (collapsed)');
+console.log('  new since baseline       : ' + stats.phase9Pairs + ' translations, ' +
+            stats.phase9 + ' occurrences');
+console.log('  human-reviewed           : ' + stats.humanReviewed +
+            (stats.humanReviewed ? '' : '   (no review has taken place)'));
+console.log('  unpaired Devanagari      : ' + stats.unsupportedPatterns +
+            ' strings, ' + stats.unsupportedFragments + ' fragments — see --audit');
 console.log('  wrote docs/NEPALI-REVIEW-PACKAGE.html');
 console.log('  wrote docs/nepali-review-items.json');

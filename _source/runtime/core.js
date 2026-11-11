@@ -1,8 +1,26 @@
 /* =========================================================
-   1. TINY C++ SYNTAX HIGHLIGHTER  (single pass, safe)
+   1. TINY C AND C++ SYNTAX HIGHLIGHTER  (single pass, safe)
+
+   PHASE 14 WIDENED THE WORD LISTS, and did not change anything else.
+
+   The lists were written for the C++ this product taught first, so
+   fourteen keywords that a Grade 9 C lesson cannot avoid — goto, union,
+   sizeof, typedef, long, unsigned and the rest — rendered as plain
+   identifiers, in the same colour as a variable name. A highlighter
+   that colours `break` and not `goto` teaches that one of them is a
+   keyword and the other is not.
+
+   NOTHING ELSE MOVED. Every word added below was checked against every
+   existing code block in the repository first: not one of the eighteen
+   Grade 10 lessons contains any of them inside a <pre class="cpp">, so
+   no existing listing renders differently. The highlighting runs in the
+   browser rather than at build time, so no built page changed either.
    ========================================================= */
-var KW = /^(int|float|double|char|bool|void|class|struct|public|private|protected|virtual|return|if|else|for|while|do|switch|case|break|continue|new|delete|using|namespace|const|static|friend|inline|this|true|false|string)$/;
-var TY = /^(cout|cin|endl|std|main)$/;
+var KW = /^(int|float|double|char|bool|void|class|struct|public|private|protected|virtual|return|if|else|for|while|do|switch|case|default|break|continue|goto|new|delete|using|namespace|const|static|friend|inline|this|true|false|string|long|short|unsigned|signed|sizeof|typedef|union|enum|auto|register|extern|volatile)$/;
+/* Library names a student types but does not define. `main` is here for
+   the same reason: it is the one function name the language itself
+   knows about. */
+var TY = /^(cout|cin|endl|std|main|printf|scanf|stdio|stdlib|NULL)$/;
 
 function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 

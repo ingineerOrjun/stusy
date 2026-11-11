@@ -2,7 +2,7 @@
   "$generatedBy": "tools/grade9-spec.js — regenerate, do not edit by hand",
   "grade": "Grade 9",
   "stream": "Technical and Vocational Stream — Computer Engineering",
-  "generated": "2026-11-10",
+  "generated": "2026-11-11",
   "source": {
     "title": "Secondary Level School Curriculum (Technical and Vocational Stream), Grade 9-12 — Computer Engineering",
     "issuingAuthority": "Curriculum Development Centre, Ministry of Education, Science and Technology, Government of Nepal",
@@ -70,17 +70,17 @@
   "totals": {
     "subjects": 4,
     "units": 28,
-    "unitsAuthored": 1,
+    "unitsAuthored": 14,
     "topics": 168,
     "creditHours": 256,
     "externalMarks": 200,
-    "topicsFullyTaught": 4,
+    "topicsFullyTaught": 71,
     "topicsPartiallyTaught": 0,
     "topicsPracticalMissing": 0,
     "topicsAssessmentMissing": 0,
-    "topicsNotImplemented": 164
+    "topicsNotImplemented": 97
   },
-  "coverageStatement": "1 of 28 Grade 9 units are authored, covering 4 of 168 topics. The curriculum structure around all of them — units, titles, hours and marks — is verified against the CDC document and held by tests/curriculum.test.js.",
+  "coverageStatement": "14 of 28 Grade 9 units are authored, covering 71 of 168 topics. The curriculum structure around all of them — units, titles, hours and marks — is verified against the CDC document and held by tests/curriculum.test.js.",
   "$statusDerivation": "Every status in this file is derived at generation time from the same data the build validates — config/pages.js, content/coverage.js, the registered question bank, and data-practical ids in the authored lesson. None of it is written by hand, and none of it is a judgement about teaching quality: these states describe what exists, not whether it is any good. No teacher and no student has reviewed any Grade 9 content.",
   "statusVocabulary": {
     "fully-taught": "the topic is mapped to a section of an authored lesson, the unit has questions in the bank, and the unit's practical activities are on the page",
@@ -137,7 +137,7 @@
       "externalMarks": 50,
       "unitCount": 7,
       "topicCount": 35,
-      "authored": false,
+      "authored": true,
       "units": [
         {
           "n": "1",
@@ -145,23 +145,23 @@
           "titleNepali": "प्रोग्रामिङका सिद्धान्त",
           "creditHours": 6,
           "externalMarks": 5,
-          "authored": false,
+          "authored": true,
           "topics": [
             {
               "title": "Introduction to Programming (Program, Programmer, Programming Language, Software)",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Categories of Programming Language",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Applications — Scientific Application, Business Application",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Program Design Tools (Algorithm and Flowchart)",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         },
@@ -171,35 +171,35 @@
           "titleNepali": "सी भाषाका आधारभूत कुरा",
           "creditHours": 10,
           "externalMarks": 7,
-          "authored": false,
+          "authored": true,
           "topics": [
             {
               "title": "Introduction to C Programming",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Basic Program Structure (Preprocessor Directive, Header Files, Tokens, Semicolons, Comments, Identifiers, Whitespace, Escape Sequence)",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Variables and Keywords",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Character Sets, Constants and Variables",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Data Types and Format Specifiers",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Input / Output statements",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Operators in C (Arithmetic, Relational, Logical, Bitwise, Assignment)",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         },
@@ -209,19 +209,19 @@
           "titleNepali": "नियन्त्रण प्रवाह कथन",
           "creditHours": 16,
           "externalMarks": 13,
-          "authored": false,
+          "authored": true,
           "topics": [
             {
               "title": "Decision Making Statements — if, if…else, switch",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Loop Statements — for, while, do-while, nested loops",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Jump Statements — break, continue, goto, return",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         },
@@ -231,31 +231,31 @@
           "titleNepali": "फङ्सन",
           "creditHours": 12,
           "externalMarks": 10,
-          "authored": false,
+          "authored": true,
           "topics": [
             {
               "title": "Introduction to Function",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Declaration, Definition and Calling of a Function",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Types of Functions — Library Function, User-Defined Function",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Types of Function Call — Call by Value, Call by Reference",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Concept of Recursive Functions",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Advantages of Functions",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         },
@@ -265,27 +265,27 @@
           "titleNepali": "एरे र स्ट्रिङ",
           "creditHours": 10,
           "externalMarks": 8,
-          "authored": false,
+          "authored": true,
           "topics": [
             {
               "title": "Introduction to Array & String",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Declaration and Initialization of Array",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "One-Dimensional Array",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Declaration of String",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "String Functions — strlen(), strcpy(), strcat(), strcmp(), strrev(), strlwr(), strupr()",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         },
@@ -295,31 +295,31 @@
           "titleNepali": "स्ट्रक्चर र युनियन",
           "creditHours": 6,
           "externalMarks": 5,
-          "authored": false,
+          "authored": true,
           "topics": [
             {
               "title": "Introduction to Structure",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Declaration of Structure and Structure Variable",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Accessing Member of Structure",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Introduction to Union",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Declaration of Union and Union Variable",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Accessing Member of Union",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         },
@@ -329,23 +329,23 @@
           "titleNepali": "पोइन्टर",
           "creditHours": 4,
           "externalMarks": 2,
-          "authored": false,
+          "authored": true,
           "topics": [
             {
               "title": "Introduction to Pointer",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Declaring Pointer and Pointer Variable",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Referencing and Dereferencing",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Advantages of Pointer",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         }
@@ -398,27 +398,27 @@
           "titleNepali": "कम्प्युटरका भागहरू",
           "creditHours": 10,
           "externalMarks": 7,
-          "authored": false,
+          "authored": true,
           "topics": [
             {
               "title": "Introduction to Components of computer system",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Input Unit — Keyboard, Mouse, Joystick, OMR, OCR, BCR, MICR, Scanner, Touch Screen, Touchpad, Microphone, Digital Camera",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Output Unit — softcopy: Monitors (CRT, LCD, LED/Plasma), Speaker, Projector, Headphone; hardcopy: Printers (impact, non-impact, 3D), Graphic plotter",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Concept of Memory unit",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Processing unit — Microprocessor: clock speed, word length, components and functions",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         },
@@ -428,35 +428,35 @@
           "titleNepali": "कम्प्युटर सफ्टवेयर",
           "creditHours": 10,
           "externalMarks": 9,
-          "authored": false,
+          "authored": true,
           "topics": [
             {
               "title": "Introduction to Computer software",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Types of software and its features",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Introduction to Operating System",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Functions and characteristics of Operating System",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Types of Operating System",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "User interface — CUI and GUI",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "OSS (Open Source Software)",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         },
@@ -466,27 +466,27 @@
           "titleNepali": "मेमोरी र भण्डारण",
           "creditHours": 10,
           "externalMarks": 8,
-          "authored": false,
+          "authored": true,
           "topics": [
             {
               "title": "Memory definition",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Types of Memory",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Cache Memory",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Primary / Main memory — characteristics; RAM (SRAM, DRAM); ROM (PROM, EPROM, EEPROM)",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Secondary Memory — characteristics; Magnetic (Hard disk, SSD); Optical (CD/DVD, Blu-ray); Flash (Pen-drive)",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         },
@@ -496,19 +496,19 @@
           "titleNepali": "इन्टरनेट र यसको प्रयोग",
           "creditHours": 10,
           "externalMarks": 8,
-          "authored": false,
+          "authored": true,
           "topics": [
             {
               "title": "Introduction to Internet and its advantages",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Requirements for Internet connection",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Applications — WWW, E-mail, Newsgroup, Telnet, IRC, E-commerce, Search engine, E-Governance, Remote Control",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         },
@@ -518,19 +518,19 @@
           "titleNepali": "मल्टिमिडिया",
           "creditHours": 8,
           "externalMarks": 6,
-          "authored": false,
+          "authored": true,
           "topics": [
             {
               "title": "Introduction to Multimedia",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Components — Text, Audio, Video, Image, Animation",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Application of Multimedia",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         },
@@ -540,43 +540,43 @@
           "titleNepali": "उदीयमान प्रविधि",
           "creditHours": 8,
           "externalMarks": 6,
-          "authored": false,
+          "authored": true,
           "topics": [
             {
               "title": "Introduction to Emerging Technology",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Concept of AI",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Cloud Computing and distributed computing",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Concept of IoT",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Concept of Big data",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Concept of Data mining",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Cryptography (Encryption and Decryption)",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Concept of VR (Virtual Reality)",
-              "status": "not-implemented"
+              "status": "fully-taught"
             },
             {
               "title": "Concept of AR (Augmented Reality)",
-              "status": "not-implemented"
+              "status": "fully-taught"
             }
           ]
         }

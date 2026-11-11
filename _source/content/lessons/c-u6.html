@@ -1,0 +1,497 @@
+<section id="c-u6">
+  <div class="sec-head">
+    <div class="sec-num">6</div>
+    <div>
+      <h2>Structure and Union</h2>
+      <p class="sec-sub">स्ट्रक्चर र युनियन</p>
+    </div>
+    <span class="marks">6 hrs · 5 marks · 7 practical hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Say what a structure is and why an array cannot do its job.</li>
+      <li>Declare a structure, declare a variable of it, and access a member with the dot operator.</li>
+      <li>Declare a union and access its members.</li>
+      <li>Explain why writing one member of a union changes the others.</li>
+      <li>Give the size of a structure and of a union with the same members, and say why they differ.</li>
+      <li>Choose between the two for a given problem and justify the choice.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: structure भनेको के हो र array ले यसको काम किन गर्न
+    सक्दैन भन्न, structure घोषणा गरेर त्यसको variable बनाउन र dot operator ले member मा पुग्न,
+    union घोषणा गरेर यसका member मा पुग्न, union को एउटा member लेख्दा अरू किन बदलिन्छन् बुझाउन,
+    उही member भएका structure र union को आकार दिएर किन फरक हुन्छ भन्न, र दिइएको समस्यामा दुईमध्ये
+    एउटा छानेर कारण दिन सक्नुहुनेछ।</span>
+  </div>
+
+  <!-- ============ 6.1 ============ -->
+  <h3 class="topic" id="c-t61">6.1 &nbsp;<span class="t-en">Introduction to structure</span><span class="t-ne"> — Structure को परिचय</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">When one thing has several different facts about it</span>
+      <p>An array holds many values of the <b>same</b> type. A student record is several values of
+      <b>different</b> types about <b>one</b> person: a name (text), a roll number (an integer), a
+      percentage (a float). No array can hold that.</p>
+      <p>A <b>structure</b> is a user-defined data type that groups variables of different types
+      under one name. Each variable inside it is a <b>member</b>, and every member has its own
+      memory.</p>
+      <p>Why it matters beyond tidiness: once <code>struct Student</code> exists, you can make an
+      <b>array of structures</b> — <code>struct Student s[50];</code> — and one declaration holds
+      fifty complete records. That is what every real program storing people, products or marks
+      actually does.</p>
+    </div>
+    <div class="np"><span class="tag">एउटै कुराबारे धेरै फरक तथ्य हुँदा</span>
+      <p>Array ले <b>एउटै</b> प्रकारका धेरै मान राख्छ। विद्यार्थीको record भनेको <b>एउटै</b>
+      व्यक्तिबारे <b>फरक</b> प्रकारका धेरै मान हो: नाम (पाठ), roll नम्बर (integer), प्रतिशत
+      (float)। त्यो कुनै array ले राख्न सक्दैन।</p>
+      <p><b>Structure</b> भनेको प्रयोगकर्ता-परिभाषित data type हो, जसले फरक प्रकारका variable लाई
+      एउटै नाममुनि समूहबद्ध गर्छ। भित्रका हरेक variable लाई <b>member</b> भनिन्छ, र हरेक member
+      को आफ्नै मेमोरी हुन्छ।</p>
+      <p>सफा देखिनुभन्दा बढी किन महत्त्वपूर्ण छ: <code>struct Student</code> बनेपछि तपाईंले
+      <b>structure को array</b> बनाउन सक्नुहुन्छ — <code>struct Student s[50];</code> — र एउटै
+      घोषणाले पचास पूरा record राख्छ। मान्छे, सामान वा अंक राख्ने हरेक वास्तविक प्रोग्रामले
+      गर्ने काम त्यही हो।</p>
+    </div>
+  </div>
+
+  <!-- ============ 6.2 and 6.3 ============ -->
+  <h3 class="topic" id="c-t62">6.2 &nbsp;<span class="t-en">Declaring a structure and a structure variable</span><span class="t-ne"> — Structure र त्यसको variable घोषणा</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The declaration is a blueprint, not a box</span>
+      <p>Declaring a structure creates a <b>new data type</b> and reserves no memory at all. It is
+      a description of what such a variable would look like — the worked example below shows one
+      in full.</p>
+      <p>Memory is reserved when you declare a <b>variable</b> of that type:
+      <code>struct Student s1;</code>. The keyword <code>struct</code> is part of the type name in
+      C and cannot be left out — <code>Student s1;</code> alone will not compile.</p>
+      <p>The <b>semicolon after the closing brace is compulsory</b>. A structure declaration is a
+      statement, unlike a function definition, and leaving the semicolon out produces an error
+      message that points at the next line and reads as if something else were wrong.</p>
+    </div>
+    <div class="np"><span class="tag">घोषणा नक्सा हो, बाकस होइन</span>
+      <p>Structure घोषणा गर्दा <b>नयाँ data type</b> बन्छ र मेमोरी बिलकुलै छुट्टिँदैन। यो त्यस्तो
+      variable कस्तो हुन्छ भन्ने वर्णन मात्र हो — तलको worked example मा पूरै देखाइएको छ।</p>
+      <p>त्यो प्रकारको <b>variable</b> घोषणा गर्दा मात्र मेमोरी छुट्टिन्छ:
+      <code>struct Student s1;</code>। C मा <code>struct</code> keyword प्रकारको नाम कै भाग हो र
+      छाड्न मिल्दैन — <code>Student s1;</code> मात्रले compile हुँदैन।</p>
+      <p><b>बन्द गर्ने brace पछि semicolon अनिवार्य छ।</b> Function definition भन्दा फरक,
+      structure को घोषणा statement हो, र semicolon छुटे आउने त्रुटि सन्देशले अर्कै लाइन
+      देखाउँछ र अरू केही बिग्रेजस्तो पढिन्छ।</p>
+    </div>
+  </div>
+
+  <h3 class="topic" id="c-t63">6.3 &nbsp;<span class="t-en">Accessing a member — the dot operator</span><span class="t-ne"> — Member मा पुग्ने — dot operator</span></h3>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> A student record, declared and used</div>
+    <p><b>Question:</b> declare a structure for a student with a name, a roll number and a
+    percentage, read one student's details and print them.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Write the scanf lines before opening this. One of
+      the three members takes no ampersand — decide which, and why.</span>
+      <span class="np-cell">खोल्नुअघि scanf का लाइन लेख्नुहोस्। तीनमध्ये एउटा member लाई
+      ampersand चाहिँदैन — कुन र किन, निर्णय गर्नुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+struct Student            /* 1. the blueprint — no memory used yet */
+{
+    char name[20];
+    int roll;
+    float percent;
+};                        /* the semicolon here is compulsory      */
+
+int main()
+{
+    struct Student s1;    /* 2. NOW memory is reserved             */
+
+    printf("Name   : ");
+    scanf("%s", s1.name);        /* no &amp; — an array name is an address */
+
+    printf("Roll   : ");
+    scanf("%d", &amp;s1.roll);       /* &amp; — roll is an ordinary int        */
+
+    printf("Percent: ");
+    scanf("%f", &amp;s1.percent);
+
+    printf("\n%s has roll %d and scored %.2f%%",
+           s1.name, s1.roll, s1.percent);
+    return 0;
+}</pre>
+      <span class="wex-lbl">Output (if the user types Sita, 15 and 82.5)</span>
+      <pre class="out">Name   : Sita
+Roll   : 15
+Percent: 82.5
+
+Sita has roll 15 and scored 82.50%</pre>
+      <p class="wex-note">Three things are being marked. The semicolon after the closing brace.
+      The word <code>struct</code> in front of <code>Student s1</code>. And the
+      <b>dot operator</b>: <code>s1.roll</code> means "the roll member of the variable s1", and
+      the dot joins a <i>variable</i> to a <i>member</i> — never a type to a member, because
+      <code>Student.roll</code> names no memory. Note also <code>%%</code> at the end: a single
+      <code>%</code> would be read as the start of a specifier.
+      <span class="np-cell">तीन कुराको अंक छ। बन्द brace पछिको semicolon।
+      <code>Student s1</code> अगाडिको <code>struct</code> शब्द। अनि <b>dot operator</b>:
+      <code>s1.roll</code> को अर्थ "s1 variable को roll member" हो, र dot ले <i>variable</i> लाई
+      <i>member</i> सँग जोड्छ — प्रकारलाई कहिल्यै होइन, किनभने <code>Student.roll</code> ले कुनै
+      मेमोरी जनाउँदैन। अन्त्यको <code>%%</code> पनि हेर्नुहोस्: एउटै <code>%</code> लाई
+      specifier को सुरु पढिन्थ्यो।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ 6.4 – 6.6 ============ -->
+  <h3 class="topic" id="c-t64">6.4 &nbsp;<span class="t-en">Introduction to union</span><span class="t-ne"> — Union को परिचय</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The same declaration, one shared box</span>
+      <p>A <b>union</b> is declared exactly like a structure, with the keyword
+      <code>union</code> instead. It groups members of different types under one name — and it
+      gives <b>all of them the same memory</b>.</p>
+      <p>So a union's size is the size of its <b>largest</b> member, not the total. And only
+      <b>one member holds a meaningful value at a time</b>: writing to one overwrites whatever
+      the others were showing, because there is only one block of bytes and they are all reading
+      it.</p>
+      <p><b>Why would anyone want that?</b> To save memory, when a value is sometimes one type
+      and sometimes another but never both at once — a reading that is either a whole count or a
+      decimal measurement, on a device with very little memory. Saving memory is the <i>only</i>
+      reason a union exists, and it is the reason to give in an answer.</p>
+    </div>
+    <div class="np"><span class="tag">उही घोषणा, एउटै साझा बाकस</span>
+      <p><b>Union</b> लाई structure कै जस्तो घोषणा गरिन्छ, keyword मात्र <code>union</code>
+      हुन्छ। यसले फरक प्रकारका member लाई एउटै नाममुनि राख्छ — र <b>सबैलाई उही मेमोरी</b>
+      दिन्छ।</p>
+      <p>त्यसैले union को आकार जोड होइन, <b>सबैभन्दा ठूलो</b> member को आकार हुन्छ। अनि एक
+      पटकमा <b>एउटै member सँग अर्थपूर्ण मान</b> हुन्छ: एउटामा लेख्दा अरूले देखाइरहेको कुरा
+      मेटिन्छ, किनभने byte को एउटै block छ र सबैले त्यही पढिरहेका छन्।</p>
+      <p><b>कसैले किन त्यो चाहन्छ?</b> मेमोरी बचाउन — जब कुनै मान कहिले एक प्रकारको र कहिले
+      अर्को हुन्छ तर एकैचोटि दुवै कहिल्यै हुँदैन; जस्तै थोरै मेमोरी भएको यन्त्रमा कि पूर्ण गन्ती
+      कि दशमलव नाप। Union हुनुको <i>एकमात्र</i> कारण मेमोरी बचत हो, र उत्तरमा दिनुपर्ने कारण
+      पनि त्यही।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    {{dia:cStructUnion}}
+    <figcaption>The same two members twice. The left layout is why a structure's size is the
+    total; the right layout is why a union's is the largest member, and why writing one member
+    changes the other.
+    <span class="np-cell">उही दुई member, दुई पटक। बायाँको बनोटले structure को आकार किन जोड हुन्छ
+    देखाउँछ; दायाँकोले union को आकार किन सबैभन्दा ठूलो member बराबर हुन्छ, र एउटा member लेख्दा
+    अर्को किन बदलिन्छ।</span></figcaption>
+  </figure>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h4>Writing one member changes the other</h4>
+      <p class="sim-goal">What you will learn: that a line naming only <code>b.c</code> changes
+      what <code>b.n</code> reads back. Watch the shared-memory row: it has one value, and both
+      members are simply two ways of reading it.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: <code>b.c</code> को मात्र नाम लिने लाइनले
+      <code>b.n</code> ले पढ्ने कुरा बदल्छ। साझा मेमोरीको पङ्क्ति हेर्नुहोस्: त्यहाँ एउटै मान छ,
+      र दुवै member त्यसलाई पढ्ने दुई तरिका मात्र हुन्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="unionShare"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Before the last step, predict what <code>b.n</code> will print. Almost everybody says
+        65, because that is what was put there — and no line since has mentioned n.</p>
+        <span class="np-cell">अन्तिम चरणअघि <code>b.n</code> ले के छाप्छ अनुमान गर्नुहोस्।
+        झन्डै सबैले ६५ भन्छन्, किनभने त्यहाँ राखिएको त्यही थियो — र त्यसपछि कुनै लाइनले n को
+        नाम लिएकै छैन।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">6.5 and 6.6 — declaring and accessing</span>
+      <p>Both work exactly as they do for a structure, and that is the point worth stating
+      plainly: <code>union Box b;</code> declares the variable, and <code>b.n</code> reaches a
+      member with the same dot operator.</p>
+      <p>Nothing in the <i>syntax</i> distinguishes a union from a structure anywhere in a
+      program — not the declaration, not the variable, not the access. The only difference is
+      what the memory does, which is why the diagram above is the whole topic.</p>
+      <p>One practical rule follows from it: <b>read back the member you wrote last</b>. Writing
+      <code>b.n</code> and then reading <code>b.c</code> is not an error the compiler will stop,
+      and the value you get is the same bytes interpreted as a different type.</p>
+    </div>
+    <div class="np"><span class="tag">६.५ र ६.६ — घोषणा र पहुँच</span>
+      <p>दुवै structure मा जस्तै ठ्याक्कै उसरी नै चल्छन्, र स्पष्ट भन्नुपर्ने कुरा त्यही हो:
+      <code>union Box b;</code> ले variable घोषणा गर्छ, र <code>b.n</code> ले उही dot operator
+      ले member मा पुग्छ।</p>
+      <p>प्रोग्रामको कुनै ठाउँमा <i>syntax</i> ले union लाई structure बाट छुट्याउँदैन — न
+      घोषणाले, न variable ले, न पहुँचले। फरक मेमोरीले के गर्छ भन्नेमा मात्र छ, र त्यसैले माथिको
+      चित्र नै पूरै विषय हो।</p>
+      <p>यसबाट एउटा व्यावहारिक नियम निस्कन्छ: <b>अन्तिम पटक लेखेकै member पढ्नुहोस्</b>।
+      <code>b.n</code> लेखेर <code>b.c</code> पढ्नु compiler ले रोक्ने त्रुटि होइन, र आउने मान
+      उही byte लाई फरक प्रकारका रूपमा पढेको नतिजा हो।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Structure or union?</h4>
+      <p class="sim-goal">What you will learn: to choose between them from what the program
+      needs, which is the form the examination question takes. The deciding question is whether
+      more than one member must hold a value at the same time.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: प्रोग्रामलाई के चाहिन्छ हेरेर दुईमध्ये छान्न —
+      परीक्षाको प्रश्न यही रूपमा आउँछ। निर्णय गर्ने प्रश्न यही हो: एकैचोटि एकभन्दा बढी member सँग
+      मान हुनुपर्छ कि पर्दैन?</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-csu" data-set="cstructunion"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Two clues give a union away every time: a size equal to the largest member rather than
+        the total, and a member going strange after a different member was written.</p>
+        <span class="np-cell">दुई सुराकले union सधैं चिनाउँछन्: आकार जोड नभई सबैभन्दा ठूलो
+        member बराबर हुनु, र अर्को member लेखेपछि एउटा member अनौठो हुनु।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>For <code>{ int n; char c; float f; }</code> with int 4 bytes, char 1 and float 4, what
+      is <code>sizeof</code> for the structure and for the union?
+      <span class="np-cell">int ४ byte, char १ र float ४ हुँदा <code>{ int n; char c; float f; }</code>
+      को structure र union को <code>sizeof</code> कति हुन्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Structure 4, union 9</button>
+      <button class="predict-opt" data-value="b">Structure at least 9, union 4</button>
+      <button class="predict-opt" data-value="c">Both 9</button>
+    </div>
+    <div class="predict-feedback">
+      <p><b>The structure is at least 9 and the union is 4.</b> A structure gives every member
+      its own memory, so its size is the total: 4 + 1 + 4 = 9. A union gives them one shared
+      block, so its size is the largest member: 4.</p>
+      <p>"At least" 9 rather than exactly 9, and this is worth knowing. Compilers insert unused
+      bytes called <b>padding</b> so that each member starts at an address its type likes, so a
+      real machine will often report 12 rather than 9. The <i>rule</i> is the total; the
+      <i>measurement</i> may be larger. Saying "the sum of the members" is the expected
+      examination answer, and measuring it yourself with <code>sizeof</code> in the practical is
+      how you meet padding.</p>
+      <p>Option A is the two answers swapped, which is the usual way this is got wrong.</p>
+      <span class="np-cell"><b>Structure कम्तीमा ९, union ४।</b> Structure ले हरेक member लाई
+      आफ्नै मेमोरी दिन्छ, त्यसैले आकार जोड हुन्छ: 4 + 1 + 4 = 9। Union ले एउटै साझा block दिन्छ,
+      त्यसैले आकार सबैभन्दा ठूलो member बराबर — ४। ठ्याक्कै ९ नभई "कम्तीमा" ९ भनिनुको कारण पनि
+      जान्नु राम्रो: हरेक member लाई उसको प्रकारले मन पराउने ठेगानाबाट सुरु गराउन compiler ले
+      <b>padding</b> भनिने प्रयोगविहीन byte थप्छ, त्यसैले वास्तविक मेसिनले प्रायः ९ होइन १२
+      भन्छ। <i>नियम</i> जोड हो; <i>नाप</i> ठूलो हुन सक्छ। परीक्षाले खोज्ने उत्तर "member को जोड"
+      हो, र padding सँग भेट प्रयोगात्मक कक्षामा <code>sizeof</code> आफैं नापेर हुन्छ। विकल्प (क)
+      मा दुई उत्तर साटिएका छन्, र यो प्रायः त्यसरी नै बिग्रन्छ।</span>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Five students in one array of structures</div>
+    <p><b>Question:</b> hold the records of five students and print them all. This is what the
+    structure was for.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Decide how <code>s[i].roll</code> is read before
+      opening this. Which part is the index and which part is the member?</span>
+      <span class="np-cell">खोल्नुअघि <code>s[i].roll</code> कसरी पढिन्छ निर्णय गर्नुहोस्।
+      कुन भाग index हो र कुन भाग member?</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+struct Student
+{
+    char name[20];
+    int roll;
+};
+
+int main()
+{
+    struct Student s[5];        /* FIVE complete records */
+    int i;
+
+    for (i = 0; i &lt; 5; i++)
+    {
+        printf("Student %d name and roll: ", i + 1);
+        scanf("%s %d", s[i].name, &amp;s[i].roll);
+    }
+
+    for (i = 0; i &lt; 5; i++)
+        printf("%d - %s\n", s[i].roll, s[i].name);
+
+    return 0;
+}</pre>
+      <p class="wex-note"><code>s[i].roll</code> reads left to right: take element <code>i</code>
+      of the array, then take its <code>roll</code> member. The index comes first because the
+      array is of structures, not a structure of arrays. Note the two <code>scanf</code>
+      arguments: <code>s[i].name</code> is a char array and takes no ampersand,
+      <code>&amp;s[i].roll</code> is an int and does — the same rule as always, applied inside a
+      structure. Without the structure, five students would need two separate arrays kept in step
+      with each other by hand.
+      <span class="np-cell"><code>s[i].roll</code> बायाँबाट दायाँ पढिन्छ: array को
+      <code>i</code> औं element लिने, अनि त्यसको <code>roll</code> member। Index पहिले आउँछ,
+      किनभने यो structure हरूको array हो, array हरूको structure होइन। <code>scanf</code> का दुई
+      argument हेर्नुहोस्: <code>s[i].name</code> char array हो र ampersand लिँदैन,
+      <code>&amp;s[i].roll</code> int हो र लिन्छ — उही पुरानो नियम, structure भित्र लागू भएको।
+      Structure नभए पाँच विद्यार्थीका लागि दुई छुट्टाछुट्टै array हातैले मिलाएर राख्नुपर्थ्यो।</span></p>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Forgetting the semicolon after the closing brace.</b> A structure declaration is a
+      statement; a function definition is not.</li>
+      <li><b>Writing <code>Student s1;</code> without <code>struct</code>.</b> In C the keyword is
+      part of the type name.</li>
+      <li><b>Using the dot on the type instead of a variable.</b> <code>Student.roll</code> names
+      no memory; <code>s1.roll</code> does.</li>
+      <li><b>Saying a union's size is the total of its members.</b> It is the size of the largest
+      one.</li>
+      <li><b>Expecting both union members to keep their values.</b> Only the one written last is
+      meaningful.</li>
+      <li><b>Putting <code>&amp;</code> before a <code>char</code> array member in
+      <code>scanf</code>.</b> <code>s1.name</code> is already an address;
+      <code>&amp;s1.roll</code> is not.</li>
+    </ul>
+    <span class="np-cell"><b>बन्द brace पछि semicolon बिर्सनु:</b> structure को घोषणा statement
+    हो; function definition होइन। <b><code>struct</code> बिना <code>Student s1;</code>
+    लेख्नु:</b> C मा त्यो keyword प्रकारकै नामको भाग हो। <b>Variable होइन प्रकारमा dot
+    लगाउनु:</b> <code>Student.roll</code> ले कुनै मेमोरी जनाउँदैन, <code>s1.roll</code> ले
+    जनाउँछ। <b>Union को आकार member को जोड भन्नु:</b> त्यो सबैभन्दा ठूलो member को आकार हो।
+    <b>Union का दुवै member ले आफ्नो मान राख्छन् भन्ठान्नु:</b> अन्तिम लेखिएको मात्र अर्थपूर्ण
+    हुन्छ। <b><code>scanf</code> मा <code>char</code> array member अगाडि <code>&amp;</code>
+    राख्नु:</b> <code>s1.name</code> आफैं ठेगाना हो; <code>&amp;s1.roll</code> होइन।</span>
+  </div>
+
+  <p class="hook"><span class="t-en"><b>Memory hook —</b> <i>Structure: everyone gets a room.
+    Union: everyone shares one room.</i> Size is the total, or the largest.</span>
+    <span class="np-cell"><b>सम्झने तरिका —</b> <i>Structure: सबैलाई आ–आफ्नो कोठा। Union: सबैले
+    एउटै कोठा बाँड्ने।</i> आकार जोड, कि सबैभन्दा ठूलो।</span></p>
+
+  <!-- ============ PRACTICAL ============ -->
+  <h3 class="topic" id="c-prac6"><span class="t-en">Practical work — this unit's other 7 hours</span><span class="t-ne"> — प्रयोगात्मक काम — यस युनिटका अरू ७ घण्टा</span></h3>
+
+  <div class="practical">
+    <div class="h"><span class="pr-kind">Guided practical</span>The activity the curriculum suggests</div>
+    <p>From the curriculum's own list for Unit 6. <b>It cannot be done from this site</b> — it
+    needs a C compiler on a real computer.
+    <span class="np-cell">पाठ्यक्रमकै युनिट ६ को सूचीबाट। <b>यो यस साइटबाट गर्न मिल्दैन</b> —
+    साँच्चैको कम्प्युटरमा C compiler चाहिन्छ।</span></p>
+
+    <div class="pr-act" data-practical="g9.c.p6.1">
+      <p><span class="pr-num">6.1</span> Write programs using structure and union.</p>
+      <p class="pr-need"><b>You need:</b> a computer with a C compiler. <b>This cannot be
+      simulated</b> on this site. <b>Builds on:</b> 6.2, 6.3 and 6.6. <b>Hand in:</b> the source
+      files and your practical record. <b>Suggested set:</b> a structure for a student with name,
+      roll and percentage, read and printed; the same structure as an <b>array of five
+      students</b>, read in a loop and printed in a loop; and a union with an <code>int</code>
+      and a <code>char</code> member. <b>Observe and record two numbers:</b> print
+      <code>sizeof</code> for your structure and for your union with the same members, and write
+      both down with the reason they differ. That pair of numbers is the answer to the standard
+      comparison question, measured on your own machine rather than taken on trust.
+      <span class="np-cell"><b>चाहिन्छ:</b> C compiler भएको कम्प्युटर। <b>यो यहाँ simulate गर्न
+      मिल्दैन।</b> <b>आधार:</b> ६.२, ६.३ र ६.६। <b>बुझाउने:</b> source फाइल र प्रयोगात्मक
+      अभिलेख। <b>सुझाव:</b> नाम, roll र प्रतिशत भएको विद्यार्थीको structure, पढेर छाप्ने; उही
+      structure लाई <b>पाँच विद्यार्थीको array</b> बनाएर loop मा पढ्ने र loop मै छाप्ने; अनि
+      <code>int</code> र <code>char</code> member भएको union। <b>दुई सङ्ख्या नापेर
+      लेख्नुहोस्:</b> उही member भएका आफ्नो structure र union को <code>sizeof</code> छापेर दुवै
+      र किन फरक छन् लेख्नुहोस्। त्यही जोडी मानक तुलनात्मक प्रश्नको उत्तर हो — सुनेको होइन,
+      आफ्नै मेसिनमा नापेको।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ EXAM FOCUS ============ -->
+  <h3 class="topic" id="c-exam6"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne"> — परीक्षा केन्द्र — यस युनिटबाट के सोधिन्छ</span></h3>
+
+  <div class="exam-connect">
+    <p>This unit carries <b>5 of the 50 external marks</b> and 6 of the 64 theory hours. It is a
+    small unit with one dominant question: <b>differentiate between a structure and a
+    union</b>. Expect that, plus a program using a structure, and short questions on the dot
+    operator and on what <code>sizeof</code> gives for each.
+    <span class="np-cell">यो युनिटले <b>बाह्य ५० मध्ये ५ अंक</b> र ६४ मध्ये ६ घण्टा ओगट्छ। सानो
+    युनिट, र एउटै प्रश्न हावी छ: <b>structure र union को फरक</b>। त्यो, structure प्रयोग गरेको
+    एउटा प्रोग्राम, अनि dot operator र हरेकको <code>sizeof</code> बारे छोटा प्रश्न अपेक्षा
+    गर्नुहोस्।</span></p>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>What is a structure? Write the syntax to declare one with an example.
+    <span class="np-cell">Structure भनेको के हो? उदाहरणसहित यसको घोषणाको syntax लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca61">Show the answer</button>
+    <div class="ans" id="ca61">
+      <p>A <b>structure</b> is a user-defined data type that groups together variables of
+      different data types under a single name. Each variable inside it is called a member and
+      each member has its own memory.</p>
+      <p><b>Syntax:</b> <code>struct structure_name { data_type member1; data_type member2; };</code></p>
+      <p><b>Example:</b> <code>struct Student { char name[20]; int roll; float percent; };</code>
+      and then <code>struct Student s1;</code> to create a variable.</p>
+      <span class="np-cell"><b>Structure</b> भनेको प्रयोगकर्ता-परिभाषित data type हो, जसले फरक
+      data type का variable लाई एउटै नाममुनि समूहबद्ध गर्छ। भित्रका हरेक variable लाई member
+      भनिन्छ र हरेकको आफ्नै मेमोरी हुन्छ। <b>Syntax:</b>
+      <code>struct structure_name { data_type member1; data_type member2; };</code>
+      <b>उदाहरण:</b> <code>struct Student { char name[20]; int roll; float percent; };</code>
+      अनि variable बनाउन <code>struct Student s1;</code>।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>Differentiate between a structure and a union with an example.
+    <span class="np-cell">उदाहरणसहित structure र union को फरक लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca62">Show the answer</button>
+    <div class="ans" id="ca62">
+      <p><b>1. Memory.</b> A structure gives every member its own memory. A union gives all
+      members the same memory.</p>
+      <p><b>2. Size.</b> A structure's size is the sum of its members' sizes. A union's size is
+      the size of its largest member.</p>
+      <p><b>3. Values at one time.</b> In a structure all members hold their values at once. In a
+      union only the member written most recently is meaningful.</p>
+      <p><b>4. Keyword.</b> <code>struct</code> and <code>union</code>. Everything else about the
+      syntax is identical, including the dot operator.</p>
+      <p><b>5. Use.</b> A structure for a record of several facts about one thing; a union to save
+      memory when only one member is ever in use.</p>
+      <p><b>Example:</b> for <code>{ int n; char c; }</code> the structure needs 5 bytes and
+      keeps both values, while the union needs 4 and keeps only the last one written.</p>
+      <span class="np-cell"><b>१. मेमोरी:</b> structure ले हरेक member लाई आफ्नै दिन्छ; union ले
+      सबैलाई उही। <b>२. आकार:</b> structure को आकार सबै member को जोड; union को सबैभन्दा ठूलो
+      member बराबर। <b>३. एकैचोटि मान:</b> structure मा सबै member का मान सँगै रहन्छन्; union मा
+      अन्तिम लेखिएको मात्र अर्थपूर्ण। <b>४. Keyword:</b> <code>struct</code> र
+      <code>union</code>; dot operator सहित बाँकी syntax उस्तै। <b>५. प्रयोग:</b> एउटै कुराबारे
+      धेरै तथ्यको record लाई structure; एउटै member मात्र प्रयोगमा हुँदा मेमोरी बचाउन union।
+      <b>उदाहरण:</b> <code>{ int n; char c; }</code> मा structure लाई ५ byte चाहिन्छ र दुवै मान
+      रहन्छन्, union लाई ४ चाहिन्छ र अन्तिम लेखिएको मात्र रहन्छ।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h4>Key points from this unit</h4>
+    <ul>
+      <li>A structure groups variables of different types under one name; each member has its own
+      memory.</li>
+      <li>Declaring a structure reserves nothing; declaring a variable of it does.</li>
+      <li>The semicolon after the closing brace is compulsory, and <code>struct</code> is part of
+      the type name in C.</li>
+      <li>The dot operator joins a variable to a member: <code>s1.roll</code>.</li>
+      <li>A union is declared the same way and gives every member the same memory.</li>
+      <li>A structure's size is the total; a union's is the largest member.</li>
+      <li>In a union only the member written last holds a meaningful value.</li>
+      <li>Use a structure for a record, a union to save memory.</li>
+    </ul>
+    <span class="np-cell">Structure ले फरक प्रकारका variable लाई एउटै नाममुनि राख्छ; हरेक member
+    को आफ्नै मेमोरी हुन्छ। Structure घोषणा गर्दा केही छुट्टिँदैन; त्यसको variable घोषणा गर्दा
+    छुट्टिन्छ। बन्द brace पछिको semicolon अनिवार्य छ, र C मा <code>struct</code> प्रकारकै नामको
+    भाग हो। Dot operator ले variable लाई member सँग जोड्छ: <code>s1.roll</code>। Union उही
+    तरिकाले घोषणा हुन्छ र हरेक member लाई उही मेमोरी दिन्छ। Structure को आकार जोड; union को
+    सबैभन्दा ठूलो member बराबर। Union मा अन्तिम लेखिएको member सँग मात्र अर्थपूर्ण मान हुन्छ।
+    Record का लागि structure, मेमोरी बचाउन union।</span>
+  </div>
+</section>

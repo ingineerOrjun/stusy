@@ -829,19 +829,33 @@ test('the Nepali review ledger reports the real number of items', () => {
   /* The Total row carries several numbers and an early version of this
      guard only asked whether the right one appeared ANYWHERE in the row —
      which a stale items column passed, because the pending column still
-     held the right figure. Both columns are checked by position. */
+     held the right figure. So both are checked individually.
+
+     They are found by COLUMN HEADING rather than by position. Phase 13.1
+     added a Translations column between Occurrences and Pending, and a
+     guard reading cell 6 then compared the new-since-baseline figure
+     against the total and failed for a reason that had nothing to do
+     with the property it holds. A heading moves only when someone means
+     to move it. */
   const rows = [...doc.matchAll(/^\| \*\*Total\*\*.*$/gm)];
   assert.strictEqual(rows.length, 1, 'the ledger has no single Total row to check');
-  const cells = rows[0][0].split('|').map(c => c.trim());
-  const nth = i => (cells[i] || '').replace(/\*/g, '');
+  const head = /^\| Subject \| Unit \|.*$/m.exec(doc);
+  assert.ok(head, 'the ledger table has no header row to read the columns from');
+  const headers = head[0].split('|').map(c => c.trim().toLowerCase());
+  const cells = rows[0][0].split('|').map(c => c.trim().replace(/\*/g, ''));
+  const col = name => {
+    const i = headers.findIndex(h => h === name);
+    assert.ok(i > 0, 'the ledger table has no "' + name + '" column');
+    return cells[i] || '';
+  };
 
-  assert.strictEqual(nth(4), withCommas,
-    'the ledger Total row says ' + nth(4) + ' items and there are ' + withCommas +
-    '. Run: node tools/nepali-review.js');
+  assert.strictEqual(col('occurrences'), withCommas,
+    'the ledger Total row says ' + col('occurrences') + ' occurrences and there are ' +
+    withCommas + '. Run: node tools/nepali-review.js');
   /* Nothing has been reviewed. When that changes, this is the assertion
      whoever changes it should have to edit deliberately. */
-  assert.strictEqual(nth(6), withCommas,
-    'the ledger says ' + nth(6) + ' items are pending review out of ' + withCommas +
-    '. Either a review happened and the four status columns were not updated, or ' +
-    'the row is stale.');
+  assert.strictEqual(col('pending'), withCommas,
+    'the ledger says ' + col('pending') + ' occurrences are pending review out of ' +
+    withCommas + '. Either a review happened and the four status columns were not ' +
+    'updated, or the row is stale.');
 });

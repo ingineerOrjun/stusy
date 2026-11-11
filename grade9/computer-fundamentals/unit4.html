@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Memory / Storage Unit — Computer Fundamentals | </title>
+<meta name="description" content="Memory / Storage Unit explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark" lang="ne">ज्ञ</span>
+      <span class="brand-txt">Gyansetu<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop on"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language <span class="dn">· notes ready</span><small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals <span class="dn">· notes ready</span><small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair <span class="dn">· notes ready</span><small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language ✓<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html" class="on">Computer Fundamentals ✓<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair ✓<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 9</a> <span class="sep">/</span> <a href="index.html">Computer Fundamentals</a> <span class="sep">/</span> <span>Memory / Storage Unit</span></nav>
+<main id="main" tabindex="-1" data-subject="grade9/computer-fundamentals">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · What a computer is</a><a href="unit2.html">2 · The parts and what each does</a><a href="unit3.html">3 · Software and the operating system</a><a href="unit4.html" style="color:var(--yellow);border-color:var(--yellow)">4 · Memory, and why RAM forgets</a><a href="unit5.html">5 · The Internet and its services</a><a href="unit6.html">6 · Five media, used together</a><a href="unit7.html">7 · AI, cloud, IoT and the rest</a><a href="revise.html">↻ · Revision</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="cf-u4">
+  <div class="sec-head">
+    <div class="sec-num">4</div>
+    <div>
+      <h1>Memory / Storage Unit</h1>
+      <p class="sec-sub" lang="ne">मेमोरी / भण्डारण एकाइ</p>
+    </div>
+    <span class="marks">10 hrs · 8 marks · 6 practical hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2><span class="t-en">By the end of this unit you can…</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो युनिट सकिँदा तपाईं यी कुरा गर्न सक्नुहुनेछ</span></h2><div class="t-en">
+    <ol>
+      <li>Define computer memory and say what it holds besides data.</li>
+      <li>Place any memory in the hierarchy and explain why it sits there.</li>
+      <li>Say what cache memory is for — the reason, not just the position.</li>
+      <li>Separate RAM from ROM, and SRAM from DRAM, PROM from EPROM from EEPROM.</li>
+      <li>Name the three families of secondary storage and give an example of each.</li>
+      <li>Explain why a file must be copied into RAM before the CPU can work on it.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: कम्प्युटर मेमोरीको परिभाषा र यसले data बाहेक के राख्छ
+    भन्न, जुनसुकै मेमोरीलाई तहमा राखेर किन त्यहीँ पर्छ बुझाउन, cache किन चाहिन्छ भन्न (ठाउँ
+    मात्र होइन, कारण), RAM र ROM अनि SRAM/DRAM र PROM/EPROM/EEPROM छुट्याउन, secondary storage
+    का तीन परिवार उदाहरणसहित नाम लिन, र फाइल CPU ले चलाउनुअघि किन RAM मा सार्नुपर्छ बुझाउन
+    सक्नुहुनेछ।</span>
+  </div>
+
+  <!-- ============ 4.1 ============ -->
+  <h2 class="topic" id="cf-t41">4.1 &nbsp;<span class="t-en">What computer memory is</span><span class="t-ne" lang="ne"> — कम्प्युटर मेमोरी भनेको के हो</span></h2>
+
+  <div class="predict" data-answer="c">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">You are typing an essay and the power goes off before you save. The essay is gone. Your
+      photographs from last year are still there. Both were "in the computer". Why did one
+      survive and the other not?
+      </span><span class="np-cell" lang="ne">तपाईं निबन्ध टाइप गर्दै हुनुहुन्थ्यो, सेभ गर्नुअघि बत्ती गयो। निबन्ध
+      हरायो। गत वर्षका फोटा भने छँदै छन्। दुवै "कम्प्युटरमै" थिए। एउटा किन बाँच्यो र अर्को
+      किन बाँचेन?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">The essay was too new to be saved properly</button>
+      <button class="predict-opt" data-value="b">Photographs are smaller, so they are safer</button>
+      <button class="predict-opt" data-value="c">They were in two different kinds of memory, and only one needs power to remember</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>Two different kinds of memory.</b> The essay you were typing was in <b>RAM</b>, which
+      stores each bit as a charge that has to be refreshed thousands of times a second. Cut the
+      power and the charge drains — this is called <b>volatile</b>. The photographs were on the
+      <b>hard disk</b>, where each bit is a direction of magnetism, or on an <b>SSD</b>, where it
+      is a trapped charge in an insulated cell. Neither needs power to stay put:
+      <b>non-volatile</b>.</p>
+      <p>"Save" is exactly the act of copying from the volatile place to the non-volatile one.
+      That is why the instruction to save often is not nagging — it is a statement about
+      physics.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">दुई फरक किसिमको मेमोरी।</b> टाइप गरिरहेको निबन्ध <b>RAM</b> मा
+      थियो, जहाँ हरेक bit चार्जका रूपमा रहन्छ र सेकेन्डमा हजारौं पटक ताजा पार्नुपर्छ। बत्ती गए
+      चार्ज रित्तिन्छ — यसलाई <b>volatile</b> भनिन्छ। फोटा <b>hard disk</b> मा थिए, जहाँ हरेक
+      bit चुम्बकत्वको दिशा हो, वा <b>SSD</b> मा, जहाँ इन्सुलेट गरिएको कक्षमा चार्ज थुनिएको
+      हुन्छ। दुवैलाई रहन बिजुली चाहिँदैन: <b>non-volatile</b>। "Save" भनेकै volatile ठाउँबाट
+      non-volatile ठाउँमा सार्ने काम हो।</span>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The definition, with the part students leave out</span>
+      <p><b>Memory</b> is the part of a computer that stores data, instructions and results, so
+      that they can be used when needed.</p>
+      <p>The part usually left out is <b>instructions</b>. Memory does not only hold the numbers
+      you are working on — it holds the program that is working on them. That is the stored-program
+      idea from Unit 1, and memory is where it is stored.</p>
+      <p>Memory is measured in <b>bits</b> and <b>bytes</b>: 1 byte = 8 bits, 1 KB = 1024 bytes,
+      1 MB = 1024 KB, 1 GB = 1024 MB, 1 TB = 1024 GB. Each unit is 2<sup>10</sup> of the one
+      below because memory addresses are binary.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">परिभाषा, र विद्यार्थीले छुटाउने भाग</span>
+      <p><b lang="ne">मेमोरी</b> कम्प्युटरको त्यो भाग हो जसले data, निर्देशन र नतिजा राख्छ, ताकि
+      आवश्यक पर्दा प्रयोग गर्न सकियोस्।</p>
+      <p lang="ne">प्रायः छुट्ने भाग <b lang="ne">निर्देशन</b> हो। मेमोरीले तपाईंले चलाइरहेको संख्या मात्र होइन,
+      त्यो चलाउने प्रोग्राम पनि राख्छ। युनिट १ को stored-program विचार यही हो, र भण्डारण हुने
+      ठाउँ मेमोरी।</p>
+      <p lang="ne">मेमोरी <b>bit</b> र <b>byte</b> मा नापिन्छ: 1 byte = 8 bit, 1 KB = 1024 byte,
+      1 MB = 1024 KB, 1 GB = 1024 MB, 1 TB = 1024 GB। हरेक एकाइ तलकोभन्दा २<sup lang="ne">१०</sup> गुणा,
+      किनभने मेमोरीका ठेगाना binary मा हुन्छन्।</p>
+    </div>
+  </div>
+
+  <!-- ============ 4.2 ============ -->
+  <h2 class="topic" id="cf-t42">4.2 &nbsp;<span class="t-en">Types of memory</span><span class="t-ne" lang="ne"> — मेमोरीका किसिम</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">A pyramid, not a list</span>
+      <p>Memory is usually divided into <b>primary</b> (main) memory and <b>secondary</b>
+      (auxiliary) storage, with <b>cache</b> and <b>registers</b> above both. Learn it as a
+      pyramid, because the shape explains the order.</p>
+      <p>The whole arrangement comes from one trade-off: <b>fast memory is expensive, so there is
+      little of it; cheap memory is slow, so there is a lot of it.</b> Nobody would build four
+      kinds of memory if one kind could be fast, big and cheap at once.</p>
+      <p>Going up the pyramid: faster, smaller, costlier per byte. Going down: slower, bigger,
+      cheaper per byte. Every fact in this unit follows from those two sentences.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">सूची होइन, पिरामिड</span>
+      <p lang="ne">मेमोरीलाई सामान्यतया <b>primary</b> (मुख्य) र <b>secondary</b> (सहायक) मा बाँडिन्छ, र
+      दुवैभन्दा माथि <b>cache</b> तथा <b>register</b> हुन्छन्। पिरामिडका रूपमा सिक्नुहोस्,
+      किनभने आकारले नै क्रम बुझाउँछ।</p>
+      <p lang="ne">यो पूरै बनावट एउटै सम्झौताबाट आउँछ: <b lang="ne">छिटो मेमोरी महँगो हुन्छ, त्यसैले थोरै हुन्छ;
+      सस्तो मेमोरी ढिलो हुन्छ, त्यसैले धेरै हुन्छ।</b> एउटै किसिम छिटो, ठूलो र सस्तो हुन
+      सक्थ्यो भने चार किसिम कसैले बनाउने थिएन।</p>
+      <p lang="ne">पिरामिडमा माथि जाँदा: छिटो, सानो, प्रति byte महँगो। तल जाँदा: ढिलो, ठूलो, प्रति byte
+      सस्तो। यस युनिटका हरेक तथ्य यिनै दुई वाक्यबाट निस्कन्छन्।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 400" role="img" aria-labelledby="t-cfmem">
+  <title id="t-cfmem">The memory hierarchy drawn as a pyramid: registers at the narrow top,
+  then cache, then RAM, then secondary storage at the wide base, with speed and cost per byte
+  increasing towards the top and capacity increasing towards the bottom</title>
+  <text class="f-ttl" x="10" y="20">ONE TRADE-OFF EXPLAINS THE WHOLE PYRAMID — fast costs more, so there is less of it</text>
+
+  <path class="f-box-c" d="M330 44 L370 44 L392 96 L308 96 z"/>
+  <text class="f-lbl" x="350" y="68" style="font-size:10px">REGISTERS</text>
+  <text class="f-lbl" x="350" y="82" style="font-size:8px">inside the CPU · bytes</text>
+
+  <path class="f-box-g" d="M308 100 L392 100 L428 156 L272 156 z"/>
+  <text class="f-lbl" x="350" y="124" style="font-size:11px">CACHE</text>
+  <text class="f-lbl" x="350" y="140" style="font-size:8px">a few MB · holds what the CPU just used</text>
+
+  <path class="f-box-y" d="M272 160 L428 160 L484 230 L216 230 z"/>
+  <text class="f-lbl" x="350" y="186" style="font-size:12px">PRIMARY MEMORY — RAM</text>
+  <text class="f-lbl" x="350" y="202" style="font-size:8.5px">4–16 GB · the program being run lives here</text>
+  <text class="f-lbl" x="350" y="217" style="font-size:8.5px">VOLATILE — empties when the power goes</text>
+
+  <path class="f-box" d="M216 234 L484 234 L556 334 L144 334 z"/>
+  <text class="f-lbl" x="350" y="262" style="font-size:12px">SECONDARY STORAGE</text>
+  <text class="f-lbl" x="350" y="280" style="font-size:8.5px">hard disk, SSD, CD/DVD, pen drive · 500 GB and up</text>
+  <text class="f-lbl" x="350" y="296" style="font-size:8.5px">NON-VOLATILE — survives the power going off</text>
+  <text class="f-lbl" x="350" y="314" style="font-size:8.5px">the CPU cannot use this directly — it is copied into RAM first</text>
+
+  <path class="f-arr" d="M110 330 L110 60"/>
+  <text class="f-lbl" x="78" y="200" style="font-size:9px" transform="rotate(-90 78 200)">FASTER · COSTS MORE PER BYTE</text>
+
+  <path class="f-arr" d="M612 60 L612 330"/>
+  <text class="f-lbl" x="644" y="200" style="font-size:9px" transform="rotate(90 644 200)">BIGGER · COSTS LESS PER BYTE</text>
+
+  <rect class="f-box-y" x="24" y="352" width="652" height="36" rx="6"/>
+  <text class="f-lbl" x="350" y="368" style="font-size:9.5px">Why cache exists: RAM is far slower than the CPU, so a small fast copy sits in between.</text>
+  <text class="f-lbl" x="350" y="382" style="font-size:9.5px">Why RAM exists: secondary storage is far slower than the CPU can tolerate for work in progress.</text>
+</svg>
+    <figcaption><span class="t-en">Read the two side arrows first, then the levels. A question asking "why is cache
+    memory used?" is answered by the gap between the CPU at the top and RAM in the middle.
+    </span><span class="np-cell" lang="ne">पहिले दुवैतिरका तीर पढ्नुहोस्, अनि तह। "Cache किन चाहिन्छ?" भन्ने
+    प्रश्नको उत्तर माथिको CPU र बीचको RAM बीचको खाडलमा छ।</span></figcaption>
+  </figure>
+
+  <!-- ============ 4.3 ============ -->
+  <h2 class="topic" id="cf-t43">4.3 &nbsp;<span class="t-en">Cache memory</span><span class="t-ne" lang="ne"> — Cache memory</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">A small fast shelf between two mismatched speeds</span>
+      <p><b>Cache memory</b> is a small amount of very fast memory placed between the CPU and
+      RAM. It holds the data and instructions the CPU has used most recently, on the reasonable
+      bet that it will want them again soon.</p>
+      <p>It exists because of a mismatch. A modern CPU can carry out an instruction in well under
+      a nanosecond; fetching from RAM takes tens of nanoseconds. Without cache the processor
+      would spend most of its life waiting. Cache is the shelf within arm's reach, while RAM is
+      the cupboard across the room.</p>
+      <p>When the CPU finds what it wants in cache that is a <b>cache hit</b>; when it does not,
+      a <b>cache miss</b>, and it must go to RAM. More cache means more hits, which is why cache
+      size appears in processor advertisements.</p>
+      <p>Cache is <b>volatile</b>, like RAM, and it is usually built onto the processor chip
+      itself. You cannot buy it separately or add more to a computer you own.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">दुई नमिल्ने गतिबीचको सानो छिटो तखता</span>
+      <p><b>Cache memory</b> भनेको CPU र RAM बीचमा राखिएको थोरै तर धेरै छिटो मेमोरी हो। CPU ले
+      भर्खरै चलाएको data र निर्देशन राख्छ, चाँडै फेरि चाहिन्छ भन्ने व्यावहारिक अनुमानमा।</p>
+      <p lang="ne">यो हुनुको कारण गतिको बेमेल हो। आजको CPU ले एक निर्देशन नानोसेकेन्डभन्दा कममा सक्छ;
+      RAM बाट ल्याउन दसौं नानोसेकेन्ड लाग्छ। Cache नभए प्रोसेसरको धेरैजसो समय पर्खाइमै जान्थ्यो।
+      Cache हात पुग्ने तखता हो, RAM कोठा पारिको दराज।</p>
+      <p lang="ne">CPU ले खोजेको कुरा cache मै भेट्यो भने <b>cache hit</b>; भेटेन भने <b>cache miss</b> र
+      RAM सम्म जानुपर्छ। बढी cache = बढी hit, त्यसैले प्रोसेसरको विज्ञापनमा cache को आकार
+      लेखिन्छ।</p>
+      <p lang="ne">Cache RAM जस्तै <b>volatile</b> हो, र प्रायः प्रोसेसर चिपमै बनेको हुन्छ। छुट्टै किन्न
+      वा थप्न मिल्दैन।</p>
+    </div>
+  </div>
+
+  <!-- ============ 4.4 ============ -->
+  <h2 class="topic" id="cf-t44">4.4 &nbsp;<span class="t-en">Primary / main memory</span><span class="t-ne" lang="ne"> — Primary / मुख्य मेमोरी</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">The memory the CPU can reach directly</span>
+      <p><b>Primary memory</b> is the memory the CPU can read from and write to <b>directly</b>.
+      Nothing in secondary storage can be worked on until it has been copied here first — which
+      is why a large file takes a moment to open.</p>
+      <p><b>Characteristics:</b> directly accessible by the CPU; much faster than secondary
+      storage; limited in capacity; costlier per byte; and semiconductor-based rather than
+      mechanical.</p>
+      <p>Primary memory is of two kinds, and they differ in a single respect that decides
+      everything else: <b>can the CPU write to it?</b></p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">CPU ले सिधै पुग्न सक्ने मेमोरी</span>
+      <p><b>Primary memory</b> त्यो हो जसमा CPU ले <b lang="ne">सिधै</b> पढ्न र लेख्न सक्छ। Secondary
+      storage को कुनै पनि कुरा यहाँ नसारेसम्म चलाउनै मिल्दैन — ठूलो फाइल खोल्दा केही क्षण
+      लाग्नुको कारण यही हो।</p>
+      <p><b lang="ne">विशेषता:</b> CPU ले सिधै पुग्न सक्ने; secondary भन्दा धेरै छिटो; क्षमता सीमित; प्रति
+      byte महँगो; र यान्त्रिक होइन, semiconductor मा बनेको।</p>
+      <p lang="ne">Primary memory दुई किसिमका छन्, र फरक एउटै कुरामा छ जसले बाँकी सबै तय गर्छ: <b lang="ne">CPU ले
+      त्यसमा लेख्न सक्छ?</b></p>
+    </div>
+  </div>
+
+  <div class="callout an"><div class="t-en">
+    <div class="h">RAM and ROM, and the families inside each</div>
+    <p><b>RAM — Random Access Memory.</b> Read <i>and</i> write. Volatile: it empties when the
+    power goes. This is the computer's working space, and "4 GB of memory" in an advertisement
+    means RAM.</p>
+    <ul>
+      <li><b>SRAM</b> (Static RAM) — holds each bit in a flip-flop circuit, needs no refreshing,
+      very fast, expensive. This is what cache is made of.</li>
+      <li><b>DRAM</b> (Dynamic RAM) — holds each bit as a charge in a tiny capacitor that leaks,
+      so it must be <b>refreshed</b> thousands of times a second. Slower than SRAM, far cheaper,
+      so it is what main memory is made of.</li>
+    </ul>
+    <p><b>ROM — Read Only Memory.</b> Read only in normal use. Non-volatile: its contents survive
+    the power going off. It holds the instructions the computer needs the moment it starts, before
+    any disk has been read — the <b>BIOS</b> and the startup routine.</p>
+    <ul>
+      <li><b>PROM</b> (Programmable ROM) — blank when made, written <b>once</b> by the buyer,
+      never again.</li>
+      <li><b>EPROM</b> (Erasable PROM) — can be erased by <b>ultraviolet light</b> and rewritten.
+      The chip has a small quartz window for the light.</li>
+      <li><b>EEPROM</b> (Electrically Erasable PROM) — erased <b>electrically</b>, with no window
+      and without removing the chip. Flash memory is a development of this, which is why a pen
+      drive can be rewritten in place.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne"><b>RAM</b> — पढ्न <i lang="ne">र</i> लेख्न मिल्ने, volatile; कम्प्युटरको काम
+    गर्ने ठाउँ। <b>SRAM</b>: flip-flop मा, refresh नचाहिने, धेरै छिटो, महँगो — cache यही हो।
+    <b>DRAM</b>: साना capacitor मा चार्ज, चुहिने भएकाले सेकेन्डमा हजारौं पटक <b>refresh</b>
+    गर्नुपर्ने; ढिलो तर निकै सस्तो — main memory यही हो। <b>ROM</b> — सामान्य प्रयोगमा पढ्न
+    मात्र, non-volatile; कम्प्युटर सुरु हुने बित्तिकै चाहिने निर्देशन (BIOS) राख्छ।
+    <b>PROM</b>: एक पटक मात्र लेख्न मिल्ने। <b>EPROM</b>: <b lang="ne">पराबैजनी किरण</b> ले मेटेर फेरि
+    लेख्न मिल्ने; चिपमा सानो क्वार्ज झ्याल हुन्छ। <b>EEPROM</b>: <b lang="ne">विद्युतीय</b> रूपमा मेटिने,
+    झ्याल नचाहिने, चिप नझिकी — flash memory यसैको विकास हो।</span>
+  </div>
+
+  <!-- ============ 4.5 ============ -->
+  <h2 class="topic" id="cf-t45">4.5 &nbsp;<span class="t-en">Secondary memory</span><span class="t-ne" lang="ne"> — Secondary मेमोरी</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Where things stay when the power does not</span>
+      <p><b>Secondary memory</b> — also called auxiliary or backup storage — holds data and
+      programs permanently, for as long as you want them, whether or not the computer is on.</p>
+      <p><b>Characteristics:</b> non-volatile; large capacity; cheap per byte; slower than
+      primary memory; and <b>not directly accessible by the CPU</b> — everything must be copied
+      into RAM before it can be used. That last one is the characteristic worth the mark.</p>
+      <p>It comes in three families, told apart by <b>how a bit is physically stored</b>:</p>
+      <ul>
+        <li><b>Magnetic</b> — a bit is a direction of magnetism on a coated surface.
+        <b>Hard disk</b>: spinning platters and a moving head, so it has moving parts and can be
+        damaged by a knock. <b>SSD</b> is grouped here by the curriculum, though it is really
+        flash: no moving parts, much faster, costlier per gigabyte.</li>
+        <li><b>Optical</b> — a bit is a pit or a flat area burned into a surface and read by a
+        laser. <b>CD</b> (about 700 MB), <b>DVD</b> (4.7 GB), <b>Blu-ray</b> (25 GB and up).
+        Cheap, removable, scratch easily.</li>
+        <li><b>Flash</b> — a bit is a charge trapped in an insulated cell, with no moving parts
+        at all. <b>Pen drive</b>, memory card. Small, sturdy, rewritable, limited in how many
+        times each cell can be rewritten.</li>
+      </ul>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">बत्ती नभए पनि रहने ठाउँ</span>
+      <p><b>Secondary memory</b> — सहायक वा ब्याकअप भण्डारण — ले data र प्रोग्राम स्थायी रूपमा
+      राख्छ, कम्प्युटर खुला होस् या नहोस्।</p>
+      <p><b lang="ne">विशेषता:</b> non-volatile; ठूलो क्षमता; प्रति byte सस्तो; primary भन्दा ढिलो; र
+      <b lang="ne">CPU ले सिधै पुग्न नसक्ने</b> — प्रयोग गर्नुअघि सबै RAM मा सार्नैपर्छ। अन्तिम विशेषता नै
+      अंक बोक्ने हो।</p>
+      <p lang="ne">यसका तीन परिवार छन्, <b lang="ne">bit भौतिक रूपमा कसरी राखिन्छ</b> भन्ने आधारमा:</p>
+      <ul>
+        <li><b>Magnetic</b> — bit भनेको लेपित सतहमा चुम्बकत्वको दिशा। <b>Hard disk</b>: घुम्ने
+        थाल र चल्ने head, त्यसैले चल्ने भाग हुन्छन् र ठक्कर लाग्दा बिग्रन सक्छ। <b>SSD</b> लाई
+        पाठ्यक्रमले यहीँ राखेको छ, वास्तवमा यो flash हो: चल्ने भाग छैन, धेरै छिटो, प्रति GB
+        महँगो।</li>
+        <li><b>Optical</b> — bit भनेको सतहमा पोलिएको खाल्डो वा समथर भाग, लेजरले पढ्छ।
+        <b>CD</b> (करिब ७०० MB), <b>DVD</b> (4.7 GB), <b>Blu-ray</b> (25 GB वा बढी)। सस्तो,
+        झिक्न मिल्ने, चाँडै कोतरिने।</li>
+        <li><b>Flash</b> — bit भनेको इन्सुलेट कक्षमा थुनिएको चार्ज, चल्ने भाग शून्य।
+        <b>Pen drive</b>, memory card। सानो, बलियो, पुनर्लेखनयोग्य, तर हरेक कक्ष कति पटक लेख्न
+        मिल्ने भन्ने सीमा हुन्छ।</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3>Which memory is being described?</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to identify a memory from a property rather than
+      from its name — which is how the examination asks it. Two cases are separated only by
+      whether the thing survives a power cut.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: नामबाट होइन, गुणबाट मेमोरी चिन्न — परीक्षाले
+      सोध्ने तरिका यही हो। दुई केसको फरक बत्ती गएपछि बाँच्छ कि बाँच्दैन भन्नेमा मात्र
+      छ।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cfmem" data-set="cfmemory"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>For each case ask two questions in order: does it survive a power cut, and can the CPU
+        reach it directly? Those two answers place almost every memory in the subject.</p>
+        </div><span class="np-cell" lang="ne">हरेक केसमा क्रमैसँग दुई प्रश्न सोध्नुहोस्: बत्ती गएपछि बाँच्छ?
+        CPU ले सिधै पुग्छ? यी दुई उत्तरले यस विषयका झन्डै सबै मेमोरी ठाउँमा राख्छन्।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Why opening a large file takes a moment</div>
+    <p><b>Question:</b> a student double-clicks a 200 MB video on the hard disk. Trace what has to
+    happen before the first frame appears, and explain the pause.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Before opening: which of the memories above can the
+      CPU read from directly, and where is the video right now?</span>
+      <span class="np-cell" lang="ne">खोल्नुअघि: माथिका मेमोरीमध्ये CPU ले कुनबाट सिधै पढ्न सक्छ, र
+      भिडियो अहिले कहाँ छ?</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">1  the video is on the HARD DISK — secondary storage
+2  the CPU cannot read secondary storage directly
+3  so the OS copies part of the file from disk into RAM
+4  the disk is mechanical and slow; RAM is electronic and fast
+5  the CPU reads the copy in RAM and decodes the first frame
+6  the frame is sent to the output unit and appears
+
+The pause is step 3 — the slowest link in the chain. It is the
+disk being read, not the CPU being slow.</div>
+      <p class="wex-note"><span class="t-en">This is why installing an SSD makes an old computer feel new while a
+      faster processor often does not: the wait was never the CPU.
+      </span><span class="np-cell" lang="ne">पुरानो कम्प्युटरमा SSD हाल्दा नयाँ जस्तो हुनुको र छिटो प्रोसेसरले
+      प्रायः फरक नपर्नुको कारण यही हो: पर्खाइ CPU को कहिल्यै थिएन।</span></p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> How much is 2 GB, in characters?</div>
+    <p><b>Question:</b> a pen drive holds 2 GB. Roughly how many characters of plain text is
+    that, and why is the answer not simply 2,000,000,000?</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Two facts are needed: how many bytes are in a
+      gigabyte, and how many bytes one character takes. Work it out before opening this.</span>
+      <span class="np-cell" lang="ne">दुई तथ्य चाहिन्छ: एक gigabyte मा कति byte, र एक अक्षरले कति byte
+      लिन्छ। खोल्नुअघि निकाल्नुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">1 character  =  1 byte          (8 bits)
+1 KB         =  1024 bytes
+1 MB         =  1024 × 1024        = 1,048,576 bytes
+1 GB         =  1024 × 1,048,576   = 1,073,741,824 bytes
+2 GB         =  2,147,483,648 bytes
+
+So about 2.1 BILLION characters, not 2.0 billion. The
+difference is over 147 million characters — more than a
+hundred full-length books.
+
+Why not 2,000,000,000: memory is addressed in binary, so each
+step up is 2^10 = 1024, not 1000.</div>
+      <p class="wex-note"><span class="t-en">This is why a "2 GB" pen drive and a "2 GB" advertisement can disagree:
+      some manufacturers count in thousands and the computer counts in 1024s.
+      </span><span class="np-cell" lang="ne">"2 GB" को पेन ड्राइभ र "2 GB" को विज्ञापन किन मिल्दैनन् भन्ने कारण
+      यही हो: कतिपय उत्पादकले हजारमा गन्छन्, कम्प्युटरले १०२४ मा।</span></p>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h3><span class="t-en">Mistakes that cost marks here</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यहाँ अङ्क गुमाउने गल्तीहरू</span></h3><div class="t-en">
+    <ul>
+      <li><b>Saying RAM is "Random Access Memory, which is temporary" and stopping.</b> The mark
+      is for <i>volatile</i> and for <i>read and write</i>. Temporary alone is vague.</li>
+      <li><b>Calling ROM "memory you cannot write to".</b> PROM, EPROM and EEPROM can all be
+      written — once, with UV light, or electrically. ROM is read-only <i>in normal use</i>.</li>
+      <li><b>Putting cache below RAM.</b> Cache is faster than RAM and sits between RAM and the
+      CPU.</li>
+      <li><b>Saying the CPU reads a file from the hard disk.</b> It cannot. The file is copied
+      into RAM first, every time.</li>
+      <li><b>Confusing SRAM and DRAM by speed alone.</b> The real difference is refreshing: DRAM
+      leaks and must be refreshed, SRAM does not.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne"><b lang="ne">RAM लाई "अस्थायी" मात्र भन्नु:</b> अंक <i>volatile</i> र <i lang="ne">पढ्न–लेख्न
+    मिल्ने</i> भन्नुमा छ। <b lang="ne">ROM लाई "लेख्नै नमिल्ने" भन्नु:</b> PROM, EPROM, EEPROM मा लेख्न
+    मिल्छ — एक पटक, UV ले, वा विद्युतीय रूपमा। <b lang="ne">Cache लाई RAM भन्दा तल राख्नु:</b> cache RAM
+    भन्दा छिटो छ र CPU सँग नजिक। <b lang="ne">CPU ले hard disk बाट फाइल पढ्छ भन्नु:</b> सक्दैन — हरेक पटक
+    RAM मा सारिन्छ। <b lang="ne">SRAM/DRAM लाई गतिले मात्र छुट्याउनु:</b> साँचो फरक refresh मा छ।</span>
+  </div>
+
+  <p class="hook"><span class="t-en"><b>Memory hook —</b> RAM forgets, ROM remembers. Cache is
+    close, disk is far.</span>
+    <span class="np-cell" lang="ne"><b lang="ne">सम्झने तरिका —</b> RAM बिर्सन्छ, ROM सम्झन्छ। Cache नजिक, disk
+    टाढा।</span></p>
+
+  <!-- ============ PRACTICAL ============ -->
+  <h2 class="topic" id="cf-prac4"><span class="t-en">Practical work — this unit's other 6 hours</span><span class="t-ne" lang="ne"> — प्रयोगात्मक काम — यस युनिटका अरू ६ घण्टा</span></h2>
+
+  <div class="practical">
+    <div class="h"><span class="pr-kind">Guided practical</span>The five activities the curriculum suggests</div>
+    <p><span class="t-en">From the curriculum's own list for Unit 4, which calls these <b>samples</b>. Note that this
+    unit has the fewest practical hours in the subject — six — and the most activities. Your
+    teacher will almost certainly choose among them.
+    </span><span class="np-cell" lang="ne">पाठ्यक्रमकै युनिट ४ को सूचीबाट; यसले यिनलाई <b lang="ne">नमुना</b> भनेको छ। यस
+    युनिटमा विषयकै सबैभन्दा कम — ६ — प्रयोगात्मक घण्टा र सबैभन्दा धेरै क्रियाकलाप छन्।
+    शिक्षकले छानेर दिनुहुनेछ।</span></p>
+
+    <div class="pr-act" data-practical="g9.cf.p4.1">
+      <p><span class="pr-num">4.1</span> Describe computer memory and its main types using a
+      PowerPoint presentation, and demonstrate it.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> presentation software or paper slides. <b>Builds on:</b>
+      4.1 and 4.2. <b>Hand in:</b> the file and your notes. Build the pyramid one level per slide
+      rather than putting all four on one — the order is the point.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> प्रस्तुतीकरण सफ्टवेयर वा कागजकै स्लाइड। <b lang="ne">आधार:</b>
+      ४.१ र ४.२। <b lang="ne">बुझाउने:</b> फाइल र नोट। चारै तह एउटै स्लाइडमा नराखी एक तह एक स्लाइड
+      बनाउनुहोस् — क्रम नै मुख्य कुरा हो।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p4.2">
+      <p><span class="pr-num">4.2</span> Prepare a presentation about <b>"HDD and SSD"</b> and
+      demonstrate it.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> presentation software or paper slides. <b>Builds on:</b>
+      4.5. <b>Hand in:</b> the file. A good version compares on four grounds — moving parts,
+      speed, price per GB, and what happens if you drop it — not just "SSD is faster".
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> प्रस्तुतीकरण सफ्टवेयर वा कागजकै स्लाइड। <b lang="ne">आधार:</b>
+      ४.५। <b lang="ne">बुझाउने:</b> फाइल। राम्रो प्रस्तुतीकरणले चार आधारमा तुलना गर्छ — चल्ने भाग, गति,
+      प्रति GB मूल्य, र खसाले के हुन्छ — "SSD छिटो छ" मात्र होइन।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p4.3">
+      <p><span class="pr-num">4.3</span> Prepare a presentation about the different storage
+      hardware found in your computer lab, and demonstrate it.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> access to your school lab. <b>This cannot be done from
+      this site</b> — it is about <i>your</i> lab. <b>Hand in:</b> the file, with each device's
+      capacity and family (magnetic, optical or flash).
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> विद्यालयको ल्याब। <b lang="ne">यो यहाँबाट हुँदैन</b> — यो
+      <i lang="ne">तपाईंकै</i> ल्याबको कुरा हो। <b lang="ne">बुझाउने:</b> फाइल, हरेक उपकरणको क्षमता र परिवार
+      (magnetic, optical, flash) सहित।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p4.4">
+      <p><span class="pr-num">4.4</span> Draw a chart paper about the different types of computer
+      memory with names, and paste it in your classroom.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> chart paper, markers. <b>Builds on:</b> 4.2, 4.4, 4.5.
+      <b>Hand in:</b> the chart and a photograph in your record file. Draw it as the pyramid, not
+      as a list — a chart that shows the order teaches something a list cannot.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> चार्ट पेपर, मार्कर। <b lang="ne">आधार:</b> ४.२, ४.४, ४.५।
+      <b lang="ne">बुझाउने:</b> चार्ट र फोटो। सूची होइन, पिरामिड बनाउनुहोस् — क्रम देखाउने चार्टले सूचीले
+      नसक्ने कुरा सिकाउँछ।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p4.5">
+      <p><span class="pr-num">4.5</span> Visit an IT solution office — a maintenance centre or
+      sales shop — and collect the latest available memory devices.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> a visit arranged with your teacher or guardian.
+      <b>This cannot be simulated.</b> <b>Hand in:</b> a list of what you saw with capacity and
+      price, and the date. Ask one question while you are there: what fails most often, and why.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> शिक्षक वा अभिभावकसँग मिलाएको भ्रमण। <b lang="ne">सिमुलेसनले
+      हुँदैन।</b> <b lang="ne">बुझाउने:</b> देखेका उपकरणको सूची, क्षमता, मूल्य र मिति। त्यहाँ एउटा प्रश्न
+      सोध्नुहोस्: सबैभन्दा धेरै के बिग्रन्छ, र किन।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ EXAM FOCUS ============ -->
+  <h2 class="topic" id="cf-exam4"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne" lang="ne"> — परीक्षा केन्द्र — यस युनिटबाट के सोधिन्छ</span></h2>
+
+  <div class="exam-connect">
+    <p><span class="t-en">This unit carries <b>8 of the 50 external marks</b> and 10 of the 64 theory hours. The
+    standard questions are: differentiate RAM and ROM; what is cache memory and why is it used;
+    types of secondary storage with examples; and the full forms of RAM, ROM, PROM, EPROM and
+    EEPROM. The full forms are free marks and are lost every year.
+    </span><span class="np-cell" lang="ne">यो युनिटले <b lang="ne">बाह्य ५० मध्ये ८ अंक</b> र ६४ मध्ये १० घण्टा ओगट्छ।
+    मानक प्रश्न: RAM र ROM छुट्याउने; cache memory के हो र किन चाहिन्छ; secondary storage का
+    किसिम उदाहरणसहित; र RAM, ROM, PROM, EPROM, EEPROM का पूरा रूप। पूरा रूप सजिला अंक हुन् र
+    हरेक वर्ष गुम्छन्।</span></p>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Differentiate between RAM and ROM.
+    </span><span class="np-cell" lang="ne">RAM र ROM बीचको फरक लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa41">Show the answer</button>
+    <div class="ans" id="cfa41"><div class="t-en">
+      <p><b>RAM (Random Access Memory)</b> — data can be both read and written; it is
+      <b>volatile</b>, so its contents are lost when power is switched off; it holds the programs
+      and data currently in use; its types are SRAM and DRAM.</p>
+      <p><b>ROM (Read Only Memory)</b> — in normal use data can only be read; it is
+      <b>non-volatile</b>, so contents remain without power; it holds the startup instructions
+      such as the BIOS; its types are PROM, EPROM and EEPROM.</p>
+      <p>Write them as matched pairs. Four marks is normally four differences, one mark each.</p>
+      </div><span class="np-cell" lang="ne"><b>RAM</b> — पढ्न र लेख्न दुवै मिल्ने; <b>volatile</b>; अहिले चलिरहेका
+      प्रोग्राम र data राख्ने; किसिम SRAM र DRAM। <b>ROM</b> — सामान्य प्रयोगमा पढ्न मात्र;
+      <b>non-volatile</b>; BIOS जस्ता सुरुवाती निर्देशन राख्ने; किसिम PROM, EPROM, EEPROM।
+      जोडी मिलाएर लेख्नुहोस्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">What is cache memory? Why is it used?
+    </span><span class="np-cell" lang="ne">Cache memory भनेको के हो? किन प्रयोग गरिन्छ?</span></p>
+    <button class="btn-ans" data-answer="cfa42">Show the answer</button>
+    <div class="ans" id="cfa42"><div class="t-en">
+      <p>Cache memory is a <b>small, very fast memory placed between the CPU and main memory</b>
+      that stores the data and instructions most recently used by the CPU.</p>
+      <p>It is used because the CPU is much faster than RAM. Keeping recently used items close by
+      means the processor spends less time waiting for RAM, so the computer runs faster.</p>
+      </div><span class="np-cell" lang="ne">Cache memory भनेको <b lang="ne">CPU र main memory बीचमा राखिएको सानो तर धेरै
+      छिटो मेमोरी</b> हो, जसले CPU ले भर्खरै चलाएका data र निर्देशन राख्छ। CPU, RAM भन्दा धेरै
+      छिटो भएकाले यो चाहिन्छ: नजिकै राखेपछि प्रोसेसरले RAM कुर्नुपर्ने समय घट्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">What is secondary memory? Explain its types with examples.
+    </span><span class="np-cell" lang="ne">Secondary memory भनेको के हो? यसका किसिम उदाहरणसहित बुझाउनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa43">Show the answer</button>
+    <div class="ans" id="cfa43"><div class="t-en">
+      <p>Secondary memory is <b>non-volatile storage used to keep data and programs
+      permanently</b>. It has a large capacity, is cheaper per byte than primary memory, and
+      <b>cannot be accessed directly by the CPU</b> — its contents must be copied into RAM first.</p>
+      <p><b>1. Magnetic storage</b> — stores bits as magnetism. Examples: hard disk, SSD (as
+      grouped by the curriculum).<br>
+      <b>2. Optical storage</b> — stores bits as pits read by a laser. Examples: CD, DVD,
+      Blu-ray disc.<br>
+      <b>3. Flash memory</b> — stores bits as trapped charge, no moving parts. Example: pen
+      drive.</p>
+      </div><span class="np-cell" lang="ne">Secondary memory भनेको <b lang="ne">data र प्रोग्राम स्थायी रूपमा राख्ने
+      non-volatile भण्डारण</b> हो; ठूलो क्षमता, प्रति byte सस्तो, र <b lang="ne">CPU ले सिधै पुग्न
+      नसक्ने</b>। किसिम: <b>Magnetic</b> (hard disk, SSD), <b>Optical</b> (CD, DVD, Blu-ray),
+      <b>Flash</b> (pen drive)।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">Write the full forms: RAM, ROM, PROM, EPROM, EEPROM, SRAM, DRAM.
+    </span><span class="np-cell" lang="ne">पूरा रूप लेख्नुहोस्: RAM, ROM, PROM, EPROM, EEPROM, SRAM, DRAM।</span></p>
+    <button class="btn-ans" data-answer="cfa44">Show the answer</button>
+    <div class="ans" id="cfa44"><div class="t-en">
+      <p><b>RAM</b> — Random Access Memory<br>
+      <b>ROM</b> — Read Only Memory<br>
+      <b>PROM</b> — Programmable Read Only Memory<br>
+      <b>EPROM</b> — Erasable Programmable Read Only Memory<br>
+      <b>EEPROM</b> — Electrically Erasable Programmable Read Only Memory<br>
+      <b>SRAM</b> — Static Random Access Memory<br>
+      <b>DRAM</b> — Dynamic Random Access Memory</p>
+      <p>Notice the pattern: each longer name adds one word to the front of the shorter one.
+      Learn PROM first and the other two follow.</p>
+      </div><span class="np-cell" lang="ne">बान्की हेर्नुहोस्: हरेक लामो नामले छोटोको अगाडि एउटा शब्द थप्छ।
+      पहिले PROM सिक्नुहोस्, अरू दुई आफैं आउँछन्।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h3>Key points from this unit</h3><div class="t-en">
+    <ul>
+      <li>Memory holds data <i>and</i> instructions. 1 KB = 1024 bytes, and the 1024 is because
+      addresses are binary.</li>
+      <li>The hierarchy is a trade-off: up is faster, smaller, costlier per byte; down is the
+      opposite.</li>
+      <li>Cache exists because the CPU is far faster than RAM.</li>
+      <li>RAM: read/write, volatile — SRAM (cache) and DRAM (main memory, needs refreshing).</li>
+      <li>ROM: read-only in use, non-volatile — PROM (once), EPROM (UV), EEPROM (electrical).</li>
+      <li>Secondary storage is non-volatile and <b>not directly reachable by the CPU</b>:
+      magnetic, optical, flash.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne">मेमोरीले data र निर्देशन दुवै राख्छ; 1 KB = 1024 byte। तह एउटै
+    सम्झौता हो: माथि छिटो–सानो–महँगो, तल उल्टो। CPU, RAM भन्दा धेरै छिटो भएकाले cache चाहिन्छ।
+    RAM: पढ्न–लेख्न, volatile — SRAM (cache) र DRAM (main, refresh चाहिने)। ROM: पढ्न मात्र,
+    non-volatile — PROM, EPROM (UV), EEPROM (विद्युतीय)। Secondary: non-volatile र CPU ले सिधै
+    नपुग्ने — magnetic, optical, flash।</span>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit3.html"><span class="lab">◂ Previous</span><span class="ttl">Computer Software</span></a><a class="nx" href="unit5.html"><span class="lab">Next ▸</span><span class="ttl">Internet and its Application</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">Gyansetu</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/practical.js"></script>
+</body>
+</html>

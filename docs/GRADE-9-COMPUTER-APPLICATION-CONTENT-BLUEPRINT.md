@@ -1,8 +1,10 @@
 # Grade 9 · Fundamentals of Computer and Application — content blueprint
 
-The instructional plan for all **seven units**. Unit 1 is authored; Units 2–7
-are planned here and **not written**. The blueprint exists so that the subject
-is one coherent course rather than seven separately-invented lessons.
+The instructional plan for all **seven units**, now all authored — Unit 1 in
+Phase 12, Units 2–7 in Phase 13. The blueprint exists so that the subject is one
+coherent course rather than seven separately-invented lessons, and it is kept
+here as written rather than rewritten to match the result: §2 records where the
+build departed from the plan and why.
 
 Hours below are the curriculum's own: **64 theory + 64 practical = 128 working
 hours**, distributed as the CDC document distributes them. Nothing is spread
@@ -16,13 +18,13 @@ because that is what the document says.
 | Unit | Title | Theory | Practical | External marks | Topics | Status |
 |---:|---|---:|---:|---:|---:|---|
 | 1 | Introduction to computer | 8 | 10 | 6 | 4 | **Authored** |
-| 2 | Computer Components | 10 | 10 | 7 | 5 | Planned |
-| 3 | Computer software | 10 | 8 | **9** | 7 | Planned |
-| 4 | Memory/Storage Unit | 10 | 6 | 8 | 5 | Planned |
-| 5 | Internet and its Application | 10 | **12** | 8 | 3 | Planned |
-| 6 | Multimedia | 8 | 8 | 6 | 3 | Planned |
-| 7 | Emerging Technology | 8 | 10 | 6 | 9 | Planned |
-| | | **64** | **64** | **50** | **36** | 1 of 7 |
+| 2 | Computer Components | 10 | 10 | 7 | 5 | **Authored** |
+| 3 | Computer software | 10 | 8 | **9** | 7 | **Authored** |
+| 4 | Memory/Storage Unit | 10 | 6 | 8 | 5 | **Authored** |
+| 5 | Internet and its Application | 10 | **12** | 8 | 3 | **Authored** |
+| 6 | Multimedia | 8 | 8 | 6 | 3 | **Authored** |
+| 7 | Emerging Technology | 8 | 10 | 6 | 9 | **Authored** |
+| | | **64** | **64** | **50** | **36** | **7 of 7** |
 
 Two things the table says that are easy to miss. **Unit 3 carries the most
 external marks** (9) despite not being the longest. And **Unit 5 has the most
@@ -62,31 +64,61 @@ written down here so Units 2–7 do not each re-invent it.
 
 | Unit | Interactive component | Why it earns its place |
 |---:|---|---|
-| 1 | Decision drill — *which basis of classification?* | Five bases that students merge into one list. A judgement against a rule. **Built.** |
-| 2 | Parts lab — press a device, see which unit it belongs to | Input/output/memory/processing is a classification task over ~20 named devices. `sim-parts.js` already does exactly this for Grade 10 Hardware |
-| 3 | Decision drill — *system, application or utility?* | The classic confusion of the unit, and its heaviest marks |
-| 4 | Memory-hierarchy explorer — press a level, see speed/size/volatility | Cache→RAM→secondary is an ordered trade-off; a table states it, a visual makes the ordering stick |
-| 5 | None planned beyond prediction | The topics are definitional and procedural. The *doing* belongs to the 12 practical hours, not to a simulation of them |
-| 6 | None planned | Multimedia's five components are a list. A decorative media player would teach nothing |
-| 7 | Decision drill — *which emerging technology?* | Nine concepts that blur together; scenario-to-concept is exactly the exam task |
+| Unit | Planned | Built | Why |
+|---:|---|---|---|
+| 1 | Decision drill — *which basis of classification?* | **As planned** — `cfclassify` | Five bases that students merge into one list. A judgement against a rule |
+| 2 | Parts lab reusing `sim-parts.js` | **Changed** — decision drill `cfinput` | The parts lab is a Grade 10 component built around a motherboard photo and repair vocabulary. Reusing it here meant either showing Grade 9 students a component diagram the curriculum does not ask for, or gutting it. The same classification judgement — which unit does this device belong to — is what the drill asks, without the borrowed scaffolding |
+| 3 | Decision drill — *system, application or utility?* | **As planned** — `cfsoftware` | The classic confusion of the unit, and its heaviest marks (9) |
+| 4 | Memory-hierarchy explorer — press a level | **Changed** — `cfMemoryHierarchy` diagram + drill `cfmemory` | The explorer and the diagram would have carried the same four facts. The diagram shows the ordering at a glance; the drill makes the student commit to *which* level a described use belongs to, which is the exam task. An explorer would have been a third way of reading the same table |
+| 5 | None beyond prediction | **Added** — drill `cfinternet` | The plan was wrong about this unit. Its three topics look definitional, but the marks (8) sit on telling connection types apart, and that is a judgement, not a recitation. The drill is six scenarios, no simulated browser |
+| 6 | None | **Added** — drill `cfmultimedia` | Also a plan correction, with less force: the five components *are* a list, but the exam asks which component a described asset is, and six cases cost little. No media player was built, as the plan rightly warned |
+| 7 | Decision drill — *which emerging technology?* | **As planned** — `cfemerging`, plus the cipher bench | Nine concepts that blur together; scenario-to-concept is exactly the exam task. Topic 7.7 added cryptography, where a shift cipher makes the key visible — `sim-cipher.js` |
 
-Four of seven units get an interactive component, three do not. **That is the
-intended ratio**, not a shortfall — Grade 10's review found that adding
-interaction everywhere produced decoration.
+**All seven units got an interactive component, against a plan of four.** The
+plan's reasoning — that interaction everywhere produces decoration — still
+holds, and is why Units 5 and 6 got six-case drills rather than simulations of
+the thing itself. What the plan got wrong was treating "definitional topics" as
+a reason for no interaction, when the marks on those units are awarded for
+telling things apart. Two of the three additions are drills over the existing
+`sim-drill.js` engine, so the cost of being wrong here was small.
 
 ### Diagrams planned
 
-Unit 1 `cfIpoCycle`, `cfClassify` (**built**) · Unit 2 a system block diagram and
-a device-to-unit map · Unit 3 a software family tree, and a CUI/GUI comparison ·
-Unit 4 the memory hierarchy as a pyramid with speed and cost axes · Unit 5 what
-an internet connection requires, as a chain · Unit 6 the five components around
-one presentation · Unit 7 none — nine separate concepts share no shape.
+Five of the eight planned diagrams were built. Three were not, and the reason in
+each case is that a table in the unit already carried the same information:
+
+| Unit | Planned | Outcome |
+|---:|---|---|
+| 1 | `cfIpoCycle`, `cfClassify` | **Both built** (Phase 12) |
+| 2 | A system block diagram, and a device-to-unit map | **The block diagram was reused, not drawn** — the unit injects Hardware's `hwSystemUnits`, which already shows input/process/output/storage as blocks. The device-to-unit map was not built: the unit's device table is that map, in a form that reads at 320px and needs no SVG |
+| 3 | A software family tree, and a CUI/GUI comparison | **`cfSoftwareLayers` built** — hardware → OS → application, which is the family tree's useful half. The CUI/GUI comparison stayed a table, because it is a two-column comparison and that is what tables are |
+| 4 | The memory hierarchy as a pyramid | **`cfMemoryHierarchy` built** |
+| 5 | What an internet connection requires, as a chain | **`cfInternetChain` built** |
+| 6 | The five components around one presentation | **Not built.** A hub-and-spoke diagram of a five-item list adds a shape, not a fact |
+| 7 | None — nine concepts share no shape | **None built**, as planned |
+
+Three diagrams added — `cfSoftwareLayers`, `cfMemoryHierarchy`,
+`cfInternetChain` — bringing the site's total to 75, plus one reused from
+Hardware. The decision rule applied throughout: a diagram earns its place when
+it shows an *ordering* or a *flow* that prose states only in sequence. A diagram
+of a list does not.
+
+**The reuse had a consequence worth recording.** `hwSystemUnits` became the
+first diagram used by two subjects, and the home page's roll-up added its
+per-subject diagram counts together, so it began claiming 76 distinct diagrams
+against a registry of 75. Every other figure in that roll-up — units, hours,
+questions, simulators — belongs to exactly one subject, so summing was correct
+for all of them and wrong only for this one. Fixed in `build/context.js` by
+taking a union, and pinned by a test that checks the number against the lesson
+files rather than against the context that generated the page. The existing
+test had compared the page with the context object that produced it, so both
+sides agreed on the same wrong number.
 
 ---
 
 ## 3 · Unit by unit
 
-### Unit 1 — Introduction to computer · 8 th · 10 pr · 6 marks · **authored**
+### Unit 1 — Introduction to computer · 8 th · 10 pr · 6 marks
 
 **Prerequisite:** none. This is the entry point to the subject and to the
 stream.

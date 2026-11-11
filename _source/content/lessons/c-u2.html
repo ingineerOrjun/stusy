@@ -1,0 +1,816 @@
+<section id="c-u2">
+  <div class="sec-head">
+    <div class="sec-num">2</div>
+    <div>
+      <h2>Fundamentals of C</h2>
+      <p class="sec-sub">सी भाषाका आधारभूत कुरा</p>
+    </div>
+    <span class="marks">10 hrs · 7 marks · 3 practical hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2>By the end of this unit you can…</h2>
+    <ol>
+      <li>Write a complete C program with the right header, <code>main()</code> and <code>return</code>.</li>
+      <li>Name the parts of a program: preprocessor directive, header file, token, comment, identifier, escape sequence.</li>
+      <li>Give the rules for a valid identifier and say why a keyword cannot be one.</li>
+      <li>Choose the data type for a value and the format specifier that prints it.</li>
+      <li>Read values with <code>scanf</code> and say why the ampersand is there.</li>
+      <li>Classify any C operator into one of the five families and work out what an expression evaluates to.</li>
+    </ol>
+    <span class="np-cell">यो युनिट सकिँदा: सही header, <code>main()</code> र <code>return</code>
+    सहितको पूरा C प्रोग्राम लेख्न, प्रोग्रामका भाग — preprocessor directive, header file, token,
+    comment, identifier, escape sequence — नाम लिन, मान्य identifier का नियम र keyword किन
+    identifier हुन सक्दैन भन्न, मानका लागि data type र त्यसलाई छाप्ने format specifier छान्न,
+    <code>scanf</code> ले मान पढ्न र ampersand किन चाहिन्छ भन्न, अनि जुनसुकै C operator लाई पाँच
+    परिवारमध्ये एकमा राखेर expression को मान निकाल्न सक्नुहुनेछ।</span>
+  </div>
+
+  <!-- ============ 2.1 ============ -->
+  <h3 class="topic" id="c-t21">2.1 &nbsp;<span class="t-en">Introduction to C programming</span><span class="t-ne"> — C प्रोग्रामिङको परिचय</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">An old language that nothing has replaced</span>
+      <p><b>C</b> is a general-purpose high level programming language developed by <b>Dennis
+      Ritchie</b> at Bell Laboratories in <b>1972</b>, to write the UNIX operating system. It is
+      still in use for the same reason it was written: it is small, fast, and it lets a programmer
+      reach the memory directly.</p>
+      <p>Features worth remembering, because this is a standard question:</p>
+      <ul>
+        <li><b>Simple and small</b> — only 32 keywords to learn, against hundreds of library
+        functions.</li>
+        <li><b>Fast</b> — compiled straight to machine code with very little added on top.</li>
+        <li><b>Portable</b> — the same source file compiles on different machines.</li>
+        <li><b>Structured</b> — a program is built from functions, each doing one job.</li>
+        <li><b>Rich set of operators</b> — including bitwise operators most high level languages
+        hide.</li>
+        <li><b>Extensible</b> — a programmer can add their own functions to the library.</li>
+        <li><b>Middle level</b> — high level readability with low level access to memory.</li>
+      </ul>
+      <p>C is <b>case sensitive</b>. <code>Sum</code>, <code>sum</code> and <code>SUM</code> are
+      three different names, and every keyword is lower case. This single rule causes more
+      beginner errors than any other.</p>
+    </div>
+    <div class="np"><span class="tag">पुरानो भाषा, जसलाई कसैले विस्थापित गरेन</span>
+      <p><b>C</b> सामान्य प्रयोजनको high level प्रोग्रामिङ भाषा हो, जसलाई <b>Dennis Ritchie</b> ले
+      Bell Laboratories मा <b>१९७२</b> मा UNIX operating system लेख्न बनाएका थिए। जुन कारणले
+      बनाइएको थियो, त्यही कारणले अहिले पनि चलिरहेको छ: सानो, छिटो, र प्रोग्रामरलाई मेमोरीसम्म
+      सिधै पुग्न दिन्छ।</p>
+      <p>सम्झनुपर्ने विशेषता, किनभने यो मानक प्रश्न हो:</p>
+      <ul>
+        <li><b>सरल र सानो</b> — सिक्नुपर्ने keyword ३२ मात्र, जबकि library function सयौं।</li>
+        <li><b>छिटो</b> — सिधै मेसिन कोडमा compile हुन्छ, माथि थपिने कुरा थोरै।</li>
+        <li><b>Portable</b> — उही source फाइल फरक मेसिनमा compile हुन्छ।</li>
+        <li><b>Structured</b> — प्रोग्राम function हरूबाट बन्छ, हरेकले एउटा काम गर्ने।</li>
+        <li><b>धेरै operator</b> — धेरै high level भाषाले लुकाउने bitwise operator सहित।</li>
+        <li><b>Extensible</b> — प्रोग्रामरले आफ्नै function library मा थप्न सक्छ।</li>
+        <li><b>Middle level</b> — high level जस्तो पढ्न सजिलो, low level जस्तो मेमोरी पहुँच।</li>
+      </ul>
+      <p>C <b>case sensitive</b> छ। <code>Sum</code>, <code>sum</code> र <code>SUM</code> तीन
+      फरक नाम हुन्, र हरेक keyword सानो अक्षरमै लेखिन्छ। सुरुआतीले गर्ने सबैभन्दा धेरै गल्ती यही
+      एउटा नियमले निम्त्याउँछ।</p>
+    </div>
+  </div>
+
+  <!-- ============ 2.2 ============ -->
+  <h3 class="topic" id="c-t22">2.2 &nbsp;<span class="t-en">Basic program structure</span><span class="t-ne"> — प्रोग्रामको आधारभूत संरचना</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Every C program has the same skeleton</span>
+      <p>Learn this shape once and every program in the subject fits inside it.</p>
+      <ul>
+        <li><b>Preprocessor directive</b> — a line beginning with <code>#</code>. It is handled
+        <i>before</i> compiling. <code>#include</code> is the one you will use most.</li>
+        <li><b>Header file</b> — the file a directive pulls in. <code>stdio.h</code> holds the
+        declarations of <code>printf</code> and <code>scanf</code>; <code>string.h</code> holds
+        the string functions; <code>math.h</code> holds <code>sqrt</code> and friends. The
+        <code>.h</code> stands for header.</li>
+        <li><b>main()</b> — execution starts here, always, wherever it is written in the file.
+        A program with no <code>main</code> compiles and then fails to link, because nothing knows
+        where to begin.</li>
+        <li><b>Tokens</b> — the smallest meaningful pieces the compiler reads. C has six kinds:
+        <b>keywords, identifiers, constants, strings, operators and special symbols</b>.</li>
+        <li><b>Semicolon</b> — a <b>statement terminator</b>, not a separator. Every statement
+        ends with one; <code>#include</code>, a function heading and a closing brace do not,
+        because none of them is a statement.</li>
+        <li><b>Comments</b> — <code>/* … */</code> spans lines; <code>//</code> runs to the end of
+        the line. The compiler removes them, so they cost nothing to run and a great deal to omit.</li>
+        <li><b>Whitespace</b> — spaces, tabs and blank lines. C ignores them, which is why
+        indentation is for the reader rather than the compiler.</li>
+        <li><b>Escape sequence</b> — a backslash and a letter that stand for one character that
+        cannot be typed: <code>\n</code> newline, <code>\t</code> tab, <code>\\</code> a real
+        backslash, <code>\"</code> a quote inside a string, <code>\0</code> the null character.</li>
+      </ul>
+    </div>
+    <div class="np"><span class="tag">हरेक C प्रोग्रामको ढाँचा एउटै हुन्छ</span>
+      <p>यो आकार एक पटक सिकेपछि विषयका सबै प्रोग्राम यसैभित्र अट्छन्।</p>
+      <ul>
+        <li><b>Preprocessor directive</b> — <code>#</code> बाट सुरु हुने लाइन। यो compile
+        गर्नु<i>अघि</i> नै चल्छ। सबैभन्दा धेरै चलाइने <code>#include</code> हो।</li>
+        <li><b>Header file</b> — directive ले भित्र्याउने फाइल। <code>stdio.h</code> मा
+        <code>printf</code> र <code>scanf</code> का घोषणा हुन्छन्; <code>string.h</code> मा
+        string function; <code>math.h</code> मा <code>sqrt</code> आदि। <code>.h</code> को अर्थ
+        header हो।</li>
+        <li><b>main()</b> — फाइलमा जहाँ लेखिए पनि चल्न सधैं यहीँबाट सुरु हुन्छ।
+        <code>main</code> नभएको प्रोग्राम compile त हुन्छ, तर link हुँदैन — कहाँबाट सुरु गर्ने
+        कसैलाई थाहा हुँदैन।</li>
+        <li><b>Tokens</b> — compiler ले पढ्ने सबैभन्दा सानो अर्थपूर्ण टुक्रा। C मा छ किसिम छन्:
+        <b>keyword, identifier, constant, string, operator र special symbol</b>।</li>
+        <li><b>Semicolon</b> — यो <b>statement terminator</b> हो, separator होइन। हरेक statement
+        यसैले सकिन्छ; <code>#include</code>, function को शीर्षक र बन्द गर्ने brace लाई चाहिँदैन,
+        किनभने ती statement होइनन्।</li>
+        <li><b>Comments</b> — <code>/* … */</code> धेरै लाइनसम्म; <code>//</code> लाइनको अन्त्यसम्म।
+        Compiler ले हटाइदिन्छ, त्यसैले लेख्दा केही लागत छैन र नलेख्दा धेरै।</li>
+        <li><b>Whitespace</b> — खाली ठाउँ, tab, खाली लाइन। C ले वास्ता गर्दैन — त्यसैले indentation
+        compiler का लागि होइन, पाठकका लागि हो।</li>
+        <li><b>Escape sequence</b> — backslash र एउटा अक्षर मिलेर टाइप गर्न नमिल्ने एउटा अक्षर
+        जनाउँछ: <code>\n</code> नयाँ लाइन, <code>\t</code> tab, <code>\\</code> साँच्चैको
+        backslash, <code>\"</code> string भित्रको उद्धरण, <code>\0</code> null अक्षर।</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h4>The smallest complete C program</h4>
+      <p class="sim-goal">What you will learn: the order in which the parts of a program actually
+      happen — the preprocessor first, then main, then one statement at a time. Press Next and
+      watch where execution goes; it is not simply top to bottom.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: प्रोग्रामका भाग साँच्चै कुन क्रममा चल्छन् —
+      पहिले preprocessor, अनि main, अनि एक–एक statement। Next थिचेर नियन्त्रण कता जान्छ
+      हेर्नुहोस्; यो सिधा माथिबाट तल मात्र होइन।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="helloWorld"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Say what the next line will do before pressing Next. The step that surprises most
+        people is the first one, because the preprocessor runs before the program does.</p>
+        <span class="np-cell">Next थिच्नुअघि अर्को लाइनले के गर्छ भन्नुहोस्। धेरैलाई अचम्म लाग्ने
+        पहिलो चरण नै हो, किनभने preprocessor प्रोग्रामभन्दा अघि चल्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 2.3 ============ -->
+  <h3 class="topic" id="c-t23">2.3 &nbsp;<span class="t-en">Variables and keywords</span><span class="t-ne"> — Variable र keyword</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">A name you choose, and 32 you cannot</span>
+      <p>A <b>variable</b> is a named box in memory whose value can change while the program runs.
+      Declaring one reserves the space and fixes the type: <code>int age;</code> gives you a box
+      that holds a whole number and nothing else.</p>
+      <p>The name is an <b>identifier</b>, and the rules for one are examined directly:</p>
+      <ul>
+        <li>The first character must be a <b>letter or an underscore</b>, never a digit.</li>
+        <li>After that, letters, digits and underscores only — <b>no spaces</b> and no other
+        symbol.</li>
+        <li>It must not be a <b>keyword</b>.</li>
+        <li>It is <b>case sensitive</b>: <code>total</code> and <code>Total</code> are two
+        variables.</li>
+      </ul>
+      <p>A <b>keyword</b> is a word the language has already given a meaning: <code>int</code>,
+      <code>float</code>, <code>if</code>, <code>else</code>, <code>for</code>,
+      <code>while</code>, <code>return</code>, <code>break</code> and 24 more. There are
+      <b>32 in standard C</b>, all lower case, and you may not use one as a name — not because it
+      is forbidden on principle, but because the compiler would have no way to tell which meaning
+      you intended.</p>
+    </div>
+    <div class="np"><span class="tag">तपाईंले छान्ने नाम, र ३२ वटा नछान्न पाइने</span>
+      <p><b>Variable</b> भनेको मेमोरीमा नाम भएको बाकस हो, जसको मान प्रोग्राम चल्दै गर्दा बदलिन
+      सक्छ। घोषणा गर्दा ठाउँ छुट्टिन्छ र प्रकार तय हुन्छ: <code>int age;</code> ले पूर्ण सङ्ख्या
+      मात्र राख्ने बाकस दिन्छ।</p>
+      <p>नाम भनेको <b>identifier</b> हो, र यसका नियम सिधै सोधिन्छन्:</p>
+      <ul>
+        <li>पहिलो अक्षर <b>अक्षर वा underscore</b> हुनुपर्छ, अङ्क कहिल्यै होइन।</li>
+        <li>त्यसपछि अक्षर, अङ्क र underscore मात्र — <b>खाली ठाउँ हुँदैन</b>, अरू चिन्ह पनि
+        हुँदैन।</li>
+        <li>यो <b>keyword</b> हुनु हुँदैन।</li>
+        <li>यो <b>case sensitive</b> हुन्छ: <code>total</code> र <code>Total</code> दुई फरक
+        variable हुन्।</li>
+      </ul>
+      <p><b>Keyword</b> भनेको भाषाले पहिल्यै अर्थ दिइसकेको शब्द हो: <code>int</code>,
+      <code>float</code>, <code>if</code>, <code>else</code>, <code>for</code>,
+      <code>while</code>, <code>return</code>, <code>break</code> र अरू २४। मानक C मा
+      <b>३२ वटा</b> छन्, सबै सानो अक्षरमा, र तीमध्ये कुनैलाई नाम बनाउन मिल्दैन — सिद्धान्ततः
+      निषेध भएर होइन, तपाईंले कुन अर्थ चाहनुभयो compiler ले छुट्याउनै नसक्ने भएर।</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>Legal or not? Check the four rules in order.</b> <code>2marks</code> starts with a digit —
+    illegal. <code>total marks</code> has a space — illegal. <code>float</code> is a keyword —
+    illegal. <code>roll-no</code> contains a hyphen, which C reads as minus — illegal.
+    <code>_total</code>, <code>total2</code>, <code>Total_Marks</code> and <code>a</code> are all
+    legal. A legal name can still be a bad one: <code>a</code> tells a reader nothing.
+    <span class="np-cell"><b>मान्य हो कि होइन? चारै नियम क्रमैसँग जाँच्नुहोस्।</b>
+    <code>2marks</code> अङ्कबाट सुरु — अमान्य। <code>total marks</code> मा खाली ठाउँ — अमान्य।
+    <code>float</code> keyword — अमान्य। <code>roll-no</code> मा hyphen छ, जसलाई C ले घटाउ
+    पढ्छ — अमान्य। <code>_total</code>, <code>total2</code>, <code>Total_Marks</code> र
+    <code>a</code> सबै मान्य। मान्य नाम पनि नराम्रो हुन सक्छ: <code>a</code> ले पाठकलाई केही
+    भन्दैन।</span>
+  </div>
+
+  <!-- ============ 2.4 ============ -->
+  <h3 class="topic" id="c-t24">2.4 &nbsp;<span class="t-en">Character set, constants and variables</span><span class="t-ne"> — Character set, constant र variable</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">What you may type, and what cannot change</span>
+      <p>The <b>character set</b> is everything C accepts in a source file: the letters
+      <code>A-Z</code> and <code>a-z</code>, the digits <code>0-9</code>, special characters such
+      as <code>+ - * / % = &lt; &gt; ( ) { } [ ] ; , . # &amp; |</code>, and whitespace.</p>
+      <p>A <b>constant</b> is a value that cannot change while the program runs. The kinds you
+      need:</p>
+      <ul>
+        <li><b>Integer constant</b> — <code>25</code>, <code>-7</code>, <code>0</code></li>
+        <li><b>Real (floating) constant</b> — <code>3.14</code>, <code>-0.5</code></li>
+        <li><b>Character constant</b> — one character in <b>single</b> quotes:
+        <code>'A'</code>, <code>'7'</code>, <code>'\n'</code></li>
+        <li><b>String constant</b> — characters in <b>double</b> quotes:
+        <code>"Nepal"</code>, <code>"A"</code></li>
+      </ul>
+      <p>Two ways to make your own: <code>#define PI 3.1416</code>, which the preprocessor
+      substitutes before compiling, and <code>const float pi = 3.1416;</code>, which is a real
+      variable the compiler refuses to let you change.</p>
+      <p><b><code>'A'</code> and <code>"A"</code> are not the same thing.</b> The first is one
+      character and occupies one byte. The second is a string: the letter A <i>and</i> a hidden
+      <code>\0</code> after it, so two bytes. That difference becomes Unit 5.</p>
+    </div>
+    <div class="np"><span class="tag">के टाइप गर्न पाइन्छ, र के बदलिँदैन</span>
+      <p><b>Character set</b> भनेको C ले source फाइलमा स्वीकार गर्ने सबै कुरा हो: अक्षर
+      <code>A-Z</code> र <code>a-z</code>, अङ्क <code>0-9</code>, विशेष चिन्ह जस्तै
+      <code>+ - * / % = &lt; &gt; ( ) { } [ ] ; , . # &amp; |</code>, र खाली ठाउँ।</p>
+      <p><b>Constant</b> भनेको प्रोग्राम चल्दै गर्दा नबदलिने मान हो। चाहिने किसिमहरू:</p>
+      <ul>
+        <li><b>Integer constant</b> — <code>25</code>, <code>-7</code>, <code>0</code></li>
+        <li><b>Real (floating) constant</b> — <code>3.14</code>, <code>-0.5</code></li>
+        <li><b>Character constant</b> — <b>एकल</b> उद्धरणभित्र एउटा अक्षर:
+        <code>'A'</code>, <code>'7'</code>, <code>'\n'</code></li>
+        <li><b>String constant</b> — <b>दोहोरो</b> उद्धरणभित्रका अक्षर:
+        <code>"Nepal"</code>, <code>"A"</code></li>
+      </ul>
+      <p>आफ्नै बनाउने दुई तरिका: <code>#define PI 3.1416</code>, जसलाई preprocessor ले compile
+      गर्नुअघि नै साट्छ, र <code>const float pi = 3.1416;</code>, जुन साँच्चैको variable हो तर
+      compiler ले बदल्न दिँदैन।</p>
+      <p><b><code>'A'</code> र <code>"A"</code> एउटै होइनन्।</b> पहिलो एउटा अक्षर हो र एक byte
+      ओगट्छ। दोस्रो string हो: A अक्षर <i>र</i> पछाडि लुकेको <code>\0</code>, जम्मा दुई byte।
+      यही फरक युनिट ५ बन्छ।</p>
+    </div>
+  </div>
+
+  <!-- ============ 2.5 ============ -->
+  <h3 class="topic" id="c-t25">2.5 &nbsp;<span class="t-en">Data types and format specifiers</span><span class="t-ne"> — Data type र format specifier</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Four basic types and the code that prints each</span>
+      <p><b>The sizes are not fixed by the language.</b> <code>int</code> is 2 bytes on an old
+      16-bit Turbo C setup and 4 bytes on everything modern. Write "2 or 4" in an answer, or use
+      <code>sizeof(int)</code> to ask the compiler, which is the only reliable way to know.</p>
+      <p>Modifiers stretch a type: <code>short</code>, <code>long</code>, <code>signed</code>,
+      <code>unsigned</code>. <code>unsigned int</code> gives up negative numbers to double the
+      positive range.</p>
+      <p>The format specifier is a <b>promise you make to printf</b>, and printf believes it
+      without checking. Pass an <code>int</code> and claim <code>%f</code> and the output is
+      nonsense, with no error at all.</p>
+    </div>
+    <div class="np"><span class="tag">चार आधारभूत प्रकार, र हरेकलाई छाप्ने सङ्केत</span>
+      <p><b>आकार भाषाले तय गरेको होइन।</b> पुरानो १६-bit Turbo C मा <code>int</code> २ byte हुन्छ
+      र आजका सबैमा ४। उत्तरमा "२ वा ४" लेख्नुहोस्, वा <code>sizeof(int)</code> ले compiler लाई
+      सोध्नुहोस् — पक्का थाहा पाउने एकमात्र भरपर्दो तरिका त्यही हो।</p>
+      <p>Modifier ले प्रकार तन्काउँछ: <code>short</code>, <code>long</code>, <code>signed</code>,
+      <code>unsigned</code>। <code>unsigned int</code> ले ऋणात्मक छाडेर धनात्मक दायरा दोब्बर
+      बनाउँछ।</p>
+      <p>Format specifier भनेको <b>तपाईंले printf सँग गरेको वाचा</b> हो, र printf ले नजाँची
+      पत्याउँछ। <code>int</code> पठाएर <code>%f</code> भन्नुभयो भने कुनै त्रुटिविनै बेकारको
+      output आउँछ।</p>
+    </div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Type</th><th>Holds<span class="np-cell">के राख्छ</span></th><th>Typical size<span class="np-cell">सामान्य आकार</span></th><th>Specifier</th></tr></thead>
+      <tbody>
+        <tr><td><code>int</code></td><td>whole numbers<span class="np-cell">पूर्ण सङ्ख्या</span></td><td>2 or 4 bytes<span class="np-cell">२ वा ४ byte</span></td><td><code>%d</code></td></tr>
+        <tr><td><code>float</code></td><td>real numbers, about 6 digits<span class="np-cell">दशमलव, करिब ६ अङ्क</span></td><td>4 bytes<span class="np-cell">४ byte</span></td><td><code>%f</code></td></tr>
+        <tr><td><code>double</code></td><td>real numbers, about 15 digits<span class="np-cell">दशमलव, करिब १५ अङ्क</span></td><td>8 bytes<span class="np-cell">८ byte</span></td><td><code>%lf</code></td></tr>
+        <tr><td><code>char</code></td><td>one character<span class="np-cell">एउटा अक्षर</span></td><td>1 byte<span class="np-cell">१ byte</span></td><td><code>%c</code></td></tr>
+        <tr><td>a string (<code>char</code> array)</td><td>text<span class="np-cell">पाठ</span></td><td>length + 1<span class="np-cell">लम्बाइ + १</span></td><td><code>%s</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Which format specifier does this need?</h4>
+      <p class="sim-goal">What you will learn: to match a specifier to a type quickly, which is
+      the single commonest one-mark question from this unit and the commonest silent bug in a
+      practical program.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: specifier लाई प्रकारसँग छिटो मिलाउन — यस
+      युनिटबाट सोधिने सबैभन्दा सामान्य एक अंकको प्रश्न र प्रयोगात्मक प्रोग्रामको सबैभन्दा सामान्य
+      चुपचाप रहने गल्ती यही हो।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cfmt" data-set="cformat"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Look at the declaration, not at the value. A variable declared <code>float</code> takes
+        <code>%f</code> even when it happens to hold a whole number.</p>
+        <span class="np-cell">मान होइन, घोषणा हेर्नुहोस्। <code>float</code> घोषित variable ले
+        पूर्ण सङ्ख्या राखेको भए पनि <code>%f</code> नै लिन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 2.6 ============ -->
+  <h3 class="topic" id="c-t26">2.6 &nbsp;<span class="t-en">Input and output statements</span><span class="t-ne"> — Input र output का statement</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Two library functions, and one ampersand</span>
+      <p><b><code>printf()</code></b> sends formatted text to the screen. Everything between the
+      quotes is printed literally except a <code>%</code> specifier, which is replaced by the next
+      argument, and an escape sequence, which becomes its character.</p>
+      <p><b><code>scanf()</code></b> reads formatted input from the keyboard. It uses the same
+      specifiers — and it needs the <b>address</b> of each variable, written with
+      <code>&amp;</code>, because a function that is given a value cannot change the caller's
+      variable. Unit 4 explains why in full; for now, <code>scanf</code> takes
+      <code>&amp;</code> and <code>printf</code> does not.</p>
+      <p>Two more you will see: <code>getchar()</code> reads one character and
+      <code>putchar()</code> writes one. Learning outcome 5.4 also mentions <code>gets()</code>
+      and <code>puts()</code> for whole lines; they are not on the official topic list and
+      <code>gets()</code> has been <b>removed from the C standard</b> because it cannot be used
+      safely. Use <code>fgets()</code> if you need a whole line.</p>
+    </div>
+    <div class="np"><span class="tag">दुई library function, र एउटा ampersand</span>
+      <p><b><code>printf()</code></b> ले ढाँचा मिलाएको पाठ पर्दामा पठाउँछ। उद्धरणभित्रको सबै
+      जस्ताको तस्तै छापिन्छ, तर <code>%</code> specifier को ठाउँमा अर्को argument आउँछ र escape
+      sequence आफ्नो अक्षर बन्छ।</p>
+      <p><b><code>scanf()</code></b> ले keyboard बाट ढाँचा मिलाएको input पढ्छ। यसले उही specifier
+      चलाउँछ — र हरेक variable को <b>ठेगाना</b> चाहिन्छ, जुन <code>&amp;</code> ले लेखिन्छ,
+      किनभने मान मात्र पाएको function ले बोलाउनेको variable बदल्न सक्दैन। किन भन्ने पूरा कुरा
+      युनिट ४ मा छ; अहिलेलाई — <code>scanf</code> लाई <code>&amp;</code> चाहिन्छ,
+      <code>printf</code> लाई चाहिँदैन।</p>
+      <p>अरू दुई पनि भेटिन्छन्: <code>getchar()</code> ले एउटा अक्षर पढ्छ र
+      <code>putchar()</code> ले एउटा लेख्छ। सिकाइ उपलब्धि ५.४ ले पूरै लाइनका लागि
+      <code>gets()</code> र <code>puts()</code> पनि भनेको छ; ती आधिकारिक विषयसूचीमा छैनन् र
+      <code>gets()</code> लाई <b>C मानकबाटै हटाइएको छ</b>, किनभने त्यसलाई सुरक्षित तरिकाले
+      चलाउनै मिल्दैन। पूरै लाइन चाहिए <code>fgets()</code> चलाउनुहोस्।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h4>Reading two numbers and adding them</h4>
+      <p class="sim-goal">What you will learn: what a variable holds before it is given a value,
+      exactly when scanf fills it, and why the result of the addition appears in sum rather than
+      anywhere else. Watch the variable rows, not the code.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: मान नपाउँदासम्म variable मा के हुन्छ, scanf ले
+      ठ्याक्कै कहिले भर्छ, र जोडको नतिजा अरू कतै नभई किन sum मा आउँछ। कोड होइन, variable का
+      पङ्क्ति हेर्नुहोस्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="readAdd"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Stop at step 1 and look at the three variables. "Garbage" is not a joke — it is the
+        real state of a declared and uninitialised variable in C, and printing one is a genuine
+        bug that produces a different wrong number every run.</p>
+        <span class="np-cell">चरण १ मा रोकिएर तीनै variable हेर्नुहोस्। "Garbage" ठट्टा होइन —
+        C मा घोषणा गरेर मान नदिएको variable को वास्तविक अवस्था त्यही हो, र त्यसलाई छाप्नु
+        साँच्चैको bug हो जसले हरेक पटक फरक गलत सङ्ख्या दिन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 2.7 ============ -->
+  <h3 class="topic" id="c-t27">2.7 &nbsp;<span class="t-en">Operators in C</span><span class="t-ne"> — C का operator</span></h3>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Five families the syllabus names</span>
+      <ul>
+        <li><b>Arithmetic</b> — <code>+ - * / %</code>. The modulus <code>%</code> gives the
+        remainder and works on <b>integers only</b>.</li>
+        <li><b>Relational</b> — <code>&lt; &gt; &lt;= &gt;= == !=</code>. Each answers true or
+        false. In C there is no separate true/false type: <b>zero is false and anything else is
+        true</b>.</li>
+        <li><b>Logical</b> — <code>&amp;&amp;</code> and, <code>||</code> or, <code>!</code> not.
+        They combine conditions that are already true or false.</li>
+        <li><b>Bitwise</b> — <code>&amp;</code> and, <code>|</code> or, <code>^</code> xor,
+        <code>~</code> not, <code>&lt;&lt;</code> left shift, <code>&gt;&gt;</code> right shift.
+        These work on the individual bits of a number.</li>
+        <li><b>Assignment</b> — <code>=</code> and its compound forms <code>+= -= *= /= %=</code>.
+        <code>x += 5</code> is exactly <code>x = x + 5</code>.</li>
+      </ul>
+      <p>Two more you will use constantly: <b>increment</b> <code>++</code> and <b>decrement</b>
+      <code>--</code>. In <code>i++</code> the old value is used and then i grows; in
+      <code>++i</code> i grows first. Alone on a line they are identical.</p>
+      <p><b>Precedence</b>, highest first: <code>()</code>, then <code>* / %</code>, then
+      <code>+ -</code>, then relational, then <code>&amp;&amp;</code>, then <code>||</code>, then
+      <code>=</code> last. When in doubt, use brackets — they cost nothing and they are never
+      wrong.</p>
+    </div>
+    <div class="np"><span class="tag">पाठ्यक्रमले नाम लिएका पाँच परिवार</span>
+      <ul>
+        <li><b>Arithmetic</b> — <code>+ - * / %</code>। Modulus <code>%</code> ले शेष दिन्छ र
+        <b>पूर्णाङ्कमा मात्र</b> चल्छ।</li>
+        <li><b>Relational</b> — <code>&lt; &gt; &lt;= &gt;= == !=</code>। हरेकले सत्य वा असत्य
+        दिन्छ। C मा छुट्टै true/false प्रकार छैन: <b>शून्य असत्य, अरू जे भए पनि सत्य</b>।</li>
+        <li><b>Logical</b> — <code>&amp;&amp;</code> and, <code>||</code> or, <code>!</code> not।
+        यिनले सत्य–असत्य भइसकेका सर्त जोड्छन्।</li>
+        <li><b>Bitwise</b> — <code>&amp;</code> and, <code>|</code> or, <code>^</code> xor,
+        <code>~</code> not, <code>&lt;&lt;</code> बायाँ सार्ने, <code>&gt;&gt;</code> दायाँ सार्ने।
+        यिनले सङ्ख्याका छुट्टाछुट्टै bit मा काम गर्छन्।</li>
+        <li><b>Assignment</b> — <code>=</code> र यसका मिश्रित रूप <code>+= -= *= /= %=</code>।
+        <code>x += 5</code> ठ्याक्कै <code>x = x + 5</code> हो।</li>
+      </ul>
+      <p>अरू दुई सधैं चलाइन्छन्: <b>increment</b> <code>++</code> र <b>decrement</b>
+      <code>--</code>। <code>i++</code> मा पुरानै मान प्रयोग भएर अनि i बढ्छ; <code>++i</code> मा
+      पहिले i बढ्छ। एक्लै लाइनमा भए दुवै उस्तै।</p>
+      <p><b>Precedence</b>, माथिल्लोदेखि: <code>()</code>, अनि <code>* / %</code>, अनि
+      <code>+ -</code>, अनि relational, अनि <code>&amp;&amp;</code>, अनि <code>||</code>, अन्त्यमा
+      <code>=</code>। अलमल भए कोष्ठक लगाउनुहोस् — यसको कुनै लागत छैन र यो कहिल्यै गलत
+      हुँदैन।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Step through it</span><span class="t-ne"><span class="t-en"> · </span>चरणबद्ध हेर्नुहोस्</span></p>
+      <h4>Integer division, and where the remainder goes</h4>
+      <p class="sim-goal">What you will learn: why 7 / 2 is 3 in C even when the answer is stored
+      in a float, and how % recovers the part that division discarded. This is the arithmetic
+      trap of the whole unit.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: नतिजा float मा राखे पनि C मा 7 / 2 किन 3 हुन्छ,
+      र भागले फालेको भाग % ले कसरी फिर्ता ल्याउँछ। पूरै युनिटको गणितीय पासो यही हो।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="crun" data-program="intDivide"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>Stop on the line that assigns to <code>share</code> and predict the value before
+        stepping. Almost everybody says 3.5 the first time.</p>
+        <span class="np-cell"><code>share</code> मा मान राख्ने लाइनमा रोकिएर अनुमान गर्नुहोस्।
+        पहिलो पटक झन्डै सबैले ३.५ भन्छन्।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h4>What does <code>a = 10 + 4 * 2 % 3;</code> store in a?
+      <span class="np-cell"><code>a = 10 + 4 * 2 % 3;</code> ले a मा के राख्छ?</span></h4>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">0, because everything is worked out left to right</button>
+      <button class="predict-opt" data-value="b">12</button>
+      <button class="predict-opt" data-value="c">11</button>
+    </div>
+    <div class="predict-feedback">
+      <p><b>12.</b> <code>*</code> and <code>%</code> have the <i>same</i> precedence, higher than
+      <code>+</code>, and they associate left to right. So <code>4 * 2</code> is 8, then
+      <code>8 % 3</code> is 2, then <code>10 + 2</code> is 12.</p>
+      <p>Option A is what left-to-right evaluation would give: 10 + 4 = 14, times 2 = 28, modulus
+      3 = 1 — not 0, and not the answer either. C does not read expressions the way a person reads
+      a sentence.</p>
+      <p>The lesson is not to memorise a table. It is that <code>a = 10 + ((4 * 2) % 3);</code>
+      says the same thing and cannot be misread, by the compiler or by you in six months.</p>
+      <span class="np-cell"><b>१२।</b> <code>*</code> र <code>%</code> को precedence
+      <i>उस्तै</i> छ, <code>+</code> भन्दा माथि, र बायाँबाट दायाँ जान्छन्। त्यसैले
+      <code>4 * 2</code> = 8, अनि <code>8 % 3</code> = 2, अनि <code>10 + 2</code> = 12।
+      विकल्प (क) ले बायाँबाट दायाँ गणना गरेको नतिजा जनाउँछ, र C ले वाक्य पढेजस्तै expression
+      पढ्दैन। सिकाइ तालिका कण्ठ गर्नु होइन — <code>a = 10 + ((4 * 2) % 3);</code> ले उही कुरा
+      भन्छ र यसलाई compiler ले पनि, छ महिनापछि तपाईंले पनि गलत पढ्नै सक्नुहुन्न।</span>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h4>Which family does this operator belong to?</h4>
+      <p class="sim-goal">What you will learn: to classify an operator from how it is used, which
+      is what "explain the operators in C with examples" is really asking for.
+      <span class="np-cell">तपाईंले के सिक्नुहुन्छ: प्रयोग हेरेर operator वर्गीकरण गर्न — "C का
+      operator उदाहरणसहित बुझाउनुहोस्" भन्ने प्रश्नले साँच्चै खोज्ने त्यही हो।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cop" data-set="coperator"></div>
+      <div class="sim-why">
+        <span class="h">How to use this</span>
+        <p>The trap is <code>&amp;</code> against <code>&amp;&amp;</code>. One ampersand works on
+        bits; two work on conditions. The same is true of <code>|</code> and <code>||</code>.</p>
+        <span class="np-cell">पासो <code>&amp;</code> र <code>&amp;&amp;</code> बीच छ। एउटा
+        ampersand ले bit मा काम गर्छ; दुईले सर्तमा। <code>|</code> र <code>||</code> को पनि
+        उस्तै।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> A complete program, part by part</div>
+    <p><b>Question:</b> write a C program that reads the radius of a circle and prints its area,
+    and name each part of the program.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Decide the data type for the radius before you open
+      this. If you choose int, work out what the program prints for a radius of 2.5.</span>
+      <span class="np-cell">खोल्नुअघि radius को data type निर्णय गर्नुहोस्। int छान्नुभयो भने
+      २.५ को radius मा प्रोग्रामले के छाप्छ निकाल्नुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <pre class="cpp">
+#include &lt;stdio.h&gt;          /* preprocessor directive + header file */
+
+#define PI 3.1416           /* a symbolic constant */
+
+int main()                  /* execution starts here */
+{
+    float r, area;          /* declaration: two float variables */
+
+    printf("Enter the radius: ");
+    scanf("%f", &amp;r);         /* &amp; gives scanf the ADDRESS of r */
+
+    area = PI * r * r;      /* assignment; PI is replaced before compiling */
+
+    printf("Area = %.2f\n", area);   /* %.2f = two decimal places */
+    return 0;               /* 0 means the program succeeded */
+}</pre>
+      <span class="wex-lbl">Output (if the user types 7)</span>
+      <pre class="out">Enter the radius: 7
+Area = 153.94</pre>
+      <p class="wex-note"><code>float</code>, not <code>int</code>: with <code>int r</code> a
+      radius of 2.5 would be stored as 2 and the area would be wrong with no warning. Note also
+      that <code>r</code> is multiplied by itself rather than written <code>r^2</code> —
+      <code>^</code> is the bitwise XOR operator in C, not a power, and <code>r^2</code> compiles
+      and gives a completely different number.
+      <span class="np-cell"><code>int</code> होइन <code>float</code>: <code>int r</code> भए
+      २.५ को radius २ मा भण्डारण हुन्थ्यो र क्षेत्रफल कुनै चेतावनीविनै गलत हुन्थ्यो। अर्को कुरा —
+      <code>r</code> लाई आफैंले गुणन गरिएको छ, <code>r^2</code> लेखिएको छैन; C मा
+      <code>^</code> घात होइन bitwise XOR हो, र <code>r^2</code> compile भएर बिलकुलै फरक
+      सङ्ख्या दिन्छ।</span></p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Finding the errors in a short program</div>
+    <p><b>Question:</b> this program will not compile, and when it is made to compile it still
+    prints the wrong thing. Find every fault.</p>
+    <!-- data-broken: this listing is WRONG on purpose and is the
+         question. tests/grade9-c.test.js skips it, because every other
+         code block in this subject is checked mechanically and this one
+         would fail all five of the checks it is demonstrating. -->
+    <pre class="cpp" data-broken>
+#include &lt;stdio.h&gt;;
+
+int main()
+{
+    int a, b
+    float avg;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", a, b);
+
+    avg = (a + b) / 2;
+    printf("Average = %d", avg);
+    return 0;
+}</pre>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Find at least four faults before opening this.
+      Only one of them stops the compiler — and the ones that do not are the expensive
+      ones.</span>
+      <span class="np-cell">खोल्नुअघि कम्तीमा चार गल्ती भेट्नुहोस्। त्यसमध्ये एउटैले मात्र
+      compiler रोक्छ — र नरोक्नेहरू नै महँगा हुन्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">LINE 1   #include &lt;stdio.h&gt;;
+         A directive is not a statement. The compiler
+         says "extra tokens at end of '#include'
+         directive" and carries on.            WARNING
+
+LINE 5   int a, b
+         The declaration has no semicolon. The error
+         is reported on the NEXT line.   COMPILE ERROR
+
+LINE 8   scanf("%d %d", a, b);
+         scanf needs the ADDRESS of each variable:
+         &amp;a and &amp;b. This compiles with no message
+         unless you ask for warnings, and then the
+         program misbehaves unpredictably.  RUN-TIME
+
+LINE 10  avg = (a + b) / 2;
+         a and b are int, so this is integer division
+         and the .5 is discarded before avg sees it.
+         No warning level mentions it.    WRONG ANSWER
+
+LINE 11  printf("Average = %d", avg);
+         avg is a float and %d claims an int. printf
+         believes the specifier, so this prints
+         nonsense. It should be %.2f.     WRONG OUTPUT</div>
+      <p class="wex-note">Only one of the five stops the build — the missing semicolon. That one
+      is free, because the compiler tells you where it is. The other four are what this subject is
+      really about, and the compiler's silence about them is the whole point: ask for warnings
+      (<code>gcc -Wall</code>) and it will mention line 8 and line 11; nothing at any warning
+      level mentions line 10. A program that compiles is a program whose grammar is right, and
+      nothing more.
+      <span class="np-cell">पाँचमध्ये एउटैले मात्र build रोक्छ — छुटेको semicolon। त्यो सस्तो
+      छ, किनभने compiler ले कहाँ छ भनिदिन्छ। बाँकी चार नै यो विषयको साँचो कुरा हुन्, र
+      त्यसबारे compiler को चुप्पी नै मुख्य पाठ हो: चेतावनी मागे (<code>gcc -Wall</code>) लाइन
+      ८ र लाइन ११ को कुरा आउँछ; लाइन १० को कुरा कुनै पनि स्तरमा आउँदैन। compile भएको
+      प्रोग्राम भनेको व्याकरण ठिक भएको प्रोग्राम हो, त्योभन्दा बढी होइन।</span></p>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h4>Mistakes that cost marks here</h4>
+    <ul>
+      <li><b>Forgetting the ampersand in scanf.</b> <code>scanf("%d", n)</code> compiles and then
+      behaves unpredictably. It is <code>&amp;n</code>.</li>
+      <li><b>Putting a semicolon after <code>#include</code> or after a function heading.</b>
+      Neither is a statement.</li>
+      <li><b>Expecting <code>7 / 2</code> to be 3.5.</b> Two integers give integer division.
+      Write <code>7.0 / 2</code> if you want 3.5.</li>
+      <li><b>Using <code>=</code> where <code>==</code> is meant.</b> <code>if (a = 5)</code>
+      assigns 5 and is always true. It is legal C, so nothing warns you.</li>
+      <li><b>Mixing up <code>'A'</code> and <code>"A"</code>.</b> Single quotes for one character,
+      double quotes for a string.</li>
+      <li><b>Claiming <code>int</code> is always 2 bytes.</b> Say "2 or 4, depending on the
+      compiler".</li>
+    </ul>
+    <span class="np-cell"><b>scanf मा ampersand बिर्सनु:</b> <code>scanf("%d", n)</code> compile
+    भएर अनिश्चित व्यवहार गर्छ; <code>&amp;n</code> लेख्नुहोस्।
+    <b><code>#include</code> वा function को शीर्षकपछि semicolon राख्नु:</b> ती statement होइनन्।
+    <b><code>7 / 2</code> लाई ३.५ ठान्नु:</b> दुई पूर्णाङ्कको भाग पूर्णाङ्कमै हुन्छ; ३.५ चाहिए
+    <code>7.0 / 2</code> लेख्नुहोस्। <b><code>==</code> को ठाउँमा <code>=</code> लेख्नु:</b>
+    <code>if (a = 5)</code> ले ५ राख्छ र सधैं सत्य हुन्छ — मान्य C भएकाले चेतावनी पनि आउँदैन।
+    <b><code>'A'</code> र <code>"A"</code> मिसाउनु:</b> एउटा अक्षरलाई एकल उद्धरण, string लाई
+    दोहोरो। <b><code>int</code> सधैं २ byte भन्नु:</b> "compiler अनुसार २ वा ४"
+    लेख्नुहोस्।</span>
+  </div>
+
+  <p class="hook"><span class="t-en"><b>Memory hook —</b> <i>scanf takes the address, printf
+    takes the value.</i> One ampersand, one whole category of bug.</span>
+    <span class="np-cell"><b>सम्झने तरिका —</b> <i>scanf ले ठेगाना लिन्छ, printf ले मान।</i>
+    एउटा ampersand, एउटा पूरै किसिमको bug।</span></p>
+
+  <!-- ============ PRACTICAL ============ -->
+  <h3 class="topic" id="c-prac2"><span class="t-en">Practical work — this unit's other 3 hours</span><span class="t-ne"> — प्रयोगात्मक काम — यस युनिटका अरू ३ घण्टा</span></h3>
+
+  <div class="practical">
+    <div class="h"><span class="pr-kind">Guided practical</span>The activity the curriculum suggests</div>
+    <p>From the curriculum's own list for Unit 2. <b>It cannot be done from this site</b> — it
+    needs a C compiler on a real computer. The stepper above shows you what the program does; it
+    does not compile anything, and compiling it yourself is the activity.
+    <span class="np-cell">पाठ्यक्रमकै युनिट २ को सूचीबाट। <b>यो यस साइटबाट गर्न मिल्दैन</b> —
+    साँच्चैको कम्प्युटरमा C compiler चाहिन्छ। माथिको stepper ले प्रोग्रामले के गर्छ देखाउँछ;
+    यसले केही compile गर्दैन, र आफैं compile गर्नु नै क्रियाकलाप हो।</span></p>
+
+    <div class="pr-act" data-practical="g9.c.p2.1">
+      <p><span class="pr-num">2.1</span> Write a program to display <code>HELLO WORLD!</code></p>
+      <p class="pr-need"><b>You need:</b> a computer with a C compiler — DEV C++, Code::Blocks,
+      Visual Studio or <code>gcc</code>. <b>This cannot be simulated</b> on this site.
+      <b>Builds on:</b> 2.2. <b>Hand in:</b> the source file and your practical record.
+      <b>Then go further, because three hours is a lot for one line:</b> add a second
+      <code>printf</code> and observe that the two messages run together on one line until you add
+      <code>\n</code>. Then change <code>main</code> to <code>Main</code> and record the exact
+      error message — meeting a compile error on purpose, while you know what caused it, is worth
+      more than avoiding one.
+      <span class="np-cell"><b>चाहिन्छ:</b> C compiler भएको कम्प्युटर — DEV C++, Code::Blocks,
+      Visual Studio वा <code>gcc</code>। <b>यो यहाँ simulate गर्न मिल्दैन।</b>
+      <b>आधार:</b> २.२। <b>बुझाउने:</b> source फाइल र प्रयोगात्मक अभिलेख।
+      <b>अनि अझ अगाडि बढ्नुहोस्, किनभने एक लाइनका लागि तीन घण्टा धेरै हो:</b> दोस्रो
+      <code>printf</code> थप्नुहोस् र <code>\n</code> नराखेसम्म दुवै सन्देश एउटै लाइनमा जोडिएको
+      हेर्नुहोस्। अनि <code>main</code> लाई <code>Main</code> बनाएर आउने त्रुटि सन्देश ठ्याक्कै
+      लेख्नुहोस् — कारण थाहा हुँदै जानीजानी compile त्रुटि भेट्नु, त्यसबाट बच्नुभन्दा बढी
+      काम लाग्छ।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ EXAM FOCUS ============ -->
+  <h3 class="topic" id="c-exam2"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne"> — परीक्षा केन्द्र — यस युनिटबाट के सोधिन्छ</span></h3>
+
+  <div class="exam-connect">
+    <p>This unit carries <b>7 of the 50 external marks</b> and 10 of the 64 theory hours. It is
+    the unit most multiple-choice questions come from, because every fact in it is small and
+    checkable: which specifier, which type, is this identifier legal, what is a token. The longer
+    questions ask for the features of C, the rules for an identifier, the data types with their
+    sizes, and the operators with examples.
+    <span class="np-cell">यो युनिटले <b>बाह्य ५० मध्ये ७ अंक</b> र ६४ मध्ये १० घण्टा ओगट्छ।
+    सबैभन्दा धेरै बहुवैकल्पिक प्रश्न यसैबाट आउँछन्, किनभने यसका हरेक तथ्य सानो र जाँच्न मिल्ने
+    छन्: कुन specifier, कुन प्रकार, यो identifier मान्य छ कि छैन, token भनेको के। लामा प्रश्नले
+    C का विशेषता, identifier का नियम, data type र तिनका आकार, अनि उदाहरणसहित operator
+    सोध्छन्।</span></p>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p>What is an identifier? Write any three rules for writing a valid identifier in C.
+    <span class="np-cell">Identifier भनेको के हो? C मा मान्य identifier लेख्ने कुनै तीन नियम
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca21">Show the answer</button>
+    <div class="ans" id="ca21">
+      <p>An <b>identifier</b> is the name given by the programmer to a variable, a function, an
+      array or any other user-defined item in a program.</p>
+      <p>Rules (any three):</p>
+      <p>1. It must begin with a letter or an underscore, not a digit.<br>
+      2. It may contain only letters, digits and underscores — no spaces or other special
+      characters.<br>
+      3. It cannot be a keyword.<br>
+      4. It is case sensitive, so <code>sum</code> and <code>Sum</code> are different.</p>
+      <span class="np-cell"><b>Identifier</b> भनेको प्रोग्राममा variable, function, array वा अन्य
+      प्रयोगकर्ता-परिभाषित वस्तुलाई प्रोग्रामरले दिएको नाम हो। नियम (कुनै तीन): १. अङ्कबाट होइन,
+      अक्षर वा underscore बाट सुरु हुनुपर्छ। २. अक्षर, अङ्क र underscore मात्र — खाली ठाउँ वा अरू
+      विशेष चिन्ह हुँदैन। ३. keyword हुन सक्दैन। ४. case sensitive हुन्छ, त्यसैले <code>sum</code>
+      र <code>Sum</code> फरक हुन्।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>Explain any four data types of C with their format specifiers and one example each.
+    <span class="np-cell">C का कुनै चार data type, तिनका format specifier र हरेकको एउटा उदाहरणसहित
+    बुझाउनुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca22">Show the answer</button>
+    <div class="ans" id="ca22">
+      <p><b>1. int</b> — stores whole numbers, positive or negative. Specifier <code>%d</code>.
+      Size 2 or 4 bytes depending on the compiler. Example: <code>int age = 15;</code></p>
+      <p><b>2. float</b> — stores real numbers with about six significant digits. Specifier
+      <code>%f</code>. Size 4 bytes. Example: <code>float height = 5.4;</code></p>
+      <p><b>3. double</b> — stores real numbers with about fifteen significant digits. Specifier
+      <code>%lf</code>. Size 8 bytes. Example: <code>double pi = 3.14159265;</code></p>
+      <p><b>4. char</b> — stores a single character in single quotes. Specifier <code>%c</code>.
+      Size 1 byte. Example: <code>char grade = 'A';</code></p>
+      <span class="np-cell"><b>१. int</b> — पूर्ण सङ्ख्या; <code>%d</code>; २ वा ४ byte;
+      <code>int age = 15;</code>। <b>२. float</b> — करिब ६ अङ्कको दशमलव; <code>%f</code>;
+      ४ byte; <code>float height = 5.4;</code>। <b>३. double</b> — करिब १५ अङ्कको दशमलव;
+      <code>%lf</code>; ८ byte; <code>double pi = 3.14159265;</code>। <b>४. char</b> — एकल
+      उद्धरणभित्रको एउटा अक्षर; <code>%c</code>; १ byte; <code>char grade = 'A';</code>।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p>Write a C program to read two integers and print their sum, difference, product and
+    remainder.
+    <span class="np-cell">दुई पूर्णाङ्क पढेर तिनको जोड, घटाउ, गुणन र शेष छाप्ने C प्रोग्राम
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="ca23">Show the answer</button>
+    <div class="ans" id="ca23">
+      <pre class="cpp">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a, b;
+
+    printf("Enter two integers: ");
+    scanf("%d %d", &amp;a, &amp;b);
+
+    printf("Sum        = %d\n", a + b);
+    printf("Difference = %d\n", a - b);
+    printf("Product    = %d\n", a * b);
+    printf("Remainder  = %d\n", a % b);
+    return 0;
+}</pre>
+      <p>Marks are for the header, <code>main</code> with its braces, the declaration, the two
+      ampersands in <code>scanf</code>, correct specifiers, and <code>return 0;</code>. Note that
+      <code>%</code> is used rather than <code>/</code> for the remainder, and that the program
+      would fail at run time if the user entered 0 for b.</p>
+      <span class="np-cell">अंक header, brace सहितको <code>main</code>, घोषणा,
+      <code>scanf</code> का दुई ampersand, सही specifier र <code>return 0;</code> का लागि हुन्।
+      शेषका लागि <code>/</code> होइन <code>%</code> प्रयोग भएको ध्यान दिनुहोस्, र प्रयोगकर्ताले
+      b मा ० हाले प्रोग्राम चल्दै गर्दा असफल हुन्थ्यो।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h4>Key points from this unit</h4>
+    <ul>
+      <li>C was written by Dennis Ritchie in 1972 at Bell Labs, for UNIX. It is case sensitive and
+      has 32 keywords.</li>
+      <li>Every program: <code>#include</code>, then <code>int main()</code>, then statements each
+      ending in a semicolon, then <code>return 0;</code>.</li>
+      <li>Six kinds of token: keywords, identifiers, constants, strings, operators, special
+      symbols.</li>
+      <li>An identifier starts with a letter or underscore, holds no spaces, and is not a
+      keyword.</li>
+      <li>Types and specifiers: <code>int</code> <code>%d</code>, <code>float</code>
+      <code>%f</code>, <code>double</code> <code>%lf</code>, <code>char</code> <code>%c</code>,
+      string <code>%s</code>.</li>
+      <li><code>scanf</code> needs <code>&amp;</code>; <code>printf</code> does not.</li>
+      <li>Five operator families: arithmetic, relational, logical, bitwise, assignment.</li>
+      <li>Integer division discards the remainder; <code>%</code> returns it.</li>
+    </ul>
+    <span class="np-cell">C लाई Dennis Ritchie ले १९७२ मा Bell Labs मा UNIX का लागि लेखे। यो
+    case sensitive छ र ३२ keyword छन्। हरेक प्रोग्राम: <code>#include</code>, अनि
+    <code>int main()</code>, अनि semicolon ले सकिने statement, अनि <code>return 0;</code>।
+    छ किसिमका token: keyword, identifier, constant, string, operator, special symbol। Identifier
+    अक्षर वा underscore बाट सुरु हुन्छ, खाली ठाउँ हुँदैन, keyword हुँदैन। प्रकार र specifier:
+    <code>int</code> <code>%d</code>, <code>float</code> <code>%f</code>, <code>double</code>
+    <code>%lf</code>, <code>char</code> <code>%c</code>, string <code>%s</code>।
+    <code>scanf</code> लाई <code>&amp;</code> चाहिन्छ; <code>printf</code> लाई चाहिँदैन। पाँच
+    operator परिवार: arithmetic, relational, logical, bitwise, assignment। Integer division ले
+    शेष फाल्छ; <code>%</code> ले त्यही फर्काउँछ।</span>
+  </div>
+</section>

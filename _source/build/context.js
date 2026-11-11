@@ -117,6 +117,8 @@ const RUNTIME_PUBLISHED = {
   'quiz.js': 'quiz.js',
   'services/progress.js': 'services/progress.js',
   'practical.js': 'practical.js',
+  'sim-cipher.js': 'sim-cipher.js',
+  'sim-crun.js': 'sim-crun.js',
   'services/revision.js': 'services/revision.js',
   'revise.js': 'revise.js',
   'services/quiz.js': 'services/quiz.js',
@@ -150,6 +152,7 @@ function section(id){
 const hero = read('content/sections/hero.html');
 
 const questionBanks = {
+  'grade9/c-programming':         require('../content/questions/grade9-c-programming.js'),
   'grade9/computer-fundamentals': require('../content/questions/grade9-computer-fundamentals.js'),
   'grade10/oop-cpp':        require('../content/questions/grade10-oop-cpp.js'),
   'grade10/digital-design': require('../content/questions/grade10-digital-design.js'),
@@ -162,10 +165,20 @@ const questionBanks = {
    runtime that consumes it never learns a subject's name. Adding a
    subject's practice means adding a file here, not touching an engine. */
 const practiceBanks = [
+  require('../content/practice/grade9-c-programming.js'),
   require('../content/practice/grade10-digital-design.js'),
   require('../content/practice/grade10-dbms.js'),
   require('../content/practice/grade10-oop-cpp.js'),
   require('../content/practice/grade10-hardware.js')
+].reduce((all, bank) => all.concat(bank), []);
+
+/* Stepper programs for runtime/sim-crun.js. Same shape as the question
+   banks and the practice banks, and here for the same reason: a C
+   listing with a hundred and twenty bilingual captions is content, not
+   runtime, and an author changing a caption should not be editing a
+   runtime module. */
+const programBanks = [
+  require('../content/programs/grade9-c-programming.js')
 ].reduce((all, bank) => all.concat(bank), []);
 
 /* ---------------- the learning map ----------------
@@ -430,6 +443,12 @@ const contentStats = (() => {
       hours:       units.reduce((n, u) => n + (u.hrs || 0), 0),
       diagrams:    used.size,
       animations:  [...used].filter(isAnimated).length,
+      /* The set itself, kept so a roll-up across subjects can take a
+         UNION instead of a sum. One diagram may be used by two
+         subjects — Grade 9 Unit 2 reuses Hardware's hwSystemUnits —
+         and adding the per-subject counts would then claim more
+         distinct diagrams than exist. */
+      diaSet:      used,
       simulators:  count(text, /class="sim"/g),
       retrieval:   count(text, /class="examq"/g),
       predictions: count(text, /class="predict"/g),
@@ -442,11 +461,20 @@ const contentStats = (() => {
   const sumWhere = test => {
     const out = { subjects: 0 };
     for (const f of FIELDS) out[f] = 0;
+    /* Diagrams are the one thing that must not be added up. Everything
+       else here — units, hours, questions, simulators — belongs to
+       exactly one subject, so a sum is the right answer. A diagram is a
+       shared asset, so the honest roll-up is how many DISTINCT ones the
+       selected subjects use between them. */
+    const dia = new Set();
     for (const key of Object.keys(bySubject)){
       if (!test(bySubject[key])) continue;
       out.subjects++;
       for (const f of FIELDS) out[f] += bySubject[key][f];
+      for (const d of bySubject[key].diaSet) dia.add(d);
     }
+    out.diagrams   = dia.size;
+    out.animations = [...dia].filter(isAnimated).length;
     return out;
   };
 
@@ -474,6 +502,7 @@ const contentStats = (() => {
 module.exports = {
   questionBanks,
   practiceBanks,
+  programBanks,
   prerequisites,
   learningMap,
   contentStats,

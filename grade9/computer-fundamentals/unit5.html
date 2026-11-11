@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Internet and its Application — Computer Fundamentals | </title>
+<meta name="description" content="Internet and its Application explained in simple English with a Nepali explanation beside it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%98%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<script>(function(d){var m="bi";try{var v=localStorage.getItem("rgsc.lang.v1");if(v==="ne"||v==="en"||v==="bi")m=v;}catch(e){}d.documentElement.setAttribute("data-lang",m);})(document);</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark" lang="ne">ज्ञ</span>
+      <span class="brand-txt">Gyansetu<small>Computer Engineering · CDC Nepal 2078</small></span>
+    </a>
+    <nav class="desknav"><a href="../../index.html">Home</a><div class="drop on"><button class="droptop" type="button">Grade 9 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade9/index.html">All Grade 9 subjects</a><a href="../../grade9/c-programming/index.html">C Language <span class="dn">· notes ready</span><small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html">Computer Fundamentals <span class="dn">· notes ready</span><small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a></div></div><div class="drop"><button class="droptop" type="button">Grade 10 <span class="car">&#9662;</span></button><div class="dropmenu"><a class="all" href="../../grade10/index.html">All Grade 10 subjects</a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ <span class="dn">· notes ready</span><small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair <span class="dn">· notes ready</span><small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS <span class="dn">· notes ready</span><small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design <span class="dn">· notes ready</span><small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a></div></div><span class="soonchip">Grade 11 · soon</span><span class="soonchip">Grade 12 · soon</span></nav>
+    <div class="langbar" role="radiogroup" aria-label="Language mode — भाषा छान्नुहोस्">
+      <button class="lang-opt" type="button" role="radio" data-lang-set="ne" aria-checked="false" title="Nepali"><span class="ll-full" lang="ne">नेपाली</span><span class="ll-mini" lang="ne">ने</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="bi" aria-checked="true" title="Both languages"><span class="ll-full">Bilingual</span><span class="ll-mini" lang="ne">दुवै</span></button>
+      <button class="lang-opt" type="button" role="radio" data-lang-set="en" aria-checked="false" title="English"><span class="ll-full">English</span><span class="ll-mini">EN</span></button>
+    </div>
+    <button class="hamburger" id="hamBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="mobilepanel" id="mobilePanel"><a href="../../index.html">Home <small lang="ne">गृहपृष्ठ</small></a><p class="mobilepanel-label" lang="ne">Grade 9 · कक्षा ९</p><a href="../../grade9/index.html">All Grade 9 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade9/c-programming/index.html">C Language ✓<small lang="ne">सी भाषामा प्रोग्रामिङका सिद्धान्त</small></a><a href="../../grade9/computer-fundamentals/index.html" class="on">Computer Fundamentals ✓<small lang="ne">कम्प्युटरका आधारभूत कुरा</small></a><a href="../../grade9/electro-system/index.html">Electro-System<small lang="ne">इलेक्ट्रो–सिस्टमका आधारभूत कुरा</small></a><a href="../../grade9/website-design/index.html">Website Design<small lang="ne">वेबसाइट डिजाइन</small></a><p class="mobilepanel-label" lang="ne">Grade 10 · कक्षा १०</p><a href="../../grade10/index.html">All Grade 10 subjects <small lang="ne">सबै विषय</small></a><a href="../../grade10/oop-cpp/index.html">DS & OOP with C++ ✓<small lang="ne">डाटा स्ट्रक्चर र OOP (C++)</small></a><a href="../../grade10/hardware/index.html">Hardware & Repair ✓<small lang="ne">कम्प्युटर हार्डवेयर र मर्मत</small></a><a href="../../grade10/dbms/index.html">DBMS ✓<small lang="ne">डाटाबेस व्यवस्थापन प्रणाली</small></a><a href="../../grade10/digital-design/index.html">Digital Design ✓<small lang="ne">डिजिटल डिजाइन र माइक्रोप्रोसेसर</small></a><p class="mobilepanel-label" lang="ne">Grade 11 · कक्षा ११</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a><p class="mobilepanel-label" lang="ne">Grade 12 · कक्षा १२</p><a class="dis" href="#" onclick="return false">Coming in the next phase <small lang="ne">अर्को चरणमा आउँदैछ</small></a></div>
+
+<div class="wrap">
+<nav class="crumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> <span class="sep">/</span> <a href="../index.html">Grade 9</a> <span class="sep">/</span> <a href="index.html">Computer Fundamentals</a> <span class="sep">/</span> <span>Internet and its Application</span></nav>
+<main id="main" tabindex="-1" data-subject="grade9/computer-fundamentals">
+<nav class="nav" style="margin-top:0"><a href="index.html">Overview</a><a href="unit1.html">1 · What a computer is</a><a href="unit2.html">2 · The parts and what each does</a><a href="unit3.html">3 · Software and the operating system</a><a href="unit4.html">4 · Memory, and why RAM forgets</a><a href="unit5.html" style="color:var(--yellow);border-color:var(--yellow)">5 · The Internet and its services</a><a href="unit6.html">6 · Five media, used together</a><a href="unit7.html">7 · AI, cloud, IoT and the rest</a><a href="revise.html">↻ · Revision</a><a href="quiz.html">? · Quiz</a></nav>
+<section id="cf-u5">
+  <div class="sec-head">
+    <div class="sec-num">5</div>
+    <div>
+      <h1>Internet and its Application</h1>
+      <p class="sec-sub" lang="ne">इन्टरनेट र यसको प्रयोग</p>
+    </div>
+    <span class="marks">10 hrs · 8 marks · 12 practical hrs</span>
+  </div>
+  <div class="rule"></div>
+
+  <div class="outcomes">
+    <h2><span class="t-en">By the end of this unit you can…</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यो युनिट सकिँदा तपाईं यी कुरा गर्न सक्नुहुनेछ</span></h2><div class="t-en">
+    <ol>
+      <li>Define the Internet in a way that does not confuse it with the Web.</li>
+      <li>State its advantages, and the disadvantages an honest answer includes.</li>
+      <li>List what is needed to connect, and say why each item is needed.</li>
+      <li>Explain what a modem does and why the name is MOdulator-DEModulator.</li>
+      <li>Name the nine Internet services in the syllabus and match each to a task.</li>
+      <li>Give a Nepali example of e-commerce and of e-governance.</li>
+    </ol>
+    </div><span class="np-cell" lang="ne">यो युनिट सकिँदा: इन्टरनेटलाई वेबसँग नमिसाई परिभाषित गर्न, फाइदा र
+    इमानदार उत्तरले समेट्ने बेफाइदा भन्न, जोड्न के–के चाहिन्छ र किन चाहिन्छ भन्न, modem ले के
+    गर्छ र नाम MOdulator-DEModulator किन हो बुझाउन, पाठ्यक्रमका नौ इन्टरनेट सेवा नाम लिई कामसँग
+    मिलाउन, र e-commerce तथा e-governance का नेपाली उदाहरण दिन सक्नुहुनेछ।</span>
+  </div>
+
+  <!-- ============ 5.1 ============ -->
+  <h2 class="topic" id="cf-t51">5.1 &nbsp;<span class="t-en">What the Internet is, and what it gives you</span><span class="t-ne" lang="ne"> — इन्टरनेट के हो, र यसले के दिन्छ</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">A network of networks</span>
+      <p>The <b>Internet</b> is a global network of computer networks, connected by agreed rules
+      called <b>protocols</b>, that lets any connected computer exchange information with any
+      other.</p>
+      <p>The word to be careful with is <b>Web</b>. The Internet is the <b>connection</b> — the
+      cables, the routers, the agreement on how to address a message. The <b>World Wide Web</b>
+      is <b>one service</b> that runs on it, the one made of pages and links. E-mail is another
+      service; so is file transfer. Saying "the Internet is a collection of websites" loses the
+      mark, because it describes one service and calls it the whole network.</p>
+      <p><b>Advantages:</b> information on almost any subject within seconds; communication by
+      e-mail, message and video call at the price of the connection rather than the distance;
+      online learning; e-commerce; e-governance; entertainment; and work that can be done from
+      anywhere.</p>
+      <p><b>Disadvantages,</b> which a four-mark answer should include: false information
+      presented as fact; fraud and theft of money or identity; viruses; loss of privacy; wasted
+      time; and content that is not suitable for children. A student who writes only advantages
+      has answered half the question.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">नेटवर्कहरूको नेटवर्क</span>
+      <p><b lang="ne">इन्टरनेट</b> भनेको कम्प्युटर नेटवर्कहरूको विश्वव्यापी नेटवर्क हो, जुन
+      <b lang="ne">प्रोटोकल</b> भनिने सहमत नियमले जोडिएको हुन्छ र जोडिएको जुनसुकै कम्प्युटरले अर्कोसँग
+      सूचना साट्न सक्छ।</p>
+      <p lang="ne">ध्यान दिनुपर्ने शब्द <b lang="ne">वेब</b> हो। इन्टरनेट भनेको <b lang="ne">जडान</b> हो — तार, राउटर, सन्देशको
+      ठेगाना कसरी लेख्ने भन्ने सहमति। <b>World Wide Web</b> त्यसमाथि चल्ने <b lang="ne">एउटा सेवा</b> हो,
+      पृष्ठ र लिंकले बनेको। E-mail अर्को सेवा; file transfer अर्को। "इन्टरनेट भनेको वेबसाइटहरूको
+      संग्रह" भन्दा अंक जान्छ, किनभने त्यसले एउटा सेवालाई पूरै नेटवर्क भनेको हुन्छ।</p>
+      <p><b lang="ne">फाइदा:</b> झन्डै जुनसुकै विषयको सूचना सेकेन्डमै; इमेल, सन्देश र भिडियो कलबाट
+      दूरीको होइन, जडानको मूल्यमा सञ्चार; अनलाइन सिकाइ; e-commerce; e-governance; मनोरञ्जन; र
+      जहाँबाट पनि गर्न मिल्ने काम।</p>
+      <p><b lang="ne">बेफाइदा,</b> जुन ४ अंकको उत्तरमा हुनुपर्छ: तथ्य जस्तो देखाइएको झूटो सूचना; ठगी र
+      पैसा वा परिचयको चोरी; भाइरस; गोपनीयताको क्षति; समय खेर जानु; र बालबालिकालाई नसुहाउने
+      सामग्री। फाइदा मात्र लेख्ने विद्यार्थीले आधा प्रश्नको उत्तर दिएको हुन्छ।</p>
+    </div>
+  </div>
+
+  <!-- ============ 5.2 ============ -->
+  <h2 class="topic" id="cf-t52">5.2 &nbsp;<span class="t-en">What you need to connect</span><span class="t-ne" lang="ne"> — जोड्न के–के चाहिन्छ</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">A chain, and every link is required</span>
+      <p>The requirements group into <b>hardware</b>, <b>software</b> and a <b>service you pay
+      for</b>.</p>
+      <p><b>Hardware:</b> a computer or phone; a <b>modem or router</b>; and a line — telephone
+      wire, fibre-optic cable, coaxial cable, or a wireless or mobile-data link. A
+      <b>network interface card</b> or Wi-Fi adapter sits inside the device.</p>
+      <p><b>Software:</b> an operating system with <b>TCP/IP</b> — the protocols that say how a
+      message is addressed and delivered — and a <b>browser</b> or other application to use the
+      service you want.</p>
+      <p><b>Service:</b> an account with an <b>Internet Service Provider (ISP)</b> — in Nepal,
+      Nepal Telecom, WorldLink, Subisu, Vianet and others. The ISP already has a connection to
+      the wider Internet; you are renting a share of it.</p>
+      <p>The <b>modem</b> is the part worth understanding rather than memorising. Its name is
+      <b>MO</b>dulator-<b>DEM</b>odulator. A computer produces digital signals; a telephone line
+      carries a different kind of signal. Modulating turns the computer's digital output into
+      something the line can carry; demodulating turns the arriving signal back into digital. It
+      is a translator, and it has to work in both directions.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">एउटा शृंखला, हरेक कडी अनिवार्य</span>
+      <p lang="ne">आवश्यकता <b lang="ne">हार्डवेयर</b>, <b lang="ne">सफ्टवेयर</b> र <b lang="ne">तिर्नुपर्ने सेवा</b> मा बाँडिन्छ।</p>
+      <p><b lang="ne">हार्डवेयर:</b> कम्प्युटर वा फोन; <b lang="ne">modem वा router</b>; र एउटा लाइन — टेलिफोन तार,
+      अप्टिकल फाइबर, कोएक्सियल केबल, वा वायरलेस/मोबाइल डाटा। उपकरणभित्र <b>network interface
+      card</b> वा Wi-Fi adapter हुन्छ।</p>
+      <p><b lang="ne">सफ्टवेयर:</b> <b>TCP/IP</b> भएको operating system — सन्देशको ठेगाना कसरी लेख्ने र
+      पुर्‍याउने भन्ने प्रोटोकल — र चाहिएको सेवा चलाउन <b>browser</b> वा अर्को app।</p>
+      <p><b lang="ne">सेवा:</b> <b>Internet Service Provider (ISP)</b> को खाता — नेपालमा Nepal Telecom,
+      WorldLink, Subisu, Vianet आदि। ISP सँग विश्व इन्टरनेटको जडान छँदै छ; तपाईं त्यसैको एक
+      अंश भाडामा लिनुहुन्छ।</p>
+      <p lang="ne">घोक्नुभन्दा बुझ्नुपर्ने भाग <b>modem</b> हो। नाम नै <b>MO</b>dulator-<b>DEM</b>odulator।
+      कम्प्युटरले digital सङ्केत निकाल्छ; टेलिफोन लाइनले अर्कै किसिमको सङ्केत बोक्छ। Modulate
+      गर्नु भनेको कम्प्युटरको digital आउटपुटलाई लाइनले बोक्न सक्ने रूपमा बदल्नु; demodulate भनेको
+      आउने सङ्केतलाई फेरि digital बनाउनु। यो अनुवादक हो, र दुवै दिशामा काम गर्नैपर्छ।</p>
+    </div>
+  </div>
+
+  <figure class="fig">
+    
+<svg viewBox="0 0 700 300" role="img" aria-labelledby="t-cfnet">
+  <title id="t-cfnet">The chain of requirements for an Internet connection: a computer or phone,
+  a modem or router that converts the signal, a telephone or fibre or wireless line, an Internet
+  Service Provider, and finally the wider Internet, with browser software needed on the device
+  itself</title>
+  <text class="f-ttl" x="10" y="20">EACH LINK IS A REQUIREMENT — and the chain shows why each one is needed</text>
+
+  <rect class="f-box-c" x="18" y="92" width="110" height="74" rx="8"/>
+  <text class="f-lbl" x="73" y="116" style="font-size:11px">DEVICE</text>
+  <text class="f-lbl" x="73" y="132" style="font-size:8px">computer, phone</text>
+  <text class="f-lbl" x="73" y="146" style="font-size:8px">+ browser or app</text>
+  <text class="f-lbl" x="73" y="159" style="font-size:8px">+ TCP/IP software</text>
+
+  <path class="f-arr" d="M130 128 L166 128"/>
+
+  <rect class="f-box-g" x="168" y="92" width="118" height="74" rx="8"/>
+  <text class="f-lbl" x="227" y="116" style="font-size:11px">MODEM / ROUTER</text>
+  <text class="f-lbl" x="227" y="134" style="font-size:8px">converts the computer's</text>
+  <text class="f-lbl" x="227" y="147" style="font-size:8px">digital signal to the line's</text>
+  <text class="f-lbl" x="227" y="160" style="font-size:8px">signal, and back again</text>
+
+  <path class="f-arr" d="M288 128 L324 128"/>
+
+  <rect class="f-box-y" x="326" y="92" width="112" height="74" rx="8"/>
+  <text class="f-lbl" x="382" y="116" style="font-size:11px">THE LINE</text>
+  <text class="f-lbl" x="382" y="134" style="font-size:8px">telephone wire, fibre,</text>
+  <text class="f-lbl" x="382" y="147" style="font-size:8px">cable, or wireless /</text>
+  <text class="f-lbl" x="382" y="160" style="font-size:8px">mobile data</text>
+
+  <path class="f-arr" d="M440 128 L476 128"/>
+
+  <rect class="f-box-g" x="478" y="92" width="96" height="74" rx="8"/>
+  <text class="f-lbl" x="526" y="116" style="font-size:11px">ISP</text>
+  <text class="f-lbl" x="526" y="134" style="font-size:8px">the company you</text>
+  <text class="f-lbl" x="526" y="147" style="font-size:8px">pay — it has the</text>
+  <text class="f-lbl" x="526" y="160" style="font-size:8px">connection you rent</text>
+
+  <path class="f-arr" d="M576 128 L612 128"/>
+
+  <rect class="f-box" x="614" y="92" width="68" height="74" rx="8"/>
+  <text class="f-lbl" x="648" y="124" style="font-size:10px">THE</text>
+  <text class="f-lbl" x="648" y="140" style="font-size:10px">INTERNET</text>
+
+  <rect class="f-box-y" x="18" y="196" width="664" height="34" rx="6"/>
+  <text class="f-lbl" x="350" y="211" style="font-size:9.5px">MODEM = MOdulator + DEModulator. Modulate: digital out of the computer becomes a signal the line carries.</text>
+  <text class="f-lbl" x="350" y="225" style="font-size:9.5px">Demodulate: the arriving signal becomes digital again. A fibre line still needs one — the signal is light, not voltage.</text>
+
+  <rect class="f-box" x="18" y="240" width="664" height="34" rx="6"/>
+  <text class="f-lbl" x="350" y="255" style="font-size:9.5px">Remove any one link and there is no connection. That is why the examination answer is a LIST — but each item is here for a reason.</text>
+  <text class="f-lbl" x="350" y="269" style="font-size:9.5px">Hardware: device, modem/router, line. Software: browser or app, and the TCP/IP protocols. Service: an ISP account.</text>
+</svg>
+    <figcaption><span class="t-en">Each box is one item on the requirements list, standing where it is needed.
+    Remove any one and there is no connection.
+    </span><span class="np-cell" lang="ne">हरेक बाकस आवश्यकताको सूचीको एउटा वस्तु हो, चाहिने ठाउँमै उभिएको।
+    कुनै एउटा हटाए जडान हुँदैन।</span></figcaption>
+  </figure>
+
+  <!-- ============ 5.3 ============ -->
+  <h2 class="topic" id="cf-t53">5.3 &nbsp;<span class="t-en">Applications of the Internet</span><span class="t-ne" lang="ne"> — इन्टरनेटका प्रयोग</span></h2>
+
+  <div class="pair">
+    <div class="en"><span class="tag">Nine services, each solving a different problem</span>
+      <p>The syllabus names nine. They are easiest to hold if you learn <b>the problem each one
+      solved</b>.</p>
+      <ul>
+        <li><b>WWW (World Wide Web)</b> — pages of text, pictures and video, joined by links and
+        read with a browser. The service most people mean when they say "the Internet".</li>
+        <li><b>E-mail</b> — sending a written message to an address that is waiting for it,
+        whether or not the other person is online. Store and forward.</li>
+        <li><b>Newsgroup</b> — a public discussion area on a topic, where messages are posted for
+        everybody rather than sent to one person. The ancestor of today's online forums.</li>
+        <li><b>Telnet</b> — logging in to a distant computer and using it as though you were
+        sitting at it. Old, and insecure because it sends passwords unencrypted.</li>
+        <li><b>IRC (Internet Relay Chat)</b> — live typed conversation in channels, in real time.
+        The ancestor of messaging apps.</li>
+        <li><b>E-commerce</b> — buying and selling over the Internet: Daraz, SastoDeal, airline
+        booking, eSewa and Khalti payments.</li>
+        <li><b>Search engine</b> — a service that indexes pages and finds the ones matching your
+        words. Google, Bing. Without one the Web would be unusable.</li>
+        <li><b>E-governance</b> — government services delivered online: the Nepal PAN
+        registration portal, online passport applications, result publication, land-revenue
+        payment.</li>
+        <li><b>Remote control</b> — taking over another computer's screen and keyboard across the
+        network to fix it or to use software on it.</li>
+      </ul>
+      <p><b>Telnet and remote control sound the same and are not.</b> Telnet gives you a text
+      command line on the far machine; remote control gives you its whole desktop as a picture.</p>
+    </div>
+    <div class="np" lang="ne"><span class="tag" lang="ne">नौ सेवा, हरेकले फरक समस्या हल गर्ने</span>
+      <p lang="ne">पाठ्यक्रमले नौ वटा नाम लिन्छ। <b lang="ne">हरेकले कुन समस्या हल गर्‍यो</b> सिक्यो भने सम्झन
+      सजिलो हुन्छ।</p>
+      <ul>
+        <li><b>WWW</b> — पाठ, तस्बिर र भिडियोका पृष्ठ, लिंकले जोडिएका, browser ले पढिने।
+        "इन्टरनेट" भन्दा धेरैले बुझ्ने सेवा यही हो।</li>
+        <li><b>E-mail</b> — पर्खिरहेको ठेगानामा लिखित सन्देश पठाउने, अर्को व्यक्ति अनलाइन होस्
+        या नहोस्। Store and forward।</li>
+        <li><b>Newsgroup</b> — कुनै विषयमा सार्वजनिक छलफलको ठाउँ, जहाँ सन्देश एक जनालाई होइन
+        सबैका लागि राखिन्छ। आजका अनलाइन फोरमका पुर्खा।</li>
+        <li><b>Telnet</b> — टाढाको कम्प्युटरमा लगइन गरी त्यहीँ बसेजस्तै चलाउने। पुरानो, र
+        पासवर्ड नलुकाई पठाउने भएकाले असुरक्षित।</li>
+        <li><b>IRC</b> — च्यानलमा वास्तविक समयमै टाइप गरेर गरिने कुराकानी। Messaging app का
+        पुर्खा।</li>
+        <li><b>E-commerce</b> — इन्टरनेटबाट किनबेच: Daraz, SastoDeal, हवाई टिकट, eSewa र Khalti
+        भुक्तानी।</li>
+        <li><b>Search engine</b> — पृष्ठको सूची बनाएर तपाईंका शब्दसँग मिल्ने खोज्ने सेवा।
+        Google, Bing। यो नभए वेब चलाउनै गाह्रो हुन्थ्यो।</li>
+        <li><b>E-governance</b> — सरकारी सेवा अनलाइन: PAN दर्ता पोर्टल, अनलाइन राहदानी आवेदन,
+        नतिजा प्रकाशन, मालपोत भुक्तानी।</li>
+        <li><b>Remote control</b> — नेटवर्कबाटै अर्को कम्प्युटरको पर्दा र किबोर्ड चलाएर मर्मत
+        गर्ने वा त्यहाँको सफ्टवेयर प्रयोग गर्ने।</li>
+      </ul>
+      <p><b lang="ne">Telnet र remote control उस्तै सुनिन्छन्, उस्तै होइनन्।</b> Telnet ले पारिको मेसिनमा
+      पाठको command line दिन्छ; remote control ले पूरै डेस्कटप तस्बिरका रूपमा।</p>
+    </div>
+  </div>
+
+  <div class="sim">
+    <div class="sim-head">
+      <p class="sim-kicker"><span class="t-en">Practise the judgement</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>निर्णय अभ्यास गर्नुहोस्</span></p>
+      <h3>Which Internet service does this task need?</h3>
+      <p class="sim-goal"><span class="t-en">What you will learn: to match a real task to the service designed for
+      it. Two of the cases are the pair students most often swap.
+      </span><span class="np-cell" lang="ne">तपाईंले के सिक्नुहुन्छ: वास्तविक काम र त्यसैका लागि बनेको सेवा
+      मिलाउन। दुई केस विद्यार्थीले सबैभन्दा धेरै साटिने जोडी हुन्।</span></p>
+    </div>
+    <div class="sim-body">
+      <div class="drill" id="dr-cfnet" data-set="cfinternet"></div>
+      <div class="sim-why"><div class="t-en">
+        <span class="h">How to use this</span>
+        <p>Ask who the message is for. One named person, everybody, a machine you are operating,
+        or a shop you are paying? The service follows from the answer.</p>
+        </div><span class="np-cell" lang="ne">सन्देश कसका लागि हो सोध्नुहोस्। एक जना तोकिएको व्यक्ति, सबै, तपाईंले
+        चलाइरहेको मेसिन, कि तिर्न लागेको पसल? उत्तरबाटै सेवा निस्कन्छ।</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="predict" data-answer="b">
+    <p class="predict-q"><span class="t-en">Predict first</span><span class="t-ne" lang="ne"><span class="t-en"> · </span>पहिले अनुमान गर्नुहोस्</span></p>
+    <h3><span class="t-en">A household has a computer, a router, a fibre line to the house and a browser installed —
+      but no account with any ISP. Can it reach the Internet?
+      </span><span class="np-cell" lang="ne">एउटा घरमा कम्प्युटर, router, घरसम्म फाइबर लाइन र browser सबै छन् —
+      तर कुनै ISP को खाता छैन। के इन्टरनेट चल्छ?</span></h3>
+    <div class="predict-options">
+      <button class="predict-opt" data-value="a">Yes — all the hardware and software are present</button>
+      <button class="predict-opt" data-value="b">No — the ISP is a requirement, not an optional extra</button>
+      <button class="predict-opt" data-value="c">Only for browsing, not for e-mail</button>
+    </div>
+    <div class="predict-feedback"><div class="t-en">
+      <p><b>No.</b> The fibre runs to the house and stops there. An ISP is the company that
+      already has a connection to the wider Internet; what you buy is a share of theirs. Without
+      an account the line reaches a door that will not open.</p>
+      <p>This is why the ISP belongs in the requirements list and why leaving it out is the
+      commonest way to lose a mark on that question. The hardware alone connects you to nothing
+      — which is also, in plainer terms, why the connection stops when the bill is unpaid.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">चल्दैन।</b> फाइबर घरसम्म आएर त्यहीँ टुङ्गिन्छ। ISP त्यो कम्पनी
+      हो जोसँग विश्व इन्टरनेटको जडान पहिल्यै छ; तपाईंले किन्ने भनेको त्यसकै एक अंश हो। खाता
+      नभए लाइन नखुल्ने ढोकासम्म पुग्छ। त्यसैले आवश्यकताको सूचीमा ISP पर्छ र यही छुटाउनु अंक
+      गुमाउने सबैभन्दा सामान्य तरिका हो। सीधा भाषामा भन्दा — बिल नतिरे जडान किन रोकिन्छ भन्ने
+      कारण पनि यही हो।</span>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 1</span> Choosing the service for four tasks</div>
+    <p><b>Question:</b> match each task to the Internet service it needs — (a) send your homework
+    to one teacher, (b) pay the municipality, (c) find pages about the Himalayas, (d) a technician
+    in Pokhara repairs a computer in Butwal.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">For each one ask who the message is for: one named
+      person, everybody, the state, or a machine you are operating. Write your four answers
+      first.</span>
+      <span class="np-cell" lang="ne">हरेकमा सन्देश कसका लागि हो सोध्नुहोस्: एक जना तोकिएको व्यक्ति, सबै,
+      राज्य, कि तपाईंले चलाइरहेको मेसिन। पहिले चार उत्तर लेख्नुहोस्।</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">(a) homework to one teacher    E-MAIL
+    one named recipient, and it waits until they look
+
+(b) pay the municipality       E-GOVERNANCE
+    a government service online. Money moves, which makes
+    e-commerce tempting — but e-commerce is customer and
+    business, not paying the state what you owe
+
+(c) find pages                 SEARCH ENGINE
+    the Web holds the pages; the search engine is what
+    makes finding one among billions possible
+
+(d) repair a distant computer  REMOTE CONTROL
+    the whole desktop. Telnet would give only a text
+    command line</div>
+      <p class="wex-note"><span class="t-en">Two of these — (b) and (d) — are the ones most often answered wrongly,
+      and both are wrong for the same reason: the obvious word is chosen before the question is
+      read to the end.
+      </span><span class="np-cell" lang="ne">यीमध्ये (ख) र (घ) सबैभन्दा धेरै गलत हुन्छन्, र दुवै एउटै कारणले:
+      प्रश्न अन्त्यसम्म नपढी स्पष्ट देखिने शब्द छानिन्छ।</span></p>
+    </div>
+  </div>
+
+  <div class="wex">
+    <div class="wex-h"><span class="wex-n">Example 2</span> Why a village school chooses mobile data</div>
+    <p><b>Question:</b> a school is twelve kilometres from the nearest fibre line. Explain which
+    requirement is the obstacle, and what it can use instead.</p>
+    <div class="wex-gate">
+      <p class="wex-think"><span class="t-en">Go through the requirements one at a time and find
+      the one that fails. Which items are unaffected by distance?</span>
+      <span class="np-cell" lang="ne">आवश्यकता एक–एक गरी हेर्नुहोस् र कुन पूरा हुँदैन भेट्टाउनुहोस्।
+      दूरीले कुन–कुनलाई असर गर्दैन?</span></p>
+    </div>
+    <div class="wex-out">
+      <span class="wex-lbl">Working</span>
+      <div class="out">device          available        not the obstacle
+browser, TCP/IP available        not the obstacle
+ISP account     can be bought    not the obstacle
+THE LINE        fibre is 12 km away — THIS is the obstacle
+
+Alternative lines that do not need a cable to the building:
+  · mobile data (4G) through a router with a SIM
+  · a wireless link to a tower within sight
+
+The modem/router is still required. A mobile router does the
+same modulating job for a radio signal that a fibre modem
+does for light.</div>
+      <p class="wex-note"><span class="t-en">The requirements list is not a formality. Working through it names the
+      single thing that is missing, which is what an engineer — or an examiner — is asking for.
+      </span><span class="np-cell" lang="ne">आवश्यकताको सूची औपचारिकता होइन। एक–एक गरी हेर्दा छुटेको ठ्याक्कै
+      एउटा कुरा थाहा हुन्छ — इन्जिनियर वा परीक्षकले खोजेकै त्यही हो।</span></p>
+    </div>
+  </div>
+
+  <div class="mistake">
+    <h3><span class="t-en">Mistakes that cost marks here</span><span class="t-ne" lang="ne"><span class="t-en"> — </span>यहाँ अङ्क गुमाउने गल्तीहरू</span></h3><div class="t-en">
+    <ul>
+      <li><b>Saying the Internet and the WWW are the same.</b> The Internet is the network; the
+      Web is one service running on it.</li>
+      <li><b>Listing only advantages of the Internet.</b> A question worth four marks almost
+      always wants disadvantages too.</li>
+      <li><b>Forgetting the ISP in the requirements list.</b> The hardware alone connects you to
+      nothing.</li>
+      <li><b>Saying a modem is only for telephone lines.</b> Any line that does not carry raw
+      digital signals needs conversion — fibre included.</li>
+      <li><b>Mixing up Telnet and remote control.</b> Telnet gives a command line; remote control
+      gives a desktop.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne"><b lang="ne">इन्टरनेट र WWW उस्तै भन्नु:</b> इन्टरनेट नेटवर्क हो, वेब त्यसमाथिको
+    एउटा सेवा। <b lang="ne">फाइदा मात्र लेख्नु:</b> ४ अंकको प्रश्नले प्रायः बेफाइदा पनि खोज्छ।
+    <b lang="ne">ISP छुटाउनु:</b> हार्डवेयरले मात्र कसैसँग जोड्दैन। <b lang="ne">Modem टेलिफोन लाइनका लागि मात्र
+    भन्नु:</b> कच्चा digital नबोक्ने हरेक लाइनलाई रूपान्तरण चाहिन्छ। <b lang="ne">Telnet र remote control
+    मिसाउनु:</b> Telnet ले command line, remote control ले डेस्कटप।</span>
+  </div>
+
+  <p class="hook"><span class="t-en"><b>Memory hook —</b> The Internet is the road. The Web is
+    one kind of vehicle on it.</span>
+    <span class="np-cell" lang="ne"><b lang="ne">सम्झने तरिका —</b> इन्टरनेट सडक हो। वेब त्यसमा गुड्ने एक किसिमको
+    सवारी।</span></p>
+
+  <!-- ============ PRACTICAL ============ -->
+  <h2 class="topic" id="cf-prac5"><span class="t-en">Practical work — this unit's other 12 hours</span><span class="t-ne" lang="ne"> — प्रयोगात्मक काम — यस युनिटका अरू १२ घण्टा</span></h2>
+
+  <div class="practical">
+    <div class="h"><span class="pr-kind">Guided practical</span>The three activities the curriculum suggests</div>
+    <p><span class="t-en">From the curriculum's own list for Unit 5, which calls these <b>samples</b>. This unit has
+    <b>the largest practical allocation in the subject — 12 hours — for only three activities</b>,
+    so each is meant to be substantial. 5.3 is the strongest project-work candidate here.
+    </span><span class="np-cell" lang="ne">पाठ्यक्रमकै युनिट ५ को सूचीबाट; यसले यिनलाई <b lang="ne">नमुना</b> भनेको छ। यस
+    युनिटमा <b lang="ne">विषयकै सबैभन्दा धेरै — १२ घण्टा — तर तीन मात्र क्रियाकलाप</b> छन्, त्यसैले हरेक
+    ठूलो हुनुपर्ने अपेक्षा छ। यहाँ ५.३ प्रोजेक्ट कामका लागि सबैभन्दा उपयुक्त छ।</span></p>
+
+    <div class="pr-act" data-practical="g9.cf.p5.1">
+      <p><span class="pr-num">5.1</span> Collect the names of the ISPs in your locality.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> to ask around your neighbourhood — shops, neighbours,
+      your own household bill. <b>No internet connection is required to do this</b>, which
+      matters if yours is unreliable. <b>Hand in:</b> the list, and for each one the monthly
+      price and the speed advertised, if you can find out. <b>Builds on:</b> 5.2.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> छिमेकमा सोध्ने — पसल, छिमेकी, आफ्नै घरको बिल।
+      <b lang="ne">यसका लागि इन्टरनेट जडान चाहिँदैन</b>, जुन तपाईंको जडान भरपर्दो नभए महत्त्वपूर्ण हुन्छ।
+      <b lang="ne">बुझाउने:</b> सूची, र सकेसम्म हरेकको मासिक मूल्य तथा विज्ञापित गति।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p5.2">
+      <p><span class="pr-num">5.2</span> Make a presentation on Internet applications.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> presentation software or paper slides. <b>Builds on:</b>
+      5.3. <b>Hand in:</b> the file and your notes. Cover all nine, and give each a Nepali
+      example — that is what turns a list into an explanation.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> प्रस्तुतीकरण सफ्टवेयर वा कागजकै स्लाइड। <b lang="ne">आधार:</b>
+      ५.३। <b lang="ne">बुझाउने:</b> फाइल र नोट। नौवटै समेट्नुहोस् र हरेकलाई नेपाली उदाहरण दिनुहोस् —
+      सूचीलाई व्याख्या बनाउने त्यही हो।</span></p>
+    </div>
+
+    <div class="pr-act" data-practical="g9.cf.p5.3">
+      <p><span class="pr-num">5.3</span> Prepare a PowerPoint presentation on <b>"Current trends
+      of Internet and its use in Nepal"</b>.</p>
+      <p class="pr-need"><span class="t-en"><b>You need:</b> presentation software, and sources you can name. <b>This
+      is project-sized</b> — treat it as your project work if your teacher agrees. <b>Hand in:</b>
+      the file, your notes, and a list of where each figure came from. Any number you quote needs
+      a source; a presentation of unsourced statistics is weaker than one with three figures you
+      can defend.
+      </span><span class="np-cell" lang="ne"><b lang="ne">चाहिन्छ:</b> प्रस्तुतीकरण सफ्टवेयर र नाम भन्न मिल्ने स्रोत।
+      <b lang="ne">यो प्रोजेक्ट आकारको हो</b> — शिक्षक सहमत हुनुहुन्छ भने प्रोजेक्ट काम नै बनाउनुहोस्।
+      <b lang="ne">बुझाउने:</b> फाइल, नोट, र हरेक तथ्याङ्क कहाँबाट आयो भन्ने सूची। उद्धृत गरेको हरेक
+      संख्याको स्रोत चाहिन्छ; स्रोतविहीन तथ्याङ्कभन्दा बचाउ गर्न सकिने तीन संख्या बलियो
+      हुन्छ।</span></p>
+    </div>
+  </div>
+
+  <!-- ============ EXAM FOCUS ============ -->
+  <h2 class="topic" id="cf-exam5"><span class="t-en">Exam focus — what is asked from this unit</span><span class="t-ne" lang="ne"> — परीक्षा केन्द्र — यस युनिटबाट के सोधिन्छ</span></h2>
+
+  <div class="exam-connect">
+    <p><span class="t-en">This unit carries <b>8 of the 50 external marks</b> and 10 of the 64 theory hours. Expect:
+    define the Internet; write its advantages and disadvantages; list the requirements for an
+    Internet connection; and short notes on two or three of the nine services — e-commerce and
+    e-governance are asked most often, and both want a Nepali example.
+    </span><span class="np-cell" lang="ne">यो युनिटले <b lang="ne">बाह्य ५० मध्ये ८ अंक</b> र ६४ मध्ये १० घण्टा ओगट्छ।
+    अपेक्षा: इन्टरनेटको परिभाषा; फाइदा र बेफाइदा; जडानका लागि चाहिने कुराको सूची; र नौमध्ये दुई–तीन
+    सेवामा छोटो टिप्पणी — e-commerce र e-governance सबैभन्दा धेरै सोधिन्छन्, र दुवैले नेपाली
+    उदाहरण खोज्छन्।</span></p>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">What is the Internet? How does it differ from the World Wide Web?
+    </span><span class="np-cell" lang="ne">इन्टरनेट भनेको के हो? यो World Wide Web भन्दा कसरी फरक छ?</span></p>
+    <button class="btn-ans" data-answer="cfa51">Show the answer</button>
+    <div class="ans" id="cfa51"><div class="t-en">
+      <p>The Internet is a <b>global network of interconnected computer networks</b> that
+      communicate using common protocols such as TCP/IP.</p>
+      <p>The World Wide Web is <b>one service that runs on the Internet</b> — a collection of
+      linked pages viewed with a browser. The Internet also carries e-mail, file transfer and
+      other services, so the Web is a part of it and not the same thing.</p>
+      </div><span class="np-cell" lang="ne">इन्टरनेट भनेको <b lang="ne">आपसमा जोडिएका कम्प्युटर नेटवर्कहरूको विश्वव्यापी
+      नेटवर्क</b> हो, जसले TCP/IP जस्ता साझा प्रोटोकल प्रयोग गर्छ। World Wide Web चाहिँ
+      <b lang="ne">त्यसमाथि चल्ने एउटा सेवा</b> हो — browser ले हेरिने जोडिएका पृष्ठहरूको संग्रह।
+      इन्टरनेटले इमेल र file transfer पनि बोक्छ, त्यसैले वेब यसको एक भाग हो, उही होइन।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">List the requirements for an Internet connection.
+    </span><span class="np-cell" lang="ne">इन्टरनेट जडानका लागि चाहिने कुराहरू लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa52">Show the answer</button>
+    <div class="ans" id="cfa52"><div class="t-en">
+      <p><b>Hardware:</b> a computer or mobile device; a modem or router; a transmission line
+      (telephone, fibre-optic, cable, or wireless/mobile data); a network interface card or Wi-Fi
+      adapter.</p>
+      <p><b>Software:</b> an operating system supporting TCP/IP protocols; a browser or other
+      client application.</p>
+      <p><b>Service:</b> an account with an Internet Service Provider (ISP).</p>
+      <p>Grouping them into hardware, software and service is what makes this a four-mark answer
+      rather than a list.</p>
+      </div><span class="np-cell" lang="ne"><b lang="ne">हार्डवेयर:</b> कम्प्युटर वा मोबाइल; modem वा router; प्रसारण लाइन
+      (टेलिफोन, फाइबर, केबल, वायरलेस/मोबाइल डाटा); NIC वा Wi-Fi adapter। <b lang="ne">सफ्टवेयर:</b> TCP/IP
+      भएको OS; browser वा अर्को app। <b lang="ne">सेवा:</b> ISP को खाता। हार्डवेयर–सफ्टवेयर–सेवा गरी
+      समूहमा लेख्दा सूची नभई चार अंकको उत्तर बन्छ।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">2 marks</span> Practice question</div>
+    <p><span class="t-en">What is a modem? Why is it needed?
+    </span><span class="np-cell" lang="ne">Modem भनेको के हो? किन चाहिन्छ?</span></p>
+    <button class="btn-ans" data-answer="cfa53">Show the answer</button>
+    <div class="ans" id="cfa53"><div class="t-en">
+      <p>A modem (<b>MO</b>dulator-<b>DEM</b>odulator) is a device that <b>converts the digital
+      signals of a computer into a form that can travel over a transmission line, and converts
+      arriving signals back into digital form</b>.</p>
+      <p>It is needed because a computer works with digital signals while a telephone or similar
+      line carries a different kind of signal; without conversion in both directions no data
+      could pass.</p>
+      </div><span class="np-cell" lang="ne">Modem (<b>MO</b>dulator-<b>DEM</b>odulator) ले <b lang="ne">कम्प्युटरको digital
+      सङ्केतलाई लाइनमा जान सक्ने रूपमा बदल्छ र आउने सङ्केतलाई फेरि digital बनाउँछ</b>। कम्प्युटर
+      digital मा चल्छ तर लाइनले अर्कै सङ्केत बोक्छ, त्यसैले दुवै दिशाको रूपान्तरण विना data
+      जान सक्दैन।</span>
+    </div>
+  </div>
+
+  <div class="examq">
+    <div class="q-h"><span class="mk">4 marks</span> Practice question</div>
+    <p><span class="t-en">Write short notes on e-commerce and e-governance with examples from Nepal.
+    </span><span class="np-cell" lang="ne">E-commerce र e-governance मा नेपालका उदाहरणसहित छोटो टिप्पणी
+    लेख्नुहोस्।</span></p>
+    <button class="btn-ans" data-answer="cfa54">Show the answer</button>
+    <div class="ans" id="cfa54"><div class="t-en">
+      <p><b>E-commerce</b> is the buying and selling of goods and services over the Internet,
+      including the payment. The customer browses, orders and pays without going to a shop.
+      Examples in Nepal: Daraz, SastoDeal, online airline booking, and payment through eSewa or
+      Khalti.</p>
+      <p><b>E-governance</b> is the delivery of government services and information to citizens
+      over the Internet. It reduces travel and queuing and makes records easier to check.
+      Examples in Nepal: online PAN registration, online passport application, publication of
+      examination results, and online land-revenue payment.</p>
+      <p>Two marks each: one for the explanation, one for a real example.</p>
+      </div><span class="np-cell" lang="ne"><b>E-commerce</b> — इन्टरनेटबाट वस्तु र सेवाको किनबेच, भुक्तानीसहित।
+      नेपालमा: Daraz, SastoDeal, अनलाइन हवाई टिकट, eSewa/Khalti भुक्तानी. <b>E-governance</b> —
+      सरकारी सेवा र सूचना नागरिकसम्म इन्टरनेटबाट पुर्‍याउनु; यात्रा र लाइन घट्छ, अभिलेख जाँच्न
+      सजिलो हुन्छ। नेपालमा: अनलाइन PAN दर्ता, राहदानी आवेदन, नतिजा प्रकाशन, मालपोत भुक्तानी।
+      प्रत्येकको दुई अंक: एक व्याख्याको, एक वास्तविक उदाहरणको।</span>
+    </div>
+  </div>
+
+  <div class="keypoints">
+    <h3>Key points from this unit</h3><div class="t-en">
+    <ul>
+      <li>The Internet is the network of networks; the Web is one service on it.</li>
+      <li>An honest answer on the Internet gives disadvantages as well as advantages.</li>
+      <li>Requirements group into hardware, software and an ISP account — and every link is
+      required.</li>
+      <li>A modem modulates outgoing digital into line signal and demodulates incoming back.</li>
+      <li>Nine services: WWW, e-mail, newsgroup, Telnet, IRC, e-commerce, search engine,
+      e-governance, remote control.</li>
+      <li>Telnet gives a command line; remote control gives a whole desktop.</li>
+    </ul>
+    </div><span class="np-cell" lang="ne">इन्टरनेट = नेटवर्कहरूको नेटवर्क; वेब = त्यसमाथिको एउटा सेवा। इमानदार
+    उत्तरले फाइदासँगै बेफाइदा पनि दिन्छ। आवश्यकता: हार्डवेयर, सफ्टवेयर र ISP खाता — हरेक कडी
+    अनिवार्य। Modem ले जाने digital लाई modulate र आउनेलाई demodulate गर्छ। नौ सेवा: WWW,
+    e-mail, newsgroup, Telnet, IRC, e-commerce, search engine, e-governance, remote control।
+    Telnet — command line; remote control — पूरै डेस्कटप।</span>
+  </div>
+</section>
+
+</main>
+<div class="pager"><a href="unit4.html"><span class="lab">◂ Previous</span><span class="ttl">Memory / Storage Unit</span></a><a class="nx" href="unit6.html"><span class="lab">Next ▸</span><span class="ttl">Multimedia</span></a></div>
+<footer><span class="t-en">
+  <b style="color:var(--chalk-dim)">Gyansetu</b> — Secondary Level (Technical &amp; Vocational),
+  Computer Engineering, Curriculum Development Centre Nepal, 2078.<br>
+  Works fully offline. No login, no server, no internet needed (web fonts are optional).
+  </span><span class="np-cell" lang="ne">इन्टरनेट नभए पनि पूरै चल्छ। लगइन चाहिँदैन।</span>
+</footer>
+</div>
+<script src="../../assets/js/services/language.js"></script>
+<script src="../../assets/js/services/strings.js"></script>
+<script src="../../assets/js/nav.js"></script>
+<script src="../../assets/js/services/motion.js"></script>
+<script src="../../assets/js/code.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/retrieval.js"></script>
+<script src="../../assets/js/wexthink.js"></script>
+<script src="../../assets/js/services/simulation.js"></script>
+<script src="../../assets/js/predict.js"></script>
+<script src="../../assets/js/sim-drill.js"></script>
+<script src="../../assets/js/services/progress.js"></script>
+<script src="../../assets/js/practical.js"></script>
+</body>
+</html>

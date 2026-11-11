@@ -550,6 +550,17 @@ w('assets/js/practice-bank.js',
     'GuidedPractice.register(' + JSON.stringify(skill, null, 2) + ');'
   ).join('\n\n') + '\n');
 
+/* Stepper programs, written the same way and for the same reason. The
+   mount() at the end matters: sim-crun.js loads before this file, so the
+   registry is empty when it first looks, and a page that only mounted on
+   DOMContentLoaded would be relying on script order rather than stating
+   it. mount() is idempotent — a mounted container carries a marker. */
+w('assets/js/program-bank.js',
+  '/* GENERATED from _source/content/programs — do not edit by hand. */\n' +
+  ctx.programBanks.map(prog =>
+    'CRun.register(' + JSON.stringify(prog, null, 2) + ');'
+  ).join('\n\n') + '\n\nCRun.mount();\n');
+
 w('assets/js/question-bank.js',
   '/* GENERATED from _source/content/questions — do not edit by hand. */\n' +
   Object.entries(ctx.questionBanks).map(([subject, qs]) =>

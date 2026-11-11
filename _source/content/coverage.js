@@ -188,6 +188,99 @@ module.exports = {
      All four topic strings below were verified against CDC 2078
      pp.13-15 by two independent extractions in Phase 12.
      --------------------------------------------------------------- */
+  /* ---------------------------------------------------------------
+     PROGRAMMING PRINCIPLES IN C — mapped in Phase 14, as each unit was
+     written rather than afterwards.
+
+     The official list is unusually coarse in Unit 3, where three
+     numbered topics carry sixteen hours and thirteen marks between
+     them. The lesson splits each into sub-sections a student can
+     navigate; the map keeps ONE entry per official string, because the
+     string is the contract and inventing finer entries would be
+     inventing curriculum.
+
+     Where an official topic names several things that are genuinely
+     taught in two places — 5.5's seven string functions, 4.2's three
+     function stages — the entry names both anchors rather than hiding
+     half the evidence.
+     --------------------------------------------------------------- */
+  'grade9/c-programming': {
+
+    /* ---- Unit 1 — Principles of Programming (6 hrs, 5 marks) ---- */
+    'Introduction to Programming (Program, Programmer, Programming Language, Software)': 'c-t11',
+    'Categories of Programming Language': 'c-t12',
+    'Applications — Scientific Application, Business Application': 'c-t13',
+    /* 1.4 names two tools. Both are taught in this one section — the
+       algorithm in prose with its five properties, the flowchart in the
+       symbol figure — and the two worked examples each produce both, so
+       they share the anchor rather than being split. */
+    'Program Design Tools (Algorithm and Flowchart)': 'c-t14',
+
+    /* ---- Unit 2 — Fundamentals of C (10 hrs, 7 marks) ---- */
+    'Introduction to C Programming': 'c-t21',
+    /* 2.2 names eight parts of a program. All eight are taught in this
+       one section — each with what it is for rather than only what it
+       is called — and the program stepper under it shows the order they
+       actually happen in, which is the part a list cannot carry. */
+    'Basic Program Structure (Preprocessor Directive, Header Files, Tokens, Semicolons, Comments, Identifiers, Whitespace, Escape Sequence)': 'c-t22',
+    'Variables and Keywords': 'c-t23',
+    'Character Sets, Constants and Variables': 'c-t24',
+    'Data Types and Format Specifiers': 'c-t25',
+    'Input / Output statements': 'c-t26',
+    'Operators in C (Arithmetic, Relational, Logical, Bitwise, Assignment)': 'c-t27',
+
+    /* ---- Unit 3 — Control Flow Statements (16 hrs, 13 marks) ----
+       Three official topics for the heaviest unit in the subject. The
+       official list folds every sub-item in: 3.1 covers if, if-else and
+       switch; 3.2 covers for, while, do-while and nested; 3.3 covers
+       break, continue, goto and return. Each is taught across several
+       sections of the lesson and the map keeps one entry per official
+       string, because the string is the contract. */
+    'Decision Making Statements — if, if…else, switch': 'c-t31',
+    'Loop Statements — for, while, do-while, nested loops': 'c-t32',
+    'Jump Statements — break, continue, goto, return': 'c-t33',
+
+    /* ---- Unit 4 — Functions (12 hrs, 10 marks) ---- */
+    'Introduction to Function': 'c-t41',
+    /* 4.2 folds three sub-items — declaration, definition, calling. All
+       three are taught in this section and named in the drill under it,
+       and the worked example labels all three in one program. */
+    'Declaration, Definition and Calling of a Function': 'c-t42',
+    'Types of Functions — Library Function, User-Defined Function': 'c-t43',
+    'Types of Function Call — Call by Value, Call by Reference': 'c-t44',
+    'Concept of Recursive Functions': 'c-t45',
+    'Advantages of Functions': 'c-t46',
+
+    /* ---- Unit 5 — Arrays & Strings (10 hrs, 8 marks) ---- */
+    'Introduction to Array & String': 'c-t51',
+    'Declaration and Initialization of Array': 'c-t52',
+    'One-Dimensional Array': 'c-t53',
+    'Declaration of String': 'c-t54',
+    /* 5.5 names seven functions. Four are taught in the section with
+       what each returns, and the three that are NOT standard C are
+       separated into the callout inside the same section — which is the
+       distinction the official list does not draw and a student needs. */
+    'String Functions — strlen(), strcpy(), strcat(), strcmp(), strrev(), strlwr(), strupr()': 'c-t55',
+
+    /* ---- Unit 6 — Structure and Union (6 hrs, 5 marks) ----
+       6.5 and 6.6 are taught in the section that introduces the union,
+       because the declaration and the member access are IDENTICAL to a
+       structure's and teaching them apart would imply a difference that
+       does not exist. The section says so in those words. */
+    'Introduction to Structure': 'c-t61',
+    'Declaration of Structure and Structure Variable': 'c-t62',
+    'Accessing Member of Structure': 'c-t63',
+    'Introduction to Union': 'c-t64',
+    'Declaration of Union and Union Variable': 'c-t64',
+    'Accessing Member of Union': 'c-t64',
+
+    /* ---- Unit 7 — Pointers (4 hrs, 2 marks) ---- */
+    'Introduction to Pointer': 'c-t71',
+    'Declaring Pointer and Pointer Variable': 'c-t72',
+    'Referencing and Dereferencing': 'c-t73',
+    'Advantages of Pointer': 'c-t74'
+  },
+
   'grade9/computer-fundamentals': {
 
     /* ---- Unit 1 — Introduction to computer (8 hrs, 6 marks) ---- */
@@ -198,7 +291,68 @@ module.exports = {
        model and brand. All five are taught in this one section, in the
        prose, the figure and the drill, which is why they share its
        anchor rather than being split out. */
-    'Classification of computers — by size, by data handling, by purpose, by model, by brand': 'cf-t14'
+    'Classification of computers — by size, by data handling, by purpose, by model, by brand': 'cf-t14',
+
+    /* ---- Unit 2 — Computer Components (10 hrs, 7 marks) ---- */
+    'Introduction to Components of computer system': 'cf-t21',
+    /* 2.2 names twelve devices. They are taught in one section — grouped
+       by what they do rather than listed — plus the callout that
+       separates OMR, OCR, BCR and MICR and the drill that tests the
+       separation. One anchor, because splitting twelve devices into
+       twelve headings would teach the list and not the grouping. */
+    'Input Unit — Keyboard, Mouse, Joystick, OMR, OCR, BCR, MICR, Scanner, Touch Screen, Touchpad, Microphone, Digital Camera': 'cf-t22',
+    'Output Unit — softcopy: Monitors (CRT, LCD, LED/Plasma), Speaker, Projector, Headphone; hardcopy: Printers (impact, non-impact, 3D), Graphic plotter': 'cf-t23',
+    'Concept of Memory unit': 'cf-t24',
+    'Processing unit — Microprocessor: clock speed, word length, components and functions': 'cf-t25',
+
+    /* ---- Unit 3 — Computer Software (10 hrs, 9 marks) ---- */
+    'Introduction to Computer software': 'cf-t31',
+    'Types of software and its features': 'cf-t32',
+    'Introduction to Operating System': 'cf-t33',
+    'Functions and characteristics of Operating System': 'cf-t34',
+    'Types of Operating System': 'cf-t35',
+    'User interface — CUI and GUI': 'cf-t36',
+    'OSS (Open Source Software)': 'cf-t37',
+
+    /* ---- Unit 4 — Memory / Storage Unit (10 hrs, 8 marks) ---- */
+    'Memory definition': 'cf-t41',
+    'Types of Memory': 'cf-t42',
+    'Cache Memory': 'cf-t43',
+    /* 4.4 and 4.5 each carry a characteristics sub-item and a types
+       sub-item. Both are taught inside the one section — the callout
+       under 4.4 holds the RAM/ROM families, and 4.5's three storage
+       families are in its own prose — so each official topic keeps one
+       anchor rather than being split by sub-item. */
+    'Primary / Main memory — characteristics; RAM (SRAM, DRAM); ROM (PROM, EPROM, EEPROM)': 'cf-t44',
+    'Secondary Memory — characteristics; Magnetic (Hard disk, SSD); Optical (CD/DVD, Blu-ray); Flash (Pen-drive)': 'cf-t45',
+
+    /* ---- Unit 5 — Internet and its Application (10 hrs, 8 marks) ---- */
+    'Introduction to Internet and its advantages': 'cf-t51',
+    'Requirements for Internet connection': 'cf-t52',
+    /* 5.3 names nine services as sub-items. All nine are taught in this
+       one section, each with the problem it solved, and the drill tests
+       six of them against real tasks — so they share the anchor. */
+    'Applications — WWW, E-mail, Newsgroup, Telnet, IRC, E-commerce, Search engine, E-Governance, Remote Control': 'cf-t53',
+
+    /* ---- Unit 6 — Multimedia (8 hrs, 6 marks) ---- */
+    'Introduction to Multimedia': 'cf-t61',
+    'Components — Text, Audio, Video, Image, Animation': 'cf-t62',
+    'Application of Multimedia': 'cf-t63',
+
+    /* ---- Unit 7 — Emerging Technology (8 hrs, 6 marks) ----
+       Nine official topics for six marks, so each is taught briefly and
+       each has its own section. 7.3 is one numbered topic naming two
+       ideas, and they are taught together because the examination asks
+       students to tell them apart. */
+    'Introduction to Emerging Technology': 'cf-t71',
+    'Concept of AI': 'cf-t72',
+    'Cloud Computing and distributed computing': 'cf-t73',
+    'Concept of IoT': 'cf-t74',
+    'Concept of Big data': 'cf-t75',
+    'Concept of Data mining': 'cf-t76',
+    'Cryptography (Encryption and Decryption)': 'cf-t77',
+    'Concept of VR (Virtual Reality)': 'cf-t78',
+    'Concept of AR (Augmented Reality)': 'cf-t79'
   },
 
   /* ---------------------------------------------------------------
